@@ -43,7 +43,7 @@ Console.WriteLine(str);
 
 ## python
 ```python
-# 사용자 IO 출력 값 얻기와 설정하기
+# test_io_info.py - 사용자 IO 출력 값 얻기와 설정하기
 import requests
 
 uri='http://192.168.1.150:8888'
@@ -52,12 +52,19 @@ head = {'Content-Type': 'application/json; charset=utf-8'}
 path = '/project/control/ios/dio/do_val'
 query = {'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
 
-# fb2.do3 값 얻기 (GET)
+# (POST) fb2.do3 값 설정하기
+val = 0x79
+req_body = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val' : val }
+print('[post]', hex(val), 'to fb2.do3')
+resp = requests.post(uri + path, headers=head, json=req_body)
+
+# (GET) fb2.do3 값 가져오기
 resp = requests.get(uri+path, headers=head, params=query)
 resp_body = resp.json()
-print('fb2.do3=' + str(resp_body['val']))
-
-# fb2.do3에 0xc1 설정하기 (POST)
-req_body = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val' : 0xc1 }
-resp = requests.post(uri + path, headers=head, json=req_body)
+print('[get]', hex(resp_body['val']), 'from fb2.do3')
+```
+```bash
+$python test_io_info.py
+[post] 0x79 to fb2.do3
+[get] 0x79 from fb2.do3
 ```
