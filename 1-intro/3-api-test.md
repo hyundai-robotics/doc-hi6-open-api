@@ -19,30 +19,30 @@ REST API 테스트를 하는 방법은 여러가지가 있습니다. 해당 섹�
 			- `send` 가 정상적으로 처리되면 `그림1`처럼 `200 OK`라는 Status 값과 `Body` 값을 확인할 수 있습니다. 
 				<details><summary>그림1</summary><img src="../_assets/01_get.PNG" height="490vh">
 		- `post` 요청
-			- 3.의 `+`을 통해 `post` 요청을 위한 탭을 생성합니다
+			- 3.의 `+` 버튼을 통해 `post` 요청을 위한 탭을 생성합니다
 			- `get` 옆의 `아래 화살표 버튼`을 클릭하여 `post` 요청으로 변경합니다.
-			- 로봇 제어기에 `json` 형태의 값을 전달하는 경우 하기 순서대로 진행합니다. <br>
+			- 로봇 제어기에 `json` 형태의 값을 전달하는 경우 하기 순서대로 클릭을 진행합니다. <br>
 				`Body 클릭 -> raw 클릭 -> text 클릭 -> json 클릭` 
 			- `json` 으로 변경된 `Body` 칸에 전달하려는 값을 하기처럼 입력 후 `send`를 클릭합니다.
 				```json
-					{
-						"type":"dob",
-						"blk_no":2,
-						"sig_no":2,
-						"val":-99
-					}
+				{
+					"type":"dob",
+					"blk_no":2,
+					"sig_no":2,
+					"val":-99
+				}
 				```
 			- `send` 가 정상적으로 처리되면 `그림2`처럼 `200 OK`라는 Status 값을 확인할 수 있습니다. 
 				<details><summary>그림2</summary><img src="../_assets/02_post.PNG" height="490vh">
 			- `post` 가 정상적으로 처리 되었는지 확인하기 위해 `그림3`처럼 `get` 요청을 통해 값 변경 여부를 확인합니다.
-				<details><summary>그림3</summary><img src="../_assets/03_post_check.PNG" height="490vh">
+				<details><summary>그림3 - val 값이 -99로 변경 되었음을 확인</summary><img src="../_assets/03_post_check.PNG" height="490vh">
 
 
 <br>
 
 
 ## 1.3.2 웹 브라우저 활용하기
-- `get` 요청에 대한 결과를 간편하고 신속하게 확인하는 방법입니다.
+- `get` 요청은 웹 브라우저를 통해 보다 간편하고 신속하게 확인할 수 있습니다.
 - 순서는 다음과 같습니다.
 	1. 웹 브라우저 엽니다.
 	2. 주소 창에 `get` 요청의 서버 측 url 을 입력합니다.
@@ -52,9 +52,9 @@ REST API 테스트를 하는 방법은 여러가지가 있습니다. 해당 섹�
 		```json
 		{
 			"_type" : "JObject",
-			"val" : -122
+			"val" : -99
 		}
 		```
-- 크롬 브라우저를 사용하는 경우, 크롬 확장 프로그램을 통해 `get` 요청 이외의 api 들을 테스트할 수 있습니다.
+- 추가로, 크롬 브라우저를 사용하는 경우, 크롬 확장 프로그램을 통해 `get` 요청 이외의 api 들을 테스트할 수 있습니다.
 	- 크롬 확장 프로그램 : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)
-	- 사용법은 앞서 언급한 `postman` 사용법과 비슷합니다.
+	- 사용법은 앞서 언급한 `postman` 사용법과 비슷하므로 해당 문서에서는 생략합니다.
