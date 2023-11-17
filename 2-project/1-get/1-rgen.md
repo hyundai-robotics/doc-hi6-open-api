@@ -22,7 +22,9 @@ GET /project/rgen
   - 3 : 자동, 1-cycle
   - 4 : 자동, 연속 (cycle 반복)
 
-- is_playback : 재생 중
+- is_playback :
+  - 0 : 정지 중
+  - 1 : 재생 중
 - is_remote_mode : 원격(Remote) 모드 여부
 - is_ext_start : 외부 기동 여부
 - is_ext_prog_sel : 외부 프로그램 선택 여부
