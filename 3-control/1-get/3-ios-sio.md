@@ -1,12 +1,12 @@
-﻿# 3.1.2 ios/sio/{sio_val}
+﻿# 3.1.3 `ios/sio/{sio_val}`
 
 ## 설명
 
-sio (system input/output)
+`sio` (`s`ystem `i`nput/`o`utput)
 
-- GET : 시스템 IO 값을 얻습니다.
+- `GET` : 시스템 IO 값을 얻습니다.
 
-## method path
+## path-parameter
 
 ```python
 GET /project/control/ios/sio/{sio_val}
@@ -14,19 +14,20 @@ GET /project/control/ios/sio/{sio_val}
 
 ## path-variable
 
-- sio_val :
-  - si_val : 입력(si) 값을 얻습니다.
-  - so_val : 출력(so) 값을 얻습니다.
+- `sio_val` :
+  - `si_val` : 입력(si) 값을 얻습니다.
+  - `so_val` : 출력(so) 값을 얻습니다.
 
 ## query-parameter
 
-- type : io 값의 타입
+- `type` : io 값의 타입
   - si or so : bit
   - sib or sob : signed-byte
   - siw or sow : signed-word (2byte)
   - sil or sol : signed-dword (4yte)
   - sif or sof : float
-- sig_no : 신호 인덱스 (0~)
+- `sig_no` : 신호 인덱스 (0~)
+
 
 ## 사용 예
 
@@ -41,3 +42,28 @@ response-body:
 	"_type" : "JObject",
     "val" : 2,
 }
+```
+
+<details><summary>Python Script 예시</summary>
+
+```python
+# test.py
+import requests
+
+def get_sio_val() -> dict:
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/control/ios/sio/so_val'
+    query_parameter = { 'type': 'sob', 'sig_no': 3 }
+    
+    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
+    print(response)
+
+    return response
+
+get_sio_val()
+```
+```sh
+$python test.py
+{'_type': 'JObject', 'val': 0}
+```
+</details>

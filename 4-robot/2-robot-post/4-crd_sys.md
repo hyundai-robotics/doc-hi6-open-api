@@ -1,10 +1,10 @@
-﻿# 3.5 crd_sys
+﻿# 4.2.4 crd_sys
 
 ## 설명
 
 - POST : 현재 조그(jog) 좌표계를 설정합니다.
 
-## method path
+## path-parameter
 
 ```python
 POST /project/robot/crd_sys
