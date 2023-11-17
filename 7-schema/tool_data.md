@@ -19,4 +19,4 @@
 - izz : 이너셔(inertial) Z (kgm2)
 
 - mass_esti : 부하추정 중량 (kg.)
-- bias : ???
+- bias : ??? (부하추정에 사용되는 변수)

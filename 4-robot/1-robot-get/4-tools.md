@@ -1,12 +1,12 @@
-﻿# 3.4 tools
+﻿# 4.1.4 `tools`
 
 ## 설명
 
-tools
+`tools`
 
-- GET : 로봇의 모든 툴 정보 얻기. T0~T31까지의 툴 중 존재하는 툴만 얻습니다.
+- `GET` : 로봇의 모든 툴 정보 얻기. T0~T31까지의 툴 중 존재하는 툴만 얻습니다.
 
-## method path
+## path-parameter
 
 ```python
 GET /project/robot/tools
@@ -30,6 +30,32 @@ GET /project/robot/tools
 
 response-body:
 {
-???
+  "_type" : "Tools",
+	"t_0" : { ... },
+	"t_1" : { ... },
+	 ...
 }
 ```
+
+<details><summary>
+Python Script 예시</summary>
+
+```python
+# test.py
+import requests
+
+def get_tool1_data() -> dict:
+	base_url        = 'http://192.168.1.150:8888'
+	path_parameter  = '/project/robot/tools/t_1'
+
+	response = requests.get(url = base_url + path_parameter).json()
+
+	return response
+
+print(get_tool1_data())
+```
+```sh
+$python test.py
+{'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
+```
+</details>

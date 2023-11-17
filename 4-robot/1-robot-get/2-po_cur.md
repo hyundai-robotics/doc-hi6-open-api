@@ -1,12 +1,12 @@
-﻿# 3.1 po_cur
+﻿# 4.1.2 `po_cur`
 
 ## 설명
 
-po_cur (pose current)
+`po_cur` (`po`se `cur`rent)
 
-- GET : 현재 로봇이 취하고 있는 pose(자세)를 얻습니다.
+- `GET` : 현재 로봇이 취하고 있는 pose(자세)를 얻습니다.
 
-## method path
+## path-parameter
 
 ```python
 GET /project/robot/po_cur
@@ -22,11 +22,11 @@ GET /project/robot/po_cur
   - <0 : 현재 기록 좌표계를 따름.
   - &gt;=0 : [좌표계](/7-schema/crdsys.md)
 - ucrd_no : 사용자좌표계 번호 (crd가 user일 때만 지정함.)
-- mechinfo : [메커니즘정보](/7-schema/mechinfo.md)
+- mechinfo : [메커니즘 정보](/7-schema/mechinfo.md)
 
 ## response-body
 
-- [포즈](/7-schema/pose.md)
+- [포즈 정보](/7-schema/pose.md)
 
 
 ## 사용 예
@@ -94,3 +94,27 @@ response-body:
 	"j8" : 0.000000
 }
 ```
+
+<details><summary>Python Script 예시</summary>
+
+```python
+# test.py
+import requests
+
+def get_base_coordinate() -> dict:
+	base_url        = 'http://192.168.1.150:8888'
+	path_parameter  = '/project/robot/po_cur'
+	query_parameter = {'crd': 0, 'mechinfo': 1}
+
+	response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
+
+	return response
+
+print(get_base_coordinate())
+```
+```sh
+$python test.py
+{'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
+```
+
+</details>

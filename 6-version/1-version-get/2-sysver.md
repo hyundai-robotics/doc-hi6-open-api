@@ -4,7 +4,7 @@
 
 - GET : 로봇제어기 시스템의 소프트웨어 버전을 얻습니다.
 
-## method path
+## path-parameter
 
 ```python
 GET /versions/sysver

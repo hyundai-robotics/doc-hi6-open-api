@@ -68,3 +68,8 @@ $python test_io_info.py
 [post] 0x79 to fb2.do3
 [get] 0x79 from fb2.do3
 ```
+- 해당 문서는 HTTP 요청을 위해 많이 사용되는 `requests` 라이브러리를 사용합니다.
+- `requests` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다. 
+	```sh
+	pip install requests
+	```

@@ -1,10 +1,10 @@
-﻿# 3.4 tool_no
+﻿# 4.2.3 tool_no
 
 ## 설명
 
 - POST : 현재 툴 번호를 설정합니다.
 
-## method path
+## path-parameter
 
 ```python
 POST /project/robot/tool_no

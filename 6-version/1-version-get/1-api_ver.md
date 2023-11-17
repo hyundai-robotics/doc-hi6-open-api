@@ -4,7 +4,7 @@
 
 - GET : Open API version 번호를 얻습니다.
 
-## method path
+## path-parameter
 
 ```python
 GET /api_ver
