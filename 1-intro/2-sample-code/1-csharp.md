@@ -1,4 +1,4 @@
-﻿# 1.3.1 예제 코드 - C#
+﻿# 1.2.1 예제 코드 - C#
 
 JSON parsing을 위한 라이브러리인 `Newtonsoft.Json`를 사용했습니다.
 VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manager로 설치하시기 바랍니다.
