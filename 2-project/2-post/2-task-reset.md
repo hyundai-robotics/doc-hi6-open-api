@@ -1,8 +1,8 @@
-﻿# 2.2.2 task/reset
+﻿# 2.2.2 `task/reset`
 
 ## 설명
 
-- POST : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
+- `POST` : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
 
 ## method path
 
@@ -18,3 +18,7 @@ POST /project/context/tasks[{task번호}]/reset  ; 지정한 태스크에 대해
 ```python
 request url:
 GET /project/context/tasks[0]/reset
+```
+
+<details><summary>Python Script 예시</sumamry>
+</details>

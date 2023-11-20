@@ -65,7 +65,6 @@ def post_do_val() -> int:
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = {"type": "dob", "blk_no": 2, "sig_no": 3,"val": -99}
 
-    # post 시, request header 에 대한 정보를 전달합니다.
     response = requests.post(url = base_url + path_parameter, headers = head,  json = body)
     return response.status_code
 
