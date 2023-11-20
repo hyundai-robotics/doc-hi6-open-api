@@ -21,5 +21,6 @@ Postman으로 POST 요청을 시험할 수 있습니다.
 
 3. `Response` 확인 및 `Code Snippet` 참조
 	- `request` 요청이 정상적으로 완료되면 아래 그림의 (1)과 같이 `HTTP Status` 가 `200 OK`로 응답합니다.
+	- [HTTP Status 참조](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 	- 해당 url 이 적용된 언어별 `Code snippet` 을 확인하고 싶으시면 (2)의 `</>` 버튼을 클릭하면 됩니다.
 	![postman_post_result](../_assets/04_postman_post_result_check.png)
