@@ -2,7 +2,7 @@
 
 ## 설명
 
-`do` (`d`igital `o`utput)
+`do` (digital output)
 
 - `POST` : 디지털 출력을 변경합니다.
 
@@ -53,7 +53,6 @@ request-body:
 ```
 <details><summary>Python Script 예시</summary>
 
-- 아래는 `제어기의 ip:port` 가 `192.168.1.150:8888` 일 때, fb2.dob3 값을 -99로 변경하는 코드입니다.
 - 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
 ```python
 # test.py

@@ -2,7 +2,7 @@
 
 ## 설명
 
-`dio` (`d`igital `i`nput/`o`utput)
+`dio` (digital input/output)
 
 - `GET` : 사용자 IO 값을 `얻습니다`.
 

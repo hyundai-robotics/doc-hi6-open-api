@@ -2,7 +2,7 @@
 
 ## 설명
 
-`op_cnd` (`op`eration `c`o`nd`ition)
+`op_cnd` (operation condition)
 
 - `POST` : 로봇의 조건설정 값을 변경합니다.
 

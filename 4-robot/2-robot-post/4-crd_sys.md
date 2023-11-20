@@ -12,9 +12,4 @@ POST /project/robot/crd_sys
 
 ## request-body
 
-- val : 조그 좌표계
-  - -1 : 다음 좌표계로 전환. 가령 현재가 1(직교)이면 2(사용자)로 변경됨.
-  - 0 : 축
-  - 1 : 직교
-  - 2 : 사용자
-  - 3 : 툴
+- [좌표계](/7-schema/crdsys.md)

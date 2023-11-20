@@ -2,7 +2,7 @@
 
 ## 설명
 
-`dio` (`d`igital `i`nput/`o`utput)
+`dio` (digital input/output)
 
 - `GET` : relay 값을 객체.타입 전체에 대해 얻습니다.
 

@@ -6,7 +6,7 @@ op_cnd (operation condition) : 로봇의 조건설정 값입니다.
 <br>
 
 |key|value|description|
-|:---:|:---|:---|
+|:---|:---|:---|
 |playback_mode| 1 : 1사이클 <br> 2 : 반복|자동운전 동작 사이클 모드|
 |step_goback_max_spd|10~250 (mm/sec)|스텝 전/후진 시 최고속|
 |step_go_func_ex|0 : 무효 <br> 1 : 유효|스텝 전진 시 펑션 실행|

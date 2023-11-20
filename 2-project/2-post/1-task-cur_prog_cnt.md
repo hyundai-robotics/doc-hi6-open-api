@@ -14,15 +14,46 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ## request-body
 
-- `pno` : 프로그램 번호 (-1이면 현재 번호 유지)
-- `sno` : 스텝 번호 (-1이면 현재 번호 유지)
-- `fno` : 펑션 번호 (-1이면 현재 번호 유지)
-- `ext_sel` :
-  - `0` : 내부선택(원격모드에선 금지됨)
-  - `1` : 외부선택(원격모드에서만 허용됨)
+- [cur_prog_cnt 요청 파라미터](../../7-schema/cur_prog_cnt.md/#request-body)
 
 ## response-body
 
-- `sno_new` : 새로 이동한 스텝 번호
-- `fno_new` : 새로 이동한 펑션 번호
-- `ln_new` : 새로 이동한 라인번호 (프로그램 헤더가 0, 첫 명령문이 1)
+- [cur_prog_cnt 응답 파라미터](../../7-schema/cur_prog_cnt.md/#response-body)
+
+## 사용 예
+
+```python
+request url:
+POST /project/context/tasks[0]/cur_prog_cnt
+
+request-body:
+{
+    "pno":-1,
+    "sno":-1,
+    "fno":-1,
+    "ext_sel":0
+}
+```
+<details><summary>Python Script 예시</summary>
+
+```python
+import requests
+
+def post_cur_prog_cnt() -> dict:
+	base_url        = 'http://192.168.1.150:8888'
+	path_parameter  = '/project/context/tasks[0]/cur_prog_cnt'
+	headers 		= { 'Content-Type': 'application/json; charset=utf-8' }
+	body 			= {"pno":-1, "sno":-1, "fno":-1, "ext_sel":0 }
+
+	response = requests.request("POST", base_url + path_parameter, headers=headers, json=body)
+
+	return response.json()
+
+print(post_cur_prog_cnt())
+```
+```sh
+$python python test.py
+{'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
+```
+
+</details>

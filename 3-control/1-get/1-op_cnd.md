@@ -2,7 +2,7 @@
 
 ## 설명
 
-`op_cnd` (`op`eration `c`o`nd`ition)
+`op_cnd` (operation condition)
 
 - `GET` : 로봇의 조건설정 값을 얻습니다.
 
@@ -14,7 +14,7 @@ GET /project/control/op_cnd
 
 ## response-body
 
-- [로봇 조건설정 파라미터](/7-schema/op_cnd.md)
+- [로봇 조건설정 파라미터](../../7-schema/op_cnd.md)
 
 <blockquote>
 

@@ -4,11 +4,14 @@
 
 - `POST` : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
 
-## method path
+## path-parameter
 
 ```python
-POST /project/context/tasks/reset  ; 모든 태스크에 대해 리셋을 수행.
-POST /project/context/tasks[{task번호}]/reset  ; 지정한 태스크에 대해 리셋을 수행.
+# 모든 태스크에 대해 리셋을 수행
+POST /project/context/tasks/reset 
+
+# 지정한 태스크에 대해 리셋을 수행
+POST /project/context/tasks[{task번호}]/reset 
 ```
 
 ## 사용 예
@@ -20,5 +23,12 @@ request url:
 GET /project/context/tasks[0]/reset
 ```
 
-<details><summary>Python Script 예시</sumamry>
+<details><summary>Python Script 예시</summary>
+
+```python
+
+API 테스트 필요
+
+```
+
 </details>

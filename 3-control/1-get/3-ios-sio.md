@@ -2,7 +2,7 @@
 
 ## 설명
 
-`sio` (`s`ystem `i`nput/`o`utput)
+`sio` (system input/output)
 
 - `GET` : 시스템 IO 값을 얻습니다.
 

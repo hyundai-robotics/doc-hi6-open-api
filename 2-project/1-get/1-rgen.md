@@ -2,7 +2,7 @@
 
 ## 설명
 
-`rgen` (`r`emote `gen`eral status)
+`rgen` (remote general status)
 
 - `GET` : 로봇의 조건설정 값을 얻습니다.
 
@@ -15,14 +15,14 @@ GET /project/rgen
 ## response-body
 
 ### 모드
-|key|value|description|
-|:---|:---|:---|
-|`cur_mode`| `0` : 수동 <br> `1` : 수동, 시스템 설정 <br>`3` : 자동, 1-cycle <br> `4` : 자동, 연속 (cycle 반복)|수동/자동 모드|
-|`enable_state`|`0번` 바이트(`LSB`) : 모터 ON (0: On / 1: Off / 2: Busy) <br> `1번` 바이트 : TP Enable (deadman) 스위치 (0: OFF / 1: ON)<br>`2번` 바이트 : 머신 Lock (0: OFF / 1: ON)<br>`3번` 바이트 : 건(gun) Lock (0: OFF / 1: ON)<br>`4번` 바이트 : 건(gun) (0: OFF / 1: ON)||
-|`is_playback`|`0` : 정지 중 <br>`1` : 재생 중||
-|`is_remote_mode`|`0`: False <br> `1`: True|원격(Remote) 모드 여부|
-|`is_ext_start`|`0`: False <br> `1`: True|외부 기동 여부|
-|`is_ext_prog_sel`|`0`: False <br> `1`: True|외부 프로그램 선택 여부|
+|key|value|type|description|
+|:---|:---|:---|:---|
+|`cur_mode`| `0` : 수동 <br> `1` : 수동, 시스템 설정 <br>`3` : 자동, 1-cycle <br> `4` : 자동, 연속 (cycle 반복)|`int`|수동/자동 모드|
+|`enable_state`|`0번` 바이트(`LSB`) : 모터 ON (0: On / 1: Off / 2: Busy) <br> `1번` 바이트 : TP Enable (deadman) 스위치 (0: OFF / 1: ON)<br>`2번` 바이트 : 머신 Lock (0: OFF / 1: ON)<br>`3번` 바이트 : 건(gun) Lock (0: OFF / 1: ON)<br>`4번` 바이트 : 건(gun) (0: OFF / 1: ON)|`int`||
+|`is_playback`|`0` : 정지 중 <br>`1` : 재생 중|`int`||
+|`is_remote_mode`|`0`: False <br> `1`: True|`int`|원격(Remote) 모드 여부|
+|`is_ext_start`|`0`: False <br> `1`: True|`int`|외부 기동 여부|
+|`is_ext_prog_sel`|`0`: False <br> `1`: True|`int`|외부 프로그램 선택 여부|
 
 <br>
 
@@ -65,24 +65,22 @@ GET /project/rgen
 
 ```python
 import requests
-def get_is_remote_mode() -> dict:
+
+def is_remote_mode() -> bool:
 	base_url        = 'http://192.168.1.150:8888'
 	path_parameter  = '/project/rgen'
 
 	response = requests.get(url = base_url + path_parameter).json()
 
-	robot = response['robot_model']
-	is_remote_mode = response['is_remote_mode']
+	print(f'is remote mode? {response['is_remote_mode']}')
 
-	print(f'is {robot} remote mode? {is_remote_mode}')
-
-	return response
+	return response['is_remote_mode']
 
 get_is_remote_mode()
 ```
 ```sh
 $python test.py
-is HH020-03 remote mode? 0
+is remote mode? 0
 ```
 
 </details>
