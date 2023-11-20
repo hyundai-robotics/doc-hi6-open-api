@@ -14,7 +14,7 @@ GET /project/robot/cur_tool_data
 
 ## response-body
 
-- val : [툴 데이터](/7-schema/tool_data.md)
+- val : [툴 데이터](/99-schema/tool_data.md)
 
 ## 사용 예
 

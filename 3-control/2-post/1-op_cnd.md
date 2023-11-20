@@ -14,7 +14,7 @@ POST /project/control/op_cnd
 
 ## request-body
 
-- [포즈](/7-schema/op_cnd.md)
+- [포즈](/99-schema/op_cnd.md)
 
 
 ## 사용 예

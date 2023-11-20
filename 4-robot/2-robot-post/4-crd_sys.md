@@ -12,4 +12,4 @@ POST /project/robot/crd_sys
 
 ## request-body
 
-- [좌표계](/7-schema/crdsys.md)
+- [좌표계](/99-schema/crdsys.md)
