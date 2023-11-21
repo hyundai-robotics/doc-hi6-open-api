@@ -9,7 +9,7 @@
 ## path-parameter
 
 ```python
-GET /project/project_info
+GET /file_manager/files
 ```
 
 ## query-parameter
@@ -18,8 +18,11 @@ GET /project/project_info
 
 ## response-body
 
-- 파일 내용 반환
-- 파일이 없을 시 `404 Not Found`
+|HTTP Status|description|
+|:---|:---|
+|`200 OK`|파일 내용 반환|
+|`404 Not Found`| 파일 없을 때 에러 상태 코드 반환|
+
 
 ## 사용 예
 
