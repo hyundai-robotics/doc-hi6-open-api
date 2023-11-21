@@ -13,7 +13,6 @@ GET /file_manager/file_info
 ```
 
 ## query-parameter
-
 - `pathname` : 타겟 파일 경로
 
 ## response-body
@@ -24,6 +23,18 @@ GET /file_manager/file_info
 ## 사용 예
 
 <blockquote>
+
+```
+hi6
+`-- project
+    |-- jobs
+    |   `-- 0001.job <- target 
+    |-- lads
+    |-- log
+    |-- vars
+    |-- ...
+    `-- hi6_proj.json
+```
 
 ```python
 request url:

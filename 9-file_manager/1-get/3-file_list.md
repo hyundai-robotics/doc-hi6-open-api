@@ -14,6 +14,7 @@ GET /file_manager/file_list
 
 ## query-parameter
 
+
 |key|value type|description|
 |:---|:---|:---|
 |`path`|`str`|확인하려는 대상 폴더 경로|
@@ -31,6 +32,14 @@ GET /file_manager/file_list
 ## 사용 예
 
 <blockquote>
+
+```
+hi6
+`-- project     <- target
+    |-- jobs
+    |   `-- 0001.job
+    `-- hi6_proj.json
+```
 
 ```python
 request url:

@@ -28,6 +28,18 @@ GET /file_manager/files
 
 <blockquote>
 
+```
+hi6
+`-- project
+    |-- jobs
+    |   `-- 0001.job   <- target
+    |-- lads
+    |-- log
+    |-- vars   
+    |-- ...
+    `-- hi6_proj.json
+```
+
 ```python
 request url:
 GET /file_manager/files?pathname=project/jobs/0001.job

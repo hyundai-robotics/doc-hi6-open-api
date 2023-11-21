@@ -14,6 +14,7 @@ GET /file_manager/file_exist
 
 ## query-parameter
 
+
 |key|value type|description|
 |:---|:---|:---|
 |`pathname`|`str`| 타겟 파일 경로 |
@@ -36,6 +37,13 @@ GET /file_manager/file_exist?pathname=project/jobs/1234.job
 
 response-body: 
 false
+```
+```
+hi6
+`-- project
+    |-- jobs
+    |   `-- 0001.job
+    `-- hi6_proj.json
 ```
 
 </blockquote>
