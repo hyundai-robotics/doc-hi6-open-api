@@ -14,10 +14,14 @@ POST /file_manager/rename_file
 
 ## request-body
 
-|key|value|description|
-|:---|:---|:---|
-|`pathname_from`|`str`|변경 전 파일 경로|
-|`pathname_to`|`str`|변경 후 파일 경로|
+```json
+{
+	"pathname_from" : "project/jobs/0001.job",
+	"pathname_to"   : "project/jobs/4321.job"
+}
+```
+- `pathname_from` : 변경 전 파일 경로
+- `pathname_to` : 변경 후 파일 경로
 
 ## response-body
 

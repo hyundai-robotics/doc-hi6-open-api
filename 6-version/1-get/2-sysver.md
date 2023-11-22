@@ -30,7 +30,32 @@ response-body:
 {
     "modules" : [
         {
-???
+            "build-date": ...
+            "build-time": ...
+                 ...
+            "ver": ...
         }
     ] 
 }
+```
+
+<details><summary>Python Script 예시</summary>
+
+```python
+import requests
+
+def get_sysver() -> dict:
+	base_url        = 'http://192.168.1.150:8888'
+	path_parameter  = '/versions/sysver'
+	response = requests.get(url = base_url + path_parameter)
+
+	return response.json()
+
+print(get_sysver())
+```
+```sh
+$python test.py
+{'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
+```
+
+</details>

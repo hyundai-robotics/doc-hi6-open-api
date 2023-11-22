@@ -13,6 +13,10 @@ GET /file_manager/file_info
 ```
 
 ## query-parameter
+
+```
+?pathname=project/jobs/0001.job
+```
 - `pathname` : 타겟 파일 경로
 
 ## response-body

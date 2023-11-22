@@ -56,11 +56,10 @@ def get_sio_val() -> dict:
     query_parameter = { 'type': 'sob', 'sig_no': 3 }
     
     response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
-    print(response)
 
     return response
 
-get_sio_val()
+print(get_sio_val())
 ```
 ```sh
 $python test.py

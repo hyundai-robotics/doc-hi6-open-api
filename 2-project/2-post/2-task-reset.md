@@ -14,16 +14,6 @@ POST /project/context/tasks/reset
 POST /project/context/tasks[{task번호}]/reset 
 ```
 
-## request-body
-
-- []()
-
-
-## response-body
-
-- []()
-
-
 ## 사용 예
 
 - 0번 태스크 리셋 하기.

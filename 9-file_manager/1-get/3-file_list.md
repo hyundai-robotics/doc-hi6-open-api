@@ -14,12 +14,14 @@ GET /file_manager/file_list
 
 ## query-parameter
 
-
-|key|value type|description|
-|:---|:---|:---|
-|`path`|`str`|확인하려는 대상 폴더 경로|
-|`incl_file`|`bool`|리스트 출력 시 파일 포함 여부|
-|`incl_dir`|`bool`|리스트 출력 시 디렉토리 포함 여부|
+```
+?path=project/jobs&incl_file=true&incl_dir=false
+```
+|key|description|
+|:---|:---|
+|`path`|확인하려는 대상 폴더 경로|
+|`incl_file`|리스트 출력 시 파일 포함 여부|
+|`incl_dir`|리스트 출력 시 디렉토리 포함 여부|
 
 ## response-body
 
@@ -43,7 +45,7 @@ hi6
 
 ```python
 request url:
-GET /file_manager/file_list?pathname=project
+GET /file_manager/file_list?path=project&incl_file=true&incl_dir=true
 
 response-body:
 [

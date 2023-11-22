@@ -56,11 +56,10 @@ def get_dio_val() -> dict:
     query_parameter = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
     
     response = requests.get(url=base_url + path_parameter, params=query_parameter).json()
-    print(response)
 
     return response
 
-get_dio_val()
+print(get_dio_val())
 ```
 ```sh
 $python test.py

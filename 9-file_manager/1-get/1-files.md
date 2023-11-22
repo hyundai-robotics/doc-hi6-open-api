@@ -14,6 +14,9 @@ GET /file_manager/files
 
 ## query-parameter
 
+```
+?pathname=project/jobs/0001.job
+```
 - `pathname` : 가져올 파일 이름
 
 ## response-body
@@ -46,7 +49,8 @@ GET /file_manager/files?pathname=project/jobs/0001.job
 
 response-body:
 {
-	Hyundai Robot Job File; { version: 2.0 }
+	Hyundai Robot Job File; { version: 2.0 ... }
+	...
 }
 ```
 
@@ -67,11 +71,22 @@ def print_file_contents() -> None:
 	
 	print(f'response: {response.status_code}')
 	print(response.text)
+
+print_file_contents()
 ```
 ```sh
 $python test.py
 response: 200
-Hyundai Robot Job File; { version: 2.0 }
+Hyundai Robot Job File; { version: 2.0, mech_type: "576(HH020-03)", total_axis: 6, aux_axis: 0 }
+     Pose P1 =po1 = Pose(10, 90, 0, 0, -30, 0, -1240.8)
+     Pose P2
+     Pose P3
+     Pose P4
+S1   move P,tg=po1,spd=100%,accu=0,tool=1
+S2   move P,tg=po1,spd=100%,accu=0,tool=1
+S3   move P,tg=po1,spd=100%,accu=0,tool=1
+S4   move P,tg=po1,spd=100%,accu=0,tool=1
+     end
 ```
 
 </details>

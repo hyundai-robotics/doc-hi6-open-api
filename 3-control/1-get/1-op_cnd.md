@@ -46,11 +46,10 @@ def get_operation_condition() -> dict:
     path_parameter = "/project/control/op_cnd"
 
     response = requests.get(url=base_url + path_parameter).json()
-    print(response)
 
     return response
 
-get_op_cnd()
+print(get_operation_condition())
 ```
 ```sh
 $python test.py

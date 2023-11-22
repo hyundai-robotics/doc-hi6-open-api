@@ -14,10 +14,10 @@ GET /file_manager/file_exist
 
 ## query-parameter
 
-
-|key|value type|description|
-|:---|:---|:---|
-|`pathname`|`str`| 타겟 파일 경로 |
+```
+?pathname=project/jobs/0001.job
+```
+- `pathname` : 타겟 파일 경로
 
 ## response-body
 

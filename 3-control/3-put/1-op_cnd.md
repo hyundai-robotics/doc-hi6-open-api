@@ -1,15 +1,15 @@
-﻿# 3.2.1 `op_cnd`
+# 3.2.1 `op_cnd`
 
 ## 설명
 
 `op_cnd` (operation condition)
 
-- `POST` : 로봇의 조건설정 값을 변경합니다.
+- `PUT` : 로봇의 조건설정 값을 변경합니다.
 
 ## path-parameter
 
 ```python
-POST /project/control/op_cnd
+PUT /project/control/op_cnd
 ```
 
 ## request-body
@@ -21,7 +21,7 @@ POST /project/control/op_cnd
 
 ```python
 request url:
-POST /project/control/op_cnd
+PUT /project/control/op_cnd
 
 request-body:
 {
@@ -44,7 +44,7 @@ request-body:
 # test.py
 import requests 
 
-def post_op_cnd() -> int:
+def put_op_cnd() -> int:
     base_url       = 'http://192.168.1.150:8888'
     path_parameter = '/project/control/op_cnd'
     head           = {'Content-Type': 'application/json; charset=utf-8'}
@@ -62,10 +62,10 @@ def post_op_cnd() -> int:
                        "plc_mode": 4 
                      }
 
-    response = requests.post(url = base_url + path_parameter, headers = head,  json = body)
+    response = requests.put(url = base_url + path_parameter, headers = head,  json = body)
     return response.status_code
 
-print(f"response: {post_op_cnd()}")
+print(f"response: {put_op_cnd()}")
 ```
 ```sh
 $python test.py
