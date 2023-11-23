@@ -14,6 +14,12 @@ POST /project/context/tasks/reset
 POST /project/context/tasks[{task번호}]/reset 
 ```
 
+## request-body
+
+```json
+{}
+```
+
 ## 사용 예
 
 - 0번 태스크 리셋 하기.
@@ -26,9 +32,23 @@ GET /project/context/tasks[0]/reset
 <details><summary>Python Script 예시</summary>
 
 ```python
+import requests
 
-API 테스트 필요
+def post_task_reset() -> int:
+   base_url       = 'http://192.168.1.150:8888'
+   path_parameter = '/project/context/tasks[0]/reset'
+   head           = {'Content-Type': 'application/json; charset=utf-8'}
+   body           = {}
 
+   response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+
+   return response.status_code
+
+print(f"response: {post_task_reset()}")
+```
+```sh
+$python test.py
+response: 200
 ```
 
 </details>
