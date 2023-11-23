@@ -1,8 +1,6 @@
-﻿# 5.1 relay values
+﻿# 5.1.1 `relay values`
 
 ## 설명
-
-`dio` (digital input/output)
 
 - `GET` : relay 값을 객체.타입 전체에 대해 얻습니다.
 
@@ -24,16 +22,11 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 - `obj_idx` : 객체 인덱스 (fb: 0~9, fn: 0~63)
 
-- `relay_type` :
-  - `di`
-  - `do`
-  - `x`
-  - `y`
-  - `m`
-  - `s`
-  - `r`
-  - `k`
+- `relay_type` 
+	|`di`|`do`|`x` |`y` |`m` |`s` |`r`|`k`|
+	|:---|:---|:---|:---|:---|:---|:---|:---|
 
+	
 
 ## query-parameter
 
@@ -87,3 +80,26 @@ response-body:
 	0
 ]
 ```
+
+<details><summary>Python Script 예제</summary>
+
+```python
+# test.py
+import requests
+
+def get_relay_value() -> dict:
+   base_url       = 'http://192.168.1.150:8888'
+   path_parameter = '/project/plc/m/val_s32'
+   query_parameter = {"st": "32", "len": "4"}
+
+   response = requests.get(url = base_url + path_parameter, params = query_parameter)
+
+   return response.json()
+
+print(f"{get_relay_value()}")
+```
+```sh
+$python test.py
+[0, 0, 0, 0]
+```
+</details>
