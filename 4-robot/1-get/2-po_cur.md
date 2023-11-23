@@ -102,13 +102,13 @@ response-body:
 import requests
 
 def get_base_coordinate() -> dict:
-	base_url        = 'http://192.168.1.150:8888'
-	path_parameter  = '/project/robot/po_cur'
-	query_parameter = {'crd': 0, 'mechinfo': 1}
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/robot/po_cur'
+    query_parameter = {'crd': 0, 'mechinfo': 1}
 
-	response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
+    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
 
-	return response
+    return response
 
 print(get_base_coordinate())
 ```

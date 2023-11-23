@@ -55,13 +55,13 @@ hi6
 import requests
 
 def is_file_exist() -> str:
-	base_url        = 'http://192.168.1.150:8888'
-	path_parameter  = '/file_manager/file_exist'
-	query_parameter = {'pathname': 'project/jobs/0001.job'}
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/file_manager/file_exist'
+    query_parameter = {'pathname': 'project/jobs/0001.job'}
 
-	response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.get(url = base_url + path_parameter, params = query_parameter)
 
-	return response.text
+    return response.text
 
 print(is_file_exist())
 ```

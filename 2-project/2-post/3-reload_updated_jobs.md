@@ -34,14 +34,14 @@ request-body: {}
 import requests 
 
 def post_reload_updated_jobs() -> int:
-	base_url		= 'http://192.168.1.150:8888'
-	path_parameter	= '/project/reload_updated_jobs'
-	head            = {'Content-Type': 'application/json; charset=utf-8'}
-	body 			= {}
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/reload_updated_jobs'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {}
 
-	response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
 
-	return response.status_code
+    return response.status_code
 
 print(f"response: {post_reload_updated_jobs()}")
 ```

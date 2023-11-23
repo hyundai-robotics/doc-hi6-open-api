@@ -35,14 +35,14 @@ GET /project/context/tasks[0]/reset
 import requests
 
 def post_task_reset() -> int:
-   base_url       = 'http://192.168.1.150:8888'
-   path_parameter = '/project/context/tasks[0]/reset'
-   head           = {'Content-Type': 'application/json; charset=utf-8'}
-   body           = {}
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/context/tasks[0]/reset'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {}
 
-   response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
 
-   return response.status_code
+    return response.status_code
 
 print(f"response: {post_task_reset()}")
 ```

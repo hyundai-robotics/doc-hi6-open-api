@@ -87,13 +87,13 @@ response-body:
 import requests
 
 def print_file_list() -> None:
-	base_url = "http://192.168.1.150:8888"
-	path_parameter = "/file_manager/file_list"
-	query_parameter = {"incl_file": "true", "incl_dir": "true", "path": "project"}
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/file_manager/file_list"
+    query_parameter = {"incl_file": "true", "incl_dir": "true", "path": "project"}
 
-	response = requests.get(url=base_url + path_parameter, params=query_parameter)
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 	
-	print(response.json()[:2])
+    print(response.json()[:2])
 
 print_file_list()
 ```

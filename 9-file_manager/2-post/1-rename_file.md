@@ -61,14 +61,14 @@ hi6
 import requests
 
 def rename_file() -> int:
-   base_url        = 'http://192.168.1.150:8888'
-   path_parameter  = '/file_manager/rename_file'
-   query_parameter = { "pathname_from" : "project/jobs/0001.job", 
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/file_manager/rename_file'
+    query_parameter = { "pathname_from" : "project/jobs/0001.job", 
                        "pathname_to"   : "project/jobs/4321.job" }
 
-   response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.get(url = base_url + path_parameter, params = query_parameter)
 
-   return response.status_code
+    return response.status_code
 
 print(rename_file())
 ```

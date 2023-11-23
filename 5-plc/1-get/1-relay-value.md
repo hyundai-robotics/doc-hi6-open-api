@@ -88,13 +88,13 @@ response-body:
 import requests
 
 def get_relay_value() -> dict:
-   base_url       = 'http://192.168.1.150:8888'
-   path_parameter = '/project/plc/m/val_s32'
-   query_parameter = {"st": "32", "len": "4"}
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/plc/m/val_s32'
+    query_parameter = {"st": "32", "len": "4"}
 
-   response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.get(url = base_url + path_parameter, params = query_parameter)
 
-   return response.json()
+    return response.json()
 
 print(f"{get_relay_value()}")
 ```

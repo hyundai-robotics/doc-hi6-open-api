@@ -30,11 +30,11 @@ response-body:
 import requests
 
 def get_api_ver() -> dict:
-	base_url        = 'http://192.168.1.150:8888'
-	path_parameter  = '/api_ver'
-	response = requests.get(url = base_url + path_parameter)
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/api_ver'
+    response = requests.get(url = base_url + path_parameter)
 
-	return response.json()
+    return response.json()
 
 print(get_api_ver())
 ```

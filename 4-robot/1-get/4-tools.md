@@ -45,12 +45,12 @@ Python Script 예시</summary>
 import requests
 
 def get_tools_data() -> dict:
-	base_url        = 'http://192.168.1.150:8888'
-	path_parameter  = '/project/robot/tools'
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/robot/tools'
 
-	response = requests.get(url = base_url + path_parameter).json()
+    response = requests.get(url = base_url + path_parameter).json()
 
-	return response
+    return response
 
 print(get_tools_data())
 ```

@@ -67,14 +67,14 @@ GET /project/rgen
 import requests
 
 def is_remote_mode() -> bool:
-	base_url        = 'http://192.168.1.150:8888'
-	path_parameter  = '/project/rgen'
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/rgen'    
+    
+    response = requests.get(url = base_url + path_parameter).json()    
 
-	response = requests.get(url = base_url + path_parameter).json()
-
-	print(f'is remote mode? {response['is_remote_mode']}')
-
-	return response['is_remote_mode']
+    print(f'is remote mode? {response['is_remote_mode']}')    
+    
+    return response['is_remote_mode']
 
 get_is_remote_mode()
 ```

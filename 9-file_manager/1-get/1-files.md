@@ -63,14 +63,14 @@ response-body:
 import requests
 
 def print_file_contents() -> None:
-	base_url	    = "http://192.168.1.150:8888"
-	path_parameter  = "/file_manager/files"
-	query_parameter = {"pathname": "project/jobs/0001.job"}
+    base_url	    = "http://192.168.1.150:8888"
+    path_parameter  = "/file_manager/files"
+    query_parameter = {"pathname": "project/jobs/0001.job"}
 
-	response = requests.get(url=base_url + path_parameter, params=query_parameter)
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 	
-	print(f'response: {response.status_code}')
-	print(response.text)
+    print(f'response: {response.status_code}')
+    print(response.text)
 
 print_file_contents()
 ```

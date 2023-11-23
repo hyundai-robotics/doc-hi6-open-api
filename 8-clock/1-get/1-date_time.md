@@ -38,14 +38,14 @@ response-body:
 import requests
 
 def get_system_time() -> str:
-	base_url        = 'http://192.168.1.150:8888'
-	path_parameter  = '/clock/date_time'
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/clock/date_time'
 	
-	response = requests.get(url = base_url + path_parameter).json()
+    response = requests.get(url = base_url + path_parameter).json()
 
-	t = f'[{response["mon"]}/{response["day"]}] {response["hour"]}:{response["min"]}'
+    t = f'[{response["mon"]}/{response["day"]}] {response["hour"]}:{response["min"]}'
 
-	return t
+    return t
 
 print(get_system_time())
 ```

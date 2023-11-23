@@ -55,12 +55,12 @@ response-body:
 import requests
 
 def get_cur_local_var() -> dict:
-	base_url         = "http://192.168.1.150:8888"
-	path_parameter   = "/project/context/tasks[0]/cur_local_vars"
+    base_url         = "http://192.168.1.150:8888"
+    path_parameter   = "/project/context/tasks[0]/cur_local_vars"
 
-	response = requests.get(url = base_url + path_parameter)
+    response = requests.get(url = base_url + path_parameter)
 
-	return response.json()
+    return response.json()
 
 print(get_cur_local_var())
 ```

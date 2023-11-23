@@ -36,12 +36,12 @@ response-body:
 import requests
 
 def get_cur_tool_data() -> dict:
-	base_url        = 'http://192.168.1.150:8888'
-	path_parameter  = '/project/robot/cur_tool_data'
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/robot/cur_tool_data'
 
-	response = requests.get(url = base_url + path_parameter).json()
+    response = requests.get(url = base_url + path_parameter).json()
 
-	return response
+    return response
 
 print(get_cur_tool_data())
 ```

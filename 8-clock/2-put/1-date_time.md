@@ -37,14 +37,14 @@ response-body:
 import requests
 
 def put_system_time() -> int:
-	base_url        = 'http://192.168.1.150:8888'
-	path_parameter  = '/clock/date_time'
-	head            = {'Content-Type': 'application/json; charset=utf-8'}
-	body 			= {"year": 2023, "mon": 11, "day": 20, "hour": 21, "min": 2, "sec": 0}
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/clock/date_time'
+    head            = {'Content-Type': 'application/json; charset=utf-8'}
+    body 			= {"year": 2023, "mon": 11, "day": 20, "hour": 21, "min": 2, "sec": 0}
 	
-	response = requests.put(url = base_url + path_parameter, headers = head, json = body)
+    response = requests.put(url = base_url + path_parameter, headers = head, json = body)
 
-	return response.status_code
+    return response.status_code
 
 print(f"response: {put_system_time()}")
 ```
