@@ -22,7 +22,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 - `obj_idx` : 객체 인덱스 (fb: 0~9, fn: 0~63)
 
-- `relay_type` 
+- `relay_type` : 
 	|`di`|`do`|`x` |`y` |`m` |`s` |`r`|`k`|
 	|:---|:---|:---|:---|:---|:---|:---|:---|
 

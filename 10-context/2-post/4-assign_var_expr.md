@@ -1,15 +1,15 @@
-# 10.2.3 `assign_var_json`
+# 10.2.4 `assign_var_expr`
 
 ## 설명
 
-`assign_var_json`
+`assign_var_expr`
 
 - `POST` : 현재 작업 구문의 변수를 재지정합니다.
 
 ## path-parameter
 
 ```python
-POST /project/context/task[0]/assign_var_json
+POST /project/context/task[0]/assign_var_expr
 ```
 
 ## request-body
@@ -34,12 +34,12 @@ Hyundai Robot Job File;
 
 ```python
 request url:
-POST /project/context/task[0]/assign_var_json
+POST /project/context/task[0]/assign_var_expr
 
 request-body
 {
     "name": "a",
-    "json": 1
+    "expr": 1111
 }
 ```
 
@@ -59,25 +59,25 @@ def get_cur_local_var() -> dict:
 
     return response.json()
 
-def assign_var_json(x: int = 1) -> int:
+def assign_var_expr(x: int = 1) -> int:
     base_url         = "http://127.0.0.1:8888"
-    path_parameter   = "/project/context/tasks[0]/assign_var_json"
+    path_parameter   = "/project/context/tasks[0]/assign_var_expr"
     head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {"name": "a", "json": x}
+    body             = {"name": "a", "expr": x}
 
     response = requests.post(url = base_url + path_parameter, headers=head, json=body)
 
     return response.status_code
 
 print(get_cur_local_var())
-print(f"response: {assign_var_json(321)}")
+print(f"response: {assign_var_expr(123)}")
 print(get_cur_local_var())
 ```
 ```sh
 $python test.py 
-{'_type': 'JObject', 'a': 123, 'b': 5678, 'c': 5432}
+{'_type': 'JObject', 'a': 2, 'b': 5678, 'c': 5432}
 response: 200
-{'_type': 'JObject', 'a': 321, 'b': 5678, 'c': 5432}
+{'_type': 'JObject', 'a': 123, 'b': 5678, 'c': 5432}
 ```
 
 </details>

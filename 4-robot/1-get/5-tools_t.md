@@ -1,8 +1,10 @@
-﻿# 4.3.1 t_{number}
+﻿# 4.1.5 `tools/t_{number}`
 
 ## 설명
 
-- GET : 툴 설정값 정보를 받는 함수입니다.
+`tools/t_{number}`
+
+- GET : 특정 툴의 설정값 정보를 받는 함수입니다.
 
 ## path-parameter
 

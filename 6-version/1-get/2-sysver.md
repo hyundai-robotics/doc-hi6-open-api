@@ -14,11 +14,11 @@ GET /versions/sysver
 
 - modules : 모듈 버전 정보의 배열
   - 모듈 버전 정보 :
-    - name : 모듈명
-    - ver : 버전번호
-    - build-date : 빌드 날짜
-    - build-time : 빌드 시간
-    - commit-id : 소스코드의 커밋 ID
+    - `name` : 모듈명
+    - `ver` : 버전번호
+    - `build-date` : 빌드 날짜
+    - `build-time` : 빌드 시간
+    - `commit-id` : 소스코드의 커밋 ID
 
 ## 사용 예
 

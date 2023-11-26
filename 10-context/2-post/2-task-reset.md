@@ -1,4 +1,4 @@
-﻿# 2.2.2 `task/reset`
+﻿# 10.2.2 `task/reset`
 
 ## 설명
 
