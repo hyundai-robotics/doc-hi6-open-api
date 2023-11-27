@@ -1,21 +1,21 @@
-﻿### 1.5 Postman
+﻿## 1.5 Postman
 
-- 해당 페이지에서는 `postman` 에 대한 간단한 설명을 제공합니다.
+해당 페이지에서는 `postman` 에 대한 간단한 설명을 제공합니다.
 
 ### 1.5.1. 주요 UI 구성
 
-- 아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다.
+아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다.
 
-	![postman_description](../_assets/01_postman_desc.png)
+![postman_description](../_assets/01_postman_desc.png)
 
-	<blockquote>
+<blockquote>
 
-	(1) `+` 버튼을 통해 request 요청을 간단하게 생성할 수 있습니다. </br>
-	(2) `request` 요청에 대한 정보들을 입력하는 공간 입니다. </br>
-	(3) `response` 에 대한 정보들을 확인하는 공간입니다. </br>
-	(4) `request` url 이 적용되어 자동으로 생성된 언어별 `Code snippet`을 확인하는 공간입니다. </br>
+(1) `+` 버튼을 통해 request 요청을 간단하게 생성할 수 있습니다. </br>
+(2) `request` 요청에 대한 정보들을 입력하는 공간 입니다. </br>
+(3) `response` 에 대한 정보들을 확인하는 공간입니다. </br>
+(4) `request` url 이 적용되어 자동으로 생성된 언어별 `Code snippet`을 확인하는 공간입니다. </br>
 
-	</blockquote>
+</blockquote>
 
 <br>
 
