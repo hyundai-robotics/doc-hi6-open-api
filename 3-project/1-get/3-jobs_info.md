@@ -1,21 +1,21 @@
-﻿# 2.1.3 `jobs_info`
+﻿## 2.1.3 `jobs_info`
 
-## 설명
+### 설명
 
 `jobs_info`
 
 - `GET` : 프로젝트 관련 정보를 받는 함수입니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /project/jobs_info
 ```
 
-## response-body
+### response-body
 
 - [job 파일 관련 정보](/99-schema/jobs_info.md)
-## 사용 예
+### 사용 예
 
 <blockquote>
 

@@ -1,20 +1,20 @@
-﻿# 2.1.1 `rgen`
+﻿## 2.1.1 `rgen`
 
-## 설명
+### 설명
 
 `rgen` (remote general status)
 
 - `GET` : 로봇의 조건설정 값을 얻습니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /project/rgen
 ```
 
-## response-body
+### response-body
 
-### 모드
+#### 1) 모드
 |key|value|type|description|
 |:---|:---|:---|:---|
 |`cur_mode`| `0` : 수동 <br> `1` : 수동, 시스템 설정 <br>`3` : 자동, 1-cycle <br> `4` : 자동, 연속 (cycle 반복)|`int`|수동/자동 모드|
@@ -26,7 +26,7 @@ GET /project/rgen
 
 <br>
 
-### current 프로그램 카운터
+#### 2) current 프로그램 카운터
 수동모드나 자동모드에서 티치펜던트 JOB 패널의 막대형 커서가 위치한 지점입니다. 현재 실행되고 있는 명령문, 혹은 편집의 대상 위치입니다.
 |key|type|description|
 |:---|:---|:---|
@@ -36,7 +36,7 @@ GET /project/rgen
 
 <br>
 
-### moving 프로그램 카운터
+#### 3) moving 프로그램 카운터
 
 재생 중 로봇이 이동하고 있는 목표 스텝입니다.
 |key|type|description|
@@ -47,7 +47,7 @@ GET /project/rgen
 
 <br>
 
-### 속도
+#### 4) 속도
 
 |key|type|description|
 |:---|:---|:---|
@@ -60,7 +60,7 @@ GET /project/rgen
 
 <br>
 
-## 사용 예
+### 사용 예
 Python Script 예시
 
 ```python

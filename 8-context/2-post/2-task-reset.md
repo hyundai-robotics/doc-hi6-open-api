@@ -1,10 +1,10 @@
-﻿# 10.2.2 `task/reset`
+﻿## 10.2.2 `task/reset`
 
-## 설명
+### 설명
 
 - `POST` : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
 
-## path-parameter
+### path-parameter
 
 ```python
 # 모든 태스크에 대해 리셋을 수행
@@ -14,22 +14,22 @@ POST /project/context/tasks/reset
 POST /project/context/tasks[{task번호}]/reset 
 ```
 
-## request-body
+### request-body
 
 ```json
 {}
 ```
 
-## 사용 예
+### 사용 예
 
-- 0번 태스크 리셋 하기.
+0번 태스크 리셋 하기.
 
 ```python
 request url:
 GET /project/context/tasks[0]/reset
 ```
 
-Python Script 예시
+Python Script
 
 ```python
 import requests

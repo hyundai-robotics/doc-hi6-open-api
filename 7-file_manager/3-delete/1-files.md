@@ -1,25 +1,25 @@
-﻿# 9.3.1 `files`
+﻿## 9.3.1 `files`
 
-## 설명
+### 설명
 
 `files`
 
 - `DELETE` : 타겟 파일 또는 디렉토리를 삭제합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 DELETE /file_manager/files/{target-filepath}
 ```
 
-## response-body
+### response-body
 
 |HTTP Status|description|
 |:---|:---|
 |`200 OK`| 타겟 삭제 완료 |
 
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 

@@ -1,16 +1,16 @@
-﻿# 5.1.1 `relay values`
+﻿## 5.1.1 `relay values`
 
-## 설명
+### 설명
 
 - `GET` : relay 값을 객체.타입 전체에 대해 얻습니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 ```
 
-## path-variable
+### path-variable
 
 [릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression) (소문자 표기)
 
@@ -28,13 +28,13 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 	
 
-## query-parameter
+### query-parameter
 
 - `st` : 시작 byte index (default: 0)
 - `len` : dword 개수 (default: 8)
 
 
-## 사용 예
+### 사용 예
 
 ```python
 request url:

@@ -1,17 +1,17 @@
-﻿# 5.2.1 `set_relay_value`
+﻿## 5.2.1 `set_relay_value`
 
-## 설명
+### 설명
 `set_relay_value`
 
 - `POST` : relay 값 설정합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /project/plc/set_relay_value
 ```
 
-## request-parameter
+### request-parameter
 
 - `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression)에 맞춰 입력합니다.
 - `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
@@ -22,7 +22,7 @@ POST /project/plc/set_relay_value
 }
 ```
 
-## 사용 예
+### 사용 예
 
 ```json
 request url:

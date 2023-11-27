@@ -1,30 +1,30 @@
-﻿# 9.1.2 `file_info`
+﻿## 9.1.2 `file_info`
 
-## 설명
+### 설명
 
 `file_info`
 
 - `GET` : 파일 경로를 기반으로 해당 파일에 대한 정보를 반환합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /file_manager/file_info
 ```
 
-## query-parameter
+### query-parameter
 
 ```
 ?pathname=project/jobs/0001.job
 ```
 - `pathname` : 타겟 파일 경로
 
-## response-body
+### response-body
 
 - [파일 정보](/99-schema/file_info)
 - 파일이 없을 시 `404 Not Found` 
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 

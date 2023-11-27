@@ -1,18 +1,18 @@
-﻿# 4.1.4 `tools`
+﻿## 4.1.4 `tools`
 
-## 설명
+### 설명
 
 `tools`
 
 - `GET` : 로봇의 모든 툴 정보 얻기. T0~T31까지의 툴 중 존재하는 툴만 얻습니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /project/robot/tools
 ```
 
-## response-body
+### response-body
 
 - t_0 : [툴 데이터](/99-schema/tool_data.md)
 - t_1 : 툴 데이터
@@ -20,7 +20,7 @@ GET /project/robot/tools
 ...
 - t_31 : 툴 데이터
 
-## 사용 예
+### 사용 예
 
 툴 0과 툴 31만 존재하는 시스템의 사례.
 

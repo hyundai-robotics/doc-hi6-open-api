@@ -1,22 +1,22 @@
-﻿# 4.1.5 `tools/t_{number}`
+﻿## 4.1.5 `tools/t_{number}`
 
-## 설명
+### 설명
 
 `tools/t_{number}`
 
 - GET : 특정 툴의 설정값 정보를 받는 함수입니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /project/robot/tools/t_{number}
 ```
 
-## response-body
+### response-body
 
 - [툴 데이터](/99-schema/tool_data.md)
 
-## 사용 예
+### 사용 예
 
 ```python
 request url:

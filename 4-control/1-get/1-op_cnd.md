@@ -1,18 +1,18 @@
-﻿# 3.1.1 `op_cnd`
+﻿## 3.1.1 `op_cnd`
 
-## 설명
+### 설명
 
 `op_cnd` (operation condition)
 
 - `GET` : 로봇의 조건설정 값을 얻습니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /project/control/op_cnd
 ```
 
-## response-body
+### response-body
 
 - [로봇 조건설정 파라미터](/99-schema/op_cnd.md)
 

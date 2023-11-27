@@ -1,18 +1,18 @@
-﻿# 3.1.2 `ios/dio/{do_val}`
+﻿## 3.1.2 `ios/dio/{do_val}`
 
-## 설명
+### 설명
 
 `do` (digital output)
 
 - `POST` : 디지털 출력을 변경합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /project/control/ios/dio/do_val
 ```
 
-## request-body
+### request-body
 
 ```json
 {
@@ -24,7 +24,7 @@ POST /project/control/ios/dio/do_val
 ```
 
 
-## query-parameter
+### query-parameter
 
 - `type` : io 값의 타입
   - di or do : bit
@@ -37,7 +37,7 @@ POST /project/control/ios/dio/do_val
 - `val` : 변경하고자 하는 설정값
 
 
-## 사용 예
+### 사용 예
 
 ```python
 request url:

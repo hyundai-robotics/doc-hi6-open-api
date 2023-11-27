@@ -1,18 +1,18 @@
-﻿# 4.1.2 `po_cur`
+﻿## 4.1.2 `po_cur`
 
-## 설명
+### 설명
 
 `po_cur` (pose current)
 
 - `GET` : 현재 로봇이 취하고 있는 pose(자세)를 얻습니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /project/robot/po_cur
 ```
 
-## query-parameter
+### query-parameter
 
 - task_no : task 번호 (0~7).
   - 미지정 : task 0으로 적용됨.
@@ -24,12 +24,12 @@ GET /project/robot/po_cur
 - ucrd_no : 사용자좌표계 번호 (crd가 user일 때만 지정함.)
 - mechinfo : [메커니즘 정보](/99-schema/mechinfo.md)
 
-## response-body
+### response-body
 
 - [포즈 정보](/99-schema/pose.md)
 
 
-## 사용 예
+### 사용 예
 
 로봇 6축(j1~j6) + 주행 1축(j7) + 포지셔너 2축(j8, j9)인 시스템의 사례.
 

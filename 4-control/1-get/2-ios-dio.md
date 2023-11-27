@@ -1,24 +1,24 @@
-﻿# 3.1.2 `ios/dio/{dio_val}`
+﻿## 3.1.2 `ios/dio/{dio_val}`
 
-## 설명
+### 설명
 
 `dio` (digital input/output)
 
 - `GET` : 사용자 IO 값을 `얻습니다`.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /project/control/ios/dio/{dio_val}
 ```
 
-## path-variable
+### path-variable
 
 - `dio_val` :
   - `di_val` : 입력(di) 값을 얻습니다.
   - `do_val` : 출력(do) 값을 얻습니다.
 
-## query-parameter
+### query-parameter
 
 - `type` : io 값의 타입
   - di or do : bit
@@ -29,7 +29,7 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : 블럭 번호 (0~9)
 - `sig_no` : 신호 인덱스 (0~)
 
-## 사용 예
+### 사용 예
 
 - fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
 

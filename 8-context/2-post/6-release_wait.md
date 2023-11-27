@@ -1,30 +1,30 @@
-﻿# 10.2.6 `release_wait`
+﻿## 10.2.6 `release_wait`
 
-## 설명
+### 설명
 
 `release_wait`
 
 - `POST` : 구문 정지해제
 - 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /project/context/tasks[0]/release_wait
 ```
 
-## request-body
+### request-body
 
 ```json
 {}
 ```
 
-## response-body
+### response-body
 
 - `200` : 정상 동작
 - `403` : 상기 필요 조건 불충족
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 

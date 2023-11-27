@@ -1,18 +1,18 @@
-﻿# 2.2.4 `delete_job`
+﻿## 2.2.4 `delete_job`
 
-## 설명
+### 설명
 
 `delete_job`
 
 - `POST` : 작업 파일들을 제거하는 요청을 보냅니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /project/jobs/delete_job
 ```
 
-## request-body
+### request-body
 
 ```json
 {
@@ -20,7 +20,7 @@ POST /project/jobs/delete_job
 }
 ```
 
-## 사용 예
+### 사용 예
 
 ```json
 request url:

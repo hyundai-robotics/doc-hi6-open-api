@@ -1,25 +1,25 @@
-﻿# 10.2.3 `set_cur_pc_idx`
+﻿## 10.2.3 `set_cur_pc_idx`
 
-## 설명
+### 설명
 
 `set_cur_pc_idx`
 
 - `POST` : 현재 커서를 index 라인에 위치 시키는 함수
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /project/context/tasks[0]/set_cur_pc_idx
 ```
 
-## request-body
+### request-body
 ```json
 {
   "idx": 1
 }
 ```
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 
@@ -35,7 +35,7 @@ request-body
 
 </blockquote>
 
-Python Script 예시
+Python Script
 
 ```python
 # test.py

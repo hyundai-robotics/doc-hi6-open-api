@@ -1,20 +1,20 @@
-﻿# 4.2.4 crd_sys
+﻿## 4.2.4 crd_sys
 
-## 설명
+### 설명
 
 - POST : 현재 조그(jog) 좌표계를 설정합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /project/robot/crd_sys
 ```
 
-## request-body
+### request-body
 
 - [좌표계](/99-schema/crdsys.md)
 
-## response-body
+### response-body
 
 ```json
 {
@@ -25,7 +25,7 @@ POST /project/robot/crd_sys
 ```
 
 
-## 사용 예
+### 사용 예
 
 ```json
 POST /project/robot/crd_sys
