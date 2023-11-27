@@ -1,4 +1,4 @@
-# 10.2.6 `release_wait`
+﻿# 10.2.6 `release_wait`
 
 ## 설명
 

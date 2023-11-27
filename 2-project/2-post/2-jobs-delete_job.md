@@ -1,4 +1,4 @@
-# 2.2.4 `delete_job`
+﻿# 2.2.4 `delete_job`
 
 ## 설명
 
