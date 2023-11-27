@@ -14,7 +14,7 @@ GET /project/control/op_cnd
 
 ### response-body
 
-- [로봇 조건설정 파라미터](/99-schema/op_cnd.md)
+- [로봇 조건설정 파라미터](../../99-schema/op_cnd.md)
 
 <blockquote>
 

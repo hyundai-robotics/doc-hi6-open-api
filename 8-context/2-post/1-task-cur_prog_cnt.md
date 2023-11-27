@@ -14,11 +14,11 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ### request-body
 
-- [cur_prog_cnt 요청 파라미터](/99-schema/cur_prog_cnt.md/#request-body)
+- [cur_prog_cnt 요청 파라미터](../../99-schema/cur_prog_cnt.md/#request-body)
 
 ### response-body
 
-- [cur_prog_cnt 응답 파라미터](/99-schema/cur_prog_cnt.md/#response-body)
+- [cur_prog_cnt 응답 파라미터](../../99-schema/cur_prog_cnt.md/#response-body)
 
 ### 사용 예
 

@@ -20,7 +20,7 @@
 |16|confirm_command_delete|`int`||
 |17|cont_path|`int`|연속 모션 모드 (0~2)|
 |18|cooper_ctrl|`int`||
-|19|cur_crd|`int`|[좌표계](/99-schema/crdsys.md)|
+|19|cur_crd|`int`|[좌표계](./crdsys.md)|
 |20|cur_func_no|`int`|current 펑션 번호|
 |21|cur_mech_axis_info|`int`||
 |22|cur_mech_no|`int`||

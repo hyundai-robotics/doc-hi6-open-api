@@ -20,13 +20,13 @@ GET /project/robot/po_cur
 - crd :  
   - 미지정 : tcp, axis, encoder를 모두 얻음.
   - <0 : 현재 기록 좌표계를 따름.
-  - &gt;=0 : [좌표계](/99-schema/crdsys.md)
+  - &gt;=0 : [좌표계](../../99-schema/crdsys.md)
 - ucrd_no : 사용자좌표계 번호 (crd가 user일 때만 지정함.)
-- mechinfo : [메커니즘 정보](/99-schema/mechinfo.md)
+- mechinfo : [메커니즘 정보](../../99-schema/mechinfo.md)
 
 ### response-body
 
-- [포즈 정보](/99-schema/pose.md)
+- [포즈 정보](../../99-schema/pose.md)
 
 
 ### 사용 예

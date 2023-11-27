@@ -8,7 +8,7 @@
 
 ### response-body
 
-- [시스템 시간 정보](/99-schema/date_time.md)
+- [시스템 시간 정보](../../../99-schema/date_time.md)
 
 ### 사용 예
 

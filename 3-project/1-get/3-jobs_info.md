@@ -14,7 +14,7 @@ GET /project/jobs_info
 
 ### response-body
 
-- [job 파일 관련 정보](/99-schema/jobs_info.md)
+- [job 파일 관련 정보](../../99-schema/jobs_info.md)
 ### 사용 예
 
 <blockquote>

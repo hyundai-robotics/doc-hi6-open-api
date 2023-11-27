@@ -14,7 +14,7 @@ GET /project/robot/tools
 
 ### response-body
 
-- t_0 : [툴 데이터](/99-schema/tool_data.md)
+- t_0 : [툴 데이터](../../99-schema/tool_data.md)
 - t_1 : 툴 데이터
 - t_2 : 툴 데이터  
 ...
