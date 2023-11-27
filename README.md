@@ -1,4 +1,4 @@
-﻿# Hi6 SDK 설명서
+﻿# Hi6 Open API 설명서
 
 {% hint style="warning" %}
 본 제품 설명서에서 제공되는 정보는 현대로보틱스의 자산입니다.
@@ -11,12 +11,10 @@
 
 
 
-**Copyright ⓒ 2020 by HD Hyundai Robotics**
+**Copyright ⓒ 2023 by HD Hyundai Robotics**
 {% endhint %}
 
 {% hint style="warning" %}
-Hi6 SDK는 공식 릴리즈 전이며 내부 검증 시험 및 보완 진행 중입니다.
-
-향후 인터페이스 사양이 예고 없이 크게 변경될 수 있으므로, 공식 시험 요원이 아니라면 이를 활용한 소프트웨어 개발을 보류해 주시기 바랍니다.
+Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 를 활용하여 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
 
 {% endhint %}

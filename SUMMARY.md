@@ -1,6 +1,6 @@
 ﻿# Table of contents
 
-* [Hi6 SDK 설명서](README.md)
+* [Hi6 Open API 설명서](README.md)
 * [1. 개요](1-intro/README.md)
   * [1.1 필요한 사전 지식]( 1-intro/1-prior-knowledge.md)
   * [1.2 Hi6 플러그인 앱(plugin-app)의 개념]( 1-intro/2-plugin-app-concept.md)
