@@ -21,7 +21,7 @@
 ## 1.4.2 `소스 코드` 활용하기
 - client 소스 코드 작성 통해 간단한 테스트가 가능합니다.
 - path-parameter 와 query-parameter 를 테스트하려는 API method 에 맞게 작성하면 됩니다.
-- 해당 문서에서는 API 별로 `python` 기반의 client 예제 코드를 첨부합니다. 
+- 해당 문서에서는 API 별로 실제 동작 가능한 `python` 기반의 client 예제 코드를 첨부합니다. 
 	- 다른 언어에 대한 예제 코드가 궁금할 경우, [1.5 postman](./5-postman.md#151-주요-ui-구성)의 `(4)Code Snippet` 기능을 통해 편리하게 확인할 수 있습니다.
 
 
