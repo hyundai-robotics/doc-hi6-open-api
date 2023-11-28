@@ -99,7 +99,7 @@ Python Script 예시
 import requests
 
 def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://127.0.0.1:8888'
+    base_url       = 'http://192.168.1.150:8888'
     path_parameter = '/project/context/tasks[0]/solve_expr'
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = {"expr": f"{var_name}", "scope": f"{scope}"}
