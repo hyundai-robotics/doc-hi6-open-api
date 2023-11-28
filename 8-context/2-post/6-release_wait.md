@@ -1,4 +1,4 @@
-﻿## 10.2.6 `release_wait`
+﻿## 8.2.6 `release_wait`
 
 ### 설명
 

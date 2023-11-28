@@ -1,4 +1,4 @@
-﻿## 5.2.1 `set_relay_value`
+﻿## 6.2.1 `set_relay_value`
 
 ### 설명
 `set_relay_value`

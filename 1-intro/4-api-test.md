@@ -1,4 +1,4 @@
-﻿## 1.4 간단한 REST API 검증
+﻿## 1.4 Hi6 Open API 검증 방법
 
 [앞선 예제 코드](./3-sample-code/README.md)처럼 직접 client 어플리케이션을 개발하는 경우, 사용되는 REST API 에 대한 검증이 필요합니다. <br>
 해당 문서에서 언급된 요청(request)과 응답(response)이 정확하게 동작하는지, 어떤 형식으로 반환되는지 확인이 필요하기 때문입니다. <br>

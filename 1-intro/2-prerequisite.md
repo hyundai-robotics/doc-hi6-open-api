@@ -18,6 +18,6 @@ Open API는 HTTP 프로토콜 기반의 REST API입니다. 다양한 개발 언�
 
 {% hint style="warning" %}
 
-당사는 Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 를 활용하여 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
+당사는 Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 활용에 의해 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
 
 {% endhint %}

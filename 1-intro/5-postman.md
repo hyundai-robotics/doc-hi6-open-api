@@ -1,6 +1,6 @@
-﻿## 1.5 Postman
+﻿## 1.5 Postman 기반 API 검증 방법
 
-해당 페이지에서는 `postman` 에 대한 간단한 설명을 제공합니다.
+해당 페이지에서는 `postman` 을 활용한 Hi6 Open API 검증 방법에 대해 간단한 설명을 제공합니다.
 
 ### 1.5.1. 주요 UI 구성
 
@@ -19,7 +19,7 @@
 
 <br>
 
-### 1.5.2. 간단한 POST 요청 시험하기
+### 1.5.2. POST 요청 시험하기
 
 1. `Request Header` 작성 
 	- Headers 탭에 아래의 Key-Value를 입력합니다.
