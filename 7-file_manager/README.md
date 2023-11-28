@@ -1,7 +1,4 @@
 # 7. file_manager
 
-- 제어기(controller)의 설정값 적용 및 입출력 값을 처리합니다.
-- `control` 의 path parameter 는 `/project/control/{command}` 입니다.
-- `{command}` 리스트는 아래와 같습니다.
-
-<br>
+- 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
+- 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.

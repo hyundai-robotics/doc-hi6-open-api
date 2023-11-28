@@ -1,6 +1,6 @@
 # 4. control
 
 - 제어기(controller)의 설정값 적용 및 입출력 값을 처리합니다.
-- `control` 의 path parameter 는 `/project/control/{command}` 입니다.
+- 시스템 입출력, 디지털 입출력, 로봇 조건설정, 사용자 좌표계 관련 정보를 다룹니다.
 
 <br>

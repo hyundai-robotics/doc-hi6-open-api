@@ -4,7 +4,7 @@
 
 `cur_local_vars`
 
-- `GET` : 현재 작업 구문(Task context)의 변수를 반환합니다.
+- `GET` : 현재 태스크 구문(Task context)의 변수를 반환합니다.
 
 ### path-parameter
 

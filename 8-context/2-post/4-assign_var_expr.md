@@ -4,7 +4,7 @@
 
 `assign_var_expr`
 
-- `POST` : 현재 작업 구문의 변수를 재지정합니다.
+- `POST` : 현재 태스크 구문의 변수를 재지정합니다.
 
 ### path-parameter
 

@@ -4,7 +4,7 @@
 
 `jobs_info`
 
-- `GET` : 프로젝트 관련 정보를 받는 함수입니다.
+- `GET` : job 프로그램 관련 정보들을 받는 함수입니다.
 
 ### path-parameter
 
