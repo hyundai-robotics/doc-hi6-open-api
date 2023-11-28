@@ -31,21 +31,21 @@
 
 2. `Request Body` 작성 
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
-	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([10.2.1 `task/cur_prog_cnt` - request body](../8-context/2-post/1-task-cur_prog_cnt.md#request-body) 참조)
+	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([8.2.1 `task/cur_prog_cnt` - request body](../8-context/2-post/1-task-cur_prog_cnt.md#request-body) 참조)
 	- Send를 클릭합니다.
 	<br>
 	![postman_post](../_assets/03_postman_post.png)
 
 <br>
 
-3. `Response` 확인 및 `Code Snippet` 참조
+3. `Response` 확인 및 `Code snippet` 참조
 	- `request` 요청이 정상적으로 완료되면 아래 그림과 같이 `HTTP Status` 가 `200 OK`로 응답합니다. ([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 참조)
 	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.
 	![postman_post_result](../_assets/04_postman_post_result_check.png)
 
 		<blockquote>
 
-		`(1) Response body` : `post` 에 대한 응답 결과 ([10.2.1 `task/cur_prog_cnt` - response body](../8-context/2-post/1-task-cur_prog_cnt.md#response-body) 참조) </br>
+		`(1) Response body` : `post` 에 대한 응답 결과 ([8.2.1 `task/cur_prog_cnt` - response body](../8-context/2-post/1-task-cur_prog_cnt.md#response-body) 참조) </br>
 		`(2) Request` 에 대한 python `Code snippet`
 
 		</blockquote>
