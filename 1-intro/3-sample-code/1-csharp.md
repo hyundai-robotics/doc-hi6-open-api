@@ -41,4 +41,5 @@ var str = "fb2.do3=" + jobj["val"].ToString();
 Console.WriteLine(str);
 ```
 
-해당 예제 코드는
+해당 예제의 소스 코드를 아래 GitHub 에서 링크를 통해서 확인하실 수 있습니다.
+> 링크 : https://github.com/hyundai-robotics/OpenAPI
