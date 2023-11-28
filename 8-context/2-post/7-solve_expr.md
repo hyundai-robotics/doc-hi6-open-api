@@ -1,4 +1,4 @@
-﻿## 8.1.1 `solve_expr`
+﻿## 8.2.7 `solve_expr`
 
 ### 설명
 
@@ -93,7 +93,6 @@ response-body:
 
 Python Script 예시
 - 로봇 제어기의 태스크 영역에 지역 및 전역 변수 a 값이 설정된 상태로 하기 코드 실행
-- 지역변수 a = 1234, 전역변수 a = 10
 
 ```python
 # test.py

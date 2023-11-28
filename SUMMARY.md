@@ -76,8 +76,6 @@
     * [7.3.1 files](./7-file_manager/3-delete/1-files.md)
 
 * [8. context](./8-context/README.md)
-  * [8.1 get](./8-context/1-get/1-cur_local_vars.md)
-    * [8.1.1 cur_local_vars](./8-context/1-get/1-cur_local_vars.md)
   * [8.2 post](./8-context/2-post/1-task-cur_prog_cnt.md)
     * [8.2.1 task-cur_prog_cnt](./8-context/2-post/1-task-cur_prog_cnt.md)
     * [8.2.2 task-reset](./8-context/2-post/2-task-reset.md)
@@ -85,6 +83,7 @@
     * [8.2.4 assign_var_expr](./8-context/2-post/4-assign_var_expr.md)
     * [8.2.5 assign_var_json](./8-context/2-post/5-assign_var_json.md)
     * [8.2.6 release_wait](./8-context/2-post/6-release_wait.md)
+    * [8.2.7 solve_expr](./8-context/2-post/7-solve_expr.md)
 
 * [9. etc](./9-etc/README.md)
   * [9.1 event-log](./9-etc/1-event-log/README.md)
