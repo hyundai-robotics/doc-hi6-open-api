@@ -12,9 +12,15 @@ GET /versions/sysver
 
 ### response-body
 
-- modules : 모듈 버전 정보의 배열
+modules : 모듈 버전 정보의 배열
   - 모듈 버전 정보 :
     - `name` : 모듈명
+		|모듈명|설명|
+		|---:|:---|
+		|com|로봇 제어기|
+		|tp|티칭 팬던트|
+		|fbr|fbr 파일 정보 &rightarrow; {파일 버전}.{제어 정보 버전}-{기구 정보 버전}|  
+		|Ec-Master|이더켓 마스터|
     - `ver` : 버전번호
     - `build-date` : 빌드 날짜
     - `build-time` : 빌드 시간
@@ -28,7 +34,7 @@ GET /versions/sysver
 
 response-body:
 {
-    "modules" : [
+    "mod	ules" : [
         {
             "build-date": ...
             "build-time": ...
