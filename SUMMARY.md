@@ -97,3 +97,13 @@
       * [10.1.1.1 date_time](./10-etc/1-clock/1-get/1-date_time.md)
     * [10.1.2 put](./10-etc/1-clock/2-put/README.md)
       * [10.1.2.1 date_time](./10-etc/1-clock/2-put/1-date_time.md)
+
+* [schema](./99-schema/README.md)
+  * [crdsys](./99-schema/crdsys.md)
+  * [cur_prog_cnt](./99-schema/cur_prog_cnt.md)
+  * [date_time](./99-schema/date_time.md)
+  * [file_info](./99-schema/file_info.md)
+  * [jobs_info](./99-schema/jobs_info.md)
+  * [mechinfo](./99-schema/mechinfo.md)
+  * [op_cnd](./99-schema/op_cnd.md)
+  * [pose](./99-schema/pose.md)
