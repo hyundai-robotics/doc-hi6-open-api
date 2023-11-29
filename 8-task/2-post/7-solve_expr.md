@@ -76,13 +76,13 @@ response-body:
 <blockquote>
 
 ```python
-# 3. 임의의 수식을 넣고 결과값 읽어오기
+# 3. 지역 변수 a 의 값에 대해서 -234 를 더하기
 request url:
 GET /project/context/tasks[0]/solve_expr
 
 request-body:
 {
-    "expr": "1232 + (-232)"
+    "expr": "a + (-234)"
 }
 
 response-body:
@@ -110,7 +110,7 @@ def post_read_var(var_name: str, scope = None) -> int:
 
 print(f"{post_read_var('a', 'local')}")
 print(f"{post_read_var('a', 'global')}")
-print(f"{post_read_var('1234 + (-234)')}")
+print(f"{post_read_var('a + (-234)')}")
 ```
 ```sh
 $python test.py 
