@@ -4,7 +4,7 @@
 
 `delete_job`
 
-- `POST` : 작업 파일들을 제거하는 요청을 보냅니다.
+- `POST` : 작업 파일을 제거하는 요청을 보냅니다.
 
 ### path-parameter
 

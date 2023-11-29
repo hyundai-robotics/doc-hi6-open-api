@@ -12,10 +12,17 @@ POST /project/robot/tool_no
 
 ### request-body
 
-- val : 툴 번호
-  - 로봇 툴이면, 0~31
-  - 정치 툴이면, 0~3
+- `val` : 툴 번호
+  - `로봇 툴` : `0` ~ `31`
+  - `정치 툴` : `0` ~ `3`
 
+### response-body
+
+```json
+{
+    "_type": "JObject"
+}
+```
 
 ### 사용 예
 

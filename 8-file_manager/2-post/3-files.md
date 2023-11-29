@@ -5,7 +5,6 @@
 `files`
 
 - `POST` : 타겟 경로에 파일을 전송합니다.
-- binary형식으로 file전송만 가능합니다.
 
 ## path-parameter
 
@@ -20,7 +19,7 @@ POST /file_manager/files/{target_filepath}
 ## request-body
 
 - binary 형식의 파일
-
+- `Content-Type` 은 `application/octet-stream` 이어야합니다.
 
 ## response-body
 

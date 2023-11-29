@@ -13,10 +13,9 @@ DELETE /file_manager/files/{target-filepath}
 ```
 
 ### response-body
-
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 삭제 완료 |
+|`200 OK`| 타겟 삭제 완료, 타겟이 없어도 200 반환됨 |
 
 
 ### 사용 예

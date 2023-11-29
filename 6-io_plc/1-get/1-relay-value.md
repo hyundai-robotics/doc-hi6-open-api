@@ -64,21 +64,6 @@ response-body:
 	0,
 	134217728
 ]
-
-
-GET /project/plc/fb2_do/val_s32
-
-response-body:
-[
-	0,
-	1,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0
-]
 ```
 
 Python Script 예제

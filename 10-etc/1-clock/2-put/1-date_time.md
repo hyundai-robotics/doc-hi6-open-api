@@ -18,7 +18,7 @@
 request url:
 PUT /clock/date_time
 
-response-body:
+request-body:
 {
   "year": 2023,
   "mon": 10,

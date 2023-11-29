@@ -14,15 +14,15 @@ GET /project/robot/po_cur
 
 ### query-parameter
 
-- task_no : task 번호 (0~7).
+- `task_no` : task 번호 (0~7).
   - 미지정 : task 0으로 적용됨.
   - &gt;=0 : mechinfo 미지정 시, task의 현재 mechinfo가 적용됨.
-- crd :  
+- `crd` :  
   - 미지정 : tcp, axis, encoder를 모두 얻음.
   - <0 : 현재 기록 좌표계를 따름.
   - &gt;=0 : [좌표계](../../99-schema/crdsys.md)
-- ucrd_no : 사용자좌표계 번호 (crd가 user일 때만 지정함.)
-- mechinfo : [메커니즘 정보](../../99-schema/mechinfo.md)
+- `ucrd_no` : 사용자 좌표계 번호 (crd가 user일 때만 지정함.)
+- `mechinfo` : [메커니즘 정보](../../99-schema/mechinfo.md)
 
 ### response-body
 
@@ -82,16 +82,26 @@ response-body:
 
 ```python
 request url:
-GET /project/robot/po_cur?crd=2&mechinfo=4
+GET /project/robot/po_cur?crd=2&mechinfo=2
 
 response-body:
 {
-	"nsync" : 0,
-	"_type" : "Pose",
-	"mechinfo" : 4,
-	"j9" : 0.000000,
-	"crd" : "joint",
-	"j8" : 0.000000
+    "nsync": 0,
+    "_type": "Pose",
+    "rx": 0.000000,
+    "x": 0.000000,
+    "ry": 0.000000,
+    "y": 0.000000,
+    "rz": 0.000000,
+    "z": 0.000000,
+    "mechinfo": 2,
+    "crd": "joint",
+    "j1": -0.690000,
+    "j2": 84.448000,
+    "j3": 22.304000,
+    "j4": 0.000000,
+    "j5": 0.000000,
+    "j6": 0.000000
 }
 ```
 

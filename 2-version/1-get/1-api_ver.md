@@ -13,6 +13,7 @@ GET /api_ver
 ### response-body
 
 - Open API version 번호
+- 초기 Hi6 Open API 는 `version 5`를 기준으로 작성된 문서입니다. 
 
 ### 사용 예
 

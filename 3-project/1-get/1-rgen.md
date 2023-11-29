@@ -4,7 +4,7 @@
 
 `rgen` (remote general status)
 
-- `GET` : 로봇의 조건설정 값을 얻습니다.
+- `GET` : 제어기에 설정된 일반적인 정보들을 읽습니다.
 
 ### path-parameter
 
@@ -66,13 +66,13 @@ Python Script 예시
 ```python
 import requests
 
-def is_remote_mode() -> bool:
+def get_is_remote_mode() -> bool:
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/project/rgen'    
     
     response = requests.get(url = base_url + path_parameter).json()    
 
-    print(f'is remote mode? {response['is_remote_mode']}')    
+    print(f"is remote mode? {response['is_remote_mode']}")    
     
     return response['is_remote_mode']
 

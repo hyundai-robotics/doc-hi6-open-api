@@ -1,6 +1,9 @@
-﻿## 1.5 Postman 기반 API 검증 방법
+﻿## 1.5 `Postman` 에서 `POST` 요청하기
 
-해당 페이지에서는 `postman` 을 활용한 Hi6 Open API 검증 방법에 대해 간단한 설명을 제공합니다.
+해당 페이지에서는 `postman` 을 활용해서 REST API 의 `POST` 요청을 호출하고 결과를 확인합니다.  
+추가로 간단한 UI 구성을 통해 사용법을 파악합니다.
+
+<br>
 
 ### 1.5.1. 주요 UI 구성
 
@@ -31,7 +34,7 @@
 
 2. `Request Body` 작성 
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
-	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([8.2.1 `task/cur_prog_cnt` - request body](../8-context/2-post/1-task-cur_prog_cnt.md#request-body) 참조)
+	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../9-task/2-post/1-cur_prog_cnt.md#request-body) 참조)
 	- Send를 클릭합니다.
 	<br>
 	![postman_post](../_assets/03_postman_post.png)
@@ -45,7 +48,7 @@
 
 		<blockquote>
 
-		`(1) Response body` : `post` 에 대한 응답 결과 ([8.2.1 `task/cur_prog_cnt` - response body](../8-context/2-post/1-task-cur_prog_cnt.md#response-body) 참조) </br>
+		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../9-task/2-post/1-cur_prog_cnt.md#response-body) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`
 
 		</blockquote>

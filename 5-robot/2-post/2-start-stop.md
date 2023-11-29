@@ -17,10 +17,21 @@ POST /project/robot/stop
 {}
 ```
 
+### response-body
+
+```json
+{
+    "_type": "JObject"
+}
+```
+
 ### 사용 예
 
 ```python
 POST /project/robot/motor_off
+
+request-body: 
+{}
 ```
 
 Python Script 예시

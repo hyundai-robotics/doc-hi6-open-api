@@ -7,11 +7,11 @@
 ### path-parameter
 
 ```python
-# 모든 태스크에 대해 리셋을 수행
+# reset all the tasks
 POST /project/context/tasks/reset 
 
-# 지정한 태스크에 대해 리셋을 수행
-POST /project/context/tasks[{task번호}]/reset 
+# reset the selected task
+POST /project/context/tasks[{task index}]/reset 
 ```
 
 ### request-body

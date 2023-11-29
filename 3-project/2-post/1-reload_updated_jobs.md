@@ -5,6 +5,7 @@
 `reload_updated_jobs`
 
 - `POST` : 작업 파일들을 갱신하는 요청을 보냅니다.
+- FTP 로 job 파일을 제어기에 전송하는 경우, 해당 API 를 통해 reload 요청을 해야 전송된 job 파일이 메모리에 반영이 됩니다.
 
 ### path-parameter
 

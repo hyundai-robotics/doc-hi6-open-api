@@ -4,7 +4,7 @@
 
 `op_cnd` (operation condition)
 
-- `GET` : 로봇의 조건설정 값을 얻습니다.
+- `GET` : 조건설정 값을 얻습니다.
 
 ### path-parameter
 
@@ -14,7 +14,7 @@ GET /project/control/op_cnd
 
 ### response-body
 
-- [로봇 조건설정 파라미터](../../99-schema/op_cnd.md)
+- [조건설정 파라미터](../../99-schema/op_cnd.md)
 
 <blockquote>
 

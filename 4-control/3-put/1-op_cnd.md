@@ -5,6 +5,7 @@
 `op_cnd` (operation condition)
 
 - `PUT` : 로봇의 조건설정 값을 변경합니다.
+- TP 에서 조건 설정 창을 열고 해당 메서드를 요청한 경우, 창을 닫았다 다시 열어야 값이 반영됩니다.
 
 ### path-parameter
 
@@ -14,7 +15,7 @@ PUT /project/control/op_cnd
 
 ### request-body
 
-- [포즈](../../99-schema/op_cnd.md)
+- [조건설정 파라미터](../../99-schema/op_cnd.md)
 
 
 ### 사용 예
@@ -25,17 +26,9 @@ PUT /project/control/op_cnd
 
 request-body:
 {
-    "_type": "CondGrp",
-    "playback_mode": 2,
+    "playback_mode": 1,
     "step_goback_max_spd": 130,
-    "step_go_func_ex": 0,
-    "func_reexe_on_trace": 2,
-    "path_recov_confirm": 0,
-    "playback_spd_rate": 80,
-    "robot_lock": 1,
-    "intp_base": 1,
-    "ucrd_num": 19,
-    "plc_mode": 4
+    "ucrd_num": 2
 }
 ```
 
@@ -50,17 +43,9 @@ def put_op_cnd() -> int:
     path_parameter = '/project/control/op_cnd'
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = { 
-                       "_type": "CondGrp",
-                       "playback_mode": 2,
-                       "step_goback_max_spd": 190,
-                       "step_go_func_ex": 0,
-                       "func_reexe_on_trace": 2,
-                       "path_recov_confirm": 0,
-                       "playback_spd_rate": 80,
-                       "robot_lock": 1,
-                       "intp_base": 1,
-                       "ucrd_num": 19,
-                       "plc_mode": 4 
+                          "playback_mode": 1,
+                          "step_goback_max_spd": 130,
+                          "ucrd_num": 2
                      }
 
     response = requests.put(url = base_url + path_parameter, headers = head,  json = body)

@@ -5,6 +5,7 @@
 `ucss/ucs_nos` (user coordinate system numbers)
 
 - `GET` : 현재 사용 중인 사용자 좌표계들을 리스트로 얻습니다.
+- `시스템 > 2: 제어 파라미터 > 6: 좌표계 등록` 을 통해 등록한 사용자 좌표계 리스트를 출력합니다.
 
 ### path-parameter
 
@@ -21,7 +22,7 @@ GET /project/control/ucss/ucs_nos
 response-body:
 {
 	"_type" : "JObject",
-    "val" : 2,
+    "val" : [1],
 }
 ```
 
@@ -43,5 +44,5 @@ print(f"{get_ucs_nos()}")
 ```
 ```sh
 $python test.py
-[1]
+[1, 2, 3]
 ```

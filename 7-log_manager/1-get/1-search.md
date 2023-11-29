@@ -64,7 +64,7 @@ GET /logManager/search
 
 ```python
 request url:
-GET /logManager/search?cat_p=C,H,P,I,O,S,N,W,E,M&id_max=24258&id_min=24253
+GET /logManager/search?cat_p=O&id_max=24258&id_min=24253
 
 response-body:
 {
@@ -86,10 +86,10 @@ Python Script 예시
 import requests
 
 def get_log_search() -> str:
-    base_url        = 'http://localhost:8888'
+    base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/logManager/search'
     query_parameter = { 
-                        'cat_p':  "C,H,P,I,O,S,N,W,E,M", 
+                        'cat_p':  "P,O", 
                         'id_max': "24256", 
                         'id_min': "24251" 
                       }

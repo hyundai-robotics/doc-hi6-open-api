@@ -28,7 +28,7 @@ POST /file_manager/rename_file
 |HTTP Status|description|
 |:---|:---|
 |`200 OK`| 타겟 파일이 없어도 동작함 |
-|`1 Unknown`| 타겟 파일의 이름 변경 완료 |
+|`http.client.BadStatusLine: HTTP/1.1 1 Unknown`| 타겟 파일의 이름 변경 완료 |
 
 
 ## 사용 예

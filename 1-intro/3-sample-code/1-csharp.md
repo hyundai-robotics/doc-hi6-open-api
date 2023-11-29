@@ -41,5 +41,5 @@ var str = "fb2.do3=" + jobj["val"].ToString();
 Console.WriteLine(str);
 ```
 
-해당 예제의 소스 코드를 아래 GitHub 에서 링크를 통해서 확인하실 수 있습니다.
+위 소스코드가 포함된 실행 가능한 C# WinForms 샘플 프로그램을 아래 Github 링크를 통해 확인하실 수 있습니다.
 > 링크 : https://github.com/hyundai-robotics/OpenAPI
