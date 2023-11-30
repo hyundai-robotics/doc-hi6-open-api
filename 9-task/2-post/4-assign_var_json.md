@@ -1,10 +1,10 @@
 ﻿## 9.2.5 `assign_var_json`
 
-### 설명
+### Description
 
 `assign_var_json`
 
-- `POST` : 현재 태스크 구문의 변수를 재지정합니다.
+- `POST` : Reassigns a variable in the current task statement.  
 
 ### path-parameter
 
@@ -14,13 +14,13 @@ POST /project/context/tasks[0]/assign_var_json
 
 ### request-body
 
-- `name` : 변수명
-- `json` : 변수에 대입할 json 형태의 문자열
-- `save` : 저장 유무 (true/false). 변수 파일에 해당 데이터를 저장하기 위함입니다.
-- `scope` : 해당 변수의 유효 스코프 설정
-	|`local`|`global`|`미설정`|
+- `name` : variable name
+- `json` : A json format `string` to be substituted into a variable.
+- `save` : Save contents (true/false). That is until you save that data to your activity file.
+- `scope` : Setting the effective scope of the variable
+	|`local`|`global`|`Not set`|
 	|:---|:---|:---|
-	|지역 변수|전역 변수|전체 스코프|
+	|local variable|global variable|Full scope (local and global are set automatically)|
 
 
 ```json
@@ -32,7 +32,7 @@ POST /project/context/tasks[0]/assign_var_json
 }
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -42,7 +42,7 @@ Hyundai Robot Job File;
     end
 ```
 
-상기 job 파일을 수행하여 태스크 상 지역 변수 a 가 선언된 상태일 경우
+When the above job file is executed and a local variable `a` is declared in the task
 
 ```python
 request url:
@@ -59,7 +59,7 @@ request-body
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
