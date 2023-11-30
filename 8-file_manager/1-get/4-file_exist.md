@@ -1,10 +1,10 @@
 ﻿## 8.1.4 `file_exist`
 
-### 설명
+### Description
 
 `file_exist`
 
-- `GET` : 타겟 파일의 존재 여부를 반환합니다.
+- `GET` : Obtain the existence of the target file.
 
 ### path-parameter
 
@@ -13,21 +13,21 @@ GET /file_manager/file_exist
 ```
 
 ### query-parameter
-> query-parameter 를 반드시 입력해야합니다.
+> query-parameter must be entered.
 ```
 ?pathname=project/jobs/0001.job
 ```
-- `pathname` : 타겟 파일 경로
+- `pathname` : target file path
 
 ### response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|`true` (파일 존재)|
-|`200 OK`|`false` (파일 없음)|
+|`200 OK`|`true` (file exists)|
+|`200 OK`|`false` (no file exist)|
 
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -48,7 +48,7 @@ hi6
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
