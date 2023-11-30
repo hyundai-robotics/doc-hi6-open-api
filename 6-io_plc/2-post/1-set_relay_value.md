@@ -13,7 +13,7 @@ POST /project/plc/set_relay_value
 
 ### request-parameter
 
-- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression).
+- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/english/3-relay/2-relay-expression).
 - `value` : Please pay attention to ‘data-type’ in the notation above and enter the value you want to set.
 ```json
 {

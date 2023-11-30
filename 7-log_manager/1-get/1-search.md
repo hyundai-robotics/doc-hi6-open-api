@@ -44,7 +44,7 @@ GET /logManager/search
 - `ts` : timestamp
 - `cat` : event category
 - `code` : event code number
-- `aux` : event auxiliary info. 최대 280자입니다.
+- `aux` : event auxiliary info. Up to 280 characters.
   - In case of errors, warnings, and start/stop, snapshot information is included.
 
 ```json
