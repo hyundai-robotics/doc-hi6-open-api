@@ -1,10 +1,10 @@
 ﻿## 5.1.1 `motor_on_state`
 
-### 설명
+### Description
 
 `motor_on_state`
 
-- `GET` : 모터 온 상태를 얻습니다.
+- `GET` : Obtain the motor on status.
 
 ### path-parameter
 
@@ -16,10 +16,10 @@ GET /project/robot/motor_on_state
 
 - val :
   - `0` : on
-  - `1` : busy (상태 전환 중)
+  - `1` : busy (Transitioning state)
   - `2` : off
 
-### 사용 예
+### Example
 ```python
 request url:
 GET /project/robot/motor_on_state
@@ -31,7 +31,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
