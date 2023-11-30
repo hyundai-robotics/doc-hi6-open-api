@@ -14,7 +14,7 @@ GET /project/control/op_cnd
 
 ### response-body
 
-- [operation condition parameter](../../99-schema/op_cnd.md)
+- [Condition Setting parameter](../../99-schema/op_cnd.md)
 
 <blockquote>
 
