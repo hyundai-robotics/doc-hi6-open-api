@@ -1,10 +1,10 @@
 ﻿## 8.1.2 `file_info`
 
-### 설명
+### Description
 
 `file_info`
 
-- `GET` : 파일 경로를 기반으로 해당 파일에 대한 정보를 반환합니다.
+- `GET` : Obtain information about that file based on the file path.
 
 ### path-parameter
 
@@ -17,14 +17,14 @@ GET /file_manager/file_info
 ```
 ?pathname=project/jobs/0001.job
 ```
-- `pathname` : 타겟 파일 경로
+- `pathname` : target file path
 
 ### response-body
 
-- [파일 정보](/99-schema/file_info)
-- 파일이 없을 시 `404 Not Found` 
+- [file information](/99-schema/file_info)
+- If the file does not exist, `404 Not Found`
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -62,7 +62,7 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
