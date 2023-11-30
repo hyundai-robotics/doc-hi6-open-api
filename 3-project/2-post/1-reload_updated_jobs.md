@@ -1,11 +1,11 @@
 ﻿## 3.2.1 `reload_updated_jobs`
 
-### 설명
+### Description
 
 `reload_updated_jobs`
 
-- `POST` : 작업 파일들을 갱신하는 요청을 보냅니다.
-- FTP 로 job 파일을 제어기에 전송하는 경우, 해당 API 를 통해 reload 요청을 해야 전송된 job 파일이 메모리에 반영이 됩니다.
+- `POST` : Send a request to update working files.
+- When transmitting a job file to the controller via FTP, a reload request must be made through the corresponding API for the transmitted job file to be reflected in memory.
 
 ### path-parameter
 
@@ -19,7 +19,7 @@ POST /project/reload_updated_jobs
 {}
 ```
 
-### 사용 예
+### Description
 
 ```python
 request url:
@@ -28,9 +28,9 @@ POST /project/reload_updated_jobs
 request-body: {}
 ```
 
-Python Script 예시
+Python Script Example
 
-- 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
 ```python
 # test.py
 import requests 
