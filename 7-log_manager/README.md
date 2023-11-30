@@ -1,3 +1,3 @@
 # 7.1 event-log
 
-- 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.
+- Outputs errors, warnings, execution history, etc. recorded in the controller.
