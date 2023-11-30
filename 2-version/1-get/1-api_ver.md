@@ -1,8 +1,8 @@
 ﻿## 2.1.1 api_ver
 
-### 설명
+### Description
 
-- GET : Open API version 번호를 얻습니다.
+- GET : Get Open API version number
 
 ### path-parameter
 
@@ -12,10 +12,10 @@ GET /api_ver
 
 ### response-body
 
-- Open API version 번호
-- 초기 Hi6 Open API 는 `version 5`를 기준으로 작성된 문서입니다. 
+- Open API version number
+- The initial Hi6 Open API is a document written based on `version 5`.
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -25,7 +25,7 @@ response-body:
 5
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests

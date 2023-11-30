@@ -1,6 +1,6 @@
 ﻿## 10.1.2.1 `date_time`
 
-### 설명
+### Description
 
 `date_time`
 

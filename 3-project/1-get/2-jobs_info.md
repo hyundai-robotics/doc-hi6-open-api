@@ -1,6 +1,6 @@
 ﻿## 3.1.2 `jobs_info`
 
-### 설명
+### Description
 
 `jobs_info`
 

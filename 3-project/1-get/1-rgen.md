@@ -1,6 +1,6 @@
 ﻿## 3.1.1 `rgen`
 
-### 설명
+### Description
 
 `rgen` (remote general status)
 
