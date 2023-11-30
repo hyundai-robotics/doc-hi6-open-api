@@ -1,10 +1,10 @@
 ﻿## 5.1.5 `tools/t_{number}`
 
-### 설명
+### Description
 
 `tools/t_{number}`
 
-- GET : 특정 툴의 설정값 정보를 받는 함수입니다.
+- GET : This is a function that receives information on the settings of a specific tool.
 
 ### path-parameter
 
@@ -14,9 +14,9 @@ GET /project/robot/tools/t_{number}
 
 ### response-body
 
-- [툴 데이터](../../99-schema/tool_data.md)
+- [Tool data](../../99-schema/tool_data.md)
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -35,7 +35,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
