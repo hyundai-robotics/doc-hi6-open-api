@@ -1,4 +1,4 @@
 # 5. robot
 
-- 로봇과 툴 데이터에 대한 원격 제어와 모니터링을 확인할 수 있습니다.
-- 모터 on/off, 로봇 자세, 툴, 조그 좌표계 등을 다루고 있습니다.
+- You can check remote control and monitoring of robot and tool data.
+- It covers motor on/off, robot posture, tools, jog coordinate system, etc.
