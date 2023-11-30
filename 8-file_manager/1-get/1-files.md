@@ -1,10 +1,10 @@
 ﻿## 8.1.1 `files`
 
-### 설명
+### Description
 
 `files`
 
-- `GET` : 제어기로부터 파일 내용을 응답 받습니다.
+- `GET` : The file contents are responded to from the controller.
 
 ### path-parameter
 
@@ -17,17 +17,17 @@ GET /file_manager/files
 ```
 ?pathname=project/jobs/0001.job
 ```
-- `pathname` : 가져올 파일 이름
+- `pathname` : File name to get
 
 ### response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|파일 내용 반환|
-|`404 Not Found`| 파일 없을 때 에러 상태 코드 반환|
+|`200 OK`|Return file contents|
+|`404 Not Found`| Return error status code when file does not exist|
 
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -56,7 +56,7 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
