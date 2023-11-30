@@ -1,10 +1,10 @@
 ﻿# 8.2.1 `rename_file`
 
-## 설명
+## Description
 
 `rename_file`
 
-- `POST` : 타겟 파일의 파일 이름을 변경합니다.
+- `POST` : Change the file name of the target file.
 
 ## path-parameter
 
@@ -20,18 +20,18 @@ POST /file_manager/rename_file
 	"pathname_to"   : "project/jobs/4321.job"
 }
 ```
-- `pathname_from` : 변경 전 파일 경로
-- `pathname_to` : 변경 후 파일 경로
+- `pathname_from` : File path before change
+- `pathname_to` : File path after change
 
 ## response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 파일이 없어도 동작함 |
-|`http.client.BadStatusLine: HTTP/1.1 1 Unknown`| 타겟 파일의 이름 변경 완료 |
+|`200 OK`| Works even if there is no target file |
+|`http.client.BadStatusLine: HTTP/1.1 1 Unknown`| Rename of target file completed. |
 
 
-## 사용 예
+## Example
 
 <blockquote>
 
@@ -54,7 +54,7 @@ hi6
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -74,6 +74,6 @@ print(rename_file())
 ```
 ```sh
 $python test.py
-파일 이름이 정상적으로 변경되면, 에러 로그가 출력됨
-없는 파일의 이름을 바꾸려고 시도하면 200 OK 가 출력됨
+# If the file name is changed normally, an error log(HTTP/1.1 1 Unknown) is output.
+# If you try to rename a file that does not exist, 200 OK is output.
 ```
