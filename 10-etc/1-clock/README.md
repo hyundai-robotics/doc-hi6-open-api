@@ -1,3 +1,3 @@
 # 10.1 clock
 
-- 제어기의 시스템 시간을 읽고 설정할 수 있습니다.
+- You can read and set the controller's system time.
