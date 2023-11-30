@@ -1,10 +1,10 @@
 ﻿## 9.2.7 `solve_expr`
 
-### 설명
+### Description
 
 `solve_expr`
 
-- `POST` : 표현식(expression)을 풀어서 나오는 결과 값을 태스크의 지역 또는 전역 변수에 설정합니다.
+- `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
 
 ### path-parameter
 
@@ -13,12 +13,12 @@ POST /project/context/tasks[0]/solve_expr
 ```
 
 ### request-body
-- `expr` : 풀려고 하는 수식(expression)을 입력합니다
-- `scope` : `expr` 에 대한 스코프를 설정합니다.
+- `expr` : Enter the expression you want to solve
+- `scope` : Sets the scope for `expr`.
 
-	|`local`|`global`|`미설정`|
+	|`local`|`global`|`not set`|
 	|:---|:---|:---|
-	|지역 변수|전역 변수|전체 스코프|
+	|local variable|global variable|Full scope (local and global are set automatically)|
 
 ```json
 {
@@ -30,15 +30,15 @@ POST /project/context/tasks[0]/solve_expr
 ### response-body
 
 ```json
-13 // 현재 지정된 scope 안의 expr 값을 읽어옵니다.
+13 // Reads the expr value within the currently specified scope.
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
 ```python
-# 1. 현재 Task 에서 선언된 "지역" 변수 a 값 읽어오기
+# 1. Read the value of “local” variable a declared in the current Task
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -57,7 +57,7 @@ response-body:
 <blockquote>
 
 ```python
-# 2. 현재 Task 에서 선언된 "전역" 변수 a 값 읽어오기
+# 2. Read the value of “global” variable a declared in the current Task
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -76,7 +76,7 @@ response-body:
 <blockquote>
 
 ```python
-# 3. 지역 변수 a 의 값에 대해서 -234 를 더하기
+# 3. Add -234 to the value of local variable a
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -91,8 +91,8 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
-- 로봇 제어기의 태스크 영역에 지역 및 전역 변수 a 값이 설정된 상태로 하기 코드 실행
+Python Script Example
+- Execute the following code with the local and global variable a values set in the task area of the robot controller.
 
 ```python
 # test.py
