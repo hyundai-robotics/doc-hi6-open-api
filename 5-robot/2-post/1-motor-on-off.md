@@ -1,8 +1,8 @@
 ﻿## 5.2.1 `motor_on / motor_off`
 
-### 설명
+### Description
 
-- POST : 모터 ON과 모터 OFF를 수행합니다.
+- POST : Performs motor ON and motor OFF.
 
 ### path-parameter
 
@@ -25,7 +25,7 @@ POST /project/robot/motor_off
 }
 ```
 
-### 사용 예
+### Example
 
 ```python
 POST /project/robot/motor_off
@@ -34,7 +34,7 @@ request-body:
 {}
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
