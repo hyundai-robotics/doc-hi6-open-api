@@ -1,10 +1,10 @@
 ﻿## 5.1.4 `tools`
 
-### 설명
+### Description
 
 `tools`
 
-- `GET` : 로봇의 모든 툴 정보 얻기. T0~T31까지의 툴 중 존재하는 툴만 얻습니다.
+- `GET` : Get all tool information for the robot. Only tools that exist among tools from T0 to T31 are obtained.
 
 ### path-parameter
 
@@ -14,15 +14,15 @@ GET /project/robot/tools
 
 ### response-body
 
-- t_0 : [툴 데이터](../../99-schema/tool_data.md)
-- t_1 : 툴 데이터
-- t_2 : 툴 데이터  
+- t_0 : [Tool data](../../99-schema/tool_data.md)
+- t_1 : Tool data
+- t_2 : Tool data  
 ...
-- t_31 : 툴 데이터
+- t_31 : Tool data
 
-### 사용 예
+### Example
 
-툴 0과 툴 31만 존재하는 시스템의 사례.
+An example of a system in which only tool 0 and tool 31 exist.
 
 ```python
 request url:
@@ -37,7 +37,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
