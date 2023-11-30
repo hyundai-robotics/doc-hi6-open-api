@@ -1,10 +1,10 @@
 ﻿## 3.2.2 `delete_job`
 
-### 설명
+### Description
 
 `delete_job`
 
-- `POST` : 작업 파일을 제거하는 요청을 보냅니다.
+- `POST` : Send a request to remove a working file.
 
 ### path-parameter
 
@@ -20,7 +20,7 @@ POST /project/jobs/delete_job
 }
 ```
 
-### 사용 예
+### Example
 
 ```json
 request url:
@@ -32,7 +32,7 @@ request-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
