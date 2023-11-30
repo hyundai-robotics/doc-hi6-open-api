@@ -1,22 +1,23 @@
 ﻿# tool_data
 
-## 설명
+## Description
 
-로봇의 툴 데이터입니다.
+Robot's tool data.
 
 |key|description|
 |---:|:---|
-|`x`|X위치 (mm)|
-|`y`|Y위치 (mm)|
-|`z`|Z위치 (mm)|
-|`rx`|RX각도 (deg.)|
-|`ry`|RY각도 (deg.)|
-|`rz`|RZ각도 (deg.)|
-|`mass`|중량 (kg.)|
-|`cx`|무게중심 X위치 (mm)|
-|`cy`|무게중심 X위치 (mm)|
-|`cz`|무게중심 X위치 (mm)|
-|`ixx`|이너셔(inertial) X (kgm2)|
-|`iyy`|이너셔(inertial) Y (kgm2)|
-|`izz`|이너셔(inertial) Z (kgm2)|
-|`mass_esti`|부하추정 중량 (kg.)|
+|`x`|X position (mm)|
+|`y`|Y position (mm)|
+|`z`|Z position (mm)|
+|`rx`|RX Angle (deg.)|
+|`ry`|RY Angle (deg.)|
+|`rz`|RZ Angle (deg.)|
+|`mass`|weight (kg.)|
+|`cx`|Center of gravity at X position (mm)|
+|`cy`|Center of gravity at Y position (mm)|
+|`cz`|Center of gravity at Z position (mm)|
+|`ixx`| inertial X (kgm2)|
+|`iyy`| inertial Y (kgm2)|
+|`izz`| inertial Z (kgm2)|
+|`mass_esti`|Load estimate weight (kg.)|
+
