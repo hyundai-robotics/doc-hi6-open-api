@@ -1,13 +1,13 @@
 ## 1.6 Calling API from web browser  
 
-### 1.6.1. 간단한 `GET` 요청하기
+### 1.6.1. Make a simple `GET` request
 
-`get` 요청은 웹 브라우저를 통해 보다 간편하고 신속하게 확인할 수 있습니다. 순서는 다음과 같습니다.
-1. 웹 브라우저 엽니다.
-2. 주소 창에 `get` 요청의 서버 측 url 을 입력합니다.
-	- 서버 측 url 은 `http://<Hi6 제어기의 ip 주소>:<http 통신 포트>`로 시작되며 추출하려는 정보에 맞는 경로와 쿼리를 이어 적습니다.
+`get` requests can be checked more simply and quickly through a web browser. The order is as follows:
+1. Open web browser
+2. Enter the server-side url of the `get` request in the address bar.
+	- The server-side URL begins with `http://<IP address of Hi6 controller>:<http communication port>`, followed by the path and query appropriate for the information you want to extract.
 	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
-3. 해당 url 의 페이지가 열리고 아래와 같이 응답이 출력됩니다.
+3. The page for that URL opens and a response is output as shown below.
 	```json
 	{
 		"_type" : "JObject",
@@ -17,21 +17,21 @@
 
 <br>
 
-### 1.6.2 `확장 프로그램`으로 API 호출하기  
-크롬 또는 엣지 브라우저를 사용하는 경우, 크롬 확장 프로그램을 통해 `get` 요청 이외의 api 들을 테스트할 수 있습니다.  
-하기 확장 프로그램은 세계적으로 여러 개발자들이 사용하는 API 테스터 입니다.
-- 크롬 확장 프로그램 : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
+### 1.6.2 Calling API with `extension`
+If you use Chrome or Edge browsers, you can test APIs other than `get` requests through the Chrome extension.  
+The following extension program is an API tester used by many developers around the world.
+- Chrome extension program : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
 
-해당 프로그램을 통해 `postman` 처럼 다양한 API 들에 대해서 간편하게 호출을 해볼 수 있습니다.
+Through this program, you can easily call various APIs like `postman`.
 
 ![talend_api_tester.png](../_assets/06_Talend_api_tester.png)  
 
 <blockquote>
 
-`(1) Requests/Senarios` : 하나의 API 에 대해서 호출을 테스트할지, 여러 API 들로 시나리오를 작성하여 순차적으로 테스트할 지 설정할 수 있습니다.<br>
-`(2) Request` : 요청할 내용을 입력합니다.  
-`(3) Response` : 요청에 대한 응답을 확인할 수 있습니다.  
-`(4) History` : 요청 이력을 출력합니다.  
-`(5) History 탭` : 열었다 닫았다 할 수 있는 `(4)`의 요청 이력 리스트보다 많은 양의 이력이 확인 가능한 탭입니다.
+`(1) Requests/Senarios` : You can set whether to test calls to one API or create a scenario with multiple APIs and test them sequentially.<br>
+`(2) Request` : Enter your request.  
+`(3) Response` : You can check the response to your request.  
+`(4) History` : Prints request history.   
+`(5) Side History Tab` : This tab allows you to check a larger amount of history than the request history list in `(4)`, which can be opened and closed.
 
 </blockquote>
