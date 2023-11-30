@@ -1,4 +1,4 @@
-﻿## 1.1 Concept
+﻿## 1.1 Overview
 
 
 ### 1.1.1 About Hi6 Open API
