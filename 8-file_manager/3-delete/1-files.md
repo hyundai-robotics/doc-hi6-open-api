@@ -1,10 +1,10 @@
 ﻿## 8.3.1 `files`
 
-### 설명
+### Description
 
 `files`
 
-- `DELETE` : 타겟 파일 또는 디렉토리를 삭제합니다.
+- `DELETE` : Deletes the target file or directory.
 
 ### path-parameter
 
@@ -15,10 +15,10 @@ DELETE /file_manager/files/{target-filepath}
 ### response-body
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 삭제 완료, 타겟이 없어도 200 반환됨 |
+|`200 OK`| Target deletion completed, 200 returned even if there is no target |
 
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -35,7 +35,7 @@ hi6
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
