@@ -1,10 +1,10 @@
 ﻿## 5.1.3 `cur_tool_data`
 
-### 설명
+### Description
 
 `cur_tool_data`
 
-- `GET` : 로봇의 현재 툴 데이터 얻기.
+- `GET` : Obtaining the robot's current tool data.
 
 ### path-parameter
 
@@ -14,7 +14,7 @@ GET /project/robot/cur_tool_data
 
 ### response-body
 
-- val : [툴 데이터](../../99-schema/tool_data.md)
+- val : [Tool Data](../../99-schema/tool_data.md)
 
 ### 사용 예
 
@@ -42,7 +42,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
