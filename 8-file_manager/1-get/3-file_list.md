@@ -1,10 +1,10 @@
 ﻿## 8.1.3 `file_list`
 
-### 설명
+### Description
 
 `file_list`
 
-- `GET` : 파일 및 디렉토리 리스트를 반환합니다.
+- `GET` : Obtain a list of files and directories.
 
 ### path-parameter
 
@@ -14,27 +14,27 @@ GET /file_manager/file_list
 
 ### query-parameter
 
-> query-parameter 를 반드시 입력해야합니다.  
+> query-parameter must be entered.
 ```
 ?path=project/jobs&incl_file=true&incl_dir=false
 ```
 
 |key|description|
 |:---|:---|
-|`path`|확인하려는 대상 폴더 경로|
-|`incl_file`|리스트 출력 시 파일 포함 여부|
-|`incl_dir`|리스트 출력 시 디렉토리 포함 여부|
+|`path`|Target path you want to check|
+|`incl_file`|Whether to include files when outputting the list|
+|`incl_dir`|Whether to include directories when outputting the list|
 
 
 ### response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|[파일 정보](/99-schema/file_info) `리스트`를 반환|
-|`404 Not Found`| 파일 없을 때 반환|
+|`200 OK`|return [file information](/99-schema/file_info) `list`|
+|`404 Not Found`| no file exists |
 
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -83,7 +83,7 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
