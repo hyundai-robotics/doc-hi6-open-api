@@ -1,10 +1,10 @@
 ﻿## 7.1.1 search
 
-### 설명
+### Description
 
 `search`
 
-- `GET` : 지정한 필터 조건으로 이벤트 이력(event log)를 열람합니다.  
+- `GET` : View the event log using the specified filter conditions.
 
 ### path-parameter
 
@@ -14,40 +14,38 @@ GET /logManager/search
 
 ### query-parameter
 
-- `n_item` : 요청 event 개수 (default=100)
-- `cat_p` : 요청 범주 필터 (category positive). 각 타입을 의미하는 글자를 쉼표(,)로 결합하여 지정합니다.
-            (cat_p=E,W,N)
-  - `E` : 에러 (Error)
-  - `W` : 경고 (Warning)
-  - `N` : 알림 (Notice)
-  - `S` : 기동/정지 (Start/Stop)
-  - `O` : 사용자 조작 (user's Operation)
-  - `I` : I/O, 릴레이 값 (I/O, relay value)
-  - `P` : 주기적 상태 기록 (Periodic state)
-  - `H` : 실행 이력 (History)
-  - `C` : 콘솔 출력 (Console out)
-  - `M` : 기타 (Miscellany)
-- `id_min` : 최소 id 필터. (optional)
-  - 모든 이벤트는 유일한 이벤트 ID(eid)를 가지고 있습니다. (0~)  
-    기존에 수신한 이벤트들의 id 중 최대값에 1을 더해 `id_min`에 지정하여 이력 요청을 하면,
-    기존에 이미 수신한 이벤트들은 제외하고, 새로 발생한 이력만 얻을 수 있습니다.  
-  - 단, 제어기 내의 이벤트 id는 최대값(0xffffffffffffffff)이 되면, 다시 0부터 생성됩니다.
-    필터링은 이러한 상황까지 고려하여 적절히 적용됩니다.
-    예를들어, id_min이 0xfffffffffffffffa 인 경우, 0, 1, 2 같은 id를 갖는 이벤트들을 필터 아웃되지 않고 응답에 포함됩니다.
-- `id_max` : 최대 id 필터. (optional)
-- `ts_min` : 최소 timestamp 필터. (optional)
-  - 년/월/일 시:분:초.밀리초 형식. e.g. 2023/11/20 18:50:30.955
-- `ts_max` : 최대 timestamp 필터. (optional)
-  - 년/월/일 시:분:초.밀리초 형식. e.g. 2023/11/20 18:50:30.955
+- `n_item` : Number of requested events (default=100)
+- `cat_p` : Request category filter (category positive). Specify the letters representing each type by combining them with a comma (,). (cat_p=E,W,N)
+  - `E` : Error
+  - `W` : Warning
+  - `N` : Notice
+  - `S` : Start/Stop
+  - `O` : user's Operation
+  - `I` : I/O, relay value
+  - `P` : Periodic state
+  - `H` : History
+  - `C` : Console out
+  - `M` : Miscellany
+- `id_min` : min id filter. (optional)
+  - Every event has a unique event ID (eid). (0~)  
+    If you request a history by adding 1 to the maximum ID of the previously received events and specifying it in `id_min`, you can obtain only the newly occurring history, excluding the events already received.
+  - However, when the event ID in the controller reaches the maximum value (0xffffffffffffffff), it is generated again starting from 0.  
+    Filtering is applied appropriately by taking these situations into consideration.  
+    For example, if id_min is 0xfffffffffffffffa, events with ids such as 0, 1, and 2 are not filtered out but are included in the response.
+- `id_max` : max id filter. (optional)
+- `ts_min` : min timestamp filter. (optional)
+  - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
+- `ts_max` : max timestamp filter. (optional)
+  - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
 
 ### response-body
 
-- `id` : 이벤트 ID (event ID)
+- `id` : event ID
 - `ts` : timestamp
-- `cat` : 이벤트 범주 (event category)
-- `code` : 이벤트 코드번호
-- `aux` : 이벤트 보조정보 (event auxiliary info.). 최대 280자입니다.
-  - 에러와 경고, 기동/정지의 경우에는 스냅샷(snapshot) 정보를 담습니다.
+- `cat` : event category
+- `code` : event code number
+- `aux` : event auxiliary info. 최대 280자입니다.
+  - In case of errors, warnings, and start/stop, snapshot information is included.
 
 ```json
 { "id" : 19964, "ts" : "2023/11/20 15:53:11.275", "cat" : "E", "code" : "11,0,0", "aux" : "{ 'pc' : '20/3/1', 'j1' : 18.525, 'j2' : 105.000, 'j3' : -2.577, 'j4' : -14.432, 'j5' : -0.776, 'j6' : 0.314, 'sin' : '00 01 00 00 00 00 00 00', 'sout' : '05 08 06 00 00 00 00 01', 'din' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0', 'dout' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0' }" }
@@ -58,7 +56,7 @@ GET /logManager/search
 { "id" : 18266, "ts" : "2023/11/20 15:00:33.789", "cat" : "H", "code" : "hist", "aux" : "( 738785)S3  .move P,spd=500mm/sec,accu=4,tool=0 " }
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -79,7 +77,7 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
