@@ -1,13 +1,13 @@
 ﻿# date_time
 
-## 설명
+## Description
 
-시스템 시간 관련 정보를 나타냅니다.
+Indicates system time-related information.
 |value|type|description|
 |:---:|:---|:---|
-|"year"|`int`|현재 시스템의 년도|
-|"mon"|`int`|현재 시스템의 월|
-|"day"|`int`|현재 시스템의 일|
-|"hour"|`int`|현재 시스템의 시|
-|"min"|`int`|현재 시스템의 분|
-|"sec"|`int`|현재 시스템의 초|
+|"year"|`int`|Year of current system|
+|"mon"|`int`|Month of current system|
+|"day"|`int`|Day of current system|
+|"hour"|`int`|Hour of current system|
+|"min"|`int`|Minute of current system|
+|"sec"|`int`|Second of current system|
