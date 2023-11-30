@@ -4,7 +4,7 @@
 
 `sio` (system input/output)
 
-- `GET` : 시스템 IO 값을 얻습니다.
+- `GET` : Get system IO values.
 
 ### path-parameter
 
@@ -15,23 +15,23 @@ GET /project/control/ios/sio/{sio_val}
 ### path-variable
 
 - `sio_val` :
-  - `si_val` : 입력(si) 값을 얻습니다.
-  - `so_val` : 출력(so) 값을 얻습니다.
+  - `si_val` : Get the input(si) value.
+  - `so_val` : Get the output(so) value.
 
 ### query-parameter
 
-- `type` : io 값의 타입
+- `type` : Type of io value
   - si or so : bit
   - sib or sob : signed-byte
   - siw or sow : signed-word (2byte)
   - sil or sol : signed-dword (4yte)
   - sif or sof : float
-- `sig_no` : 신호 인덱스 (0~)
+- `sig_no` : signal index (0~)
 
 
 ### 사용 예
 
-- sib1 값 얻기. (결과값 : 0b00000010 = 0x02 = 2)
+- Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
 
 ```python
 request url:
@@ -44,7 +44,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
