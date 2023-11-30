@@ -1,34 +1,34 @@
-﻿## 1.1 Contents
+﻿## 1.1 Concept
 
 
-### 1.1.1 Hi6 Open API 에 대하여
+### 1.1.1 About Hi6 Open API
 
-HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 제어기(이하, Hi6)를 모니터링하고 원격으로 제어하기 위한 API 를 해당 문서에서 공개합니다.<br>
-이를 통해 개발자들은 Hi6 개발에 적용된 소스코드에 대한 깊은 이해 없이도 Hi6의 다양한 데이터를 읽고 쓸 수 있습니다.<br>
-아래 그림을 통해서 Open API 역할을 보다 쉽게 이해할 수 있습니다.
+In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as Hi6).<br>
+This enables developers to read and write Hi6 data without requiring a thorough comprehension of the source code used in Hi6 development.<br>
+The image below will help you better grasp the role of Open API.
 
 ![open_api_flow_png](../_assets/05_open_api_flow.PNG)
 
-위 그림에서 주황색으로 표시된 부분들은 Open API 의 역할을 보여주고 있습니다.  
+The parts marked in orange in the picture above show the role of Open API.
 
-|화살표|설명|
+|Arrow sign|Description|
 |:---|:---|
-|`실선`|개발자(클라이언트)가 정해진 4가지 방법(GET, POST, PUT, DELETE)을 이용하여 Hi6(서버)에 정보를 `요청`하는 것을 의미|
-|`점선`|요청을 받은 제어기가 그에 맞는 `응답`을 json 혹은 text 형식으로 반환하는 것을 의미|
+|`Solid line`|This means that the `developer` (`client`) `requests` information to `Hi6` (`server`) using one of four methods (GET, POST, PUT, DELETE).|
+|`Dotted line`|This means that the `controller` that `received` the `request` `sends back` the appropriate `response` in json or text format.|
 
-이처럼 개발자는 해당 문서의 Open API 를 활용해서 Hi6 와 이더넷으로 연결된 본인의 데스크탑, 노트북, 태블릿 pc 등을 http 와 REST API 기반으로 원격 제어 또는 모니터링을 할 수 있게 됩니다.
+In this way, developers can use the Open API in the document to remotely control or monitor their desktops, laptops, tablet PCs, etc. connected via Hi6 and Ethernet based on http and REST API.
 
 
 <br>
 
 
-### 1.1.2 시작하기 전에 꼭 확인하세요!
+### 1.1.2 Be sure to check before you start!
 
-* 현재 문서는 초기 버전으로 Hi6 Open API 버전 5를 기준으로 작성되었습니다.
+* The current document is an initial version and was written based on Hi6 Open API version 5.
 
-* 이후 지속적으로 버전 업데이트가 있을 수 있습니다. 버전이 업데이트 되는 경우, 해당 section 을 참고하시기 바랍니다.
+* There may be continuous version updates in the future. If the version is updated, please refer to the corresponding section.
 
-* HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, `1.2 필요한 사전 지식`부터 `1.5 postman` 까지 건너뛰어도 좋습니다.
+* For developers who are familiar with developing HTTP REST API client functions, you can ski from `1.2 Required prior knowledge` to `1.6 Calling API from a web browser`.
 
 
 <br>
@@ -36,8 +36,8 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 {% hint style="warning" %}
 
-본 문서에 설명된 API들은 별도의 지원버전 명기가 없으면 Hi6 V60.24-00부터 지원됩니다.
+The APIs described in this document are supported starting from `Hi6 V60.24-00` unless otherwise specified.
 
-본 문서에 명시되지 않은 URL 및 속성은 동일 API 버전에서 예고없이 변경될 수 있으므로, 주의 바랍니다.
+Please note that URLs and properties not specified in this document may change without notice in the same API version.
 
 {% endhint %}
