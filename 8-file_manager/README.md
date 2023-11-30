@@ -1,4 +1,4 @@
 # 8. file_manager
 
-- 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
-- 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.
+- This covers functions such as reading file information from the controller, changing file names, and transferring files.
+- Functions for checking the existence of a directory or creating and deleting it are also covered.
