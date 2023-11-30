@@ -1,10 +1,10 @@
 ﻿## 9.2.3 `set_cur_pc_idx`
 
-### 설명
+### Description
 
 `set_cur_pc_idx`
 
-- `POST` : 현재 커서를 index 라인에 위치 시키는 함수
+- `POST` : Function that positions the current cursor at the index line
 
 ### path-parameter
 
@@ -19,7 +19,7 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 }
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -35,7 +35,7 @@ request-body
 
 </blockquote>
 
-Python Script
+Python Script Example
 
 ```python
 # test.py
@@ -55,5 +55,5 @@ print(f"response: {set_cur_pc_idx()}")
 ```
 ```sh
 $python test.py 
-response 200 # + TP 상 커서 위치 변경 됨
+response 200 # Cursor position on TP changed
 ```
