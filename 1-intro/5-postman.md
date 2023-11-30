@@ -1,4 +1,4 @@
-﻿## 1.5 `Postman` 에서 `POST` 요청하기
+﻿## 1.5 Requesting POST in Postman
 
 해당 페이지에서는 `postman` 을 활용해서 REST API 의 `POST` 요청을 호출하고 결과를 확인합니다.  
 추가로 간단한 UI 구성을 통해 사용법을 파악합니다.

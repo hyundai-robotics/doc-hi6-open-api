@@ -1,4 +1,4 @@
-## 1.6 웹 브라우저에서 API 호출하기
+## 1.6 Calling API from web browser  
 
 ### 1.6.1. 간단한 `GET` 요청하기
 
