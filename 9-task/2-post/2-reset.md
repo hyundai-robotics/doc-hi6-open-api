@@ -1,8 +1,8 @@
 ﻿## 9.2.2 `task/reset`
 
-### 설명
+### Description
 
-- `POST` : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
+- `POST` : Perform a reset on the task. (Same operation as R.. 0 ENTER)
 
 ### path-parameter
 
@@ -20,9 +20,9 @@ POST /project/context/tasks[{task index}]/reset
 {}
 ```
 
-### 사용 예
+### Example
 
-0번 태스크 리셋 하기.
+reset task 0
 
 ```python
 request url:
