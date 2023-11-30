@@ -4,7 +4,7 @@
 
 `jobs_info`
 
-- `GET` : job 프로그램 관련 정보들을 받는 함수입니다.
+- `GET` : Obtain information about job programs.
 
 ### path-parameter
 
@@ -14,8 +14,8 @@ GET /project/jobs_info
 
 ### response-body
 
-- [job 파일 관련 정보](../../99-schema/jobs_info.md)
-### 사용 예
+- [job file information](../../99-schema/jobs_info.md)
+### Example
 
 <blockquote>
 
@@ -54,7 +54,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
