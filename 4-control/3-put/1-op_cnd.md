@@ -1,11 +1,12 @@
 ## 4.3.1 `op_cnd`
 
-### 설명
+### Description
 
 `op_cnd` (operation condition)
 
-- `PUT` : 로봇의 조건설정 값을 변경합니다.
-- TP 에서 조건 설정 창을 열고 해당 메서드를 요청한 경우, 창을 닫았다 다시 열어야 값이 반영됩니다.
+- `PUT` : Change the robot’s condition setting values.
+- If you open the `condition setting window(cond.set)` in TP and request the corresponding method,  
+you must close and reopen the window for the value to be reflected.
 
 ### path-parameter
 
@@ -15,10 +16,10 @@ PUT /project/control/op_cnd
 
 ### request-body
 
-- [조건설정 파라미터](../../99-schema/op_cnd.md)
+- [Condition Setting parameter](../../99-schema/op_cnd.md)
 
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -32,7 +33,7 @@ request-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
