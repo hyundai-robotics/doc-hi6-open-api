@@ -1,6 +1,6 @@
 # 9.task
 
-- 태스크와 관련된 내용들을 다룹니다.
-- 특정 태스크나 전체 태스크에 대해서 리셋을 할 수 있습니다.
-- 현재 태스크의 지역 또는 전역 변수에 대해서 값을 읽어오거나 새로운 변수를 선언할 수 있습니다.
-- 태스크 실행 중 특정 작업 흐름(ex. wait)에 대해서 특정 조치(ex. release)를 취할 수 있습니다.
+- It covers content related to the task.
+- You can reset a specific task or all tasks.
+- You can read values from local or global variables of the current task or declare new variables.
+- During task execution, specific actions (e.g. release) can be taken for a specific work flow (e.g. wait).
