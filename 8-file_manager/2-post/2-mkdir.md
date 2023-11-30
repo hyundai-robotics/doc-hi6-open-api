@@ -1,10 +1,10 @@
 ﻿# 8.2.2 `mkdir`
 
-## 설명
+## Description
 
 `mkdir`
 
-- `POST` : 타겟 경로에 디렉토리를 생성합니다.
+- `POST` : Create a directory in the target path.
 
 ## path-parameter
 
@@ -16,17 +16,17 @@ GET /file_manager/mkdir
 
 |key|value|description|
 |:---|:---|:---|
-|`path`|`str`|디렉토리를 생성할 위치|
+|`path`|`str`|Where to create the directory|
 
 ## response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 위치에 디렉토리 생성 완료 |
-|`500 Internal Server Error`| 타겟 위치에 디렉토리 이름이 중복되는 경우 |
+|`200 OK`| Directory creation completed in target location|
+|`500 Internal Server Error`| When directory names are duplicated in the target location |
 
 
-## 사용 예
+## Example
 
 <blockquote>
 
@@ -51,7 +51,7 @@ hi6
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
