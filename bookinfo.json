@@ -1,8 +1,8 @@
 {
-    "langCode": "ko",
-    "series": "Hi6 Open API 설명서 (based on version 5)",
-    "title": "Open API 설명서",
-    "publisher": "HD현대로보틱스",
-    "tocTitle": "목차",
+    "langCode": "en",
+    "series": "Hi6 Open API Description (based on version 5)",
+    "title": "Open API Description",
+    "publisher": "HD Hyundai Robotics",
+    "tocTitle": "Contents",
     "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]"
 }
