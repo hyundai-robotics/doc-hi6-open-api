@@ -3,7 +3,7 @@
 ### Description
 `set_relay_value`
 
-- `POST` : relay 값 설정합니다.
+- `POST` : Set the relay value.
 
 ### path-parameter
 

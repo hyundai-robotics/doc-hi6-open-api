@@ -1,16 +1,16 @@
 ﻿## 10.1.1.1 `date_time`
 
-### 설명
+### Description
 
 `date_time`
 
-- `GET` : 설정된 시스템 시간을 가져옵니다.
+- `GET` : Obtain the set system time.
 
 ### response-body
 
-- [시스템 시간 정보](../../../99-schema/date_time.md)
+- [date time](../../../99-schema/date_time.md)
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -31,7 +31,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
