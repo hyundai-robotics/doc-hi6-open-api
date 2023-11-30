@@ -1,10 +1,10 @@
 ﻿## 4.2.1 `ios/dio/{do_val}`
 
-### 설명
+### Description
 
 `do` (digital output)
 
-- `POST` : 디지털 출력을 변경합니다.
+- `POST` : Change digital output.
 
 ### path-parameter
 
@@ -26,18 +26,18 @@ POST /project/control/ios/dio/do_val
 
 ### query-parameter
 
-- `type` : io 값의 타입
+- `type` : Type of io value
   - di or do : bit
   - dib or dob : signed-byte
   - diw or dow : signed-word (2byte)
   - dil or dol : signed-dword (4yte)
   - dif or dof : float
-- `blk_no` : 블럭 번호 (0~9)
-- `sig_no` : 신호 인덱스 (0~)
-- `val` : 변경하고자 하는 설정값
+- `blk_no` : block number (0~9)
+- `sig_no` : signal index (0~)
+- `val` : Setting value you want to change
 
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -52,9 +52,9 @@ request-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
-- 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
 ```python
 # test.py
 import requests 
