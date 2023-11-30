@@ -1,27 +1,33 @@
-﻿### 1.3.2 예제 코드 - python
+﻿### 1.3.2 Sample code - python
 
-# `작업 중`
+The example code is `a. Synchronous request (blocking & synchronous)` and `b. Asynchronous request (non-blocking & asynchronous)` Two methods are explained.
+||Synchronous|Asynchronous|
+|:---|:---|:---|
+|blocking|`a. Synchronous request`||
+|non-blocking||`b. Asynchronous request`|
 
-- 예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)` 두 가지 방식에 대해서 설명합니다.
+Differences between the two methods can have serious consequences for TPs and controllers, such as:
+1. Due to frequent synchronous function calls in the UI thread, the UI may not run smoothly and may freeze (`Hanging problem`). 
+2. If no response is received due to a problem on the server (controller) side, the application UI may freeze (`Hanging problem`).
 
-	||동기식|비동기식|
-	|:---|:---|:---|
-	|blocking|`a. 동기식 요청`||
-	|non-blocking||`b. 비동기식 요청`|
+	
+Therefore, when developing actual applications, please write your code in an asynchronous manner.  
+- Please note that the python script example written in the Hi6 Open API description is written synchronously for easy understanding.  
+
 
 <br>
 
-## a. 동기식 요청
-- 동기식은 하나의 요청이 끝나고 응답이 올 때까지 다른 task 의 실행이 불가능한 blocking 상태의 요청 방식 입니다.
-- 코드가 간단하지만, 통신 시 응답이 오지 않거나 응답을 받는데 오랜 시간이 걸리는 경우 제어기에 문제가 생길 가능성이 매우 커집니다.
-- python 에서 `동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `requests` 입니다.
-- `requests` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다. 
+## a. Synchronous request
+- Synchronous is a request method in a blocking state in which other tasks cannot be executed until one request is completed and a response is received.
+- A widely used library for `synchronous` HTTP requests in Python is `requests`.
+- If you do not have the `requests` library, you can install it through the Python package manager.  
 	```sh
 	$pip install requests
 	```
+- Please keep in mind that if you do not receive a response when communicating or if it takes a long time to receive a response, the possibility of a hanging problem may be very high.
 
 ```python
-# sync.py - 동기식, 사용자 IO 출력 값 얻기와 설정하기
+# sync.py - Synchronous, getting and setting user IO output values
 import requests
 import time
 
@@ -30,7 +36,7 @@ head = {'Content-Type': 'application/json; charset=utf-8'}
 path = '/project/control/ios/dio/do_val'
 query = {'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
 
-# (POST) fb2.do3 값 설정하기
+# (POST) set fb2.do3 value
 val = 0x79
 req_body = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val' : val }
 start_time = time.time()
@@ -38,7 +44,7 @@ resp = requests.post(url + path, headers=head, json=req_body)
 end_time = time.time()
 print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
 
-# (GET) fb2.do3 값 가져오기
+# (GET) get fb2.do3 value
 for _ in range(5):
     start_time = time.time()
     resp = requests.get(url + path, headers=head, params=query)
@@ -52,18 +58,20 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.004000186920166016 seconds
 ```
 
-## b. 비동기식 요청
-- 이를 보완한 방식이 비동기식 통신으로, 요청 시 콜백 함수를 동작시켜 해당 콜백 함수에서 요청 사항을 처리하여 도중에 다른 task 가 실행가능한 방식입니다.
-- 비동기식은 동기식과 다르게, 작업 완료 순서를 보장하지 않는 다는 점이 차이가 있지만, 모든 요청이 거의 동시에 시작되므로, 전체적인 응답 시간이 짧아질 수 있습니다.
-- python 은 `asyncio` 라는 비동기 프로그래밍 구현 용 빌트인 라이브러리를 제공하고 있습니다. 이를 통해 CPU 작업과 I/O를 병렬로 처리하게 해줍니다.
-- 추가로, `비동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `aiohttp` 입니다.
-- `aiohttp` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다.
+<br>
+
+## b. Asynchronous request
+- This is a method that complements the problems of synchronous requests. It operates a callback function when requested and processes the request in the callback function, allowing other tasks to be executed in the meantime.
+- Asynchronous differs from synchronous in that it does not guarantee the order in which tasks are completed, but because all requests start at approximately the same time, overall response time can be shorter.
+- Python provides a built-in library for implementing asynchronous programming called `asyncio`. This allows CPU tasks and I/O to be processed in parallel.
+- Additionally, a popular library for `asynchronous` HTTP requests is `aiohttp`.
+- If you do not have the `aiohttp` library, you can install it through the Python package manager.
 	```sh
 	$pip install aiohttp
 	```
 
 ```python
-# async.py - 비동기식, 사용자 IO 출력 값 얻기와 설정하기
+# async.py -  Asynchronous, getting and setting user IO output values
 import asyncio
 import aiohttp
 import time
@@ -78,7 +86,7 @@ async def set_value(session):
     req_body = {'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val': val}
     start_time = time.time()
     async with session.post(url + path, headers=head, json=req_body) as resp:
-        pass  # 필요한 경우 여기서 응답 처리
+        pass
     end_time = time.time()
     print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
 

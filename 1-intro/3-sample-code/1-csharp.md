@@ -1,14 +1,14 @@
-﻿### 1.3.1 예제 코드 - C#
+﻿### 1.3.1 Sample code - C#
 
-JSON parsing을 위한 라이브러리인 `Newtonsoft.Json`를 사용했습니다.
-VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manager로 설치하시기 바랍니다.
+This document uses `Newtonsoft.Json`, a library for JSON parsing.  
+If it is not installed in your Visual Studio project, please install it using NuGet Package Manager.
 
-* [Newtonsoft.Json 라이선스 정보](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
+* [Newtonsoft.Json License info](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
 
-1) project 속성 열기
+1) Open `project` properties
 2) `Manage NuGet Packages...`
-3) `Online/nuget.org`에서 `Json.NET (James Newton-King)`을 찾아 Install 수행.  
-   (혹시, NuGet Package Manager의 버전이 낮아 설치가 안된다는 메시지가 나오면, 주 메뉴의 `TOOLS/Extensions and Updates...`를 선택 후 Updates에서 NuGet 업데이트를 수행하십시오.)
+3) Find `Json.NET (James Newton-King)` in `Online/nuget.org` and install it. 
+   (If you receive a message that installation is not possible because the version of NuGet Package Manager is too low, select `TOOLS/Extensions and Updates...` from the main menu and update NuGet from Updates..)
 
 ```csharp
 using System;
@@ -41,5 +41,5 @@ var str = "fb2.do3=" + jobj["val"].ToString();
 Console.WriteLine(str);
 ```
 
-위 소스코드가 포함된 실행 가능한 C# WinForms 샘플 프로그램을 아래 Github 링크를 통해 확인하실 수 있습니다.
-> 링크 : https://github.com/hyundai-robotics/OpenAPI
+You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
+> Lick : https://github.com/hyundai-robotics/OpenAPI

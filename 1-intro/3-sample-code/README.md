@@ -1,7 +1,7 @@
-﻿## 1.3 예제 코드
+﻿## 1.3 Sample code
 
-다양한 개발 언어들은 REST API 호출을 위한 라이브러리를 제공하고 있습니다. 활용방법은 각 개발언어의 기술 문서들을 쉽게 검색하여 참고할 수 있습니다.
+Various development languages provide libraries for calling REST APIs. To learn how to use it, you can easily search and refer to the technical documentation for each development language.
 
-- 여기서는 C#과 python을 활용한 GET과 POST 메소드의 호출만 설명하도록 하겠습니다.
+- In this document, we will only explain the calls to the GET and POST methods using C# and python.
 
-- IP 주소가 192.168.1.150인 Hi6 제어기에 대해 요청을 수행한다고 가정하겠습니다.
+- Let's assume you are making a request to a Hi6 controller with IP address 192.168.1.150.
