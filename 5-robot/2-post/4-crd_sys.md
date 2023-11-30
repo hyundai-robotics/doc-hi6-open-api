@@ -2,7 +2,7 @@
 
 ### 설명
 
-- POST : 현재 조그(jog) 좌표계를 설정합니다.
+- POST : Set the current jog coordinate system.
 
 ### path-parameter
 
@@ -12,7 +12,7 @@ POST /project/robot/crd_sys
 
 ### request-body
 
-- [좌표계](../../99-schema/crdsys.md)
+- [Coordinate system](../../99-schema/crdsys.md)
 
 ### response-body
 
@@ -25,7 +25,7 @@ POST /project/robot/crd_sys
 ```
 
 
-### 사용 예
+### Example
 
 ```json
 POST /project/robot/crd_sys
@@ -36,7 +36,7 @@ request-body
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
