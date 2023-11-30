@@ -1,12 +1,12 @@
 ﻿# crdsys
 
-## 설명
+## Description
 
-좌표계 (coordinate system)를 지정하는 열거자 (enumeration) 입니다.
+This is an enumeration that specifies the coordinate system.
 |value|description|
 |:---:|:---|
-|-1|다음 좌표계|
-|0|축|
-|1|직교|
-|2|사용자 좌표계|
-|3|툴|
+|`-1`|Next coordinate system|
+|`0`|axis|
+|`1`|orthogonal|
+|`2`|user coordinate system|
+|`3`|tool|
