@@ -4,13 +4,13 @@
 
 `date_time`
 
-- `PUT` : 시스템 시간을 변경합니다.
+- `PUT` : Change the system time.
 
 ### request-body
 
-- [시스템 시간 정보](../../../99-schema/date_time.md)
+- [date time](../../../99-schema/date_time.md)
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -30,7 +30,7 @@ request-body:
 ```
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
