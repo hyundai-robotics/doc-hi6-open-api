@@ -1,10 +1,10 @@
 ﻿## 5.1.2 `po_cur`
 
-### 설명
+### Description
 
 `po_cur` (pose current)
 
-- `GET` : 현재 로봇이 취하고 있는 pose(자세)를 얻습니다.
+- `GET` : Get the pose the robot is currently taking.
 
 ### path-parameter
 
@@ -14,26 +14,26 @@ GET /project/robot/po_cur
 
 ### query-parameter
 
-- `task_no` : task 번호 (0~7).
-  - 미지정 : task 0으로 적용됨.
-  - &gt;=0 : mechinfo 미지정 시, task의 현재 mechinfo가 적용됨.
+- `task_no` : task number (0~7).
+  - unspecified : Applied as task 0.
+  - &gt;=0 : If mechinfo is not specified, the current mechinfo of the task is applied.
 - `crd` :  
-  - 미지정 : tcp, axis, encoder를 모두 얻음.
-  - <0 : 현재 기록 좌표계를 따름.
-  - &gt;=0 : [좌표계](../../99-schema/crdsys.md)
-- `ucrd_no` : 사용자 좌표계 번호 (crd가 user일 때만 지정함.)
-- `mechinfo` : [메커니즘 정보](../../99-schema/mechinfo.md)
+  - unspecified : Obtain all tcp, axis, and encoder.
+  - <0 : Follows the current recording coordinate system.
+  - &gt;=0 : [coordinate system](../../99-schema/crdsys.md)
+- `ucrd_no` : User coordinate system number (Specified only when crd is user.)
+- `mechinfo` : [Mechanism information](../../99-schema/mechinfo.md)
 
 ### response-body
 
-- [포즈 정보](../../99-schema/pose.md)
+- [Pose information](../../99-schema/pose.md)
 
 
-### 사용 예
+### Example
 
-로봇 6축(j1~j6) + 주행 1축(j7) + 포지셔너 2축(j8, j9)인 시스템의 사례.
+Example of a system with 6 robot axes (j1~j6) + 1 driving axis (j7) + 2 positioner axes (j8, j9).
 
-- 로봇의 base 좌표만 얻기
+- Obtain only the base coordinates of the robot
 
 ```python
 request url:
@@ -54,7 +54,7 @@ response-body:
 }
 ```
 
-- 전 축의 축좌표 얻기
+- Obtaining axis coordinates of all axes
 
 ```python
 request url:
@@ -78,7 +78,7 @@ response-body:
 }
 ```
 
-- 포지셔너 2축 (즉, 메커니즘 M2)의 축좌표 얻기
+- Obtain the axis coordinates of the positioner 2 axis (i.e. mechanism M2)
 
 ```python
 request url:
@@ -105,7 +105,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
