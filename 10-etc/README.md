@@ -1,3 +1,3 @@
 # 10. etc
 
-- 시스템 버전, 이벤트 로그, 클럭 등을 다루고 있습니다.
+- It covers system version, event log, clock, etc.
