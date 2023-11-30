@@ -1,10 +1,10 @@
 ﻿## 4.1.2 `ios/dio/{dio_val}`
 
-### 설명
+### Description
 
 `dio` (digital input/output)
 
-- `GET` : 사용자 IO 값을 얻습니다.
+- `GET` : Obtain user IO values.
 
 ### path-parameter
 
@@ -15,23 +15,23 @@ GET /project/control/ios/dio/{dio_val}
 ### path-variable
 
 - `dio_val` :
-  - `di_val` : 입력(di) 값을 얻습니다.
-  - `do_val` : 출력(do) 값을 얻습니다.
+  - `di_val` : Get the input(di) value.
+  - `do_val` : Get the output(do) value.
 
 ### query-parameter
 
-- `type` : io 값의 타입
+- `type` : Type of io value
   - di or do : bit
   - dib or dob : signed-byte
   - diw or dow : signed-word (2byte)
   - dil or dol : signed-dword (4yte)
   - dif or dof : float
-- `blk_no` : 블럭 번호 (0~9)
-- `sig_no` : 신호 인덱스 (0~)
+- `blk_no` : block number (0~9)
+- `sig_no` : signal index (0~)
 
 ### 사용 예
 
-- fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
+- Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
 
 ```python
 request url:
@@ -44,7 +44,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py

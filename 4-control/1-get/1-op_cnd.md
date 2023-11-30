@@ -1,10 +1,10 @@
 ﻿## 4.1.1 `op_cnd`
 
-### 설명
+### Description
 
 `op_cnd` (operation condition)
 
-- `GET` : 조건설정 값을 얻습니다.
+- `GET` : Obtain the condition setting value.
 
 ### path-parameter
 
@@ -14,7 +14,7 @@ GET /project/control/op_cnd
 
 ### response-body
 
-- [조건설정 파라미터](../../99-schema/op_cnd.md)
+- [operation condition parameter](../../99-schema/op_cnd.md)
 
 <blockquote>
 
@@ -35,7 +35,7 @@ GET /project/control/op_cnd
 ```
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
