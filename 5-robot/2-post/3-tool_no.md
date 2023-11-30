@@ -1,8 +1,8 @@
 ﻿## 5.2.3 `tool_no`
 
-### 설명
+### Description
 
-- POST : 현재 툴 번호를 설정합니다.
+- POST : Set the current tool number.
 
 ### path-parameter
 
@@ -12,9 +12,9 @@ POST /project/robot/tool_no
 
 ### request-body
 
-- `val` : 툴 번호
-  - `로봇 툴` : `0` ~ `31`
-  - `정치 툴` : `0` ~ `3`
+- `val` : Tool number
+  - `robot tools` : `0` ~ `31`
+  - `stationary tool` : `0` ~ `3`
 
 ### response-body
 
@@ -24,7 +24,7 @@ POST /project/robot/tool_no
 }
 ```
 
-### 사용 예
+### Example
 
 ```json
 POST /project/robot/tool_no
@@ -35,7 +35,7 @@ request-body
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -46,7 +46,6 @@ def post_tool_no(x: int = 0) -> int:
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = {"val": x}
 
-    # 자동모드 및 모터 온 설정 필요
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
     return response.status_code
 
