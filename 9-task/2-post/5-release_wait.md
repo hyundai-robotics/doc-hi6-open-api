@@ -1,11 +1,11 @@
 ﻿## 9.2.6 `release_wait`
 
-### 설명
+### Description
 
 `release_wait`
 
-- `POST` : 구문 정지해제
-- 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
+- `POST` : release syntax
+- Requirements: TP > system > 1: User environment > `wait(di/wi) release` > `Enable` click
 
 ### path-parameter
 
@@ -21,10 +21,10 @@ POST /project/context/tasks[0]/release_wait
 
 ### response-body
 
-- `200` : 정상 동작
-- `403` : 상기 필요 조건 불충족
+- `200` : request success
+- `403` : Failure to meet the above requirements
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -38,7 +38,7 @@ request-body
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
