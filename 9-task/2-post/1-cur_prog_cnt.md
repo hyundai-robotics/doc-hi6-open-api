@@ -1,10 +1,10 @@
 ﻿## 9.2.1 `task/cur_prog_cnt`
 
-### 설명
+### Description
 
 `cur_prog_cnt` (current program counter)
 
-- `POST` : 태스크의 현재 프로그램 카운터를 설정합니다.
+- `POST` : Sets the current program counter for the task.
 
 ### path-parameter
 
@@ -14,13 +14,13 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ### request-body
 
-- [cur_prog_cnt 요청 파라미터](../../99-schema/cur_prog_cnt.md/#request-body)
+- [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md/#request-body)
 
 ### response-body
 
-- [cur_prog_cnt 응답 파라미터](../../99-schema/cur_prog_cnt.md/#response-body)
+- [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md/#response-body)
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -35,7 +35,7 @@ request-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
