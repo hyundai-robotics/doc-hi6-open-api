@@ -1,8 +1,8 @@
 ﻿## 5.2.2 `start / stop`
 
-### 설명
+### Description
 
-- POST : 로봇 기동(start)과 로봇 정지(stop)를 수행합니다.
+- POST : Performs robot start and robot stop.
 
 ### path-parameter
 
@@ -25,7 +25,7 @@ POST /project/robot/stop
 }
 ```
 
-### 사용 예
+### Example
 
 ```python
 POST /project/robot/motor_off
@@ -34,7 +34,7 @@ request-body:
 {}
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -45,7 +45,7 @@ def post_start() -> int:
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = {}
 
-    # 자동모드 및 모터 온 설정 필요
+    # Requires automatic mode and motor on settings
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
     return response.status_code
 
