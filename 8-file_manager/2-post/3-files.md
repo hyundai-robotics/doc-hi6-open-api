@@ -1,10 +1,10 @@
 ﻿# 8.2.3 `files`
 
-## 설명
+## Description
 
 `files`
 
-- `POST` : 타겟 경로에 파일을 전송합니다.
+- `POST` : Transfer the file to the target path.
 
 ## path-parameter
 
@@ -14,21 +14,20 @@ POST /file_manager/files/{target_filepath}
 
 ## path-variable
 
-- `target_filepath` : 확장자를 포함한 타겟 파일 경로
+- `target_filepath` : Target file path including extension.
 
 ## request-body
 
-- binary 형식의 파일
-- `Content-Type` 은 `application/octet-stream` 이어야합니다.
+- `Content-Type` must be `application/octet-stream`.
 
 ## response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 전송 완료 |
+|`200 OK`| Transfer completed |
 
 
-## 사용 예
+## Example
 
 <blockquote>
 
@@ -47,7 +46,7 @@ POST /file_manager/files/project/jobs/test.job
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
