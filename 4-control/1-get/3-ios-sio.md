@@ -1,6 +1,6 @@
 ﻿## 4.1.3 `ios/sio/{sio_val}`
 
-### 설명
+### Description
 
 `sio` (system input/output)
 
@@ -29,7 +29,7 @@ GET /project/control/ios/sio/{sio_val}
 - `sig_no` : signal index (0~)
 
 
-### 사용 예
+### Example
 
 - Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
 
