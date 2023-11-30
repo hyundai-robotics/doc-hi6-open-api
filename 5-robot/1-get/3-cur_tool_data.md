@@ -16,7 +16,7 @@ GET /project/robot/cur_tool_data
 
 - val : [Tool Data](../../99-schema/tool_data.md)
 
-### 사용 예
+### Example
 
 ```python
 request url:
