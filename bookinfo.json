@@ -1,8 +1,8 @@
 {
     "langCode": "ko",
-    "series": "현대로봇 Hi6 제어기",
+    "series": "Hi6 Open API 설명서 (based on version 5)",
     "title": "Open API 설명서",
-    "publisher": "현대로보틱스",
+    "publisher": "HD현대로보틱스",
     "tocTitle": "목차",
-    "tocTitleElements": "[ \"h1\", \"h2\" ]"
+    "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]"
 }
