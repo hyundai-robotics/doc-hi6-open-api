@@ -29,7 +29,7 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : block number (0~9)
 - `sig_no` : signal index (0~)
 
-### 사용 예
+### Example
 
 - Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
 
