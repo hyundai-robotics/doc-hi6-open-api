@@ -1,8 +1,8 @@
 ﻿# jobs_info
 
-## 설명
+## Description
 
-job 파일 정보 파라미터 입니다.
+This is a job file information parameter.
 
 |key|type|description|
 |:---:|:---|:---|
