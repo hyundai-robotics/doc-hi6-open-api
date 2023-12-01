@@ -28,7 +28,7 @@ In this way, developers can use the Open API in the document to remotely control
 
 * There may be continuous version updates in the future. If the version is updated, please refer to the corresponding section.
 
-* For developers who are familiar with developing HTTP REST API client functions, you can ski from `1.2 Required prior knowledge` to `1.6 Calling API from a web browser`.
+* For developers who are familiar with developing HTTP REST API client functions, you can skip from `1.2 Required prior knowledge` to `1.6 Calling API from a web browser`.
 
 
 <br>
