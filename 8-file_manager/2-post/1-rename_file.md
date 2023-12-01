@@ -27,8 +27,8 @@ POST /file_manager/rename_file
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 파일이 없어도 동작함 |
-|`http.client.BadStatusLine: HTTP/1.1 1 Unknown`| 타겟 파일의 이름 변경 완료 |
+|`200`| 이름 변경 완료 |
+|`400`| 변경하려는 타겟 파일이 존재하지 않음 |
 
 
 ## 사용 예
@@ -60,20 +60,20 @@ Python Script 예시
 # test.py
 import requests
 
-def rename_file() -> int:
+def rename_file():
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/file_manager/rename_file'
-    query_parameter = { "pathname_from" : "project/jobs/0001.job", 
-                       "pathname_to"   : "project/jobs/4321.job" }
+    head            = {'Content-Type': 'application/json; charset=utf-8'}
+    body            = { "pathname_from" : "project/jobs/0001.job", 
+                        "pathname_to"   : "project/jobs/4321.job" }
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
 
     return response.status_code
 
-print(rename_file())
+print(f"response: {rename_file()}")
 ```
 ```sh
 $python test.py
-파일 이름이 정상적으로 변경되면, 에러 로그가 출력됨
-없는 파일의 이름을 바꾸려고 시도하면 200 OK 가 출력됨
+response: 200
 ```
