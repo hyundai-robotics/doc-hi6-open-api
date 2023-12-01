@@ -7,7 +7,7 @@ In this document, HD Hyundai Robotics publishes an API for application developer
 This enables developers to read and write Hi6 data without requiring a thorough comprehension of the source code used in Hi6 development.<br>
 The image below will help you better grasp the role of Open API.
 
-![open_api_flow_png](../_assets/05_open_api_flow.PNG)
+![open_api_flow_png](/_assets/05_open_api_flow.PNG)
 
 The parts marked in orange in the picture above show the role of Open API.
 
