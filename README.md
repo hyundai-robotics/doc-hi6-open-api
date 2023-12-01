@@ -1,4 +1,4 @@
-﻿# Hi6 Open API Description
+﻿# Hi6 Open API Manual
 
 {% hint style="warning" %}
 

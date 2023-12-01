@@ -1,6 +1,6 @@
 ﻿# Table of contents
 
-* [Hi6 Open API Description](README.md)
+* [Hi6 Open API Manual](README.md)
 * [1. Intro](./1-intro/1-intro.md)
   * [1.1 Overview](./1-intro/1-intro.md#11-overview)
     * [1.1.1 About Hi6 Open API](./1-intro/1-intro.md#111-about-hi6-open-api)
