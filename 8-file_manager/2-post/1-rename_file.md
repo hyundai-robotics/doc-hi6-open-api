@@ -27,8 +27,8 @@ POST /file_manager/rename_file
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| Works even if there is no target file |
-|`http.client.BadStatusLine: HTTP/1.1 1 Unknown`| Rename of target file completed. |
+|`200`| Works fine. |
+|`400`| No file exists to rename. |
 
 
 ## Example
@@ -60,20 +60,20 @@ Python Script Example
 # test.py
 import requests
 
-def rename_file() -> int:
+def rename_file():
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/file_manager/rename_file'
-    query_parameter = { "pathname_from" : "project/jobs/0001.job", 
-                       "pathname_to"   : "project/jobs/4321.job" }
+    head            = {'Content-Type': 'application/json; charset=utf-8'}
+    body            = { "pathname_from" : "project/jobs/0001.job", 
+                        "pathname_to"   : "project/jobs/4321.job" }
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
 
     return response.status_code
 
-print(rename_file())
+print(f"response: {rename_file()}")
 ```
 ```sh
 $python test.py
-# If the file name is changed normally, an error log(HTTP/1.1 1 Unknown) is output.
-# If you try to rename a file that does not exist, 200 OK is output.
+response: 200
 ```
