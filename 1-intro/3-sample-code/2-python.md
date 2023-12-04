@@ -53,8 +53,13 @@ for _ in range(5):
 ```
 ```bash
 $python sync.py
-[post] 0x79 to fb2.do3 Time taken: 0.00599980354309082 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.004000186920166016 seconds
+[post] 0x79 to fb2.do3 Time taken: 0.00573277473449707 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.054880380630493164 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.060916900634765625 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.06047677993774414 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.04827427864074707 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.06168508529663086 seconds
+total request time : 0.2869541645050049 seconds
 ```
 
 ## b. 비동기식 요청
@@ -83,7 +88,7 @@ async def set_value(session):
     req_body = {'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val': val}
     start_time = time.time()
     async with session.post(url + path, headers=head, json=req_body) as resp:
-        pass  # 필요한 경우 여기서 응답 처리
+        pass
     end_time = time.time()
     print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
 
@@ -97,13 +102,21 @@ async def get_value(session):
 async def main():
     async with aiohttp.ClientSession() as session:
         await set_value(session)
-        tasks = [get_value(session) for _ in range(10)]
+        tasks = [get_value(session) for _ in range(5)]
+        total_start_time = time.time()
         await asyncio.gather(*tasks)
+        total_end_time = time.time()
+        print(f"total request time : {total_end_time - total_start_time} seconds")
 
 asyncio.run(main())
 ```
 ```bash
 $python async.py
-[post] 0x79 to fb2.do3 Time taken: 0.0039997100830078125 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.0029997825622558594 seconds
+[post] 0x60 to fb2.do3 Time taken: 0.0018951892852783203 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.044029951095581055 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.0583953857421875 seconds 
+[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
+total request time : 0.060544490814208984 seconds
 ```
