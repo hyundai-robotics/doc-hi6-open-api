@@ -35,17 +35,17 @@ You can check the main UI composition through the picture below.
 2. `Request Body`  
 	- Select API method as `POST` and enter URL.  
 	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
-	- Click `Send`
-	<br>
+	- Click `Send`  
+	<br>  
 	<img src="../../_assets/03_postman_post.png" height="280vh">
 
 <br>
 
 3. `Response` and `Code snippet`
 	- `request` If the request is completed normally, `HTTP Status` responds with `200 OK` as shown below.([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
-	- You can also check the `Code snippet` for each language to which the URL is applied.
-	<img src="../../_assets/04_postman_post_result_check.png" height="500vh">  
+	- You can also check the `Code snippet` for each language to which the URL is applied.  
 
+		<img src="../../_assets/04_postman_post_result_check.png" height="500vh">  
 		<blockquote>
 
 		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
