@@ -1,6 +1,6 @@
-﻿# mechinfo
+﻿## mechinfo
 
-## Description
+### Description
 
 Mechanism info
 Celebrate with a bit-field which activities are used.
@@ -14,7 +14,7 @@ Celebrate with a bit-field which activities are used.
 - bit 6 : M6
 - bit 7 : M7
 
-## Example
+### Example
 
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0

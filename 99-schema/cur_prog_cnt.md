@@ -1,9 +1,9 @@
-﻿# cur_prog_cnt
+﻿## cur_prog_cnt
 
-## Description
+### Description
 Sets the current program counter for the task.
 
-## request body
+### request body
 |key|type|description|
 |:---|:---|:---|
 |`pno`|int|Program number (if -1, keep current number)|
@@ -11,7 +11,7 @@ Sets the current program counter for the task.
 |`fno`|int|Function number (if -1, keep current number)|
 |`ext_sel`|int|`0` : Internal selection (prohibited in remote mode) <br> `1` : External selection (only allowed in remote mode)|
 
-## response body
+### response body
 |key|type|description|
 |:---|:---|:---|
 |`sno_new`|int|Newly moved step number|

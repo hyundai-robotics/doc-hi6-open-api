@@ -1,6 +1,6 @@
-﻿# op_cnd
+﻿## op_cnd
 
-## Description
+### Description
 op_cnd (operation condition) : value of `Condition setting`  
 You can check the values when you press the `Condition setting` button in TP.  
 
@@ -21,7 +21,7 @@ You can check the values when you press the `Condition setting` button in TP.
 
 <br>
 
-## Example
+### Example
 
 ```python
 {

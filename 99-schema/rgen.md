@@ -1,5 +1,6 @@
-﻿# rgen
-## 설명
+﻿## rgen
+### description
+
 |index|key|value type(python)|description|
 |:---:|:---|:---|:---|
 |01|apps_sync_seq|`int`||
