@@ -33,7 +33,7 @@
 
 2. `Request Body` 작성 
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
-	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md) 참조)
+	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)
 	- Send를 클릭합니다.  
 		<img src="../../_assets/03_postman_post.png" height="280vh">
 
@@ -46,7 +46,7 @@
 
 		<blockquote>
 
-		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
+		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`
 
 		</blockquote>
