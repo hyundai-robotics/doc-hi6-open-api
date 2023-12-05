@@ -42,7 +42,9 @@
 3. `Response` 확인 및 `Code snippet` 참조
 	- `request` 요청이 정상적으로 완료되면 아래 그림과 같이 `HTTP Status` 가 `200 OK`로 응답합니다. ([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 참조)
 	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.  
-		<img src="../../_assets/04_postman_post_result_check.png" width="90%">
+		<img src="../../_assets/04_postman_post_result_check.png" width="90%">  
+
+		
 		<blockquote>
 
 		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
