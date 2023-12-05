@@ -25,8 +25,9 @@ DELETE /file_manager/files/{target-filepath}
 ```python
 request url:
 DELETE /file_manager/files/project/jobs/special
-```
-```
+```  
+
+```text
 hi6
 `-- project
     `-- jobs

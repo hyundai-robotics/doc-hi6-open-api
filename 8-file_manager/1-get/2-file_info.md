@@ -14,7 +14,7 @@ GET /file_manager/file_info
 
 ### query-parameter
 
-```
+```text
 ?pathname=project/jobs/0001.job
 ```
 - `pathname` : 타겟 파일 경로
@@ -28,7 +28,7 @@ GET /file_manager/file_info
 
 <blockquote>
 
-```
+```text
 hi6
 `-- project
     |-- jobs

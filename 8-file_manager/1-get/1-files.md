@@ -14,9 +14,10 @@ GET /file_manager/files
 
 ### query-parameter
 
-```
+```text
 ?pathname=project/jobs/0001.job
 ```
+
 - `pathname` : 가져올 파일 이름
 
 ### response-body
@@ -31,7 +32,7 @@ GET /file_manager/files
 
 <blockquote>
 
-```
+```text
 hi6
 `-- project
     |-- jobs
