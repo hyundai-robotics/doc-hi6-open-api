@@ -7,7 +7,7 @@
 
 ### 1.5.1. 주요 UI 구성
 
-아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다.
+아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다.  
 <img src="../../_assets/01_postman_desc.png" width="990vw">
 
 <blockquote>
@@ -34,8 +34,7 @@
 2. `Request Body` 작성 
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
 	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md) 참조)
-	- Send를 클릭합니다.
-	<br>
+	- Send를 클릭합니다.  
 	<img src="../../_assets/03_postman_post.png" width="800vw">
 
 <br>
