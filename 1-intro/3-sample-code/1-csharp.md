@@ -42,4 +42,4 @@ Console.WriteLine(str);
 ```
 
 You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
-> Lick : https://github.com/hyundai-robotics/OpenAPI
+> Link : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)
