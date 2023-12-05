@@ -48,7 +48,7 @@ You can check the main UI composition through the picture below.
 
 		<blockquote>
 
-		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md))</br>
+		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
 		`(2) Python Code snippet` : codes for `post` request in python.  
 
 		</blockquote>
