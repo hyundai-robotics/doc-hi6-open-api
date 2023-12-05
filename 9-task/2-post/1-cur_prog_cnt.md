@@ -14,11 +14,11 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ### request-body
 
-- [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md/#request-body)
+- [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md)
 
 ### response-body
 
-- [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md/#response-body)
+- [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md)
 
 ### Example
 
