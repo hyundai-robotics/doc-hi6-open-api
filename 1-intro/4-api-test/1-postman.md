@@ -44,7 +44,6 @@ You can check the main UI composition through the picture below.
 3. `Response` and `Code snippet`
 	- `request` If the request is completed normally, `HTTP Status` responds with `200 OK` as shown below.([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
 	- You can also check the `Code snippet` for each language to which the URL is applied.  
-
 		<img src="../../_assets/04_postman_post_result_check.png" height="500vh">  
 		<blockquote>
 
