@@ -1,24 +1,24 @@
-﻿# 8.2.2 `mkdir`
+﻿## 8.2.2 `mkdir`
 
-## 설명
+### 설명
 
 `mkdir`
 
 - `POST` : 타겟 경로에 디렉토리를 생성합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /file_manager/mkdir
 ```
 
-## request-body
+### request-body
 
 |key|value|description|
 |:---|:---|:---|
 |`path`|`str`|디렉토리를 생성할 위치|
 
-## response-body
+### response-body
 
 |HTTP Status|description|
 |:---|:---|
@@ -26,7 +26,7 @@ GET /file_manager/mkdir
 |`500 Internal Server Error`| 타겟 위치에 디렉토리 이름이 중복되는 경우 |
 
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 

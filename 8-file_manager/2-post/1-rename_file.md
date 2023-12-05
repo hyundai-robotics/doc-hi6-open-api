@@ -1,18 +1,18 @@
-﻿# 8.2.1 `rename_file`
+﻿## 8.2.1 `rename_file`
 
-## 설명
+### 설명
 
 `rename_file`
 
 - `POST` : 타겟 파일의 파일 이름을 변경합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /file_manager/rename_file
 ```
 
-## request-body
+### request-body
 
 ```json
 {
@@ -23,7 +23,7 @@ POST /file_manager/rename_file
 - `pathname_from` : 변경 전 파일 경로
 - `pathname_to` : 변경 후 파일 경로
 
-## response-body
+### response-body
 
 |HTTP Status|description|
 |:---|:---|
@@ -31,7 +31,7 @@ POST /file_manager/rename_file
 |`400`| 변경하려는 타겟 파일이 존재하지 않음 |
 
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 

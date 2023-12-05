@@ -1,6 +1,6 @@
-﻿# op_cnd
+﻿## op_cnd
 
-## 설명
+### 설명
 op_cnd (operation condition) : 로봇의 조건설정 값입니다.  
 TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 있습니다.
 
@@ -21,7 +21,7 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 
 <br>
 
-## 예 (example)
+### 예 (example)
 
 ```python
 {
