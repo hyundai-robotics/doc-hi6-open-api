@@ -45,7 +45,7 @@ The parts marked in orange in the picture above show the role of Open API.
 In this way, developers can use the Open API in the document to remotely control or monitor their desktops, laptops, tablet PCs, etc. connected via Hi6 and Ethernet based on http and REST API.
 
 
-<br>
+<br><br>
 
 
 ### Be sure to check before you start!
@@ -54,10 +54,7 @@ In this way, developers can use the Open API in the document to remotely control
 
 * There may be continuous version updates in the future. If the version is updated, please refer to the corresponding section.
 
-* For developers who are familiar with developing HTTP REST API client functions, you can skip from `1.2 Required prior knowledge` to `1.6 Calling API from a web browser`.
-
-
-<br>
+* For developers who are familiar with developing HTTP REST API client functions, you can skip from [`1.2 Required prior knowledge`](../2-prerequisite/README.md) to [`1.4 Simple API call without coding`](../4-api-test/README.md).
 
 
 {% hint style="warning" %}
@@ -78,7 +75,7 @@ Please refer to the manual below or take training at the Hyundai Robotics Joint 
 
 Open API is an HTTP-based REST API.Various development languages provide libraries for calling REST API (aka RESTful API),  
 and many developers use them to develop programs. Unless you are an experienced developer,  
-you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About Hi6 Open API](./1-intro.md#11-overview).
+you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About Hi6 Open API](../1-concept/README.md).
 
 In this regard, please refer to the points below.
 
@@ -171,7 +168,7 @@ Console.WriteLine(str);
 ```
 
 You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
-> Lick : https://github.com/hyundai-robotics/OpenAPI### 1.3.2 Sample code - python
+> Link : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)### 1.3.2 Sample code - python
 
 The example code is `a. Synchronous request (blocking & synchronous)` and `b. Asynchronous request (non-blocking & asynchronous)` Two methods are explained.
 ||Synchronous|Asynchronous|
@@ -302,7 +299,7 @@ $python async.py
 total request time : 0.06045794486999512 seconds
 ```## 1.4 Simple API call without coding
 
-If you use Open API while developing a client application like [previous example code](./3-sample-code/README.md), you can easily call the API without coding.  
+If you use Open API while developing a client application like [previous example code](../3-sample-code/README.md), you can easily call the API without coding.  
 Through this calling process, you can check whether the request worked properly and what data is returned in response.  
 There are several ways to do this. This section covers two representative ones.
 
@@ -312,7 +309,7 @@ There are several ways to do this. This section covers two representative ones.
 
 `postman` is a widely used API testing platform around the world.
 Postman's `workspace` function enables project-level API testing and history tracking, and is equipped with language-specific code snippets and intuitive UI.
-Simple usage instructions can be found in [1.5 Requesting POST in Postman](./5-postman.md/#15-requesting-post-in-postman).
+Simple usage instructions can be found in [1.4.1 Requesting POST in Postman](../4-api-test/1-postman.md).
 
 
 <br>
@@ -322,7 +319,7 @@ Simple usage instructions can be found in [1.5 Requesting POST in Postman](./5-p
 
 Simple `get` requests can be made easily and quickly through a web browser.  
 Additionally, you can use your web browser's extension to directly call `get` requests and other API requests and view the results.  
-You can check simple usage instructions in [1.6 Calling API from web browser](./6-web-api-call.md/#16-calling-api-from-web-browser).## 1.4.1 Requesting POST in Postman
+You can check simple usage instructions in [1.4.2 Calling API from web browser](../4-api-test/2-web-browser.md).## 1.4.1 Requesting POST in Postman
 
 On this page, use `postman` to call the `POST` request of the REST API and check the result.  
 Additionally, simple UI configuration helps you understand how to use it.
@@ -372,7 +369,7 @@ You can check the main UI composition through the picture below.
 
 		<blockquote>
 
-		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md))</br>
+		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
 		`(2) Python Code snippet` : codes for `post` request in python.  
 
 		</blockquote>## 1.4.2 Calling API from web browser  
@@ -401,7 +398,7 @@ The following extension program is an API tester used by many developers around 
 
 Through this program, you can easily call various APIs like `postman`.
 
-![talend_api_tester.png](../../_assets/06_Talend_api_tester.png)  
+<img src="../../_assets/06_Talend_api_tester.png" height="850vh">
 
 <blockquote>
 
@@ -2096,9 +2093,12 @@ GET /file_manager/files
 
 ### query-parameter
 
-```
+query-parameter must be entered.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
+
 - `pathname` : File name to get
 
 ### response-body
@@ -2185,14 +2185,17 @@ GET /file_manager/file_info
 
 ### query-parameter
 
-```
+query-parameter must be entered.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
+
 - `pathname` : target file path
 
 ### response-body
 
-- [file information](/99-schema/file_info)
+- [file information](../../99-schema/file_info)
 - If the file does not exist, `404 Not Found`
 
 ### Example
@@ -2269,8 +2272,9 @@ GET /file_manager/file_list
 
 ### query-parameter
 
-> query-parameter must be entered.
-```
+query-parameter must be entered.  
+
+```text
 ?path=project/jobs&incl_file=true&incl_dir=false
 ```
 
@@ -2285,7 +2289,7 @@ GET /file_manager/file_list
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|return [file information](/99-schema/file_info) `list`|
+|`200 OK`|return [file information](../../99-schema/file_info) `list`|
 |`404 Not Found`| no file exists |
 
 
@@ -2376,10 +2380,13 @@ GET /file_manager/file_exist
 ```
 
 ### query-parameter
-> query-parameter must be entered.
-```
+
+query-parameter must be entered.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
+
 - `pathname` : target file path
 
 ### response-body
