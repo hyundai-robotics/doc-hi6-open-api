@@ -24,7 +24,7 @@
 
 해당 프로그램을 통해 `postman` 처럼 다양한 API 들에 대해서 간편하게 호출을 해볼 수 있습니다.
 
-<img src="../../_assets/06_Talend_api_tester.png" height="850vh">
+<img src="../../_assets/06_Talend_api_tester.png" style="max-height: 80vh;">
 
 <blockquote>
 
