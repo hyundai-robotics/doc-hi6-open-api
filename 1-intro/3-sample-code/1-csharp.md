@@ -25,7 +25,7 @@ var query = "?type=dob&blk_no=2&sig_no=3";
 
 var request = (HttpWebRequest)WebRequest.Create(uri+path+query);
 request.Method = "GET";
-request.Timeout = 5 * 1000; // 5초
+request.Timeout = 5 * 1000; // 5 sec
 
 using (var resp = (HttpWebResponse)request.GetResponse())
 {
