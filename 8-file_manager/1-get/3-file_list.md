@@ -31,7 +31,7 @@ query-parameter 를 반드시 입력해야합니다.
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|[파일 정보](/99-schema/file_info) `리스트`를 반환|
+|`200 OK`|[파일 정보](../../99-schema/file_info.md) `리스트`를 반환|
 |`404 Not Found`| 파일 없을 때 반환|
 
 

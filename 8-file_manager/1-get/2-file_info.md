@@ -23,7 +23,7 @@ query-parameter 를 반드시 입력해야합니다.
 
 ### response-body
 
-- [파일 정보](/99-schema/file_info)
+- [파일 정보](../../99-schema/file_info.md)
 - 파일이 없을 시 `404 Not Found` 
 
 ### 사용 예
