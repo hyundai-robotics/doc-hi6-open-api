@@ -32,7 +32,7 @@ POST /file_manager/files/{target_filepath}
 
 <blockquote>
 
-```
+```text
 hi6
 `-- project
     |-- jobs
