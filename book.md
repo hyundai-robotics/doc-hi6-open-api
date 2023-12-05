@@ -1,13 +1,13 @@
-﻿# Hi6 Open API 설명서
+﻿# Hi6 Open API Manual
 
 {% hint style="warning" %}
 
-본 제품 설명서에서 제공되는 정보는 현대로보틱스의 자산입니다.
+The information provided in this product manual is the property of Hyundai Robotics.
 
-현대로보틱스의 서면에 의한 동의 없이 전부 또는 일부를 무단 전재 및 재배포할 수 없으며, 제3자에게 제공되거나 다른 목적에 사용할 수 없습니다.
+It cannot be reproduced or redistributed in whole or in part without the written consent of Hyundai Robotics, and cannot be provided to a third party or used for any other purpose.
 
 
-본 설명서는 사전 예고 없이 변경될 수 있습니다.
+This manual is subject to change without prior notice.
 
 
 **Copyright ⓒ 2023 by HD Hyundai Robotics**
@@ -18,39 +18,43 @@
 
 {% hint style="warning" %}
 
-Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 를 활용하여 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
+We are not responsible for any damage or problems that arise from using an API that is not officially mentioned in the Hi6 Open API manual.
 
-{% endhint %}## 1.1 개요
+{% endhint %}## 1.1 Intro
 
+You can check the basic information related to Hi6 Open API below.
 
-### 1.1.1 Hi6 Open API 에 대하여
+[1.1 About Hi6 Open API](./1-concept/README.md) <br>
+[1.2 Required prior knowledge](./2-prerequisite/README.md) <br>
+[1.3 Sample code](./3-sample-code/README.md) <br>
+[1.4 Simple API call without coding](./4-api-test/README.md)## 1.1 About Hi6 Open API
 
-HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 제어기(이하, Hi6)를 모니터링하고 원격으로 제어하기 위한 API 를 해당 문서에서 공개합니다.<br>
-이를 통해 개발자들은 Hi6 개발에 적용된 소스코드에 대한 깊은 이해 없이도 Hi6의 다양한 데이터를 읽고 쓸 수 있습니다.<br>
-아래 그림을 통해서 Open API 역할을 보다 쉽게 이해할 수 있습니다.
+In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as Hi6).<br>
+This enables developers to read and write Hi6 data without requiring a thorough comprehension of the source code used in Hi6 development.<br>
+The image below will help you better grasp the role of Open API.
 
-![open_api_flow_png](../_assets/05_open_api_flow.PNG)
+<img src="../../_assets/05_open_api_flow.png" height="250vh" >
 
-위 그림에서 주황색으로 표시된 부분들은 Open API 의 역할을 보여주고 있습니다.  
+The parts marked in orange in the picture above show the role of Open API.
 
-|화살표|설명|
+|Arrow sign|Description|
 |:---|:---|
-|`실선`|개발자(클라이언트)가 정해진 4가지 방법(GET, POST, PUT, DELETE)을 이용하여 Hi6(서버)에 정보를 `요청`하는 것을 의미|
-|`점선`|요청을 받은 제어기가 그에 맞는 `응답`을 json 혹은 text 형식으로 반환하는 것을 의미|
+|`Solid line`|This means that the `developer` (`client`) `requests` information to `Hi6` (`server`) using one of four methods (GET, POST, PUT, DELETE).|
+|`Dotted line`|This means that the `controller` that `received` the `request` `sends back` the appropriate `response` in json or text format.|
 
-이처럼 개발자는 해당 문서의 Open API 를 활용해서 Hi6 와 이더넷으로 연결된 본인의 데스크탑, 노트북, 태블릿 pc 등을 http 와 REST API 기반으로 원격 제어 또는 모니터링을 할 수 있게 됩니다.
+In this way, developers can use the Open API in the document to remotely control or monitor their desktops, laptops, tablet PCs, etc. connected via Hi6 and Ethernet based on http and REST API.
 
 
 <br>
 
 
-### 1.1.2 시작하기 전에 꼭 확인하세요!
+### Be sure to check before you start!
 
-* 현재 문서는 초기 버전으로 Hi6 Open API 버전 5를 기준으로 작성되었습니다.
+* The current document is an initial version and was written based on Hi6 Open API version 5.
 
-* 이후 지속적으로 버전 업데이트가 있을 수 있습니다. 버전이 업데이트 되는 경우, 해당 section 을 참고하시기 바랍니다.
+* There may be continuous version updates in the future. If the version is updated, please refer to the corresponding section.
 
-* HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, `1.2 필요한 사전 지식`부터 `1.5 postman` 까지 건너뛰어도 좋습니다.
+* For developers who are familiar with developing HTTP REST API client functions, you can skip from `1.2 Required prior knowledge` to `1.6 Calling API from a web browser`.
 
 
 <br>
@@ -58,28 +62,82 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 {% hint style="warning" %}
 
-본 문서에 설명된 API들은 별도의 지원버전 명기가 없으면 Hi6 V60.24-00부터 지원됩니다.
+The APIs described in this document are supported starting from `Hi6 V60.24-00` unless otherwise specified.
 
-본 문서에 명시되지 않은 URL 및 속성은 동일 API 버전에서 예고없이 변경될 수 있으므로, 주의 바랍니다.
+Please note that URLs and properties not specified in this document may change without notice in the same API version.
 
-{% endhint %}## 1.3 예제 코드
+{% endhint %}## 1.2 Required prior knowledge
 
-다양한 개발 언어들은 REST API 호출을 위한 라이브러리를 제공하고 있습니다. 활용방법은 각 개발언어의 기술 문서들을 쉽게 검색하여 참고할 수 있습니다.
+In order to utilize Open API,you must first understand how to use the Hi6 controller.  
+Please refer to the manual below or take training at the Hyundai Robotics Joint Training Center.
 
-- 여기서는 C#과 python을 활용한 GET과 POST 메소드의 호출만 설명하도록 하겠습니다.
+- [Hi6 Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-tp630/README)
+- [HD Hyundai Robotics Joint training center](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
-- IP 주소가 192.168.1.150인 Hi6 제어기에 대해 요청을 수행한다고 가정하겠습니다.
-### 1.3.1 예제 코드 - C#
+<br>
 
-JSON parsing을 위한 라이브러리인 `Newtonsoft.Json`를 사용했습니다.
-VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manager로 설치하시기 바랍니다.
+Open API is an HTTP-based REST API.Various development languages provide libraries for calling REST API (aka RESTful API),  
+and many developers use them to develop programs. Unless you are an experienced developer,  
+you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About Hi6 Open API](./1-intro.md#11-overview).
 
-* [Newtonsoft.Json 라이선스 정보](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
+In this regard, please refer to the points below.
 
-1) project 속성 열기
+* If you are unfamiliar with the simple API-related explanation below or are not an expert with  
+extensive development experience in applying it, please study first and then use the document.
+* If you need to learn, please learn how to code client functions through REST API calls.
+
+<br>
+
+
+{% hint style="warning" %}
+
+We do not accept inquiries about how to code conventional REST API clients.
+
+We are not responsible for any damages or problems arising from the use of APIs not officially mentioned in the Hi6 Open API manual.
+
+{% endhint %}
+
+---- 
+
+### 1.2.1 What is an API?
+
+`API` (Application Programming Interface) is a `set of definitions and protocols` for building and  integrating application software ([ref](https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces)).  
+This is how the user sends a `request structured in a particular way` and the provider's software `responds` to it.  
+This allows you to communicate with products or services you don't know how to specifically develop, and simplifies application development, saving time and money.
+
+<br>
+
+
+### 1.2.2 What is REST API?
+
+`REST` (Representational State Transfer) is a `software architecture` that imposes conditions on how an API behaves.  
+`REST API` refers to an API that follows the REST architecture style. Also called RESTful API ([ref](https://aws.amazon.com/what-is/restful-api/)).  
+By communicating through HTTP requests, it performs standard database functions (CRUD) such as Create, Read, Update, and Delete records within the resource.  
+
+Developers often implement RESTful APIs using four common Hypertext Transfer Protocol (HTTP) methods ([ref](https://aws.amazon.com/what-is/restful-api/#seo-faq-pairs#what-restful-api-client-contain)).
+
+- `GET` : Clients use GET to access resources that are located at the specified URL on the server. They can cache GET requests and send parameters in the RESTful API request to instruct the server to filter data before sending.
+- `POST` : Clients use POST to send data to the server. They include the data representation with the request. Sending the same POST request multiple times has the side effect of creating the same resource multiple times.
+- `PUT` : Clients use PUT to update existing resources on the server. Unlike POST, sending the same PUT request multiple times in a RESTful web service gives the same result.
+- `DELETE` : Clients use the DELETE request to remove the resource. A DELETE request can change the server state. However, if the user does not have appropriate authentication, the request fails.## 1.3 Sample code
+
+Various development languages provide libraries for calling REST APIs.  
+To learn how to use it, you can easily search and refer to the technical documentation for each development language.
+
+- In this document, we will only explain the calls to the GET and POST methods using C# and python.
+
+- Let's assume you are making a request to a Hi6 controller with IP address 192.168.1.150.
+### 1.3.1 Sample code - C#
+
+This document uses `Newtonsoft.Json`, a library for JSON parsing.  
+If it is not installed in your Visual Studio project, please install it using NuGet Package Manager.
+
+* [Newtonsoft.Json License info](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
+
+1) Open `project` properties
 2) `Manage NuGet Packages...`
-3) `Online/nuget.org`에서 `Json.NET (James Newton-King)`을 찾아 Install 수행.  
-   (혹시, NuGet Package Manager의 버전이 낮아 설치가 안된다는 메시지가 나오면, 주 메뉴의 `TOOLS/Extensions and Updates...`를 선택 후 Updates에서 NuGet 업데이트를 수행하십시오.)
+3) Find `Json.NET (James Newton-King)` in `Online/nuget.org` and install it. 
+   (If you receive a message that installation is not possible because the version of NuGet Package Manager is too low, select `TOOLS/Extensions and Updates...` from the main menu and update NuGet from Updates..)
 
 ```csharp
 using System;
@@ -96,7 +154,7 @@ var query = "?type=dob&blk_no=2&sig_no=3";
 
 var request = (HttpWebRequest)WebRequest.Create(uri+path+query);
 request.Method = "GET";
-request.Timeout = 5 * 1000; // 5초
+request.Timeout = 5 * 1000; // 5 sec
 
 using (var resp = (HttpWebResponse)request.GetResponse())
 {
@@ -112,36 +170,39 @@ var str = "fb2.do3=" + jobj["val"].ToString();
 Console.WriteLine(str);
 ```
 
-위 소스코드가 포함된 실행 가능한 C# WinForms 샘플 프로그램을 아래 Github 링크를 통해 확인하실 수 있습니다.
-> 링크 : https://github.com/hyundai-robotics/OpenAPI### 1.3.2 예제 코드 - python
+You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
+> Lick : https://github.com/hyundai-robotics/OpenAPI### 1.3.2 Sample code - python
 
-예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)` 두 가지 방식에 대해서 설명합니다.
-
-||동기식|비동기식|
+The example code is `a. Synchronous request (blocking & synchronous)` and `b. Asynchronous request (non-blocking & asynchronous)` Two methods are explained.
+||Synchronous|Asynchronous|
 |:---|:---|:---|
-|blocking|`a. 동기식 요청`||
-|non-blocking||`b. 비동기식 요청`|
+|blocking|`a. Synchronous request`||
+|non-blocking||`b. Asynchronous request`|
 
-두 가지 방법의 차이점은 TP와 컨트롤러에 다음과 같은 심각한 결과를 초래할 수 있습니다.
-1. UI 스레드에서 빈번한 동기 함수 호출로 인해 UI가 원활하게 실행되지 않고 정지될 수 있습니다(`Hanging 문제`).
-2. 서버(컨트롤러) 측의 문제로 인해 응답을 받지 못하는 경우, 애플리케이션 UI가 정지될 수 있습니다(`Hanging 문제`).
+Differences between the two methods can have serious consequences for TPs and controllers, such as:
+1. Due to frequent synchronous function calls in the UI thread, the UI may not run smoothly and may freeze (`Hanging problem`). 
+2. If no response is received due to a problem on the server (controller) side, the application UI may freeze (`Hanging problem`).
 
-따라서 실제 애플리케이션을 개발할 때에는 비동기식 요청 기반으로 작성하시기 바랍니다.
-- Hi6 Open API 설명에 작성된 Python 스크립트 예시는 이해하기 쉽도록 동기적으로 작성되었으니 유의하시기 바랍니다.
+	
+Therefore, when developing actual applications, please write your code in an asynchronous manner.  
+- Please note that the python script example written in the Hi6 Open API description is written synchronously for easy understanding.  
+
 
 <br>
 
-## a. 동기식 요청
-- 동기식은 하나의 요청이 끝나고 응답이 올 때까지 다른 task 의 실행이 불가능한 blocking 상태의 요청 방식 입니다.
-- python 에서 `동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `requests` 입니다.
-- `requests` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다. 
-	```sh
-	$pip install requests
-	```
-- 통신시 응답을 받지 못하거나 응답을 받는데 시간이 오래 걸리는 경우에는 hanging 문제가 발생할 가능성이 매우 높으니 주의 바랍니다.
+## a. Synchronous request
+Synchronous is a request method in a blocking state in which other tasks cannot be executed until one request is completed and a response is received.  
+A widely used library for `synchronous` HTTP requests in Python is `requests`.
+If you do not have the `requests` library, you can install it through the Python package manager.  
+	
+```sh
+$pip install requests
+```
+
+- Please keep in mind that if you do not receive a response when communicating or if it takes a long time to receive a response, the possibility of a hanging problem may be very high.
 
 ```python
-# sync.py - 동기식, 사용자 IO 출력 값 얻기와 설정하기
+# sync.py - Synchronous, getting and setting user IO output values
 import requests
 import time
 
@@ -150,7 +211,7 @@ head = {'Content-Type': 'application/json; charset=utf-8'}
 path = '/project/control/ios/dio/do_val'
 query = {'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
 
-# (POST) fb2.do3 값 설정하기
+# (POST) set fb2.do3 value
 val = 0x79
 req_body = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val' : val }
 start_time = time.time()
@@ -158,32 +219,42 @@ resp = requests.post(url + path, headers=head, json=req_body)
 end_time = time.time()
 print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
 
-# (GET) fb2.do3 값 가져오기
+# (GET) get fb2.do3 value
+total_start_time = time.time()
 for _ in range(5):
     start_time = time.time()
     resp = requests.get(url + path, headers=head, params=query)
     end_time = time.time()
     resp_body = resp.json()
     print('[get]', hex(resp_body['val']), 'from fb2.do3', f"Time taken: {end_time - start_time} seconds")
+total_end_time = time.time()
+print(f"total request time : {total_end_time - total_start_time} seconds")
 ```
 ```bash
 $python sync.py
-[post] 0x79 to fb2.do3 Time taken: 0.00599980354309082 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.004000186920166016 seconds
+[post] 0x79 to fb2.do3 Time taken: 0.004312038421630859 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.05764031410217285 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.06277251243591309 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.0634009838104248 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.06106710433959961 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.04711771011352539 seconds
+total request time : 0.292741060256958 seconds
 ```
 
-## b. 비동기식 요청
-- 동기식 요청의 문제점을 보완한 방식으로, 요청 시 콜백 함수를 동작시켜 해당 콜백 함수에서 요청 사항을 처리하여 도중에 다른 task 가 실행 가능해집니다.
-- 작업 완료 순서를 보장하지 않는 다는 점이 동기식과 차이가 있지만, 모든 요청이 거의 동시에 시작되므로 전체적인 응답 시간이 짧아질 수 있습니다.
-- python 은 `asyncio` 라는 비동기 프로그래밍 구현 용 빌트인 라이브러리를 제공하고 있습니다. 이를 통해 CPU 작업과 I/O를 병렬로 처리하게 해줍니다.
-- 추가로, `비동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `aiohttp` 입니다.
-- `aiohttp` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다.
-	```sh
-	$pip install aiohttp
-	```
+<br>
+
+## b. Asynchronous request  
+This is a method that complements the problems of synchronous requests. It operates a callback function when requested and processes the request in the callback function, allowing other tasks to be executed in the meantime.  
+Asynchronous differs from synchronous in that it does not guarantee the order in which tasks are completed, but because all requests start at approximately the same time, overall response time can be shorter.  
+Python provides a built-in library for implementing asynchronous programming called `asyncio`. This allows CPU tasks and I/O to be processed in parallel.  
+Additionally, a popular library for `asynchronous` HTTP requests is `aiohttp`.  
+If you do not have the `aiohttp` library, you can install it through the Python package manager.  
+```sh
+$pip install aiohttp
+```
 
 ```python
-# async.py - 비동기식, 사용자 IO 출력 값 얻기와 설정하기
+# async.py -  Asynchronous, getting and setting user IO output values
 import asyncio
 import aiohttp
 import time
@@ -198,7 +269,7 @@ async def set_value(session):
     req_body = {'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val': val}
     start_time = time.time()
     async with session.post(url + path, headers=head, json=req_body) as resp:
-        pass  # 필요한 경우 여기서 응답 처리
+        pass
     end_time = time.time()
     print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
 
@@ -212,25 +283,144 @@ async def get_value(session):
 async def main():
     async with aiohttp.ClientSession() as session:
         await set_value(session)
-        tasks = [get_value(session) for _ in range(10)]
+        tasks = [get_value(session) for _ in range(5)]
+        total_start_time = time.time()
         await asyncio.gather(*tasks)
+        total_end_time = time.time()
+        print(f"total request time : {total_end_time - total_start_time} seconds")
 
 asyncio.run(main())
 ```
 ```bash
 $python async.py
-[post] 0x79 to fb2.do3 Time taken: 0.0039997100830078125 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.0029997825622558594 seconds
-```## 2. version
+[post] 0x60 to fb2.do3 Time taken: 0.0027306079864501953 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.04407477378845215 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.05881357192993164 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.057793378829956055 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.057793378829956055 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.05912017822265625 seconds
+total request time : 0.06045794486999512 seconds
+```## 1.4 Simple API call without coding
 
-- 현재 api 의 버전 또는 로봇제어기의 시스템 버전을 확인합니다.## 2.1 version/get
+If you use Open API while developing a client application like [previous example code](./3-sample-code/README.md), you can easily call the API without coding.  
+Through this calling process, you can check whether the request worked properly and what data is returned in response.  
+There are several ways to do this. This section covers two representative ones.
 
-- 현재 api 의 버전 또는 로봇제어기의 시스템 버전 관련 정보에 대하여 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 2.1.1 api_ver
+<br>
 
-### 설명
+### 1.4.1 Using `postman`
 
-- GET : Open API version 번호를 얻습니다.
+`postman` is a widely used API testing platform around the world.
+Postman's `workspace` function enables project-level API testing and history tracking, and is equipped with language-specific code snippets and intuitive UI.
+Simple usage instructions can be found in [1.5 Requesting POST in Postman](./5-postman.md/#15-requesting-post-in-postman).
+
+
+<br>
+
+
+### 1.4.2 Using `Web Browser`
+
+Simple `get` requests can be made easily and quickly through a web browser.  
+Additionally, you can use your web browser's extension to directly call `get` requests and other API requests and view the results.  
+You can check simple usage instructions in [1.6 Calling API from web browser](./6-web-api-call.md/#16-calling-api-from-web-browser).## 1.4.1 Requesting POST in Postman
+
+On this page, use `postman` to call the `POST` request of the REST API and check the result.  
+Additionally, simple UI configuration helps you understand how to use it.
+
+<br>
+
+### a. Main UI composition
+
+You can check the main UI composition through the picture below.
+
+<img src="../../_assets/01_postman_desc.png" height="460vh">
+
+<blockquote>
+
+(1) You can simply create a request request through the `+` button. </br>
+(2) This is a space to enter information about the `request`. </br>
+(3) This is a space to check information about `response`. </br>
+(4) This is a space to check the `Code snippet` for each language that is automatically generated by applying the `request` url. </br>
+
+</blockquote>
+
+<br>
+
+### b. Testing POST Requests
+
+1. `Request Header`  
+	- Enter the `Key`, `Value` below in the Headers tab.
+  	- About `Content-Type` ([ref](https://blog.postman.com/what-are-http-headers/#Content-type))
+	<br>
+	<br><img src="../../_assets/02_postman_headers.png" height="130vh">
+
+<br>
+
+2. `Request Body`  
+	- Select API method as `POST` and enter URL.  
+	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
+	- Click `Send`
+	<br>
+	<img src="../../_assets/03_postman_post.png" height="280vh">
+
+<br>
+
+3. `Response` and `Code snippet`
+	- `request` If the request is completed normally, `HTTP Status` responds with `200 OK` as shown below.([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
+	- You can also check the `Code snippet` for each language to which the URL is applied.
+	<img src="../../_assets/04_postman_post_result_check.png" height="500vh">  
+
+		<blockquote>
+
+		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md))</br>
+		`(2) Python Code snippet` : codes for `post` request in python.  
+
+		</blockquote>## 1.4.2 Calling API from web browser  
+
+### a. Make a simple `GET` request
+
+`get` requests can be checked more simply and quickly through a web browser. The order is as follows:
+1. Open web browser
+2. Enter the server-side url of the `get` request in the address bar.
+	- The server-side URL begins with `http://<IP address of Hi6 controller>:<http communication port>`, followed by the path and query appropriate for the information you want to extract.
+	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
+3. The page for that URL opens and a response is output as shown below.
+	```json
+	{
+		"_type" : "JObject",
+		"val" : -99
+	}
+	```
+
+<br>
+
+### b. Calling API with `extension`
+If you use Chrome or Edge browsers, you can test APIs other than `get` requests through the Chrome extension.  
+The following extension program is an API tester used by many developers around the world.
+- Chrome extension program : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
+
+Through this program, you can easily call various APIs like `postman`.
+
+![talend_api_tester.png](../../_assets/06_Talend_api_tester.png)  
+
+<blockquote>
+
+`(1) Requests/Senarios` : You can set whether to test calls to one API or create a scenario with multiple APIs and test them sequentially.<br>
+`(2) Request` : Enter your request.  
+`(3) Response` : You can check the response to your request.  
+`(4) History` : Prints request history.   
+`(5) Side History Tab` : This tab allows you to check a larger amount of history than the request history list in `(4)`, which can be opened and closed.
+
+</blockquote>## 2. version
+
+- Check the current API version or robot controller system version.## 2.1 version/get
+
+- Send a GET request for information about the current API version or robot controller system version.  
+- Receive a response by setting the correct path-parameter and query-parameter for each API.  ## 2.1.1 api_ver
+
+### Description
+
+- GET : Optain the Open API version number
 
 ### path-parameter
 
@@ -240,10 +430,10 @@ GET /api_ver
 
 ### response-body
 
-- Open API version 번호
-- 초기 Hi6 Open API 는 `version 5`를 기준으로 작성된 문서입니다. 
+- Open API version number
+- The initial Hi6 Open API is a document written based on `version 5`.
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -253,7 +443,7 @@ response-body:
 5
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -272,9 +462,9 @@ $python test.py
 5
 ```## 2.1.2 sysver
 
-### 설명
+### Description
 
-- GET : 로봇제어기 시스템의 소프트웨어 버전을 얻습니다.
+- GET : Obtain the software version of the robot controller system.
 
 ### path-parameter
 
@@ -284,19 +474,19 @@ GET /versions/sysver
 
 ### response-body
 
-modules : 모듈 버전 정보의 배열
-  - 모듈 버전 정보 :
-    - `name` : 모듈명
-		|모듈명|설명|
+modules : Array of module version information
+  - module version information :
+    - `name` : module name
+		|module name|description|
 		|---:|:---|
-		|com|로봇 제어기|
-		|tp|티칭 팬던트|
-    - `ver` : 버전번호
-    - `build-date` : 빌드 날짜
-    - `build-time` : 빌드 시간
-    - `commit-id` : 소스코드의 커밋 ID
+		|com|robot controller|
+		|tp|teaching pendant|
+    - `ver` : version number
+    - `build-date` : build date
+    - `build-time` : build time
+    - `commit-id` : Commit ID of source code
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -315,7 +505,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -334,17 +524,17 @@ $python test.py
 {'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
 ```# 3. project
 
-- 조건설정, 프로젝트 정보, job 파일 정보들을 읽습니다.
-- 업데이트된 job 파일들을 새로이 로드하거나 특정 job 파일들을 삭제할 수 있습니다.## 3.1 project/get
+- Reads condition settings, project information, and job file information.
+- You can reload updated job files or delete specific job files.## 3.1 project/get
 
-- 조건설정, 프로젝트 정보, job 파일 정보에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 3.1.1 `rgen`
+- Send a GET request for condition settings, project information, and job file information.
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 3.1.1 `rgen`
 
-### 설명
+### Description
 
 `rgen` (remote general status)
 
-- `GET` : 제어기에 설정된 일반적인 정보들을 읽습니다.
+- `GET` : Obtain general information set in the controller.
 
 ### path-parameter
 
@@ -354,54 +544,54 @@ GET /project/rgen
 
 ### response-body
 
-#### 1) 모드
+#### 1) Mode
 |key|value|type|description|
 |:---|:---|:---|:---|
-|`cur_mode`| `0` : 수동 <br> `1` : 수동, 시스템 설정 <br>`3` : 자동, 1-cycle <br> `4` : 자동, 연속 (cycle 반복)|`int`|수동/자동 모드|
-|`enable_state`|`0번` 바이트(`LSB`) : 모터 ON (0: On / 1: Off / 2: Busy) <br> `1번` 바이트 : TP Enable (deadman) 스위치 (0: OFF / 1: ON)<br>`2번` 바이트 : 머신 Lock (0: OFF / 1: ON)<br>`3번` 바이트 : 건(gun) Lock (0: OFF / 1: ON)<br>`4번` 바이트 : 건(gun) (0: OFF / 1: ON)|`int`||
-|`is_playback`|`0` : 정지 중 <br>`1` : 재생 중|`int`||
-|`is_remote_mode`|`0`: False <br> `1`: True|`int`|원격(Remote) 모드 여부|
-|`is_ext_start`|`0`: False <br> `1`: True|`int`|외부 기동 여부|
-|`is_ext_prog_sel`|`0`: False <br> `1`: True|`int`|외부 프로그램 선택 여부|
+|`cur_mode`| `0` : manual <br> `1` : manual, system settings <br>`3` : auto, 1-cycle <br> `4` : auto, continue (cycle)|`int`|manual/auto mode|
+|`enable_state`|`0` Byte(`LSB`) : Motor ON (0: On / 1: Off / 2: Busy) <br> `1` Byte : TP Enable (deadman) Switch (0: OFF / 1: ON)<br>`2` Byte : Machine Lock (0: OFF / 1: ON)<br>`3` Byte : gun Lock (0: OFF / 1: ON)<br>`4` Byte : gun (0: OFF / 1: ON)|`int`||
+|`is_playback`|`0` : Pause <br>`1` : play|`int`||
+|`is_remote_mode`|`0`: False <br> `1`: True|`int`|Remote mode or not|
+|`is_ext_start`|`0`: False <br> `1`: True|`int`|External start-up or not|
+|`is_ext_prog_sel`|`0`: False <br> `1`: True|`int`|Whether to select an external program|
 
 <br>
 
-#### 2) current 프로그램 카운터
-수동모드나 자동모드에서 티치펜던트 JOB 패널의 막대형 커서가 위치한 지점입니다. 현재 실행되고 있는 명령문, 혹은 편집의 대상 위치입니다.
+#### 2) current program counter
+This is the point where the bar cursor on the teach pendant JOB panel is located in manual mode or automatic mode. This is the currently executing statement or the target location for editing.
 |key|type|description|
 |:---|:---|:---|
-|`cur_prog_no`|`int`|current 프로그램 번호|
-|`cur_step_no`|`int`|current 스텝 번호|
-|`cur_func_no`|`int`|current 펑션 번호|
+|`cur_prog_no`|`int`|current program number|
+|`cur_step_no`|`int`|current step number|
+|`cur_func_no`|`int`|current function number|
 
 <br>
 
-#### 3) moving 프로그램 카운터
+#### 3) moving program counter
 
-재생 중 로봇이 이동하고 있는 목표 스텝입니다.
+This is the target step the robot is moving during playback.
 |key|type|description|
 |:---|:---|:---|
-|`mov_prog_no`|`int`|moving 프로그램 번호|
-|`mov_step_no`|`int`|moving 스텝 번호|
-|`mov_func_no`|`int`|moving 펑션 번호|
+|`mov_prog_no`|`int`|moving program number|
+|`mov_step_no`|`int`|moving step number|
+|`mov_func_no`|`int`|moving function number|
 
 <br>
 
-#### 4) 속도
+#### 4) Speed
 
 |key|type|description|
 |:---|:---|:---|
-|`spd_lev`|`int`|수동모드 조그 속도 레벨 (1~8)|
-|`manual_spd_max`|`int`|수동모드 최대 속도 (mm/sec)|
-|`auto_spd`|`int`|자동모드 재생 속도 (%)|
-|`jog_inch_status`|`int`|조그 인칭 상태 (0:OFF/ 1:ON)|
-|`step_execute_unit_status`|`int`|StepFWD의 실행단위 (run to)<br>0: Cmd (명령문)<br>1: Step (스텝)<br>2: End (end문까지)|
-|`cont_path`|`int`|연속 모션 모드 (0~2)|
+|`spd_lev`|`int`|Manual mode jog speed level (1~8)|
+|`manual_spd_max`|`int`|Manual mode maximum speed (mm/sec)|
+|`auto_spd`|`int`|Auto mode playback speed (%)|
+|`jog_inch_status`|`int`|jog inching state (0:OFF/ 1:ON)|
+|`step_execute_unit_status`|`int`|StepFWD execution unit (run to)<br>0: Cmd <br>1: Step<br>2: End |
+|`cont_path`|`int`|continuous motion mode (0~2)|
 
 <br>
 
-### 사용 예
-Python Script 예시
+### Example
+Python Script Example
 
 ```python
 import requests
@@ -424,11 +614,11 @@ is remote mode? 0
 ```
 ## 3.1.2 `jobs_info`
 
-### 설명
+### Description
 
 `jobs_info`
 
-- `GET` : job 프로그램 관련 정보들을 받는 함수입니다.
+- `GET` : Obtain information about job programs.
 
 ### path-parameter
 
@@ -438,8 +628,8 @@ GET /project/jobs_info
 
 ### response-body
 
-- [job 파일 관련 정보](../../99-schema/jobs_info.md)
-### 사용 예
+- [job file information](../../99-schema/jobs_info.md)
+### Example
 
 <blockquote>
 
@@ -478,7 +668,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -501,15 +691,15 @@ $python test.py
 {'_type': 'JObject', 'job_comment': '', 'fname': '0003.job', 'n_step': 0, 'n_aux_ax': -1, 'n_total_ax': -1}]
 ```## 3.1 project/post
 
-- 조건설정, 프로젝트 정보, job 파일 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 3.2.1 `reload_updated_jobs`
+- Send a POST request for condition settings, project information, and job file information.
+- You must write the correct request-body for each API.## 3.2.1 `reload_updated_jobs`
 
-### 설명
+### Description
 
 `reload_updated_jobs`
 
-- `POST` : 작업 파일들을 갱신하는 요청을 보냅니다.
-- FTP 로 job 파일을 제어기에 전송하는 경우, 해당 API 를 통해 reload 요청을 해야 전송된 job 파일이 메모리에 반영이 됩니다.
+- `POST` : Send a request to update working files.
+- When transmitting a job file to the controller via FTP, a reload request must be made through the corresponding API for the transmitted job file to be reflected in memory.
 
 ### path-parameter
 
@@ -523,7 +713,7 @@ POST /project/reload_updated_jobs
 {}
 ```
 
-### 사용 예
+### Description
 
 ```python
 request url:
@@ -532,9 +722,9 @@ POST /project/reload_updated_jobs
 request-body: {}
 ```
 
-Python Script 예시
+Python Script Example
 
-- 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
 ```python
 # test.py
 import requests 
@@ -557,11 +747,11 @@ response: 200
 ```
 ## 3.2.2 `delete_job`
 
-### 설명
+### Description
 
 `delete_job`
 
-- `POST` : 작업 파일을 제거하는 요청을 보냅니다.
+- `POST` : Send a request to remove a working file.
 
 ### path-parameter
 
@@ -577,7 +767,7 @@ POST /project/jobs/delete_job
 }
 ```
 
-### 사용 예
+### Example
 
 ```json
 request url:
@@ -589,7 +779,7 @@ request-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -612,19 +802,19 @@ $python test.py
 response: 200 
 ```# 4. control
 
-- 제어기(controller)의 설정값 적용 및 입출력 값을 처리합니다.
-- 시스템 입출력, 디지털 입출력, 조건설정, 사용자 좌표계 관련 정보를 다룹니다.
+- Apply settings of the controller and process input/output values.
+- It covers information on system input/output, digital input/output, condition settings, and user coordinate system.
 
 <br>## 4.1 control/get
 
-- 제어기의 설정 정보, 입출력 값에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 4.1.1 `op_cnd`
+- Send a GET request for controller setting information and input/output values.
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 4.1.1 `op_cnd`
 
-### 설명
+### Description
 
 `op_cnd` (operation condition)
 
-- `GET` : 조건설정 값을 얻습니다.
+- `GET` : Obtain the condition setting value.
 
 ### path-parameter
 
@@ -634,7 +824,7 @@ GET /project/control/op_cnd
 
 ### response-body
 
-- [조건설정 파라미터](../../99-schema/op_cnd.md)
+- [Condition Setting parameter](../../99-schema/op_cnd.md)
 
 <blockquote>
 
@@ -655,7 +845,7 @@ GET /project/control/op_cnd
 ```
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -676,11 +866,11 @@ $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
 ```## 4.1.2 `ios/dio/{dio_val}`
 
-### 설명
+### Description
 
 `dio` (digital input/output)
 
-- `GET` : 사용자 IO 값을 얻습니다.
+- `GET` : Obtain user IO values.
 
 ### path-parameter
 
@@ -691,23 +881,23 @@ GET /project/control/ios/dio/{dio_val}
 ### path-variable
 
 - `dio_val` :
-  - `di_val` : 입력(di) 값을 얻습니다.
-  - `do_val` : 출력(do) 값을 얻습니다.
+  - `di_val` : Get the input(di) value.
+  - `do_val` : Get the output(do) value.
 
 ### query-parameter
 
-- `type` : io 값의 타입
+- `type` : Type of io value
   - di or do : bit
   - dib or dob : signed-byte
   - diw or dow : signed-word (2byte)
   - dil or dol : signed-dword (4yte)
   - dif or dof : float
-- `blk_no` : 블럭 번호 (0~9)
-- `sig_no` : 신호 인덱스 (0~)
+- `blk_no` : block number (0~9)
+- `sig_no` : signal index (0~)
 
-### 사용 예
+### Example
 
-- fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
+- Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
 
 ```python
 request url:
@@ -720,7 +910,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -742,11 +932,11 @@ $python test.py
 {'_type': 'JObject', 'val': -56}
 ```## 4.1.3 `ios/sio/{sio_val}`
 
-### 설명
+### Description
 
 `sio` (system input/output)
 
-- `GET` : 시스템 IO 값을 얻습니다.
+- `GET` : Get system IO values.
 
 ### path-parameter
 
@@ -757,23 +947,23 @@ GET /project/control/ios/sio/{sio_val}
 ### path-variable
 
 - `sio_val` :
-  - `si_val` : 입력(si) 값을 얻습니다.
-  - `so_val` : 출력(so) 값을 얻습니다.
+  - `si_val` : Get the input(si) value.
+  - `so_val` : Get the output(so) value.
 
 ### query-parameter
 
-- `type` : io 값의 타입
+- `type` : Type of io value
   - si or so : bit
   - sib or sob : signed-byte
   - siw or sow : signed-word (2byte)
   - sil or sol : signed-dword (4yte)
   - sif or sof : float
-- `sig_no` : 신호 인덱스 (0~)
+- `sig_no` : signal index (0~)
 
 
-### 사용 예
+### Example
 
-- sib1 값 얻기. (결과값 : 0b00000010 = 0x02 = 2)
+- Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
 
 ```python
 request url:
@@ -786,7 +976,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -808,12 +998,12 @@ $python test.py
 {'_type': 'JObject', 'val': 0}
 ```## 4.1.4 `ucss/ucs_nos`
 
-### 설명
+### Description
 
 `ucss/ucs_nos` (user coordinate system numbers)
 
-- `GET` : 현재 사용 중인 사용자 좌표계들을 리스트로 얻습니다.
-- `시스템 > 2: 제어 파라미터 > 6: 좌표계 등록` 을 통해 등록한 사용자 좌표계 리스트를 출력합니다.
+- `GET` : Obtains a list of user coordinate systems currently in use.
+- Prints a list of user coordinate systems registered through `system > 2: Control parameter > 6: Coordinate registration`.
 
 ### path-parameter
 
@@ -821,7 +1011,7 @@ $python test.py
 GET /project/control/ucss/ucs_nos
 ```
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -834,7 +1024,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -855,14 +1045,14 @@ $python test.py
 [1, 2, 3]
 ```## 4.2 control/post
 
-- 제어기의 설정 정보, 입출력 값에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 4.2.1 `ios/dio/{do_val}`
+- Sends a POST request for the controller’s setting information and input/output values.
+- You must write the correct request-body for each API.## 4.2.1 `ios/dio/{do_val}`
 
-### 설명
+### Description
 
 `do` (digital output)
 
-- `POST` : 디지털 출력을 변경합니다.
+- `POST` : Change digital output.
 
 ### path-parameter
 
@@ -884,18 +1074,18 @@ POST /project/control/ios/dio/do_val
 
 ### query-parameter
 
-- `type` : io 값의 타입
+- `type` : Type of io value
   - di or do : bit
   - dib or dob : signed-byte
   - diw or dow : signed-word (2byte)
   - dil or dol : signed-dword (4yte)
   - dif or dof : float
-- `blk_no` : 블럭 번호 (0~9)
-- `sig_no` : 신호 인덱스 (0~)
-- `val` : 변경하고자 하는 설정값
+- `blk_no` : block number (0~9)
+- `sig_no` : signal index (0~)
+- `val` : Setting value you want to change
 
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -910,9 +1100,9 @@ request-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
-- 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
 ```python
 # test.py
 import requests 
@@ -933,15 +1123,16 @@ $python test.py
 response: 200 
 ```## 4.3 control/put
 
-- 제어기의 설정 정보, 입출력 값에 대한 PUT 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 4.3.1 `op_cnd`
+- Sends a PUT request for the controller’s setting information and input/output values.
+- You must write the correct request-body for each API.## 4.3.1 `op_cnd`
 
-### 설명
+### Description
 
 `op_cnd` (operation condition)
 
-- `PUT` : 로봇의 조건설정 값을 변경합니다.
-- TP 에서 조건 설정 창을 열고 해당 메서드를 요청한 경우, 창을 닫았다 다시 열어야 값이 반영됩니다.
+- `PUT` : Change the robot’s condition setting values.
+- If you open the `condition setting window(cond.set)` in TP and request the corresponding method,  
+you must close and reopen the window for the value to be reflected.
 
 ### path-parameter
 
@@ -951,10 +1142,10 @@ PUT /project/control/op_cnd
 
 ### request-body
 
-- [조건설정 파라미터](../../99-schema/op_cnd.md)
+- [Condition Setting parameter](../../99-schema/op_cnd.md)
 
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -968,7 +1159,7 @@ request-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -994,18 +1185,18 @@ $python test.py
 response: 200 
 ```# 5. robot
 
-- 로봇과 툴 데이터에 대한 원격 제어와 모니터링을 확인할 수 있습니다.
-- 모터 on/off, 로봇 자세, 툴, 조그 좌표계 등을 다루고 있습니다.
+- You can check remote control and monitoring of robot and tool data.
+- It covers motor on/off, robot posture, tools, jog coordinate system, etc.
 ## 5.1 robot/get
 
-- 로봇과 툴 데이터에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 5.1.1 `motor_on_state`
+- Send GET requests for robot and tool data.
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 5.1.1 `motor_on_state`
 
-### 설명
+### Description
 
 `motor_on_state`
 
-- `GET` : 모터 온 상태를 얻습니다.
+- `GET` : Obtain the motor on status.
 
 ### path-parameter
 
@@ -1017,10 +1208,10 @@ GET /project/robot/motor_on_state
 
 - val :
   - `0` : on
-  - `1` : busy (상태 전환 중)
+  - `1` : busy (Transitioning state)
   - `2` : off
 
-### 사용 예
+### Example
 ```python
 request url:
 GET /project/robot/motor_on_state
@@ -1032,7 +1223,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -1053,11 +1244,11 @@ $python test.py
 Motor On status: 1
 ```## 5.1.2 `po_cur`
 
-### 설명
+### Description
 
 `po_cur` (pose current)
 
-- `GET` : 현재 로봇이 취하고 있는 pose(자세)를 얻습니다.
+- `GET` : Get the pose the robot is currently taking.
 
 ### path-parameter
 
@@ -1067,26 +1258,26 @@ GET /project/robot/po_cur
 
 ### query-parameter
 
-- `task_no` : task 번호 (0~7).
-  - 미지정 : task 0으로 적용됨.
-  - &gt;=0 : mechinfo 미지정 시, task의 현재 mechinfo가 적용됨.
+- `task_no` : task number (0~7).
+  - unspecified : Applied as task 0.
+  - &gt;=0 : If mechinfo is not specified, the current mechinfo of the task is applied.
 - `crd` :  
-  - 미지정 : tcp, axis, encoder를 모두 얻음.
-  - <0 : 현재 기록 좌표계를 따름.
-  - &gt;=0 : [좌표계](../../99-schema/crdsys.md)
-- `ucrd_no` : 사용자 좌표계 번호 (crd가 user일 때만 지정함.)
-- `mechinfo` : [메커니즘 정보](../../99-schema/mechinfo.md)
+  - unspecified : Obtain all tcp, axis, and encoder.
+  - <0 : Follows the current recording coordinate system.
+  - &gt;=0 : [coordinate system](../../99-schema/crdsys.md)
+- `ucrd_no` : User coordinate system number (Specified only when crd is user.)
+- `mechinfo` : [Mechanism information](../../99-schema/mechinfo.md)
 
 ### response-body
 
-- [포즈 정보](../../99-schema/pose.md)
+- [Pose information](../../99-schema/pose.md)
 
 
-### 사용 예
+### Example
 
-로봇 6축(j1~j6) + 주행 1축(j7) + 포지셔너 2축(j8, j9)인 시스템의 사례.
+Example of a system with 6 robot axes (j1~j6) + 1 driving axis (j7) + 2 positioner axes (j8, j9).
 
-- 로봇의 base 좌표만 얻기
+- Obtain only the base coordinates of the robot
 
 ```python
 request url:
@@ -1107,7 +1298,7 @@ response-body:
 }
 ```
 
-- 전 축의 축좌표 얻기
+- Obtaining axis coordinates of all axes
 
 ```python
 request url:
@@ -1131,7 +1322,7 @@ response-body:
 }
 ```
 
-- 포지셔너 2축 (즉, 메커니즘 M2)의 축좌표 얻기
+- Obtain the axis coordinates of the positioner 2 axis (i.e. mechanism M2)
 
 ```python
 request url:
@@ -1158,7 +1349,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -1180,11 +1371,11 @@ $python test.py
 {'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
 ```## 5.1.3 `cur_tool_data`
 
-### 설명
+### Description
 
 `cur_tool_data`
 
-- `GET` : 로봇의 현재 툴 데이터 얻기.
+- `GET` : Obtaining the robot's current tool data.
 
 ### path-parameter
 
@@ -1194,9 +1385,9 @@ GET /project/robot/cur_tool_data
 
 ### response-body
 
-- val : [툴 데이터](../../99-schema/tool_data.md)
+- val : [Tool Data](../../99-schema/tool_data.md)
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -1222,7 +1413,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -1243,11 +1434,11 @@ $python test.py
 {'_type': 'Tool', 'x': 0.0, 'rx': 0.0, 'y': 0.0, 'ry': 0.0, 'z': 0.0, 'rz': 0.0, 'cy': 0.0, 'mass': 20.0, 'cx': 100.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'bias_2': 0.0, 'mass_esti': 20.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```## 5.1.4 `tools`
 
-### 설명
+### Description
 
 `tools`
 
-- `GET` : 로봇의 모든 툴 정보 얻기. T0~T31까지의 툴 중 존재하는 툴만 얻습니다.
+- `GET` : Get all tool information for the robot. Only tools that exist among tools from T0 to T31 are obtained.
 
 ### path-parameter
 
@@ -1257,15 +1448,15 @@ GET /project/robot/tools
 
 ### response-body
 
-- t_0 : [툴 데이터](../../99-schema/tool_data.md)
-- t_1 : 툴 데이터
-- t_2 : 툴 데이터  
+- t_0 : [Tool data](../../99-schema/tool_data.md)
+- t_1 : Tool data
+- t_2 : Tool data  
 ...
-- t_31 : 툴 데이터
+- t_31 : Tool data
 
-### 사용 예
+### Example
 
-툴 0과 툴 31만 존재하는 시스템의 사례.
+An example of a system in which only tool 0 and tool 31 exist.
 
 ```python
 request url:
@@ -1280,7 +1471,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -1301,11 +1492,11 @@ $python test.py
 {'_type': 'Tools', 't_31': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_0': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0, 'load_rate': {'_type': 'JObject', 'high_load_mode': -11, 'moment_rate': 0, 'inertia_rate': 0, 'mass_rate': 0}}, 't_1': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_15': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}}
 ```## 5.1.5 `tools/t_{number}`
 
-### 설명
+### Description
 
 `tools/t_{number}`
 
-- GET : 특정 툴의 설정값 정보를 받는 함수입니다.
+- GET : This is a function that receives information on the settings of a specific tool.
 
 ### path-parameter
 
@@ -1315,9 +1506,9 @@ GET /project/robot/tools/t_{number}
 
 ### response-body
 
-- [툴 데이터](../../99-schema/tool_data.md)
+- [Tool data](../../99-schema/tool_data.md)
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -1336,7 +1527,7 @@ response-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -1357,12 +1548,12 @@ $python test.py
 {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```## 5.2 robot/post
 
-- 로봇과 툴 데이터에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 5.2.1 `motor_on / motor_off`
+- Send POST requests for robot and tool data.
+- You must write the correct request-body for each API.## 5.2.1 `motor_on / motor_off`
 
-### 설명
+### Description
 
-- POST : 모터 ON과 모터 OFF를 수행합니다.
+- POST : Performs motor ON and motor OFF.
 
 ### path-parameter
 
@@ -1385,7 +1576,7 @@ POST /project/robot/motor_off
 }
 ```
 
-### 사용 예
+### Example
 
 ```python
 POST /project/robot/motor_off
@@ -1394,7 +1585,7 @@ request-body:
 {}
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -1426,9 +1617,9 @@ Motor-ON  response: 200
 Motor-OFF response: 200
 ```## 5.2.2 `start / stop`
 
-### 설명
+### Description
 
-- POST : 로봇 기동(start)과 로봇 정지(stop)를 수행합니다.
+- POST : Performs robot start and robot stop.
 
 ### path-parameter
 
@@ -1451,7 +1642,7 @@ POST /project/robot/stop
 }
 ```
 
-### 사용 예
+### Example
 
 ```python
 POST /project/robot/motor_off
@@ -1460,7 +1651,7 @@ request-body:
 {}
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -1471,7 +1662,7 @@ def post_start() -> int:
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = {}
 
-    # 자동모드 및 모터 온 설정 필요
+    # Requires automatic mode and motor on settings
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
     return response.status_code
 
@@ -1493,9 +1684,9 @@ Start response: 200
 Stop  response: 200
 ```## 5.2.3 `tool_no`
 
-### 설명
+### Description
 
-- POST : 현재 툴 번호를 설정합니다.
+- POST : Set the current tool number.
 
 ### path-parameter
 
@@ -1505,9 +1696,9 @@ POST /project/robot/tool_no
 
 ### request-body
 
-- `val` : 툴 번호
-  - `로봇 툴` : `0` ~ `31`
-  - `정치 툴` : `0` ~ `3`
+- `val` : Tool number
+  - `robot tools` : `0` ~ `31`
+  - `stationary tool` : `0` ~ `3`
 
 ### response-body
 
@@ -1517,7 +1708,7 @@ POST /project/robot/tool_no
 }
 ```
 
-### 사용 예
+### Example
 
 ```json
 POST /project/robot/tool_no
@@ -1528,7 +1719,7 @@ request-body
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -1539,7 +1730,6 @@ def post_tool_no(x: int = 0) -> int:
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = {"val": x}
 
-    # 자동모드 및 모터 온 설정 필요
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
     return response.status_code
 
@@ -1552,7 +1742,7 @@ response: 200
 
 ### 설명
 
-- POST : 현재 조그(jog) 좌표계를 설정합니다.
+- POST : Set the current jog coordinate system.
 
 ### path-parameter
 
@@ -1562,7 +1752,7 @@ POST /project/robot/crd_sys
 
 ### request-body
 
-- [좌표계](../../99-schema/crdsys.md)
+- [Coordinate system](../../99-schema/crdsys.md)
 
 ### response-body
 
@@ -1575,7 +1765,7 @@ POST /project/robot/crd_sys
 ```
 
 
-### 사용 예
+### Example
 
 ```json
 POST /project/robot/crd_sys
@@ -1586,7 +1776,7 @@ request-body
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -1607,14 +1797,14 @@ $python test.py
 response: 200
 ```# 6. I/O PLC
 
-- 내장 PLC(built-in plc)의 입출력 값을 읽어오거나 설정합니다.## 6.1 io_plc/get
+- Reads or sets the input/output values of the built-in PLC.## 6.1 io_plc/get
 
-- 내장 PLC(built-in plc)의 입출력 값에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 6.1.1 `relay values`
+- Sends a GET request for input/output values of a built-in PLC.
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 6.1.1 `relay values`
 
-### 설명
+### Description
 
-- `GET` : relay 값을 객체.타입 전체에 대해 얻습니다.
+- `GET` :Obtain the relay value for the entire object type.
 
 ### path-parameter
 
@@ -1624,15 +1814,15 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ### path-variable
 
-[릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression) (소문자 표기)
+[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/english/3-relay/2-relay-expression) (lowercase letter)
 
-* (`di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다. 나머지 `relay_type`에는 지정하지 않습니다.)
+* (`{obj_type}{obj_idx}_` must be specified for `di`, `do`, `x`, and `y`. The remaining `relay_type` is not specified.)
 
-- `obj_type` : 객체 타입
+- `obj_type` : object type
   - `fb`
   - `fn`
 
-- `obj_idx` : 객체 인덱스 (fb: 0~9, fn: 0~63)
+- `obj_idx` : object index (fb: 0~9, fn: 0~63)
 
 - `relay_type` : 
 	|`di`|`do`|`x` |`y` |`m` |`s` |`r`|`k`|
@@ -1642,11 +1832,11 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ### query-parameter
 
-- `st` : 시작 byte index (default: 0)
-- `len` : dword 개수 (default: 8)
+- `st` : start byte index (default: 0)
+- `len` : number of words (default: 8)
 
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -1678,7 +1868,7 @@ response-body:
 ]
 ```
 
-Python Script 예제
+Python Script Example
 
 ```python
 # test.py
@@ -1700,13 +1890,13 @@ $python test.py
 [0, 0, 0, 0]
 ```## 6.2 io_plc/post
 
-- 내장 PLC(built-in plc)의 입출력 값에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 6.2.1 `set_relay_value`
+- Sends a POST request for input/output values from a built-in PLC.
+- You must write the correct request-body for each API.## 6.2.1 `set_relay_value`
 
-### 설명
+### Description
 `set_relay_value`
 
-- `POST` : relay 값 설정합니다.
+- `POST` : Set the relay value.
 
 ### path-parameter
 
@@ -1716,8 +1906,8 @@ POST /project/plc/set_relay_value
 
 ### request-parameter
 
-- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression)에 맞춰 입력합니다.
-- `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
+- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/english/3-relay/2-relay-expression).
+- `value` : Please pay attention to ‘data-type’ in the notation above and enter the value you want to set.
 ```json
 {
 	"name": "fb3.dof14",
@@ -1725,7 +1915,7 @@ POST /project/plc/set_relay_value
 }
 ```
 
-### 사용 예
+### Example
 
 ```json
 request url:
@@ -1738,7 +1928,7 @@ request-body:
 }
 ```
 
-Python Script 예제
+Python Script Example
 
 ```python
 # test.py
@@ -1773,16 +1963,16 @@ response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
 ```# 7.1 event-log
 
-- 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.## 7.1 log_manager/get
+- Outputs errors, warnings, execution history, etc. recorded in the controller.## 7.1 log_manager/get
 
-- 제어기에 기록되는 에러, 경고, 실행이력에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 7.1.1 search
+- Send a GET request for errors, warnings, and execution history recorded in the controller.
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 7.1.1 search
 
-### 설명
+### Description
 
 `search`
 
-- `GET` : 지정한 필터 조건으로 이벤트 이력(event log)를 열람합니다.  
+- `GET` : View the event log using the specified filter conditions.
 
 ### path-parameter
 
@@ -1792,40 +1982,38 @@ GET /logManager/search
 
 ### query-parameter
 
-- `n_item` : 요청 event 개수 (default=100)
-- `cat_p` : 요청 범주 필터 (category positive). 각 타입을 의미하는 글자를 쉼표(,)로 결합하여 지정합니다.
-            (cat_p=E,W,N)
-  - `E` : 에러 (Error)
-  - `W` : 경고 (Warning)
-  - `N` : 알림 (Notice)
-  - `S` : 기동/정지 (Start/Stop)
-  - `O` : 사용자 조작 (user's Operation)
-  - `I` : I/O, 릴레이 값 (I/O, relay value)
-  - `P` : 주기적 상태 기록 (Periodic state)
-  - `H` : 실행 이력 (History)
-  - `C` : 콘솔 출력 (Console out)
-  - `M` : 기타 (Miscellany)
-- `id_min` : 최소 id 필터. (optional)
-  - 모든 이벤트는 유일한 이벤트 ID(eid)를 가지고 있습니다. (0~)  
-    기존에 수신한 이벤트들의 id 중 최대값에 1을 더해 `id_min`에 지정하여 이력 요청을 하면,
-    기존에 이미 수신한 이벤트들은 제외하고, 새로 발생한 이력만 얻을 수 있습니다.  
-  - 단, 제어기 내의 이벤트 id는 최대값(0xffffffffffffffff)이 되면, 다시 0부터 생성됩니다.
-    필터링은 이러한 상황까지 고려하여 적절히 적용됩니다.
-    예를들어, id_min이 0xfffffffffffffffa 인 경우, 0, 1, 2 같은 id를 갖는 이벤트들을 필터 아웃되지 않고 응답에 포함됩니다.
-- `id_max` : 최대 id 필터. (optional)
-- `ts_min` : 최소 timestamp 필터. (optional)
-  - 년/월/일 시:분:초.밀리초 형식. e.g. 2023/11/20 18:50:30.955
-- `ts_max` : 최대 timestamp 필터. (optional)
-  - 년/월/일 시:분:초.밀리초 형식. e.g. 2023/11/20 18:50:30.955
+- `n_item` : Number of requested events (default=100)
+- `cat_p` : Request category filter (category positive). Specify the letters representing each type by combining them with a comma (,). (cat_p=E,W,N)
+  - `E` : Error
+  - `W` : Warning
+  - `N` : Notice
+  - `S` : Start/Stop
+  - `O` : user's Operation
+  - `I` : I/O, relay value
+  - `P` : Periodic state
+  - `H` : History
+  - `C` : Console out
+  - `M` : Miscellany
+- `id_min` : min id filter. (optional)
+  - Every event has a unique event ID (eid). (0~)  
+    If you request a history by adding 1 to the maximum ID of the previously received events and specifying it in `id_min`, you can obtain only the newly occurring history, excluding the events already received.
+  - However, when the event ID in the controller reaches the maximum value (0xffffffffffffffff), it is generated again starting from 0.  
+    Filtering is applied appropriately by taking these situations into consideration.  
+    For example, if id_min is 0xfffffffffffffffa, events with ids such as 0, 1, and 2 are not filtered out but are included in the response.
+- `id_max` : max id filter. (optional)
+- `ts_min` : min timestamp filter. (optional)
+  - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
+- `ts_max` : max timestamp filter. (optional)
+  - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
 
 ### response-body
 
-- `id` : 이벤트 ID (event ID)
+- `id` : event ID
 - `ts` : timestamp
-- `cat` : 이벤트 범주 (event category)
-- `code` : 이벤트 코드번호
-- `aux` : 이벤트 보조정보 (event auxiliary info.). 최대 280자입니다.
-  - 에러와 경고, 기동/정지의 경우에는 스냅샷(snapshot) 정보를 담습니다.
+- `cat` : event category
+- `code` : event code number
+- `aux` : event auxiliary info. Up to 280 characters.
+  - In case of errors, warnings, and start/stop, snapshot information is included.
 
 ```json
 { "id" : 19964, "ts" : "2023/11/20 15:53:11.275", "cat" : "E", "code" : "11,0,0", "aux" : "{ 'pc' : '20/3/1', 'j1' : 18.525, 'j2' : 105.000, 'j3' : -2.577, 'j4' : -14.432, 'j5' : -0.776, 'j6' : 0.314, 'sin' : '00 01 00 00 00 00 00 00', 'sout' : '05 08 06 00 00 00 00 01', 'din' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0', 'dout' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0' }" }
@@ -1836,7 +2024,7 @@ GET /logManager/search
 { "id" : 18266, "ts" : "2023/11/20 15:00:33.789", "cat" : "H", "code" : "hist", "aux" : "( 738785)S3  .move P,spd=500mm/sec,accu=4,tool=0 " }
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -1857,7 +2045,7 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -1888,17 +2076,17 @@ $python test.py
 { "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 ```# 8. file_manager
 
-- 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
-- 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.## 8.1 file_manager/get
+- This covers functions such as reading file information from the controller, changing file names, and transferring files.
+- Functions for checking the existence of a directory or creating and deleting it are also covered.## 8.1 file_manager/get
 
-- 제어기의 파일 정보에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 8.1.1 `files`
+- Send a GET request for file information from the controller.
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 8.1.1 `files`
 
-### 설명
+### Description
 
 `files`
 
-- `GET` : 제어기로부터 파일 내용을 응답 받습니다.
+- `GET` : The file contents are responded to from the controller.
 
 ### path-parameter
 
@@ -1911,17 +2099,17 @@ GET /file_manager/files
 ```
 ?pathname=project/jobs/0001.job
 ```
-- `pathname` : 가져올 파일 이름
+- `pathname` : File name to get
 
 ### response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|파일 내용 반환|
-|`404 Not Found`| 파일 없을 때 에러 상태 코드 반환|
+|`200 OK`|Return file contents|
+|`404 Not Found`| Return error status code when file does not exist|
 
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -1950,7 +2138,7 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -1983,11 +2171,11 @@ S4   move P,tg=po1,spd=100%,accu=0,tool=1
      end
 ```## 8.1.2 `file_info`
 
-### 설명
+### Description
 
 `file_info`
 
-- `GET` : 파일 경로를 기반으로 해당 파일에 대한 정보를 반환합니다.
+- `GET` : Obtain information about that file based on the file path.
 
 ### path-parameter
 
@@ -2000,14 +2188,14 @@ GET /file_manager/file_info
 ```
 ?pathname=project/jobs/0001.job
 ```
-- `pathname` : 타겟 파일 경로
+- `pathname` : target file path
 
 ### response-body
 
-- [파일 정보](/99-schema/file_info)
-- 파일이 없을 시 `404 Not Found` 
+- [file information](/99-schema/file_info)
+- If the file does not exist, `404 Not Found`
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -2045,7 +2233,7 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -2067,11 +2255,11 @@ $python test.py
 {'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
 ```## 8.1.3 `file_list`
 
-### 설명
+### Description
 
 `file_list`
 
-- `GET` : 파일 및 디렉토리 리스트를 반환합니다.
+- `GET` : Obtain a list of files and directories.
 
 ### path-parameter
 
@@ -2081,27 +2269,27 @@ GET /file_manager/file_list
 
 ### query-parameter
 
-> query-parameter 를 반드시 입력해야합니다.  
+> query-parameter must be entered.
 ```
 ?path=project/jobs&incl_file=true&incl_dir=false
 ```
 
 |key|description|
 |:---|:---|
-|`path`|확인하려는 대상 폴더 경로|
-|`incl_file`|리스트 출력 시 파일 포함 여부|
-|`incl_dir`|리스트 출력 시 디렉토리 포함 여부|
+|`path`|Target path you want to check|
+|`incl_file`|Whether to include files when outputting the list|
+|`incl_dir`|Whether to include directories when outputting the list|
 
 
 ### response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|[파일 정보](/99-schema/file_info) `리스트`를 반환|
-|`404 Not Found`| 파일 없을 때 반환|
+|`200 OK`|return [file information](/99-schema/file_info) `list`|
+|`404 Not Found`| no file exists |
 
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -2150,7 +2338,7 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -2175,11 +2363,11 @@ $python final_test.py
 {'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
 ```## 8.1.4 `file_exist`
 
-### 설명
+### Description
 
 `file_exist`
 
-- `GET` : 타겟 파일의 존재 여부를 반환합니다.
+- `GET` : Obtain the existence of the target file.
 
 ### path-parameter
 
@@ -2188,21 +2376,21 @@ GET /file_manager/file_exist
 ```
 
 ### query-parameter
-> query-parameter 를 반드시 입력해야합니다.
+> query-parameter must be entered.
 ```
 ?pathname=project/jobs/0001.job
 ```
-- `pathname` : 타겟 파일 경로
+- `pathname` : target file path
 
 ### response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|`true` (파일 존재)|
-|`200 OK`|`false` (파일 없음)|
+|`200 OK`|`true` (file exists)|
+|`200 OK`|`false` (no file exist)|
 
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -2223,7 +2411,7 @@ hi6
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -2245,14 +2433,14 @@ $python test.py
 true
 ```## 8.2 file_manager/post
 
-- 제어기의 파일 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.# 8.2.1 `rename_file`
+- Sends a POST request for file information from the controller.
+- You must write the correct request-body for each API.# 8.2.1 `rename_file`
 
-## 설명
+## Description
 
 `rename_file`
 
-- `POST` : 타겟 파일의 파일 이름을 변경합니다.
+- `POST` : Change the file name of the target file.
 
 ## path-parameter
 
@@ -2268,18 +2456,18 @@ POST /file_manager/rename_file
 	"pathname_to"   : "project/jobs/4321.job"
 }
 ```
-- `pathname_from` : 변경 전 파일 경로
-- `pathname_to` : 변경 후 파일 경로
+- `pathname_from` : File path before change
+- `pathname_to` : File path after change
 
 ## response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 파일이 없어도 동작함 |
-|`http.client.BadStatusLine: HTTP/1.1 1 Unknown`| 타겟 파일의 이름 변경 완료 |
+|`200`| Works fine. |
+|`400`| No file exists to rename. |
 
 
-## 사용 예
+## Example
 
 <blockquote>
 
@@ -2302,35 +2490,35 @@ hi6
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
 import requests
 
-def rename_file() -> int:
+def rename_file():
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/file_manager/rename_file'
-    query_parameter = { "pathname_from" : "project/jobs/0001.job", 
-                       "pathname_to"   : "project/jobs/4321.job" }
+    head            = {'Content-Type': 'application/json; charset=utf-8'}
+    body            = { "pathname_from" : "project/jobs/0001.job", 
+                        "pathname_to"   : "project/jobs/4321.job" }
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
 
     return response.status_code
 
-print(rename_file())
+print(f"response: {rename_file()}")
 ```
 ```sh
 $python test.py
-파일 이름이 정상적으로 변경되면, 에러 로그가 출력됨
-없는 파일의 이름을 바꾸려고 시도하면 200 OK 가 출력됨
+response: 200
 ```# 8.2.2 `mkdir`
 
-## 설명
+## Description
 
 `mkdir`
 
-- `POST` : 타겟 경로에 디렉토리를 생성합니다.
+- `POST` : Create a directory in the target path.
 
 ## path-parameter
 
@@ -2342,17 +2530,17 @@ GET /file_manager/mkdir
 
 |key|value|description|
 |:---|:---|:---|
-|`path`|`str`|디렉토리를 생성할 위치|
+|`path`|`str`|Where to create the directory|
 
 ## response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 위치에 디렉토리 생성 완료 |
-|`500 Internal Server Error`| 타겟 위치에 디렉토리 이름이 중복되는 경우 |
+|`200 OK`| Directory creation completed in target location|
+|`500 Internal Server Error`| When directory names are duplicated in the target location |
 
 
-## 사용 예
+## Example
 
 <blockquote>
 
@@ -2377,7 +2565,7 @@ hi6
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -2400,11 +2588,11 @@ $python test.py
 response: 200
 ```# 8.2.3 `files`
 
-## 설명
+## Description
 
 `files`
 
-- `POST` : 타겟 경로에 파일을 전송합니다.
+- `POST` : Transfer the file to the target path.
 
 ## path-parameter
 
@@ -2414,21 +2602,20 @@ POST /file_manager/files/{target_filepath}
 
 ## path-variable
 
-- `target_filepath` : 확장자를 포함한 타겟 파일 경로
+- `target_filepath` : Target file path including extension.
 
 ## request-body
 
-- binary 형식의 파일
-- `Content-Type` 은 `application/octet-stream` 이어야합니다.
+- `Content-Type` must be `application/octet-stream`.
 
 ## response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 전송 완료 |
+|`200 OK`| Transfer completed |
 
 
-## 사용 예
+## Example
 
 <blockquote>
 
@@ -2447,7 +2634,7 @@ POST /file_manager/files/project/jobs/test.job
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -2475,13 +2662,13 @@ $python test.py
 response: 200
 ```## 8.3 file_manager/delete
 
-- 제어기의 파일 정보에 대한 DELETE 요청을 보냅니다.## 8.3.1 `files`
+- Send a DELETE request for file information from the controller.## 8.3.1 `files`
 
-### 설명
+### Description
 
 `files`
 
-- `DELETE` : 타겟 파일 또는 디렉토리를 삭제합니다.
+- `DELETE` : Deletes the target file or directory.
 
 ### path-parameter
 
@@ -2492,10 +2679,10 @@ DELETE /file_manager/files/{target-filepath}
 ### response-body
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 삭제 완료, 타겟이 없어도 200 반환됨 |
+|`200 OK`| Target deletion completed, 200 returned even if there is no target |
 
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -2512,7 +2699,7 @@ hi6
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -2534,22 +2721,22 @@ $python test.py
 response: 200
 ```# 9.task
 
-- 태스크와 관련된 내용들을 다룹니다.
-- 특정 태스크나 전체 태스크에 대해서 리셋을 할 수 있습니다.
-- 현재 태스크의 지역 또는 전역 변수에 대해서 값을 읽어오거나 새로운 변수를 선언할 수 있습니다.
-- 태스크 실행 중 특정 작업 흐름(ex. wait)에 대해서 특정 조치(ex. release)를 취할 수 있습니다.## 9.1 task/get
+- It covers content related to the task.
+- You can reset a specific task or all tasks.
+- You can read values from local or global variables of the current task or declare new variables.
+- During task execution, specific actions (e.g. release) can be taken for a specific work flow (e.g. wait).## 9.1 task/get
 
-- 태스크와 관련된 정보에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 9.2 task/post
+- Send a GET request for information related to the task.
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 9.2 task/post
 
-- 태스크와 관련된 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 9.2.1 `task/cur_prog_cnt`
+- Sends a POST request for information related to the task.
+- You must write the correct request-body for each API.## 9.2.1 `task/cur_prog_cnt`
 
-### 설명
+### Description
 
 `cur_prog_cnt` (current program counter)
 
-- `POST` : 태스크의 현재 프로그램 카운터를 설정합니다.
+- `POST` : Sets the current program counter for the task.
 
 ### path-parameter
 
@@ -2559,13 +2746,13 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ### request-body
 
-- [cur_prog_cnt 요청 파라미터](../../99-schema/cur_prog_cnt.md/#request-body)
+- [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md/#request-body)
 
 ### response-body
 
-- [cur_prog_cnt 응답 파라미터](../../99-schema/cur_prog_cnt.md/#response-body)
+- [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md/#response-body)
 
-### 사용 예
+### Example
 
 ```python
 request url:
@@ -2580,7 +2767,7 @@ request-body:
 }
 ```
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -2602,9 +2789,9 @@ $python python test.py
 {'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
 ```## 9.2.2 `task/reset`
 
-### 설명
+### Description
 
-- `POST` : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
+- `POST` : Perform a reset on the task. (Same operation as R.. 0 ENTER)
 
 ### path-parameter
 
@@ -2622,9 +2809,9 @@ POST /project/context/tasks[{task index}]/reset
 {}
 ```
 
-### 사용 예
+### Example
 
-0번 태스크 리셋 하기.
+reset task 0
 
 ```python
 request url:
@@ -2653,11 +2840,11 @@ $python test.py
 response: 200
 ```## 9.2.4 `assign_var_expr`
 
-### 설명
+### Description
 
 `assign_var_expr`
 
-- `POST` : 현재 태스크 구문의 변수를 재지정합니다.
+- `POST` : Reassigns a variable in the current task statement.
 
 ### path-parameter
 
@@ -2667,13 +2854,13 @@ POST /project/context/tasks[0]/assign_var_expr
 
 ### request-body
 
-- `name` : 변수명
-- `expr` : 변수에 대입할 수식
-- `save` : 저장 유무 (true/false). 변수 파일에 해당 데이터를 저장하기 위함입니다.
-- `scope` : 해당 변수의 유효 스코프 설정
-	|`local`|`global`|`미설정`|
+- `name` : variable name
+- `expr` : expression to substitute into variable
+- `save` : Whether to save (true/false). This is to save the data in the variable file.
+- `scope` : Setting the effective scope of the variable
+	|`local`|`global`|`Not set`|
 	|:---|:---|:---|
-	|지역 변수|전역 변수|전체 스코프|
+	|local variable|global variable|Full scope (local and global are set automatically)|
 
 
 ```json
@@ -2685,7 +2872,7 @@ POST /project/context/tasks[0]/assign_var_expr
 }
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -2695,7 +2882,7 @@ Hyundai Robot Job File;
     end
 ```
 
-상기 job 파일을 수행하여 태스크 상 지역 변수 a 가 선언된 상태일 경우
+When the above job file is executed and a local variable `a` is declared in the task
 
 ```python
 request url:
@@ -2712,7 +2899,7 @@ request-body
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -2749,11 +2936,11 @@ response: 200
 after: 777   
 ```## 9.2.5 `assign_var_json`
 
-### 설명
+### Description
 
 `assign_var_json`
 
-- `POST` : 현재 태스크 구문의 변수를 재지정합니다.
+- `POST` : Reassigns a variable in the current task statement.  
 
 ### path-parameter
 
@@ -2763,13 +2950,13 @@ POST /project/context/tasks[0]/assign_var_json
 
 ### request-body
 
-- `name` : 변수명
-- `json` : 변수에 대입할 json 형태의 문자열
-- `save` : 저장 유무 (true/false). 변수 파일에 해당 데이터를 저장하기 위함입니다.
-- `scope` : 해당 변수의 유효 스코프 설정
-	|`local`|`global`|`미설정`|
+- `name` : variable name
+- `json` : A json format `string` to be substituted into a variable.
+- `save` : Save contents (true/false). That is until you save that data to your activity file.
+- `scope` : Setting the effective scope of the variable
+	|`local`|`global`|`Not set`|
 	|:---|:---|:---|
-	|지역 변수|전역 변수|전체 스코프|
+	|local variable|global variable|Full scope (local and global are set automatically)|
 
 
 ```json
@@ -2781,7 +2968,7 @@ POST /project/context/tasks[0]/assign_var_json
 }
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -2791,7 +2978,7 @@ Hyundai Robot Job File;
     end
 ```
 
-상기 job 파일을 수행하여 태스크 상 지역 변수 a 가 선언된 상태일 경우
+When the above job file is executed and a local variable `a` is declared in the task
 
 ```python
 request url:
@@ -2808,7 +2995,7 @@ request-body
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -2850,12 +3037,12 @@ response: 200
 after: {'_type': 'JObject', 'test': 10}
 ```## 9.2.6 `release_wait`
 
-### 설명
+### Description
 
 `release_wait`
 
-- `POST` : 구문 정지해제
-- 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
+- `POST` : release syntax
+- Requirements: TP > system > 1: User environment > `wait(di/wi) release` > `Enable` click
 
 ### path-parameter
 
@@ -2871,10 +3058,10 @@ POST /project/context/tasks[0]/release_wait
 
 ### response-body
 
-- `200` : 정상 동작
-- `403` : 상기 필요 조건 불충족
+- `200` : request success
+- `403` : Failure to meet the above requirements
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -2888,7 +3075,7 @@ request-body
 
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 import requests
@@ -2910,11 +3097,11 @@ $python test.py
 response: 200
 ```## 9.2.3 `set_cur_pc_idx`
 
-### 설명
+### Description
 
 `set_cur_pc_idx`
 
-- `POST` : 현재 커서를 index 라인에 위치 시키는 함수
+- `POST` : Function that positions the current cursor at the index line
 
 ### path-parameter
 
@@ -2929,7 +3116,7 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 }
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -2945,7 +3132,7 @@ request-body
 
 </blockquote>
 
-Python Script
+Python Script Example
 
 ```python
 # test.py
@@ -2965,14 +3152,14 @@ print(f"response: {set_cur_pc_idx()}")
 ```
 ```sh
 $python test.py 
-response 200 # + TP 상 커서 위치 변경 됨
+response 200 # Cursor position on TP changed
 ```## 9.2.7 `solve_expr`
 
-### 설명
+### Description
 
 `solve_expr`
 
-- `POST` : 표현식(expression)을 풀어서 나오는 결과 값을 태스크의 지역 또는 전역 변수에 설정합니다.
+- `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
 
 ### path-parameter
 
@@ -2981,12 +3168,12 @@ POST /project/context/tasks[0]/solve_expr
 ```
 
 ### request-body
-- `expr` : 풀려고 하는 수식(expression)을 입력합니다
-- `scope` : `expr` 에 대한 스코프를 설정합니다.
+- `expr` : Enter the expression you want to solve
+- `scope` : Sets the scope for `expr`.
 
-	|`local`|`global`|`미설정`|
+	|`local`|`global`|`not set`|
 	|:---|:---|:---|
-	|지역 변수|전역 변수|전체 스코프|
+	|local variable|global variable|Full scope (local and global are set automatically)|
 
 ```json
 {
@@ -2998,15 +3185,15 @@ POST /project/context/tasks[0]/solve_expr
 ### response-body
 
 ```json
-13 // 현재 지정된 scope 안의 expr 값을 읽어옵니다.
+13 // Reads the expr value within the currently specified scope.
 ```
 
-### 사용 예
+### Example
 
 <blockquote>
 
 ```python
-# 1. 현재 Task 에서 선언된 "지역" 변수 a 값 읽어오기
+# 1. Read the value of “local” variable a declared in the current Task
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -3025,7 +3212,7 @@ response-body:
 <blockquote>
 
 ```python
-# 2. 현재 Task 에서 선언된 "전역" 변수 a 값 읽어오기
+# 2. Read the value of “global” variable a declared in the current Task
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -3044,7 +3231,7 @@ response-body:
 <blockquote>
 
 ```python
-# 3. 지역 변수 a 의 값에 대해서 -234 를 더하기
+# 3. Add -234 to the value of local variable a
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -3059,8 +3246,8 @@ response-body:
 
 </blockquote>
 
-Python Script 예시
-- 로봇 제어기의 태스크 영역에 지역 및 전역 변수 a 값이 설정된 상태로 하기 코드 실행
+Python Script Example
+- Execute the following code with the local and global variable a values set in the task area of the robot controller.
 
 ```python
 # test.py
@@ -3087,24 +3274,24 @@ $python test.py
 1000
 ```# 10. etc
 
-- 시스템 버전, 이벤트 로그, 클럭 등을 다루고 있습니다.# 10.1 clock
+- It covers system version, event log, clock, etc.# 10.1 clock
 
-- 제어기의 시스템 시간을 읽고 설정할 수 있습니다.## 10.1.1 clock/get
+- You can read and set the controller's system time.## 10.1.1 clock/get
 
-- 제어기 시스템 시간 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 10.1.1.1 `date_time`
+- Send a GET request for the controller system time.
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 10.1.1.1 `date_time`
 
-### 설명
+### Description
 
 `date_time`
 
-- `GET` : 설정된 시스템 시간을 가져옵니다.
+- `GET` : Obtain the set system time.
 
 ### response-body
 
-- [시스템 시간 정보](../../../99-schema/date_time.md)
+- [date time](../../../99-schema/date_time.md)
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -3125,7 +3312,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -3148,20 +3335,20 @@ $python test.py
 [11/20] 19:55
 ```## 10.1.2 clock/put
 
-- 제어기 시스템 시간 대한 PUT 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 10.1.2.1 `date_time`
+- Sends a PUT request to the controller system time.
+- You must write the correct request-body for each API.## 10.1.2.1 `date_time`
 
-### 설명
+### Description
 
 `date_time`
 
-- `PUT` : 시스템 시간을 변경합니다.
+- `PUT` : Change the system time.
 
 ### request-body
 
-- [시스템 시간 정보](../../../99-schema/date_time.md)
+- [date time](../../../99-schema/date_time.md)
 
-### 사용 예
+### Example
 
 <blockquote>
 
@@ -3181,7 +3368,7 @@ request-body:
 ```
 </blockquote>
 
-Python Script 예시
+Python Script Example
 
 ```python
 # test.py
@@ -3202,91 +3389,91 @@ print(f"response: {put_system_time()}")
 ```sh
 $python test.py
 response: 200
-```# 7. 스키마 (schema)
+```# Schema
 
-이 챕터는 Open API에서 사용되는 각종 열거자(enumeration)와 구조체(structure)의 참조자료(reference)를 담고 있습니다.
+This chapter contains references to various enumerations and structures used in Open API.
 
-# crdsys
+## crdsys
 
-## 설명
+### Description
 
-좌표계 (coordinate system)를 지정하는 열거자 (enumeration) 입니다.
+This is an enumeration that specifies the coordinate system.
 |value|description|
 |:---:|:---|
-|-1|다음 좌표계|
-|0|축|
-|1|직교|
-|2|사용자 좌표계|
-|3|툴|
-# cur_prog_cnt
+|`-1`|`Next` coordinate system|
+|`0`|`axis` coordinate system|
+|`1`|`orthogonal`(= `robot`) coordinate system|
+|`2`|`user` coordinate system|
+|`3`|`tool` coordinate system|
+## cur_prog_cnt
 
-## 설명
-태스크의 현재 프로그램 카운터를 설정합니다.
+### Description
+Sets the current program counter for the task.
 
-## request body
+### request body
 |key|type|description|
 |:---|:---|:---|
-|`pno`|int|프로그램 번호 (-1이면 현재 번호 유지)|
-|`sno`|int|스텝 번호 (-1이면 현재 번호 유지)|
-|`fno`|int|펑션 번호 (-1이면 현재 번호 유지)|
-|`ext_sel`|int|`0` : 내부선택(원격모드에선 금지됨) <br> `1` : 외부선택(원격모드에서만 허용됨)|
+|`pno`|int|Program number (if -1, keep current number)|
+|`sno`|int|Step number (if -1, keep current number)|
+|`fno`|int|Function number (if -1, keep current number)|
+|`ext_sel`|int|`0` : Internal selection (prohibited in remote mode) <br> `1` : External selection (only allowed in remote mode)|
 
-## response body
+### response body
 |key|type|description|
 |:---|:---|:---|
-|`sno_new`|int|새로 이동한 스텝 번호|
-|`fno_new`|int|새로 이동한 펑션 번호|
-|`ln_new`|int|새로 이동한 라인번호 (프로그램 헤더가 0, 첫 명령문이 1)|# date_time
+|`sno_new`|int|Newly moved step number|
+|`fno_new`|int|Newly moved function number|
+|`ln_new`|int|Newly moved line number (program header is 0, first statement is 1)|## date_time
 
-## 설명
+### Description
 
-시스템 시간 관련 정보를 나타냅니다.
+Indicates system time-related information.
 |value|type|description|
 |:---:|:---|:---|
-|"year"|`int`|현재 시스템의 년도|
-|"mon"|`int`|현재 시스템의 월|
-|"day"|`int`|현재 시스템의 일|
-|"hour"|`int`|현재 시스템의 시|
-|"min"|`int`|현재 시스템의 분|
-|"sec"|`int`|현재 시스템의 초|
-# file_info
+|"year"|`int`|Year of current system|
+|"mon"|`int`|Month of current system|
+|"day"|`int`|Day of current system|
+|"hour"|`int`|Hour of current system|
+|"min"|`int`|Minute of current system|
+|"sec"|`int`|Second of current system|
+## file_info
 
-## 설명
+### Description
 
-파일 정보 요청 시 반환되는 파라미터 입니다.
-
-|key|type|description|
-|:---:|:---|:---|
-|fname|`str`|파일 이름|
-|size|`int`|파일 크기(B, Byte)|
-|year|`int`| 파일이 수정된 `년` |
-|month|`int`| 파일이 수정된 `월` |
-|mday|`int`| 파일이 수정된 `일` |
-|wday|`int`| 파일이 수정된 `요일` (0:일, 1:월, 2:화, ...) |
-|hour|`int`| 파일이 수정된 `시` |
-|min|`int`| 파일이 수정된 `분` |
-|sec|`int`| 파일이 수정된 `초` |
-|is_dir|`bool`| 현재 파일이 디렉토리인지 확인 |
-|readonly|`bool`| 읽기 전용 파일 여부 확인 |
-# jobs_info
-
-## 설명
-
-job 파일 정보 파라미터 입니다.
+This parameter is returned when requesting file information.
 
 |key|type|description|
 |:---:|:---|:---|
-|fname|`str`|job 파일명|
-|job_commnet|`str`|주석|
-|n_step|`int`|스텝 개수|
-|n_total_ax|`int`|총 축 수|
-|n_aux_ax|`int`|부가축 수|
-# mechinfo
+|fname|`str`|file name|
+|size|`int`|file size(B, Byte)|
+|year|`int`| `year` the file was modified |
+|month|`int`| `month` the file was modified` |
+|mday|`int`| `day` the file was modified |
+|wday|`int`| `Day of the week` on which the file was modified (0: Sun, 1: Mon, 2: Tue, ...) |
+|hour|`int`| `hour` the file was modified |
+|min|`int`| `minute` the file was modified |
+|sec|`int`| `second` the file was modified |
+|is_dir|`bool`| Check if current file is a directory |
+|readonly|`bool`| Check if the file is read-only |
+## jobs_info
 
-## 설명
+### Description
 
-메커니즘 정보(mechanism info)입니다.
-어떤 메커니즘들이 사용되는 지를 bit-field로 지정합니다.  
+This is a job file information parameter.
+
+|key|type|description|
+|:---:|:---|:---|
+|fname|`str`|name of job file|
+|job_comment|`str`|comment|
+|n_step|`int`|number of steps|
+|n_total_ax|`int`|number of axes|
+|n_aux_ax|`int`|Number of additional axes|
+## mechinfo
+
+### Description
+
+Mechanism info
+Celebrate with a bit-field which activities are used.
 
 - bit 0 : M0
 - bit 1 : M1
@@ -3297,36 +3484,36 @@ job 파일 정보 파라미터 입니다.
 - bit 6 : M6
 - bit 7 : M7
 
-## 사용 예
+### Example
 
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0
-# 메커니즘 M0, M1, M4를 지정합니다.
+# Specify mechanisms M0, M1, and M4.
 ```
-# op_cnd
+## op_cnd
 
-## 설명
-op_cnd (operation condition) : 로봇의 조건설정 값입니다.  
-TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 있습니다.
+### Description
+op_cnd (operation condition) : value of `Condition setting`  
+You can check the values when you press the `Condition setting` button in TP.  
 
 <br>
 
 |key|value|description|
 |:---|:---|:---|
-|playback_mode| `1` : 1사이클 <br> `2` : 반복|자동운전 동작 사이클 모드|
-|step_goback_max_spd|`10` ~ `250` (mm/sec)|스텝 전/후진 시 최고속|
-|step_go_func_ex|`0` : 무효 <br> `1` : 유효 <br> `2` : I ON (=DI신호)|스텝 전진 시 펑션 실행|
-|func_reexe_on_trace| `0` : 무효 <br> `1` : 유효 |스텝 후진 후, 전진 시 펑션 재실행|
-|path_recov_confirm|`0` : 무효 <br> `1` : 유효|스텝 전/후진 시 경로복구|
-|playback_spd_rate|`1` ~ `100` (%)|자동운전 속도비율|
-|robot_lock|`0` : 무효 <br> `1` : 유효 |로봇 Lock|
-|intp_base|`0` : 로봇툴 <br> `1` : 정치툴|보간 기준|
-|ucrd_num|`0` ~ `20`|사용자 좌표계 지정|
-|plc_mode|`0` : Off -> Stop <br> `1` : Stop -> Remote Stop <br> `2` : Remote Stop -> Remote Stop <br> `3` : Remote Run -> Remote Stop <br> `4` : Run -> Off|PLC 동작 모드|
+|playback_mode| `1` : 1 cycle <br> `2` : repeat|Automatic operation cycle mode|
+|step_goback_max_spd|`10` ~ `250` (mm/sec)|Maximum speed when stepping forward/reverse|
+|step_go_func_ex|`0` : invalid <br> `1` : valid <br> `2` : I ON (=DI signal)|Function execution when advancing step|
+|func_reexe_on_trace| `0` : invalid <br> `1` : valid |After stepping backwards, re-execute the function when moving forward|
+|path_recov_confirm|`0` : invalid <br> `1` : valid|Path recovery when stepping forward/backward|
+|playback_spd_rate|`1` ~ `100` (%)|Automatic operation speed ratio|
+|robot_lock|`0` : invalid <br> `1` : valid |Robot Lock|
+|intp_base|`0` : robot tool <br> `1` : stationary tool|Interpolation criteria|
+|ucrd_num|`0` ~ `20`|Specify user coordinate system|
+|plc_mode|`0` : Off -> Stop <br> `1` : Stop -> Remote Stop <br> `2` : Remote Stop -> Remote Stop <br> `3` : Remote Run -> Remote Stop <br> `4` : Run -> Off|PLC operation mode|
 
 <br>
 
-## 예 (example)
+### Example
 
 ```python
 {
@@ -3343,22 +3530,22 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
     "plc_mode": 4
 }
 ```
-# Pose
+## Pose
 
-## 설명
+### Description
 
-포즈(pose) 데이터입니다.
+Pose Data.
 
 |key|description|
 |:---|:---|
-|x|X위치 (mm)|
-|y|Y위치 (mm)|
-|z|Z위치 (mm)|
-|rx|RX각도 (deg.)|
-|ry|RY각도 (deg.)|
-|rz|RZ각도 (deg.)|
-|j1~j16|1~16축 값(mm or deg.)|
-|crd|[좌표계](./crdsys.md)|
-|mechinfo|[메커니즘정보](./mechinfo.md)|
-|nsync|센서동기 값의 개수 (0~2)|
-|sync|센서동기 값 (문자열). e.g. `"sync(220.5,195.3)"`|
+|x|X position (mm)|
+|y|Y position (mm)|
+|z|Z position (mm)|
+|rx|RX Angle (deg.)|
+|ry|RY Angle (deg.)|
+|rz|RZ Angle (deg.)|
+|j1~j16|1~16 axis values(mm or deg.)|
+|crd|[Coordinate system](./crdsys.md)|
+|mechinfo|[Mechanism information](./mechinfo.md)|
+|nsync|Number of sensor synchronization values (0~2)|
+|sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|
