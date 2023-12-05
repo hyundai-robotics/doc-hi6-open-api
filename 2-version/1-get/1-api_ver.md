@@ -2,7 +2,9 @@
 
 ### 설명
 
-- GET : Open API version 번호를 얻습니다.
+`api_ver`
+
+- `GET` : Open API version 번호를 얻습니다.
 
 ### path-parameter
 
