@@ -2,7 +2,7 @@
 
 * [Hi6 Open API 설명서](README.md)
 * [1. 개요](./1-intro/README.md)
-  * [1.1 Hi6 Open API 개요](./1-intro/1-concept/README.md)
+  * [1.1 Hi6 Open API 에 대하여](./1-intro/1-concept/README.md)
   * [1.2 필요한 사전 지식](./1-intro/2-prerequisite/README.md)
   * [1.3 Hi6 Open API 예제 코드](./1-intro/3-sample-code/README.md)
   	 * [1.3.1 예제 코드 - C#](./1-intro/3-sample-code/1-csharp.md)
