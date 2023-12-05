@@ -9,7 +9,7 @@ Additionally, simple UI configuration helps you understand how to use it.
 
 You can check the main UI composition through the picture below.
 
-![postman_description](../../_assets/01_postman_desc.png)
+<img src="../../_assets/01_postman_desc.png" height="460vh">
 
 <blockquote>
 
