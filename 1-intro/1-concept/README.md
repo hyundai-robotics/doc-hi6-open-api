@@ -25,7 +25,7 @@ In this way, developers can use the Open API in the document to remotely control
 
 * There may be continuous version updates in the future. If the version is updated, please refer to the corresponding section.
 
-* For developers who are familiar with developing HTTP REST API client functions, you can skip from [`1.2 Required prior knowledge`](../2-prerequisite/README.md) to [`1.4 Simple API call without coding`](../4-api-test/README.md).
+* For developers who are familiar with developing HTTP REST API client functions, you can skip from [1.2 Required prior knowledge](../2-prerequisite/README.md) to [1.4 Simple API call without coding](../4-api-test/README.md).
 
 
 {% hint style="warning" %}
