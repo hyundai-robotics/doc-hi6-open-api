@@ -26,14 +26,14 @@
 
 * [4. control](4-control/README.md)
   * [4.1 get](4-control/1-get/README.md)
-  	* [4.1.1 op_cnd](4-control/1-get/1-op_cnd.md)
-  	* [4.1.2 ios-dio](4-control/1-get/2-ios-dio.md)
-  	* [4.1.3 ios-sio](4-control/1-get/3-ios-sio.md)
-  	* [4.1.4 ucss-ucs_nos](4-control/1-get/4-ucss-ucs_nos.md)
+    * [4.1.1 op_cnd](4-control/1-get/1-op_cnd.md)
+    * [4.1.2 ios-dio](4-control/1-get/2-ios-dio.md)
+    * [4.1.3 ios-sio](4-control/1-get/3-ios-sio.md)
+    * [4.1.4 ucss-ucs_nos](4-control/1-get/4-ucss-ucs_nos.md)
   * [4.2 post](4-control/2-post/README.md)
-  	* [4.2.1 ios-dio](4-control/2-post/1-ios-dio.md)
+    * [4.2.1 ios-dio](4-control/2-post/1-ios-dio.md)
   * [4.3 put](4-control/3-put/README.md)
-  	* [4.3.1 op_cnd](4-control/3-put/1-op_cnd.md)
+    * [4.3.1 op_cnd](4-control/3-put/1-op_cnd.md)
   
 * [5. robot](5-robot/README.md)
   * [5.1 get](5-robot/1-get/README.md)        
@@ -56,7 +56,7 @@
   
 * [7. log_manager](7-log_manager/README.md)
   * [7.1 get](7-log_manager/1-get/README.md)
-	* [7.1.1 search](7-log_manager/1-get/1-search.md)
+    * [7.1.1 search](7-log_manager/1-get/1-search.md)
 
 * [8. file_manager](8-file_manager/README.md)
   * [8.1 get](8-file_manager/1-get/README.md)
