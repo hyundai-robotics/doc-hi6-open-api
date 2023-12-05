@@ -7,7 +7,7 @@
 
 ### 1.5.1. 주요 UI 구성
 
-아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다.  
+아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다.<br>
 
 <img src="../../_assets/01_postman_desc.png" width="990vw">
 
@@ -41,8 +41,9 @@
 
 3. `Response` 확인 및 `Code snippet` 참조
 	- `request` 요청이 정상적으로 완료되면 아래 그림과 같이 `HTTP Status` 가 `200 OK`로 응답합니다. ([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 참조)
-	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.
-	<img src="../../_assets/04_postman_post_result_check.png" width="990vw">
+	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.  
+
+	<br><img src="../../_assets/04_postman_post_result_check.png" width="990vw">
 
 		<blockquote>
 
