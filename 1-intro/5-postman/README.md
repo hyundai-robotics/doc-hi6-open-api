@@ -9,7 +9,7 @@
 
 아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다. <br>
 
-<img src="../../_assets/01_postman_desc.png" width="90%">
+<img src="../../_assets/01_postman_desc.png" width="950vw">
 
 <blockquote>
 
@@ -27,7 +27,7 @@
 1. `Request Header` 작성 
 	- Headers 탭에 아래의 Key-Value를 입력합니다.
   	- Content-Type 관련 ([postman](https://blog.postman.com/what-are-http-headers/#Content-type) 참조)
-	<br><img src="../../_assets/02_postman_headers.png" width="50%">
+	<br><img src="../../_assets/02_postman_headers.png" width="650vw">
 
 <br>
 
@@ -35,14 +35,14 @@
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
 	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md) 참조)
 	- Send를 클릭합니다.  
-		<img src="../../_assets/03_postman_post.png" width="50%">
+		<img src="../../_assets/03_postman_post.png" width="550vw">
 
 <br>
 
 3. `Response` 확인 및 `Code snippet` 참조
 	- `request` 요청이 정상적으로 완료되면 아래 그림과 같이 `HTTP Status` 가 `200 OK`로 응답합니다. ([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 참조)
 	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.  
-	<img src="../../_assets/04_postman_post_result_check.png" width="90%">  
+	<img src="../../_assets/04_postman_post_result_check.png" width="950vw">  
 
 		<blockquote>
 
