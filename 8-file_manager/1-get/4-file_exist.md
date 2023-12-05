@@ -13,10 +13,13 @@ GET /file_manager/file_exist
 ```
 
 ### query-parameter
-> query-parameter must be entered.
-```
+
+query-parameter must be entered.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
+
 - `pathname` : target file path
 
 ### response-body

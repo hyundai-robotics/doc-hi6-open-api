@@ -14,9 +14,12 @@ GET /file_manager/files
 
 ### query-parameter
 
-```
+query-parameter must be entered.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
+
 - `pathname` : File name to get
 
 ### response-body

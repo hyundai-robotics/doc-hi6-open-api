@@ -14,8 +14,9 @@ GET /file_manager/file_list
 
 ### query-parameter
 
-> query-parameter must be entered.
-```
+query-parameter must be entered.  
+
+```text
 ?path=project/jobs&incl_file=true&incl_dir=false
 ```
 
@@ -30,7 +31,7 @@ GET /file_manager/file_list
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|return [file information](/99-schema/file_info) `list`|
+|`200 OK`|return [file information](../../99-schema/file_info) `list`|
 |`404 Not Found`| no file exists |
 
 

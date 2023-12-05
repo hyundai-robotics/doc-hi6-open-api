@@ -14,14 +14,17 @@ GET /file_manager/file_info
 
 ### query-parameter
 
-```
+query-parameter must be entered.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
+
 - `pathname` : target file path
 
 ### response-body
 
-- [file information](/99-schema/file_info)
+- [file information](../../99-schema/file_info)
 - If the file does not exist, `404 Not Found`
 
 ### Example
