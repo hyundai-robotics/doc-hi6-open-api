@@ -10,7 +10,7 @@ Please refer to the manual below or take training at the Hyundai Robotics Joint 
 
 Open API is an HTTP-based REST API.Various development languages provide libraries for calling REST API (aka RESTful API),  
 and many developers use them to develop programs. Unless you are an experienced developer,  
-you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About Hi6 Open API](./1-intro.md#11-overview).
+you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About Hi6 Open API](../1-concept/README.md).
 
 In this regard, please refer to the points below.
 
