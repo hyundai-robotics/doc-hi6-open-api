@@ -2476,7 +2476,7 @@ request-body:
 	"pathname_to"   : "project/jobs/4321.job"
 }
 ```
-```
+```text
 hi6
 `-- project
     `-- jobs
@@ -2549,7 +2549,7 @@ request-body:
 }
 ```
 
-```
+```text
 hi6
 `-- project
     |-- jobs
@@ -2615,7 +2615,7 @@ POST /file_manager/files/{target_filepath}
 
 <blockquote>
 
-```
+```text
 hi6
 `-- project
     |-- jobs
@@ -3545,4 +3545,25 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 |crd|[좌표계](./crdsys.md)|
 |mechinfo|[메커니즘정보](./mechinfo.md)|
 |nsync|센서동기 값의 개수 (0~2)|
-|sync|센서동기 값 (문자열). e.g. `"sync(220.5,195.3)"`|
+|sync|센서동기 값 (문자열). e.g. `"sync(220.5,195.3)"`|## tool_data
+
+### 설명
+
+로봇의 툴 데이터입니다.
+
+|key|description|
+|:---:|:---|
+|`x`|X위치 (mm)|
+|`y`|Y위치 (mm)|
+|`z`|Z위치 (mm)|
+|`rx`|RX각도 (deg.)|
+|`ry`|RY각도 (deg.)|
+|`rz`|RZ각도 (deg.)|
+|`mass`|중량 (kg.)|
+|`cx`|무게중심 X위치 (mm)|
+|`cy`|무게중심 X위치 (mm)|
+|`cz`|무게중심 X위치 (mm)|
+|`ixx`|이너셔(inertial) X (kgm2)|
+|`iyy`|이너셔(inertial) Y (kgm2)|
+|`izz`|이너셔(inertial) Z (kgm2)|
+|`mass_esti`|부하추정 중량 (kg.)|
