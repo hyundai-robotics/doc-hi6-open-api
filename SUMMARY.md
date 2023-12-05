@@ -1,7 +1,7 @@
 ﻿# Table of contents
 
 * [Hi6 Open API 설명서](README.md)
-* [1. 개요](./1-intro/1-intro.md)
+* [1. 개요](./1-intro/README.md)
   * [1.1 Hi6 Open API 개요](./1-intro/1-intro.md#11-개요)
     * [1.1.1 Hi6 Open API 에 대하여](./1-intro/1-intro.md#111-hi6-open-api-에-대하여)
     * [1.1.2 시작하기 전에 꼭 확인하세요](./1-intro/1-intro.md#112-시작하기-전에-꼭-확인하세요)
