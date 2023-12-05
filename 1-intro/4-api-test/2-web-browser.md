@@ -24,7 +24,7 @@ The following extension program is an API tester used by many developers around 
 
 Through this program, you can easily call various APIs like `postman`.
 
-![talend_api_tester.png](../../_assets/06_Talend_api_tester.png)  
+<img src="../../_assets/06_Talend_api_tester.png" height="850vh">
 
 <blockquote>
 
