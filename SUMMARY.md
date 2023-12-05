@@ -2,9 +2,9 @@
 
 * [Hi6 Open API 설명서](README.md)
 * [1. 개요](./1-intro/README.md)
-  * [1.1 Hi6 Open API 개요](./1-intro/1-intro.md#11-개요)
-    * [1.1.1 Hi6 Open API 에 대하여](./1-intro/1-intro.md#111-hi6-open-api-에-대하여)
-    * [1.1.2 시작하기 전에 꼭 확인하세요](./1-intro/1-intro.md#112-시작하기-전에-꼭-확인하세요)
+  * [1.1 Hi6 Open API 개요](./1-intro/1-intro.md)
+    * 1.1.1 Hi6 Open API 에 대하여
+    * 1.1.2 시작하기 전에 꼭 확인하세요
   * [1.2 필요한 사전 지식](./1-intro/2-prerequisite.md#12-필요한-사전-지식)
     * [1.2.1 api 란](./1-intro/2-prerequisite.md#121-api-란)
     * [1.2.2 rest api 란](./1-intro/2-prerequisite.md#122-rest-api-란)
