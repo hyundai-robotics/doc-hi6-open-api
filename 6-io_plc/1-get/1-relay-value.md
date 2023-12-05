@@ -16,15 +16,11 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 * (`di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다. 나머지 `relay_type`에는 지정하지 않습니다.)
 
-- `obj_type` : 객체 타입
-  - `fb`
-  - `fn`
+- `obj_type` : 객체 타입 (`fb`, `fn`)
 
-- `obj_idx` : 객체 인덱스 (fb: 0~9, fn: 0~63)
+- `obj_idx` : 객체 인덱스 (`fb`: `0` ~ `9`, `fn`: `0` ~ `63`)
 
-- `relay_type` : 
-	|`di`|`do`|`x` |`y` |`m` |`s` |`r`|`k`|
-	|:---|:---|:---|:---|:---|:---|:---|:---|
+- `relay_type` : `di`, `do`, `x` , `y` , `m` , `s` , `r`, `k`
 
 	
 
