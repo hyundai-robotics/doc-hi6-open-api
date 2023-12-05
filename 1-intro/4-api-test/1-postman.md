@@ -28,7 +28,7 @@ You can check the main UI composition through the picture below.
 	- Enter the `Key`, `Value` below in the Headers tab.
   	- About `Content-Type` ([ref](https://blog.postman.com/what-are-http-headers/#Content-type))
 	<br>
-	![postman_headers](../../_assets/02_postman_headers.png)
+	<br><img src="../../_assets/02_postman_headers.png" height="130vh">
 
 <br>
 
