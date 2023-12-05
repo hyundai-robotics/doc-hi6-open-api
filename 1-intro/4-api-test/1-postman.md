@@ -9,7 +9,7 @@ Additionally, simple UI configuration helps you understand how to use it.
 
 You can check the main UI composition through the picture below.
 
-<img src="../../_assets/01_postman_desc.png" height="460vh">
+<img src="../../_assets/01_postman_desc.png" style="max-height: 55vh;">
 
 <blockquote>
 
@@ -27,8 +27,7 @@ You can check the main UI composition through the picture below.
 1. `Request Header`  
 	- Enter the `Key`, `Value` below in the Headers tab.
   	- About `Content-Type` ([ref](https://blog.postman.com/what-are-http-headers/#Content-type))
-	<br>
-	<br><img src="../../_assets/02_postman_headers.png" height="130vh">
+	<br><img src="../../_assets/02_postman_headers.png" style="max-height: 14vh;">
 
 <br>
 
@@ -36,15 +35,14 @@ You can check the main UI composition through the picture below.
 	- Select API method as `POST` and enter URL.  
 	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
 	- Click `Send`  
-	<br>  
-	<img src="../../_assets/03_postman_post.png" height="280vh">
+		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
 <br>
 
 3. `Response` and `Code snippet`
 	- `request` If the request is completed normally, `HTTP Status` responds with `200 OK` as shown below.([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
 	- You can also check the `Code snippet` for each language to which the URL is applied.  
-		<img src="../../_assets/04_postman_post_result_check.png" height="500vh">  
+		<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">  
 		<blockquote>
 
 		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
