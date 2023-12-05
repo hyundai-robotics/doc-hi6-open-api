@@ -34,7 +34,8 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 아래 그림을 통해서 Open API 역할을 보다 쉽게 이해할 수 있습니다.
 
 
-<img src="../../_assets/05_open_api_flow.png" height="250vh">
+<img src="../../_assets/05_open_api_flow.png" style="max-height: 25vh;">
+
 
 위 그림에서 주황색으로 표시된 부분들은 Open API 의 역할을 보여주고 있습니다.  
 
@@ -323,7 +324,7 @@ total request time : 0.060544490814208984 seconds
 
 아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다. <br>
 
-<img src="../../_assets/01_postman_desc.png" height="460vh">
+<img src="../../_assets/01_postman_desc.png" style="max-height: 55vh;">
 
 <blockquote>
 
@@ -341,7 +342,7 @@ total request time : 0.060544490814208984 seconds
 1. `Request Header` 작성 
 	- Headers 탭에 아래의 Key-Value를 입력합니다.
   	- Content-Type 관련 ([postman](https://blog.postman.com/what-are-http-headers/#Content-type) 참조)
-	<br><img src="../../_assets/02_postman_headers.png" height="130vh">
+	<br><img src="../../_assets/02_postman_headers.png" style="max-height: 14vh;">
 
 <br>
 
@@ -349,14 +350,14 @@ total request time : 0.060544490814208984 seconds
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
 	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)
 	- Send를 클릭합니다.  
-		<img src="../../_assets/03_postman_post.png" height="280vh">
+		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
 <br>
 
 3. `Response` 확인 및 `Code snippet` 참조
 	- `request` 요청이 정상적으로 완료되면 아래 그림과 같이 `HTTP Status` 가 `200 OK`로 응답합니다. ([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 참조)
 	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.  
-	<img src="../../_assets/04_postman_post_result_check.png" height="500vh">  
+	<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">
 
 		<blockquote>
 
@@ -389,7 +390,7 @@ total request time : 0.060544490814208984 seconds
 
 해당 프로그램을 통해 `postman` 처럼 다양한 API 들에 대해서 간편하게 호출을 해볼 수 있습니다.
 
-<img src="../../_assets/06_Talend_api_tester.png" height="850vh">
+<img src="../../_assets/06_Talend_api_tester.png" style="max-height: 80vh;">
 
 <blockquote>
 
