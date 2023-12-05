@@ -22,14 +22,19 @@ Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 를 활용하�
 
 {% endhint %}## 1.1 개요
 
+Hi6 Open API 와 관련된 아래의 기본적인 내용들을 확인하실 수 있습니다.
 
-### 1.1.1 Hi6 Open API 에 대하여
+[1.1 Hi6 Open API 개요](./1-concept/README.md) <br>
+[1.2 필요한 사전 지식](./2-prerequisite/README.md) <br>
+[1.3 Hi6 Open API 예제 코드](./3-sample-code/README.md) <br>
+[1.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)### 1.1 Hi6 Open API 에 대하여
 
 HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 제어기(이하, Hi6)를 모니터링하고 원격으로 제어하기 위한 API 를 해당 문서에서 공개합니다.<br>
 이를 통해 개발자들은 Hi6 개발에 적용된 소스코드에 대한 깊은 이해 없이도 Hi6의 다양한 데이터를 읽고 쓸 수 있습니다.<br>
 아래 그림을 통해서 Open API 역할을 보다 쉽게 이해할 수 있습니다.
 
-![open_api_flow_png](../_assets/05_open_api_flow.PNG)
+
+<img src="../../_assets/05_open_api_flow.png" height="250vh">
 
 위 그림에서 주황색으로 표시된 부분들은 Open API 의 역할을 보여주고 있습니다.  
 
@@ -41,19 +46,16 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 이처럼 개발자는 해당 문서의 Open API 를 활용해서 Hi6 와 이더넷으로 연결된 본인의 데스크탑, 노트북, 태블릿 pc 등을 http 와 REST API 기반으로 원격 제어 또는 모니터링을 할 수 있게 됩니다.
 
 
-<br>
+<br><br>
 
 
-### 1.1.2 시작하기 전에 꼭 확인하세요!
+### 시작하기 전에 꼭 확인하세요!
 
 * 현재 문서는 초기 버전으로 Hi6 Open API 버전 5를 기준으로 작성되었습니다.
 
 * 이후 지속적으로 버전 업데이트가 있을 수 있습니다. 버전이 업데이트 되는 경우, 해당 section 을 참고하시기 바랍니다.
 
-* HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, `1.2 필요한 사전 지식`부터 `1.5 postman` 까지 건너뛰어도 좋습니다.
-
-
-<br>
+* HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`1.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`1.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
 
 
 {% hint style="warning" %}
@@ -62,7 +64,59 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 본 문서에 명시되지 않은 URL 및 속성은 동일 API 버전에서 예고없이 변경될 수 있으므로, 주의 바랍니다.
 
-{% endhint %}## 1.3 예제 코드
+{% endhint %}## 1.2 필요한 사전 지식
+
+Open API를 활용하기 위해서는 Hi6 제어기의 기본적인 사용법을 습득해야 합니다.<br>
+아래 설명서를 참고하시거나 현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
+
+- [Hi6 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/README)
+- [현대로보틱스 공동훈련센터](https://www.hyundai-robotics.com/customer/customer5intro.html)
+
+<br>
+
+Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
+다양한 개발 언어들에서 REST API (일명 RESTful API) 호출을 위한 라이브러리를 제공하고 있으며 많은 개발자들이 이를 이용해 프로그램을 개발하고 있습니다.<br>
+이러한 숙련된 개발자가 아니라면, [1.1 Hi6 Open API 에 대하여](.././1-concept/README.md)에서 언급한 웹 기반의 서비스 호출과 응답이 어떻게 이뤄지는지에 대한 기본적인 개념에는 익숙한 상태여야만 합니다.<br>
+
+이와 관련하여 아래 사항들을 참고하시기 바랍니다.
+
+* 아래의 간단한 API 관련 설명이 낯설거나 이를 응용한 개발 경험이 풍부한 숙련자가 아니면 먼저 학습을 한 후에 해당 문서를 활용하기 바랍니다. 
+* 학습이 필요한 경우, REST API 호출을 통한 클라이언트 기능의 코딩 방법을 학습하시기 바랍니다.
+
+<br>
+
+
+{% hint style="warning" %}
+
+당사는 통상적인 REST API 클라이언트 코딩 방법에 대한 문의는 받지 않습니다.
+
+당사는 Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 사용에 의해 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
+
+{% endhint %}
+
+---- 
+
+### 1.2.1 API 란?
+
+`API`(Application Programming Interface)란 어플리케이션 소프트웨어를 빌드하고 통합하기 위한 `정의 및 프로토콜 세트`입니다 ([참조](https://www.redhat.com/ko/topics/api/what-are-application-programming-interfaces)).  
+사용자가 `특정한 방식으로 구성된 요청`을 보내면 제공자의 소프트웨어가 이에 `응답하는 방식`입니다.  
+이를 통해 구현 방식을 알지 못하는 제품 또는 서비스와도 통신할 수 있으며 어플리케이션 개발을 간소화하여 시간과 비용을 절약할 수 있습니다.
+
+<br>
+
+
+### 1.2.2 REST API 란?
+
+`REST`(Representational State Transfer)는 API 작동 방식에 대한 조건을 부과하는 `소프트웨어 아키텍처`입니다.<br>
+`REST API`는 REST 아키텍처 스타일을 따르는 API 를 뜻합니다. RESTful API 라고도 합니다 ([참조](https://aws.amazon.com/ko/what-is/restful-api/)).<br>
+HTTP 요청을 통해 통신함으로써 리소스 내에서 레코드의 작성(Create), 읽기(Read), 업데이트(Update) 및 삭제(Delete) 등의 표준 데이터베이스 기능(CRUD)을 수행합니다.<br>
+
+개발자는 종종 4가지의 일반적인 Hypertext Transfer Protocol(HTTP) 메서드를 사용하여 RESTful API를 구현합니다 ([참조](https://aws.amazon.com/ko/what-is/restful-api/)).<br>
+
+- `GET` : 클라이언트는 GET을 사용하여 서버의 지정된 URL에 있는 리소스에 액세스합니다. GET 요청을 캐싱하고 RESTful API 요청에 파라미터를 넣어 전송하여 전송 전에 데이터를 필터링하도록 서버에 지시할 수 있습니다.
+- `POST` : 클라이언트는 POST를 사용하여 서버에 데이터를 전송합니다. 여기에는 요청과 함께 데이터 표현이 포함됩니다. 동일한 POST 요청을 여러 번 전송하면 동일한 리소스를 여러 번 생성하는 부작용이 있습니다.
+- `PUT` : 클라이언트는 PUT을 사용하여 서버의 기존 리소스를 업데이트합니다. POST와 달리, RESTful 웹 서비스에서 동일한 PUT 요청을 여러 번 전송해도 결과는 동일합니다.
+- `DELETE` : 클라이언트는 DELETE 요청을 사용하여 리소스를 제거합니다. DELETE 요청은 서버 상태를 변경할 수 있습니다. 하지만 사용자에게 적절한 인증이 없으면 요청은 실패합니다.## 1.3 예제 코드
 
 다양한 개발 언어들은 REST API 호출을 위한 라이브러리를 제공하고 있습니다. 활용방법은 각 개발언어의 기술 문서들을 쉽게 검색하여 참고할 수 있습니다.
 
@@ -113,7 +167,7 @@ Console.WriteLine(str);
 ```
 
 위 소스코드가 포함된 실행 가능한 C# WinForms 샘플 프로그램을 아래 Github 링크를 통해 확인하실 수 있습니다.
-> 링크 : https://github.com/hyundai-robotics/OpenAPI### 1.3.2 예제 코드 - python
+> 링크 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)### 1.3.2 예제 코드 - python
 
 예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)` 두 가지 방식에 대해서 설명합니다.
 
@@ -129,15 +183,15 @@ Console.WriteLine(str);
 따라서 실제 애플리케이션을 개발할 때에는 비동기식 요청 기반으로 작성하시기 바랍니다.
 - Hi6 Open API 설명에 작성된 Python 스크립트 예시는 이해하기 쉽도록 동기적으로 작성되었으니 유의하시기 바랍니다.
 
-<br>
+<br><br>
 
-## a. 동기식 요청
-- 동기식은 하나의 요청이 끝나고 응답이 올 때까지 다른 task 의 실행이 불가능한 blocking 상태의 요청 방식 입니다.
-- python 에서 `동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `requests` 입니다.
-- `requests` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다. 
-	```sh
-	$pip install requests
-	```
+### a. 동기식 요청
+동기식은 하나의 요청이 끝나고 응답이 올 때까지 다른 task 의 실행이 불가능한 blocking 상태의 요청 방식 입니다.  
+python 에서 `동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `requests` 입니다.  
+`requests` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다.   	
+```sh
+$pip install requests
+```
 - 통신시 응답을 받지 못하거나 응답을 받는데 시간이 오래 걸리는 경우에는 hanging 문제가 발생할 가능성이 매우 높으니 주의 바랍니다.
 
 ```python
@@ -168,19 +222,26 @@ for _ in range(5):
 ```
 ```bash
 $python sync.py
-[post] 0x79 to fb2.do3 Time taken: 0.00599980354309082 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.004000186920166016 seconds
+[post] 0x79 to fb2.do3 Time taken: 0.00573277473449707 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.054880380630493164 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.060916900634765625 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.06047677993774414 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.04827427864074707 seconds
+[get] 0x79 from fb2.do3 Time taken: 0.06168508529663086 seconds
+total request time : 0.2869541645050049 seconds
 ```
+<br><br>  
 
-## b. 비동기식 요청
-- 동기식 요청의 문제점을 보완한 방식으로, 요청 시 콜백 함수를 동작시켜 해당 콜백 함수에서 요청 사항을 처리하여 도중에 다른 task 가 실행 가능해집니다.
-- 작업 완료 순서를 보장하지 않는 다는 점이 동기식과 차이가 있지만, 모든 요청이 거의 동시에 시작되므로 전체적인 응답 시간이 짧아질 수 있습니다.
-- python 은 `asyncio` 라는 비동기 프로그래밍 구현 용 빌트인 라이브러리를 제공하고 있습니다. 이를 통해 CPU 작업과 I/O를 병렬로 처리하게 해줍니다.
-- 추가로, `비동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `aiohttp` 입니다.
-- `aiohttp` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다.
-	```sh
-	$pip install aiohttp
-	```
+### b. 비동기식 요청
+동기식 요청의 문제점을 보완한 방식으로, 요청 시 콜백 함수를 동작시켜 해당 콜백 함수에서 요청 사항을 처리하여 도중에 다른 task 가 실행 가능해집니다.  
+작업 완료 순서를 보장하지 않는다는 점이 동기식과 차이가 있지만, 모든 요청이 거의 동시에 시작되므로 전체적인 응답 시간이 짧아집니다.  
+python 은 `asyncio` 라는 비동기 프로그래밍 구현 용 빌트인 라이브러리를 제공하고 있습니다. 이를 통해 CPU 작업과 I/O를 병렬로 처리하게 해줍니다.  
+`비동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `aiohttp` 입니다.  
+`aiohttp` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다.
+
+```sh
+$pip install aiohttp
+```
 
 ```python
 # async.py - 비동기식, 사용자 IO 출력 값 얻기와 설정하기
@@ -198,7 +259,7 @@ async def set_value(session):
     req_body = {'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val': val}
     start_time = time.time()
     async with session.post(url + path, headers=head, json=req_body) as resp:
-        pass  # 필요한 경우 여기서 응답 처리
+        pass
     end_time = time.time()
     print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
 
@@ -212,16 +273,133 @@ async def get_value(session):
 async def main():
     async with aiohttp.ClientSession() as session:
         await set_value(session)
-        tasks = [get_value(session) for _ in range(10)]
+        tasks = [get_value(session) for _ in range(5)]
+        total_start_time = time.time()
         await asyncio.gather(*tasks)
+        total_end_time = time.time()
+        print(f"total request time : {total_end_time - total_start_time} seconds")
 
 asyncio.run(main())
 ```
 ```bash
 $python async.py
-[post] 0x79 to fb2.do3 Time taken: 0.0039997100830078125 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.0029997825622558594 seconds
-```## 2. version
+[post] 0x60 to fb2.do3 Time taken: 0.0018951892852783203 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.044029951095581055 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.0583953857421875 seconds 
+[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
+[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
+total request time : 0.060544490814208984 seconds
+```## 1.4 코딩하지 않고 쉽게 API 호출 해보기
+
+[앞선 예제 코드](../../1-intro/3-sample-code/README.md)처럼 client 어플리케이션을 개발하면서 Open API 를 사용하는 경우, 코딩을 따로 하지 않고도 손쉽게 API를 호출해 볼 수 있습니다.  
+이러한 호출 과정을 통해서 요청이 제대로 동작했는지, 응답으로 어떠한 데이터가 반환되는지 확인 가능 합니다.  
+이를 위한 방법은 여러가지가 있습니다. 해당 섹션에서는 대표적인 2가지를 다루고 있습니다.
+
+<br>
+
+### 1) `postman` 활용하기
+
+`postman` 은 세계적으로 많이 사용되는 API 테스팅 플랫폼 입니다.  
+`workspace` 기능을 통해 프로젝트 단위의 API 테스트와 history 추적이 가능하고 언어별 Code snippet, 직관적 ui 를 갖추고 있습니다.  
+[1.4.1 Postman 에서 POST 요청하기](./1-postman.md)에서 간단한 사용법을 확인할 수 있습니다.
+
+
+<br>
+
+
+### 2) `웹 브라우저` 활용하기
+
+간단한 `get` 요청은 웹 브라우저를 통해 간편하고 신속하게 확인할 수 있습니다.  
+추가로 웹 브라우저의 확장 프로그램을 활용하여 `get` 요청과 다른 API 요청들을 직접 호출하고 결과를 볼 수 있습니다.  
+[1.4.2 웹 브라우저에서 API 호출하기](./2-web-browser.md)에서 간단한 사용법을 확인할 수 있습니다.## 1.4.1 `Postman` 에서 `POST` 요청하기
+
+해당 페이지에서는 `postman` 을 활용해서 REST API 의 `POST` 요청을 호출하고 결과를 확인합니다.  
+추가로 간단한 UI 구성을 통해 사용법을 파악합니다.
+
+<br>
+
+### a. 주요 UI 구성
+
+아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다. <br>
+
+<img src="../../_assets/01_postman_desc.png" height="460vh">
+
+<blockquote>
+
+(1) `+` 버튼을 통해 request 요청을 간단하게 생성할 수 있습니다. </br>
+(2) `request` 요청에 대한 정보들을 입력하는 공간 입니다. </br>
+(3) `response` 에 대한 정보들을 확인하는 공간입니다. </br>
+(4) `request` url 이 적용되어 자동으로 생성된 언어별 `Code snippet`을 확인하는 공간입니다. </br>
+
+</blockquote>
+
+<br>
+
+### b. POST 요청 시험하기
+
+1. `Request Header` 작성 
+	- Headers 탭에 아래의 Key-Value를 입력합니다.
+  	- Content-Type 관련 ([postman](https://blog.postman.com/what-are-http-headers/#Content-type) 참조)
+	<br><img src="../../_assets/02_postman_headers.png" height="130vh">
+
+<br>
+
+2. `Request Body` 작성 
+	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
+	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)
+	- Send를 클릭합니다.  
+		<img src="../../_assets/03_postman_post.png" height="280vh">
+
+<br>
+
+3. `Response` 확인 및 `Code snippet` 참조
+	- `request` 요청이 정상적으로 완료되면 아래 그림과 같이 `HTTP Status` 가 `200 OK`로 응답합니다. ([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 참조)
+	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.  
+	<img src="../../_assets/04_postman_post_result_check.png" height="500vh">  
+
+		<blockquote>
+
+		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
+		`(2) Request` 에 대한 python `Code snippet`
+
+		</blockquote>## 1.4.2 웹 브라우저에서 API 호출하기
+
+### a. 간단한 `GET` 요청하기
+
+`get` 요청은 웹 브라우저를 통해 보다 간편하고 신속하게 확인할 수 있습니다. 순서는 다음과 같습니다.
+1. 웹 브라우저 엽니다.
+2. 주소 창에 `get` 요청의 서버 측 url 을 입력합니다.
+	- 서버 측 url 은 `http://<Hi6 제어기의 ip 주소>:<http 통신 포트>`로 시작되며 추출하려는 정보에 맞는 경로와 쿼리를 이어 적습니다.
+	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
+3. 해당 url 의 페이지가 열리고 아래와 같이 응답이 출력됩니다.
+	```json
+	{
+		"_type" : "JObject",
+		"val" : -99
+	}
+	```
+
+<br>
+
+### b. `확장 프로그램`으로 API 호출하기  
+크롬 또는 엣지 브라우저를 사용하는 경우, 크롬 확장 프로그램을 통해 `get` 요청 이외의 api 들을 테스트할 수 있습니다.  
+하기 확장 프로그램은 세계적으로 여러 개발자들이 사용하는 API 테스터 입니다.
+- 크롬 확장 프로그램 : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
+
+해당 프로그램을 통해 `postman` 처럼 다양한 API 들에 대해서 간편하게 호출을 해볼 수 있습니다.
+
+<img src="../../_assets/06_Talend_api_tester.png" height="850vh">
+
+<blockquote>
+
+`(1) Requests/Senarios` : 하나의 API 에 대해서 호출을 테스트할지, 여러 API 들로 시나리오를 작성하여 순차적으로 테스트할 지 설정할 수 있습니다.<br>
+`(2) Request` : 요청할 내용을 입력합니다.  
+`(3) Response` : 요청에 대한 응답을 확인할 수 있습니다.  
+`(4) History` : 요청 이력을 출력합니다.  
+`(5) History 탭` : 열었다 닫았다 할 수 있는 `(4)`의 요청 이력 리스트보다 많은 양의 이력이 확인 가능한 탭입니다.
+
+</blockquote>## 2. version
 
 - 현재 api 의 버전 또는 로봇제어기의 시스템 버전을 확인합니다.## 2.1 version/get
 
@@ -1628,15 +1806,11 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 * (`di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다. 나머지 `relay_type`에는 지정하지 않습니다.)
 
-- `obj_type` : 객체 타입
-  - `fb`
-  - `fn`
+- `obj_type` : 객체 타입 (`fb`, `fn`)
 
-- `obj_idx` : 객체 인덱스 (fb: 0~9, fn: 0~63)
+- `obj_idx` : 객체 인덱스 (`fb`: `0` ~ `9`, `fn`: `0` ~ `63`)
 
-- `relay_type` : 
-	|`di`|`do`|`x` |`y` |`m` |`s` |`r`|`k`|
-	|:---|:---|:---|:---|:---|:---|:---|:---|
+- `relay_type` : `di`, `do`, `x` , `y` , `m` , `s` , `r`, `k`
 
 	
 
@@ -1908,9 +2082,12 @@ GET /file_manager/files
 
 ### query-parameter
 
-```
+query-parameter 를 반드시 입력해야합니다.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
+
 - `pathname` : 가져올 파일 이름
 
 ### response-body
@@ -1925,7 +2102,7 @@ GET /file_manager/files
 
 <blockquote>
 
-```
+```text
 hi6
 `-- project
     |-- jobs
@@ -1997,21 +2174,23 @@ GET /file_manager/file_info
 
 ### query-parameter
 
-```
+query-parameter 를 반드시 입력해야합니다.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
 - `pathname` : 타겟 파일 경로
 
 ### response-body
 
-- [파일 정보](/99-schema/file_info)
+- [파일 정보](../../99-schema/file_info.md)
 - 파일이 없을 시 `404 Not Found` 
 
 ### 사용 예
 
 <blockquote>
 
-```
+```text
 hi6
 `-- project
     |-- jobs
@@ -2081,8 +2260,9 @@ GET /file_manager/file_list
 
 ### query-parameter
 
-> query-parameter 를 반드시 입력해야합니다.  
-```
+query-parameter 를 반드시 입력해야합니다.  
+
+```text
 ?path=project/jobs&incl_file=true&incl_dir=false
 ```
 
@@ -2097,7 +2277,7 @@ GET /file_manager/file_list
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`|[파일 정보](/99-schema/file_info) `리스트`를 반환|
+|`200 OK`|[파일 정보](../../99-schema/file_info.md) `리스트`를 반환|
 |`404 Not Found`| 파일 없을 때 반환|
 
 
@@ -2105,7 +2285,7 @@ GET /file_manager/file_list
 
 <blockquote>
 
-```
+```text
 hi6
 `-- project     <- target
     |-- jobs
@@ -2188,8 +2368,10 @@ GET /file_manager/file_exist
 ```
 
 ### query-parameter
-> query-parameter 를 반드시 입력해야합니다.
-```
+
+query-parameter 를 반드시 입력해야합니다.  
+
+```text
 ?pathname=project/jobs/0001.job
 ```
 - `pathname` : 타겟 파일 경로
@@ -2212,8 +2394,9 @@ GET /file_manager/file_exist?pathname=project/jobs/1234.job
 
 response-body: 
 false
-```
-```
+```  
+
+```text
 hi6
 `-- project
     |-- jobs
@@ -2246,21 +2429,21 @@ true
 ```## 8.2 file_manager/post
 
 - 제어기의 파일 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.# 8.2.1 `rename_file`
+- API 별로 정확한 request-body 를 작성해야합니다.## 8.2.1 `rename_file`
 
-## 설명
+### 설명
 
 `rename_file`
 
 - `POST` : 타겟 파일의 파일 이름을 변경합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /file_manager/rename_file
 ```
 
-## request-body
+### request-body
 
 ```json
 {
@@ -2271,15 +2454,15 @@ POST /file_manager/rename_file
 - `pathname_from` : 변경 전 파일 경로
 - `pathname_to` : 변경 후 파일 경로
 
-## response-body
+### response-body
 
 |HTTP Status|description|
 |:---|:---|
-|`200 OK`| 타겟 파일이 없어도 동작함 |
-|`http.client.BadStatusLine: HTTP/1.1 1 Unknown`| 타겟 파일의 이름 변경 완료 |
+|`200`| 이름 변경 완료 |
+|`400`| 변경하려는 타겟 파일이 존재하지 않음 |
 
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 
@@ -2308,43 +2491,43 @@ Python Script 예시
 # test.py
 import requests
 
-def rename_file() -> int:
+def rename_file():
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/file_manager/rename_file'
-    query_parameter = { "pathname_from" : "project/jobs/0001.job", 
-                       "pathname_to"   : "project/jobs/4321.job" }
+    head            = {'Content-Type': 'application/json; charset=utf-8'}
+    body            = { "pathname_from" : "project/jobs/0001.job", 
+                        "pathname_to"   : "project/jobs/4321.job" }
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
 
     return response.status_code
 
-print(rename_file())
+print(f"response: {rename_file()}")
 ```
 ```sh
 $python test.py
-파일 이름이 정상적으로 변경되면, 에러 로그가 출력됨
-없는 파일의 이름을 바꾸려고 시도하면 200 OK 가 출력됨
-```# 8.2.2 `mkdir`
+response: 200
+```## 8.2.2 `mkdir`
 
-## 설명
+### 설명
 
 `mkdir`
 
 - `POST` : 타겟 경로에 디렉토리를 생성합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 GET /file_manager/mkdir
 ```
 
-## request-body
+### request-body
 
 |key|value|description|
 |:---|:---|:---|
 |`path`|`str`|디렉토리를 생성할 위치|
 
-## response-body
+### response-body
 
 |HTTP Status|description|
 |:---|:---|
@@ -2352,7 +2535,7 @@ GET /file_manager/mkdir
 |`500 Internal Server Error`| 타겟 위치에 디렉토리 이름이 중복되는 경우 |
 
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 
@@ -2398,37 +2581,37 @@ print(f"response: {post_mkdir()}")
 ```sh
 $python test.py
 response: 200
-```# 8.2.3 `files`
+```## 8.2.3 `files`
 
-## 설명
+### 설명
 
 `files`
 
 - `POST` : 타겟 경로에 파일을 전송합니다.
 
-## path-parameter
+### path-parameter
 
 ```python
 POST /file_manager/files/{target_filepath}
 ```
 
-## path-variable
+### path-variable
 
 - `target_filepath` : 확장자를 포함한 타겟 파일 경로
 
-## request-body
+### request-body
 
 - binary 형식의 파일
 - `Content-Type` 은 `application/octet-stream` 이어야합니다.
 
-## response-body
+### response-body
 
 |HTTP Status|description|
 |:---|:---|
 |`200 OK`| 전송 완료 |
 
 
-## 사용 예
+### 사용 예
 
 <blockquote>
 
@@ -2502,8 +2685,9 @@ DELETE /file_manager/files/{target-filepath}
 ```python
 request url:
 DELETE /file_manager/files/project/jobs/special
-```
-```
+```  
+
+```text
 hi6
 `-- project
     `-- jobs
@@ -2559,11 +2743,11 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ### request-body
 
-- [cur_prog_cnt 요청 파라미터](../../99-schema/cur_prog_cnt.md/#request-body)
+- [cur_prog_cnt 요청 파라미터](../.././99-schema/cur_prog_cnt.md)
 
 ### response-body
 
-- [cur_prog_cnt 응답 파라미터](../../99-schema/cur_prog_cnt.md/#response-body)
+- [cur_prog_cnt 응답 파라미터](../.././99-schema/cur_prog_cnt.md)
 
 ### 사용 예
 
@@ -3206,24 +3390,24 @@ response: 200
 
 이 챕터는 Open API에서 사용되는 각종 열거자(enumeration)와 구조체(structure)의 참조자료(reference)를 담고 있습니다.
 
-# crdsys
+## crdsys
 
-## 설명
+### 설명
 
 좌표계 (coordinate system)를 지정하는 열거자 (enumeration) 입니다.
 |value|description|
 |:---:|:---|
-|-1|다음 좌표계|
-|0|축|
-|1|직교|
-|2|사용자 좌표계|
-|3|툴|
-# cur_prog_cnt
+|`-1`|`다음` 좌표계|
+|`0`|`축` 좌표계|
+|`1`|`직교` 좌표계(=`로봇` 좌표계)|
+|`2`|`사용자` 좌표계|
+|`3`|`툴` 좌표계|
+## cur_prog_cnt
 
-## 설명
+### 설명
 태스크의 현재 프로그램 카운터를 설정합니다.
 
-## request body
+### request body
 |key|type|description|
 |:---|:---|:---|
 |`pno`|int|프로그램 번호 (-1이면 현재 번호 유지)|
@@ -3231,14 +3415,14 @@ response: 200
 |`fno`|int|펑션 번호 (-1이면 현재 번호 유지)|
 |`ext_sel`|int|`0` : 내부선택(원격모드에선 금지됨) <br> `1` : 외부선택(원격모드에서만 허용됨)|
 
-## response body
+### response body
 |key|type|description|
 |:---|:---|:---|
 |`sno_new`|int|새로 이동한 스텝 번호|
 |`fno_new`|int|새로 이동한 펑션 번호|
-|`ln_new`|int|새로 이동한 라인번호 (프로그램 헤더가 0, 첫 명령문이 1)|# date_time
+|`ln_new`|int|새로 이동한 라인번호 (프로그램 헤더가 0, 첫 명령문이 1)|## date_time
 
-## 설명
+### 설명
 
 시스템 시간 관련 정보를 나타냅니다.
 |value|type|description|
@@ -3249,9 +3433,9 @@ response: 200
 |"hour"|`int`|현재 시스템의 시|
 |"min"|`int`|현재 시스템의 분|
 |"sec"|`int`|현재 시스템의 초|
-# file_info
+## file_info
 
-## 설명
+### 설명
 
 파일 정보 요청 시 반환되는 파라미터 입니다.
 
@@ -3268,9 +3452,9 @@ response: 200
 |sec|`int`| 파일이 수정된 `초` |
 |is_dir|`bool`| 현재 파일이 디렉토리인지 확인 |
 |readonly|`bool`| 읽기 전용 파일 여부 확인 |
-# jobs_info
+## jobs_info
 
-## 설명
+### 설명
 
 job 파일 정보 파라미터 입니다.
 
@@ -3281,9 +3465,9 @@ job 파일 정보 파라미터 입니다.
 |n_step|`int`|스텝 개수|
 |n_total_ax|`int`|총 축 수|
 |n_aux_ax|`int`|부가축 수|
-# mechinfo
+## mechinfo
 
-## 설명
+### 설명
 
 메커니즘 정보(mechanism info)입니다.
 어떤 메커니즘들이 사용되는 지를 bit-field로 지정합니다.  
@@ -3297,15 +3481,15 @@ job 파일 정보 파라미터 입니다.
 - bit 6 : M6
 - bit 7 : M7
 
-## 사용 예
+### 사용 예
 
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0
 # 메커니즘 M0, M1, M4를 지정합니다.
 ```
-# op_cnd
+## op_cnd
 
-## 설명
+### 설명
 op_cnd (operation condition) : 로봇의 조건설정 값입니다.  
 TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 있습니다.
 
@@ -3326,7 +3510,7 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 
 <br>
 
-## 예 (example)
+### 예 (example)
 
 ```python
 {
@@ -3343,9 +3527,9 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
     "plc_mode": 4
 }
 ```
-# Pose
+## Pose
 
-## 설명
+### 설명
 
 포즈(pose) 데이터입니다.
 
