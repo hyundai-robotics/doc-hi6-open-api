@@ -1,6 +1,6 @@
-## 1.6 웹 브라우저에서 API 호출하기
+## 1.4.2 웹 브라우저에서 API 호출하기
 
-### 1.6.1. 간단한 `GET` 요청하기
+### a. 간단한 `GET` 요청하기
 
 `get` 요청은 웹 브라우저를 통해 보다 간편하고 신속하게 확인할 수 있습니다. 순서는 다음과 같습니다.
 1. 웹 브라우저 엽니다.
@@ -17,7 +17,7 @@
 
 <br>
 
-### 1.6.2 `확장 프로그램`으로 API 호출하기  
+### b. `확장 프로그램`으로 API 호출하기  
 크롬 또는 엣지 브라우저를 사용하는 경우, 크롬 확장 프로그램을 통해 `get` 요청 이외의 api 들을 테스트할 수 있습니다.  
 하기 확장 프로그램은 세계적으로 여러 개발자들이 사용하는 API 테스터 입니다.
 - 크롬 확장 프로그램 : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
