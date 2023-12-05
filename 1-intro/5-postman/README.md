@@ -7,9 +7,10 @@
 
 ### 1.5.1. 주요 UI 구성
 
-아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다.<br>
-
+아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다.
+<br><br>
 <img src="../../_assets/01_postman_desc.png" width="990vw">
+
 
 <blockquote>
 
