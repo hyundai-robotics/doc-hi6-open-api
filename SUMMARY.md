@@ -2,7 +2,7 @@
 
 * [Hi6 Open API Manual](README.md)
 * [1. Intro](1-intro/README.md)
-  * [1.1 About Hi6 Open API](1-intro/1-intro.md)
+  * [1.1 About Hi6 Open API](1-intro/1-concept/README.md)
   * [1.2 Required prior knowledge](1-intro/2-prerequisite/README.md)
   * [1.3 Sample code](1-intro/3-sample-code/README.md)
     * [1.3.1 Sample code - C#](1-intro/3-sample-code/1-csharp.md)
