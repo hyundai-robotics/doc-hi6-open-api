@@ -1,13 +1,10 @@
-﻿## 1.1 Overview
-
-
-### 1.1.1 About Hi6 Open API
+﻿## 1.1 About Hi6 Open API
 
 In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as Hi6).<br>
 This enables developers to read and write Hi6 data without requiring a thorough comprehension of the source code used in Hi6 development.<br>
 The image below will help you better grasp the role of Open API.
 
-![open_api_flow_png](../_assets/05_open_api_flow.png)
+<img src="../../_assets/05_open_api_flow.png" height="250vh" >
 
 The parts marked in orange in the picture above show the role of Open API.
 
@@ -22,7 +19,7 @@ In this way, developers can use the Open API in the document to remotely control
 <br>
 
 
-### 1.1.2 Be sure to check before you start!
+### Be sure to check before you start!
 
 * The current document is an initial version and was written based on Hi6 Open API version 5.
 

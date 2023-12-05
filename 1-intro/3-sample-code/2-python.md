@@ -18,12 +18,14 @@ Therefore, when developing actual applications, please write your code in an asy
 <br>
 
 ## a. Synchronous request
-- Synchronous is a request method in a blocking state in which other tasks cannot be executed until one request is completed and a response is received.
-- A widely used library for `synchronous` HTTP requests in Python is `requests`.
-- If you do not have the `requests` library, you can install it through the Python package manager.  
-	```sh
-	$pip install requests
-	```
+Synchronous is a request method in a blocking state in which other tasks cannot be executed until one request is completed and a response is received.  
+A widely used library for `synchronous` HTTP requests in Python is `requests`.
+If you do not have the `requests` library, you can install it through the Python package manager.  
+	
+```sh
+$pip install requests
+```
+
 - Please keep in mind that if you do not receive a response when communicating or if it takes a long time to receive a response, the possibility of a hanging problem may be very high.
 
 ```python
@@ -68,15 +70,15 @@ total request time : 0.292741060256958 seconds
 
 <br>
 
-## b. Asynchronous request
-- This is a method that complements the problems of synchronous requests. It operates a callback function when requested and processes the request in the callback function, allowing other tasks to be executed in the meantime.
-- Asynchronous differs from synchronous in that it does not guarantee the order in which tasks are completed, but because all requests start at approximately the same time, overall response time can be shorter.
-- Python provides a built-in library for implementing asynchronous programming called `asyncio`. This allows CPU tasks and I/O to be processed in parallel.
-- Additionally, a popular library for `asynchronous` HTTP requests is `aiohttp`.
-- If you do not have the `aiohttp` library, you can install it through the Python package manager.
-	```sh
-	$pip install aiohttp
-	```
+## b. Asynchronous request  
+This is a method that complements the problems of synchronous requests. It operates a callback function when requested and processes the request in the callback function, allowing other tasks to be executed in the meantime.  
+Asynchronous differs from synchronous in that it does not guarantee the order in which tasks are completed, but because all requests start at approximately the same time, overall response time can be shorter.  
+Python provides a built-in library for implementing asynchronous programming called `asyncio`. This allows CPU tasks and I/O to be processed in parallel.  
+Additionally, a popular library for `asynchronous` HTTP requests is `aiohttp`.  
+If you do not have the `aiohttp` library, you can install it through the Python package manager.  
+```sh
+$pip install aiohttp
+```
 
 ```python
 # async.py -  Asynchronous, getting and setting user IO output values
