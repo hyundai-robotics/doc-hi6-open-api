@@ -33,7 +33,7 @@ In this document, HD Hyundai Robotics publishes an API for application developer
 This enables developers to read and write Hi6 data without requiring a thorough comprehension of the source code used in Hi6 development.<br>
 The image below will help you better grasp the role of Open API.
 
-<img src="../../_assets/05_open_api_flow.png" height="250vh" >
+<img src="../../_assets/05_open_api_flow.png" style="max-height: 25vh;">
 
 The parts marked in orange in the picture above show the role of Open API.
 
@@ -54,7 +54,7 @@ In this way, developers can use the Open API in the document to remotely control
 
 * There may be continuous version updates in the future. If the version is updated, please refer to the corresponding section.
 
-* For developers who are familiar with developing HTTP REST API client functions, you can skip from [`1.2 Required prior knowledge`](../2-prerequisite/README.md) to [`1.4 Simple API call without coding`](../4-api-test/README.md).
+* For developers who are familiar with developing HTTP REST API client functions, you can skip from [1.2 Required prior knowledge](../2-prerequisite/README.md) to [1.4 Simple API call without coding](../4-api-test/README.md).
 
 
 {% hint style="warning" %}
@@ -187,7 +187,7 @@ Therefore, when developing actual applications, please write your code in an asy
 
 <br>
 
-## a. Synchronous request
+### a. Synchronous request
 Synchronous is a request method in a blocking state in which other tasks cannot be executed until one request is completed and a response is received.  
 A widely used library for `synchronous` HTTP requests in Python is `requests`.
 If you do not have the `requests` library, you can install it through the Python package manager.  
@@ -240,7 +240,7 @@ total request time : 0.292741060256958 seconds
 
 <br>
 
-## b. Asynchronous request  
+### b. Asynchronous request  
 This is a method that complements the problems of synchronous requests. It operates a callback function when requested and processes the request in the callback function, allowing other tasks to be executed in the meantime.  
 Asynchronous differs from synchronous in that it does not guarantee the order in which tasks are completed, but because all requests start at approximately the same time, overall response time can be shorter.  
 Python provides a built-in library for implementing asynchronous programming called `asyncio`. This allows CPU tasks and I/O to be processed in parallel.  
@@ -330,7 +330,7 @@ Additionally, simple UI configuration helps you understand how to use it.
 
 You can check the main UI composition through the picture below.
 
-<img src="../../_assets/01_postman_desc.png" height="460vh">
+<img src="../../_assets/01_postman_desc.png" style="max-height: 55vh;">
 
 <blockquote>
 
@@ -348,25 +348,22 @@ You can check the main UI composition through the picture below.
 1. `Request Header`  
 	- Enter the `Key`, `Value` below in the Headers tab.
   	- About `Content-Type` ([ref](https://blog.postman.com/what-are-http-headers/#Content-type))
-	<br>
-	<br><img src="../../_assets/02_postman_headers.png" height="130vh">
+	<br><img src="../../_assets/02_postman_headers.png" style="max-height: 14vh;">
 
 <br>
 
 2. `Request Body`  
 	- Select API method as `POST` and enter URL.  
 	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
-	- Click `Send`
-	<br>
-	<img src="../../_assets/03_postman_post.png" height="280vh">
+	- Click `Send`  
+		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
 <br>
 
 3. `Response` and `Code snippet`
 	- `request` If the request is completed normally, `HTTP Status` responds with `200 OK` as shown below.([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
-	- You can also check the `Code snippet` for each language to which the URL is applied.
-	<img src="../../_assets/04_postman_post_result_check.png" height="500vh">  
-
+	- You can also check the `Code snippet` for each language to which the URL is applied.  
+		<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">  
 		<blockquote>
 
 		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
@@ -398,7 +395,7 @@ The following extension program is an API tester used by many developers around 
 
 Through this program, you can easily call various APIs like `postman`.
 
-<img src="../../_assets/06_Talend_api_tester.png" height="850vh">
+<img src="../../_assets/06_Talend_api_tester.png" style="max-height: 80vh;">
 
 <blockquote>
 
@@ -2753,11 +2750,11 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ### request-body
 
-- [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md/#request-body)
+- [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md)
 
 ### response-body
 
-- [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md/#response-body)
+- [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md)
 
 ### Example
 
@@ -3555,4 +3552,26 @@ Pose Data.
 |crd|[Coordinate system](./crdsys.md)|
 |mechinfo|[Mechanism information](./mechinfo.md)|
 |nsync|Number of sensor synchronization values (0~2)|
-|sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|
+|sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|## tool_data
+
+### Description
+
+Robot's tool data.
+
+|key|description|
+|:---:|:---|
+|`x`|X position (mm)|
+|`y`|Y position (mm)|
+|`z`|Z position (mm)|
+|`rx`|RX Angle (deg.)|
+|`ry`|RY Angle (deg.)|
+|`rz`|RZ Angle (deg.)|
+|`mass`|weight (kg.)|
+|`cx`|Center of gravity at X position (mm)|
+|`cy`|Center of gravity at Y position (mm)|
+|`cz`|Center of gravity at Z position (mm)|
+|`ixx`| inertial X (kgm2)|
+|`iyy`| inertial Y (kgm2)|
+|`izz`| inertial Z (kgm2)|
+|`mass_esti`|Load estimate weight (kg.)|
+
