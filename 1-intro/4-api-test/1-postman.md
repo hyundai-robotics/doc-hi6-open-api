@@ -1,15 +1,15 @@
-﻿## 1.5 Requesting POST in Postman
+﻿## 1.4.1 Requesting POST in Postman
 
 On this page, use `postman` to call the `POST` request of the REST API and check the result.  
 Additionally, simple UI configuration helps you understand how to use it.
 
 <br>
 
-### 1.5.1. Main UI composition
+### a. Main UI composition
 
 You can check the main UI composition through the picture below.
 
-![postman_description](../_assets/01_postman_desc.png)
+![postman_description](../../_assets/01_postman_desc.png)
 
 <blockquote>
 
@@ -22,33 +22,33 @@ You can check the main UI composition through the picture below.
 
 <br>
 
-### 1.5.2. Testing POST Requests
+### b. Testing POST Requests
 
 1. `Request Header`  
 	- Enter the `Key`, `Value` below in the Headers tab.
   	- About `Content-Type` ([ref](https://blog.postman.com/what-are-http-headers/#Content-type))
 	<br>
-	![postman_headers](../_assets/02_postman_headers.png)
+	![postman_headers](../../_assets/02_postman_headers.png)
 
 <br>
 
 2. `Request Body`  
 	- Select API method as `POST` and enter URL.  
-	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../9-task/2-post/1-cur_prog_cnt.md#request-body))
+	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
 	- Click `Send`
 	<br>
-	![postman_post](../_assets/03_postman_post.png)
+	![postman_post](../../_assets/03_postman_post.png)
 
 <br>
 
 3. `Response` and `Code snippet`
 	- `request` If the request is completed normally, `HTTP Status` responds with `200 OK` as shown below.([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
 	- You can also check the `Code snippet` for each language to which the URL is applied.
-	![postman_post_result](../_assets/04_postman_post_result_check.png)
+	![postman_post_result](../../_assets/04_postman_post_result_check.png)
 
 		<blockquote>
 
-		`(1) Response body` : response from `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../9-task/2-post/1-cur_prog_cnt.md#response-body))</br>
+		`(1) Response body` : response from `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
 		`(2) python Code snippet` for the `request`
 
 		</blockquote>

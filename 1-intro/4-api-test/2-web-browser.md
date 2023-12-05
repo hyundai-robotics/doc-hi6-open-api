@@ -1,6 +1,6 @@
-## 1.6 Calling API from web browser  
+## 1.4.2 Calling API from web browser  
 
-### 1.6.1. Make a simple `GET` request
+### a. Make a simple `GET` request
 
 `get` requests can be checked more simply and quickly through a web browser. The order is as follows:
 1. Open web browser
@@ -17,14 +17,14 @@
 
 <br>
 
-### 1.6.2 Calling API with `extension`
+### b. Calling API with `extension`
 If you use Chrome or Edge browsers, you can test APIs other than `get` requests through the Chrome extension.  
 The following extension program is an API tester used by many developers around the world.
 - Chrome extension program : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
 
 Through this program, you can easily call various APIs like `postman`.
 
-![talend_api_tester.png](../_assets/06_Talend_api_tester.png)  
+![talend_api_tester.png](../../_assets/06_Talend_api_tester.png)  
 
 <blockquote>
 

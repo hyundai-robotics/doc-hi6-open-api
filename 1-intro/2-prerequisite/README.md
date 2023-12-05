@@ -1,17 +1,21 @@
 ﻿## 1.2 Required prior knowledge
 
-In order to utilize Open API,you must first understand how to use the Hi6 controller. Please refer to the manual below or take training at the Hyundai Robotics Joint Training Center.
+In order to utilize Open API,you must first understand how to use the Hi6 controller.  
+Please refer to the manual below or take training at the Hyundai Robotics Joint Training Center.
 
 - [Hi6 Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-tp630/README)
 - [HD Hyundai Robotics Joint training center](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>
 
-Open API is an HTTP-based REST API.Various development languages provide libraries for calling REST API (aka RESTful API), and many developers use them to develop programs. Unless you are an experienced developer, you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About Hi6 Open API](./1-intro.md#11-overview).
+Open API is an HTTP-based REST API.Various development languages provide libraries for calling REST API (aka RESTful API),  
+and many developers use them to develop programs. Unless you are an experienced developer,  
+you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About Hi6 Open API](./1-intro.md#11-overview).
 
 In this regard, please refer to the points below.
 
-* If you are unfamiliar with the simple API-related explanation below or are not an expert with extensive development experience in applying it, please study first and then use the document.
+* If you are unfamiliar with the simple API-related explanation below or are not an expert with  
+extensive development experience in applying it, please study first and then use the document.
 * If you need to learn, please learn how to code client functions through REST API calls.
 
 <br>
@@ -29,8 +33,8 @@ We are not responsible for any damages or problems arising from the use of APIs 
 
 ### 1.2.1 What is an API?
 
-`API` (Application Programming Interface) is a `set of definitions and protocols` for building and integrating application software ([ref](https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces)).
-This is how the user sends a `request structured in a particular way` and the provider's software `responds` to it.
+`API` (Application Programming Interface) is a `set of definitions and protocols` for building and  integrating application software ([ref](https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces)).  
+This is how the user sends a `request structured in a particular way` and the provider's software `responds` to it.  
 This allows you to communicate with products or services you don't know how to specifically develop, and simplifies application development, saving time and money.
 
 <br>
