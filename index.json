@@ -16,432 +16,432 @@
 	},
 	{
 		"link": "1-intro/2-prerequisite/README.md",
-		"char_ofs": 1766,
-		"byte_ofs": 3242
+		"char_ofs": 1778,
+		"byte_ofs": 3255
 	},
 	{
 		"link": "1-intro/3-sample-code/README.md",
-		"char_ofs": 4009,
-		"byte_ofs": 7454
+		"char_ofs": 4021,
+		"byte_ofs": 7467
 	},
 	{
 		"link": "1-intro/3-sample-code/1-csharp.md",
-		"char_ofs": 4223,
-		"byte_ofs": 7908
+		"char_ofs": 4235,
+		"byte_ofs": 7921
 	},
 	{
 		"link": "1-intro/3-sample-code/2-python.md",
-		"char_ofs": 5577,
-		"byte_ofs": 9597
+		"char_ofs": 5589,
+		"byte_ofs": 9610
 	},
 	{
 		"link": "1-intro/4-api-test/README.md",
-		"char_ofs": 9959,
-		"byte_ofs": 15453
+		"char_ofs": 9971,
+		"byte_ofs": 15466
 	},
 	{
 		"link": "1-intro/4-api-test/1-postman.md",
-		"char_ofs": 10691,
-		"byte_ofs": 16892
+		"char_ofs": 10703,
+		"byte_ofs": 16905
 	},
 	{
 		"link": "1-intro/4-api-test/2-web-browser.md",
-		"char_ofs": 12260,
-		"byte_ofs": 19074
+		"char_ofs": 12314,
+		"byte_ofs": 19129
 	},
 	{
 		"link": "2-version/README.md",
-		"char_ofs": 13439,
-		"byte_ofs": 21075
+		"char_ofs": 13504,
+		"byte_ofs": 21141
 	},
 	{
 		"link": "2-version/1-get/README.md",
-		"char_ofs": 13492,
-		"byte_ofs": 21178
+		"char_ofs": 13557,
+		"byte_ofs": 21244
 	},
 	{
 		"link": "2-version/1-get/1-api_ver.md",
-		"char_ofs": 13629,
-		"byte_ofs": 21418
+		"char_ofs": 13694,
+		"byte_ofs": 21484
 	},
 	{
 		"link": "2-version/1-get/2-sysver.md",
-		"char_ofs": 14197,
-		"byte_ofs": 22097
+		"char_ofs": 14262,
+		"byte_ofs": 22163
 	},
 	{
 		"link": "3-project/README.md",
-		"char_ofs": 15151,
-		"byte_ofs": 23276
+		"char_ofs": 15216,
+		"byte_ofs": 23342
 	},
 	{
 		"link": "3-project/1-get/README.md",
-		"char_ofs": 15250,
-		"byte_ofs": 23480
+		"char_ofs": 15315,
+		"byte_ofs": 23546
 	},
 	{
 		"link": "3-project/1-get/1-rgen.md",
-		"char_ofs": 15376,
-		"byte_ofs": 23691
+		"char_ofs": 15441,
+		"byte_ofs": 23757
 	},
 	{
 		"link": "3-project/1-get/2-jobs_info.md",
-		"char_ofs": 17484,
-		"byte_ofs": 26442
+		"char_ofs": 17549,
+		"byte_ofs": 26508
 	},
 	{
 		"link": "3-project/2-post/README.md",
-		"char_ofs": 18828,
-		"byte_ofs": 27926
+		"char_ofs": 18893,
+		"byte_ofs": 27992
 	},
 	{
 		"link": "3-project/2-post/1-reload_updated_jobs.md",
-		"char_ofs": 18931,
-		"byte_ofs": 28106
+		"char_ofs": 18996,
+		"byte_ofs": 28172
 	},
 	{
 		"link": "3-project/2-post/2-jobs-delete_job.md",
-		"char_ofs": 19913,
-		"byte_ofs": 29310
+		"char_ofs": 19978,
+		"byte_ofs": 29376
 	},
 	{
 		"link": "4-control/README.md",
-		"char_ofs": 20768,
-		"byte_ofs": 30269
+		"char_ofs": 20833,
+		"byte_ofs": 30335
 	},
 	{
 		"link": "4-control/1-get/README.md",
-		"char_ofs": 20876,
-		"byte_ofs": 30484
+		"char_ofs": 20941,
+		"byte_ofs": 30550
 	},
 	{
 		"link": "4-control/1-get/1-op_cnd.md",
-		"char_ofs": 20995,
-		"byte_ofs": 30684
+		"char_ofs": 21060,
+		"byte_ofs": 30750
 	},
 	{
 		"link": "4-control/1-get/2-ios-dio.md",
-		"char_ofs": 22131,
-		"byte_ofs": 31923
+		"char_ofs": 22196,
+		"byte_ofs": 31989
 	},
 	{
 		"link": "4-control/1-get/3-ios-sio.md",
-		"char_ofs": 23297,
-		"byte_ofs": 33260
+		"char_ofs": 23362,
+		"byte_ofs": 33326
 	},
 	{
 		"link": "4-control/1-get/4-ucss-ucs_nos.md",
-		"char_ofs": 24410,
-		"byte_ofs": 34536
+		"char_ofs": 24475,
+		"byte_ofs": 34602
 	},
 	{
 		"link": "4-control/2-post/README.md",
-		"char_ofs": 25128,
-		"byte_ofs": 35429
+		"char_ofs": 25193,
+		"byte_ofs": 35495
 	},
 	{
 		"link": "4-control/2-post/1-ios-dio.md",
-		"char_ofs": 25224,
-		"byte_ofs": 35598
+		"char_ofs": 25289,
+		"byte_ofs": 35664
 	},
 	{
 		"link": "4-control/3-put/README.md",
-		"char_ofs": 26521,
-		"byte_ofs": 37093
+		"char_ofs": 26586,
+		"byte_ofs": 37159
 	},
 	{
 		"link": "4-control/3-put/1-op_cnd.md",
-		"char_ofs": 26615,
-		"byte_ofs": 37260
+		"char_ofs": 26680,
+		"byte_ofs": 37326
 	},
 	{
 		"link": "5-robot/README.md",
-		"char_ofs": 27688,
-		"byte_ofs": 38525
+		"char_ofs": 27753,
+		"byte_ofs": 38591
 	},
 	{
 		"link": "5-robot/1-get/README.md",
-		"char_ofs": 27784,
-		"byte_ofs": 38723
+		"char_ofs": 27849,
+		"byte_ofs": 38789
 	},
 	{
 		"link": "5-robot/1-get/1-motor_on_state.md",
-		"char_ofs": 27893,
-		"byte_ofs": 38903
+		"char_ofs": 27958,
+		"byte_ofs": 38969
 	},
 	{
 		"link": "5-robot/1-get/2-po_cur.md",
-		"char_ofs": 28632,
-		"byte_ofs": 39741
+		"char_ofs": 28697,
+		"byte_ofs": 39807
 	},
 	{
 		"link": "5-robot/1-get/3-cur_tool_data.md",
-		"char_ofs": 30937,
-		"byte_ofs": 42458
+		"char_ofs": 31002,
+		"byte_ofs": 42524
 	},
 	{
 		"link": "5-robot/1-get/4-tools.md",
-		"char_ofs": 32176,
-		"byte_ofs": 43807
+		"char_ofs": 32241,
+		"byte_ofs": 43873
 	},
 	{
 		"link": "5-robot/1-get/5-tools_t.md",
-		"char_ofs": 34229,
-		"byte_ofs": 46045
+		"char_ofs": 34294,
+		"byte_ofs": 46111
 	},
 	{
 		"link": "5-robot/2-post/README.md",
-		"char_ofs": 35248,
-		"byte_ofs": 47179
+		"char_ofs": 35313,
+		"byte_ofs": 47245
 	},
 	{
 		"link": "5-robot/2-post/1-motor-on-off.md",
-		"char_ofs": 35334,
-		"byte_ofs": 47328
+		"char_ofs": 35399,
+		"byte_ofs": 47394
 	},
 	{
 		"link": "5-robot/2-post/2-start-stop.md",
-		"char_ofs": 36580,
-		"byte_ofs": 48679
+		"char_ofs": 36645,
+		"byte_ofs": 48745
 	},
 	{
 		"link": "5-robot/2-post/3-tool_no.md",
-		"char_ofs": 37807,
-		"byte_ofs": 50044
+		"char_ofs": 37872,
+		"byte_ofs": 50110
 	},
 	{
 		"link": "5-robot/2-post/4-crd_sys.md",
-		"char_ofs": 38656,
-		"byte_ofs": 51031
+		"char_ofs": 38721,
+		"byte_ofs": 51097
 	},
 	{
 		"link": "6-io_plc/README.md",
-		"char_ofs": 39492,
-		"byte_ofs": 51973
+		"char_ofs": 39557,
+		"byte_ofs": 52039
 	},
 	{
 		"link": "6-io_plc/1-get/README.md",
-		"char_ofs": 39549,
-		"byte_ofs": 52071
+		"char_ofs": 39614,
+		"byte_ofs": 52137
 	},
 	{
 		"link": "6-io_plc/1-get/1-relay-value.md",
-		"char_ofs": 39677,
-		"byte_ofs": 52270
+		"char_ofs": 39742,
+		"byte_ofs": 52336
 	},
 	{
 		"link": "6-io_plc/2-post/README.md",
-		"char_ofs": 41018,
-		"byte_ofs": 53832
+		"char_ofs": 41083,
+		"byte_ofs": 53898
 	},
 	{
 		"link": "6-io_plc/2-post/1-set_relay_value.md",
-		"char_ofs": 41123,
-		"byte_ofs": 54000
+		"char_ofs": 41188,
+		"byte_ofs": 54066
 	},
 	{
 		"link": "7-log_manager/README.md",
-		"char_ofs": 42527,
-		"byte_ofs": 55591
+		"char_ofs": 42592,
+		"byte_ofs": 55657
 	},
 	{
 		"link": "7-log_manager/1-get/README.md",
-		"char_ofs": 42578,
-		"byte_ofs": 55690
+		"char_ofs": 42643,
+		"byte_ofs": 55756
 	},
 	{
 		"link": "7-log_manager/1-get/1-search.md",
-		"char_ofs": 42706,
-		"byte_ofs": 55907
+		"char_ofs": 42771,
+		"byte_ofs": 55973
 	},
 	{
 		"link": "8-file_manager/README.md",
-		"char_ofs": 47671,
-		"byte_ofs": 61687
+		"char_ofs": 47736,
+		"byte_ofs": 61753
 	},
 	{
 		"link": "8-file_manager/1-get/README.md",
-		"char_ofs": 47780,
-		"byte_ofs": 61921
+		"char_ofs": 47845,
+		"byte_ofs": 61987
 	},
 	{
 		"link": "8-file_manager/1-get/1-files.md",
-		"char_ofs": 47897,
-		"byte_ofs": 62111
+		"char_ofs": 47962,
+		"byte_ofs": 62177
 	},
 	{
 		"link": "8-file_manager/1-get/2-file_info.md",
-		"char_ofs": 49446,
-		"byte_ofs": 63877
+		"char_ofs": 49511,
+		"byte_ofs": 63943
 	},
 	{
 		"link": "8-file_manager/1-get/3-file_list.md",
-		"char_ofs": 50871,
-		"byte_ofs": 65507
+		"char_ofs": 50936,
+		"byte_ofs": 65573
 	},
 	{
 		"link": "8-file_manager/1-get/4-file_exist.md",
-		"char_ofs": 52928,
-		"byte_ofs": 67852
+		"char_ofs": 52993,
+		"byte_ofs": 67918
 	},
 	{
 		"link": "8-file_manager/2-post/README.md",
-		"char_ofs": 53956,
-		"byte_ofs": 69050
+		"char_ofs": 54021,
+		"byte_ofs": 69116
 	},
 	{
 		"link": "8-file_manager/2-post/1-rename_file.md",
-		"char_ofs": 54050,
-		"byte_ofs": 69209
+		"char_ofs": 54115,
+		"byte_ofs": 69275
 	},
 	{
 		"link": "8-file_manager/2-post/2-mkdir.md",
-		"char_ofs": 55359,
-		"byte_ofs": 70715
+		"char_ofs": 55424,
+		"byte_ofs": 70781
 	},
 	{
 		"link": "8-file_manager/2-post/3-files.md",
-		"char_ofs": 56463,
-		"byte_ofs": 72022
+		"char_ofs": 56528,
+		"byte_ofs": 72088
 	},
 	{
 		"link": "8-file_manager/3-delete/README.md",
-		"char_ofs": 57763,
-		"byte_ofs": 73498
+		"char_ofs": 57828,
+		"byte_ofs": 73564
 	},
 	{
 		"link": "8-file_manager/3-delete/1-files.md",
-		"char_ofs": 57824,
-		"byte_ofs": 73597
+		"char_ofs": 57889,
+		"byte_ofs": 73663
 	},
 	{
 		"link": "9-task/README.md",
-		"char_ofs": 58678,
-		"byte_ofs": 74588
+		"char_ofs": 58743,
+		"byte_ofs": 74654
 	},
 	{
 		"link": "9-task/1-get/README.md",
-		"char_ofs": 58867,
-		"byte_ofs": 74994
+		"char_ofs": 58932,
+		"byte_ofs": 75060
 	},
 	{
 		"link": "9-task/2-post/README.md",
-		"char_ofs": 58977,
-		"byte_ofs": 75179
+		"char_ofs": 59042,
+		"byte_ofs": 75245
 	},
 	{
 		"link": "9-task/2-post/1-cur_prog_cnt.md",
-		"char_ofs": 59064,
-		"byte_ofs": 75333
+		"char_ofs": 59129,
+		"byte_ofs": 75399
 	},
 	{
 		"link": "9-task/2-post/2-reset.md",
-		"char_ofs": 60174,
-		"byte_ofs": 76579
+		"char_ofs": 60239,
+		"byte_ofs": 76645
 	},
 	{
 		"link": "9-task/2-post/3-assign_var_expr.md",
-		"char_ofs": 61031,
-		"byte_ofs": 77554
+		"char_ofs": 61096,
+		"byte_ofs": 77620
 	},
 	{
 		"link": "9-task/2-post/4-assign_var_json.md",
-		"char_ofs": 63035,
-		"byte_ofs": 79883
+		"char_ofs": 63100,
+		"byte_ofs": 79949
 	},
 	{
 		"link": "9-task/2-post/5-release_wait.md",
-		"char_ofs": 65235,
-		"byte_ofs": 82421
+		"char_ofs": 65300,
+		"byte_ofs": 82487
 	},
 	{
 		"link": "9-task/2-post/6-set_cur_pc_idx.md",
-		"char_ofs": 66161,
-		"byte_ofs": 83502
+		"char_ofs": 66226,
+		"byte_ofs": 83568
 	},
 	{
 		"link": "9-task/2-post/7-solve_expr.md",
-		"char_ofs": 67052,
-		"byte_ofs": 84510
+		"char_ofs": 67117,
+		"byte_ofs": 84576
 	},
 	{
 		"link": "10-etc/README.md",
-		"char_ofs": 68847,
-		"byte_ofs": 86773
+		"char_ofs": 68912,
+		"byte_ofs": 86839
 	},
 	{
 		"link": "10-etc/1-clock/README.md",
-		"char_ofs": 68891,
-		"byte_ofs": 86861
+		"char_ofs": 68956,
+		"byte_ofs": 86927
 	},
 	{
 		"link": "10-etc/1-clock/1-get/README.md",
-		"char_ofs": 68934,
-		"byte_ofs": 86946
+		"char_ofs": 68999,
+		"byte_ofs": 87012
 	},
 	{
 		"link": "10-etc/1-clock/1-get/1-date_time.md",
-		"char_ofs": 69046,
-		"byte_ofs": 87129
+		"char_ofs": 69111,
+		"byte_ofs": 87195
 	},
 	{
 		"link": "10-etc/1-clock/2-put/README.md",
-		"char_ofs": 69808,
-		"byte_ofs": 88004
+		"char_ofs": 69873,
+		"byte_ofs": 88070
 	},
 	{
 		"link": "10-etc/1-clock/2-put/1-date_time.md",
-		"char_ofs": 69895,
-		"byte_ofs": 88154
+		"char_ofs": 69960,
+		"byte_ofs": 88220
 	},
 	{
 		"link": "99-schema/README.md",
-		"char_ofs": 70761,
-		"byte_ofs": 89126
+		"char_ofs": 70826,
+		"byte_ofs": 89192
 	},
 	{
 		"link": "99-schema/crdsys.md",
-		"char_ofs": 70866,
-		"byte_ofs": 89306
+		"char_ofs": 70931,
+		"byte_ofs": 89372
 	},
 	{
 		"link": "99-schema/cur_prog_cnt.md",
-		"char_ofs": 71057,
-		"byte_ofs": 89602
+		"char_ofs": 71122,
+		"byte_ofs": 89668
 	},
 	{
 		"link": "99-schema/date_time.md",
-		"char_ofs": 71502,
-		"byte_ofs": 90318
+		"char_ofs": 71567,
+		"byte_ofs": 90384
 	},
 	{
 		"link": "99-schema/file_info.md",
-		"char_ofs": 71735,
-		"byte_ofs": 90687
+		"char_ofs": 71800,
+		"byte_ofs": 90753
 	},
 	{
 		"link": "99-schema/jobs_info.md",
-		"char_ofs": 72153,
-		"byte_ofs": 91335
+		"char_ofs": 72218,
+		"byte_ofs": 91401
 	},
 	{
 		"link": "99-schema/mechinfo.md",
-		"char_ofs": 72351,
-		"byte_ofs": 91607
+		"char_ofs": 72416,
+		"byte_ofs": 91673
 	},
 	{
 		"link": "99-schema/op_cnd.md",
-		"char_ofs": 72627,
-		"byte_ofs": 91996
+		"char_ofs": 72692,
+		"byte_ofs": 92062
 	},
 	{
 		"link": "99-schema/pose.md",
-		"char_ofs": 73753,
-		"byte_ofs": 93459
+		"char_ofs": 73818,
+		"byte_ofs": 93525
 	},
 	{
 		"link": "99-schema/tool_data.md",
-		"char_ofs": 74069,
-		"byte_ofs": 93894
+		"char_ofs": 74134,
+		"byte_ofs": 93960
 	}
 ]
