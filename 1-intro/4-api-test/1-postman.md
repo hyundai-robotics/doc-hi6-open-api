@@ -37,7 +37,7 @@ You can check the main UI composition through the picture below.
 	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
 	- Click `Send`
 	<br>
-	![postman_post](../../_assets/03_postman_post.png)
+	<img src="../../_assets/03_postman_post.png" height="280vh">
 
 <br>
 
