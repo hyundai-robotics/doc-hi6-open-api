@@ -14,9 +14,9 @@ GET /file_manager/file_list
 
 ### query-parameter
 
-> query-parameter 를 반드시 입력해야합니다.  
+query-parameter 를 반드시 입력해야합니다.  
 
-```
+```text
 ?path=project/jobs&incl_file=true&incl_dir=false
 ```
 

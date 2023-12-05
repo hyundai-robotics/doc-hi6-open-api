@@ -13,7 +13,8 @@ GET /file_manager/file_exist
 ```
 
 ### query-parameter
-query-parameter 를 반드시 입력해야합니다.
+
+query-parameter 를 반드시 입력해야합니다.  
 
 ```text
 ?pathname=project/jobs/0001.job
