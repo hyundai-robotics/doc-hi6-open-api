@@ -39,7 +39,7 @@ GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : -56,
 }
 ```

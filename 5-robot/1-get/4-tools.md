@@ -30,9 +30,9 @@ GET /project/robot/tools
 
 response-body:
 {
-  "_type" : "Tools",
-	"t_0" : { ... },
-	"t_1" : { ... },
+    "_type" : "Tools",
+    "t_0" : { ... },
+    "t_1" : { ... },
 	 ...
 }
 ```

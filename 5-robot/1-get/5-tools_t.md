@@ -24,14 +24,14 @@ GET /project/robot/tools/t_1
 
 response-body:
 {
-  "_type" : "Tool",
-	"x" : 0.0,
-	"y" : 0.0,
-	"z" : 0.0,
-	"rx" : 0.0,
-	"ry" : 0.0,
-	"rz" : 0.0,
-	 ...
+    "_type" : "Tool",
+    "x"     : 0.0,
+    "y"     : 0.0,
+    "z"     : 0.0,
+    "rx"    : 0.0,
+    "ry"    : 0.0,
+    "rz"    : 0.0,
+        ...
 }
 ```
 

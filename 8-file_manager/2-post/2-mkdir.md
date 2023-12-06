@@ -36,7 +36,7 @@ GET /file_manager/mkdir
 
 request-body: 
 {
-	"path" : "project/jobs/special"
+    "path" : "project/jobs/special"
 }
 ```
 
