@@ -16,7 +16,7 @@ POST /project/jobs/delete_job
 
 ```json
 {
-  "fname": "0001.job"
+    "fname": "0001.job"
 }
 ```
 
@@ -28,7 +28,7 @@ POST /project/jobs/delete_job
 
 request-body: 
 {
-	"fname": "0001.job"
+    "fname": "0001.job"
 }
 ```
 

@@ -52,8 +52,8 @@ GET /file_manager/files?pathname=project/jobs/0001.job
 
 response-body:
 {
-	Hyundai Robot Job File; { version: 2.0 ... }
-	...
+    Hyundai Robot Job File; { version: 2.0 ... }
+    ...
 }
 ```
 
@@ -71,7 +71,7 @@ def print_file_contents() -> None:
     query_parameter = {"pathname": "project/jobs/0001.job"}
 
     response = requests.get(url=base_url + path_parameter, params=query_parameter)
-	
+
     print(f'response: {response.status_code}')
     print(response.text)
 

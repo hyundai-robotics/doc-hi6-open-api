@@ -20,12 +20,12 @@ PUT /clock/date_time
 
 request-body:
 {
-  "year": 2023,
-  "mon": 10,
-  "day": 30,
-  "hour": 18,
-  "min": 30,
-  "sec": 0
+    "year": 2023,
+    "mon": 10,
+    "day": 30,
+    "hour": 18,
+    "min": 30,
+    "sec": 0
 }
 ```
 </blockquote>
@@ -41,7 +41,7 @@ def put_system_time() -> int:
     path_parameter  = '/clock/date_time'
     head            = {'Content-Type': 'application/json; charset=utf-8'}
     body 			= {"year": 2023, "mon": 11, "day": 20, "hour": 21, "min": 2, "sec": 0}
-	
+
     response = requests.put(url = base_url + path_parameter, headers = head, json = body)
 
     return response.status_code

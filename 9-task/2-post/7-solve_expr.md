@@ -22,8 +22,8 @@ POST /project/context/tasks[0]/solve_expr
 
 ```json
 {
-	"expr" : "a",
-	"scope" : "local"
+    "expr" : "a",
+    "scope" : "local"
 }
 ```
 
@@ -44,8 +44,8 @@ GET /project/context/tasks[0]/solve_expr
 
 request-body:
 {
-	"expr"  : "a",
-	"scope" : "local"
+    "expr"  : "a",
+    "scope" : "local"
 }
 
 response-body:

@@ -20,17 +20,17 @@ GET /project/control/op_cnd
 
 ```json
 {
-	"_type": "CondGrp",
-	"step_goback_max_spd": 200,
-	"playback_mode": 1,        
-	"step_go_func_ex": 1,      
-	"robot_lock": 0,           
-	"playback_spd_rate": 100,  
-	"intp_base": 0,            
-	"ucrd_num": 0,             
-	"path_recov_confirm": 2,   
-	"func_reexe_on_trace": 1,  
-	"plc_mode": 1              
+    "_type": "CondGrp",
+    "step_goback_max_spd": 200,
+    "playback_mode": 1,        
+    "step_go_func_ex": 1,      
+    "robot_lock": 0,           
+    "playback_spd_rate": 100,  
+    "intp_base": 0,            
+    "ucrd_num": 0,             
+    "path_recov_confirm": 2,   
+    "func_reexe_on_trace": 1,  
+    "plc_mode": 1              
 }
 ```
 </blockquote>

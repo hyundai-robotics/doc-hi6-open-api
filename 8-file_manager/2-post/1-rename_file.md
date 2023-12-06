@@ -41,8 +41,8 @@ POST /file_manager/rename_file
 
 request-body: 
 {
-	"pathname_from" : "project/jobs/0001.job",
-	"pathname_to"   : "project/jobs/4321.job"
+    "pathname_from" : "project/jobs/0001.job",
+    "pathname_to"   : "project/jobs/4321.job"
 }
 ```
 ```

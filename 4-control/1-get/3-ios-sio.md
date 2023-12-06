@@ -39,7 +39,7 @@ GET /project/control/ios/sio/si_val?type=sib&sig_no=1
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : 2,
 }
 ```

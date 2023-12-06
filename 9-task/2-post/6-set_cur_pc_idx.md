@@ -15,7 +15,7 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 ### request-body
 ```json
 {
-  "idx": 1
+    "idx": 1
 }
 ```
 
@@ -29,7 +29,7 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 
 request-body
 {
-  "idx": 2
+    "idx": 2
 }
 ```
 

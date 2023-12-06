@@ -26,8 +26,8 @@ GET /project/robot/motor_on_state
 
 response-body:
 {
-	"_type" : "JObject",
-	"val" : 1
+    "_type" : "JObject",
+    "val" : 1
 }
 ```
 

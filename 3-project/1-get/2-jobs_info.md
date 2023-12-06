@@ -25,31 +25,31 @@ GET /project/jobs_info
 
 response-body:
 {
-	{
-		"_type": "JObject",
-		"fname": "0001.job",
-		"job_comment": "",
-		"n_step": 0,
-		"n_aux_ax": 0,
-		"n_total_ax": 6
-	},
-	{
-		"_type": "JObject",
-		"fname": "0002.job",
-		"job_comment": "",
-		"n_step": 9,
-		"n_aux_ax": -1,
-		"n_total_ax": -1
-	},
-	{
-		"_type": "JObject",
-		"fname": "0003.job",
-		"job_comment": "",
-		"n_step": 0,
-		"n_aux_ax": -1,
-		"n_total_ax": -1
-   },
-	      ...
+    {
+        "_type": "JObject",
+        "fname": "0001.job",
+        "job_comment": "",
+        "n_step": 0,
+        "n_aux_ax": 0,
+        "n_total_ax": 6
+    },
+    {
+        "_type": "JObject",
+        "fname": "0002.job",
+        "job_comment": "",
+        "n_step": 9,
+        "n_aux_ax": -1,
+        "n_total_ax": -1
+    },
+    {
+        "_type": "JObject",
+        "fname": "0003.job",
+        "job_comment": "",
+        "n_step": 0,
+        "n_aux_ax": -1,
+        "n_total_ax": -1
+    },
+            ...
 }
 ```
 </blockquote>

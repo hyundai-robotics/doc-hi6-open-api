@@ -17,8 +17,8 @@ POST /project/plc/set_relay_value
 - `value` : Please pay attention to ‘data-type’ in the notation above and enter the value you want to set.
 ```json
 {
-	"name": "fb3.dof14",
-	"value": "2.718"
+    "name": "fb3.dof14",
+    "value": "2.718"
 }
 ```
 
@@ -30,8 +30,8 @@ POST /project/plc/set_relay_value
 
 request-body:
 {
-	"name": "fb1.do0",
-	"value": "1"
+    "name": "fb1.do0",
+    "value": "1"
 }
 ```
 
