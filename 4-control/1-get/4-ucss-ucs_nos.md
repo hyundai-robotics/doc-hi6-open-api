@@ -21,7 +21,7 @@ GET /project/control/ucss/ucs_nos
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : [1],
 }
 ```

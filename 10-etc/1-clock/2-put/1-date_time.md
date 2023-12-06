@@ -20,12 +20,12 @@ PUT /clock/date_time
 
 request-body:
 {
-  "year": 2023,
-  "mon": 10,
-  "day": 30,
-  "hour": 18,
-  "min": 30,
-  "sec": 0
+    "year": 2023,
+    "mon": 10,
+    "day": 30,
+    "hour": 18,
+    "min": 30,
+    "sec": 0
 }
 ```
 </blockquote>

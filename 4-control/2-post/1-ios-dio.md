@@ -45,10 +45,10 @@ POST /project/control/ios/dio/do_val
 
 request-body:
 {
-	"type": "do",
-	"blk_no": 2,
-	"sig_no": 3,
-	"val": -99
+    "type": "do",
+    "blk_no": 2,
+    "sig_no": 3,
+    "val": -99
 }
 ```
 

@@ -53,33 +53,34 @@ GET /file_manager/file_list?path=project&incl_file=true&incl_dir=true
 
 response-body:
 [
-	{
-		"mday": 20,
-		"sec": 24,
-		"fname": "jobs",
-		"wday": 1,
-		"size": 8192,
-		"year": 2023,
-		"hour": 18,
-		"readonly": false,
-		"month": 11,
-		"is_dir": true,
-		"min": 12
-	},
-	{
-		"mday": 31,
-		"sec": 40,
-		"fname": "hi6_proj.json",
-		"wday": 2,
-		"size": 130551,
-		"year": 2023,
-		"hour": 7,
-		"readonly": false,
-		"month": 10,
-		"is_dir": false,
-		"min": 57
-	},
-	      ...
+    {
+        "mday": 20,
+        "sec": 24,
+        "fname": "jobs",
+        "wday": 1,
+        "size": 8192,
+        "year": 2023,
+        "hour": 18,
+        "readonly": false,
+        "month": 11,
+        "is_dir": true,
+        "min": 12
+    },
+    {
+        "mday": 31,
+        "sec": 40,
+        "fname": "hi6_proj.json",
+        "wday": 2,
+        "size": 130551,
+        "year": 2023,
+        "hour": 7,
+        "readonly": false,
+        "month": 10,
+        "is_dir": false,
+        "min": 57
+    },
+           ...
+]
 ```
 
 </blockquote>
