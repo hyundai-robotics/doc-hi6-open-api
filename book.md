@@ -34,7 +34,7 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 아래 그림을 통해서 Open API 역할을 보다 쉽게 이해할 수 있습니다.
 
 
-<img src="../../_assets/05_open_api_flow.png" style="max-height: 25vh;">
+<img src="../../_assets/05_open_api_flow.png" style="max-height: 22vh;">
 
 
 위 그림에서 주황색으로 표시된 부분들은 Open API 의 역할을 보여주고 있습니다.  
@@ -52,9 +52,7 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 ### 시작하기 전에 꼭 확인하세요!
 
-* 현재 문서는 초기 버전으로 Hi6 Open API 버전 5를 기준으로 작성되었습니다.
-
-* 이후 지속적으로 버전 업데이트가 있을 수 있습니다. 버전이 업데이트 되는 경우, 해당 section 을 참고하시기 바랍니다.
+* 현재 문서는 Hi6 Open API 스키마 버전 `5`를 기준으로 작성되었습니다. [API](../../2-version/1-get/1-api_ver.md) 를 통해 확인 가능합니다.
 
 * HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`1.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`1.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
 
@@ -170,7 +168,8 @@ Console.WriteLine(str);
 위 소스코드가 포함된 실행 가능한 C# WinForms 샘플 프로그램을 아래 Github 링크를 통해 확인하실 수 있습니다.
 > 링크 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)### 1.3.2 예제 코드 - python
 
-예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)` 두 가지 방식에 대해서 설명합니다.
+예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)`   
+두 가지 방식 중 `a. 동기식 요청`에 대해서 설명합니다.
 
 ||동기식|비동기식|
 |:---|:---|:---|
@@ -230,67 +229,6 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.04827427864074707 seconds
 [get] 0x79 from fb2.do3 Time taken: 0.06168508529663086 seconds
 total request time : 0.2869541645050049 seconds
-```
-<br><br>  
-
-### b. 비동기식 요청
-동기식 요청의 문제점을 보완한 방식으로, 요청 시 콜백 함수를 동작시켜 해당 콜백 함수에서 요청 사항을 처리하여 도중에 다른 task 가 실행 가능해집니다.  
-작업 완료 순서를 보장하지 않는다는 점이 동기식과 차이가 있지만, 모든 요청이 거의 동시에 시작되므로 전체적인 응답 시간이 짧아집니다.  
-python 은 `asyncio` 라는 비동기 프로그래밍 구현 용 빌트인 라이브러리를 제공하고 있습니다. 이를 통해 CPU 작업과 I/O를 병렬로 처리하게 해줍니다.  
-`비동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `aiohttp` 입니다.  
-`aiohttp` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다.
-
-```sh
-$pip install aiohttp
-```
-
-```python
-# async.py - 비동기식, 사용자 IO 출력 값 얻기와 설정하기
-import asyncio
-import aiohttp
-import time
-
-url = 'http://192.168.1.150:8888'
-head = {'Content-Type': 'application/json; charset=utf-8'}
-path = '/project/control/ios/dio/do_val'
-query = {'type': 'dob', 'blk_no': 2, 'sig_no': 3}
-
-async def set_value(session):
-    val = 0x60
-    req_body = {'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val': val}
-    start_time = time.time()
-    async with session.post(url + path, headers=head, json=req_body) as resp:
-        pass
-    end_time = time.time()
-    print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
-
-async def get_value(session):
-    start_time = time.time()
-    async with session.get(url + path, headers=head, params=query) as resp:
-        resp_body = await resp.json()
-    end_time = time.time()
-    print('[get]', hex(resp_body['val']), 'from fb2.do3', f"Time taken: {end_time - start_time} seconds")
-
-async def main():
-    async with aiohttp.ClientSession() as session:
-        await set_value(session)
-        tasks = [get_value(session) for _ in range(5)]
-        total_start_time = time.time()
-        await asyncio.gather(*tasks)
-        total_end_time = time.time()
-        print(f"total request time : {total_end_time - total_start_time} seconds")
-
-asyncio.run(main())
-```
-```bash
-$python async.py
-[post] 0x60 to fb2.do3 Time taken: 0.0018951892852783203 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.044029951095581055 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.0583953857421875 seconds 
-[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.05900430679321289 seconds
-total request time : 0.060544490814208984 seconds
 ```## 1.4 코딩하지 않고 쉽게 API 호출 해보기
 
 [앞선 예제 코드](../../1-intro/3-sample-code/README.md)처럼 client 어플리케이션을 개발하면서 Open API 를 사용하는 경우, 코딩을 따로 하지 않고도 손쉽게 API를 호출해 볼 수 있습니다.  
@@ -324,7 +262,7 @@ total request time : 0.060544490814208984 seconds
 
 아래 그림을 통해 주요 UI 구성을 확인할 수 있습니다. <br>
 
-<img src="../../_assets/01_postman_desc.png" style="max-height: 55vh;">
+<img src="../../_assets/01_postman_desc.png" style="max-height: 40vh;">
 
 <blockquote>
 
@@ -357,7 +295,7 @@ total request time : 0.060544490814208984 seconds
 3. `Response` 확인 및 `Code snippet` 참조
 	- `request` 요청이 정상적으로 완료되면 아래 그림과 같이 `HTTP Status` 가 `200 OK`로 응답합니다. ([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 참조)
 	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.  
-	<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">
+	<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 40vh;">
 
 		<blockquote>
 
@@ -390,7 +328,7 @@ total request time : 0.060544490814208984 seconds
 
 해당 프로그램을 통해 `postman` 처럼 다양한 API 들에 대해서 간편하게 호출을 해볼 수 있습니다.
 
-<img src="../../_assets/06_Talend_api_tester.png" style="max-height: 80vh;">
+<img src="../../_assets/06_Talend_api_tester.png" style="max-height: 60vh;">
 
 <blockquote>
 
@@ -405,11 +343,18 @@ total request time : 0.060544490814208984 seconds
 - 현재 api 의 버전 또는 로봇제어기의 시스템 버전을 확인합니다.## 2.1 version/get
 
 - 현재 api 의 버전 또는 로봇제어기의 시스템 버전 관련 정보에 대하여 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 2.1.1 api_ver
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 2.1.1 api_ver 
 
 ### 설명
 
-- GET : Open API version 번호를 얻습니다.
+불가피하게 API 의 스키마 버전에 따라 제어기와 통신하는 방법이나 데이터 구조가 변경될 수 있습니다.  
+이는 클라이언트 프로그램에 문제를 야기할 수 있으므로 해당 함수를 통해 확인하는 과정이 필요합니다.  
+각 API 함수들에 대해 스키마 버전 변경이 생길 경우 설명 페이지에 별도의 표기를 통해 안내됩니다.
+
+
+`api_ver`
+
+- `GET` : Open API 스키마 버전을 얻습니다.
 
 ### path-parameter
 
@@ -419,8 +364,8 @@ GET /api_ver
 
 ### response-body
 
-- Open API version 번호
-- 초기 Hi6 Open API 는 `version 5`를 기준으로 작성된 문서입니다. 
+- Open API 스키마 버전
+
 
 ### 사용 예
 
@@ -453,7 +398,9 @@ $python test.py
 
 ### 설명
 
-- GET : 로봇제어기 시스템의 소프트웨어 버전을 얻습니다.
+`sysver`
+
+- `GET` : 로봇제어기 시스템의 소프트웨어 버전을 얻습니다.
 
 ### path-parameter
 
@@ -894,7 +841,7 @@ GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : -56,
 }
 ```
@@ -960,7 +907,7 @@ GET /project/control/ios/sio/si_val?type=sib&sig_no=1
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : 2,
 }
 ```
@@ -1008,7 +955,7 @@ GET /project/control/ucss/ucs_nos
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : [1],
 }
 ```
@@ -1082,10 +1029,10 @@ POST /project/control/ios/dio/do_val
 
 request-body:
 {
-	"type": "do",
-	"blk_no": 2,
-	"sig_no": 3,
-	"val": -99
+    "type": "do",
+    "blk_no": 2,
+    "sig_no": 3,
+    "val": -99
 }
 ```
 
@@ -1206,8 +1153,8 @@ GET /project/robot/motor_on_state
 
 response-body:
 {
-	"_type" : "JObject",
-	"val" : 1
+    "_type" : "JObject",
+    "val" : 1
 }
 ```
 
@@ -1273,16 +1220,16 @@ GET /project/robot/po_cur?crd=0&mechinfo=1
 
 response-body:
 {
-	"nsync" : 0,
-	"_type" : "Pose",
-	"rx" : 0.000000,
-	"x" : 1782.000000,
-	"ry" : 90.000000,
-	"y" : 0.000000,
-	"rz" : 0.000000,
-	"z" : 1938.000000,
-	"mechinfo" : 1,
-	"crd" : "base"
+    "nsync" : 0,
+    "_type" : "Pose",
+    "rx" : 0.000000,
+    "x" : 1782.000000,
+    "ry" : 90.000000,
+    "y" : 0.000000,
+    "rz" : 0.000000,
+    "z" : 1938.000000,
+    "mechinfo" : 1,
+    "crd" : "base"
 }
 ```
 
@@ -1294,19 +1241,19 @@ GET /project/robot/po_cur?crd=2&mechinfo=-1
 
 response-body:
 {
-	"nsync" : 0,
-	"_type" : "Pose",
-	"mechinfo" : 65535,
-	"j9" : 0.000000,
-	"crd" : "joint",
-	"j1" : 0.000000,
-	"j2" : 90.000000,
-	"j3" : 0.000000,
-	"j4" : 0.000000,
-	"j5" : 0.000000,
-	"j6" : 0.000000,
-	"j7" : 0.000000,
-	"j8" : 0.000000
+    "nsync" : 0,
+    "_type" : "Pose",
+    "mechinfo" : 65535,
+    "j9" : 0.000000,
+    "crd" : "joint",
+    "j1" : 0.000000,
+    "j2" : 90.000000,
+    "j3" : 0.000000,
+    "j4" : 0.000000,
+    "j5" : 0.000000,
+    "j6" : 0.000000,
+    "j7" : 0.000000,
+    "j8" : 0.000000
 }
 ```
 
@@ -1452,9 +1399,9 @@ GET /project/robot/tools
 
 response-body:
 {
-  "_type" : "Tools",
-	"t_0" : { ... },
-	"t_1" : { ... },
+    "_type" : "Tools",
+    "t_0" : { ... },
+    "t_1" : { ... },
 	 ...
 }
 ```
@@ -1504,14 +1451,14 @@ GET /project/robot/tools/t_1
 
 response-body:
 {
-  "_type" : "Tool",
-	"x" : 0.0,
-	"y" : 0.0,
-	"z" : 0.0,
-	"rx" : 0.0,
-	"ry" : 0.0,
-	"rz" : 0.0,
-	 ...
+    "_type" : "Tool",
+    "x"     : 0.0,
+    "y"     : 0.0,
+    "z"     : 0.0,
+    "rx"    : 0.0,
+    "ry"    : 0.0,
+    "rz"    : 0.0,
+        ...
 }
 ```
 
@@ -1789,7 +1736,7 @@ response: 200
 - 내장 PLC(built-in plc)의 입출력 값을 읽어오거나 설정합니다.## 6.1 io_plc/get
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 6.1.1 `relay values`
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 6.1.1 `get relay values`
 
 ### 설명
 
@@ -1829,14 +1776,14 @@ GET /project/plc/s/val_s32
 
 response-body:
 [
-	16975105,
-	132579331,
-	252449291,
-	406585366,
-	327681,
-	712706500,
-	118947845,
-	28
+    16975105,
+    132579331,
+    252449291,
+    406585366,
+    327681,
+    712706500,
+    118947845,
+    28
 ]
 ```
 
@@ -1846,10 +1793,10 @@ GET /project/plc/m/val_s32?st=32&len=4
 
 response-body:
 [
-	0,
-	-2139095040,
-	0,
-	134217728
+    0,
+    -2139095040,
+    0,
+    134217728
 ]
 ```
 
@@ -1876,10 +1823,9 @@ $python test.py
 ```## 6.2 io_plc/post
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 6.2.1 `set_relay_value`
+- API 별로 정확한 request-body 를 작성해야합니다.## 6.2.1 `set relay values`
 
 ### 설명
-`set_relay_value`
 
 - `POST` : relay 값 설정합니다.
 
@@ -1895,8 +1841,8 @@ POST /project/plc/set_relay_value
 - `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
 ```json
 {
-	"name": "fb3.dof14",
-	"value": "2.718"
+    "name": "fb3.dof14",
+    "value": "2.718"
 }
 ```
 
@@ -1908,8 +1854,8 @@ POST /project/plc/set_relay_value
 
 request-body:
 {
-	"name": "fb1.do0",
-	"value": "1"
+    "name": "fb1.do0",
+    "value": "1"
 }
 ```
 
@@ -2300,33 +2246,34 @@ GET /file_manager/file_list?path=project&incl_file=true&incl_dir=true
 
 response-body:
 [
-	{
-		"mday": 20,
-		"sec": 24,
-		"fname": "jobs",
-		"wday": 1,
-		"size": 8192,
-		"year": 2023,
-		"hour": 18,
-		"readonly": false,
-		"month": 11,
-		"is_dir": true,
-		"min": 12
-	},
-	{
-		"mday": 31,
-		"sec": 40,
-		"fname": "hi6_proj.json",
-		"wday": 2,
-		"size": 130551,
-		"year": 2023,
-		"hour": 7,
-		"readonly": false,
-		"month": 10,
-		"is_dir": false,
-		"min": 57
-	},
-	      ...
+    {
+        "mday": 20,
+        "sec": 24,
+        "fname": "jobs",
+        "wday": 1,
+        "size": 8192,
+        "year": 2023,
+        "hour": 18,
+        "readonly": false,
+        "month": 11,
+        "is_dir": true,
+        "min": 12
+    },
+    {
+        "mday": 31,
+        "sec": 40,
+        "fname": "hi6_proj.json",
+        "wday": 2,
+        "size": 130551,
+        "year": 2023,
+        "hour": 7,
+        "readonly": false,
+        "month": 10,
+        "is_dir": false,
+        "min": 57
+    },
+           ...
+]
 ```
 
 </blockquote>
@@ -2448,8 +2395,8 @@ POST /file_manager/rename_file
 
 ```json
 {
-	"pathname_from" : "project/jobs/0001.job",
-	"pathname_to"   : "project/jobs/4321.job"
+    "pathname_from" : "project/jobs/0001.job",
+    "pathname_to"   : "project/jobs/4321.job"
 }
 ```
 - `pathname_from` : 변경 전 파일 경로
@@ -2473,8 +2420,8 @@ POST /file_manager/rename_file
 
 request-body: 
 {
-	"pathname_from" : "project/jobs/0001.job",
-	"pathname_to"   : "project/jobs/4321.job"
+    "pathname_from" : "project/jobs/0001.job",
+    "pathname_to"   : "project/jobs/4321.job"
 }
 ```
 ```text
@@ -2546,7 +2493,7 @@ GET /file_manager/mkdir
 
 request-body: 
 {
-	"path" : "project/jobs/special"
+    "path" : "project/jobs/special"
 }
 ```
 
@@ -3175,8 +3122,8 @@ POST /project/context/tasks[0]/solve_expr
 
 ```json
 {
-	"expr" : "a",
-	"scope" : "local"
+    "expr" : "a",
+    "scope" : "local"
 }
 ```
 
@@ -3197,8 +3144,8 @@ GET /project/context/tasks[0]/solve_expr
 
 request-body:
 {
-	"expr"  : "a",
-	"scope" : "local"
+    "expr"  : "a",
+    "scope" : "local"
 }
 
 response-body:
@@ -3299,13 +3246,13 @@ GET /clock/date_time
 
 response-body:
 {
-	"_type": "JObject",
-	"year": 2023,
-	"mon": 11,
-	"day": 20,
-	"min": 40,
-	"hour": 19,
-	"sec": 54
+    "_type": "JObject",
+    "year": 2023,
+    "mon": 11,
+    "day": 20,
+    "min": 40,
+    "hour": 19,
+    "sec": 54
 }
 ```
 </blockquote>
@@ -3319,7 +3266,7 @@ import requests
 def get_system_time() -> str:
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/clock/date_time'
-	
+
     response = requests.get(url = base_url + path_parameter).json()
 
     t = f'[{response["mon"]}/{response["day"]}] {response["hour"]}:{response["min"]}'
@@ -3356,12 +3303,12 @@ PUT /clock/date_time
 
 request-body:
 {
-  "year": 2023,
-  "mon": 10,
-  "day": 30,
-  "hour": 18,
-  "min": 30,
-  "sec": 0
+    "year": 2023,
+    "mon": 10,
+    "day": 30,
+    "hour": 18,
+    "min": 30,
+    "sec": 0
 }
 ```
 </blockquote>

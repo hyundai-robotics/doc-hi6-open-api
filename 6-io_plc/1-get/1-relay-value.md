@@ -1,4 +1,4 @@
-﻿## 6.1.1 `relay values`
+﻿## 6.1.1 `get relay values`
 
 ### 설명
 
