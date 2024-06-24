@@ -2,8 +2,6 @@
 
 ### 설명
 
-`jobs_info`
-
 - `GET` : job 프로그램 관련 정보들을 받는 함수입니다.
 
 ### path-parameter

@@ -2,7 +2,7 @@
 
 ### 설명
 
-- POST : 현재 조그(jog) 좌표계를 설정합니다.
+- `POST` : 현재 조그(jog) 좌표계를 설정합니다.
 
 ### path-parameter
 

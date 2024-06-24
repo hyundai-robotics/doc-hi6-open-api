@@ -2,8 +2,6 @@
 
 ### 설명
 
-`date_time`
-
 - `GET` : 설정된 시스템 시간을 가져옵니다.
 
 ### response-body

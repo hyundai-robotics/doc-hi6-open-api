@@ -2,8 +2,6 @@
 
 ### 설명
 
-`files`
-
 - `DELETE` : 타겟 파일 또는 디렉토리를 삭제합니다.
 
 ### path-parameter

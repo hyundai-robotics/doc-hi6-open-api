@@ -2,8 +2,6 @@
 
 ### 설명
 
-`do` (digital output)
-
 - `POST` : 디지털 출력을 변경합니다.
 
 ### path-parameter

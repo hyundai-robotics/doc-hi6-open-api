@@ -2,8 +2,6 @@
 
 ### 설명
 
-`motor_on_state`
-
 - `GET` : 모터 온 상태를 얻습니다.
 
 ### path-parameter

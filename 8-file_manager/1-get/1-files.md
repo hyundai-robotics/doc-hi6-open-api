@@ -2,8 +2,6 @@
 
 ### 설명
 
-`files`
-
 - `GET` : 제어기로부터 파일 내용을 응답 받습니다.
 
 ### path-parameter

@@ -352,8 +352,6 @@ total request time : 0.2869541645050049 seconds
 각 API 함수들에 대해 스키마 버전 변경이 생길 경우 설명 페이지에 별도의 표기를 통해 안내됩니다.
 
 
-`api_ver`
-
 - `GET` : Open API 스키마 버전을 얻습니다.
 
 ### path-parameter
@@ -397,8 +395,6 @@ $python test.py
 ```## 2.1.2 sysver
 
 ### 설명
-
-`sysver`
 
 - `GET` : 로봇제어기 시스템의 소프트웨어 버전을 얻습니다.
 
@@ -467,8 +463,6 @@ $python test.py
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 3.1.1 `rgen`
 
 ### 설명
-
-`rgen` (remote general status)
 
 - `GET` : 제어기에 설정된 일반적인 정보들을 읽습니다.
 
@@ -552,8 +546,6 @@ is remote mode? 0
 
 ### 설명
 
-`jobs_info`
-
 - `GET` : job 프로그램 관련 정보들을 받는 함수입니다.
 
 ### path-parameter
@@ -632,8 +624,6 @@ $python test.py
 
 ### 설명
 
-`reload_updated_jobs`
-
 - `POST` : 작업 파일들을 갱신하는 요청을 보냅니다.
 - FTP 로 job 파일을 제어기에 전송하는 경우, 해당 API 를 통해 reload 요청을 해야 전송된 job 파일이 메모리에 반영이 됩니다.
 
@@ -684,8 +674,6 @@ response: 200
 ## 3.2.2 `delete_job`
 
 ### 설명
-
-`delete_job`
 
 - `POST` : 작업 파일을 제거하는 요청을 보냅니다.
 
@@ -748,8 +736,6 @@ response: 200
 
 ### 설명
 
-`op_cnd` (operation condition)
-
 - `GET` : 조건설정 값을 얻습니다.
 
 ### path-parameter
@@ -803,8 +789,6 @@ $python test.py
 ```## 4.1.2 `ios/dio/{dio_val}`
 
 ### 설명
-
-`dio` (digital input/output)
 
 - `GET` : 사용자 IO 값을 얻습니다.
 
@@ -870,8 +854,6 @@ $python test.py
 
 ### 설명
 
-`sio` (system input/output)
-
 - `GET` : 시스템 IO 값을 얻습니다.
 
 ### path-parameter
@@ -936,8 +918,6 @@ $python test.py
 
 ### 설명
 
-`ucss/ucs_nos` (user coordinate system numbers)
-
 - `GET` : 현재 사용 중인 사용자 좌표계들을 리스트로 얻습니다.
 - `시스템 > 2: 제어 파라미터 > 6: 좌표계 등록` 을 통해 등록한 사용자 좌표계 리스트를 출력합니다.
 
@@ -985,8 +965,6 @@ $python test.py
 - API 별로 정확한 request-body 를 작성해야합니다.## 4.2.1 `ios/dio/{do_val}`
 
 ### 설명
-
-`do` (digital output)
 
 - `POST` : 디지털 출력을 변경합니다.
 
@@ -1064,9 +1042,7 @@ response: 200
 
 ### 설명
 
-`op_cnd` (operation condition)
-
-- `PUT` : 로봇의 조건설정 값을 변경합니다.
+- `PUT` : 로봇의 `조건설정값`을 변경합니다.
 - TP 에서 조건 설정 창을 열고 해당 메서드를 요청한 경우, 창을 닫았다 다시 열어야 값이 반영됩니다.
 
 ### path-parameter
@@ -1129,8 +1105,6 @@ response: 200
 
 ### 설명
 
-`motor_on_state`
-
 - `GET` : 모터 온 상태를 얻습니다.
 
 ### path-parameter
@@ -1180,8 +1154,6 @@ Motor On status: 1
 ```## 5.1.2 `po_cur`
 
 ### 설명
-
-`po_cur` (pose current)
 
 - `GET` : 현재 로봇이 취하고 있는 pose(자세)를 얻습니다.
 
@@ -1308,8 +1280,6 @@ $python test.py
 
 ### 설명
 
-`cur_tool_data`
-
 - `GET` : 로봇의 현재 툴 데이터 얻기.
 
 ### path-parameter
@@ -1371,8 +1341,6 @@ $python test.py
 
 ### 설명
 
-`tools`
-
 - `GET` : 로봇의 모든 툴 정보 얻기. T0~T31까지의 툴 중 존재하는 툴만 얻습니다.
 
 ### path-parameter
@@ -1429,9 +1397,7 @@ $python test.py
 
 ### 설명
 
-`tools/t_{number}`
-
-- GET : 특정 툴의 설정값 정보를 받는 함수입니다.
+- `GET` : 특정 툴의 설정값 정보를 받는 함수입니다.
 
 ### path-parameter
 
@@ -1488,7 +1454,7 @@ $python test.py
 
 ### 설명
 
-- POST : 모터 ON과 모터 OFF를 수행합니다.
+- `POST` : 모터 ON과 모터 OFF를 수행합니다.
 
 ### path-parameter
 
@@ -1554,7 +1520,7 @@ Motor-OFF response: 200
 
 ### 설명
 
-- POST : 로봇 기동(start)과 로봇 정지(stop)를 수행합니다.
+- `POST` : 로봇 기동(start)과 로봇 정지(stop)를 수행합니다.
 
 ### path-parameter
 
@@ -1621,7 +1587,7 @@ Stop  response: 200
 
 ### 설명
 
-- POST : 현재 툴 번호를 설정합니다.
+- `POST` : 현재 툴 번호를 설정합니다.
 
 ### path-parameter
 
@@ -1678,7 +1644,7 @@ response: 200
 
 ### 설명
 
-- POST : 현재 조그(jog) 좌표계를 설정합니다.
+- `POST` : 현재 조그(jog) 좌표계를 설정합니다.
 
 ### path-parameter
 
@@ -1901,8 +1867,6 @@ response: 200
 
 ### 설명
 
-`search`
-
 - `GET` : 지정한 필터 조건으로 이벤트 이력(event log)를 열람합니다.  
 
 ### path-parameter
@@ -2017,8 +1981,6 @@ $python test.py
 
 ### 설명
 
-`files`
-
 - `GET` : 제어기로부터 파일 내용을 응답 받습니다.
 
 ### path-parameter
@@ -2109,8 +2071,6 @@ S4   move P,tg=po1,spd=100%,accu=0,tool=1
 
 ### 설명
 
-`file_info`
-
 - `GET` : 파일 경로를 기반으로 해당 파일에 대한 정보를 반환합니다.
 
 ### path-parameter
@@ -2194,8 +2154,6 @@ $python test.py
 ```## 8.1.3 `file_list`
 
 ### 설명
-
-`file_list`
 
 - `GET` : 파일 및 디렉토리 리스트를 반환합니다.
 
@@ -2305,8 +2263,6 @@ $python final_test.py
 
 ### 설명
 
-`file_exist`
-
 - `GET` : 타겟 파일의 존재 여부를 반환합니다.
 
 ### path-parameter
@@ -2380,8 +2336,6 @@ true
 - API 별로 정확한 request-body 를 작성해야합니다.## 8.2.1 `rename_file`
 
 ### 설명
-
-`rename_file`
 
 - `POST` : 타겟 파일의 파일 이름을 변경합니다.
 
@@ -2459,8 +2413,6 @@ response: 200
 
 ### 설명
 
-`mkdir`
-
 - `POST` : 타겟 경로에 디렉토리를 생성합니다.
 
 ### path-parameter
@@ -2532,8 +2484,6 @@ response: 200
 ```## 8.2.3 `files`
 
 ### 설명
-
-`files`
 
 - `POST` : 타겟 경로에 파일을 전송합니다.
 
@@ -2610,8 +2560,6 @@ response: 200
 
 ### 설명
 
-`files`
-
 - `DELETE` : 타겟 파일 또는 디렉토리를 삭제합니다.
 
 ### path-parameter
@@ -2678,8 +2626,6 @@ response: 200
 - API 별로 정확한 request-body 를 작성해야합니다.## 9.2.1 `task/cur_prog_cnt`
 
 ### 설명
-
-`cur_prog_cnt` (current program counter)
 
 - `POST` : 태스크의 현재 프로그램 카운터를 설정합니다.
 
@@ -2783,11 +2729,9 @@ print(f"response: {post_task_reset()}")
 ```sh
 $python test.py
 response: 200
-```## 9.2.4 `assign_var_expr`
+```## 9.2.3 `assign_var_expr`
 
 ### 설명
-
-`assign_var_expr`
 
 - `POST` : 현재 태스크 구문의 변수를 재지정합니다.
 
@@ -2879,11 +2823,9 @@ $python test.py
 before: 1234
 response: 200
 after: 777   
-```## 9.2.5 `assign_var_json`
+```## 9.2.4 `assign_var_json`
 
 ### 설명
-
-`assign_var_json`
 
 - `POST` : 현재 태스크 구문의 변수를 재지정합니다.
 
@@ -2980,11 +2922,9 @@ $python test.py
 before: 1234
 response: 200
 after: {'_type': 'JObject', 'test': 10}
-```## 9.2.6 `release_wait`
+```## 9.2.5 `release_wait`
 
 ### 설명
-
-`release_wait`
 
 - `POST` : 구문 정지해제
 - 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
@@ -3040,11 +2980,9 @@ print(f"response: {post_release_wait()}")
 ```sh
 $python test.py
 response: 200
-```## 9.2.3 `set_cur_pc_idx`
+```## 9.2.6 `set_cur_pc_idx`
 
 ### 설명
-
-`set_cur_pc_idx`
 
 - `POST` : 현재 커서를 index 라인에 위치 시키는 함수
 
@@ -3101,8 +3039,6 @@ response 200 # + TP 상 커서 위치 변경 됨
 ```## 9.2.7 `solve_expr`
 
 ### 설명
-
-`solve_expr`
 
 - `POST` : 표현식(expression)을 풀어서 나오는 결과 값을 태스크의 지역 또는 전역 변수에 설정합니다.
 
@@ -3228,8 +3164,6 @@ $python test.py
 
 ### 설명
 
-`date_time`
-
 - `GET` : 설정된 시스템 시간을 가져옵니다.
 
 ### response-body
@@ -3284,8 +3218,6 @@ $python test.py
 - API 별로 정확한 request-body 를 작성해야합니다.## 10.1.2.1 `date_time`
 
 ### 설명
-
-`date_time`
 
 - `PUT` : 시스템 시간을 변경합니다.
 

@@ -2,8 +2,6 @@
 
 ### 설명
 
-`sio` (system input/output)
-
 - `GET` : 시스템 IO 값을 얻습니다.
 
 ### path-parameter

@@ -2,8 +2,6 @@
 
 ### 설명
 
-`op_cnd` (operation condition)
-
 - `GET` : 조건설정 값을 얻습니다.
 
 ### path-parameter

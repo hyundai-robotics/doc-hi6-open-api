@@ -2,8 +2,6 @@
 
 ### 설명
 
-`rgen` (remote general status)
-
 - `GET` : 제어기에 설정된 일반적인 정보들을 읽습니다.
 
 ### path-parameter

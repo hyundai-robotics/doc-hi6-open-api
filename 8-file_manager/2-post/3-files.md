@@ -2,8 +2,6 @@
 
 ### 설명
 
-`files`
-
 - `POST` : 타겟 경로에 파일을 전송합니다.
 
 ### path-parameter

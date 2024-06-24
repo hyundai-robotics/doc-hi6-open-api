@@ -2,8 +2,6 @@
 
 ### 설명
 
-`cur_prog_cnt` (current program counter)
-
 - `POST` : 태스크의 현재 프로그램 카운터를 설정합니다.
 
 ### path-parameter

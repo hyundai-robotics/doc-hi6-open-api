@@ -2,8 +2,6 @@
 
 ### 설명
 
-`file_exist`
-
 - `GET` : 타겟 파일의 존재 여부를 반환합니다.
 
 ### path-parameter

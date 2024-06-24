@@ -2,7 +2,7 @@
 
 ### 설명
 
-- POST : 모터 ON과 모터 OFF를 수행합니다.
+- `POST` : 모터 ON과 모터 OFF를 수행합니다.
 
 ### path-parameter
 

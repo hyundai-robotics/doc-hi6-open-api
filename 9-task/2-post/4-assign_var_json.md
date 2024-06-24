@@ -1,8 +1,6 @@
-﻿## 9.2.5 `assign_var_json`
+﻿## 9.2.4 `assign_var_json`
 
 ### 설명
-
-`assign_var_json`
 
 - `POST` : 현재 태스크 구문의 변수를 재지정합니다.
 

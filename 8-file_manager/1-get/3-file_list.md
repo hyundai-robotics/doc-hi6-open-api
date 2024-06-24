@@ -2,8 +2,6 @@
 
 ### 설명
 
-`file_list`
-
 - `GET` : 파일 및 디렉토리 리스트를 반환합니다.
 
 ### path-parameter
