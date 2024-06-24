@@ -2,8 +2,6 @@
 
 ### 설명
 
-`date_time`
-
 - `PUT` : 시스템 시간을 변경합니다.
 
 ### request-body

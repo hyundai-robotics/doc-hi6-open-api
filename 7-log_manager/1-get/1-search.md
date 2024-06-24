@@ -2,8 +2,6 @@
 
 ### 설명
 
-`search`
-
 - `GET` : 지정한 필터 조건으로 이벤트 이력(event log)를 열람합니다.  
 
 ### path-parameter

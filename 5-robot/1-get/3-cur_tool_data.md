@@ -2,8 +2,6 @@
 
 ### 설명
 
-`cur_tool_data`
-
 - `GET` : 로봇의 현재 툴 데이터 얻기.
 
 ### path-parameter

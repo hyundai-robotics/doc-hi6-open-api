@@ -2,8 +2,6 @@
 
 ### 설명
 
-`mkdir`
-
 - `POST` : 타겟 경로에 디렉토리를 생성합니다.
 
 ### path-parameter

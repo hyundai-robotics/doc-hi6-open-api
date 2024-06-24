@@ -2,8 +2,6 @@
 
 ### 설명
 
-`solve_expr`
-
 - `POST` : 표현식(expression)을 풀어서 나오는 결과 값을 태스크의 지역 또는 전역 변수에 설정합니다.
 
 ### path-parameter

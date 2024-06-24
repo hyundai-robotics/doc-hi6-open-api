@@ -1,8 +1,6 @@
-﻿## 9.2.3 `set_cur_pc_idx`
+﻿## 9.2.6 `set_cur_pc_idx`
 
 ### 설명
-
-`set_cur_pc_idx`
 
 - `POST` : 현재 커서를 index 라인에 위치 시키는 함수
 

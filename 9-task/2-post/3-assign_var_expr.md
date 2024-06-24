@@ -1,8 +1,6 @@
-﻿## 9.2.4 `assign_var_expr`
+﻿## 9.2.3 `assign_var_expr`
 
 ### 설명
-
-`assign_var_expr`
 
 - `POST` : 현재 태스크 구문의 변수를 재지정합니다.
 

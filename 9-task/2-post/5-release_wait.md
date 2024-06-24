@@ -1,8 +1,6 @@
-﻿## 9.2.6 `release_wait`
+﻿## 9.2.5 `release_wait`
 
 ### 설명
-
-`release_wait`
 
 - `POST` : 구문 정지해제
 - 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택

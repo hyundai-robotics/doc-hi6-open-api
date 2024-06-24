@@ -2,8 +2,6 @@
 
 ### 설명
 
-`rename_file`
-
 - `POST` : 타겟 파일의 파일 이름을 변경합니다.
 
 ### path-parameter
