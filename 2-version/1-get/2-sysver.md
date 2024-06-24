@@ -15,10 +15,8 @@ GET /versions/sysver
 modules : 모듈 버전 정보의 배열
   - 모듈 버전 정보 :
     - `name` : 모듈명
-		|모듈명|설명|
-		|---:|:---|
-		|com|로봇 제어기|
-		|tp|티칭 팬던트|
+        - `com` : 로봇 제어기
+        - `tp` : 티칭 펜던트
     - `ver` : 버전번호
     - `build-date` : 빌드 날짜
     - `build-time` : 빌드 시간
