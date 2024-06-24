@@ -33,7 +33,7 @@ In this document, HD Hyundai Robotics publishes an API for application developer
 This enables developers to read and write Hi6 data without requiring a thorough comprehension of the source code used in Hi6 development.<br>
 The image below will help you better grasp the role of Open API.
 
-<img src="../../_assets/05_open_api_flow.png" style="max-height: 25vh;">
+<img src="../../_assets/05_open_api_flow.png" style="max-height: 22vh;">
 
 The parts marked in orange in the picture above show the role of Open API.
 
@@ -50,9 +50,7 @@ In this way, developers can use the Open API in the document to remotely control
 
 ### Be sure to check before you start!
 
-* The current document is an initial version and was written based on Hi6 Open API version 5.
-
-* There may be continuous version updates in the future. If the version is updated, please refer to the corresponding section.
+* The current document is written based on Hi6 Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
 
 * For developers who are familiar with developing HTTP REST API client functions, you can skip from [1.2 Required prior knowledge](../2-prerequisite/README.md) to [1.4 Simple API call without coding](../4-api-test/README.md).
 
@@ -170,7 +168,9 @@ Console.WriteLine(str);
 You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
 > Link : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)### 1.3.2 Sample code - python
 
-The example code is `a. Synchronous request (blocking & synchronous)` and `b. Asynchronous request (non-blocking & asynchronous)` Two methods are explained.
+The example code mainly describes `a. synchronous request`.
+
+
 ||Synchronous|Asynchronous|
 |:---|:---|:---|
 |blocking|`a. Synchronous request`||
@@ -236,67 +236,6 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.06106710433959961 seconds
 [get] 0x79 from fb2.do3 Time taken: 0.04711771011352539 seconds
 total request time : 0.292741060256958 seconds
-```
-
-<br>
-
-### b. Asynchronous request  
-This is a method that complements the problems of synchronous requests. It operates a callback function when requested and processes the request in the callback function, allowing other tasks to be executed in the meantime.  
-Asynchronous differs from synchronous in that it does not guarantee the order in which tasks are completed, but because all requests start at approximately the same time, overall response time can be shorter.  
-Python provides a built-in library for implementing asynchronous programming called `asyncio`. This allows CPU tasks and I/O to be processed in parallel.  
-Additionally, a popular library for `asynchronous` HTTP requests is `aiohttp`.  
-If you do not have the `aiohttp` library, you can install it through the Python package manager.  
-```sh
-$pip install aiohttp
-```
-
-```python
-# async.py -  Asynchronous, getting and setting user IO output values
-import asyncio
-import aiohttp
-import time
-
-url = 'http://192.168.1.150:8888'
-head = {'Content-Type': 'application/json; charset=utf-8'}
-path = '/project/control/ios/dio/do_val'
-query = {'type': 'dob', 'blk_no': 2, 'sig_no': 3}
-
-async def set_value(session):
-    val = 0x60
-    req_body = {'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val': val}
-    start_time = time.time()
-    async with session.post(url + path, headers=head, json=req_body) as resp:
-        pass
-    end_time = time.time()
-    print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
-
-async def get_value(session):
-    start_time = time.time()
-    async with session.get(url + path, headers=head, params=query) as resp:
-        resp_body = await resp.json()
-    end_time = time.time()
-    print('[get]', hex(resp_body['val']), 'from fb2.do3', f"Time taken: {end_time - start_time} seconds")
-
-async def main():
-    async with aiohttp.ClientSession() as session:
-        await set_value(session)
-        tasks = [get_value(session) for _ in range(5)]
-        total_start_time = time.time()
-        await asyncio.gather(*tasks)
-        total_end_time = time.time()
-        print(f"total request time : {total_end_time - total_start_time} seconds")
-
-asyncio.run(main())
-```
-```bash
-$python async.py
-[post] 0x60 to fb2.do3 Time taken: 0.0027306079864501953 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.04407477378845215 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.05881357192993164 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.057793378829956055 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.057793378829956055 seconds
-[get] 0x60 from fb2.do3 Time taken: 0.05912017822265625 seconds
-total request time : 0.06045794486999512 seconds
 ```## 1.4 Simple API call without coding
 
 If you use Open API while developing a client application like [previous example code](../3-sample-code/README.md), you can easily call the API without coding.  
@@ -414,7 +353,13 @@ Through this program, you can easily call various APIs like `postman`.
 
 ### Description
 
-- GET : Optain the Open API version number
+In rare cases, the schema version of your API may change the way it communicates with the controller or its data structures.  
+This may cause problems with the client program, so confirmation through the corresponding function is required.  
+If there is a change in the schema version for each API function, it will be notified through a separate notation on the description page.  
+
+`api_ver`
+
+- `GET` : Optain the Open API version number
 
 ### path-parameter
 
@@ -458,7 +403,9 @@ $python test.py
 
 ### Description
 
-- GET : Obtain the software version of the robot controller system.
+`sysver`
+
+- `GET` : Obtain the software version of the robot controller system.
 
 ### path-parameter
 
@@ -633,31 +580,31 @@ GET /project/jobs_info
 
 response-body:
 {
-	{
-		"_type": "JObject",
-		"fname": "0001.job",
-		"job_comment": "",
-		"n_step": 0,
-		"n_aux_ax": 0,
-		"n_total_ax": 6
-	},
-	{
-		"_type": "JObject",
-		"fname": "0002.job",
-		"job_comment": "",
-		"n_step": 9,
-		"n_aux_ax": -1,
-		"n_total_ax": -1
-	},
-	{
-		"_type": "JObject",
-		"fname": "0003.job",
-		"job_comment": "",
-		"n_step": 0,
-		"n_aux_ax": -1,
-		"n_total_ax": -1
-   },
-	      ...
+    {
+        "_type": "JObject",
+        "fname": "0001.job",
+        "job_comment": "",
+        "n_step": 0,
+        "n_aux_ax": 0,
+        "n_total_ax": 6
+    },
+    {
+        "_type": "JObject",
+        "fname": "0002.job",
+        "job_comment": "",
+        "n_step": 9,
+        "n_aux_ax": -1,
+        "n_total_ax": -1
+    },
+    {
+        "_type": "JObject",
+        "fname": "0003.job",
+        "job_comment": "",
+        "n_step": 0,
+        "n_aux_ax": -1,
+        "n_total_ax": -1
+    },
+            ...
 }
 ```
 </blockquote>
@@ -757,7 +704,7 @@ POST /project/jobs/delete_job
 
 ```json
 {
-  "fname": "0001.job"
+    "fname": "0001.job"
 }
 ```
 
@@ -769,7 +716,7 @@ POST /project/jobs/delete_job
 
 request-body: 
 {
-	"fname": "0001.job"
+    "fname": "0001.job"
 }
 ```
 
@@ -824,17 +771,17 @@ GET /project/control/op_cnd
 
 ```json
 {
-	"_type": "CondGrp",
-	"step_goback_max_spd": 200,
-	"playback_mode": 1,        
-	"step_go_func_ex": 1,      
-	"robot_lock": 0,           
-	"playback_spd_rate": 100,  
-	"intp_base": 0,            
-	"ucrd_num": 0,             
-	"path_recov_confirm": 2,   
-	"func_reexe_on_trace": 1,  
-	"plc_mode": 1              
+    "_type": "CondGrp",
+    "step_goback_max_spd": 200,
+    "playback_mode": 1,        
+    "step_go_func_ex": 1,      
+    "robot_lock": 0,           
+    "playback_spd_rate": 100,  
+    "intp_base": 0,            
+    "ucrd_num": 0,             
+    "path_recov_confirm": 2,   
+    "func_reexe_on_trace": 1,  
+    "plc_mode": 1              
 }
 ```
 </blockquote>
@@ -899,7 +846,7 @@ GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : -56,
 }
 ```
@@ -965,7 +912,7 @@ GET /project/control/ios/sio/si_val?type=sib&sig_no=1
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : 2,
 }
 ```
@@ -1013,7 +960,7 @@ GET /project/control/ucss/ucs_nos
 
 response-body:
 {
-	"_type" : "JObject",
+    "_type" : "JObject",
     "val" : [1],
 }
 ```
@@ -1058,10 +1005,10 @@ POST /project/control/ios/dio/do_val
 
 ```json
 {
-  "type": "do",
-  "blk_no": 1,
-  "sig_no": 1,
-  "val": 1
+    "type": "do",
+    "blk_no": 1,
+    "sig_no": 1,
+    "val": 1
 }
 ```
 
@@ -1087,10 +1034,10 @@ POST /project/control/ios/dio/do_val
 
 request-body:
 {
-	"type": "do",
-	"blk_no": 2,
-	"sig_no": 3,
-	"val": -99
+    "type": "do",
+    "blk_no": 2,
+    "sig_no": 3,
+    "val": -99
 }
 ```
 
@@ -1212,8 +1159,8 @@ GET /project/robot/motor_on_state
 
 response-body:
 {
-	"_type" : "JObject",
-	"val" : 1
+    "_type" : "JObject",
+    "val" : 1
 }
 ```
 
@@ -1819,8 +1766,8 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 - `obj_idx` : object index (fb: 0~9, fn: 0~63)
 
 - `relay_type` : 
-	|`di`|`do`|`x` |`y` |`m` |`s` |`r`|`k`|
-	|:---|:---|:---|:---|:---|:---|:---|:---|
+	|**di**|**do**|**x** |**y** |**m** |**s** |**r**|**k**|
+	|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 
 	
 
@@ -1838,14 +1785,14 @@ GET /project/plc/s/val_s32
 
 response-body:
 [
-	16975105,
-	132579331,
-	252449291,
-	406585366,
-	327681,
-	712706500,
-	118947845,
-	28
+    16975105,
+    132579331,
+    252449291,
+    406585366,
+    327681,
+    712706500,
+    118947845,
+    28
 ]
 ```
 
@@ -1855,10 +1802,10 @@ GET /project/plc/m/val_s32?st=32&len=4
 
 response-body:
 [
-	0,
-	-2139095040,
-	0,
-	134217728
+    0,
+    -2139095040,
+    0,
+    134217728
 ]
 ```
 
@@ -1904,8 +1851,8 @@ POST /project/plc/set_relay_value
 - `value` : Please pay attention to ‘data-type’ in the notation above and enter the value you want to set.
 ```json
 {
-	"name": "fb3.dof14",
-	"value": "2.718"
+    "name": "fb3.dof14",
+    "value": "2.718"
 }
 ```
 
@@ -1917,8 +1864,8 @@ POST /project/plc/set_relay_value
 
 request-body:
 {
-	"name": "fb1.do0",
-	"value": "1"
+    "name": "fb1.do0",
+    "value": "1"
 }
 ```
 
@@ -2128,8 +2075,8 @@ GET /file_manager/files?pathname=project/jobs/0001.job
 
 response-body:
 {
-	Hyundai Robot Job File; { version: 2.0 ... }
-	...
+    Hyundai Robot Job File; { version: 2.0 ... }
+    ...
 }
 ```
 
@@ -2147,7 +2094,7 @@ def print_file_contents() -> None:
     query_parameter = {"pathname": "project/jobs/0001.job"}
 
     response = requests.get(url=base_url + path_parameter, params=query_parameter)
-	
+
     print(f'response: {response.status_code}')
     print(response.text)
 
@@ -2308,33 +2255,34 @@ GET /file_manager/file_list?path=project&incl_file=true&incl_dir=true
 
 response-body:
 [
-	{
-		"mday": 20,
-		"sec": 24,
-		"fname": "jobs",
-		"wday": 1,
-		"size": 8192,
-		"year": 2023,
-		"hour": 18,
-		"readonly": false,
-		"month": 11,
-		"is_dir": true,
-		"min": 12
-	},
-	{
-		"mday": 31,
-		"sec": 40,
-		"fname": "hi6_proj.json",
-		"wday": 2,
-		"size": 130551,
-		"year": 2023,
-		"hour": 7,
-		"readonly": false,
-		"month": 10,
-		"is_dir": false,
-		"min": 57
-	},
-	      ...
+    {
+        "mday": 20,
+        "sec": 24,
+        "fname": "jobs",
+        "wday": 1,
+        "size": 8192,
+        "year": 2023,
+        "hour": 18,
+        "readonly": false,
+        "month": 11,
+        "is_dir": true,
+        "min": 12
+    },
+    {
+        "mday": 31,
+        "sec": 40,
+        "fname": "hi6_proj.json",
+        "wday": 2,
+        "size": 130551,
+        "year": 2023,
+        "hour": 7,
+        "readonly": false,
+        "month": 10,
+        "is_dir": false,
+        "min": 57
+    },
+           ...
+]
 ```
 
 </blockquote>
@@ -2481,8 +2429,8 @@ POST /file_manager/rename_file
 
 request-body: 
 {
-	"pathname_from" : "project/jobs/0001.job",
-	"pathname_to"   : "project/jobs/4321.job"
+    "pathname_from" : "project/jobs/0001.job",
+    "pathname_to"   : "project/jobs/4321.job"
 }
 ```
 ```
@@ -3116,7 +3064,7 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 ### request-body
 ```json
 {
-  "idx": 1
+    "idx": 1
 }
 ```
 
@@ -3130,7 +3078,7 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 
 request-body
 {
-  "idx": 2
+    "idx": 2
 }
 ```
 
@@ -3181,8 +3129,8 @@ POST /project/context/tasks[0]/solve_expr
 
 ```json
 {
-	"expr" : "a",
-	"scope" : "local"
+    "expr" : "a",
+    "scope" : "local"
 }
 ```
 
@@ -3203,8 +3151,8 @@ GET /project/context/tasks[0]/solve_expr
 
 request-body:
 {
-	"expr"  : "a",
-	"scope" : "local"
+    "expr"  : "a",
+    "scope" : "local"
 }
 
 response-body:
@@ -3305,13 +3253,13 @@ GET /clock/date_time
 
 response-body:
 {
-	"_type": "JObject",
-	"year": 2023,
-	"mon": 11,
-	"day": 20,
-	"min": 40,
-	"hour": 19,
-	"sec": 54
+    "_type": "JObject",
+    "year": 2023,
+    "mon": 11,
+    "day": 20,
+    "min": 40,
+    "hour": 19,
+    "sec": 54
 }
 ```
 </blockquote>
@@ -3325,7 +3273,7 @@ import requests
 def get_system_time() -> str:
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/clock/date_time'
-	
+
     response = requests.get(url = base_url + path_parameter).json()
 
     t = f'[{response["mon"]}/{response["day"]}] {response["hour"]}:{response["min"]}'
@@ -3362,12 +3310,12 @@ PUT /clock/date_time
 
 request-body:
 {
-  "year": 2023,
-  "mon": 10,
-  "day": 30,
-  "hour": 18,
-  "min": 30,
-  "sec": 0
+    "year": 2023,
+    "mon": 10,
+    "day": 30,
+    "hour": 18,
+    "min": 30,
+    "sec": 0
 }
 ```
 </blockquote>
@@ -3383,7 +3331,7 @@ def put_system_time() -> int:
     path_parameter  = '/clock/date_time'
     head            = {'Content-Type': 'application/json; charset=utf-8'}
     body 			= {"year": 2023, "mon": 11, "day": 20, "hour": 21, "min": 2, "sec": 0}
-	
+
     response = requests.put(url = base_url + path_parameter, headers = head, json = body)
 
     return response.status_code
