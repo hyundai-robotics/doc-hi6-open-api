@@ -2,8 +2,6 @@
 
 ### Description
 
-`cur_tool_data`
-
 - `GET` : Obtaining the robot's current tool data.
 
 ### path-parameter

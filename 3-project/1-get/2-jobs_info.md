@@ -2,8 +2,6 @@
 
 ### Description
 
-`jobs_info`
-
 - `GET` : Obtain information about job programs.
 
 ### path-parameter

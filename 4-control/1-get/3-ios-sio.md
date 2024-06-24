@@ -1,8 +1,6 @@
-﻿## 4.1.3 `ios/sio/{sio_val}`
+﻿## 4.1.3 `ios/sio/{sio_val}` 
 
 ### Description
-
-`sio` (system input/output)
 
 - `GET` : Get system IO values.
 

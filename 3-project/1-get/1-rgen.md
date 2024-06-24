@@ -2,9 +2,7 @@
 
 ### Description
 
-`rgen` (remote general status)
-
-- `GET` : Obtain general information set in the controller.
+- `GET` : Obtain remote general information in the controller.
 
 ### path-parameter
 

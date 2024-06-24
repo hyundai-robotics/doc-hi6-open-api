@@ -2,8 +2,6 @@
 
 ## Description
 
-`mkdir`
-
 - `POST` : Create a directory in the target path.
 
 ## path-parameter

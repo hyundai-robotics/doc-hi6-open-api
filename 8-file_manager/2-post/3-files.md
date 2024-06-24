@@ -2,8 +2,6 @@
 
 ## Description
 
-`files`
-
 - `POST` : Transfer the file to the target path.
 
 ## path-parameter

@@ -2,7 +2,7 @@
 
 ### Description
 
-- POST : Performs robot start and robot stop.
+- `POST` : Performs robot start and robot stop.
 
 ### path-parameter
 

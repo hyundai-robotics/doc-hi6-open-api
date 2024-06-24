@@ -2,8 +2,6 @@
 
 ## Description
 
-`rename_file`
-
 - `POST` : Change the file name of the target file.
 
 ## path-parameter

@@ -1,8 +1,6 @@
-﻿## 9.2.6 `release_wait`
+﻿## 9.2.5 `release_wait`
 
 ### Description
-
-`release_wait`
 
 - `POST` : release syntax
 - Requirements: TP > system > 1: User environment > `wait(di/wi) release` > `Enable` click

@@ -2,8 +2,6 @@
 
 ### Description
 
-`ucss/ucs_nos` (user coordinate system numbers)
-
 - `GET` : Obtains a list of user coordinate systems currently in use.
 - Prints a list of user coordinate systems registered through `system > 2: Control parameter > 6: Coordinate registration`.
 

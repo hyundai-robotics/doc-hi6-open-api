@@ -2,8 +2,6 @@
 
 ### Description
 
-`sysver`
-
 - `GET` : Obtain the software version of the robot controller system.
 
 ### path-parameter

@@ -2,8 +2,6 @@
 
 ### Description
 
-`files`
-
 - `GET` : The file contents are responded to from the controller.
 
 ### path-parameter

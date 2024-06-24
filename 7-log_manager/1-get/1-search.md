@@ -2,8 +2,6 @@
 
 ### Description
 
-`search`
-
 - `GET` : View the event log using the specified filter conditions.
 
 ### path-parameter

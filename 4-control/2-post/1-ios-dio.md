@@ -2,8 +2,6 @@
 
 ### Description
 
-`do` (digital output)
-
 - `POST` : Change digital output.
 
 ### path-parameter

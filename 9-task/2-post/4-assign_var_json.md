@@ -1,8 +1,6 @@
-﻿## 9.2.5 `assign_var_json`
+﻿## 9.2.4 `assign_var_json`
 
 ### Description
-
-`assign_var_json`
 
 - `POST` : Reassigns a variable in the current task statement.  
 

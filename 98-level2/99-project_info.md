@@ -2,8 +2,6 @@
 
 ### 설명
 
-`project_info`
-
 - `GET` : 프로젝트 관련 정보를 받는 함수입니다.
 
 ### path-parameter

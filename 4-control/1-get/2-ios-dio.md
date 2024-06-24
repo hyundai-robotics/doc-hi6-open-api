@@ -2,8 +2,6 @@
 
 ### Description
 
-`dio` (digital input/output)
-
 - `GET` : Obtain user IO values.
 
 ### path-parameter

@@ -1,4 +1,4 @@
-﻿## 6.1.1 `relay values`
+﻿## 6.1.1 `get relay values`
 
 ### Description
 
@@ -22,9 +22,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 - `obj_idx` : object index (fb: 0~9, fn: 0~63)
 
-- `relay_type` : 
-	|**di**|**do**|**x** |**y** |**m** |**s** |**r**|**k**|
-	|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+- `relay_type` : `di`, `do`, `x`, `y`, `m`, `s`, `r`, `k`
 
 	
 

@@ -1,8 +1,6 @@
-﻿## 9.2.4 `assign_var_expr`
+﻿## 9.2.3 `assign_var_expr`
 
 ### Description
-
-`assign_var_expr`
 
 - `POST` : Reassigns a variable in the current task statement.
 

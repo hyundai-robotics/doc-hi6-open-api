@@ -6,8 +6,6 @@ In rare cases, the schema version of your API may change the way it communicates
 This may cause problems with the client program, so confirmation through the corresponding function is required.  
 If there is a change in the schema version for each API function, it will be notified through a separate notation on the description page.  
 
-`api_ver`
-
 - `GET` : Optain the Open API version number
 
 ### path-parameter

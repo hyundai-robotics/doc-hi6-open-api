@@ -2,8 +2,6 @@
 
 ### Description
 
-`po_cur` (pose current)
-
 - `GET` : Get the pose the robot is currently taking.
 
 ### path-parameter

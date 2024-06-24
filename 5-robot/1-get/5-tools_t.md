@@ -2,9 +2,7 @@
 
 ### Description
 
-`tools/t_{number}`
-
-- GET : This is a function that receives information on the settings of a specific tool.
+- `GET` : This is a function that receives information on the settings of a specific tool.
 
 ### path-parameter
 

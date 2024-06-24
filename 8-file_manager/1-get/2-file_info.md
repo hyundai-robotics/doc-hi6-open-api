@@ -2,8 +2,6 @@
 
 ### Description
 
-`file_info`
-
 - `GET` : Obtain information about that file based on the file path.
 
 ### path-parameter

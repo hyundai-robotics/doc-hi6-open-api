@@ -2,8 +2,6 @@
 
 ### Description
 
-`files`
-
 - `DELETE` : Deletes the target file or directory.
 
 ### path-parameter

@@ -1,8 +1,6 @@
-﻿## 9.2.3 `set_cur_pc_idx`
+﻿## 9.2.6 `set_cur_pc_idx`
 
 ### Description
-
-`set_cur_pc_idx`
 
 - `POST` : Function that positions the current cursor at the index line
 

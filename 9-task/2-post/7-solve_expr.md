@@ -2,8 +2,6 @@
 
 ### Description
 
-`solve_expr`
-
 - `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
 
 ### path-parameter

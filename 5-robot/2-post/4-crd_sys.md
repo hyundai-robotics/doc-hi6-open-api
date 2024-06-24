@@ -2,7 +2,7 @@
 
 ### 설명
 
-- POST : Set the current jog coordinate system.
+- `POST` : Set the current jog coordinate system.
 
 ### path-parameter
 

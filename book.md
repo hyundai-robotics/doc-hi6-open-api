@@ -357,8 +357,6 @@ In rare cases, the schema version of your API may change the way it communicates
 This may cause problems with the client program, so confirmation through the corresponding function is required.  
 If there is a change in the schema version for each API function, it will be notified through a separate notation on the description page.  
 
-`api_ver`
-
 - `GET` : Optain the Open API version number
 
 ### path-parameter
@@ -402,8 +400,6 @@ $python test.py
 ```## 2.1.2 sysver
 
 ### Description
-
-`sysver`
 
 - `GET` : Obtain the software version of the robot controller system.
 
@@ -473,9 +469,7 @@ $python test.py
 
 ### Description
 
-`rgen` (remote general status)
-
-- `GET` : Obtain general information set in the controller.
+- `GET` : Obtain remote general information in the controller.
 
 ### path-parameter
 
@@ -557,8 +551,6 @@ is remote mode? 0
 
 ### Description
 
-`jobs_info`
-
 - `GET` : Obtain information about job programs.
 
 ### path-parameter
@@ -637,8 +629,6 @@ $python test.py
 
 ### Description
 
-`reload_updated_jobs`
-
 - `POST` : Send a request to update working files.
 - When transmitting a job file to the controller via FTP, a reload request must be made through the corresponding API for the transmitted job file to be reflected in memory.
 
@@ -689,8 +679,6 @@ response: 200
 ## 3.2.2 `delete_job`
 
 ### Description
-
-`delete_job`
 
 - `POST` : Send a request to remove a working file.
 
@@ -753,9 +741,7 @@ response: 200
 
 ### Description
 
-`op_cnd` (operation condition)
-
-- `GET` : Obtain the condition setting value.
+- `GET` : Obtain the operation condition setting values.
 
 ### path-parameter
 
@@ -808,8 +794,6 @@ $python test.py
 ```## 4.1.2 `ios/dio/{dio_val}`
 
 ### Description
-
-`dio` (digital input/output)
 
 - `GET` : Obtain user IO values.
 
@@ -871,11 +855,9 @@ print(get_dio_val())
 ```sh
 $python test.py
 {'_type': 'JObject', 'val': -56}
-```## 4.1.3 `ios/sio/{sio_val}`
+```## 4.1.3 `ios/sio/{sio_val}` 
 
 ### Description
-
-`sio` (system input/output)
 
 - `GET` : Get system IO values.
 
@@ -941,8 +923,6 @@ $python test.py
 
 ### Description
 
-`ucss/ucs_nos` (user coordinate system numbers)
-
 - `GET` : Obtains a list of user coordinate systems currently in use.
 - Prints a list of user coordinate systems registered through `system > 2: Control parameter > 6: Coordinate registration`.
 
@@ -990,8 +970,6 @@ $python test.py
 - You must write the correct request-body for each API.## 4.2.1 `ios/dio/{do_val}`
 
 ### Description
-
-`do` (digital output)
 
 - `POST` : Change digital output.
 
@@ -1068,8 +1046,6 @@ response: 200
 - You must write the correct request-body for each API.## 4.3.1 `op_cnd`
 
 ### Description
-
-`op_cnd` (operation condition)
 
 - `PUT` : Change the robot’s condition setting values.
 - If you open the `condition setting window(cond.set)` in TP and request the corresponding method,  
@@ -1186,8 +1162,6 @@ Motor On status: 1
 ```## 5.1.2 `po_cur`
 
 ### Description
-
-`po_cur` (pose current)
 
 - `GET` : Get the pose the robot is currently taking.
 
@@ -1314,8 +1288,6 @@ $python test.py
 
 ### Description
 
-`cur_tool_data`
-
 - `GET` : Obtaining the robot's current tool data.
 
 ### path-parameter
@@ -1377,8 +1349,6 @@ $python test.py
 
 ### Description
 
-`tools`
-
 - `GET` : Get all tool information for the robot. Only tools that exist among tools from T0 to T31 are obtained.
 
 ### path-parameter
@@ -1435,9 +1405,7 @@ $python test.py
 
 ### Description
 
-`tools/t_{number}`
-
-- GET : This is a function that receives information on the settings of a specific tool.
+- `GET` : This is a function that receives information on the settings of a specific tool.
 
 ### path-parameter
 
@@ -1494,7 +1462,7 @@ $python test.py
 
 ### Description
 
-- POST : Performs motor ON and motor OFF.
+- `POST` : Performs motor ON and motor OFF.
 
 ### path-parameter
 
@@ -1560,7 +1528,7 @@ Motor-OFF response: 200
 
 ### Description
 
-- POST : Performs robot start and robot stop.
+- `POST` : Performs robot start and robot stop.
 
 ### path-parameter
 
@@ -1627,7 +1595,7 @@ Stop  response: 200
 
 ### Description
 
-- POST : Set the current tool number.
+- `POST` : Set the current tool number.
 
 ### path-parameter
 
@@ -1683,7 +1651,7 @@ response: 200
 
 ### 설명
 
-- POST : Set the current jog coordinate system.
+- `POST` : Set the current jog coordinate system.
 
 ### path-parameter
 
@@ -1741,7 +1709,7 @@ response: 200
 - Reads or sets the input/output values of the built-in PLC.## 6.1 io_plc/get
 
 - Sends a GET request for input/output values of a built-in PLC.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 6.1.1 `relay values`
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 6.1.1 `get relay values`
 
 ### Description
 
@@ -1765,9 +1733,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 - `obj_idx` : object index (fb: 0~9, fn: 0~63)
 
-- `relay_type` : 
-	|**di**|**do**|**x** |**y** |**m** |**s** |**r**|**k**|
-	|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+- `relay_type` : `di`, `do`, `x`, `y`, `m`, `s`, `r`, `k`
 
 	
 
@@ -1832,10 +1798,9 @@ $python test.py
 ```## 6.2 io_plc/post
 
 - Sends a POST request for input/output values from a built-in PLC.
-- You must write the correct request-body for each API.## 6.2.1 `set_relay_value`
+- You must write the correct request-body for each API.## 6.2.1 `set relay values`
 
 ### Description
-`set_relay_value`
 
 - `POST` : Set the relay value.
 
@@ -1910,8 +1875,6 @@ response: 200
 - Receive a response by setting the correct path-parameter and query-parameter for each API.## 7.1.1 search
 
 ### Description
-
-`search`
 
 - `GET` : View the event log using the specified filter conditions.
 
@@ -2025,8 +1988,6 @@ $python test.py
 
 ### Description
 
-`files`
-
 - `GET` : The file contents are responded to from the controller.
 
 ### path-parameter
@@ -2117,8 +2078,6 @@ S4   move P,tg=po1,spd=100%,accu=0,tool=1
 
 ### Description
 
-`file_info`
-
 - `GET` : Obtain information about that file based on the file path.
 
 ### path-parameter
@@ -2203,8 +2162,6 @@ $python test.py
 ```## 8.1.3 `file_list`
 
 ### Description
-
-`file_list`
 
 - `GET` : Obtain a list of files and directories.
 
@@ -2314,8 +2271,6 @@ $python final_test.py
 
 ### Description
 
-`file_exist`
-
 - `GET` : Obtain the existence of the target file.
 
 ### path-parameter
@@ -2389,8 +2344,6 @@ true
 - You must write the correct request-body for each API.# 8.2.1 `rename_file`
 
 ## Description
-
-`rename_file`
 
 - `POST` : Change the file name of the target file.
 
@@ -2468,8 +2421,6 @@ response: 200
 
 ## Description
 
-`mkdir`
-
 - `POST` : Create a directory in the target path.
 
 ## path-parameter
@@ -2541,8 +2492,6 @@ response: 200
 ```# 8.2.3 `files`
 
 ## Description
-
-`files`
 
 - `POST` : Transfer the file to the target path.
 
@@ -2618,8 +2567,6 @@ response: 200
 
 ### Description
 
-`files`
-
 - `DELETE` : Deletes the target file or directory.
 
 ### path-parameter
@@ -2685,8 +2632,6 @@ response: 200
 - You must write the correct request-body for each API.## 9.2.1 `task/cur_prog_cnt`
 
 ### Description
-
-`cur_prog_cnt` (current program counter)
 
 - `POST` : Sets the current program counter for the task.
 
@@ -2790,11 +2735,9 @@ print(f"response: {post_task_reset()}")
 ```sh
 $python test.py
 response: 200
-```## 9.2.4 `assign_var_expr`
+```## 9.2.3 `assign_var_expr`
 
 ### Description
-
-`assign_var_expr`
 
 - `POST` : Reassigns a variable in the current task statement.
 
@@ -2886,11 +2829,9 @@ $python test.py
 before: 1234
 response: 200
 after: 777   
-```## 9.2.5 `assign_var_json`
+```## 9.2.4 `assign_var_json`
 
 ### Description
-
-`assign_var_json`
 
 - `POST` : Reassigns a variable in the current task statement.  
 
@@ -2987,11 +2928,9 @@ $python test.py
 before: 1234
 response: 200
 after: {'_type': 'JObject', 'test': 10}
-```## 9.2.6 `release_wait`
+```## 9.2.5 `release_wait`
 
 ### Description
-
-`release_wait`
 
 - `POST` : release syntax
 - Requirements: TP > system > 1: User environment > `wait(di/wi) release` > `Enable` click
@@ -3047,11 +2986,9 @@ print(f"response: {post_release_wait()}")
 ```sh
 $python test.py
 response: 200
-```## 9.2.3 `set_cur_pc_idx`
+```## 9.2.6 `set_cur_pc_idx`
 
 ### Description
-
-`set_cur_pc_idx`
 
 - `POST` : Function that positions the current cursor at the index line
 
@@ -3108,8 +3045,6 @@ response 200 # Cursor position on TP changed
 ```## 9.2.7 `solve_expr`
 
 ### Description
-
-`solve_expr`
 
 - `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
 
@@ -3235,8 +3170,6 @@ $python test.py
 
 ### Description
 
-`date_time`
-
 - `GET` : Obtain the set system time.
 
 ### response-body
@@ -3291,8 +3224,6 @@ $python test.py
 - You must write the correct request-body for each API.## 10.1.2.1 `date_time`
 
 ### Description
-
-`date_time`
 
 - `PUT` : Change the system time.
 

@@ -1,7 +1,6 @@
-﻿## 6.2.1 `set_relay_value`
+﻿## 6.2.1 `set relay values`
 
 ### Description
-`set_relay_value`
 
 - `POST` : Set the relay value.
 

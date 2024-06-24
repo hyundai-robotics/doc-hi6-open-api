@@ -2,9 +2,7 @@
 
 ### Description
 
-`op_cnd` (operation condition)
-
-- `GET` : Obtain the condition setting value.
+- `GET` : Obtain the operation condition setting values.
 
 ### path-parameter
 

@@ -2,7 +2,7 @@
 
 ### Description
 
-- POST : Set the current tool number.
+- `POST` : Set the current tool number.
 
 ### path-parameter
 

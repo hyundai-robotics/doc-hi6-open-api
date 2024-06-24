@@ -2,8 +2,6 @@
 
 ### Description
 
-`tools`
-
 - `GET` : Get all tool information for the robot. Only tools that exist among tools from T0 to T31 are obtained.
 
 ### path-parameter

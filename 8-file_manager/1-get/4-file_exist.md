@@ -2,8 +2,6 @@
 
 ### Description
 
-`file_exist`
-
 - `GET` : Obtain the existence of the target file.
 
 ### path-parameter

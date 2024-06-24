@@ -2,8 +2,6 @@
 
 ### Description
 
-`cur_prog_cnt` (current program counter)
-
 - `POST` : Sets the current program counter for the task.
 
 ### path-parameter

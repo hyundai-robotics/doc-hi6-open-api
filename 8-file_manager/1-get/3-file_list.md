@@ -2,8 +2,6 @@
 
 ### Description
 
-`file_list`
-
 - `GET` : Obtain a list of files and directories.
 
 ### path-parameter

@@ -2,8 +2,6 @@
 
 ### Description
 
-`delete_job`
-
 - `POST` : Send a request to remove a working file.
 
 ### path-parameter

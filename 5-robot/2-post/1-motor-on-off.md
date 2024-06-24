@@ -2,7 +2,7 @@
 
 ### Description
 
-- POST : Performs motor ON and motor OFF.
+- `POST` : Performs motor ON and motor OFF.
 
 ### path-parameter
 
