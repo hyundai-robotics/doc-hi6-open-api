@@ -50,9 +50,9 @@
 
 * [6. I/O plc](6-io_plc/README.md)
   * [6.1 get](6-io_plc/1-get/README.md)
-    * [6.1.1 relay-value](6-io_plc/1-get/1-relay-value.md)
+    * [6.1.1 get relay values](6-io_plc/1-get/1-relay-value.md)
   * [6.2 post](6-io_plc/2-post/README.md)
-    * [6.2.1 relay-value](6-io_plc/2-post/1-set_relay_value.md)
+    * [6.2.1 set relay values](6-io_plc/2-post/1-set_relay_value.md)
   
 * [7. log_manager](7-log_manager/README.md)
   * [7.1 get](7-log_manager/1-get/README.md)
@@ -76,10 +76,10 @@
   * [9.2 post](9-task/2-post/README.md)
     * [9.2.1 cur_prog_cnt](9-task/2-post/1-cur_prog_cnt.md)
     * [9.2.2 reset](9-task/2-post/2-reset.md)
-    * [9.2.3 set_cur_pc_idx](9-task/2-post/3-assign_var_expr.md)
-    * [9.2.4 assign_var_expr](9-task/2-post/4-assign_var_json.md)
-    * [9.2.5 assign_var_json](9-task/2-post/5-release_wait.md)
-    * [9.2.6 release_wait](9-task/2-post/6-set_cur_pc_idx.md)
+    * [9.2.3 assign_var_expr](9-task/2-post/3-assign_var_expr.md)
+    * [9.2.4 assign_var_json](9-task/2-post/4-assign_var_json.md)
+    * [9.2.5 release_wait](9-task/2-post/5-release_wait.md)
+    * [9.2.6 set_cur_pc_idx](9-task/2-post/6-set_cur_pc_idx.md)
     * [9.2.7 solve_expr](9-task/2-post/7-solve_expr.md)
 
 * [10. etc](10-etc/README.md)
