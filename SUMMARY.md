@@ -54,11 +54,11 @@
   * [6.2 post](6-io_plc/2-post/README.md)
     * [6.2.1 set relay values](6-io_plc/2-post/1-set_relay_value.md)
   
-* [7. log_manager](7-log_manager/README.md)
+* [7. log manager](7-log_manager/README.md)
   * [7.1 get](7-log_manager/1-get/README.md)
     * [7.1.1 search](7-log_manager/1-get/1-search.md)
 
-* [8. file_manager](8-file_manager/README.md)
+* [8. file manager](8-file_manager/README.md)
   * [8.1 get](8-file_manager/1-get/README.md)
     * [8.1.1 files](8-file_manager/1-get/1-files.md)
     * [8.1.2 file_info](8-file_manager/1-get/2-file_info.md)
