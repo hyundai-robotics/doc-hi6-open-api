@@ -2,13 +2,13 @@
 
 ### 설명
 
-- `POST` : 구문 정지해제
+- `POST` : 태스크의 구문 정지해제
 - 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
 
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/release_wait
+POST /project/context/tasks[{task index}]/release_wait
 ```
 
 ### request-body
@@ -19,12 +19,10 @@ POST /project/context/tasks[0]/release_wait
 
 ### response-body
 
-- `200` : 정상 동작
-- `403` : 상기 필요 조건 불충족
+- 200 : 정상 동작
+- 403 : 상기 필요 조건 불충족
 
 ### 사용 예
-
-<blockquote>
 
 ```json
 request url:
@@ -33,8 +31,6 @@ POST /project/context/tasks[0]/release_wait
 request-body
 {}
 ```
-
-</blockquote>
 
 Python Script 예시
 
