@@ -1,6 +1,6 @@
 ﻿## 5.2.4 `crd_sys`
 
-### 설명
+### Description
 
 - `POST` : Set the current jog coordinate system.
 
