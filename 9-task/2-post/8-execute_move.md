@@ -23,9 +23,9 @@ POST /project/context/tasks[{task index}]/execute_move
 ### response-body
 
 - 200 : 요청 성공 
-	- 모터온 및 request body 형식 따를 시 로봇 정상 구동
+	- 모터온 및 request body 형식 따를 시 로봇 정상 구동  
 
-### Python Script 예시
+Python Script 예시
 - 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
 
 ```python
