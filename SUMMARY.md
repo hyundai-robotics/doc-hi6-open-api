@@ -47,6 +47,7 @@
     * [5.2.2 start-stop](5-robot/2-post/2-start-stop.md)
     * [5.2.3 tool_no](5-robot/2-post/3-tool_no.md)
     * [5.2.4 crd_sys](5-robot/2-post/4-crd_sys.md)
+    * [5.2.5 emergency_stop](5-robot/2-post/5-emergency_stop.md)
 
 * [6. I/O plc](6-io_plc/README.md)
   * [6.1 get](6-io_plc/1-get/README.md)
@@ -81,13 +82,19 @@
     * [9.2.5 release_wait](9-task/2-post/5-release_wait.md)
     * [9.2.6 set_cur_pc_idx](9-task/2-post/6-set_cur_pc_idx.md)
     * [9.2.7 solve_expr](9-task/2-post/7-solve_expr.md)
+    * [9.2.8 execute_move](9-task/2-post/8-execute_move.md)
 
-* [10. etc](10-etc/README.md)
-  * [10.1 clock](10-etc/1-clock/README.md)
-    * [10.1.1 get](10-etc/1-clock/1-get/README.md)
-      * [10.1.1.1 date_time](10-etc/1-clock/1-get/1-date_time.md)
-    * [10.1.2 put](10-etc/1-clock/2-put/README.md)
-      * [10.1.2.1 date_time](10-etc/1-clock/2-put/1-date_time.md)
+* [10. console](10-console/README.md)
+  * [10.1 get](10-console/1-get/README.md)
+  * [10.2 post](10-console/2-post/README.md)
+    * [10.2.1 execute_cmd](10-console/2-post/1-execute_cmd.md)
+
+* [11. etc](11-etc/README.md)
+  * [11.1 clock](11-etc/1-clock/README.md)
+    * [11.1.1 get](11-etc/1-clock/1-get/README.md)
+      * [11.1.1.1 date_time](11-etc/1-clock/1-get/1-date_time.md)
+    * [11.1.2 put](11-etc/1-clock/2-put/README.md)
+      * [11.1.2.1 date_time](11-etc/1-clock/2-put/1-date_time.md)
 
 * [schema](99-schema/README.md)
   * [crdsys](99-schema/crdsys.md)
