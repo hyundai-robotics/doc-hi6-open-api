@@ -2,6 +2,7 @@
 
 ### 설명
 
+- 지원 버전 : `60.28-00` &uparrow;
 - `POST` : 지정한 포즈로 이동합니다.  
 
 ### path-parameter
@@ -22,8 +23,11 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ### response-body
 
-- 200 : 요청 성공 
-	- 모터온 및 request body 형식 따를 시 로봇 정상 구동  
+- 200 : 요청 성공  
+- 400 : 요청 실패  
+	- request body 가 유효성 검사에서 실패  
+- 403 : 요청 실패  
+	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
 
 Python Script 예시
 - 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력

@@ -3,6 +3,7 @@
 
 ### 설명
 
+- 지원 버전 : `60.28-00` &uparrow;
 - `POST` : Hi6 제어기의 콘솔 명령어를 실행합니다.  
 - [CLI 로봇 언어 명령어](../.././99-schema/robotlang.md)를 수행할 수 있습니다.  
 
@@ -34,26 +35,27 @@ POST /console/execute_cmd
 </blockquote>
 
 Python Script 예시
-- 모터온, 자동모드 상태에서 하기 명령어 수행 가능
+- `모터온`, `자동모드` 상태에서 하기 명령어 수행 가능
 - 현재 로봇 축 수에 맞춰서 move 문 입력 시 수행 가능
 
 ```python
 # test.py
+import time
 import requests
 
 
 class ExecuteCmds:
     request_to = {
-         "com": [
-            "rl.stop", 	 # 외부정지
-            "rl.reinit", # 재시작
+        "com": [
+            "rl.stop",  # 외부정지
+            "rl.reinit",  # 재시작
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 10, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
-            "rl.i end", 
+            "rl.i end",
             "rl.start",  # 재생
         ],
     }
@@ -77,8 +79,6 @@ def post_execute_cmd() -> int:
 
 
 print(f"response: {post_execute_cmd()}")
-
-
 ```
 ```sh
 $python test.py 
