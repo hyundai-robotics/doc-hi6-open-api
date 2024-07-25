@@ -7,7 +7,7 @@
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/set_cur_pc_idx
+POST /project/context/tasks[{task index}]/set_cur_pc_idx
 ```
 
 ### request-body
@@ -19,8 +19,6 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 
 ### 사용 예
 
-<blockquote>
-
 ```python
 request url:
 POST /project/context/tasks[0]/set_cur_pc_idx
@@ -31,7 +29,6 @@ request-body
 }
 ```
 
-</blockquote>
 
 Python Script
 

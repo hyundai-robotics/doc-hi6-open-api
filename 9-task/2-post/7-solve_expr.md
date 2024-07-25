@@ -7,7 +7,7 @@
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/solve_expr
+POST /project/context/tasks[{task index}]/solve_expr
 ```
 
 ### request-body

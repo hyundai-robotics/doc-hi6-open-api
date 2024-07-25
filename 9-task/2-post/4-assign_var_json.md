@@ -2,12 +2,12 @@
 
 ### 설명
 
-- `POST` : 현재 태스크 구문의 변수를 재지정합니다.
+- `POST` : 태스크 구문의 변수를 재지정합니다.
 
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/assign_var_json
+POST /project/context/tasks[{task index}]/assign_var_json
 ```
 
 ### request-body
@@ -32,15 +32,8 @@ POST /project/context/tasks[0]/assign_var_json
 
 ### 사용 예
 
-<blockquote>
 
-```text
-Hyundai Robot Job File;
-    var a = 1234
-    end
-```
-
-상기 job 파일을 수행하여 태스크 상 지역 변수 a 가 선언된 상태일 경우
+현재 태스크에 지역 변수 a 가 선언된 상태일 경우
 
 ```python
 request url:
@@ -54,8 +47,6 @@ request-body
     "save" : "true"
 }
 ```
-
-</blockquote>
 
 Python Script 예시
 
