@@ -1649,7 +1649,7 @@ $python test.py
 response: 200
 ```## 5.2.4 `crd_sys`
 
-### 설명
+### Description
 
 - `POST` : Set the current jog coordinate system.
 
@@ -1700,6 +1700,84 @@ def post_crd_sys(x: int = 0) -> int:
     return response.status_code
 
 print(f"response: {post_crd_sys(1)}")
+```
+```sh
+$python test.py
+response: 200
+```## 5.2.5 `emergency_stop`
+
+### Description
+
+- Supported version : `60.28-00` &uparrow;
+- `POST` : Executes an emergency stop.  
+
+### path-parameter
+
+```python
+POST /project/robot/emergency_stop
+```
+
+### request-body
+-  |key|type|contents|validation|
+	|---|---|---|---|
+	|`step_no`| int | Target step number for emergency stop, within the total step number of the current job | 1 ~ 999 |
+	|`stop_at`| double | Set the percentage of the specified position to stop at | 1 ~ 100 |
+	|`stop_at_corner`| int | 0: Normal stop, 1: Corner stop | 0 or 1 |
+	|`category`| int | 0: Immediate stop, 1: Deceleration stop, 2: Pause | 0 or 1 or 2 |
+
+- `0: Immediate stop`  
+  &rightarrow; Same as when the controller turns off during robot playback. The motor turns off after stopping.  
+- `1: Deceleration stop`  
+	&rightarrow;  Acts as if the emergency stop button is pressed. The motor turns off after stopping.   
+- `2: Pause`  
+	&rightarrow;  Temporarily stops the robot motion. The motor does not turn off after stopping.  
+
+### response-body
+
+- 200 : Request successful    
+- 400 : Request failed     
+	- Request body failed validation    
+- 403 : Request failed    
+	- Requested an API that is not serviced  
+
+
+### Usage Example  
+
+```emergency_stop
+POST /project/robot/emergency_stop
+
+request-body
+{
+  "step_no": 1,
+  "stop_at": 50,
+  "stop_at_corner": 0,
+  "category": 1,
+}
+```
+
+Python Script Example
+
+```python
+import requests
+
+
+def post_emergency_stop() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/robot/emergency_stop"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {
+        "step_no": 2,
+        "stop_at": 20,
+        "stop_at_corner": 0,
+        "category": 1,
+    }
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+
+print(f"response: {post_emergency_stop()}")
 ```
 ```sh
 $python test.py
@@ -3159,14 +3237,174 @@ $python test.py
 1234
 10
 1000
-```# 10. etc
+```## 9.2.8 `execute_move`
 
-- It covers system version, event log, clock, etc.# 10.1 clock
+### Description
 
-- You can read and set the controller's system time.## 10.1.1 clock/get
+- Supported version : `60.28-00` &uparrow;
+- `POST` : Moves to the specified pose.  
+
+### path-parameter
+
+```python
+POST /project/context/tasks[{task index}]/execute_move
+```
+
+### request-body
+- `stmt` : Key value in the request body, referring to the statement.  
+- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move).
+
+```json
+{
+    "stmt" : "move SP,spd=1sec,accu=0,tool=1 [0 90 0 0 0 0]"
+}
+```
+
+### response-body
+
+- 200 : Request successful   
+- 400 : Request failed    
+	- Request body failed validation    
+- 403 : Request failed    
+	- Requested an API that is not serviced  
+
+Python Script Example  
+- Input pose command when the motor is on and matches the current robot axes.  
+
+```python
+# test.py
+import requests
+
+
+def post_execute_move(flag: int, in_pose: str) -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/context/tasks[0]/execute_move"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"stmt": f"move SP,spd=1sec,accu=0,tool=1  {str(in_pose)}"}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+
+print(post_execute_move(1, "[-10, 90, -10, 0, 0, 0]"))
+
+```
+```sh
+$python test.py 
+200
+```# 10. console
+
+- You can use CLI commands of the Hi6 controller software.  
+- Various actions can be performed using robot language.  ## 10.1 console/get
+
+- Sends a GET request for information related to executing robot commands.  
+- The exact path-parameter and query-parameter must be set for each API to receive a response.  ## 10.2 console/post
+
+- Sends a POST request for information related to executing robot commands.  
+- The exact request-body must be written for each API.  ## 10.2.1 `execute_cmd`
+
+
+### Description
+
+- Supported version : `60.28-00` &uparrow;
+- `POST` : Executes console commands for the Hi6 controller.  
+- You can perform [CLI robot language commands](../.././99-schema/robotlang.md).  
+
+### path-parameter
+
+```python
+POST /console/execute_cmd
+```
+
+### request-body
+
+```json
+{
+    "cmd_line" : "rl.reinit"
+}
+```
+
+### response-body
+
+- 200: Request successful  
+	- Needs to apply [CLI robot language commands](../.././99-schema/robotlang.md) rules  
+- 400: Request failed
+	- Request body failed validation
+- 403/4: Request failed
+	- Requested an API that is not serviced
+
+### Example
+
+</blockquote>
+
+Python Script Example
+- Commands can be executed in the `motor on` and `auto mode` state.  
+- It can be executed when the move command matches the current robot axes.  
+
+```python
+# test.py
+import time
+import requests
+
+
+class ExecuteCmds:
+    request_to = {
+        "com": [
+            "rl.stop",  # External stop
+            "rl.reinit",  # Restart
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 10, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
+            "rl.i end",
+            "rl.start",  # Play
+        ],
+    }
+
+
+def post_execute_cmd() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/console/execute_cmd"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+
+    execute_cmds = ExecuteCmds.request_to["com"]
+
+    response: int = None
+    for cmd in execute_cmds:
+        data = {"cmd_line": cmd}
+        response = requests.post(url=base_url + path_parameter, headers=head, json=data)
+        print(f"response: {response}")
+        time.sleep(0.1)
+
+    return 200
+
+
+print(f"response: {post_execute_cmd()}")
+```
+```sh
+$python test.py 
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: 200
+```# 11. etc
+
+- It covers system version, event log, clock, etc.# 11.1 clock
+
+- You can read and set the controller's system time.## 11.1.1 clock/get
 
 - Send a GET request for the controller system time.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 10.1.1.1 `date_time`
+- Receive a response by setting the correct path-parameter and query-parameter for each API.## 11.1.1.1 `date_time`
 
 ### Description
 
@@ -3218,10 +3456,10 @@ print(get_system_time())
 ```sh
 $python test.py
 [11/20] 19:55
-```## 10.1.2 clock/put
+```## 11.1.2 clock/put
 
 - Sends a PUT request to the controller system time.
-- You must write the correct request-body for each API.## 10.1.2.1 `date_time`
+- You must write the correct request-body for each API.## 11.1.2.1 `date_time`
 
 ### Description
 
@@ -3454,3 +3692,16 @@ Robot's tool data.
 |`izz`| inertial Z (kgm2)|
 |`mass_esti`|Load estimate weight (kg.)|
 
+## CLI Robot Language Commands
+
+### Description
+
+This is a list of robot language commands that can be executed from the Hi6 controller console.  
+
+|option|description|example|
+|:---|:---|:---|
+|`reinit`| Executes the robot language restart command. |rl.reinit|
+|`i`| Inserts robot language commands into the job file. |rl.i \<cmdline><br>rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0,0,0]<br>rl.i end|
+|`start`|Executes the robot language when the `motor is on` and in `remote mode`.|rl.start|
+|`stop`|Performs `external stop` when the robot language is currently running.|rl.stop|
+|`exit`|Terminates the currently running robot language.|rl.exit|
