@@ -47,6 +47,7 @@
     * [5.2.2 start-stop](5-robot/2-post/2-start-stop.md)
     * [5.2.3 tool_no](5-robot/2-post/3-tool_no.md)
     * [5.2.4 crd_sys](5-robot/2-post/4-crd_sys.md)
+    * [5.2.5 emergency_stop](5-robot/2-post/5-emergency_stop.md)
 
 * [6. I/O plc](6-io_plc/README.md)
   * [6.1 get](6-io_plc/1-get/README.md)
