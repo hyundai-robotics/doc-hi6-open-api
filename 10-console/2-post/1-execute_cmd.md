@@ -1,4 +1,4 @@
-﻿## 10.2.1 `execute-cmd`
+﻿## 10.2.1 `execute_cmd`
 
 
 ### 설명
