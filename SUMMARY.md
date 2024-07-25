@@ -82,12 +82,14 @@
     * [9.2.6 set_cur_pc_idx](9-task/2-post/6-set_cur_pc_idx.md)
     * [9.2.7 solve_expr](9-task/2-post/7-solve_expr.md)
 
-* [10. etc](10-etc/README.md)
-  * [10.1 clock](10-etc/1-clock/README.md)
-    * [10.1.1 get](10-etc/1-clock/1-get/README.md)
-      * [10.1.1.1 date_time](10-etc/1-clock/1-get/1-date_time.md)
-    * [10.1.2 put](10-etc/1-clock/2-put/README.md)
-      * [10.1.2.1 date_time](10-etc/1-clock/2-put/1-date_time.md)
+*[10. console](10-console/README.md)
+
+* [11. etc](11-etc/README.md)
+  * [11.1 clock](11-etc/1-clock/README.md)
+    * [11.1.1 get](11-etc/1-clock/1-get/README.md)
+      * [11.1.1.1 date_time](11-etc/1-clock/1-get/1-date_time.md)
+    * [11.1.2 put](11-etc/1-clock/2-put/README.md)
+      * [11.1.2.1 date_time](11-etc/1-clock/2-put/1-date_time.md)
 
 * [schema](99-schema/README.md)
   * [crdsys](99-schema/crdsys.md)
