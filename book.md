@@ -1695,6 +1695,84 @@ print(f"response: {post_crd_sys(1)}")
 ```sh
 $python test.py
 response: 200
+```## 5.2.5 `emergency_stop`
+
+### 설명
+
+- 지원 버전 : `60.28-00` &uparrow;
+- `POST` : 비상 정지를 실행합니다.  
+
+### path-parameter
+
+```python
+POST /project/robot/emergency_stop
+```
+
+### request-body
+-  |key|type|contents|validation|
+	|---|---|---|---|
+	|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
+	|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
+	|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
+	|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
+
+- `0: 즉시정지`  
+  &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
+- `1: 감속정지`  
+	&rightarrow;  비상정지 버튼을 눌렀을 동작하는 경우. 정지 후 모터 오프가 됨  
+- `2: 일시정지`  
+	&rightarrow;  로봇 모션을 잠시 정지하는 경우. 정지 후 모터 오프가 되지 않음
+
+### response-body
+
+- 200 : 요청 성공  
+- 400 : 요청 실패  
+	- request body 가 유효성 검사에서 실패  
+- 403 : 요청 실패  
+	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
+
+
+### 사용 예
+
+```emergency_stop
+POST /project/robot/emergency_stop
+
+request-body
+{
+  "step_no": 1,
+  "stop_at": 50,
+  "stop_at_corner": 0,
+  "category": 1,
+}
+```
+
+Python Script 예시
+
+```python
+import requests
+
+
+def post_emergency_stop() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/robot/emergency_stop"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {
+        "step_no": 2,
+        "stop_at": 20,
+        "stop_at_corner": 0,
+        "category": 1,
+    }
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+
+print(f"response: {post_emergency_stop()}")
+```
+```sh
+$python test.py
+response: 200
 ```# 6. I/O PLC
 
 - 내장 PLC(built-in plc)의 입출력 값을 읽어오거나 설정합니다.## 6.1 io_plc/get
@@ -2731,12 +2809,12 @@ response: 200
 
 ### 설명
 
-- `POST` : 현재 태스크 구문의 변수를 재지정합니다.
+- `POST` : 태스크 구문의 변수를 재지정합니다.
 
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/assign_var_expr
+POST /project/context/tasks[{task index}]/assign_var_expr
 ```
 
 ### request-body
@@ -2761,15 +2839,7 @@ POST /project/context/tasks[0]/assign_var_expr
 
 ### 사용 예
 
-<blockquote>
-
-```text
-Hyundai Robot Job File;
-    var a = 1234
-    end
-```
-
-상기 job 파일을 수행하여 태스크 상 지역 변수 a 가 선언된 상태일 경우
+현재 태스크에 지역 변수 a 가 선언된 상태인 경우  
 
 ```python
 request url:
@@ -2784,7 +2854,6 @@ request-body
 }
 ```
 
-</blockquote>
 
 Python Script 예시
 
@@ -2825,12 +2894,12 @@ after: 777
 
 ### 설명
 
-- `POST` : 현재 태스크 구문의 변수를 재지정합니다.
+- `POST` : 태스크 구문의 변수를 재지정합니다.
 
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/assign_var_json
+POST /project/context/tasks[{task index}]/assign_var_json
 ```
 
 ### request-body
@@ -2855,15 +2924,8 @@ POST /project/context/tasks[0]/assign_var_json
 
 ### 사용 예
 
-<blockquote>
 
-```text
-Hyundai Robot Job File;
-    var a = 1234
-    end
-```
-
-상기 job 파일을 수행하여 태스크 상 지역 변수 a 가 선언된 상태일 경우
+현재 태스크에 지역 변수 a 가 선언된 상태일 경우
 
 ```python
 request url:
@@ -2877,8 +2939,6 @@ request-body
     "save" : "true"
 }
 ```
-
-</blockquote>
 
 Python Script 예시
 
@@ -2924,13 +2984,13 @@ after: {'_type': 'JObject', 'test': 10}
 
 ### 설명
 
-- `POST` : 구문 정지해제
+- `POST` : 태스크의 구문 정지해제
 - 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
 
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/release_wait
+POST /project/context/tasks[{task index}]/release_wait
 ```
 
 ### request-body
@@ -2941,12 +3001,10 @@ POST /project/context/tasks[0]/release_wait
 
 ### response-body
 
-- `200` : 정상 동작
-- `403` : 상기 필요 조건 불충족
+- 200 : 정상 동작
+- 403 : 상기 필요 조건 불충족
 
 ### 사용 예
-
-<blockquote>
 
 ```json
 request url:
@@ -2955,8 +3013,6 @@ POST /project/context/tasks[0]/release_wait
 request-body
 {}
 ```
-
-</blockquote>
 
 Python Script 예시
 
@@ -2987,7 +3043,7 @@ response: 200
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/set_cur_pc_idx
+POST /project/context/tasks[{task index}]/set_cur_pc_idx
 ```
 
 ### request-body
@@ -2999,8 +3055,6 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 
 ### 사용 예
 
-<blockquote>
-
 ```python
 request url:
 POST /project/context/tasks[0]/set_cur_pc_idx
@@ -3011,7 +3065,6 @@ request-body
 }
 ```
 
-</blockquote>
 
 Python Script
 
@@ -3043,7 +3096,7 @@ response 200 # + TP 상 커서 위치 변경 됨
 ### path-parameter
 
 ```python
-POST /project/context/tasks[0]/solve_expr
+POST /project/context/tasks[{task index}]/solve_expr
 ```
 
 ### request-body
@@ -3151,14 +3204,175 @@ $python test.py
 1234
 10
 1000
-```# 10. etc
+```## 9.2.8 `execute_move`
 
-- 시스템 버전, 이벤트 로그, 클럭 등을 다루고 있습니다.# 10.1 clock
+### 설명
 
-- 제어기의 시스템 시간을 읽고 설정할 수 있습니다.## 10.1.1 clock/get
+- 지원 버전 : `60.28-00` &uparrow;
+- `POST` : 지정한 포즈로 이동합니다.  
+
+### path-parameter
+
+```python
+POST /project/context/tasks[{task index}]/execute_move
+```
+
+### request-body
+- `stmt` : 요청 바디의 키 값으로, 구문(statment)을 뜻합니다.
+- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move)을 참조 바랍니다.
+
+```json
+{
+    "stmt" : "move SP,spd=1sec,accu=0,tool=1 [0 90 0 0 0 0]"
+}
+```
+
+### response-body
+
+- 200 : 요청 성공  
+- 400 : 요청 실패  
+	- request body 가 유효성 검사에서 실패  
+- 403 : 요청 실패  
+	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
+
+Python Script 예시
+- 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
+
+```python
+# test.py
+import requests
+
+
+def post_execute_move(flag: int, in_pose: str) -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/context/tasks[0]/execute_move"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"stmt": f"move SP,spd=1sec,accu=0,tool=1  {str(in_pose)}"}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+
+print(post_execute_move(1, "[-10, 90, -10, 0, 0, 0]"))
+
+```
+```sh
+$python test.py 
+200
+```# 10. console
+
+- Hi6 제어기 S/W 의 CLI 명령어를 사용할 수 있습니다.
+- 로봇언어로 할 수 있는 다양한 동작을 수행할 수 있습니다.
+## 10.1 console/get
+
+- 로봇 명령문 실행과 관련된 정보에 대한 GET 요청을 보냅니다.
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 10.2 console/post
+
+- 로봇 명령문 실행과 관련된 정보에 대한 POST 요청을 보냅니다.
+- API 별로 정확한 request-body 를 작성해야합니다.## 10.2.1 `execute_cmd`
+
+
+### 설명
+
+- 지원 버전 : `60.28-00` &uparrow;
+- `POST` : Hi6 제어기의 콘솔 명령어를 실행합니다.  
+- [CLI 로봇 언어 명령어](../.././99-schema/robotlang.md)를 수행할 수 있습니다.  
+
+### path-parameter
+
+```python
+POST /console/execute_cmd
+```
+
+### request-body
+
+```json
+{
+    "cmd_line" : "rl.reinit"
+}
+```
+
+### response-body
+
+- 200 : 요청 성공  
+	- [CLI 로봇 언어 명령어](../.././99-schema/robotlang.md) 규칙 적용 필요  
+- 400 : 요청 실패  
+	- request body 가 유효성 검사에서 실패한 경우  
+- 403/4 : 요청 실패  
+	- 서비스 되지 않는 API 에 대해서 요청한 경우  
+
+### 사용 예
+
+</blockquote>
+
+Python Script 예시
+- `모터온`, `자동모드` 상태에서 하기 명령어 수행 가능
+- 현재 로봇 축 수에 맞춰서 move 문 입력 시 수행 가능
+
+```python
+# test.py
+import time
+import requests
+
+
+class ExecuteCmds:
+    request_to = {
+        "com": [
+            "rl.stop",  # 외부정지
+            "rl.reinit",  # 재시작
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 10, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
+            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
+            "rl.i end",
+            "rl.start",  # 재생
+        ],
+    }
+
+
+def post_execute_cmd() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/console/execute_cmd"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+
+    execute_cmds = ExecuteCmds.request_to["com"]
+
+    response: int = None
+    for cmd in execute_cmds:
+        data = {"cmd_line": cmd}
+        response = requests.post(url=base_url + path_parameter, headers=head, json=data)
+        print(f"response: {response}")
+        time.sleep(0.1)
+
+    return 200
+
+
+print(f"response: {post_execute_cmd()}")
+```
+```sh
+$python test.py 
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: <Response [200]>
+response: 200
+```# 11. etc
+
+- 시스템 버전, 이벤트 로그, 클럭 등을 다루고 있습니다.# 11.1 clock
+
+- 제어기의 시스템 시간을 읽고 설정할 수 있습니다.## 11.1.1 clock/get
 
 - 제어기 시스템 시간 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 10.1.1.1 `date_time`
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 11.1.1.1 `date_time`
 
 ### 설명
 
@@ -3210,10 +3424,10 @@ print(get_system_time())
 ```sh
 $python test.py
 [11/20] 19:55
-```## 10.1.2 clock/put
+```## 11.1.2 clock/put
 
 - 제어기 시스템 시간 대한 PUT 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 10.1.2.1 `date_time`
+- API 별로 정확한 request-body 를 작성해야합니다.## 11.1.2.1 `date_time`
 
 ### 설명
 
@@ -3445,3 +3659,16 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 |`iyy`|이너셔(inertial) Y (kgm2)|
 |`izz`|이너셔(inertial) Z (kgm2)|
 |`mass_esti`|부하추정 중량 (kg.)|
+## CLI 로봇 언어 명령어
+
+### 설명
+
+Hi6 제어기 콘솔에서 실행 가능한 로봇언어의 명령어 리스트입니다.
+
+|option|description|example|
+|:---|:---|:---|
+|`reinit`| 로봇언어 재시작 명령을 수행합니다. |rl.reinit|
+|`i`|job 파일에 로봇언어 명령문을 삽입(insert)합니다.|rl.i \<cmdline><br>rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0,0,0]<br>rl.i end|
+|`start`|`모터 온` 상태이고 `원격모드` 일때 해당 옵션 수행 시 로봇언어가 실행됩니다.|rl.start|
+|`stop`|현재 로봇언어가 실행 중일 때, `외부정지` 진행됩니다.|rl.stop|
+|`exit`|현재 실행 중인 로봇언어를 종료합니다.|rl.exit|
