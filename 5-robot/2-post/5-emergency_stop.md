@@ -1,8 +1,8 @@
-﻿## 5.2.4 `emergency_stop`
+﻿## 5.2.5 `emergency_stop`
 
 ### 설명
 
-- `POST` : 비상 정지를 실행합니다.
+- `POST` : 비상 정지를 실행합니다.  
 
 ### path-parameter
 
@@ -18,8 +18,12 @@ POST /project/robot/emergency_stop
 	|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
 	|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
 
-- `0: 즉시정지` 의 경우  
-: 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우로, `실기 적용 시 서보 상태 이상 에러`가 발생할 수 있음.
+- `0: 즉시정지`  
+  &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
+- `1: 감속정지`  
+	&rightarrow;  비상정지 버튼을 눌렀을 동작하는 경우. 정지 후 모터 오프가 됨  
+- `2: 일시정지`  
+	&rightarrow;  로봇 모션을 잠시 정지하는 경우. 정지 후 모터 오프가 되지 않음
 
 ### response-body
 
@@ -55,7 +59,7 @@ def post_emergency_stop() -> int:
     path_parameter = "/project/robot/emergency_stop"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {
-        "step_no": 1,
+        "step_no": 2,
         "stop_at": 20,
         "stop_at_corner": 0,
         "category": 1,
