@@ -14,8 +14,8 @@ GET /project/robot/motor_on_state
 
 - val :
   - `0` : on
-  - `1` : busy (상태 전환 중)
-  - `2` : off
+  - `1` : off
+  - `2` : busy (상태 전환 중)
 
 ### 사용 예
 ```python
