@@ -16,8 +16,8 @@ GET /project/robot/motor_on_state
 
 - val :
   - `0` : on
-  - `1` : busy (Transitioning state)
-  - `2` : off
+  - `1` : off
+  - `2` : busy (Transitioning state)
 
 ### Example
 ```python
