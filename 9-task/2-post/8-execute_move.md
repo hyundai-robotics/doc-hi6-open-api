@@ -35,10 +35,11 @@ Python Script 예시
 ```python
 # test.py
 import requests
+import time
 
-
-def post_execute_move(flag: int, in_pose: str) -> int:
-    base_url = "http://192.168.1.150:8888"
+def post_execute_move(in_pose: str) -> int:
+    # base_url = "http://192.168.1.150:8888" # for Hi6COM
+    base_url = "http://127.0.0.1:8888" # for HRSpace - virtual robot controller
     path_parameter = "/project/context/tasks[0]/execute_move"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {"stmt": f"move SP,spd=1sec,accu=0,tool=1  {str(in_pose)}"}
@@ -47,11 +48,26 @@ def post_execute_move(flag: int, in_pose: str) -> int:
 
     return response.status_code
 
+poses = [
+    "[-10, 90, -10, 0, 0, 0]",
+    "[-5, 90, 5, 0, 0, 0]",
+    "[0, 90, 0, 0, 0, 0]"
+]
 
-print(post_execute_move(1, "[-10, 90, -10, 0, 0, 0]"))
+for idx, pose in enumerate(poses):
+    print(f"Request {idx + 1}: Sending pose {pose}")
+    status_code = post_execute_move(pose)
+    print(f"Status code: {status_code}")
+    if idx < len(poses) - 1:  
+        time.sleep(1.5)
 
 ```
 ```sh
 $python test.py 
-200
-```
+Request 1: Sending pose [-10, 90, -10, 0, 0, 0]
+Status code: 200
+Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
+Status code: 200
+Request 3: Sending pose [0, 90, 0, 0, 0, 0]
+Status code: 200
+``````
