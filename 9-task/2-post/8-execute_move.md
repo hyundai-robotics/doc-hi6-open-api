@@ -13,7 +13,7 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ### request-body
 - `stmt` : Key value in the request body, referring to the statement.  
-- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move).
+- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/english/5-moving-robot/4-move).
 
 ```json
 {

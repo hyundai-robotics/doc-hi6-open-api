@@ -57,7 +57,7 @@ Python Script Example
 import requests
 
 
-def post_emergency_stop() -> int:
+def emergency_stop_test() -> int:
     base_url = "http://192.168.1.150:8888"
     path_parameter = "/project/robot/emergency_stop_test"
     head = {"Content-Type": "application/json; charset=utf-8"}
@@ -73,7 +73,7 @@ def post_emergency_stop() -> int:
     return response.status_code
 
 
-print(f"response: {post_emergency_stop()}")
+print(f"response: {emergency_stop_test()}")
 ```
 ```sh
 $python test.py
