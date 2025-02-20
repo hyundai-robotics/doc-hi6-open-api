@@ -1,15 +1,19 @@
 ﻿# Table of contents
 
 * [Hi6 Open API Manual](README.md)
-* [1. Intro](1-intro/README.md)
-  * [1.1 About Hi6 Open API](1-intro/1-concept/README.md)
-  * [1.2 Required prior knowledge](1-intro/2-prerequisite/README.md)
-  * [1.3 Sample code](1-intro/3-sample-code/README.md)
-    * [1.3.1 Sample code - C#](1-intro/3-sample-code/1-csharp.md)
-    * [1.3.2 Sample code - python](1-intro/3-sample-code/2-python.md)
-  * [1.4 Simple API call without coding](1-intro/4-api-test/README.md)
-    * [1.4.1 Using postman](1-intro/4-api-test/1-postman.md)
-    * [1.4.2 Using Web Browser](1-intro/4-api-test/2-web-browser.md)
+* [0. Intro](0-intro/README.md)
+  * [0.1 About Hi6 Open API](0-intro/1-concept/README.md)
+  * [0.2 Required prior knowledge](0-intro/2-prerequisite/README.md)
+  * [0.3 Sample code](0-intro/3-sample-code/README.md)
+    * [0.3.1 Sample code - C#](0-intro/3-sample-code/1-csharp.md)
+    * [0.3.2 Sample code - python](0-intro/3-sample-code/2-python.md)
+  * [0.4 Simple API call without coding](0-intro/4-api-test/README.md)
+    * [0.4.1 Using postman](0-intro/4-api-test/1-postman.md)
+    * [0.4.2 Using Web Browser](0-intro/4-api-test/2-web-browser.md)
+  
+* [1. release note](1-release-note/README.md)
+  * [60.30-00](1-release-note/60-30.md)
+  * [60.28-00](1-release-note/60-28.md)
   
 * [2. version](2-version/README.md)
   * [2.1 get](2-version/1-get/README.md)
