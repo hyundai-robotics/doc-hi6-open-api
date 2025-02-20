@@ -49,17 +49,22 @@
     * [5.2.3 tool_no](5-robot/2-post/3-tool_no.md)
     * [5.2.4 crd_sys](5-robot/2-post/4-crd_sys.md)
     * [5.2.5 emergency_stop](5-robot/2-post/5-emergency_stop.md)
+    * [5.2.5 emergency_stop](5-robot/2-post/5-emergency_stop.md)
 
 * [6. I/O plc](6-io_plc/README.md)
   * [6.1 get](6-io_plc/1-get/README.md)
     * [6.1.1 get relay values](6-io_plc/1-get/1-relay-value.md)
+    * [6.1.1 get relay values](6-io_plc/1-get/1-relay-value.md)
   * [6.2 post](6-io_plc/2-post/README.md)
     * [6.2.1 set relay values](6-io_plc/2-post/1-set_relay_value.md)
+    * [6.2.1 set relay values](6-io_plc/2-post/1-set_relay_value.md)
   
+* [7. log manager](7-log_manager/README.md)
 * [7. log manager](7-log_manager/README.md)
   * [7.1 get](7-log_manager/1-get/README.md)
     * [7.1.1 search](7-log_manager/1-get/1-search.md)
 
+* [8. file manager](8-file_manager/README.md)
 * [8. file manager](8-file_manager/README.md)
   * [8.1 get](8-file_manager/1-get/README.md)
     * [8.1.1 files](8-file_manager/1-get/1-files.md)
@@ -82,7 +87,12 @@
     * [9.2.4 assign_var_json](9-task/2-post/4-assign_var_json.md)
     * [9.2.5 release_wait](9-task/2-post/5-release_wait.md)
     * [9.2.6 set_cur_pc_idx](9-task/2-post/6-set_cur_pc_idx.md)
+    * [9.2.3 assign_var_expr](9-task/2-post/3-assign_var_expr.md)
+    * [9.2.4 assign_var_json](9-task/2-post/4-assign_var_json.md)
+    * [9.2.5 release_wait](9-task/2-post/5-release_wait.md)
+    * [9.2.6 set_cur_pc_idx](9-task/2-post/6-set_cur_pc_idx.md)
     * [9.2.7 solve_expr](9-task/2-post/7-solve_expr.md)
+    * [9.2.8 execute_move](9-task/2-post/8-execute_move.md)
     * [9.2.8 execute_move](9-task/2-post/8-execute_move.md)
 
 * [10. console](10-console/README.md)
@@ -105,7 +115,3 @@
   * [mechinfo](99-schema/mechinfo.md)
   * [op_cnd](99-schema/op_cnd.md)
   * [pose](99-schema/pose.md)
-  * [tool_data](99-schema/tool_data.md)
-  * [robotlang](99-schema/robotlang.md)
-
-[def]: 1-intro/5-release-note/README.md
