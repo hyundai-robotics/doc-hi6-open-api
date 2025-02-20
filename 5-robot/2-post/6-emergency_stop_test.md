@@ -1,14 +1,16 @@
-﻿## 5.2.5 `emergency_stop`
+﻿## 5.2.6 `emergency_stop_test`
+
+- <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
 
 ### Description
 
-- Supported version : `60.28-00` &uparrow;
+- Supported version : `60.30-00` &uparrow;
 - `POST` : Executes an emergency stop.  
 
 ### path-parameter
 
 ```python
-POST /project/robot/emergency_stop
+POST /project/robot/emergency_stop_test
 ```
 
 ### request-body
@@ -37,8 +39,8 @@ POST /project/robot/emergency_stop
 
 ### Usage Example  
 
-```emergency_stop
-POST /project/robot/emergency_stop
+```emergency_stop_test
+POST /project/robot/emergency_stop_test
 
 request-body
 {
@@ -57,7 +59,7 @@ import requests
 
 def post_emergency_stop() -> int:
     base_url = "http://192.168.1.150:8888"
-    path_parameter = "/project/robot/emergency_stop"
+    path_parameter = "/project/robot/emergency_stop_test"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {
         "step_no": 2,
