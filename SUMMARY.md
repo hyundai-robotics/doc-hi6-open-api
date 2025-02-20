@@ -1,15 +1,15 @@
 ﻿# Table of contents
 
 * [Hi6 Open API 설명서](README.md)
-* [0. 개요](1-intro/README.md)
-  * [0.1 Hi6 Open API 에 대하여](1-intro/1-concept/README.md)
-  * [0.2 필요한 사전 지식](1-intro/2-prerequisite/README.md)
-  * [0.3 Hi6 Open API 예제 코드](1-intro/3-sample-code/README.md)
-    * [0.3.1 예제 코드 - C#](1-intro/3-sample-code/1-csharp.md)
-    * [0.3.2 예제 코드 - python](1-intro/3-sample-code/2-python.md)
-  * [0.4 코딩하지 않고 쉽게 API 호출 해보기](1-intro/4-api-test/README.md)
-    * [0.4.1 postman 에서 POST 요청하기](1-intro/4-api-test/1-postman.md)
-    * [0.4.2 웹브라우저에서 API 호출하기](1-intro/4-api-test/2-web-browser.md)
+* [0. 개요](0-intro/README.md)
+  * [0.1 Hi6 Open API 에 대하여](0-intro/1-concept/README.md)
+  * [0.2 필요한 사전 지식](0-intro/2-prerequisite/README.md)
+  * [0.3 Hi6 Open API 예제 코드](0-intro/3-sample-code/README.md)
+    * [0.3.1 예제 코드 - C#](0-intro/3-sample-code/1-csharp.md)
+    * [0.3.2 예제 코드 - python](0-intro/3-sample-code/2-python.md)
+  * [0.4 코딩하지 않고 쉽게 API 호출 해보기](0-intro/4-api-test/README.md)
+    * [0.4.1 postman 에서 POST 요청하기](0-intro/4-api-test/1-postman.md)
+    * [0.4.2 웹브라우저에서 API 호출하기](0-intro/4-api-test/2-web-browser.md)
   
 * [1. release note](1-release-note/README.md)
   * [60.30-00](1-release-note/60-30.md)
@@ -63,11 +63,9 @@
     * [6.2.1 set relay values](6-io_plc/2-post/1-set_relay_value.md)
   
 * [7. log manager](7-log_manager/README.md)
-* [7. log manager](7-log_manager/README.md)
   * [7.1 get](7-log_manager/1-get/README.md)
     * [7.1.1 search](7-log_manager/1-get/1-search.md)
 
-* [8. file manager](8-file_manager/README.md)
 * [8. file manager](8-file_manager/README.md)
   * [8.1 get](8-file_manager/1-get/README.md)
     * [8.1.1 files](8-file_manager/1-get/1-files.md)
