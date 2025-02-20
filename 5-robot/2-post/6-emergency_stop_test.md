@@ -1,4 +1,4 @@
-﻿## 5.2.5 `emergency_stop_test`
+﻿## 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> 해당 API 는 `60.28-00` 까지 `emergency_stop` API 로 사용되었습니다. </b>  
 
