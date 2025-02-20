@@ -11,7 +11,9 @@
     * [0.4.1 postman 에서 POST 요청하기](1-intro/4-api-test/1-postman.md)
     * [0.4.2 웹브라우저에서 API 호출하기](1-intro/4-api-test/2-web-browser.md)
   
-* [1. release note](99-release-note/README.md)
+* [1. release note](1-release-note/README.md)
+  * [60.30-00](1-release-note/60-30.md)
+  * [60.28-00](1-release-note/60-28.md)
 * [2. version](2-version/README.md)
   * [2.1 get](2-version/1-get/README.md)
     * [2.1.1 api_ver](2-version/1-get/1-api_ver.md)
