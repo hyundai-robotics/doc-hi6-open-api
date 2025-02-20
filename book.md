@@ -20,14 +20,14 @@
 
 Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 를 활용하여 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
 
-{% endhint %}## 1.1 개요
+{% endhint %}## 0.1 개요
 
 Hi6 Open API 와 관련된 아래의 기본적인 내용들을 확인하실 수 있습니다.
 
 [1.1 Hi6 Open API 개요](./1-concept/README.md) <br>
 [1.2 필요한 사전 지식](./2-prerequisite/README.md) <br>
 [1.3 Hi6 Open API 예제 코드](./3-sample-code/README.md) <br>
-[1.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)### 1.1 Hi6 Open API 에 대하여
+[1.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)### 0.1 Hi6 Open API 에 대하여
 
 HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 제어기(이하, Hi6)를 모니터링하고 원격으로 제어하기 위한 API 를 해당 문서에서 공개합니다.<br>
 이를 통해 개발자들은 Hi6 개발에 적용된 소스코드에 대한 깊은 이해 없이도 Hi6의 다양한 데이터를 읽고 쓸 수 있습니다.<br>
@@ -63,7 +63,7 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 본 문서에 명시되지 않은 URL 및 속성은 동일 API 버전에서 예고없이 변경될 수 있으므로, 주의 바랍니다.
 
-{% endhint %}## 1.2 필요한 사전 지식
+{% endhint %}## 0.2 필요한 사전 지식
 
 Open API를 활용하기 위해서는 Hi6 제어기의 기본적인 사용법을 습득해야 합니다.<br>
 아래 설명서를 참고하시거나 현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
@@ -95,7 +95,7 @@ Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
 
 ---- 
 
-### 1.2.1 API 란?
+### 0.2.1 API 란?
 
 `API`(Application Programming Interface)란 어플리케이션 소프트웨어를 빌드하고 통합하기 위한 `정의 및 프로토콜 세트`입니다 ([참조](https://www.redhat.com/ko/topics/api/what-are-application-programming-interfaces)).  
 사용자가 `특정한 방식으로 구성된 요청`을 보내면 제공자의 소프트웨어가 이에 `응답하는 방식`입니다.  
@@ -104,7 +104,7 @@ Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
 <br>
 
 
-### 1.2.2 REST API 란?
+### 0.2.2 REST API 란?
 
 `REST`(Representational State Transfer)는 API 작동 방식에 대한 조건을 부과하는 `소프트웨어 아키텍처`입니다.<br>
 `REST API`는 REST 아키텍처 스타일을 따르는 API 를 뜻합니다. RESTful API 라고도 합니다 ([참조](https://aws.amazon.com/ko/what-is/restful-api/)).<br>
@@ -115,14 +115,14 @@ HTTP 요청을 통해 통신함으로써 리소스 내에서 레코드의 작성
 - `GET` : 클라이언트는 GET을 사용하여 서버의 지정된 URL에 있는 리소스에 액세스합니다. GET 요청을 캐싱하고 RESTful API 요청에 파라미터를 넣어 전송하여 전송 전에 데이터를 필터링하도록 서버에 지시할 수 있습니다.
 - `POST` : 클라이언트는 POST를 사용하여 서버에 데이터를 전송합니다. 여기에는 요청과 함께 데이터 표현이 포함됩니다. 동일한 POST 요청을 여러 번 전송하면 동일한 리소스를 여러 번 생성하는 부작용이 있습니다.
 - `PUT` : 클라이언트는 PUT을 사용하여 서버의 기존 리소스를 업데이트합니다. POST와 달리, RESTful 웹 서비스에서 동일한 PUT 요청을 여러 번 전송해도 결과는 동일합니다.
-- `DELETE` : 클라이언트는 DELETE 요청을 사용하여 리소스를 제거합니다. DELETE 요청은 서버 상태를 변경할 수 있습니다. 하지만 사용자에게 적절한 인증이 없으면 요청은 실패합니다.## 1.3 예제 코드
+- `DELETE` : 클라이언트는 DELETE 요청을 사용하여 리소스를 제거합니다. DELETE 요청은 서버 상태를 변경할 수 있습니다. 하지만 사용자에게 적절한 인증이 없으면 요청은 실패합니다.## 0.3 예제 코드
 
 다양한 개발 언어들은 REST API 호출을 위한 라이브러리를 제공하고 있습니다. 활용방법은 각 개발언어의 기술 문서들을 쉽게 검색하여 참고할 수 있습니다.
 
 - 여기서는 C#과 python을 활용한 GET과 POST 메소드의 호출만 설명하도록 하겠습니다.
 
 - IP 주소가 192.168.1.150인 Hi6 제어기에 대해 요청을 수행한다고 가정하겠습니다.
-### 1.3.1 예제 코드 - C#
+### 0.3.1 예제 코드 - C#
 
 JSON parsing을 위한 라이브러리인 `Newtonsoft.Json`를 사용했습니다.
 VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manager로 설치하시기 바랍니다.
@@ -166,7 +166,7 @@ Console.WriteLine(str);
 ```
 
 위 소스코드가 포함된 실행 가능한 C# WinForms 샘플 프로그램을 아래 Github 링크를 통해 확인하실 수 있습니다.
-> 링크 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)### 1.3.2 예제 코드 - python
+> 링크 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)### 0.3.2 예제 코드 - python
 
 예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)`   
 두 가지 방식 중 `a. 동기식 요청`에 대해서 설명합니다.
@@ -229,7 +229,7 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.04827427864074707 seconds
 [get] 0x79 from fb2.do3 Time taken: 0.06168508529663086 seconds
 total request time : 0.2869541645050049 seconds
-```## 1.4 코딩하지 않고 쉽게 API 호출 해보기
+```## 0.4 코딩하지 않고 쉽게 API 호출 해보기
 
 [앞선 예제 코드](../../1-intro/3-sample-code/README.md)처럼 client 어플리케이션을 개발하면서 Open API 를 사용하는 경우, 코딩을 따로 하지 않고도 손쉽게 API를 호출해 볼 수 있습니다.  
 이러한 호출 과정을 통해서 요청이 제대로 동작했는지, 응답으로 어떠한 데이터가 반환되는지 확인 가능 합니다.  
@@ -251,7 +251,7 @@ total request time : 0.2869541645050049 seconds
 
 간단한 `get` 요청은 웹 브라우저를 통해 간편하고 신속하게 확인할 수 있습니다.  
 추가로 웹 브라우저의 확장 프로그램을 활용하여 `get` 요청과 다른 API 요청들을 직접 호출하고 결과를 볼 수 있습니다.  
-[1.4.2 웹 브라우저에서 API 호출하기](./2-web-browser.md)에서 간단한 사용법을 확인할 수 있습니다.## 1.4.1 `Postman` 에서 `POST` 요청하기
+[1.4.2 웹 브라우저에서 API 호출하기](./2-web-browser.md)에서 간단한 사용법을 확인할 수 있습니다.## 0.4.1 `Postman` 에서 `POST` 요청하기
 
 해당 페이지에서는 `postman` 을 활용해서 REST API 의 `POST` 요청을 호출하고 결과를 확인합니다.  
 추가로 간단한 UI 구성을 통해 사용법을 파악합니다.
@@ -302,7 +302,7 @@ total request time : 0.2869541645050049 seconds
 		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`
 
-		</blockquote>## 1.4.2 웹 브라우저에서 API 호출하기
+		</blockquote>## 0.4.2 웹 브라우저에서 API 호출하기
 
 ### a. 간단한 `GET` 요청하기
 
@@ -338,7 +338,52 @@ total request time : 0.2869541645050049 seconds
 `(4) History` : 요청 이력을 출력합니다.  
 `(5) History 탭` : 열었다 닫았다 할 수 있는 `(4)`의 요청 이력 리스트보다 많은 양의 이력이 확인 가능한 탭입니다.
 
-</blockquote>## 2. version
+</blockquote>## 1. release note 
+
+- COM 버전을 기준으로 API 변경사항에 대해서 정리를 해두었습니다.
+- 본인이 사용 중인 제어기 버전보다 더 높은 버전에서 동작하는 API 를 사용하려면 버전업을 진행해야 합니다.
+- 릴리즈 정보
+  ||COM 버전|배포 스케쥴|링크|
+  |---|---|---|---|
+  |`NEW`|v60-30.00|2025.03 예정|[🔗](60-30.md)|
+  ||v60-28.00|2024.08.13|[🔗](60-28.md)|
+  ||v60-26.00| - ||
+  ||v60-24.00| - ||## 📝 Release Notes - v60.30-00
+
+### ✨ New Feature
+- emergency_stop - 상태 확인 요청 API 추가, 비상정지 버튼과 동일한 기능의 API 추가
+
+### 🔧 Improvement & Change
+- emergency_stop_test - 기존의 emergency_stop API 를 emergency_stop_test API 로 변경
+
+### ❌ Deprecated
+- <font style="color: #FE2E64">motor off</font> - HRSpace 환경을 고려한 API로, 실기 환경에서의 혼선을 방지하기 위해 Deprecated 처리. 비상정지 API 로 대체 됨  
+
+### 📌 API List
+
+- ✨ \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
+- ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
+- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- ❌ ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
+## 📝 Release Notes - v60.28-00
+
+### ✨ New Feature
+- emergency_stop - 비상정지 API 추가. step_no, stop_at 등의 값을 입력하여 특정 시점에 원하는 카테고리의 비상정지를 수행할 수 있도록 지원
+- execute_move - 지정된 포즈로 이동하는 API가 추가
+- execute_cmd - Hi6 COM의 콘솔 명령어를 실행하는 API 추가
+
+### 🔧 Improvement & Change
+- none
+
+### ❌ Deprecated
+- none
+
+### 📌 API List
+
+- ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
+- ✨ \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
+- ✨ \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
+## 2. version
 
 - 현재 api 의 버전 또는 로봇제어기의 시스템 버전을 확인합니다.## 2.1 version/get
 
@@ -1699,8 +1744,11 @@ response: 200
 
 ### 설명
 
-- 지원 버전 : `60.28-00` &uparrow;
+- 지원 버전 : `60.30-00` &uparrow;
 - `POST` : 비상 정지를 실행합니다.  
+- 비상정지 버튼을 눌렀을 때와 동일한 감속 프로파일이 적용됩니다.
+- API 호출 시, 네트워크 지연(Latency) 또는 요청 처리 시간 때문에 물리적 버튼보다 늦게 반응할 가능성이 있습니다.
+
 
 ### path-parameter
 
@@ -1709,28 +1757,14 @@ POST /project/robot/emergency_stop
 ```
 
 ### request-body
--  |key|type|contents|validation|
-	|---|---|---|---|
-	|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
-	|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
-	|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
-	|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
-
-- `0: 즉시정지`  
-  &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
-- `1: 감속정지`  
-	&rightarrow;  비상정지 버튼을 눌렀을 동작하는 경우. 정지 후 모터 오프가 됨  
-- `2: 일시정지`  
-	&rightarrow;  로봇 모션을 잠시 정지하는 경우. 정지 후 모터 오프가 되지 않음
+```python 
+{}
+```
 
 ### response-body
 
 - 200 : 요청 성공  
-- 400 : 요청 실패  
-	- request body 가 유효성 검사에서 실패  
-- 403 : 요청 실패  
-	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
-
+- 400 : 요청 실패 (비상정지 시퀀스 호출에 실패)  
 
 ### 사용 예
 
@@ -1738,12 +1772,7 @@ POST /project/robot/emergency_stop
 POST /project/robot/emergency_stop
 
 request-body
-{
-  "step_no": 1,
-  "stop_at": 50,
-  "stop_at_corner": 0,
-  "category": 1,
-}
+{}
 ```
 
 Python Script 예시
@@ -1756,12 +1785,64 @@ def post_emergency_stop() -> int:
     base_url = "http://192.168.1.150:8888"
     path_parameter = "/project/robot/emergency_stop"
     head = {"Content-Type": "application/json; charset=utf-8"}
-    body = {
-        "step_no": 2,
-        "stop_at": 20,
-        "stop_at_corner": 0,
-        "category": 1,
-    }
+    body = {}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+
+print(f"response: {post_emergency_stop()}")
+```
+```sh
+$python test.py
+response: 200
+```## 5.2.5 `emergency_stop`
+
+### 설명
+
+- 지원 버전 : `60.30-00` &uparrow;
+- `POST` : 비상 정지를 실행합니다.  
+- 비상정지 버튼을 눌렀을 때와 동일한 감속 프로파일이 적용됩니다.
+- API 호출 시, 네트워크 지연(Latency) 또는 요청 처리 시간 때문에 물리적 버튼보다 늦게 반응할 가능성이 있습니다.
+
+
+### path-parameter
+
+```python
+POST /project/robot/emergency_stop
+```
+
+### request-body
+```python 
+{}
+```
+
+### response-body
+
+- 200 : 요청 성공  
+- 400 : 요청 실패 (비상정지 시퀀스 호출에 실패)  
+
+### 사용 예
+
+```emergency_stop
+POST /project/robot/emergency_stop
+
+request-body
+{}
+```
+
+Python Script 예시
+
+```python
+import requests
+
+
+def post_emergency_stop() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/robot/emergency_stop"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
@@ -1779,6 +1860,90 @@ response: 200
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 6.1.1 `get relay values`
+
+### 설명
+
+- `GET` : relay 값을 객체.타입 전체에 대해 얻습니다.
+
+### path-parameter
+
+```python
+GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
+```
+
+### path-variable
+
+[릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression) (소문자 표기)
+
+* (`di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다. 나머지 `relay_type`에는 지정하지 않습니다.)
+
+- `obj_type` : 객체 타입 (`fb`, `fn`)
+
+- `obj_idx` : 객체 인덱스 (`fb`: `0` ~ `9`, `fn`: `0` ~ `63`)
+
+- `relay_type` : `di`, `do`, `x` , `y` , `m` , `s` , `r`, `k`
+
+	
+
+### query-parameter
+
+- `st` : 시작 byte index (default: 0)
+- `len` : dword 개수 (default: 8)
+
+
+### 사용 예
+
+```python
+request url:
+GET /project/plc/s/val_s32
+
+response-body:
+[
+    16975105,
+    132579331,
+    252449291,
+    406585366,
+    327681,
+    712706500,
+    118947845,
+    28
+]
+```
+
+```python
+request url:
+GET /project/plc/m/val_s32?st=32&len=4
+
+response-body:
+[
+    0,
+    -2139095040,
+    0,
+    134217728
+]
+```
+
+Python Script 예제
+
+```python
+# test.py
+import requests
+
+def get_relay_value() -> dict:
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/plc/m/val_s32'
+    query_parameter = {"st": "32", "len": "4"}
+
+    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+
+    return response.json()
+
+print(f"{get_relay_value()}")
+```
+```sh
+$python test.py
+[0, 0, 0, 0]
+```## 6.1.1 `get relay values`
 
 ### 설명
 
@@ -1934,7 +2099,78 @@ $python test.py
 [0, 0, 0, 0, 0, 0, 0, 0]
 response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
+```## 6.2.1 `set relay values`
+
+### 설명
+
+- `POST` : relay 값 설정합니다.
+
+### path-parameter
+
+```python
+POST /project/plc/set_relay_value
+```
+
+### request-parameter
+
+- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression)에 맞춰 입력합니다.
+- `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
+```json
+{
+    "name": "fb3.dof14",
+    "value": "2.718"
+}
+```
+
+### 사용 예
+
+```json
+request url:
+POST /project/plc/set_relay_value
+
+request-body:
+{
+    "name": "fb1.do0",
+    "value": "1"
+}
+```
+
+Python Script 예제
+
+```python
+# test.py
+import requests
+
+def get_relay_value() -> dict:
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/plc/fb1_do/val_s32'
+ 
+    response = requests.get(url = base_url + path_parameter)
+
+    return response.json()
+
+def post_set_relay_value() -> int:
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/plc/set_relay_value'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {"name": "fb1.do0", "value": 1}
+ 
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+ 
+    return response.status_code
+
+print(f"{get_relay_value()}")
+print(f"response: {post_set_relay_value()}")
+print(f"{get_relay_value()}")
+```
+```sh
+$python test.py
+[0, 0, 0, 0, 0, 0, 0, 0]
+response: 200
+[1, 0, 0, 0, 0, 0, 0, 0]
 ```# 7.1 event-log
+
+- 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.# 7.1 event-log
 
 - 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.## 7.1 log_manager/get
 
@@ -2048,6 +2284,9 @@ $python test.py
 { "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 { "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 ```# 8. file_manager
+
+- 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
+- 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.# 8. file_manager
 
 - 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
 - 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.## 8.1 file_manager/get
@@ -3087,6 +3326,288 @@ print(f"response: {set_cur_pc_idx()}")
 ```sh
 $python test.py 
 response 200 # + TP 상 커서 위치 변경 됨
+```## 9.2.3 `assign_var_expr`
+
+### 설명
+
+- `POST` : 태스크 구문의 변수를 재지정합니다.
+
+### path-parameter
+
+```python
+POST /project/context/tasks[{task index}]/assign_var_expr
+```
+
+### request-body
+
+- `name` : 변수명
+- `expr` : 변수에 대입할 수식
+- `save` : 저장 유무 (true/false). 변수 파일에 해당 데이터를 저장하기 위함입니다.
+- `scope` : 해당 변수의 유효 스코프 설정
+	|`local`|`global`|`미설정`|
+	|:---|:---|:---|
+	|지역 변수|전역 변수|전체 스코프|
+
+
+```json
+{
+    "name" : "a",
+    "scope": "local",
+    "expr" : "14 + 2",
+    "save" : "true"
+}
+```
+
+### 사용 예
+
+현재 태스크에 지역 변수 a 가 선언된 상태인 경우  
+
+```python
+request url:
+POST /project/context/tasks[0]/assign_var_expr
+
+request-body
+{
+    "name" : "a",
+    "scope": "local",
+    "expr" : "465 + 312",
+    "save" : "true"
+}
+```
+
+
+Python Script 예시
+
+```python
+# test.py
+import requests
+
+def post_read_var(var_name: str, scope = None) -> int:
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/context/tasks[0]/solve_expr'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
+
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+ 
+    return response.json()
+
+def assign_var_expr(var_name: str, scope = None, expression: str = '') -> int:
+    base_url         = "http://192.168.1.150:8888"
+    path_parameter   = "/project/context/tasks[0]/assign_var_expr"
+    head             = {'Content-Type': 'application/json; charset=utf-8'}
+    body             = {"name": f"{var_name}", "expr": f"{expression}", "scope": f"{scope}"}
+
+    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+print(f"before: {post_read_var('a', 'local')}")
+print(f"response: {assign_var_expr('a', 'local', '465 + 312')}")
+print(f"after: {post_read_var('a', 'local')}")
+```
+```sh
+$python test.py 
+before: 1234
+response: 200
+after: 777   
+```## 9.2.4 `assign_var_json`
+
+### 설명
+
+- `POST` : 태스크 구문의 변수를 재지정합니다.
+
+### path-parameter
+
+```python
+POST /project/context/tasks[{task index}]/assign_var_json
+```
+
+### request-body
+
+- `name` : 변수명
+- `json` : 변수에 대입할 json 형태의 문자열
+- `save` : 저장 유무 (true/false). 변수 파일에 해당 데이터를 저장하기 위함입니다.
+- `scope` : 해당 변수의 유효 스코프 설정
+	|`local`|`global`|`미설정`|
+	|:---|:---|:---|
+	|지역 변수|전역 변수|전체 스코프|
+
+
+```json
+{
+    "name" : "a",
+    "scope": "local",
+    "json" : "{\"test\": 10}",
+    "save" : "true"
+}
+```
+
+### 사용 예
+
+
+현재 태스크에 지역 변수 a 가 선언된 상태일 경우
+
+```python
+request url:
+POST /project/context/tasks[0]/assign_var_json
+
+request-body
+{
+    "name" : "a",
+    "scope": "local",
+    "json" : "{\"test\": 10}",
+    "save" : "true"
+}
+```
+
+Python Script 예시
+
+```python
+# test.py
+import requests
+
+def post_read_var(var_name: str, scope = None) -> int:
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/context/tasks[0]/solve_expr'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
+
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+ 
+    return response.json()
+
+def assign_var_json(var_name: str, scope = None, var_json: str = '') -> int:
+    base_url         = "http://192.168.1.150:8888"
+    path_parameter   = "/project/context/tasks[0]/assign_var_json"
+    head             = {'Content-Type': 'application/json; charset=utf-8'}
+    body             = {
+                         "name" : f"{var_name}",
+                         "scope": f"{scope}",
+                         "json" : f"{var_json}",
+                         "save" : "true"
+                       }
+
+    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+print(f"before: {post_read_var('a', 'local')}")
+print(f"""response: {assign_var_json('a', 'local', '{"test": 10}')}""")
+print(f"after: {post_read_var('a', 'local')}")
+```
+```sh
+$python test.py 
+before: 1234
+response: 200
+after: {'_type': 'JObject', 'test': 10}
+```## 9.2.5 `release_wait`
+
+### 설명
+
+- `POST` : 태스크의 구문 정지해제
+- 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
+
+### path-parameter
+
+```python
+POST /project/context/tasks[{task index}]/release_wait
+```
+
+### request-body
+
+```json
+{}
+```
+
+### response-body
+
+- 200 : 정상 동작
+- 403 : 상기 필요 조건 불충족
+
+### 사용 예
+
+```json
+request url:
+POST /project/context/tasks[0]/release_wait
+
+request-body
+{}
+```
+
+Python Script 예시
+
+```python
+import requests
+
+def post_release_wait() -> int:
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/context/tasks[0]/release_wait'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {}
+
+    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+
+    return response.status_code
+
+print(f"response: {post_release_wait()}")
+```
+```sh
+$python test.py
+response: 200
+```## 9.2.6 `set_cur_pc_idx`
+
+### 설명
+
+- `POST` : 현재 커서를 index 라인에 위치 시키는 함수
+
+### path-parameter
+
+```python
+POST /project/context/tasks[{task index}]/set_cur_pc_idx
+```
+
+### request-body
+```json
+{
+  "idx": 1
+}
+```
+
+### 사용 예
+
+```python
+request url:
+POST /project/context/tasks[0]/set_cur_pc_idx
+
+request-body
+{
+  "idx": 2
+}
+```
+
+
+Python Script
+
+```python
+# test.py
+import requests
+
+def set_cur_pc_idx() -> int:
+    base_url         = "http://192.168.1.150:8888"
+    path_parameter   = "/project/context/tasks[0]/set_cur_pc_idx"
+    head             = {'Content-Type': 'application/json; charset=utf-8'}
+    body             = {"idx": 1}
+
+    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+print(f"response: {set_cur_pc_idx()}")
+```
+```sh
+$python test.py 
+response 200 # + TP 상 커서 위치 변경 됨
 ```## 9.2.7 `solve_expr`
 
 ### 설명
@@ -3205,6 +3726,78 @@ $python test.py
 10
 1000
 ```## 9.2.8 `execute_move`
+
+### 설명
+
+- 지원 버전 : `60.28-00` &uparrow;
+- `POST` : 지정한 포즈로 이동합니다.  
+
+### path-parameter
+
+```python
+POST /project/context/tasks[{task index}]/execute_move
+```
+
+### request-body
+- `stmt` : 요청 바디의 키 값으로, 구문(statment)을 뜻합니다.
+- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move)을 참조 바랍니다.
+
+```json
+{
+    "stmt" : "move SP,spd=1sec,accu=0,tool=1 [0 90 0 0 0 0]"
+}
+```
+
+### response-body
+
+- 200 : 요청 성공  
+- 400 : 요청 실패  
+	- request body 가 유효성 검사에서 실패  
+- 403 : 요청 실패  
+	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
+
+Python Script 예시
+- 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
+
+```python
+# test.py
+import requests
+import time
+
+def post_execute_move(in_pose: str) -> int:
+    # base_url = "http://192.168.1.150:8888" # for Hi6COM
+    base_url = "http://127.0.0.1:8888" # for HRSpace - virtual robot controller
+    path_parameter = "/project/context/tasks[0]/execute_move"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"stmt": f"move SP,spd=1sec,accu=0,tool=1  {str(in_pose)}"}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+poses = [
+    "[-10, 90, -10, 0, 0, 0]",
+    "[-5, 90, 5, 0, 0, 0]",
+    "[0, 90, 0, 0, 0, 0]"
+]
+
+for idx, pose in enumerate(poses):
+    print(f"Request {idx + 1}: Sending pose {pose}")
+    status_code = post_execute_move(pose)
+    print(f"Status code: {status_code}")
+    if idx < len(poses) - 1:  
+        time.sleep(1.5)
+
+```
+```sh
+$python test.py 
+Request 1: Sending pose [-10, 90, -10, 0, 0, 0]
+Status code: 200
+Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
+Status code: 200
+Request 3: Sending pose [0, 90, 0, 0, 0, 0]
+Status code: 200
+``````## 9.2.8 `execute_move`
 
 ### 설명
 
@@ -3653,38 +4246,4 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 |crd|[좌표계](./crdsys.md)|
 |mechinfo|[메커니즘정보](./mechinfo.md)|
 |nsync|센서동기 값의 개수 (0~2)|
-|sync|센서동기 값 (문자열). e.g. `"sync(220.5,195.3)"`|## tool_data
-
-### 설명
-
-로봇의 툴 데이터입니다.
-
-|key|description|
-|:---:|:---|
-|`x`|X위치 (mm)|
-|`y`|Y위치 (mm)|
-|`z`|Z위치 (mm)|
-|`rx`|RX각도 (deg.)|
-|`ry`|RY각도 (deg.)|
-|`rz`|RZ각도 (deg.)|
-|`mass`|중량 (kg.)|
-|`cx`|무게중심 X위치 (mm)|
-|`cy`|무게중심 X위치 (mm)|
-|`cz`|무게중심 X위치 (mm)|
-|`ixx`|이너셔(inertial) X (kgm2)|
-|`iyy`|이너셔(inertial) Y (kgm2)|
-|`izz`|이너셔(inertial) Z (kgm2)|
-|`mass_esti`|부하추정 중량 (kg.)|
-## CLI 로봇 언어 명령어
-
-### 설명
-
-Hi6 제어기 콘솔에서 실행 가능한 로봇언어의 명령어 리스트입니다.
-
-|option|description|example|
-|:---|:---|:---|
-|`reinit`| 로봇언어 재시작 명령을 수행합니다. |rl.reinit|
-|`i`|job 파일에 로봇언어 명령문을 삽입(insert)합니다.|rl.i \<cmdline><br>rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0,0,0]<br>rl.i end|
-|`start`|`모터 온` 상태이고 `원격모드` 일때 해당 옵션 수행 시 로봇언어가 실행됩니다.|rl.start|
-|`stop`|현재 로봇언어가 실행 중일 때, `외부정지` 진행됩니다.|rl.stop|
-|`exit`|현재 실행 중인 로봇언어를 종료합니다.|rl.exit|
+|sync|센서동기 값 (문자열). e.g. `"sync(220.5,195.3)"`|
