@@ -4,6 +4,8 @@
 
 로봇의 툴 데이터입니다.
 
+<div style="width: fit-content;">  
+
 |key|description|
 |:---:|:---|
 |`x`|X위치 (mm)|
@@ -20,3 +22,5 @@
 |`iyy`|이너셔(inertial) Y (kgm2)|
 |`izz`|이너셔(inertial) Z (kgm2)|
 |`mass_esti`|부하추정 중량 (kg.)|
+
+</div>

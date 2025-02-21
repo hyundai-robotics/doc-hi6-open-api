@@ -2,7 +2,10 @@
 
 ### 설명
 
-좌표계 (coordinate system)를 지정하는 열거자 (enumeration) 입니다.
+좌표계 (coordinate system)를 지정하는 열거자 (enumeration) 입니다.  
+
+<div style="width: fit-content;">  
+
 |value|description|
 |:---:|:---|
 |`-1`|`다음` 좌표계|
@@ -10,3 +13,5 @@
 |`1`|`직교` 좌표계(=`로봇` 좌표계)|
 |`2`|`사용자` 좌표계|
 |`3`|`툴` 좌표계|
+
+</div>

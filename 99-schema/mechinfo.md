@@ -16,7 +16,11 @@
 
 ### 사용 예
 
+<div style="width: fit-content;">  
+
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0
 # 메커니즘 M0, M1, M4를 지정합니다.
 ```
+
+</div>

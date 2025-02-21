@@ -10,7 +10,7 @@
 
 ### 사용 예
 
-<blockquote>
+<blockquote style="width: fit-content; border-radius: 10px">  
 
 ```python
 request url:
@@ -26,9 +26,12 @@ request-body:
     "sec": 0
 }
 ```
+
 </blockquote>
 
 Python Script 예시
+
+<blockquote style="width: fit-content; border-radius: 10px"> 
 
 ```python
 # test.py
@@ -46,7 +49,12 @@ def put_system_time() -> int:
 
 print(f"response: {put_system_time()}")
 ```
+</blockquote>
+
+<blockquote style="width: fit-content; border-radius: 10px">  
+
 ```sh
 $python test.py
 response: 200
 ```
+</blockquote>

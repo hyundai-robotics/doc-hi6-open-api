@@ -4,6 +4,8 @@
 
 포즈(pose) 데이터입니다.
 
+<div style="width: fit-content;">  
+
 |key|description|
 |:---|:---|
 |x|X위치 (mm)|
@@ -17,3 +19,5 @@
 |mechinfo|[메커니즘정보](./mechinfo.md)|
 |nsync|센서동기 값의 개수 (0~2)|
 |sync|센서동기 값 (문자열). e.g. `"sync(220.5,195.3)"`|
+
+</div>

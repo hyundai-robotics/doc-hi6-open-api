@@ -2,6 +2,8 @@
 
 ### 설명
 
+<div style="width: fit-content;">  
+
 시스템 시간 관련 정보를 나타냅니다.
 |value|type|description|
 |:---:|:---|:---|
@@ -11,3 +13,5 @@
 |"hour"|`int`|현재 시스템의 시|
 |"min"|`int`|현재 시스템의 분|
 |"sec"|`int`|현재 시스템의 초|
+
+</div>

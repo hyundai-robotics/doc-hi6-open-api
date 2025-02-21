@@ -1,6 +1,8 @@
 ﻿## rgen
 ### 설명
 
+<div style="width: fit-content;">  
+
 |index|key|value type(python)|description|
 |:---:|:---|:---|:---|
 |01|apps_sync_seq|`int`||
@@ -77,7 +79,7 @@
 |72|tool_no|`int`||
 |73|ucrd_no|`int`||
 
-
+</div>
 
 
 <details><summary>json</summary>

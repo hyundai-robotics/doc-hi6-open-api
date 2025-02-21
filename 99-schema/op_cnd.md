@@ -23,6 +23,8 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 
 ### 예 (example)
 
+<div style="width: fit-content;">  
+
 ```python
 {
     "_type": "CondGrp",
@@ -38,3 +40,5 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
     "plc_mode": 4
 }
 ```
+
+</div>
