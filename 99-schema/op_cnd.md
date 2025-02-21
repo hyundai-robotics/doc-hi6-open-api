@@ -6,6 +6,8 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 
 <br>
 
+<div style="width: fit-content;">  
+
 |key|value|description|
 |:---|:---|:---|
 |playback_mode| `1` : 1사이클 <br> `2` : 반복|자동운전 동작 사이클 모드|
@@ -18,6 +20,8 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 |intp_base|`0` : 로봇툴 <br> `1` : 정치툴|보간 기준|
 |ucrd_num|`0` ~ `20`|사용자 좌표계 지정|
 |plc_mode|`0` : Off -> Stop <br> `1` : Stop -> Remote Stop <br> `2` : Remote Stop -> Remote Stop <br> `3` : Remote Run -> Remote Stop <br> `4` : Run -> Off|PLC 동작 모드|
+
+</div>
 
 <br>
 
