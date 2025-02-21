@@ -1,4 +1,6 @@
-﻿## 11.1.2.1 `date_time`
+﻿<div style = "width: max-content">  
+
+## 11.1.2.1 `date_time`
 
 ### 설명
 
@@ -9,8 +11,6 @@
 - [시스템 시간 정보](../../../99-schema/date_time.md)
 
 ### 사용 예
-
-<blockquote style="width: fit-content; border-radius: 10px">  
 
 ```python
 request url:
@@ -27,11 +27,7 @@ request-body:
 }
 ```
 
-</blockquote>
-
 Python Script 예시
-
-<blockquote style="width: fit-content; border-radius: 10px"> 
 
 ```python
 # test.py
@@ -49,12 +45,9 @@ def put_system_time() -> int:
 
 print(f"response: {put_system_time()}")
 ```
-</blockquote>
-
-<blockquote style="width: fit-content; border-radius: 10px">  
 
 ```sh
 $python test.py
 response: 200
 ```
-</blockquote>
+</div>

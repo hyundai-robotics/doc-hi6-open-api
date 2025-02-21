@@ -6,7 +6,7 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 
 <br>
 
-<div style="width: fit-content;">  
+<div style="width: 50vw;">  
 
 |key|value|description|
 |:---|:---|:---|
