@@ -90,9 +90,6 @@ def get_log_search() -> str:
 
 print(get_log_search())
 ```
-</div>
-
-<div style="width: fit-content;">
 
 ```sh
 $python test.py
