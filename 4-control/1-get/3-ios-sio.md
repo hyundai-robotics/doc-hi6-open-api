@@ -6,6 +6,9 @@
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 GET /project/control/ios/sio/{sio_val}
 ```
@@ -40,9 +43,13 @@ response-body:
     "_type" : "JObject",
     "val" : 2,
 }
-```
+```  
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -63,3 +70,4 @@ print(get_sio_val())
 $python test.py
 {'_type': 'JObject', 'val': 0}
 ```
+</div>

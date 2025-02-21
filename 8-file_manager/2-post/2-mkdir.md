@@ -1,32 +1,39 @@
 ﻿## 8.2.2 `mkdir`
 
+
+
 ### 설명
 
-- `POST` : 타겟 경로에 디렉토리를 생성합니다.
+- `POST` : 타겟 경로에 디렉토리를 생성합니다.  
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 GET /file_manager/mkdir
 ```
 
+
 ### request-body
 
 |key|value|description|
-|:---|:---|:---|
+|:---:|:---:|:---:|
 |`path`|`str`|디렉토리를 생성할 위치|
+
+</div>
 
 ### response-body
 
+<div style="width: fit-content;">
+
 |HTTP Status|description|
-|:---|:---|
+|:---:|:---|
 |`200 OK`| 타겟 위치에 디렉토리 생성 완료 |
 |`500 Internal Server Error`| 타겟 위치에 디렉토리 이름이 중복되는 경우 |
 
 
 ### 사용 예
-
-<blockquote>
 
 ```python
 request url:
@@ -45,11 +52,12 @@ hi6
     |   `-- special    <- target
     `-- hi6_proj.json
 ```
+</div>
 
-
-</blockquote>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -71,3 +79,4 @@ print(f"response: {post_mkdir()}")
 $python test.py
 response: 200
 ```
+</div>

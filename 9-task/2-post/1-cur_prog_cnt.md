@@ -1,5 +1,7 @@
 ﻿## 9.2.1 `task/cur_prog_cnt`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `POST` : 태스크의 현재 프로그램 카운터를 설정합니다.
@@ -54,3 +56,4 @@ print(post_cur_prog_cnt())
 $python python test.py
 {'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
 ```
+</div>

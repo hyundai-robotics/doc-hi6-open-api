@@ -1,5 +1,7 @@
 ﻿## 11.1.1.1 `date_time`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `GET` : 설정된 시스템 시간을 가져옵니다.
@@ -51,3 +53,4 @@ print(get_system_time())
 $python test.py
 [11/20] 19:55
 ```
+</div>

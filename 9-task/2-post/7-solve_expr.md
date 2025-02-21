@@ -1,5 +1,7 @@
 ﻿## 9.2.7 `solve_expr`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `POST` : 표현식(expression)을 풀어서 나오는 결과 값을 태스크의 지역 또는 전역 변수에 설정합니다.
@@ -116,3 +118,4 @@ $python test.py
 10
 1000
 ```
+</div>

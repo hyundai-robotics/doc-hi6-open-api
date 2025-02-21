@@ -6,6 +6,9 @@
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 POST /file_manager/files/{target_filepath}
 ```
@@ -21,14 +24,15 @@ POST /file_manager/files/{target_filepath}
 
 ### response-body
 
+<div style="width: fit-content;">
+
 |HTTP Status|description|
-|:---|:---|
+|:---:|:---|
 |`200 OK`| 전송 완료 |
 
+</div>
 
 ### 사용 예
-
-<blockquote>
 
 ```text
 hi6
@@ -43,7 +47,7 @@ request url:
 POST /file_manager/files/project/jobs/test.job
 ```
 
-</blockquote>
+</div>
 
 Python Script 예시
 

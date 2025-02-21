@@ -6,6 +6,9 @@
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 GET /project/robot/tools/t_{number}
 ```
@@ -32,8 +35,11 @@ response-body:
         ...
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -53,3 +59,5 @@ print(get_tool1_data())
 $python test.py
 {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```
+
+</div>

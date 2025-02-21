@@ -6,9 +6,12 @@
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 POST /project/robot/tool_no
-```
+``` 
 
 ### request-body
 
@@ -20,7 +23,7 @@ POST /project/robot/tool_no
 
 ```json
 {
-    "_type": "JObject"
+	"_type": "JObject"
 }
 ```
 
@@ -31,11 +34,15 @@ POST /project/robot/tool_no
 
 request-body
 {
-  "val": 1
+	"val": 1
 }
 ```
 
+</div>
+
 Python Script 예시
+
+
 
 ```python
 import requests
@@ -56,3 +63,4 @@ print(f"response: {post_tool_no(1)}")
 $python test.py
 response: 200
 ```
+</div>

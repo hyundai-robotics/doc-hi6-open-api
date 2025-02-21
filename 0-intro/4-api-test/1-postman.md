@@ -1,4 +1,4 @@
-## 0.4.1 `Postman` 에서 `POST` 요청하기
+﻿## 0.4.1 `Postman` 에서 `POST` 요청하기
 
 해당 페이지에서는 `postman` 을 활용해서 REST API 의 `POST` 요청을 호출하고 결과를 확인합니다.  
 추가로 간단한 UI 구성을 통해 사용법을 파악합니다.
@@ -11,7 +11,7 @@
 
 <img src="../../_assets/01_postman_desc.png" style="max-height: 40vh;">
 
-<blockquote>
+<blockquote style="width: fit-content;">
 
 (1) `+` 버튼을 통해 request 요청을 간단하게 생성할 수 있습니다. </br>
 (2) `request` 요청에 대한 정보들을 입력하는 공간 입니다. </br>
@@ -44,7 +44,7 @@
 	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.  
 	<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 40vh;">
 
-		<blockquote>
+		<blockquote style="width: fit-content;">
 
 		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`

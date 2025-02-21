@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /file_manager/files
 ```
@@ -23,14 +25,15 @@ query-parameter 를 반드시 입력해야합니다.
 ### response-body
 
 |HTTP Status|description|
-|:---|:---|
+|:---:|:---|
 |`200 OK`|파일 내용 반환|
 |`404 Not Found`| 파일 없을 때 에러 상태 코드 반환|
 
+</div>
 
 ### 사용 예
 
-<blockquote>
+<div style="width: fit-content;">
 
 ```text
 hi6
@@ -54,10 +57,13 @@ response-body:
 	...
 }
 ```
-
-</blockquote>
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
+
 
 ```python
 # test.py
@@ -88,4 +94,6 @@ S2   move P,tg=po1,spd=100%,accu=0,tool=1
 S3   move P,tg=po1,spd=100%,accu=0,tool=1
 S4   move P,tg=po1,spd=100%,accu=0,tool=1
      end
-```
+```  
+
+</div>

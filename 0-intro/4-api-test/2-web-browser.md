@@ -8,12 +8,16 @@
 	- 서버 측 url 은 `http://<Hi6 제어기의 ip 주소>:<http 통신 포트>`로 시작되며 추출하려는 정보에 맞는 경로와 쿼리를 이어 적습니다.
 	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
 3. 해당 url 의 페이지가 열리고 아래와 같이 응답이 출력됩니다.
+
+	<div style="width: fit-content;">
+
 	```json
 	{
 		"_type" : "JObject",
 		"val" : -99
 	}
 	```
+	</div>
 
 <br>
 
@@ -26,7 +30,8 @@
 
 <img src="../../_assets/06_Talend_api_tester.png" style="max-height: 60vh;">
 
-<blockquote>
+
+<blockquote style="width: fit-content;">
 
 `(1) Requests/Senarios` : 하나의 API 에 대해서 호출을 테스트할지, 여러 API 들로 시나리오를 작성하여 순차적으로 테스트할 지 설정할 수 있습니다.<br>
 `(2) Request` : 요청할 내용을 입력합니다.  

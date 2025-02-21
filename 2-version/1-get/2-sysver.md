@@ -6,9 +6,12 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /versions/sysver
 ```
+</div>
 
 ### response-body
 
@@ -23,6 +26,8 @@ modules : 모듈 버전 정보의 배열
     - `commit-id` : 소스코드의 커밋 ID
 
 ### 사용 예
+
+<div style="width: fit-content;">
 
 ```python
 request url:
@@ -40,8 +45,11 @@ response-body:
     ] 
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -59,3 +67,4 @@ print(get_sysver())
 $python test.py
 {'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
 ```
+</div>

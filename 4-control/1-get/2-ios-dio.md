@@ -6,9 +6,13 @@
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 GET /project/control/ios/dio/{dio_val}
-```
+```  
+</div>
 
 ### path-variable
 
@@ -31,6 +35,8 @@ GET /project/control/ios/dio/{dio_val}
 
 - fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
 
+<div style="width: fit-content;">
+
 ```python
 request url:
 GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
@@ -41,8 +47,11 @@ response-body:
     "val" : -56,
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -63,3 +72,4 @@ print(get_dio_val())
 $python test.py
 {'_type': 'JObject', 'val': -56}
 ```
+</div>

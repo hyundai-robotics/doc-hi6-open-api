@@ -1,5 +1,7 @@
 ﻿## 9.2.3 `assign_var_expr`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `POST` : 태스크 구문의 변수를 재지정합니다.
@@ -84,3 +86,5 @@ before: 1234
 response: 200
 after: 777   
 ```
+
+</div>

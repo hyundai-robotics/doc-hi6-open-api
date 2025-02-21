@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/robot/cur_tool_data
 ```
@@ -39,8 +41,11 @@ response-body:
     "mass_esti": 20.000000,
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -60,3 +65,5 @@ print(get_cur_tool_data())
 $python test.py
 {'_type': 'Tool', 'x': 0.0, 'rx': 0.0, 'y': 0.0, 'ry': 0.0, 'z': 0.0, 'rz': 0.0, 'cy': 0.0, 'mass': 20.0, 'cx': 100.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'bias_2': 0.0, 'mass_esti': 20.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```
+
+</div>

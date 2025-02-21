@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 ```
@@ -14,7 +16,8 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 [릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression) (소문자 표기)
 
-* (`di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다. 나머지 `relay_type`에는 지정하지 않습니다.)
+* `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.   
+  나머지 `relay_type`에는 지정하지 않습니다.
 
 - `obj_type` : 객체 타입 (`fb`, `fn`)
 
@@ -61,8 +64,11 @@ response-body:
     134217728
 ]
 ```
+</div>
 
 Python Script 예제
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -83,3 +89,4 @@ print(f"{get_relay_value()}")
 $python test.py
 [0, 0, 0, 0]
 ```
+</div>

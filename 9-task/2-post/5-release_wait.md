@@ -1,5 +1,7 @@
 ﻿## 9.2.5 `release_wait`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `POST` : 태스크의 구문 정지해제
@@ -53,3 +55,5 @@ print(f"response: {post_release_wait()}")
 $python test.py
 response: 200
 ```
+
+</div>

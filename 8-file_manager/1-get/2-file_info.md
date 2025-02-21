@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /file_manager/file_info
 ```
@@ -19,6 +21,8 @@ query-parameter 를 반드시 입력해야합니다.
 ```
 - `pathname` : 타겟 파일 경로
 
+</div>
+
 ### response-body
 
 - [파일 정보](../../99-schema/file_info.md)
@@ -26,7 +30,7 @@ query-parameter 를 반드시 입력해야합니다.
 
 ### 사용 예
 
-<blockquote>
+<div style="width: fit-content;">
 
 ```text
 hi6
@@ -59,8 +63,10 @@ response-body:
     "min": 35
 }
 ```
+</div>
 
-</blockquote>
+
+<div style="width: fit-content;">
 
 Python Script 예시
 
@@ -83,3 +89,5 @@ print(get_file_info())
 $python test.py
 {'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
 ```
+
+</div>

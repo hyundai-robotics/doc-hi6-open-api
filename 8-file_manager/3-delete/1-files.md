@@ -1,5 +1,7 @@
 ﻿## 8.3.1 `files`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `DELETE` : 타겟 파일 또는 디렉토리를 삭제합니다.
@@ -55,3 +57,4 @@ print(f"response: {delete_file()}")
 $python test.py
 response: 200
 ```
+</div>

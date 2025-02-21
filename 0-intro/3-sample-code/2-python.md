@@ -3,10 +3,14 @@
 예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)`   
 두 가지 방식 중 `a. 동기식 요청`에 대해서 설명합니다.
 
+<div style="width: fit-content;">
+
 ||동기식|비동기식|
 |:---|:---|:---|
 |blocking|`a. 동기식 요청`||
 |non-blocking||`b. 비동기식 요청`|
+
+</div>
 
 두 가지 방법의 차이점은 TP와 컨트롤러에 다음과 같은 심각한 결과를 초래할 수 있습니다.
 1. UI 스레드에서 빈번한 동기 함수 호출로 인해 UI가 원활하게 실행되지 않고 정지될 수 있습니다(`Hanging 문제`).
@@ -21,10 +25,16 @@
 동기식은 하나의 요청이 끝나고 응답이 올 때까지 다른 task 의 실행이 불가능한 blocking 상태의 요청 방식 입니다.  
 python 에서 `동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `requests` 입니다.  
 `requests` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다.   	
+
+<div style="width: fit-content;">
+
 ```sh
 $pip install requests
 ```
+</div>
+
 - 통신시 응답을 받지 못하거나 응답을 받는데 시간이 오래 걸리는 경우에는 hanging 문제가 발생할 가능성이 매우 높으니 주의 바랍니다.
+<div style="width: fit-content;">
 
 ```python
 # sync.py - 동기식, 사용자 IO 출력 값 얻기와 설정하기
@@ -62,3 +72,4 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.06168508529663086 seconds
 total request time : 0.2869541645050049 seconds
 ```
+</div>

@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/robot/motor_on_state
 ```
@@ -28,8 +30,11 @@ response-body:
     "val" : 1
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -49,3 +54,5 @@ print(f"Motor On status: {get_motor_on_state()['val']}")
 $python test.py
 Motor On status: 1
 ```
+
+</div>

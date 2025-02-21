@@ -1,5 +1,7 @@
 ﻿## 8.2.1 `rename_file`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `POST` : 타겟 파일의 파일 이름을 변경합니다.
@@ -18,20 +20,19 @@ POST /file_manager/rename_file
     "pathname_to"   : "project/jobs/4321.job"
 }
 ```
+
+
 - `pathname_from` : 변경 전 파일 경로
 - `pathname_to` : 변경 후 파일 경로
 
 ### response-body
 
 |HTTP Status|description|
-|:---|:---|
+|:---:|:---|
 |`200`| 이름 변경 완료 |
 |`400`| 변경하려는 타겟 파일이 존재하지 않음 |
 
-
 ### 사용 예
-
-<blockquote>
 
 ```python
 request url:
@@ -50,9 +51,11 @@ hi6
         `-- 0001.job   ->   4321.job
 ```
 
-</blockquote>
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -75,3 +78,5 @@ print(f"response: {rename_file()}")
 $python test.py
 response: 200
 ```
+
+</div>

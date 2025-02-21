@@ -1,6 +1,6 @@
-﻿<div style = "width: max-content">  
+﻿## 11.1.2.1 `date_time`
 
-## 11.1.2.1 `date_time`
+<div style = "width: max-content">  
 
 ### 설명
 

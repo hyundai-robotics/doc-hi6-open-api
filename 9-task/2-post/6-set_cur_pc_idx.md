@@ -1,5 +1,7 @@
 ﻿## 9.2.6 `set_cur_pc_idx`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `POST` : 현재 커서를 index 라인에 위치 시키는 함수
@@ -52,3 +54,4 @@ print(f"response: {set_cur_pc_idx()}")
 $python test.py 
 response 200 # + TP 상 커서 위치 변경 됨
 ```
+</div>

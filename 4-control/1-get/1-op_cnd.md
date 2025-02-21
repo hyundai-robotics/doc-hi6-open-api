@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/control/op_cnd
 ```
@@ -13,8 +15,6 @@ GET /project/control/op_cnd
 ### response-body
 
 - [조건설정 파라미터](../../99-schema/op_cnd.md)
-
-<blockquote>
 
 ```json
 {
@@ -31,9 +31,12 @@ GET /project/control/op_cnd
 	"plc_mode": 1              
 }
 ```
-</blockquote>
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -53,3 +56,4 @@ print(get_operation_condition())
 $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
 ```
+</div>

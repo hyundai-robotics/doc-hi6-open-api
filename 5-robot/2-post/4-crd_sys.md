@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 POST /project/robot/crd_sys
 ```
@@ -18,7 +20,7 @@ POST /project/robot/crd_sys
 
 ```json
 {
-  "_type": "JObject",
+	"_type": "JObject",
   "cur_crd": 1,
   "ucrd_no": 1
 }
@@ -32,11 +34,15 @@ POST /project/robot/crd_sys
 
 request-body
 {
-  "val": 1
+	"val": 1
 }
 ```
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -56,3 +62,5 @@ print(f"response: {post_crd_sys(1)}")
 $python test.py
 response: 200
 ```
+
+</div>

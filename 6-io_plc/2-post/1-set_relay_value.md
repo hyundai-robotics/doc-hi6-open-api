@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 POST /project/plc/set_relay_value
 ```
@@ -33,6 +35,10 @@ request-body:
     "value": "1"
 }
 ```
+</div>
+
+
+<div style="width: fit-content;">
 
 Python Script 예제
 
@@ -68,3 +74,4 @@ $python test.py
 response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
 ```
+</div>

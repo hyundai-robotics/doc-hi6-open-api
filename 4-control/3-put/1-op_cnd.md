@@ -7,6 +7,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 PUT /project/control/op_cnd
 ```
@@ -29,8 +31,12 @@ request-body:
     "ucrd_num": 2
 }
 ```
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -55,3 +61,4 @@ print(f"response: {put_op_cnd()}")
 $python test.py
 response: 200 
 ```
+</div>

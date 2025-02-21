@@ -9,17 +9,25 @@
 
 ### path-parameter
 
-```pytho
+<div style="width: fit-content;">
+
+```python
 POST /project/robot/emergency_stop_test
 ```
+</div>
 
 ### request-body
+
+<div style="width: fit-content;">
+
 -  |key|type|contents|validation|
-	|---|---|---|---|
+	|---:|:---:|---|---|
 	|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
 	|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
 	|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
 	|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
+
+</div>
 
 - `0: 즉시정지`  
   &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
@@ -38,6 +46,8 @@ POST /project/robot/emergency_stop_test
 
 
 ### 사용 예
+
+<div style="width: fit-content;">
 
 ```emergency_stop
 POST /project/robot/emergency_stop
@@ -79,3 +89,4 @@ print(f"response: {post_emergency_stop()}")
 $python test.py
 response: 200
 ```
+</div>

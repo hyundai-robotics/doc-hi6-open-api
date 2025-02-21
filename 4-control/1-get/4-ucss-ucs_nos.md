@@ -7,6 +7,9 @@
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 GET /project/control/ucss/ucs_nos
 ```
@@ -23,8 +26,11 @@ response-body:
     "val" : [1],
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -44,3 +50,4 @@ print(f"{get_ucs_nos()}")
 $python test.py
 [1, 2, 3]
 ```
+</div>

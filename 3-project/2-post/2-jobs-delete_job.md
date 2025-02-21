@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 POST /project/jobs/delete_job
 ```
@@ -30,7 +32,12 @@ request-body:
 }
 ```
 
+</div>
+
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -52,3 +59,4 @@ print(f"response: {post_delete_job('0002.job')}")
 $python test.py
 response: 200 
 ```
+</div>

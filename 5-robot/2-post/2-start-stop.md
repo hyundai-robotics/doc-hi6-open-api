@@ -6,6 +6,9 @@
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 POST /project/robot/start
 POST /project/robot/stop
@@ -33,8 +36,11 @@ POST /project/robot/motor_off
 request-body: 
 {}
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -66,3 +72,4 @@ $python test.py
 Start response: 200
 Stop  response: 200
 ```
+</div>

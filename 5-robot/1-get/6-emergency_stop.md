@@ -7,6 +7,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/robot/emergency_stop
 ```
@@ -27,8 +29,11 @@ response-body:
     "val": 0,
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -52,3 +57,4 @@ print(f"{get_emergency_stop()}")
 $python test.py
 {'_type': 'JObject', 'val': 0}
 ```
+</div>

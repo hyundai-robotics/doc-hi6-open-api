@@ -1,4 +1,6 @@
-﻿## 10.2.1 `execute_cmd`
+﻿<div style="width: fit-content;">
+
+## 10.2.1 `execute_cmd`
 
 
 ### 설명
@@ -94,3 +96,5 @@ response: <Response [200]>
 response: <Response [200]>
 response: 200
 ```
+
+</div>

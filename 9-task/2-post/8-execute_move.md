@@ -1,5 +1,7 @@
 ﻿## 9.2.8 `execute_move`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - 지원 버전 : `60.28-00` &uparrow;
@@ -70,4 +72,6 @@ Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
 Status code: 200
 Request 3: Sending pose [0, 90, 0, 0, 0, 0]
 Status code: 200
-``````
+``````  
+
+</div>

@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /file_manager/file_exist
 ```
@@ -19,17 +21,23 @@ query-parameter 를 반드시 입력해야합니다.
 ```
 - `pathname` : 타겟 파일 경로
 
+</div>
+
 ### response-body
+
+
+<div style="width: fit-content;">
 
 |HTTP Status|description|
 |:---|:---|
 |`200 OK`|`true` (파일 존재)|
 |`200 OK`|`false` (파일 없음)|
 
+</div>
 
 ### 사용 예
 
-<blockquote>
+<div style="width: fit-content;">
 
 ```python
 request url:
@@ -47,9 +55,11 @@ hi6
     `-- hi6_proj.json
 ```
 
-</blockquote>
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -70,3 +80,5 @@ print(is_file_exist())
 $python test.py
 true
 ```
+
+</div>

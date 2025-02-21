@@ -1,5 +1,7 @@
 ﻿## 9.2.2 `task/reset`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `POST` : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
@@ -50,3 +52,5 @@ print(f"response: {post_task_reset()}")
 $python test.py
 response: 200
 ```
+
+</div>

@@ -6,16 +6,20 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/jobs_info
 ```
+</div>
 
 ### response-body
 
 - [job 파일 관련 정보](../../99-schema/jobs_info.md)
 ### 사용 예
 
-<blockquote>
+
+<div style="width: fit-content;">
 
 ```python
 request url:
@@ -50,9 +54,12 @@ response-body:
 	      ...
 }
 ```
-</blockquote>
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -73,4 +80,5 @@ $python test.py
 [{'_type': 'JObject', 'job_comment': '', 'fname': '0001.job', 'n_step': 0, 'n_aux_ax': 0, 'n_total_ax': 6}, 
 {'_type': 'JObject', 'job_comment': '', 'fname': '0002.job', 'n_step': 9, 'n_aux_ax': -1, 'n_total_ax': -1}, 
 {'_type': 'JObject', 'job_comment': '', 'fname': '0003.job', 'n_step': 0, 'n_aux_ax': -1, 'n_total_ax': -1}]
-```
+```  
+</div>

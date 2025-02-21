@@ -1,5 +1,7 @@
 ﻿## 9.2.4 `assign_var_json`
 
+<div style="width: fit-content;">
+
 ### 설명
 
 - `POST` : 태스크 구문의 변수를 재지정합니다.
@@ -88,4 +90,6 @@ $python test.py
 before: 1234
 response: 200
 after: {'_type': 'JObject', 'test': 10}
-```
+```  
+
+</div>

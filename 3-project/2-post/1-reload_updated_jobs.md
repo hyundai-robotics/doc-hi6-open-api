@@ -7,6 +7,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 POST /project/reload_updated_jobs
 ```
@@ -25,10 +27,15 @@ POST /project/reload_updated_jobs
 
 request-body: {}
 ```
+</div>
 
 Python Script 예시
 
 - 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+
+
+<div style="width: fit-content;">
+
 ```python
 # test.py
 import requests 
@@ -49,3 +56,4 @@ print(f"response: {post_reload_updated_jobs()}")
 $python test.py
 response: 200 
 ```
+</div>

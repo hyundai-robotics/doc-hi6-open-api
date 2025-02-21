@@ -11,6 +11,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /api_ver
 ```
@@ -29,8 +31,11 @@ GET /api_ver
 response-body:
 5
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -48,3 +53,4 @@ print(get_api_ver())
 $python test.py
 5
 ```
+</div>

@@ -6,11 +6,18 @@
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 POST /project/control/ios/dio/do_val
 ```
+</div>
 
 ### request-body
+
+
+<div style="width: fit-content;">
 
 ```json
 {
@@ -20,7 +27,7 @@ POST /project/control/ios/dio/do_val
   "val": 1
 }
 ```
-
+</div>
 
 ### query-parameter
 
@@ -37,6 +44,8 @@ POST /project/control/ios/dio/do_val
 
 ### 사용 예
 
+<div style="width: fit-content;">
+
 ```python
 request url:
 POST /project/control/ios/dio/do_val
@@ -49,10 +58,15 @@ request-body:
     "val": -99
 }
 ```
+</div>
 
 Python Script 예시
 
 - 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+
+
+<div style="width: fit-content;">
+
 ```python
 # test.py
 import requests 
@@ -72,3 +86,4 @@ print(f"response: {post_do_val()}")
 $python test.py
 response: 200 
 ```
+</div>

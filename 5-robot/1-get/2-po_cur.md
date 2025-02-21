@@ -6,6 +6,8 @@
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/robot/po_cur
 ```
@@ -102,6 +104,10 @@ response-body:
     "j6": 0.000000
 }
 ```
+</div>
+
+
+<div style="width: fit-content;">
 
 Python Script 예시
 
@@ -124,3 +130,5 @@ print(get_base_coordinate())
 $python test.py
 {'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
 ```
+
+</div>
