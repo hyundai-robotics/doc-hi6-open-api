@@ -354,55 +354,126 @@ total request time : 0.2869541645050049 seconds
 	|v60-24.00|-||
 
 	</div>
-## 📝 Release Notes - v60.30-00
+<h2 style="display: inline-flex; align-items: center; gap: 8px;">
+  📝 Release Notes - v60.30-00 
+  <span style="
+    background: #F44336; 
+    color: #FFFFFF; 
+    border: 2px solid #FFD700; 
+    padding: 1px 5px; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    font-size: 14px; /* h2 크기에 맞춤 */
+    text-transform: uppercase; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    height: 1.6em; /* h2 높이에 맞게 조정 */
+  ">
+    NEW
+  </span>
+</h2>  
 
+<br>
 
-<div style="background-color: rgb(12, 85, 54); border-radius:5px; max-width:fit-content; color:white;">  
+<h4 style="
+  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  margin: 0; 
+  font-size: 14px; 
+  font-weight: bold; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ✨ New Feature
+</h4>
 
-##### ✨ New Feature &nbsp;  
-</div>
 
 - emergency_stop - 상태 확인 요청 API 추가, 비상정지 버튼과 동일한 기능의 API 추가
 
 
 <br><br>
 
-<div style="background-color: rgb(38, 48, 90); border-radius:5px; max-width:fit-content; color:white;">  
-
-##### 🔧 Improvement & Change &nbsp;  
-
+<div style="
+  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  🔧 Improvement & Change
 </div>
+
 
 - emergency_stop_test - 기존의 emergency_stop API 를 emergency_stop_test API 로 변경
 
 <br><br>
 
-<div style="background-color: rgb(131, 29, 11); border-radius:5px; max-width:fit-content; color:white;">  
-
-##### ❌ Deprecated &nbsp;  
-
+<div style="
+  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ❌ Deprecated
 </div>
+
 
 - <font style="color: #FE2E64">motor off</font> - HRSpace 환경을 고려한 API로, 실기 환경에서의 혼선을 방지하기 위해 Deprecated 처리. 비상정지 API 로 대체 됨  
 
 <br><br>
 
-<div style="background-color:rgb(202, 108, 0); border-radius:5px; max-width:fit-content; color:white;">  
+<div style="
+  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  📌 API List
+</div>
 
-##### 📌 API List &nbsp;  
-
-</div>   
 
 - ✨ \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
 - ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
 - 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- ❌ ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
-## 📝 Release Notes - v60.28-00
+- ❌ ~~\[<b style="color: #FF9800">post</b>\] [motor_off](../5-robot/2-post/1-motor-on.md)~~  
+<h2 style="display: inline-flex; align-items: center; gap: 8px;">
+  📝 Release Notes - v60.30-00 
+</h2>  
 
-<div style="background-color: rgb(12, 85, 54); color:white; border-radius:5px; max-width:fit-content;">  
 
-##### ✨ New Feature &nbsp;  
-</div>
+<br>
+
+<h4 style="
+  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  margin: 0; 
+  font-size: 14px; 
+  font-weight: bold; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ✨ New Feature
+</h4>
+
 
 - emergency_stop - 비상정지 API 추가. step_no, stop_at 등의 값을 입력하여 특정 시점에 원하는 카테고리의 비상정지를 수행할 수 있도록 지원
 - execute_move - 지정된 포즈로 이동하는 API가 추가
@@ -411,30 +482,55 @@ total request time : 0.2869541645050049 seconds
 
 <br><br>
 
-<div style="background-color: rgb(38, 48, 90); color:white; border-radius:5px; max-width:fit-content;">  
-
-##### 🔧 Improvement & Change &nbsp;  
-
+<div style="
+  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  🔧 Improvement & Change
 </div>
 
 - none
 
 <br><br>
 
-<div style="background-color: rgb(131, 29, 11); color:white; border-radius:5px; max-width:fit-content;">  
-
-##### ❌ Deprecated &nbsp;
-
+<div style="
+  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ❌ Deprecated
 </div>
+
 
 - none
 
 <br><br>
 
-<div style="background-color:rgb(202, 108, 0); color:white; border-radius:5px; max-width:fit-content;">  
-
-##### 📌 API List &nbsp;  
-
+<div style="
+  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  📌 API List
 </div>
 
 - ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
@@ -2013,163 +2109,10 @@ print(f"{get_relay_value()}")
 ```sh
 $python test.py
 [0, 0, 0, 0]
-```## 6.1.1 `get relay values`
-
-### 설명
-
-- `GET` : relay 값을 객체.타입 전체에 대해 얻습니다.
-
-### path-parameter
-
-```python
-GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
-```
-
-### path-variable
-
-[릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression) (소문자 표기)
-
-* (`di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다. 나머지 `relay_type`에는 지정하지 않습니다.)
-
-- `obj_type` : 객체 타입 (`fb`, `fn`)
-
-- `obj_idx` : 객체 인덱스 (`fb`: `0` ~ `9`, `fn`: `0` ~ `63`)
-
-- `relay_type` : `di`, `do`, `x` , `y` , `m` , `s` , `r`, `k`
-
-	
-
-### query-parameter
-
-- `st` : 시작 byte index (default: 0)
-- `len` : dword 개수 (default: 8)
-
-
-### 사용 예
-
-```python
-request url:
-GET /project/plc/s/val_s32
-
-response-body:
-[
-    16975105,
-    132579331,
-    252449291,
-    406585366,
-    327681,
-    712706500,
-    118947845,
-    28
-]
-```
-
-```python
-request url:
-GET /project/plc/m/val_s32?st=32&len=4
-
-response-body:
-[
-    0,
-    -2139095040,
-    0,
-    134217728
-]
-```
-
-Python Script 예제
-
-```python
-# test.py
-import requests
-
-def get_relay_value() -> dict:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/plc/m/val_s32'
-    query_parameter = {"st": "32", "len": "4"}
-
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
-
-    return response.json()
-
-print(f"{get_relay_value()}")
-```
-```sh
-$python test.py
-[0, 0, 0, 0]
 ```## 6.2 io_plc/post
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 6.2.1 `set relay values`
-
-### 설명
-
-- `POST` : relay 값 설정합니다.
-
-### path-parameter
-
-```python
-POST /project/plc/set_relay_value
-```
-
-### request-parameter
-
-- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression)에 맞춰 입력합니다.
-- `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
-```json
-{
-    "name": "fb3.dof14",
-    "value": "2.718"
-}
-```
-
-### 사용 예
-
-```json
-request url:
-POST /project/plc/set_relay_value
-
-request-body:
-{
-    "name": "fb1.do0",
-    "value": "1"
-}
-```
-
-Python Script 예제
-
-```python
-# test.py
-import requests
-
-def get_relay_value() -> dict:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/plc/fb1_do/val_s32'
- 
-    response = requests.get(url = base_url + path_parameter)
-
-    return response.json()
-
-def post_set_relay_value() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/plc/set_relay_value'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"name": "fb1.do0", "value": 1}
- 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.status_code
-
-print(f"{get_relay_value()}")
-print(f"response: {post_set_relay_value()}")
-print(f"{get_relay_value()}")
-```
-```sh
-$python test.py
-[0, 0, 0, 0, 0, 0, 0, 0]
-response: 200
-[1, 0, 0, 0, 0, 0, 0, 0]
-```## 6.2.1 `set relay values`
 
 ### 설명
 
@@ -3391,288 +3334,6 @@ print(f"response: {set_cur_pc_idx()}")
 ```sh
 $python test.py 
 response 200 # + TP 상 커서 위치 변경 됨
-```## 9.2.3 `assign_var_expr`
-
-### 설명
-
-- `POST` : 태스크 구문의 변수를 재지정합니다.
-
-### path-parameter
-
-```python
-POST /project/context/tasks[{task index}]/assign_var_expr
-```
-
-### request-body
-
-- `name` : 변수명
-- `expr` : 변수에 대입할 수식
-- `save` : 저장 유무 (true/false). 변수 파일에 해당 데이터를 저장하기 위함입니다.
-- `scope` : 해당 변수의 유효 스코프 설정
-	|`local`|`global`|`미설정`|
-	|:---|:---|:---|
-	|지역 변수|전역 변수|전체 스코프|
-
-
-```json
-{
-    "name" : "a",
-    "scope": "local",
-    "expr" : "14 + 2",
-    "save" : "true"
-}
-```
-
-### 사용 예
-
-현재 태스크에 지역 변수 a 가 선언된 상태인 경우  
-
-```python
-request url:
-POST /project/context/tasks[0]/assign_var_expr
-
-request-body
-{
-    "name" : "a",
-    "scope": "local",
-    "expr" : "465 + 312",
-    "save" : "true"
-}
-```
-
-
-Python Script 예시
-
-```python
-# test.py
-import requests
-
-def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/solve_expr'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
-
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.json()
-
-def assign_var_expr(var_name: str, scope = None, expression: str = '') -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/assign_var_expr"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {"name": f"{var_name}", "expr": f"{expression}", "scope": f"{scope}"}
-
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
-
-    return response.status_code
-
-print(f"before: {post_read_var('a', 'local')}")
-print(f"response: {assign_var_expr('a', 'local', '465 + 312')}")
-print(f"after: {post_read_var('a', 'local')}")
-```
-```sh
-$python test.py 
-before: 1234
-response: 200
-after: 777   
-```## 9.2.4 `assign_var_json`
-
-### 설명
-
-- `POST` : 태스크 구문의 변수를 재지정합니다.
-
-### path-parameter
-
-```python
-POST /project/context/tasks[{task index}]/assign_var_json
-```
-
-### request-body
-
-- `name` : 변수명
-- `json` : 변수에 대입할 json 형태의 문자열
-- `save` : 저장 유무 (true/false). 변수 파일에 해당 데이터를 저장하기 위함입니다.
-- `scope` : 해당 변수의 유효 스코프 설정
-	|`local`|`global`|`미설정`|
-	|:---|:---|:---|
-	|지역 변수|전역 변수|전체 스코프|
-
-
-```json
-{
-    "name" : "a",
-    "scope": "local",
-    "json" : "{\"test\": 10}",
-    "save" : "true"
-}
-```
-
-### 사용 예
-
-
-현재 태스크에 지역 변수 a 가 선언된 상태일 경우
-
-```python
-request url:
-POST /project/context/tasks[0]/assign_var_json
-
-request-body
-{
-    "name" : "a",
-    "scope": "local",
-    "json" : "{\"test\": 10}",
-    "save" : "true"
-}
-```
-
-Python Script 예시
-
-```python
-# test.py
-import requests
-
-def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/solve_expr'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
-
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.json()
-
-def assign_var_json(var_name: str, scope = None, var_json: str = '') -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/assign_var_json"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {
-                         "name" : f"{var_name}",
-                         "scope": f"{scope}",
-                         "json" : f"{var_json}",
-                         "save" : "true"
-                       }
-
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
-
-    return response.status_code
-
-print(f"before: {post_read_var('a', 'local')}")
-print(f"""response: {assign_var_json('a', 'local', '{"test": 10}')}""")
-print(f"after: {post_read_var('a', 'local')}")
-```
-```sh
-$python test.py 
-before: 1234
-response: 200
-after: {'_type': 'JObject', 'test': 10}
-```## 9.2.5 `release_wait`
-
-### 설명
-
-- `POST` : 태스크의 구문 정지해제
-- 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
-
-### path-parameter
-
-```python
-POST /project/context/tasks[{task index}]/release_wait
-```
-
-### request-body
-
-```json
-{}
-```
-
-### response-body
-
-- 200 : 정상 동작
-- 403 : 상기 필요 조건 불충족
-
-### 사용 예
-
-```json
-request url:
-POST /project/context/tasks[0]/release_wait
-
-request-body
-{}
-```
-
-Python Script 예시
-
-```python
-import requests
-
-def post_release_wait() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/release_wait'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
-
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-
-    return response.status_code
-
-print(f"response: {post_release_wait()}")
-```
-```sh
-$python test.py
-response: 200
-```## 9.2.6 `set_cur_pc_idx`
-
-### 설명
-
-- `POST` : 현재 커서를 index 라인에 위치 시키는 함수
-
-### path-parameter
-
-```python
-POST /project/context/tasks[{task index}]/set_cur_pc_idx
-```
-
-### request-body
-```json
-{
-  "idx": 1
-}
-```
-
-### 사용 예
-
-```python
-request url:
-POST /project/context/tasks[0]/set_cur_pc_idx
-
-request-body
-{
-  "idx": 2
-}
-```
-
-
-Python Script
-
-```python
-# test.py
-import requests
-
-def set_cur_pc_idx() -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/set_cur_pc_idx"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {"idx": 1}
-
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
-
-    return response.status_code
-
-print(f"response: {set_cur_pc_idx()}")
-```
-```sh
-$python test.py 
-response 200 # + TP 상 커서 위치 변경 됨
 ```## 9.2.7 `solve_expr`
 
 ### 설명
@@ -3791,78 +3452,6 @@ $python test.py
 10
 1000
 ```## 9.2.8 `execute_move`
-
-### 설명
-
-- 지원 버전 : `60.28-00` &uparrow;
-- `POST` : 지정한 포즈로 이동합니다.  
-
-### path-parameter
-
-```python
-POST /project/context/tasks[{task index}]/execute_move
-```
-
-### request-body
-- `stmt` : 요청 바디의 키 값으로, 구문(statment)을 뜻합니다.
-- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move)을 참조 바랍니다.
-
-```json
-{
-    "stmt" : "move SP,spd=1sec,accu=0,tool=1 [0 90 0 0 0 0]"
-}
-```
-
-### response-body
-
-- 200 : 요청 성공  
-- 400 : 요청 실패  
-	- request body 가 유효성 검사에서 실패  
-- 403 : 요청 실패  
-	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
-
-Python Script 예시
-- 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
-
-```python
-# test.py
-import requests
-import time
-
-def post_execute_move(in_pose: str) -> int:
-    # base_url = "http://192.168.1.150:8888" # for Hi6COM
-    base_url = "http://127.0.0.1:8888" # for HRSpace - virtual robot controller
-    path_parameter = "/project/context/tasks[0]/execute_move"
-    head = {"Content-Type": "application/json; charset=utf-8"}
-    body = {"stmt": f"move SP,spd=1sec,accu=0,tool=1  {str(in_pose)}"}
-
-    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
-
-    return response.status_code
-
-poses = [
-    "[-10, 90, -10, 0, 0, 0]",
-    "[-5, 90, 5, 0, 0, 0]",
-    "[0, 90, 0, 0, 0, 0]"
-]
-
-for idx, pose in enumerate(poses):
-    print(f"Request {idx + 1}: Sending pose {pose}")
-    status_code = post_execute_move(pose)
-    print(f"Status code: {status_code}")
-    if idx < len(poses) - 1:  
-        time.sleep(1.5)
-
-```
-```sh
-$python test.py 
-Request 1: Sending pose [-10, 90, -10, 0, 0, 0]
-Status code: 200
-Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
-Status code: 200
-Request 3: Sending pose [0, 90, 0, 0, 0, 0]
-Status code: 200
-``````## 9.2.8 `execute_move`
 
 ### 설명
 
