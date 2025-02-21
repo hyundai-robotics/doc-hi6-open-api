@@ -47,7 +47,7 @@
     * [5.1.4 tools](5-robot/1-get/4-tools.md)        
     * [5.1.5 tools_t](5-robot/1-get/5-tools_t.md)        
   * [5.2 post](5-robot/2-post/README.md)
-    * [5.2.1 motor-on-off](5-robot/2-post/1-motor-on-off.md)
+    * [5.2.1 motor-on](5-robot/2-post/1-motor-on.md)
     * [5.2.2 start-stop](5-robot/2-post/2-start-stop.md)
     * [5.2.3 tool_no](5-robot/2-post/3-tool_no.md)
     * [5.2.4 crd_sys](5-robot/2-post/4-crd_sys.md)

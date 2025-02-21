@@ -343,23 +343,55 @@ total request time : 0.2869541645050049 seconds
 - COM 버전을 기준으로 API 변경사항에 대해서 정리를 해두었습니다.
 - 본인이 사용 중인 제어기 버전보다 더 높은 버전에서 동작하는 API 를 사용하려면 버전업을 진행해야 합니다.
 - 릴리즈 정보
-  ||COM 버전|배포 스케쥴|링크|
-  |---|---|---|---|
-  |`NEW`|v60-30.00|2025.03 예정|[🔗](60-30.md)|
-  ||v60-28.00|2024.08.13|[🔗](60-28.md)|
-  ||v60-26.00| - ||
-  ||v60-24.00| - ||## 📝 Release Notes - v60.30-00
 
-### ✨ New Feature
+	<div style="max-width:30vw;">
+
+	|COM 버전|배포 일정|링크|
+	|:--:|:--:|:--:|
+	|v60-30.00|2025.03 예정|[🔗](60-30.md)|
+	|v60-28.00|2024.08.13|[🔗](60-28.md)|
+	|v60-26.00|-||
+	|v60-24.00|-||
+
+	</div>
+## 📝 Release Notes - v60.30-00
+
+
+<div style="background-color: rgb(12, 85, 54); border-radius:5px; max-width:fit-content; color:white;">  
+
+##### ✨ New Feature &nbsp;  
+</div>
+
 - emergency_stop - 상태 확인 요청 API 추가, 비상정지 버튼과 동일한 기능의 API 추가
 
-### 🔧 Improvement & Change
+
+<br><br>
+
+<div style="background-color: rgb(38, 48, 90); border-radius:5px; max-width:fit-content; color:white;">  
+
+##### 🔧 Improvement & Change &nbsp;  
+
+</div>
+
 - emergency_stop_test - 기존의 emergency_stop API 를 emergency_stop_test API 로 변경
 
-### ❌ Deprecated
+<br><br>
+
+<div style="background-color: rgb(131, 29, 11); border-radius:5px; max-width:fit-content; color:white;">  
+
+##### ❌ Deprecated &nbsp;  
+
+</div>
+
 - <font style="color: #FE2E64">motor off</font> - HRSpace 환경을 고려한 API로, 실기 환경에서의 혼선을 방지하기 위해 Deprecated 처리. 비상정지 API 로 대체 됨  
 
-### 📌 API List
+<br><br>
+
+<div style="background-color:rgb(202, 108, 0); border-radius:5px; max-width:fit-content; color:white;">  
+
+##### 📌 API List &nbsp;  
+
+</div>   
 
 - ✨ \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
 - ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
@@ -367,18 +399,43 @@ total request time : 0.2869541645050049 seconds
 - ❌ ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
 ## 📝 Release Notes - v60.28-00
 
-### ✨ New Feature
+<div style="background-color: rgb(12, 85, 54); color:white; border-radius:5px; max-width:fit-content;">  
+
+##### ✨ New Feature &nbsp;  
+</div>
+
 - emergency_stop - 비상정지 API 추가. step_no, stop_at 등의 값을 입력하여 특정 시점에 원하는 카테고리의 비상정지를 수행할 수 있도록 지원
 - execute_move - 지정된 포즈로 이동하는 API가 추가
-- execute_cmd - Hi6 COM의 콘솔 명령어를 실행하는 API 추가
+- execute_cmd - Hi6 COM의 콘솔 명령어를 실행하는 API 추가  
 
-### 🔧 Improvement & Change
+
+<br><br>
+
+<div style="background-color: rgb(38, 48, 90); color:white; border-radius:5px; max-width:fit-content;">  
+
+##### 🔧 Improvement & Change &nbsp;  
+
+</div>
+
 - none
 
-### ❌ Deprecated
+<br><br>
+
+<div style="background-color: rgb(131, 29, 11); color:white; border-radius:5px; max-width:fit-content;">  
+
+##### ❌ Deprecated &nbsp;
+
+</div>
+
 - none
 
-### 📌 API List
+<br><br>
+
+<div style="background-color:rgb(202, 108, 0); color:white; border-radius:5px; max-width:fit-content;">  
+
+##### 📌 API List &nbsp;  
+
+</div>
 
 - ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
 - ✨ \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
@@ -1493,17 +1550,17 @@ $python test.py
 ```## 5.2 robot/post
 
 - 로봇과 툴 데이터에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 5.2.1 `motor_on / motor_off`
+- API 별로 정확한 request-body 를 작성해야합니다.## 5.2.1 `motor_on`
 
 ### 설명
 
-- `POST` : 모터 ON과 모터 OFF를 수행합니다.
+- `POST` : 모터 ON을 수행합니다.
+- `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.
 
 ### path-parameter
 
 ```python
 POST /project/robot/motor_on
-POST /project/robot/motor_off
 ```
 
 ### request-body
@@ -1523,7 +1580,7 @@ POST /project/robot/motor_off
 ### 사용 예
 
 ```python
-POST /project/robot/motor_off
+POST /project/robot/motor_on
 
 request-body:
 {}
@@ -1543,22 +1600,12 @@ def post_motor_on() -> int:
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
     return response.status_code
 
-def post_motor_off() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/motor_off'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
-
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
 
 print(f"Motor-ON  response: {post_motor_on()}")
-print(f"Motor-OFF response: {post_motor_off()}")
 ```
 ```sh
 $python test.py
 Motor-ON  response: 200
-Motor-OFF response: 200
 ```## 5.2.2 `start / stop`
 
 ### 설명
@@ -1797,31 +1844,44 @@ print(f"response: {post_emergency_stop()}")
 ```sh
 $python test.py
 response: 200
-```## 5.2.5 `emergency_stop`
+```## 5.2.6 `emergency_stop_test`
+
+- <b style="color:orange"> 해당 API 는 `60.28-00` 까지 `emergency_stop` API 로 사용되었습니다. </b>  
 
 ### 설명
 
 - 지원 버전 : `60.30-00` &uparrow;
-- `POST` : 비상 정지를 실행합니다.  
-- 비상정지 버튼을 눌렀을 때와 동일한 감속 프로파일이 적용됩니다.
-- API 호출 시, 네트워크 지연(Latency) 또는 요청 처리 시간 때문에 물리적 버튼보다 늦게 반응할 가능성이 있습니다.
-
+- `POST` : 비상 정지 테스트 요청을 보냅니다.
 
 ### path-parameter
 
-```python
-POST /project/robot/emergency_stop
+```pytho
+POST /project/robot/emergency_stop_test
 ```
 
 ### request-body
-```python 
-{}
-```
+-  |key|type|contents|validation|
+	|---|---|---|---|
+	|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
+	|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
+	|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
+	|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
+
+- `0: 즉시정지`  
+  &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
+- `1: 감속정지`  
+	&rightarrow;  비상정지 버튼을 눌렀을 동작하는 경우. 정지 후 모터 오프가 됨  
+- `2: 일시정지`  
+	&rightarrow;  로봇 모션을 잠시 정지하는 경우. 정지 후 모터 오프가 되지 않음
 
 ### response-body
 
 - 200 : 요청 성공  
-- 400 : 요청 실패 (비상정지 시퀀스 호출에 실패)  
+- 400 : 요청 실패  
+	- request body 가 유효성 검사에서 실패  
+- 403 : 요청 실패  
+	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
+
 
 ### 사용 예
 
@@ -1829,7 +1889,12 @@ POST /project/robot/emergency_stop
 POST /project/robot/emergency_stop
 
 request-body
-{}
+{
+  "step_no": 1,
+  "stop_at": 50,
+  "stop_at_corner": 0,
+  "category": 1,
+}
 ```
 
 Python Script 예시
@@ -1840,9 +1905,14 @@ import requests
 
 def post_emergency_stop() -> int:
     base_url = "http://192.168.1.150:8888"
-    path_parameter = "/project/robot/emergency_stop"
+    path_parameter = "/project/robot/emergency_stop_test"
     head = {"Content-Type": "application/json; charset=utf-8"}
-    body = {}
+    body = {
+        "step_no": 2,
+        "stop_at": 20,
+        "stop_at_corner": 0,
+        "category": 1,
+    }
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
@@ -2170,8 +2240,6 @@ response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
 ```# 7.1 event-log
 
-- 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.# 7.1 event-log
-
 - 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.## 7.1 log_manager/get
 
 - 제어기에 기록되는 에러, 경고, 실행이력에 대한 GET 요청을 보냅니다.
@@ -2284,9 +2352,6 @@ $python test.py
 { "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 { "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 ```# 8. file_manager
-
-- 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
-- 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.# 8. file_manager
 
 - 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
 - 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.## 8.1 file_manager/get
