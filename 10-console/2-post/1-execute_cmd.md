@@ -6,8 +6,8 @@
 ### 설명
 
 - 지원 버전 : `60.28-00` &uparrow;
-- `POST` : Hi6 제어기의 콘솔 명령어를 실행합니다.  
-- [CLI 로봇 언어 명령어](../.././99-schema/robotlang.md)를 수행할 수 있습니다.  
+- `POST` : Hi6 제어기의 콘솔 명령어를 실행합니다.    
+- [CLI 로봇 언어 명령어 형식](../.././99-schema/robotlang.md)에 따른 명령을 수행할 수 있습니다.  
 
 ### path-parameter
 
@@ -26,7 +26,13 @@ POST /console/execute_cmd
 ### response-body
 
 - 200 : 요청 성공  
-	- [CLI 로봇 언어 명령어](../.././99-schema/robotlang.md) 규칙 적용 필요  
+	- 로봇 언어 명령어 규칙을 벗어난 경우 아래와 같이 ecode 1이 반환됩니다.
+		<div style = "width: fit-content;">  
+		
+		```python
+		{'_type': 'JObject', 'ecode': 1}
+		```
+		</div>
 - 400 : 요청 실패  
 	- request body 가 유효성 검사에서 실패한 경우  
 - 403/4 : 요청 실패  

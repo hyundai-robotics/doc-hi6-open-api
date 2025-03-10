@@ -28,7 +28,7 @@ POST /project/context/tasks[{task index}]/reset
 
 ```python
 request url:
-GET /project/context/tasks[0]/reset
+POST /project/context/tasks[0]/reset
 ```
 
 Python Script
