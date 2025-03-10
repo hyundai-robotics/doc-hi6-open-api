@@ -26,7 +26,7 @@ reset task 0
 
 ```python
 request url:
-GET /project/context/tasks[0]/reset
+POST /project/context/tasks[0]/reset
 ```
 
 Python Script

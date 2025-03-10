@@ -25,6 +25,13 @@ POST /console/execute_cmd
 
 - 200: Request successful  
 	- Needs to apply [CLI robot language commands](../.././99-schema/robotlang.md) rules  
+	- If a command violates the robot language rules, ecode 1 will be returned as shown below.
+		<div style = "width: fit-content;">  
+		
+		```python
+		{'_type': 'JObject', 'ecode': 1}
+		```
+		</div>
 - 400: Request failed
 	- Request body failed validation
 - 403/4: Request failed
