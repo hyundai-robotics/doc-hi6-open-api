@@ -43,7 +43,7 @@ POST /console/execute_cmd
 </blockquote>
 
 Python Script 예시
-- `원격모드` 상태에서 `모터온` 이후 하기 명령어 수행 가능
+- `원격자동모드` 상태에서 `모터온` 이후 하기 명령어 수행 가능
 - 현재 로봇 축 수에 맞춰서 move 문 입력 시 수행 가능
 
 ```python
