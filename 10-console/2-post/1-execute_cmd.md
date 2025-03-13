@@ -42,7 +42,7 @@ POST /console/execute_cmd
 </blockquote>
 
 Python Script Example
-- Commands can be executed in the `remote mode` and `motor on` state.  
+- Commands can be executed in the `motor on` and `remote mode` state.  
 - It can be executed when the move command matches the current robot axes.  
 
 ```python
