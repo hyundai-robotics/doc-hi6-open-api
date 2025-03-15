@@ -147,7 +147,6 @@ div[important]::before {
 
 /* 📌 밑줄을 위한 span */
 span[u] {
-    color: white; 
     position: relative; /* 밑줄을 조정하기 위해 position 설정 */
     white-space: nowrap; /* 줄바꿈 방지 */
     text-decoration: none; /* 기본 밑줄 제거 */
