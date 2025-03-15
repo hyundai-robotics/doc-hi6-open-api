@@ -1,34 +1,39 @@
-﻿## 9.2.2 `task/reset`
+﻿<link rel="stylesheet" href="../../_assets/style.css">
+
+## 9.2.2 `task/reset`
 
 <div style="width: fit-content;">
 
 ### 설명
 
-- `POST` : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
+- `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
+- [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code)를 활용합니다. 
+  
+	<div caution> <span u>R코드 0</span> 이외의 코드는 예정된 동작이 아닙니다. </div>
 
 ### path-parameter
 
 ```python
 # reset all the tasks
-POST /project/context/tasks/reset 
-
-# reset the selected task
-POST /project/context/tasks[{task index}]/reset 
+POST /project/service/r_code/execute
 ```
 
 ### request-body
 
 ```json
-{}
+{"code": 0}
 ```
 
 ### 사용 예
 
-0번 태스크 리셋 하기.
-
 ```python
 request url:
-POST /project/context/tasks[0]/reset
+POST /project/service/r_code/execute
+
+request-body:
+{
+    "code":0
+}
 ```
 
 Python Script
@@ -36,17 +41,19 @@ Python Script
 ```python
 import requests
 
-def post_task_reset() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/reset'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+def post_rcode_0() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/service/r_code/execute"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"code": 0}
 
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
     return response.status_code
 
-print(f"response: {post_task_reset()}")
+
+print(f"response: {post_rcode_0()}")
+
 ```
 ```sh
 $python test.py
