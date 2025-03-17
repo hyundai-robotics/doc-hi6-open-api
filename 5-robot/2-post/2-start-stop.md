@@ -31,7 +31,7 @@ POST /project/robot/stop
 ### 사용 예
 
 ```python
-POST /project/robot/motor_off
+POST /project/robot/start or /project/robot/stop
 
 request-body: 
 {}
