@@ -7,9 +7,10 @@
 ### 설명
 
 - `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
-- [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code)를 활용합니다. 
-  
-	<div caution> <span u>R코드 0</span> 이외의 코드는 예정된 동작이 아닙니다. </div>
+- [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code)를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+    R코드 0 이외의 코드는 예정된 동작이 아닙니다.
+</span>
+ 
 
 ### path-parameter
 
