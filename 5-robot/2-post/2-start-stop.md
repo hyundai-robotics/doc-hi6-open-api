@@ -28,7 +28,7 @@ POST /project/robot/stop
 ### Example
 
 ```python
-POST /project/robot/motor_off
+POST /project/robot/start or /project/robot/stop
 
 request-body: 
 {}
