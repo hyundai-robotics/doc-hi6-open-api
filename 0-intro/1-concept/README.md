@@ -23,13 +23,9 @@ In this way, developers can use the Open API in the document to remotely control
 
 {% hint style="caution" %}
 
-<p>
-  The client is expected to use <b style="color:orange;">Connection: keep-alive</b> in HTTP requests or retain the default setting to ensure a <b>Persistent Connection</b>.<br>
-  The use of <b style="color:red;">Connection: close</b> is <u>explicitly forbidden</u> as it generates a new connection for each request and may <u>overload the controller</u>.
-</p>
+The client is expected to use <b style="color:orange;">Connection: keep-alive</b> in HTTP requests or retain the default setting to ensure a <b>Persistent Connection</b>.
 
-
-
+The use of <b style="color:red;">Connection: close</b> is <u>explicitly forbidden</u> as it generates a new connection for each request and may <u>overload the controller</u>.
 
 {% endhint %}
 
