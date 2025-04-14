@@ -29,10 +29,10 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 {% hint style="caution" %}
 
-<p>
-  클라이언트는 HTTP 요청 시 <b style="color:orange;">Connection: keep-alive</b>를 사용하거나, 기본 설정을 유지하여 <b>Persistent Connection</b>을 유지해야 합니다.<br>
-  <b style="color:red;">Connection: close</b> 방식은 매 요청마다 새로운 연결을 발생시켜 <u>제어기에 과도한 부하</u>를 초래할 수 있으므로 <b>사용을 금합니다</b>.
-</p>
+
+클라이언트는 HTTP 요청 시 <b style="color:orange;">Connection: keep-alive</b>를 사용하거나, 기본 설정을 유지하여 <b>Persistent Connection</b>을 유지해야 합니다.
+
+<b style="color:red;">Connection: close</b> 방식은 매 요청마다 새로운 연결을 발생시켜 <u>제어기에 과도한 부하</u>를 초래할 수 있으므로 <b>사용을 금합니다</b>.
 
 
 {% endhint %}
