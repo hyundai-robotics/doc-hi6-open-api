@@ -29,7 +29,11 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 {% hint style="caution" %}
 
-hi6 제어기는 HTTP/1.1 을 지원하며 persistent connection 을 기본적으로 지원합니다. connection 방식을 close 로 통신하는 경우 제어기에 심각한 과부하를 초래하므로 이 같은 연결 방식을 금합니다.
+<p>
+  클라이언트는 HTTP 요청 시 <b style="color:orange;">Connection: keep-alive</b>를 사용하거나, 기본 설정을 유지하여 <b>Persistent Connection</b>을 유지해야 합니다.<br>
+  <b style="color:red;">Connection: close</b> 방식은 매 요청마다 새로운 연결을 발생시켜 <u>제어기에 과도한 부하</u>를 초래할 수 있으므로 <b>사용을 금합니다</b>.
+</p>
+
 
 {% endhint %}
 
