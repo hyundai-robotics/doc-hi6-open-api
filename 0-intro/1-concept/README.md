@@ -21,6 +21,19 @@ In this way, developers can use the Open API in the document to remotely control
 
 ### Be sure to check before you start!
 
+{% hint style="caution" %}
+
+<p>
+  The client is expected to use <b style="color:orange;">Connection: keep-alive</b> in HTTP requests or retain the default setting to ensure a <b>Persistent Connection</b>.<br>
+  The use of <b style="color:red;">Connection: close</b> is <u>explicitly forbidden</u> as it generates a new connection for each request and may <u>overload the controller</u>.
+</p>
+
+
+
+
+{% endhint %}
+
+
 * The current document is written based on Hi6 Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
 
 * For developers who are familiar with developing HTTP REST API client functions, you can skip from [1.2 Required prior knowledge](../2-prerequisite/README.md) to [1.4 Simple API call without coding](../4-api-test/README.md).
