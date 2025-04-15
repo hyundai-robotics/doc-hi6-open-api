@@ -23,9 +23,11 @@ In this way, developers can use the Open API in the document to remotely control
 
 {% hint style="caution" %}
 
-The client is expected to use <b style="color:orange;">Connection: keep-alive</b> in HTTP requests or retain the default setting to ensure a <b>Persistent Connection</b>.
+Hi6 uses **HTTP/1.1**, in which **persistent connections** are the default behavior, addressing the inefficiency of the close connection model.
 
-The use of <b style="color:red;">Connection: close</b> is <u>explicitly forbidden</u> as it generates a new connection for each request and may <u>overload the controller</u>.
+If a new TCP connection is established for each request using the close option, it can impose unnecessary load on the Hi6 system, <u>leading to performance degradation and severe network congestion</u>.
+
+For repeated API requests, the use of **Keep-Alive connections** is strongly recommended.
 
 {% endhint %}
 
