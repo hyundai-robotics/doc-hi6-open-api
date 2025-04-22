@@ -27,7 +27,8 @@ You can check the basic information related to Hi6 Open API below.
 [1.1 About Hi6 Open API](./1-concept/README.md) <br>
 [1.2 Required prior knowledge](./2-prerequisite/README.md) <br>
 [1.3 Sample code](./3-sample-code/README.md) <br>
-[1.4 Simple API call without coding](./4-api-test/README.md)## 1.1 About Hi6 Open API
+[1.4 Simple API call without coding](./4-api-test/README.md)
+[1.5 Precautions Before Starting](./4-api-test/README.md)## 1.1 About Hi6 Open API
 
 In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as Hi6).<br>
 This enables developers to read and write Hi6 data without requiring a thorough comprehension of the source code used in Hi6 development.<br>
@@ -344,7 +345,196 @@ Through this program, you can easily call various APIs like `postman`.
 `(4) History` : Prints request history.   
 `(5) Side History Tab` : This tab allows you to check a larger amount of history than the request history list in `(4)`, which can be opened and closed.
 
-</blockquote>## 2. version
+</blockquote>## 1. release note 
+
+- API changes have been documented based on the COM version.  
+- If you wish to use an API that operates on a higher controller version than your current one, a version upgrade is required.  
+- Release Information
+
+	<div style="max-width:31vw;">
+
+	|COM Version|Release Schedule|Link|
+	|:--:|:--:|:--:|
+	|v60-30.00|	Scheduled for March 2025|[🔗](60-30.md)|
+	|v60-28.00|August 13, 2024|[🔗](60-28.md)|
+	|v60-26.00|-||
+	|v60-24.00|-||
+
+	</div>
+<h2 style="display: inline-flex; align-items: center; gap: 8px;">
+  📝 Release Notes - v60.28-00 
+</h2>
+
+
+<br>
+
+<h4 style="
+  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  margin: 0; 
+  font-size: 14px; 
+  font-weight: bold; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ✨ New Feature
+</h4>
+
+
+- emergency_stop 
+  - Added an API for status check requests.
+  - Added an API with the same functionality as the emergency stop button.
+
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  🔧 Improvement & Change
+</div>
+
+- emergency_stop_test 
+  - The functionality previously provided by the emergency_stop API has been migrated to the emergency_stop_test API.  
+- task reset 
+  - Now using R Code 0.
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ❌ Deprecated
+</div>
+
+- <font style="color: #E82E8C">motor off</font> 
+  - This API was designed with the HRSpace environment in mind. To prevent confusion in real-world environments, it has been deprecated and replaced with the emergency stop API.  
+- <font style="color: #E82E8C">task reset</font> 
+  - The following URIs are no longer supported 
+    - /project/context/tasks/reset
+    - /project/context/tasks[{task index}]/reset path
+
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  📌 API List
+</div>  
+
+- ✨ \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
+- ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
+- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [task_reset](../9-task/2-post/2-reset.md)
+- ❌ ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
+<h2 style="display: inline-flex; align-items: center; gap: 8px;">
+  📝 Release Notes - v60.28-00 
+</h2>
+
+<br>
+
+<h4 style="
+  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  margin: 0; 
+  font-size: 14px; 
+  font-weight: bold; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ✨ New Feature
+</h4>
+
+- emergency_stop - Added emergency stop API. Supports execution of an emergency stop for a specific category at a designated moment by inputting values such as step_no and stop_at.
+- execute_move - Added an API for moving to a specified pose.  
+- execute_cmd - Added an API for executing console commands in Hi6 COM.  
+
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  🔧 Improvement & Change
+</div>
+
+- none
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ❌ Deprecated
+</div>
+
+- none
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  📌 API List
+</div>
+
+- ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
+- ✨ \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
+- ✨ \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
+## 2. version
 
 - Check the current API version or robot controller system version.## 2.1 version/get
 
@@ -1125,8 +1315,8 @@ GET /project/robot/motor_on_state
 
 - val :
   - `0` : on
-  - `1` : busy (Transitioning state)
-  - `2` : off
+  - `1` : off
+  - `2` : busy (Transitioning state)
 
 ### Example
 ```python
@@ -1455,20 +1645,73 @@ print(get_tool1_data())
 ```sh
 $python test.py
 {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
-```## 5.2 robot/post
-
-- Send POST requests for robot and tool data.
-- You must write the correct request-body for each API.## 5.2.1 `motor_on / motor_off`
+```## 5.1.6 `emergency_stop`
 
 ### Description
 
-- `POST` : Performs motor ON and motor OFF.
+- `GET` : Retrieves information about the state of the emergency stop button being pressed.  
+-  When an emergency stop is requested via the API, the controller returns a value of 1 at the moment it receives the API request.   
+
+### path-parameter
+
+```python
+GET /project/robot/emergency_stop
+```
+
+### response-body
+
+- 0: emergency button released
+- 1: emergency button pressed 
+
+### Example
+
+```python
+request url:
+GET /project/robot/tools/t_1
+
+response-body:
+{
+    "val": 0,
+}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+def get_emergency_stop() -> Optional[dict]:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/robot/emergency_stop"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+
+    try:
+        response = requests.get(url=base_url + path_parameter, headers=head)
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error in get_emg_state: {e}")
+        return None
+
+print(f"{get_emergency_stop()}")
+```
+```sh
+$python test.py
+{'_type': 'JObject', 'val': 0}
+```## 5.2 robot/post
+
+- Send POST requests for robot and tool data.
+- You must write the correct request-body for each API.## 5.2.1 `motor_on`
+
+### Description
+
+- `POST` : Performs motor ON.
+- The `motor off API` has been deprecated as of [v60.30-00](../../1-release-note/60-30.md).
 
 ### path-parameter
 
 ```python
 POST /project/robot/motor_on
-POST /project/robot/motor_off
 ```
 
 ### request-body
@@ -1488,7 +1731,7 @@ POST /project/robot/motor_off
 ### Example
 
 ```python
-POST /project/robot/motor_off
+POST /project/robot/motor_on
 
 request-body:
 {}
@@ -1508,22 +1751,11 @@ def post_motor_on() -> int:
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
     return response.status_code
 
-def post_motor_off() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/motor_off'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
-
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
-
 print(f"Motor-ON  response: {post_motor_on()}")
-print(f"Motor-OFF response: {post_motor_off()}")
 ```
 ```sh
 $python test.py
 Motor-ON  response: 200
-Motor-OFF response: 200
 ```## 5.2.2 `start / stop`
 
 ### Description
@@ -1554,7 +1786,7 @@ POST /project/robot/stop
 ### Example
 
 ```python
-POST /project/robot/motor_off
+POST /project/robot/start or /project/robot/stop
 
 request-body: 
 {}
@@ -1706,15 +1938,76 @@ $python test.py
 response: 200
 ```## 5.2.5 `emergency_stop`
 
+- <b style="color:orange"> For versions prior to ***<u>60.30-00</u>***, refer to ***<u>[emergency_stop_test](./6-emergency_stop_test.md)</u>*** instead of emergency_stop. </b>  
+
 ### Description
 
-- Supported version : `60.28-00` &uparrow;
+- Supported Version : `60.30-00` &uparrow;
 - `POST` : Executes an emergency stop.  
+- The same deceleration profile as pressing the emergency stop button is applied.  
+- Due to network latency or request processing time, the API may respond slower than a physical button.  
+
 
 ### path-parameter
 
 ```python
 POST /project/robot/emergency_stop
+```
+
+### request-body
+```python 
+{}
+```
+
+### response-body
+
+- 200 : Request successful  
+- 400 : Request failed (Emergency stop sequence execution failed)    
+
+### Example
+
+```emergency_stop
+POST /project/robot/emergency_stop
+
+request-body
+{}
+```
+
+Python Script Example
+
+```python
+import requests
+
+
+def post_emergency_stop() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/robot/emergency_stop"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response.status_code
+
+
+print(f"response: {post_emergency_stop()}")
+```
+```sh
+$python test.py
+response: 200
+```## 5.2.6 `emergency_stop_test`
+
+- <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
+
+### Description
+
+- Supported version : `60.30-00` &uparrow;
+- `POST` : Executes an emergency stop.  
+
+### path-parameter
+
+```python
+POST /project/robot/emergency_stop_test
 ```
 
 ### request-body
@@ -1743,8 +2036,8 @@ POST /project/robot/emergency_stop
 
 ### Usage Example  
 
-```emergency_stop
-POST /project/robot/emergency_stop
+```emergency_stop_test
+POST /project/robot/emergency_stop_test
 
 request-body
 {
@@ -1761,9 +2054,9 @@ Python Script Example
 import requests
 
 
-def post_emergency_stop() -> int:
+def emergency_stop_test() -> int:
     base_url = "http://192.168.1.150:8888"
-    path_parameter = "/project/robot/emergency_stop"
+    path_parameter = "/project/robot/emergency_stop_test"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {
         "step_no": 2,
@@ -1777,7 +2070,7 @@ def post_emergency_stop() -> int:
     return response.status_code
 
 
-print(f"response: {post_emergency_stop()}")
+print(f"response: {emergency_stop_test()}")
 ```
 ```sh
 $python test.py
@@ -2766,31 +3059,33 @@ $python python test.py
 
 ### Description
 
-- `POST` : Perform a reset on the task. (Same operation as R.. 0 ENTER)
+- `POST` : Perform a reset on the task.  
+- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-tp630/8-r-code/1-use-r-code). 
+  - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> Any other code is not intended for operation </span>
 
 ### path-parameter
 
 ```python
 # reset all the tasks
-POST /project/context/tasks/reset 
-
-# reset the selected task
-POST /project/context/tasks[{task index}]/reset 
+POST /project/service/r_code/execute
 ```
 
 ### request-body
 
 ```json
-{}
+{"code": 0}
 ```
 
 ### Example
 
-reset task 0
-
 ```python
 request url:
-GET /project/context/tasks[0]/reset
+POST /project/service/r_code/execute
+
+request-body:
+{
+    "code":0
+}
 ```
 
 Python Script
@@ -2798,17 +3093,18 @@ Python Script
 ```python
 import requests
 
-def post_task_reset() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/reset'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+def post_rcode_0() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/service/r_code/execute"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"code": 0}
 
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
     return response.status_code
 
-print(f"response: {post_task_reset()}")
+
+print(f"response: {post_rcode_0()}")
 ```
 ```sh
 $python test.py
@@ -3252,7 +3548,7 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ### request-body
 - `stmt` : Key value in the request body, referring to the statement.  
-- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move).
+- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/english/5-moving-robot/4-move).
 
 ```json
 {
@@ -3274,10 +3570,11 @@ Python Script Example
 ```python
 # test.py
 import requests
+import time
 
-
-def post_execute_move(flag: int, in_pose: str) -> int:
-    base_url = "http://192.168.1.150:8888"
+def post_execute_move(in_pose: str) -> int:
+    # base_url = "http://192.168.1.150:8888" # for Hi6COM 
+    base_url = "http://127.0.0.1:8888" # for HRSpace - virtual robot controller
     path_parameter = "/project/context/tasks[0]/execute_move"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {"stmt": f"move SP,spd=1sec,accu=0,tool=1  {str(in_pose)}"}
@@ -3286,13 +3583,28 @@ def post_execute_move(flag: int, in_pose: str) -> int:
 
     return response.status_code
 
+poses = [
+    "[-10, 90, -10, 0, 0, 0]",
+    "[-5, 90, 5, 0, 0, 0]",
+    "[0, 90, 0, 0, 0, 0]"
+]
 
-print(post_execute_move(1, "[-10, 90, -10, 0, 0, 0]"))
+for idx, pose in enumerate(poses):
+    print(f"Request {idx + 1}: Sending pose {pose}")
+    status_code = post_execute_move(pose)
+    print(f"Status code: {status_code}")
+    if idx < len(poses) - 1:  
+        time.sleep(1.5)
 
 ```
 ```sh
 $python test.py 
-200
+Request 1: Sending pose [-10, 90, -10, 0, 0, 0]
+Status code: 200
+Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
+Status code: 200
+Request 3: Sending pose [0, 90, 0, 0, 0, 0]
+Status code: 200
 ```# 10. console
 
 - You can use CLI commands of the Hi6 controller software.  
@@ -3329,6 +3641,13 @@ POST /console/execute_cmd
 
 - 200: Request successful  
 	- Needs to apply [CLI robot language commands](../.././99-schema/robotlang.md) rules  
+	- If a command violates the robot language rules, ecode 1 will be returned as shown below.
+		<div style = "width: fit-content;">  
+		
+		```python
+		{'_type': 'JObject', 'ecode': 1}
+		```
+		</div>
 - 400: Request failed
 	- Request body failed validation
 - 403/4: Request failed
@@ -3339,7 +3658,7 @@ POST /console/execute_cmd
 </blockquote>
 
 Python Script Example
-- Commands can be executed in the `motor on` and `auto mode` state.  
+- Commands can be executed in the `motor on` and `remote mode` state.  
 - It can be executed when the move command matches the current robot axes.  
 
 ```python

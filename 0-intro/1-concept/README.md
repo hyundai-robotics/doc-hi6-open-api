@@ -21,17 +21,6 @@ In this way, developers can use the Open API in the document to remotely control
 
 ### Be sure to check before you start!
 
-{% hint style="caution" %}
-
-Hi6 uses **HTTP/1.1**, in which **[persistent connections](https://datatracker.ietf.org/doc/html/rfc2616#section-8)** are the default behavior, addressing the inefficiency of the close connection model.
-
-If a new TCP connection is established for each request using the close option, it can impose unnecessary load on the Hi6 system, <u>leading to performance degradation and severe network congestion</u>.
-
-For repeated API requests, the use of **Keep-Alive connections** is strongly recommended.
-
-{% endhint %}
-
-
 * The current document is written based on Hi6 Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
 
 * For developers who are familiar with developing HTTP REST API client functions, you can skip from [1.2 Required prior knowledge](../2-prerequisite/README.md) to [1.4 Simple API call without coding](../4-api-test/README.md).
