@@ -27,7 +27,8 @@ Hi6 Open API 와 관련된 아래의 기본적인 내용들을 확인하실 수 
 [1.1 Hi6 Open API 개요](./1-concept/README.md) <br>
 [1.2 필요한 사전 지식](./2-prerequisite/README.md) <br>
 [1.3 Hi6 Open API 예제 코드](./3-sample-code/README.md) <br>
-[1.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)### 0.1 Hi6 Open API 에 대하여
+[1.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)
+[1.5 시작 전 주의사항](./4-api-test/README.md)### 0.1 Hi6 Open API 에 대하여
 
 HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 제어기(이하, Hi6)를 모니터링하고 원격으로 제어하기 위한 API 를 해당 문서에서 공개합니다.<br>
 이를 통해 개발자들은 Hi6 개발에 적용된 소스코드에 대한 깊은 이해 없이도 Hi6의 다양한 데이터를 읽고 쓸 수 있습니다.<br>
@@ -366,72 +367,17 @@ total request time : 0.2869541645050049 seconds
 `(4) History` : 요청 이력을 출력합니다.  
 `(5) History 탭` : 열었다 닫았다 할 수 있는 `(4)`의 요청 이력 리스트보다 많은 양의 이력이 확인 가능한 탭입니다.
 
-</blockquote># API 통신 시 주의 사항
+</blockquote>{% hint style="caution" %}
 
-## 1. http connection
+로봇 제어기에 심각한 에러를 유발할 수 있는 주의 사항과 관련된 내용들을 정리합니다.
 
-{% hint style="caution" %}
-
-로봇 제어기의 경우, close 연결 방식으로 API 요청이 반복적으로 이뤄지면 cpu 부하가 발생하여 로봇이 정지되는 에러가 발생할 수 있습니다.
-
-지속적으로 API 를 여러번 호출하는 경우, 하기 메뉴얼에 따라 **Keep-Alive 방식**으로 기능 구현을 해주십시오.
+해당 내용들을 인지하여 API 를 사용하여 주십시오.
 
 {% endhint %}
 
+#### 목차
 
-### 1-1. Keep-Alive 연결 vs Close 연결
-
-<div style="max-width: fit-content">
-
-| | Close | Keep-Alive |
-|--| ----- | ----- |
-|제안된 Http 버전| Http/1.0 | Http/1.1|
-|특징| Multiple Connection | Persistent Connection |
-
-<img src="../../_assets/07_http_connection.png" style="max-height: 30vh;">
-
-</div>
-
-- close 연결 방식은, 많은 요청과 응답이 필요한 상황에서도 매번 연결을 맺고 끊는 과정이 이루어집니다.<br>
-  이러한 동작은 처리 시간과 리소스를 낭비하며, 서버와 클라이언트 모두에게 과도한 부담을 초래합니다.
-
-- Hi6는 HTTP/1.1을 사용하고 있습니다. 따라서 별도의 설정을 바꾸지 않는 경우, 자동으로 Keep-Alive 방식으로 동작합니다.
-
-### 1-2. 예제 코드
-
-- 간단하게 close 방식과, keep-alive 방식을 변경할 수 있습니다.
-- close 연결 방식
-	```python
-	import requests
-	import time
-
-	BASE_URL = "http://192.168.10.150:8888"
-	URI = "/project/robot/po_cur"
-	URL = BASE_URL + URI
-	headers = { "Connection": "close" }
-
-	response = requests.get(URL, headers=headers)
-	```
-- keep-alive 연결 방식
-	```python
-	import requests
-	import time
-
-	BASE_URL = "http://192.168.10.150:8888"
-	URI = "/project/robot/po_cur"
-	URL = BASE_URL + URI
-
-	# default connection is Keep-alive
-	response = requests.get(URL)
-	```
-- 패킷 캡쳐 비교
-	<img src="../../_assets/08_packet_compare.png" style="max-width: 80vw;">
-	좌) Keep-Alive, 우) Close
-
-<br><br>
-
-참고 문서
-  1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)## 1. release note 
+1. [http connection](./1-http-connection.md)## 1. release note 
 
 - COM 버전을 기준으로 API 변경사항에 대해서 정리를 해두었습니다.
 - 본인이 사용 중인 제어기 버전보다 더 높은 버전에서 동작하는 API 를 사용하려면 버전업을 진행해야 합니다.
