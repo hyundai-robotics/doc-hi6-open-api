@@ -1,7 +1,6 @@
 ﻿# API 통신 시 주의 사항
 
 ## 1. http connection
-
 {% hint style="caution" %}
 
 로봇 제어기의 경우, close 연결 방식으로 API 요청이 반복적으로 이뤄지면 cpu 부하가 발생하여 로봇이 정지되는 에러가 발생할 수 있습니다.
@@ -10,8 +9,9 @@
 
 {% endhint %}
 
+<br>
 
-### 1-1. Keep-Alive 연결 vs Close 연결
+#### 1-1. Keep-Alive 연결 vs Close 연결
 
 <div style="max-width: fit-content">
 
@@ -20,7 +20,7 @@
 |제안된 Http 버전| Http/1.0 | Http/1.1|
 |특징| Multiple Connection | Persistent Connection |
 
-<img src="../../_assets/07_http_connection.png" style="max-height: 30vh;">
+<img src="../../_assets/07_http_connection.png" style="max-height: 37vh;">
 
 </div>
 
@@ -29,10 +29,16 @@
 
 - Hi6는 HTTP/1.1을 사용하고 있습니다. 따라서 별도의 설정을 바꾸지 않는 경우, 자동으로 Keep-Alive 방식으로 동작합니다.
 
-### 1-2. 예제 코드
+- 아래 예제 코드를 참조하여, 반복 호출되는 API 들은 close 방식이 아닌 keep-alive 방식으로 구현하십시오.
+
+<br>
+
+#### 1-2. 예제 코드
 
 - 간단하게 close 방식과, keep-alive 방식을 변경할 수 있습니다.
 - close 연결 방식
+  <div style="max-width:fit-content">
+
 	```python
 	import requests
 	import time
@@ -44,7 +50,10 @@
 
 	response = requests.get(URL, headers=headers)
 	```
+	</div>
 - keep-alive 연결 방식
+  <div style="max-width:fit-content">
+
 	```python
 	import requests
 	import time
@@ -56,7 +65,8 @@
 	# default connection is Keep-alive
 	response = requests.get(URL)
 	```
-- 패킷 캡쳐 비교
+	</div>
+- 패킷 캡쳐 비교<br>
 	<img src="../../_assets/08_packet_compare.png" style="max-width: 80vw;">
 	좌) Keep-Alive, 우) Close
 

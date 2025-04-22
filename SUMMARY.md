@@ -11,7 +11,7 @@
     * [0.4.1 postman 에서 POST 요청하기](0-intro/4-api-test/1-postman.md)
     * [0.4.2 웹브라우저에서 API 호출하기](0-intro/4-api-test/2-web-browser.md)
   * [0.5 시작 전 주의사항](0-intro/5-caution/1-http-connection.md)
-  
+
 * [1. release note](1-release-note/README.md)
   * [60.30-00](1-release-note/60-30.md)
   * [60.28-00](1-release-note/60-28.md)
@@ -24,9 +24,9 @@
 * [3. project](3-project/README.md)
   * [3.1 get](3-project/1-get/README.md)
     * [3.1.1 rgen](3-project/1-get/1-rgen.md)
-    * [3.1.2 jobs_info](3-project/1-get/2-jobs_info.md)    
+    * [3.1.2 jobs_info](3-project/1-get/2-jobs_info.md)
   * [3.2 post](3-project/2-post/README.md)
-    * [3.2.1 reload_updated_jobs](3-project/2-post/1-reload_updated_jobs.md)    
+    * [3.2.1 reload_updated_jobs](3-project/2-post/1-reload_updated_jobs.md)
     * [3.2.2 jobs-delete_job](3-project/2-post/2-jobs-delete_job.md)
 
 * [4. control](4-control/README.md)
@@ -39,14 +39,14 @@
     * [4.2.1 ios-dio](4-control/2-post/1-ios-dio.md)
   * [4.3 put](4-control/3-put/README.md)
     * [4.3.1 op_cnd](4-control/3-put/1-op_cnd.md)
-  
+
 * [5. robot](5-robot/README.md)
-  * [5.1 get](5-robot/1-get/README.md)        
-    * [5.1.1 motor_on_state](5-robot/1-get/1-motor_on_state.md)        
-    * [5.1.2 po_cur](5-robot/1-get/2-po_cur.md)        
-    * [5.1.3 cur_tool_data](5-robot/1-get/3-cur_tool_data.md)        
-    * [5.1.4 tools](5-robot/1-get/4-tools.md)        
-    * [5.1.5 tools_t](5-robot/1-get/5-tools_t.md)        
+  * [5.1 get](5-robot/1-get/README.md)
+    * [5.1.1 motor_on_state](5-robot/1-get/1-motor_on_state.md)
+    * [5.1.2 po_cur](5-robot/1-get/2-po_cur.md)
+    * [5.1.3 cur_tool_data](5-robot/1-get/3-cur_tool_data.md)
+    * [5.1.4 tools](5-robot/1-get/4-tools.md)
+    * [5.1.5 tools_t](5-robot/1-get/5-tools_t.md)
   * [5.2 post](5-robot/2-post/README.md)
     * [5.2.1 motor-on](5-robot/2-post/1-motor-on.md)
     * [5.2.2 start-stop](5-robot/2-post/2-start-stop.md)
@@ -60,7 +60,7 @@
     * [6.1.1 get relay values](6-io_plc/1-get/1-relay-value.md)
   * [6.2 post](6-io_plc/2-post/README.md)
     * [6.2.1 set relay values](6-io_plc/2-post/1-set_relay_value.md)
-  
+
 * [7. log manager](7-log_manager/README.md)
   * [7.1 get](7-log_manager/1-get/README.md)
     * [7.1.1 search](7-log_manager/1-get/1-search.md)
