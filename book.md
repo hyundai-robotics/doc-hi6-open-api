@@ -39,10 +39,14 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 위 그림에서 주황색으로 표시된 부분들은 Open API 의 역할을 보여주고 있습니다.  
 
+<div style="width: fit-content;">
+
 |화살표|설명|
 |:---|:---|
 |`실선`|개발자(클라이언트)가 정해진 4가지 방법(GET, POST, PUT, DELETE)을 이용하여 Hi6(서버)에 정보를 `요청`하는 것을 의미|
 |`점선`|요청을 받은 제어기가 그에 맞는 `응답`을 json 혹은 text 형식으로 반환하는 것을 의미|
+
+</div>
 
 이처럼 개발자는 해당 문서의 Open API 를 활용해서 Hi6 와 이더넷으로 연결된 본인의 데스크탑, 노트북, 태블릿 pc 등을 http 와 REST API 기반으로 원격 제어 또는 모니터링을 할 수 있게 됩니다.
 
@@ -132,49 +136,61 @@ VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manage
 1) project 속성 열기
 2) `Manage NuGet Packages...`
 3) `Online/nuget.org`에서 `Json.NET (James Newton-King)`을 찾아 Install 수행.  
-   (혹시, NuGet Package Manager의 버전이 낮아 설치가 안된다는 메시지가 나오면, 주 메뉴의 `TOOLS/Extensions and Updates...`를 선택 후 Updates에서 NuGet 업데이트를 수행하십시오.)
+   (혹시, NuGet Package Manager의 버전이 낮아 설치가 안된다는 메시지가 나오면, 주 메뉴의 `TOOLS/Extensions and Updates...`를 선택 후 Updates에서 NuGet 업데이트를 수행하십시오.)  
+4) 예제 코드
+	<div style="width: fit-content;">
 
-```csharp
-using System;
-using System.Net;
-using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+	```csharp
+	using System;
+	using System.Net;
+	using System.IO;
+	using Newtonsoft.Json;
+	using Newtonsoft.Json.Linq;
 
-var respText = string.Empty;
+	var respText = string.Empty;
 
-var uri = "http://192.168.1.150:8888";
-var path = "/project/control/ios/dio/do_val";
-var query = "?type=dob&blk_no=2&sig_no=3";
+	var uri = "http://192.168.1.150:8888";
+	var path = "/project/control/ios/dio/do_val";
+	var query = "?type=dob&blk_no=2&sig_no=3";
 
-var request = (HttpWebRequest)WebRequest.Create(uri+path+query);
-request.Method = "GET";
-request.Timeout = 5 * 1000; // 5초
+	var request = (HttpWebRequest)WebRequest.Create(uri+path+query);
+	request.Method = "GET";
+	request.Timeout = 5 * 1000; // 5초
 
-using (var resp = (HttpWebResponse)request.GetResponse())
-{
-	var respStream = resp.GetResponseStream();
-	using (var sr = new StreamReader(respStream))
+	using (var resp = (HttpWebResponse)request.GetResponse())
 	{
-		respText = sr.ReadToEnd();
+		var respStream = resp.GetResponseStream();
+		using (var sr = new StreamReader(respStream))
+		{
+			respText = sr.ReadToEnd();
+		}
 	}
-}
 
-var jobj = JObject.Parse(respText);
-var str = "fb2.do3=" + jobj["val"].ToString();
-Console.WriteLine(str);
-```
+	var jobj = JObject.Parse(respText);
+	var str = "fb2.do3=" + jobj["val"].ToString();
+	Console.WriteLine(str);
+	```
+	</div>
 
 위 소스코드가 포함된 실행 가능한 C# WinForms 샘플 프로그램을 아래 Github 링크를 통해 확인하실 수 있습니다.
-> 링크 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)### 0.3.2 예제 코드 - python
+
+<div style="width: fit-content;"> 
+
+> 링크 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)
+
+</div>### 0.3.2 예제 코드 - python
 
 예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)`   
 두 가지 방식 중 `a. 동기식 요청`에 대해서 설명합니다.
+
+<div style="width: fit-content;">
 
 ||동기식|비동기식|
 |:---|:---|:---|
 |blocking|`a. 동기식 요청`||
 |non-blocking||`b. 비동기식 요청`|
+
+</div>
 
 두 가지 방법의 차이점은 TP와 컨트롤러에 다음과 같은 심각한 결과를 초래할 수 있습니다.
 1. UI 스레드에서 빈번한 동기 함수 호출로 인해 UI가 원활하게 실행되지 않고 정지될 수 있습니다(`Hanging 문제`).
@@ -189,10 +205,16 @@ Console.WriteLine(str);
 동기식은 하나의 요청이 끝나고 응답이 올 때까지 다른 task 의 실행이 불가능한 blocking 상태의 요청 방식 입니다.  
 python 에서 `동기식` HTTP 요청을 위해 많이 사용되는 라이브러리는 `requests` 입니다.  
 `requests` 라이브러리가 없는 경우, 파이썬 패키지 매니저를 통해 설치할 수 있습니다.   	
+
+<div style="width: fit-content;">
+
 ```sh
 $pip install requests
 ```
+</div>
+
 - 통신시 응답을 받지 못하거나 응답을 받는데 시간이 오래 걸리는 경우에는 hanging 문제가 발생할 가능성이 매우 높으니 주의 바랍니다.
+<div style="width: fit-content;">
 
 ```python
 # sync.py - 동기식, 사용자 IO 출력 값 얻기와 설정하기
@@ -229,9 +251,10 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.04827427864074707 seconds
 [get] 0x79 from fb2.do3 Time taken: 0.06168508529663086 seconds
 total request time : 0.2869541645050049 seconds
-```## 0.4 코딩하지 않고 쉽게 API 호출 해보기
+```
+</div>## 0.4 코딩하지 않고 쉽게 API 호출 해보기
 
-[앞선 예제 코드](../../1-intro/3-sample-code/README.md)처럼 client 어플리케이션을 개발하면서 Open API 를 사용하는 경우, 코딩을 따로 하지 않고도 손쉽게 API를 호출해 볼 수 있습니다.  
+[앞선 예제 코드](../3-sample-code/README.md)처럼 client 어플리케이션을 개발하면서 Open API 를 사용하는 경우, 코딩을 따로 하지 않고도 손쉽게 API를 호출해 볼 수 있습니다.  
 이러한 호출 과정을 통해서 요청이 제대로 동작했는지, 응답으로 어떠한 데이터가 반환되는지 확인 가능 합니다.  
 이를 위한 방법은 여러가지가 있습니다. 해당 섹션에서는 대표적인 2가지를 다루고 있습니다.
 
@@ -264,7 +287,7 @@ total request time : 0.2869541645050049 seconds
 
 <img src="../../_assets/01_postman_desc.png" style="max-height: 40vh;">
 
-<blockquote>
+<blockquote style="width: fit-content;">
 
 (1) `+` 버튼을 통해 request 요청을 간단하게 생성할 수 있습니다. </br>
 (2) `request` 요청에 대한 정보들을 입력하는 공간 입니다. </br>
@@ -297,7 +320,7 @@ total request time : 0.2869541645050049 seconds
 	- 해당 url 이 적용된 언어별 `Code snippet` 또한 확인 가능합니다.  
 	<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 40vh;">
 
-		<blockquote>
+		<blockquote style="width: fit-content;">
 
 		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`
@@ -312,12 +335,16 @@ total request time : 0.2869541645050049 seconds
 	- 서버 측 url 은 `http://<Hi6 제어기의 ip 주소>:<http 통신 포트>`로 시작되며 추출하려는 정보에 맞는 경로와 쿼리를 이어 적습니다.
 	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
 3. 해당 url 의 페이지가 열리고 아래와 같이 응답이 출력됩니다.
+
+	<div style="width: fit-content;">
+
 	```json
 	{
 		"_type" : "JObject",
 		"val" : -99
 	}
 	```
+	</div>
 
 <br>
 
@@ -330,7 +357,8 @@ total request time : 0.2869541645050049 seconds
 
 <img src="../../_assets/06_Talend_api_tester.png" style="max-height: 60vh;">
 
-<blockquote>
+
+<blockquote style="width: fit-content;">
 
 `(1) Requests/Senarios` : 하나의 API 에 대해서 호출을 테스트할지, 여러 API 들로 시나리오를 작성하여 순차적으로 테스트할 지 설정할 수 있습니다.<br>
 `(2) Request` : 요청할 내용을 입력합니다.  
@@ -338,13 +366,77 @@ total request time : 0.2869541645050049 seconds
 `(4) History` : 요청 이력을 출력합니다.  
 `(5) History 탭` : 열었다 닫았다 할 수 있는 `(4)`의 요청 이력 리스트보다 많은 양의 이력이 확인 가능한 탭입니다.
 
-</blockquote>## 1. release note 
+</blockquote># API 통신 시 주의 사항
+
+## 1. http connection
+
+{% hint style="caution" %}
+
+로봇 제어기의 경우, close 연결 방식으로 API 요청이 반복적으로 이뤄지면 cpu 부하가 발생하여 로봇이 정지되는 에러가 발생할 수 있습니다.
+
+지속적으로 API 를 여러번 호출하는 경우, 하기 메뉴얼에 따라 **Keep-Alive 방식**으로 기능 구현을 해주십시오.
+
+{% endhint %}
+
+
+### 1-1. Keep-Alive 연결 vs Close 연결
+
+<div style="max-width: fit-content">
+
+| | Close | Keep-Alive |
+|--| ----- | ----- |
+|제안된 Http 버전| Http/1.0 | Http/1.1|
+|특징| Multiple Connection | Persistent Connection |
+
+<img src="../../_assets/07_http_connection.png" style="max-height: 30vh;">
+
+</div>
+
+- close 연결 방식은, 많은 요청과 응답이 필요한 상황에서도 매번 연결을 맺고 끊는 과정이 이루어집니다.<br>
+  이러한 동작은 처리 시간과 리소스를 낭비하며, 서버와 클라이언트 모두에게 과도한 부담을 초래합니다.
+
+- Hi6는 HTTP/1.1을 사용하고 있습니다. 따라서 별도의 설정을 바꾸지 않는 경우, 자동으로 Keep-Alive 방식으로 동작합니다.
+
+### 1-2. 예제 코드
+
+- 간단하게 close 방식과, keep-alive 방식을 변경할 수 있습니다.
+- close 연결 방식
+	```python
+	import requests
+	import time
+
+	BASE_URL = "http://192.168.10.150:8888"
+	URI = "/project/robot/po_cur"
+	URL = BASE_URL + URI
+	headers = { "Connection": "close" }
+
+	response = requests.get(URL, headers=headers)
+	```
+- keep-alive 연결 방식
+	```python
+	import requests
+	import time
+
+	BASE_URL = "http://192.168.10.150:8888"
+	URI = "/project/robot/po_cur"
+	URL = BASE_URL + URI
+
+	# default connection is Keep-alive
+	response = requests.get(URL)
+	```
+- 패킷 캡쳐 비교
+	<img src="../../_assets/08_packet_compare.png" style="max-width: 80vw;">
+	좌) Keep-Alive, 우) Close
+
+<br><br>
+
+참고 문서
+  1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)## 1. release note 
 
 - COM 버전을 기준으로 API 변경사항에 대해서 정리를 해두었습니다.
 - 본인이 사용 중인 제어기 버전보다 더 높은 버전에서 동작하는 API 를 사용하려면 버전업을 진행해야 합니다.
-- 릴리즈 정보
-
-	<div style="max-width:30vw;">
+- 
+	<div style="width: fit-content;">
 
 	|COM 버전|배포 일정|링크|
 	|:--:|:--:|:--:|
@@ -354,6 +446,8 @@ total request time : 0.2869541645050049 seconds
 	|v60-24.00|-||
 
 	</div>
+<link rel="stylesheet" href="../_assets/style.css">
+
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.30-00 
   <span style="
@@ -412,6 +506,7 @@ total request time : 0.2869541645050049 seconds
 
 
 - emergency_stop_test - 기존의 emergency_stop API 를 emergency_stop_test API 로 변경
+- task reset - <span u>R 코드 0</span>를 활용하는 방식으로 변경됨
 
 <br><br>
 
@@ -431,6 +526,7 @@ total request time : 0.2869541645050049 seconds
 
 
 - <font style="color: #FE2E64">motor off</font> - HRSpace 환경을 고려한 API로, 실기 환경에서의 혼선을 방지하기 위해 Deprecated 처리. 비상정지 API 로 대체 됨  
+- <font style="color: #FE2E64">task reset</font> - <span u>/project/context/tasks/reset</span>, <span u> /project/context/tasks[{task index}]/reset</span> path 는 더 이상 지원하지 않음.
 
 <br><br>
 
@@ -452,9 +548,10 @@ total request time : 0.2869541645050049 seconds
 - ✨ \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
 - ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
 - 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [task reset](../9-task/2-post/2-reset.md)
 - ❌ ~~\[<b style="color: #FF9800">post</b>\] [motor_off](../5-robot/2-post/1-motor-on.md)~~  
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
-  📝 Release Notes - v60.30-00 
+  📝 Release Notes - v60.28-00 
 </h2>  
 
 
@@ -554,6 +651,8 @@ total request time : 0.2869541645050049 seconds
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /api_ver
 ```
@@ -572,8 +671,11 @@ GET /api_ver
 response-body:
 5
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -590,7 +692,8 @@ print(get_api_ver())
 ```sh
 $python test.py
 5
-```## 2.1.2 sysver
+```
+</div>## 2.1.2 sysver
 
 ### 설명
 
@@ -598,9 +701,12 @@ $python test.py
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /versions/sysver
 ```
+</div>
 
 ### response-body
 
@@ -615,6 +721,8 @@ modules : 모듈 버전 정보의 배열
     - `commit-id` : 소스코드의 커밋 ID
 
 ### 사용 예
+
+<div style="width: fit-content;">
 
 ```python
 request url:
@@ -632,8 +740,11 @@ response-body:
     ] 
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -650,7 +761,8 @@ print(get_sysver())
 ```sh
 $python test.py
 {'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
-```# 3. project
+```
+</div># 3. project
 
 - 조건설정, 프로젝트 정보, job 파일 정보들을 읽습니다.
 - 업데이트된 job 파일들을 새로이 로드하거나 특정 job 파일들을 삭제할 수 있습니다.## 3.1 project/get
@@ -664,13 +776,19 @@ $python test.py
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 GET /project/rgen
 ```
+</div>
 
 ### response-body
 
 #### 1) 모드
+<div style="width: fit-content;">
+
 |key|value|type|description|
 |:---|:---|:---|:---|
 |`cur_mode`| `0` : 수동 <br> `1` : 수동, 시스템 설정 <br>`3` : 자동, 1-cycle <br> `4` : 자동, 연속 (cycle 반복)|`int`|수동/자동 모드|
@@ -680,30 +798,46 @@ GET /project/rgen
 |`is_ext_start`|`0`: False <br> `1`: True|`int`|외부 기동 여부|
 |`is_ext_prog_sel`|`0`: False <br> `1`: True|`int`|외부 프로그램 선택 여부|
 
+</div>
+
 <br>
 
 #### 2) current 프로그램 카운터
 수동모드나 자동모드에서 티치펜던트 JOB 패널의 막대형 커서가 위치한 지점입니다. 현재 실행되고 있는 명령문, 혹은 편집의 대상 위치입니다.
+
+
+<div style="width: fit-content;">
+
 |key|type|description|
 |:---|:---|:---|
 |`cur_prog_no`|`int`|current 프로그램 번호|
 |`cur_step_no`|`int`|current 스텝 번호|
 |`cur_func_no`|`int`|current 펑션 번호|
 
+</div>
+
 <br>
 
 #### 3) moving 프로그램 카운터
 
 재생 중 로봇이 이동하고 있는 목표 스텝입니다.
+
+<div style="width: fit-content;">
+
 |key|type|description|
 |:---|:---|:---|
 |`mov_prog_no`|`int`|moving 프로그램 번호|
 |`mov_step_no`|`int`|moving 스텝 번호|
 |`mov_func_no`|`int`|moving 펑션 번호|
 
+</div>
+
 <br>
 
 #### 4) 속도
+
+
+<div style="width: fit-content;">
 
 |key|type|description|
 |:---|:---|:---|
@@ -714,10 +848,14 @@ GET /project/rgen
 |`step_execute_unit_status`|`int`|StepFWD의 실행단위 (run to)<br>0: Cmd (명령문)<br>1: Step (스텝)<br>2: End (end문까지)|
 |`cont_path`|`int`|연속 모션 모드 (0~2)|
 
+</div>
+
 <br>
 
 ### 사용 예
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -738,6 +876,7 @@ get_is_remote_mode()
 $python test.py
 is remote mode? 0
 ```
+</div>
 ## 3.1.2 `jobs_info`
 
 ### 설명
@@ -746,16 +885,20 @@ is remote mode? 0
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/jobs_info
 ```
+</div>
 
 ### response-body
 
 - [job 파일 관련 정보](../../99-schema/jobs_info.md)
 ### 사용 예
 
-<blockquote>
+
+<div style="width: fit-content;">
 
 ```python
 request url:
@@ -790,9 +933,12 @@ response-body:
 	      ...
 }
 ```
-</blockquote>
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -813,7 +959,8 @@ $python test.py
 [{'_type': 'JObject', 'job_comment': '', 'fname': '0001.job', 'n_step': 0, 'n_aux_ax': 0, 'n_total_ax': 6}, 
 {'_type': 'JObject', 'job_comment': '', 'fname': '0002.job', 'n_step': 9, 'n_aux_ax': -1, 'n_total_ax': -1}, 
 {'_type': 'JObject', 'job_comment': '', 'fname': '0003.job', 'n_step': 0, 'n_aux_ax': -1, 'n_total_ax': -1}]
-```## 3.1 project/post
+```  
+</div>## 3.1 project/post
 
 - 조건설정, 프로젝트 정보, job 파일 정보에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 3.2.1 `reload_updated_jobs`
@@ -824,6 +971,8 @@ $python test.py
 - FTP 로 job 파일을 제어기에 전송하는 경우, 해당 API 를 통해 reload 요청을 해야 전송된 job 파일이 메모리에 반영이 됩니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 POST /project/reload_updated_jobs
@@ -843,10 +992,15 @@ POST /project/reload_updated_jobs
 
 request-body: {}
 ```
+</div>
 
 Python Script 예시
 
 - 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+
+
+<div style="width: fit-content;">
+
 ```python
 # test.py
 import requests 
@@ -867,13 +1021,15 @@ print(f"response: {post_reload_updated_jobs()}")
 $python test.py
 response: 200 
 ```
-## 3.2.2 `delete_job`
+</div>## 3.2.2 `delete_job`
 
 ### 설명
 
 - `POST` : 작업 파일을 제거하는 요청을 보냅니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 POST /project/jobs/delete_job
@@ -899,7 +1055,12 @@ request-body:
 }
 ```
 
+</div>
+
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -920,7 +1081,8 @@ print(f"response: {post_delete_job('0002.job')}")
 ```sh
 $python test.py
 response: 200 
-```# 4. control
+```
+</div># 4. control
 
 - 제어기(controller)의 설정값 적용 및 입출력 값을 처리합니다.
 - 시스템 입출력, 디지털 입출력, 조건설정, 사용자 좌표계 관련 정보를 다룹니다.
@@ -936,6 +1098,8 @@ response: 200
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/control/op_cnd
 ```
@@ -943,8 +1107,6 @@ GET /project/control/op_cnd
 ### response-body
 
 - [조건설정 파라미터](../../99-schema/op_cnd.md)
-
-<blockquote>
 
 ```json
 {
@@ -961,9 +1123,12 @@ GET /project/control/op_cnd
 	"plc_mode": 1              
 }
 ```
-</blockquote>
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -982,7 +1147,8 @@ print(get_operation_condition())
 ```sh
 $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
-```## 4.1.2 `ios/dio/{dio_val}`
+```
+</div>## 4.1.2 `ios/dio/{dio_val}`
 
 ### 설명
 
@@ -990,9 +1156,13 @@ $python test.py
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 GET /project/control/ios/dio/{dio_val}
-```
+```  
+</div>
 
 ### path-variable
 
@@ -1015,6 +1185,8 @@ GET /project/control/ios/dio/{dio_val}
 
 - fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
 
+<div style="width: fit-content;">
+
 ```python
 request url:
 GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
@@ -1025,8 +1197,11 @@ response-body:
     "val" : -56,
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -1046,13 +1221,17 @@ print(get_dio_val())
 ```sh
 $python test.py
 {'_type': 'JObject', 'val': -56}
-```## 4.1.3 `ios/sio/{sio_val}`
+```
+</div>## 4.1.3 `ios/sio/{sio_val}`
 
 ### 설명
 
 - `GET` : 시스템 IO 값을 얻습니다.
 
 ### path-parameter
+
+
+<div style="width: fit-content;">
 
 ```python
 GET /project/control/ios/sio/{sio_val}
@@ -1088,9 +1267,13 @@ response-body:
     "_type" : "JObject",
     "val" : 2,
 }
-```
+```  
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -1110,7 +1293,8 @@ print(get_sio_val())
 ```sh
 $python test.py
 {'_type': 'JObject', 'val': 0}
-```## 4.1.4 `ucss/ucs_nos`
+```
+</div>## 4.1.4 `ucss/ucs_nos`
 
 ### 설명
 
@@ -1118,6 +1302,9 @@ $python test.py
 - `시스템 > 2: 제어 파라미터 > 6: 좌표계 등록` 을 통해 등록한 사용자 좌표계 리스트를 출력합니다.
 
 ### path-parameter
+
+
+<div style="width: fit-content;">
 
 ```python
 GET /project/control/ucss/ucs_nos
@@ -1135,8 +1322,11 @@ response-body:
     "val" : [1],
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -1155,7 +1345,8 @@ print(f"{get_ucs_nos()}")
 ```sh
 $python test.py
 [1, 2, 3]
-```## 4.2 control/post
+```
+</div>## 4.2 control/post
 
 - 제어기의 설정 정보, 입출력 값에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 4.2.1 `ios/dio/{do_val}`
@@ -1166,11 +1357,18 @@ $python test.py
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 POST /project/control/ios/dio/do_val
 ```
+</div>
 
 ### request-body
+
+
+<div style="width: fit-content;">
 
 ```json
 {
@@ -1180,7 +1378,7 @@ POST /project/control/ios/dio/do_val
   "val": 1
 }
 ```
-
+</div>
 
 ### query-parameter
 
@@ -1197,6 +1395,8 @@ POST /project/control/ios/dio/do_val
 
 ### 사용 예
 
+<div style="width: fit-content;">
+
 ```python
 request url:
 POST /project/control/ios/dio/do_val
@@ -1209,10 +1409,15 @@ request-body:
     "val": -99
 }
 ```
+</div>
 
 Python Script 예시
 
 - 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+
+
+<div style="width: fit-content;">
+
 ```python
 # test.py
 import requests 
@@ -1231,7 +1436,8 @@ print(f"response: {post_do_val()}")
 ```sh
 $python test.py
 response: 200 
-```## 4.3 control/put
+```
+</div>## 4.3 control/put
 
 - 제어기의 설정 정보, 입출력 값에 대한 PUT 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 4.3.1 `op_cnd`
@@ -1242,6 +1448,8 @@ response: 200
 - TP 에서 조건 설정 창을 열고 해당 메서드를 요청한 경우, 창을 닫았다 다시 열어야 값이 반영됩니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 PUT /project/control/op_cnd
@@ -1265,8 +1473,12 @@ request-body:
     "ucrd_num": 2
 }
 ```
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -1290,7 +1502,8 @@ print(f"response: {put_op_cnd()}")
 ```sh
 $python test.py
 response: 200 
-```# 5. robot
+```
+</div># 5. robot
 
 - 로봇과 툴 데이터에 대한 원격 제어와 모니터링을 확인할 수 있습니다.
 - 모터 on/off, 로봇 자세, 툴, 조그 좌표계 등을 다루고 있습니다.
@@ -1304,6 +1517,8 @@ response: 200
 - `GET` : 모터 온 상태를 얻습니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 GET /project/robot/motor_on_state
@@ -1327,8 +1542,11 @@ response-body:
     "val" : 1
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -1347,13 +1565,17 @@ print(f"Motor On status: {get_motor_on_state()['val']}")
 ```sh
 $python test.py
 Motor On status: 1
-```## 5.1.2 `po_cur`
+```
+
+</div>## 5.1.2 `po_cur`
 
 ### 설명
 
 - `GET` : 현재 로봇이 취하고 있는 pose(자세)를 얻습니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 GET /project/robot/po_cur
@@ -1451,6 +1673,10 @@ response-body:
     "j6": 0.000000
 }
 ```
+</div>
+
+
+<div style="width: fit-content;">
 
 Python Script 예시
 
@@ -1472,13 +1698,17 @@ print(get_base_coordinate())
 ```sh
 $python test.py
 {'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
-```## 5.1.3 `cur_tool_data`
+```
+
+</div>## 5.1.3 `cur_tool_data`
 
 ### 설명
 
 - `GET` : 로봇의 현재 툴 데이터 얻기.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 GET /project/robot/cur_tool_data
@@ -1513,8 +1743,11 @@ response-body:
     "mass_esti": 20.000000,
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -1533,13 +1766,18 @@ print(get_cur_tool_data())
 ```sh
 $python test.py
 {'_type': 'Tool', 'x': 0.0, 'rx': 0.0, 'y': 0.0, 'ry': 0.0, 'z': 0.0, 'rz': 0.0, 'cy': 0.0, 'mass': 20.0, 'cx': 100.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'bias_2': 0.0, 'mass_esti': 20.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
-```## 5.1.4 `tools`
+```
+
+</div>## 5.1.4 `tools`
 
 ### 설명
 
 - `GET` : 로봇의 모든 툴 정보 얻기. T0~T31까지의 툴 중 존재하는 툴만 얻습니다.
 
 ### path-parameter
+
+
+<div style="width: fit-content;">
 
 ```python
 GET /project/robot/tools
@@ -1569,8 +1807,11 @@ response-body:
 	 ...
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -1589,13 +1830,18 @@ print(get_tools_data())
 ```sh
 $python test.py
 {'_type': 'Tools', 't_31': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_0': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0, 'load_rate': {'_type': 'JObject', 'high_load_mode': -11, 'moment_rate': 0, 'inertia_rate': 0, 'mass_rate': 0}}, 't_1': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_15': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}}
-```## 5.1.5 `tools/t_{number}`
+```
+
+</div>## 5.1.5 `tools/t_{number}`
 
 ### 설명
 
 - `GET` : 특정 툴의 설정값 정보를 받는 함수입니다.
 
 ### path-parameter
+
+
+<div style="width: fit-content;">
 
 ```python
 GET /project/robot/tools/t_{number}
@@ -1623,8 +1869,11 @@ response-body:
         ...
 }
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -1643,17 +1892,22 @@ print(get_tool1_data())
 ```sh
 $python test.py
 {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
-```## 5.2 robot/post
+```
+
+</div>## 5.2 robot/post
 
 - 로봇과 툴 데이터에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 5.2.1 `motor_on`
 
+- <b style="color:orange"> `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.</b>
+
+<div style="width: fit-content;">
 ### 설명
 
 - `POST` : 모터 ON을 수행합니다.
-- `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.
 
 ### path-parameter
+
 
 ```python
 POST /project/robot/motor_on
@@ -1681,8 +1935,12 @@ POST /project/robot/motor_on
 request-body:
 {}
 ```
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -1702,13 +1960,18 @@ print(f"Motor-ON  response: {post_motor_on()}")
 ```sh
 $python test.py
 Motor-ON  response: 200
-```## 5.2.2 `start / stop`
+```
+
+</div>## 5.2.2 `start / stop`
 
 ### 설명
 
 - `POST` : 로봇 기동(start)과 로봇 정지(stop)를 수행합니다.
 
 ### path-parameter
+
+
+<div style="width: fit-content;">
 
 ```python
 POST /project/robot/start
@@ -1732,13 +1995,16 @@ POST /project/robot/stop
 ### 사용 예
 
 ```python
-POST /project/robot/motor_off
+POST /project/robot/start or /project/robot/stop
 
 request-body: 
 {}
 ```
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -1769,7 +2035,8 @@ print(f"Stop  response: {post_stop()}")
 $python test.py
 Start response: 200
 Stop  response: 200
-```## 5.2.3 `tool_no`
+```
+</div>## 5.2.3 `tool_no`
 
 ### 설명
 
@@ -1777,9 +2044,12 @@ Stop  response: 200
 
 ### path-parameter
 
+
+<div style="width: fit-content;">
+
 ```python
 POST /project/robot/tool_no
-```
+``` 
 
 ### request-body
 
@@ -1791,7 +2061,7 @@ POST /project/robot/tool_no
 
 ```json
 {
-    "_type": "JObject"
+	"_type": "JObject"
 }
 ```
 
@@ -1802,11 +2072,15 @@ POST /project/robot/tool_no
 
 request-body
 {
-  "val": 1
+	"val": 1
 }
 ```
 
+</div>
+
 Python Script 예시
+
+
 
 ```python
 import requests
@@ -1826,13 +2100,16 @@ print(f"response: {post_tool_no(1)}")
 ```sh
 $python test.py
 response: 200
-```## 5.2.4 `crd_sys`
+```
+</div>## 5.2.4 `crd_sys`
 
 ### 설명
 
 - `POST` : 현재 조그(jog) 좌표계를 설정합니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 POST /project/robot/crd_sys
@@ -1846,7 +2123,7 @@ POST /project/robot/crd_sys
 
 ```json
 {
-  "_type": "JObject",
+	"_type": "JObject",
   "cur_crd": 1,
   "ucrd_no": 1
 }
@@ -1860,11 +2137,15 @@ POST /project/robot/crd_sys
 
 request-body
 {
-  "val": 1
+	"val": 1
 }
 ```
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -1883,7 +2164,9 @@ print(f"response: {post_crd_sys(1)}")
 ```sh
 $python test.py
 response: 200
-```## 5.2.5 `emergency_stop`
+```
+
+</div>## 5.2.5 `emergency_stop`
 
 ### 설명
 
@@ -1894,6 +2177,8 @@ response: 200
 
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 POST /project/robot/emergency_stop
@@ -1918,7 +2203,11 @@ request-body
 {}
 ```
 
+</div>
+
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 import requests
@@ -1940,7 +2229,8 @@ print(f"response: {post_emergency_stop()}")
 ```sh
 $python test.py
 response: 200
-```## 5.2.6 `emergency_stop_test`
+```
+</div>## 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> 해당 API 는 `60.28-00` 까지 `emergency_stop` API 로 사용되었습니다. </b>  
 
@@ -1951,17 +2241,25 @@ response: 200
 
 ### path-parameter
 
-```pytho
+<div style="width: fit-content;">
+
+```python
 POST /project/robot/emergency_stop_test
 ```
+</div>
 
 ### request-body
+
+<div style="width: fit-content;">
+
 -  |key|type|contents|validation|
-	|---|---|---|---|
+	|---:|:---:|---|---|
 	|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
 	|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
 	|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
 	|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
+
+</div>
 
 - `0: 즉시정지`  
   &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
@@ -1980,6 +2278,8 @@ POST /project/robot/emergency_stop_test
 
 
 ### 사용 예
+
+<div style="width: fit-content;">
 
 ```emergency_stop
 POST /project/robot/emergency_stop
@@ -2020,7 +2320,8 @@ print(f"response: {post_emergency_stop()}")
 ```sh
 $python test.py
 response: 200
-```# 6. I/O PLC
+```
+</div># 6. I/O PLC
 
 - 내장 PLC(built-in plc)의 입출력 값을 읽어오거나 설정합니다.## 6.1 io_plc/get
 
@@ -2033,6 +2334,8 @@ response: 200
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 ```
@@ -2041,7 +2344,8 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 [릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression) (소문자 표기)
 
-* (`di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다. 나머지 `relay_type`에는 지정하지 않습니다.)
+* `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.   
+  나머지 `relay_type`에는 지정하지 않습니다.
 
 - `obj_type` : 객체 타입 (`fb`, `fn`)
 
@@ -2088,8 +2392,11 @@ response-body:
     134217728
 ]
 ```
+</div>
 
 Python Script 예제
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -2109,7 +2416,8 @@ print(f"{get_relay_value()}")
 ```sh
 $python test.py
 [0, 0, 0, 0]
-```## 6.2 io_plc/post
+```
+</div>## 6.2 io_plc/post
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 6.2.1 `set relay values`
@@ -2119,6 +2427,8 @@ $python test.py
 - `POST` : relay 값 설정합니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 POST /project/plc/set_relay_value
@@ -2147,6 +2457,10 @@ request-body:
     "value": "1"
 }
 ```
+</div>
+
+
+<div style="width: fit-content;">
 
 Python Script 예제
 
@@ -2181,7 +2495,8 @@ $python test.py
 [0, 0, 0, 0, 0, 0, 0, 0]
 response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
-```# 7.1 event-log
+```
+</div># 7.1 event-log
 
 - 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.## 7.1 log_manager/get
 
@@ -2194,9 +2509,12 @@ response: 200
 
 ### path-parameter
 
+<div style="width: fit-content;">
+
 ```python
 GET /logManager/search
 ```
+</div>
 
 ### query-parameter
 
@@ -2215,11 +2533,11 @@ GET /logManager/search
   - `M` : 기타 (Miscellany)
 - `id_min` : 최소 id 필터. (optional)
   - 모든 이벤트는 유일한 이벤트 ID(eid)를 가지고 있습니다. (0~)  
-    기존에 수신한 이벤트들의 id 중 최대값에 1을 더해 `id_min`에 지정하여 이력 요청을 하면,
-    기존에 이미 수신한 이벤트들은 제외하고, 새로 발생한 이력만 얻을 수 있습니다.  
-  - 단, 제어기 내의 이벤트 id는 최대값(0xffffffffffffffff)이 되면, 다시 0부터 생성됩니다.
-    필터링은 이러한 상황까지 고려하여 적절히 적용됩니다.
-    예를들어, id_min이 0xfffffffffffffffa 인 경우, 0, 1, 2 같은 id를 갖는 이벤트들을 필터 아웃되지 않고 응답에 포함됩니다.
+    기존에 수신한 이벤트들의 id 중 최대값에 1을 더해 `id_min`에 지정하여 이력 요청을 하면,  
+    기존에 이미 수신한 이벤트들은 제외하고, 새로 발생한 이력만 얻을 수 있습니다.   
+  - 단, 제어기 내의 이벤트 id는 최대값(0xffffffffffffffff)이 되면, 다시 0부터 생성됩니다.  
+    필터링은 이러한 상황까지 고려하여 적절히 적용됩니다.  
+    예를들어, id_min이 0xfffffffffffffffa 인 경우, 0, 1, 2 같은 id를 갖는 이벤트들을 필터 아웃되지 않고 응답에 포함됩니다.  
 - `id_max` : 최대 id 필터. (optional)
 - `ts_min` : 최소 timestamp 필터. (optional)
   - 년/월/일 시:분:초.밀리초 형식. e.g. 2023/11/20 18:50:30.955
@@ -2235,18 +2553,9 @@ GET /logManager/search
 - `aux` : 이벤트 보조정보 (event auxiliary info.). 최대 280자입니다.
   - 에러와 경고, 기동/정지의 경우에는 스냅샷(snapshot) 정보를 담습니다.
 
-```json
-{ "id" : 19964, "ts" : "2023/11/20 15:53:11.275", "cat" : "E", "code" : "11,0,0", "aux" : "{ 'pc' : '20/3/1', 'j1' : 18.525, 'j2' : 105.000, 'j3' : -2.577, 'j4' : -14.432, 'j5' : -0.776, 'j6' : 0.314, 'sin' : '00 01 00 00 00 00 00 00', 'sout' : '05 08 06 00 00 00 00 01', 'din' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0', 'dout' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0' }" }
-{ "id" : 18314, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(    976)Power saving = on " }
-{ "id" : 18313, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(=Stamp=)[2023/11/20 15:05:33](+299996445us) " }
-{ "id" : 18312, "ts" : "2023/11/20 15:05:33.787", "cat" : "N", "code" : "5", "aux" : "{ 'pc' : '20/3/1' }" }
-{ "id" : 18267, "ts" : "2023/11/20 15:00:33.791", "cat" : "H", "code" : "hist", "aux" : "(   2001)    .end ;(P20/S3/F1) " }
-{ "id" : 18266, "ts" : "2023/11/20 15:00:33.789", "cat" : "H", "code" : "hist", "aux" : "( 738785)S3  .move P,spd=500mm/sec,accu=4,tool=0 " }
-```
-
 ### 사용 예
 
-<blockquote>
+<div style="width: fit-content;">
 
 ```python
 request url:
@@ -2262,10 +2571,8 @@ response-body:
     { "id" : 24253, "ts" : "2023/11/28 16:53:13.202", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
 }
 ```
-
-</blockquote>
-
 Python Script 예시
+
 
 ```python
 # test.py
@@ -2286,15 +2593,17 @@ def get_log_search() -> str:
 
 print(get_log_search())
 ```
+
 ```sh
 $python test.py
 { "id" : 24256, "ts" : "2023/11/28 16:53:23.450", "cat" : "O", "code" : "K.Up", "aux" : "CTRL" }
 { "id" : 24255, "ts" : "2023/11/28 16:53:23.045", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
 { "id" : 24254, "ts" : "2023/11/28 16:53:13.695", "cat" : "O", "code" : "K.Up", "aux" : "CTRL" }
 { "id" : 24253, "ts" : "2023/11/28 16:53:13.202", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
-{ "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
-{ "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
-```# 8. file_manager
+{ "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : ... }
+{ "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : ... }
+```
+</div># 8. file_manager
 
 - 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
 - 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.## 8.1 file_manager/get
@@ -2307,6 +2616,8 @@ $python test.py
 - `GET` : 제어기로부터 파일 내용을 응답 받습니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 GET /file_manager/files
@@ -2325,14 +2636,15 @@ query-parameter 를 반드시 입력해야합니다.
 ### response-body
 
 |HTTP Status|description|
-|:---|:---|
+|:---:|:---|
 |`200 OK`|파일 내용 반환|
 |`404 Not Found`| 파일 없을 때 에러 상태 코드 반환|
 
+</div>
 
 ### 사용 예
 
-<blockquote>
+<div style="width: fit-content;">
 
 ```text
 hi6
@@ -2356,10 +2668,13 @@ response-body:
 	...
 }
 ```
-
-</blockquote>
+</div>
 
 Python Script 예시
+
+
+<div style="width: fit-content;">
+
 
 ```python
 # test.py
@@ -2390,13 +2705,17 @@ S2   move P,tg=po1,spd=100%,accu=0,tool=1
 S3   move P,tg=po1,spd=100%,accu=0,tool=1
 S4   move P,tg=po1,spd=100%,accu=0,tool=1
      end
-```## 8.1.2 `file_info`
+```  
+
+</div>## 8.1.2 `file_info`
 
 ### 설명
 
 - `GET` : 파일 경로를 기반으로 해당 파일에 대한 정보를 반환합니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 GET /file_manager/file_info
@@ -2411,6 +2730,8 @@ query-parameter 를 반드시 입력해야합니다.
 ```
 - `pathname` : 타겟 파일 경로
 
+</div>
+
 ### response-body
 
 - [파일 정보](../../99-schema/file_info.md)
@@ -2418,7 +2739,7 @@ query-parameter 를 반드시 입력해야합니다.
 
 ### 사용 예
 
-<blockquote>
+<div style="width: fit-content;">
 
 ```text
 hi6
@@ -2451,8 +2772,10 @@ response-body:
     "min": 35
 }
 ```
+</div>
 
-</blockquote>
+
+<div style="width: fit-content;">
 
 Python Script 예시
 
@@ -2474,13 +2797,18 @@ print(get_file_info())
 ```sh
 $python test.py
 {'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
-```## 8.1.3 `file_list`
+```
+
+</div>## 8.1.3 `file_list`
 
 ### 설명
 
 - `GET` : 파일 및 디렉토리 리스트를 반환합니다.
 
 ### path-parameter
+
+
+<div style="width: fit-content;">
 
 ```python
 GET /file_manager/file_list
@@ -2492,7 +2820,11 @@ query-parameter 를 반드시 입력해야합니다.
 
 ```text
 ?path=project/jobs&incl_file=true&incl_dir=false
-```
+```  
+</div>
+
+
+<div style="width: fit-content;">
 
 |key|description|
 |:---|:---|
@@ -2500,18 +2832,22 @@ query-parameter 를 반드시 입력해야합니다.
 |`incl_file`|리스트 출력 시 파일 포함 여부|
 |`incl_dir`|리스트 출력 시 디렉토리 포함 여부|
 
+</div>
 
 ### response-body
+
+<div style="width: fit-content;">
 
 |HTTP Status|description|
 |:---|:---|
 |`200 OK`|[파일 정보](../../99-schema/file_info.md) `리스트`를 반환|
 |`404 Not Found`| 파일 없을 때 반환|
 
+</div>
 
 ### 사용 예
 
-<blockquote>
+<div style="width: fit-content;">
 
 ```text
 hi6
@@ -2557,7 +2893,9 @@ response-body:
 ]
 ```
 
-</blockquote>
+</div>
+
+<div style="width: fit-content;">
 
 Python Script 예시
 
@@ -2582,13 +2920,16 @@ $python final_test.py
 {'mday': 20, 'sec': 8, 'fname': 'jobs', 'wday': 1, 'size': 8192, 'year': 2023, 'hour': 21, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 50}
 {'mday': 1, 'sec': 50, 'fname': 'vars', 'wday': 3, 'size': 8192, 'year': 2023, 'hour': 12, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 29}
 {'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
-```## 8.1.4 `file_exist`
+```
+</div>## 8.1.4 `file_exist`
 
 ### 설명
 
 - `GET` : 타겟 파일의 존재 여부를 반환합니다.
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 GET /file_manager/file_exist
@@ -2603,17 +2944,23 @@ query-parameter 를 반드시 입력해야합니다.
 ```
 - `pathname` : 타겟 파일 경로
 
+</div>
+
 ### response-body
+
+
+<div style="width: fit-content;">
 
 |HTTP Status|description|
 |:---|:---|
 |`200 OK`|`true` (파일 존재)|
 |`200 OK`|`false` (파일 없음)|
 
+</div>
 
 ### 사용 예
 
-<blockquote>
+<div style="width: fit-content;">
 
 ```python
 request url:
@@ -2631,9 +2978,11 @@ hi6
     `-- hi6_proj.json
 ```
 
-</blockquote>
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -2653,10 +3002,14 @@ print(is_file_exist())
 ```sh
 $python test.py
 true
-```## 8.2 file_manager/post
+```
+
+</div>## 8.2 file_manager/post
 
 - 제어기의 파일 정보에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 8.2.1 `rename_file`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -2676,20 +3029,19 @@ POST /file_manager/rename_file
     "pathname_to"   : "project/jobs/4321.job"
 }
 ```
+
+
 - `pathname_from` : 변경 전 파일 경로
 - `pathname_to` : 변경 후 파일 경로
 
 ### response-body
 
 |HTTP Status|description|
-|:---|:---|
+|:---:|:---|
 |`200`| 이름 변경 완료 |
 |`400`| 변경하려는 타겟 파일이 존재하지 않음 |
 
-
 ### 사용 예
-
-<blockquote>
 
 ```python
 request url:
@@ -2708,9 +3060,11 @@ hi6
         `-- 0001.job   ->   4321.job
 ```
 
-</blockquote>
+</div>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -2732,35 +3086,44 @@ print(f"response: {rename_file()}")
 ```sh
 $python test.py
 response: 200
-```## 8.2.2 `mkdir`
+```
+
+</div>## 8.2.2 `mkdir`
+
+
 
 ### 설명
 
-- `POST` : 타겟 경로에 디렉토리를 생성합니다.
+- `POST` : 타겟 경로에 디렉토리를 생성합니다.  
 
 ### path-parameter
+
+<div style="width: fit-content;">
 
 ```python
 GET /file_manager/mkdir
 ```
 
+
 ### request-body
 
 |key|value|description|
-|:---|:---|:---|
+|:---:|:---:|:---:|
 |`path`|`str`|디렉토리를 생성할 위치|
+
+</div>
 
 ### response-body
 
+<div style="width: fit-content;">
+
 |HTTP Status|description|
-|:---|:---|
+|:---:|:---|
 |`200 OK`| 타겟 위치에 디렉토리 생성 완료 |
 |`500 Internal Server Error`| 타겟 위치에 디렉토리 이름이 중복되는 경우 |
 
 
 ### 사용 예
-
-<blockquote>
 
 ```python
 request url:
@@ -2779,11 +3142,12 @@ hi6
     |   `-- special    <- target
     `-- hi6_proj.json
 ```
+</div>
 
-
-</blockquote>
 
 Python Script 예시
+
+<div style="width: fit-content;">
 
 ```python
 # test.py
@@ -2804,13 +3168,17 @@ print(f"response: {post_mkdir()}")
 ```sh
 $python test.py
 response: 200
-```## 8.2.3 `files`
+```
+</div>## 8.2.3 `files`
 
 ### 설명
 
 - `POST` : 타겟 경로에 파일을 전송합니다.
 
 ### path-parameter
+
+
+<div style="width: fit-content;">
 
 ```python
 POST /file_manager/files/{target_filepath}
@@ -2827,14 +3195,15 @@ POST /file_manager/files/{target_filepath}
 
 ### response-body
 
+<div style="width: fit-content;">
+
 |HTTP Status|description|
-|:---|:---|
+|:---:|:---|
 |`200 OK`| 전송 완료 |
 
+</div>
 
 ### 사용 예
-
-<blockquote>
 
 ```text
 hi6
@@ -2849,7 +3218,7 @@ request url:
 POST /file_manager/files/project/jobs/test.job
 ```
 
-</blockquote>
+</div>
 
 Python Script 예시
 
@@ -2880,6 +3249,8 @@ response: 200
 ```## 8.3 file_manager/delete
 
 - 제어기의 파일 정보에 대한 DELETE 요청을 보냅니다.## 8.3.1 `files`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -2935,7 +3306,8 @@ print(f"response: {delete_file()}")
 ```sh
 $python test.py
 response: 200
-```# 9.task
+```
+</div># 9.task
 
 - 태스크와 관련된 내용들을 다룹니다.
 - 특정 태스크나 전체 태스크에 대해서 리셋을 할 수 있습니다.
@@ -2947,6 +3319,8 @@ response: 200
 
 - 태스크와 관련된 정보에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 9.2.1 `task/cur_prog_cnt`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -3001,35 +3375,44 @@ print(post_cur_prog_cnt())
 ```sh
 $python python test.py
 {'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
-```## 9.2.2 `task/reset`
+```
+</div><link rel="stylesheet" href="../../_assets/style.css">
+
+## 9.2.2 `task/reset`
+
+<div style="width: fit-content;">
 
 ### 설명
 
-- `POST` : 태스크에 대해 리셋을 수행합니다. (R.. 0 ENTER 와 같은 동작)
+- `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
+- [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code)를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+    R코드 0 이외의 코드는 예정된 동작이 아닙니다.
+</span>
+ 
 
 ### path-parameter
 
 ```python
 # reset all the tasks
-POST /project/context/tasks/reset 
-
-# reset the selected task
-POST /project/context/tasks[{task index}]/reset 
+POST /project/service/r_code/execute
 ```
 
 ### request-body
 
 ```json
-{}
+{"code": 0}
 ```
 
 ### 사용 예
 
-0번 태스크 리셋 하기.
-
 ```python
 request url:
-GET /project/context/tasks[0]/reset
+POST /project/service/r_code/execute
+
+request-body:
+{
+    "code":0
+}
 ```
 
 Python Script
@@ -3037,22 +3420,28 @@ Python Script
 ```python
 import requests
 
-def post_task_reset() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/reset'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+def post_rcode_0() -> int:
+    base_url = "http://192.168.1.150:8888"
+    path_parameter = "/project/service/r_code/execute"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"code": 0}
 
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
     return response.status_code
 
-print(f"response: {post_task_reset()}")
+
+print(f"response: {post_rcode_0()}")
+
 ```
 ```sh
 $python test.py
 response: 200
-```## 9.2.3 `assign_var_expr`
+```
+
+</div>## 9.2.3 `assign_var_expr`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -3137,7 +3526,11 @@ $python test.py
 before: 1234
 response: 200
 after: 777   
-```## 9.2.4 `assign_var_json`
+```
+
+</div>## 9.2.4 `assign_var_json`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -3227,7 +3620,11 @@ $python test.py
 before: 1234
 response: 200
 after: {'_type': 'JObject', 'test': 10}
-```## 9.2.5 `release_wait`
+```  
+
+</div>## 9.2.5 `release_wait`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -3281,7 +3678,11 @@ print(f"response: {post_release_wait()}")
 ```sh
 $python test.py
 response: 200
-```## 9.2.6 `set_cur_pc_idx`
+```
+
+</div>## 9.2.6 `set_cur_pc_idx`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -3334,7 +3735,10 @@ print(f"response: {set_cur_pc_idx()}")
 ```sh
 $python test.py 
 response 200 # + TP 상 커서 위치 변경 됨
-```## 9.2.7 `solve_expr`
+```
+</div>## 9.2.7 `solve_expr`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -3451,7 +3855,10 @@ $python test.py
 1234
 10
 1000
-```## 9.2.8 `execute_move`
+```
+</div>## 9.2.8 `execute_move`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -3523,7 +3930,9 @@ Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
 Status code: 200
 Request 3: Sending pose [0, 90, 0, 0, 0, 0]
 Status code: 200
-``````# 10. console
+``````  
+
+</div># 10. console
 
 - Hi6 제어기 S/W 의 CLI 명령어를 사용할 수 있습니다.
 - 로봇언어로 할 수 있는 다양한 동작을 수행할 수 있습니다.
@@ -3533,14 +3942,16 @@ Status code: 200
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 10.2 console/post
 
 - 로봇 명령문 실행과 관련된 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 10.2.1 `execute_cmd`
+- API 별로 정확한 request-body 를 작성해야합니다.<div style="width: fit-content;">
+
+## 10.2.1 `execute_cmd`
 
 
 ### 설명
 
 - 지원 버전 : `60.28-00` &uparrow;
-- `POST` : Hi6 제어기의 콘솔 명령어를 실행합니다.  
-- [CLI 로봇 언어 명령어](../.././99-schema/robotlang.md)를 수행할 수 있습니다.  
+- `POST` : Hi6 제어기의 콘솔 명령어를 실행합니다.    
+- [CLI 로봇 언어 명령어 형식](../.././99-schema/robotlang.md)에 따른 명령을 수행할 수 있습니다.  
 
 ### path-parameter
 
@@ -3559,7 +3970,13 @@ POST /console/execute_cmd
 ### response-body
 
 - 200 : 요청 성공  
-	- [CLI 로봇 언어 명령어](../.././99-schema/robotlang.md) 규칙 적용 필요  
+	- 로봇 언어 명령어 규칙을 벗어난 경우 아래와 같이 ecode 1이 반환됩니다.
+		<div style = "width: fit-content;">  
+		
+		```python
+		{'_type': 'JObject', 'ecode': 1}
+		```
+		</div>
 - 400 : 요청 실패  
 	- request body 가 유효성 검사에서 실패한 경우  
 - 403/4 : 요청 실패  
@@ -3570,7 +3987,7 @@ POST /console/execute_cmd
 </blockquote>
 
 Python Script 예시
-- `모터온`, `자동모드` 상태에서 하기 명령어 수행 가능
+- `모터온` 이후 `원격모드` 상태에서 하기 명령어 수행 가능
 - 현재 로봇 축 수에 맞춰서 move 문 입력 시 수행 가능
 
 ```python
@@ -3628,7 +4045,9 @@ response: <Response [200]>
 response: <Response [200]>
 response: <Response [200]>
 response: 200
-```# 11. etc
+```
+
+</div># 11. etc
 
 - 시스템 버전, 이벤트 로그, 클럭 등을 다루고 있습니다.# 11.1 clock
 
@@ -3636,6 +4055,8 @@ response: 200
 
 - 제어기 시스템 시간 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 11.1.1.1 `date_time`
+
+<div style="width: fit-content;">
 
 ### 설명
 
@@ -3687,10 +4108,13 @@ print(get_system_time())
 ```sh
 $python test.py
 [11/20] 19:55
-```## 11.1.2 clock/put
+```
+</div>## 11.1.2 clock/put
 
 - 제어기 시스템 시간 대한 PUT 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 11.1.2.1 `date_time`
+
+<div style = "width: max-content">  
 
 ### 설명
 
@@ -3701,8 +4125,6 @@ $python test.py
 - [시스템 시간 정보](../../../99-schema/date_time.md)
 
 ### 사용 예
-
-<blockquote>
 
 ```python
 request url:
@@ -3718,7 +4140,6 @@ request-body:
     "sec": 0
 }
 ```
-</blockquote>
 
 Python Script 예시
 
@@ -3738,10 +4159,12 @@ def put_system_time() -> int:
 
 print(f"response: {put_system_time()}")
 ```
+
 ```sh
 $python test.py
 response: 200
-```# 7. 스키마 (schema)
+```
+</div># 7. 스키마 (schema)
 
 이 챕터는 Open API에서 사용되는 각종 열거자(enumeration)와 구조체(structure)의 참조자료(reference)를 담고 있습니다.
 
@@ -3749,7 +4172,10 @@ response: 200
 
 ### 설명
 
-좌표계 (coordinate system)를 지정하는 열거자 (enumeration) 입니다.
+좌표계 (coordinate system)를 지정하는 열거자 (enumeration) 입니다.  
+
+<div style="width: fit-content;">  
+
 |value|description|
 |:---:|:---|
 |`-1`|`다음` 좌표계|
@@ -3757,10 +4183,13 @@ response: 200
 |`1`|`직교` 좌표계(=`로봇` 좌표계)|
 |`2`|`사용자` 좌표계|
 |`3`|`툴` 좌표계|
-## cur_prog_cnt
+
+</div>## cur_prog_cnt
 
 ### 설명
 태스크의 현재 프로그램 카운터를 설정합니다.
+
+<div style="width: fit-content;">  
 
 ### request body
 |key|type|description|
@@ -3770,14 +4199,22 @@ response: 200
 |`fno`|int|펑션 번호 (-1이면 현재 번호 유지)|
 |`ext_sel`|int|`0` : 내부선택(원격모드에선 금지됨) <br> `1` : 외부선택(원격모드에서만 허용됨)|
 
+</div>
+
+<div style="width: fit-content;">  
+
 ### response body
 |key|type|description|
 |:---|:---|:---|
 |`sno_new`|int|새로 이동한 스텝 번호|
 |`fno_new`|int|새로 이동한 펑션 번호|
-|`ln_new`|int|새로 이동한 라인번호 (프로그램 헤더가 0, 첫 명령문이 1)|## date_time
+|`ln_new`|int|새로 이동한 라인번호 (프로그램 헤더가 0, 첫 명령문이 1)|
+
+</div>## date_time
 
 ### 설명
+
+<div style="width: fit-content;">  
 
 시스템 시간 관련 정보를 나타냅니다.
 |value|type|description|
@@ -3788,11 +4225,14 @@ response: 200
 |"hour"|`int`|현재 시스템의 시|
 |"min"|`int`|현재 시스템의 분|
 |"sec"|`int`|현재 시스템의 초|
-## file_info
+
+</div>## file_info
 
 ### 설명
 
 파일 정보 요청 시 반환되는 파라미터 입니다.
+
+<div style="width: fit-content;">  
 
 |key|type|description|
 |:---:|:---|:---|
@@ -3807,9 +4247,12 @@ response: 200
 |sec|`int`| 파일이 수정된 `초` |
 |is_dir|`bool`| 현재 파일이 디렉토리인지 확인 |
 |readonly|`bool`| 읽기 전용 파일 여부 확인 |
-## jobs_info
+
+</div>## jobs_info
 
 ### 설명
+
+<div style="width: fit-content;">  
 
 job 파일 정보 파라미터 입니다.
 
@@ -3820,7 +4263,8 @@ job 파일 정보 파라미터 입니다.
 |n_step|`int`|스텝 개수|
 |n_total_ax|`int`|총 축 수|
 |n_aux_ax|`int`|부가축 수|
-## mechinfo
+
+</div>## mechinfo
 
 ### 설명
 
@@ -3838,17 +4282,22 @@ job 파일 정보 파라미터 입니다.
 
 ### 사용 예
 
+<div style="width: fit-content;">  
+
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0
 # 메커니즘 M0, M1, M4를 지정합니다.
 ```
-## op_cnd
+
+</div>## op_cnd
 
 ### 설명
 op_cnd (operation condition) : 로봇의 조건설정 값입니다.  
 TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 있습니다.
 
 <br>
+
+<div style="width: fit-content;">  
 
 |key|value|description|
 |:---|:---|:---|
@@ -3863,9 +4312,13 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 |ucrd_num|`0` ~ `20`|사용자 좌표계 지정|
 |plc_mode|`0` : Off -> Stop <br> `1` : Stop -> Remote Stop <br> `2` : Remote Stop -> Remote Stop <br> `3` : Remote Run -> Remote Stop <br> `4` : Run -> Off|PLC 동작 모드|
 
+</div>
+
 <br>
 
 ### 예 (example)
+
+<div style="width: fit-content;">  
 
 ```python
 {
@@ -3882,11 +4335,14 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
     "plc_mode": 4
 }
 ```
-## Pose
+
+</div>## Pose
 
 ### 설명
 
 포즈(pose) 데이터입니다.
+
+<div style="width: fit-content;">  
 
 |key|description|
 |:---|:---|
@@ -3901,3 +4357,5 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 |mechinfo|[메커니즘정보](./mechinfo.md)|
 |nsync|센서동기 값의 개수 (0~2)|
 |sync|센서동기 값 (문자열). e.g. `"sync(220.5,195.3)"`|
+
+</div>

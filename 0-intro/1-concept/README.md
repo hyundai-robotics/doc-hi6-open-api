@@ -27,16 +27,6 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 ### 시작하기 전에 꼭 확인하세요!
 
-{% hint style="caution" %}
-
-Hi6는 HTTP/1.1을 사용하며, HTTP/1.1에서는 close 방식의 비효율성을 개선한 [Persistent Connection이 기본 동작 방식](https://datatracker.ietf.org/doc/html/rfc2616#section-8)입니다.
-
-매 요청마다 close 방식으로 새로운 TCP 연결이 생성될 경우, Hi6 시스템에 불필요한 부하가 발생해 성능 저하 및 심각한 혼잡을 초래할 수 있습니다.
-
-반복적인 API 요청에는 Keep-Alive 연결 방식을 적극 권장합니다.
-
-{% endhint %}
-
 * 현재 문서는 Hi6 Open API 스키마 버전 `5`를 기준으로 작성되었습니다. [API](../../2-version/1-get/1-api_ver.md) 를 통해 확인 가능합니다.
 
 * HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`1.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`1.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
