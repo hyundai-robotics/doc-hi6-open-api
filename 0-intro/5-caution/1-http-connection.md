@@ -1,4 +1,4 @@
-﻿## 1. Precautions for API Communication
+﻿## 1. Keep-Alive vs Close connection
 
 {% hint style="caution" %}
 
@@ -10,7 +10,7 @@ If your application involves frequent API calls, please follow the instructions 
 
 <br>
 
-#### 1-1. Keep-Alive vs. Close Connection
+#### 1-1. Comparing Two HTTP Connection Methods
 
 <div style="max-width: fit-content">
 

@@ -8,4 +8,4 @@ Please ensure you fully understand these items before using the API.
 
 #### Table of Contents
 
-1. [HTTP Connection](./1-http-connection.md)
+1. [Keep-Alive vs Close connection](./1-http-connection.md)
