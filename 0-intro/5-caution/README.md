@@ -8,4 +8,4 @@
 
 #### 목차
 
-1. [http connection](./1-http-connection.md)
+1. [Keep-Alive vs Close connection](./1-http-connection.md)

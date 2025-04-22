@@ -9,7 +9,7 @@
 
 <br>
 
-#### 1-1. Keep-Alive 연결 vs Close 연결
+#### 1-1. Http 연결 방식 비교
 
 <div style="max-width: fit-content">
 
