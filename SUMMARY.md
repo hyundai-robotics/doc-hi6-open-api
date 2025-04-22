@@ -11,7 +11,7 @@
     * [0.4.1 postman 에서 POST 요청하기](0-intro/4-api-test/1-postman.md)
     * [0.4.2 웹브라우저에서 API 호출하기](0-intro/4-api-test/2-web-browser.md)
   * [0.5 시작 전 주의사항](0-intro/5-caution/README.md)
-    * [0.5.1 http connection 방식 - close vs Keep-Alive](0-intro/5-caution/1-http-connection.md)
+    * [0.5.1 Keep-Alive vs Close connection](0-intro/5-caution/1-http-connection.md)
 
 * [1. release note](1-release-note/README.md)
   * [60.30-00](1-release-note/60-30.md)
