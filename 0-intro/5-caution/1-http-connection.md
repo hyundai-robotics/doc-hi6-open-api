@@ -1,6 +1,4 @@
-﻿# API 통신 시 주의 사항
-
-## 1. http connection
+﻿## 1. API 통신 시 주의 사항
 {% hint style="caution" %}
 
 로봇 제어기의 경우, close 연결 방식으로 API 요청이 반복적으로 이뤄지면 cpu 부하가 발생하여 로봇이 정지되는 에러가 발생할 수 있습니다.
@@ -67,7 +65,7 @@
 	```
 	</div>
 - 패킷 캡쳐 비교<br>
-	<img src="../../_assets/08_packet_compare.png" style="max-width: 80vw;">
+	<img src="../../_assets/08_packet_compare.png" style="max-width: 80vw;"><br>
 	좌) Keep-Alive, 우) Close
 
 <br><br>
