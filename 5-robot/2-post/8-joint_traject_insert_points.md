@@ -95,9 +95,9 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ### 사용 예
 
-#### 예시1. 정지 상태에서 궤적 요청하기
+**예시1. 정지 상태에서 궤적 요청하기**
 
-<img src="../../_assets/09_online_trajectory_insert_points_single.png" style="max-height: 350px;">
+<img src="../../_assets/09_online_trajectory_insert_points_single.png" style="max-height: 280px;">
 
 1) 정지 후 궤적을 요청을 할 때는 [joint_traject_init](./7-joint_traject_init.md) api를 활용하여 기존 궤적이 저장된 버퍼를 초기화합니다.
 2) 궤적을 요청하기 전, 프로그램이 실행 중인지 확인하고 남아있는 버퍼의 수를 확인합니다.
@@ -109,9 +109,9 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 <br>
 
-#### 예시2. 불연속 모션으로 궤적 요청하기 (궤적과 궤적 사이 정지 시간이 존재)
+**예시2. 불연속 모션으로 궤적 요청하기 (궤적과 궤적 사이 정지 시간이 존재)**
 
-<img src="../../_assets/10_online_trajectory_insert_points_two.png" style="max-height: 350px;">
+<img src="../../_assets/10_online_trajectory_insert_points_two.png" style="max-height: 240px;">
 
 1) 예시1 의 조건들에 맞춰 traj1 과 traj2 를 요청해야합니다.
 2) 하기 사항에 유의하십시오.
@@ -120,7 +120,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 <br>
 
-#### 예시3. 연속 모션으로 궤적 요청하기
+**예시3. 연속 모션으로 궤적 요청하기**
 
 <img src="../../_assets/11_online_trajectory_insert_points_continuous.png" style="max-height: 350px;">
 
