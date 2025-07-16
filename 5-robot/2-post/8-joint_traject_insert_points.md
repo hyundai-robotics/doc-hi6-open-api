@@ -1,29 +1,32 @@
 ﻿## 5.2.8 `joint_traject_insert_points`
 
-### 설명
+### Description
 
-- 지원 버전 : `61.00-00` &uparrow;
-- `POST` : 복수 개의 joint trajectory 포인트를 제어기 내부 버퍼에 저장하여 모션에 반영합니다.
+- Supported version : `61.00-00` &uparrow;
+- `POST` : Sends a trajectory composed of multiple points to the robot controller.
+  - Multiple joint trajectory points are stored in the controller’s internal buffer and reflected in the robot’s motion.
 
 ---
 
-### 주의 사항
+### Caution
 
-1. **프로그램이 <u>실행 중인</u> 상태**에서만 본 API가 동작합니다.
-   - ex) job 프로그램에 "wait di1" 와 같은 구문을 자동모드에서 실행한 상태로 api 요청
-   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/hi6/ko/E01554) 에러가 발생합니다.
+1. This API is functional only while the program is in a <u>running state</u>.
+   - ex) The API only works when the program is being played back in automatic mode.
+   - If the request is made without satisfying this condition, the system will return the error.  
+	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/hi6/en/E01554)"
 
-2. 한 번에 POST 가능한 궤적의 최대 포인트 수는 <u>**2048개**</u>입니다.
-   - 궤적의 포인트를 저장하는 <u>**버퍼의 최대 크기가 2048**</u>입니다.
+2. The maximum number of trajectory points that can be POSTed at once is **<u>2048</u>**.
+   - The buffer for storing trajectory points has a maximum size of **<u>2048</u>**.
 
-3. 요청된 궤적의 포인트들은 모션에 반영되기 전까지 사라지지 않으며 해당 위치로 도달할 때까지 로봇이 움직입니다.
-   - [joint_traject_init](./7-joint_traject_init.md) api 로 버퍼를 강제로 초기화하지 않는 이상 모션 수행 전까지 버퍼의 궤적은 유지됩니다.
+3. The requested trajectory points are not discarded until they are reflected in the motion, and the robot continues to move until it reaches the corresponding positions.
+   - The trajectory in the buffer remains intact until motion execution, unless it is explicitly cleared by the [joint_traject_init](./7-joint_traject_init.md) api.
 
-4. 궤적에 따라 [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159) 에러가 발생할 수 있으며, 해당 에러가 발생하면 로봇은 정지합니다.
+4. Depending on the trajectory, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/hi6/en/E159)" error may occur. If this error occurs, the robot will stop.
 
-5. 해당 API 는 <u>**2개 이상**</u>의 포인트들로 구성된 궤적에 대해서 처리합니다.
+5. This API handles trajectories that consist of **<u>two or more points</u>**.
 
-6. 부가축 사용 시, 축 좌표 값의 단위에 유의하시기 바랍니다.
+6. When using additional axes, please pay attention to the **<u>units of the axis coordinate values</u>**.
+
 ---
 
 ### path-parameter
@@ -39,12 +42,13 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 <div style="width: fit-content;">
 
-- 	|               키 값 |       타입      | 설명                          | 비고                                           |
+- 	|               Key |       Type      | Description                          | Remarks                                           |
 	| ----------------: | :-----------: | --------------------------- | -------------------------------------------- |
-	|     `joint_names` | array(string) | 궤적 대상 joint 이름 리스트          | ex) 6축, `"j1"` \~ `"j6"` 형식, **순서까지 정확히 기입** |
-	|          `points` |     object({})    | 실행될 trajectory 포인트 목록       | key: `"point_n"`, n은 1부터 시작, **2개 이상 필수**    |
-	|       `positions` | array(double) | 각 joint의 목표 위치<br>(radian, **<u>부가축은 축좌표 단위 고려</u>**) | 현재 축 수만큼 위치를 선정하여 요청해야 함 |
-	| `time_from_start` |     number    | 해당 포인트의 시작 시간 (초 단위)        | `0.0 이상`, **이전 포인트보다 커야 함**          |
+	|     `joint_names` | array(string) | List of joint names for the trajectory          | e.g., for a 6-axis robot: "j1" to "j6", **order must be exact** |
+	|          `points` |     object({})    | List of trajectory points to execute      | 	Keys: "point_n", where n starts from 1. **at least 2 points are required**   |
+	|       `positions` | array(double) | Target positions for each joint<br>(expressed in radians, for **additional axes, be mindful of the coordinate unit**)| Positions must be specified according to the current number of joints. |
+	| `time_from_start` |     number    | Start time of the point (in seconds) | Must be **<u>0.0</u>** or **<u>greater</u>**, and greater than the previous point. |
+
 
 </div>
 
@@ -67,89 +71,92 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ### response-body
 
-- 200: 요청 성공
-- 403: 요청 실패
-  - 서비스 되지 않는 API 에 대해서 요청을 한 경우
+- 200: Request succeeded
+- 403: Request failed
+  - Returned when calling an unsupported API
 
 ### error code (response 403)
 
 <div style="width: fit-content;">
 
-- 	| 에러코드     | 에러 상수명                   | 설명                                             |
+- 	| error code     | Error constant name     | Description                                           |
 	| ---------- | --------------------------- | ----------------------------------------------------- |
-	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | joint\_names 필드가 누락된 경우 |
-	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | joint\_name 형식이 잘못되거나("x1"), 요청한 축들의 수가 현재 로봇 축수와 일치하지 않거나, joint 이름 표기 순서 오류(["j1", "j3", "j2", ... ,"j6"]) |
-	| `-4`       | `ERR_TOO_MANY_JOINTS`       | 현재 로봇이 7축 이상인 경우                                       |
-	| `-5`       | `ERR_MISSING_POINTS`        | points 필드가 누락된 경우                                       |
-	| `-6`       | `ERR_INVALID_POINTS`        | points 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등) |
-	| `-7`       | `ERR_TOO_FEW_POINTS`        | 궤적의 포인트 개수가 2개 미만인 경우                                |
-	| `-8`       | `ERR_TOO_MANY_POINTS`       | 허용 가능한 포인트 개수 2048개를 초과하여 궤적을 요청한 경우            |
-	| `-9`       | `ERR_POINTS_EXCEED_BUFFER`  | 현재 비어있는 버퍼공간보다 많은 포인트로 이루어진 궤적을 요청한 경우          |
-	| `-10`      | `ERR_INVALID_POINT_OBJECT`  | point\_n 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등)  |
-	| `-11`      | `ERR_MISSING_POSITIONS`     | positions 필드가 누락된 경우                     |
-	| `-12`      | `ERR_INVALID_POSITIONS`     | positions 가 배열이 아니거나, position 값이 number가 아니거나, 길이가 축 수와 일치하지 않거나 |
-	| `-13`      | `ERR_MISSING_TIME`          | time\_from\_start가 누락된 경우         |
-	| `-14`      | `ERR_INVALID_TIME`          | time\_from\_start가 number가 아니거나, time\_from\_start가 0보다 작거나, 움직이는 상태에서 이전 값보다 작은 값을 요청한 경우 |
+	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | If the joint_names field is missing |
+	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | If the joint_name format is invalid (e.g., "x1"), the number of requested joints does not match the robot's current number of joints, or the joint names are in the wrong order (e.g., ["j1", "j3", "j2", ..., "j6"]) |
+	| `-4`       | `ERR_MISSING_POINTS`        | If the points field is missing |
+	| `-5`       | `ERR_INVALID_POINTS`        | If the value of points is not an object (i.e., not a Python dictionary), such as an integer or a string |
+	| `-6`       | `ERR_TOO_FEW_POINTS`        | If the number of trajectory points is less than 2 |
+	| `-7`       | `ERR_TOO_MANY_POINTS`       | If a trajectory is requested with more than the allowed 2048 points |
+	| `-8`       | `ERR_POINTS_EXCEED_BUFFER`  | If a trajectory is requested with more points than the currently available buffer space |
+	| `-9`      | `ERR_INVALID_POINT_OBJECT`  | If the value of point_n is not an object (i.e., not a Python dictionary, e.g., an integer or a string) |
+	| `-10`      | `ERR_MISSING_POSITIONS`     | If the positions field is missing |
+	| `-11`      | `ERR_INVALID_POSITIONS`     | If positions is not an array, contains non-numeric values, or its length does not match the number of joints |
+	| `-12`      | `ERR_MISSING_TIME`          | If time_from_start field is missing        |
+	| `-13`      | `ERR_INVALID_TIME`          | If time_from_start is not a number, is less than 0, or is smaller than the previous value while the robot is in motion |
 
 </div>
 
-### 사용 예
+### Example
 
-**예시1. 정지 상태에서 궤적 요청하기**
+**Ex1. Requesting a trajectory while the robot is at rest**
 
 <img src="../../_assets/09_online_trajectory_insert_points_single.png" style="max-height: 280px;">
 
-1) 정지 후 궤적을 요청을 할 때는 [joint_traject_init](./7-joint_traject_init.md) api를 활용하여 기존 궤적이 저장된 버퍼를 초기화합니다.
-2) 궤적을 요청하기 전, 프로그램이 실행 중인지 확인하고 남아있는 버퍼의 수를 확인합니다.
-3) 최소 **2개의 포인트**로 이루어진 궤적을 요청합니다.
-   - 시작 포인트(point_1)의 `position` 은 **현재 로봇의 위치**로 설정합니다.
-   - 시작 포인트(point_1)의 `time_from_start` 는 **0.0**으로 설정합니다.
-   - 이후 포인트들은 직전 포인트에서 이동가능한 position 과 time_from_start 를 설정하여 post 합니다.
-4) 에러가 발생하여 멈춘 경우, 재시작 시 joint_traject_init 으로 초기화를 진행 후 1-3의 과정을 진행합니다.
+1) When requesting a trajectory after the robot has stopped, use the [joint_traject_init](./7-joint_traject_init.md) api to clear the buffer that contains the previous trajectory.
+2) Before requesting a trajectory, check whether the program is running and ensure there is available buffer.
+3) Request a trajectory consisting of **at least two points**.
+   - Set the `position of the starting point` (point_1) to the **current position** of the robot.
+   - Set the `time_from_start of the starting point` (point_1) to **0.0**.
+   - Subsequent points should be configured with positions and time_from_start values that are reachable from the previous point before being posted.
+4) If the robot stops due to an error, restart by initializing with joint_traject_init, then proceed with steps 1 to 3.
 
 <br>
 
-**예시2. 불연속 모션으로 궤적 요청하기 (궤적과 궤적 사이 정지 시간이 존재)**
+**Ex2. Requesting a trajectory with discontinuous motion (includes stop time between trajectories)**
 
 <img src="../../_assets/10_online_trajectory_insert_points_two.png" style="max-height: 240px;">
 
-1) 예시1 의 조건들에 맞춰 traj1 과 traj2 를 요청해야합니다.
-2) 하기 사항에 유의하십시오.
-   - traj2 의 P1 의 positions == traj1 의 Pn 의 positions
-   - traj2 의 P1 의 time_from_start 는 0.0 이어야합니다.
+1) You must send traj1 and traj2 according to the conditions specified in Example 1.
+2) Please note the following:
+   - positions of P1 in traj2 must be equal to the positions of Pn in traj1.
+   - time_from_start of P1 in traj2 must be 0.0.
 
 <br>
 
-**예시3. 연속 모션으로 궤적 요청하기**
+**Ex3. Requesting a trajectory with continuous motion**
 
 <img src="../../_assets/11_online_trajectory_insert_points_continuous.png" style="max-height: 350px;">
 
-1) 예시1 의 조건들에 맞춰서 traj1 을 요청합니다.
-2) Pn-1 의 위치로 로봇이 이동 중일 때 하기 사항에 유의하여 traj2 를 요청해야합니다.
-   - traj1 의 Pn 과 traj2 의 P1 은 로봇이 자연스럽게 연속해서 이동가능하도록 설정해야합니다.
-     - traj2 의 P1 의 time_from_start 는 traj1 의 마지막 포인트 Pn 의 Δ(>0) 만큼 누적 증가된 값이어야 합니다.
-     - traj2 의 P1 의 position 는 traj1 의 Pn 에서 Δ 동안 이동 가능한 위치여야 합니다.
-   - 자연스럽게 이어지지 않는 궤적을 연속해서 요청하는 경우, [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159) 에러가 발생할 수 있습니다.
+1) Send traj1 according to the conditions specified in Example 1.
+2) While the robot is moving toward the position of Pn-1, you must send traj2 with attention to the following conditions.
+   - Pn of traj1 and P1 of traj2 must be configured so that the robot can move between them smoothly and continuously.
+     - The time_from_start of P1 in traj2 must be a cumulative value that is Δ (> 0) greater than the time_from_start of the last point Pn in traj1.
+     - The position of P1 in traj2 must be reachable from Pn of traj1 within the time interval Δ.
+   - If trajectories that cannot be followed continuously are requested in succession, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/hi6/en/E159)" error may occur.
 
 <div style="width: fit-content;">
 
 <br>
 
-#### Python Script 예시
+#### Python Script Example
 
-- 로봇 기준자세(6축 기준, [0,90,0,0,0,0] 로 이동)
-- 아래 0001.job 을 생성하여 자동모드에서 실행하여 프로그램 재생 상태로 진입합니다.
+- Move the robot to its default pose (based on a 6-axis configuration, [0, 90, 0, 0, 0, 0])
+- Create and `play` the following 0001.job in `automatic mode` to enter the program play state.
 - 0001.job
 	```job
 	Hyundai Robot Job File; { version: 1.6, mech_type: "-1()", total_axis: -1, aux_axis: -1 }
 	  > wait di1
 		end
 	```
-- 테스트 스크립트 실행 (예시3. 두 개의 궤적을 연속 모션으로 요청하기)
+- Run the test script (Example 3: Requesting two trajectories in continuous motion)
 
 	```
-	조건1. traj_2 의 point_1 의 time_from_start 는 traj_1 의 point_2 에서 Δ(>0) 만큼 누적 증가된 값
-	조건2. traj_2 의 point_1 의 positions 는 traj_1 의 point_2 에서 Δ 동안 이동 가능한 위치
+	Condition 1)
+	The `time_from_start` of `point_1` in `traj_2` must be a cumulative value that is Δ (> 0) greater than `point_2` in `traj_1`.
+
+	Condition 2)
+	The `positions` of `point_1` in `traj_2` must be reachable from `point_2` in `traj_1` within the time interval Δ.
+
 	```
 
 	```python
@@ -309,11 +316,14 @@ POST /project/robot/trajectory/joint_traject_insert_points
 		base_url = f"http://192.168.1.150:8888"
 
 		while True:
+			# Initialize the buffer when requesting a trajectory from a stopped state
 			post_init_trajectories(base_url)
+
+			# Post trajectories consecutively
 			ret = post_trajectories(base_url, trajectories_go)
-			time.sleep(1) # 1초 후 연속적으로 궤적을 post
+			time.sleep(1)
 			ret = post_trajectories(base_url, trajectories_back)
-			time.sleep(8) # 최종 time_from_start 를 고려하여 1초를 더한 8초로 설정
+			time.sleep(8)
 
 	```
 
