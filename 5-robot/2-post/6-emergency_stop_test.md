@@ -14,6 +14,9 @@ POST /project/robot/emergency_stop_test
 ```
 
 ### request-body
+
+  <div style="max-width:fit-content">
+
 -  |key|type|contents|validation|
 	|---|---|---|---|
 	|`step_no`| int | Target step number for emergency stop, within the total step number of the current job | 1 ~ 999 |
@@ -27,6 +30,8 @@ POST /project/robot/emergency_stop_test
 	&rightarrow;  Acts as if the emergency stop button is pressed. The motor turns off after stopping.   
 - `2: Pause`  
 	&rightarrow;  Temporarily stops the robot motion. The motor does not turn off after stopping.  
+
+</div>
 
 ### status code
 
