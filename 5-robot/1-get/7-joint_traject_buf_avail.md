@@ -17,10 +17,10 @@ GET /project/robot/trajectory/joint_traject_buf_avail
 
 - val: Number of available buffer slots (maximum: 2048)
 
-응답 코드
-- 200: Request succeeded
-- 403: Request failed
-  - Returned when calling an unsupported API
+### status code
+  - 200 : Request succeeded
+  - 403 : Request failed
+    - Returned when calling an unsupported API
 
 ### Example
 
@@ -35,7 +35,7 @@ response-body:
 ```
 </div>
 
-Python Script 예시
+Python Script Example
 
 <div style="width: fit-content;">
 

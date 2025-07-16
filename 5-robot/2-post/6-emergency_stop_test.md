@@ -28,7 +28,7 @@ POST /project/robot/emergency_stop_test
 - `2: Pause`  
 	&rightarrow;  Temporarily stops the robot motion. The motor does not turn off after stopping.  
 
-### response-body
+### status code
 
 - 200 : Request successful    
 - 400 : Request failed     

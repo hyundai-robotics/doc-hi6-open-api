@@ -18,12 +18,10 @@ POST /file_manager/files/{target_filepath}
 
 - `Content-Type` must be `application/octet-stream`.
 
-## response-body
+## status code
 
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`| Transfer completed |
-
+- 200 : Request succeeded
+  - Transfer completed
 
 ## Example
 

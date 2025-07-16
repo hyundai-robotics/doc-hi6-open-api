@@ -21,12 +21,12 @@ POST /file_manager/rename_file
 - `pathname_from` : File path before change
 - `pathname_to` : File path after change
 
-## response-body
+## status code
 
-|HTTP Status|description|
-|:---|:---|
-|`200`| Works fine. |
-|`400`| No file exists to rename. |
+- 200 : Request succeeded
+  - Works fine
+- 400 : Request failed
+  - No file exists to rename
 
 
 ## Example

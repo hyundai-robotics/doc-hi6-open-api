@@ -21,7 +21,7 @@ POST /project/context/tasks[{task index}]/execute_move
 }
 ```
 
-### response-body
+### status code
 
 - 200 : Request successful   
 - 400 : Request failed    

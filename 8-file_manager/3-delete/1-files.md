@@ -10,11 +10,10 @@
 DELETE /file_manager/files/{target-filepath}
 ```
 
-### response-body
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`| Target deletion completed, 200 returned even if there is no target |
+### status code
 
+- 200 : Request succeeded
+  - Target deletion completed
 
 ### Example
 

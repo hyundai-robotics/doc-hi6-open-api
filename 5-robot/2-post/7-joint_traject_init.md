@@ -30,10 +30,10 @@ POST /project/robot/trajectory/joint_traject_init
 </div>
 
 
-### response-body
+### status code
 
-- 200: Request succeeded
-- 403: Request failed
+- 200 : Request succeeded
+- 403 : Request failed
   - Returned when calling an unsupported API
   - `err_code` (<0): Initialization failed
 

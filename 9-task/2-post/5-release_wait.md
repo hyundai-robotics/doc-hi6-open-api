@@ -17,10 +17,11 @@ POST /project/context/tasks[0]/release_wait
 {}
 ```
 
-### response-body
+### status code
 
-- `200` : request success
-- `403` : Failure to meet the above requirements
+- 200 : Request succeeded
+- 403 : Request failed
+  -  Failure to meet the above requirements
 
 ### Example
 

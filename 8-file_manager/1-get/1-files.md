@@ -20,13 +20,12 @@ query-parameter must be entered.
 
 - `pathname` : File name to get
 
-### response-body
+### status code
 
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`|Return file contents|
-|`404 Not Found`| Return error status code when file does not exist|
-
+- 200 : Request succeeded
+  - Return file contents
+- 403 : Request failed
+  - Return error status code when file does not exist
 
 ### Example
 

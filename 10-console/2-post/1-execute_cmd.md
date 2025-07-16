@@ -21,7 +21,7 @@ POST /console/execute_cmd
 }
 ```
 
-### response-body
+### status code
 
 - 200: Request successful  
 	- Needs to apply [CLI robot language commands](../.././99-schema/robotlang.md) rules  

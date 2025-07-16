@@ -22,10 +22,15 @@ query-parameter must be entered.
 
 ### response-body
 
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`|`true` (file exists)|
-|`200 OK`|`false` (no file exist)|
+- `true` (file exists)
+- `false` (no file exist)
+
+### status code
+
+- 200 : Request succeeded
+  - return [file information](../../99-schema/file_info) `list`
+- 404 : Request failed
+  - not allowed path-parameter
 
 
 ### Example

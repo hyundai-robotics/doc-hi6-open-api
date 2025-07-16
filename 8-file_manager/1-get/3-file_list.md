@@ -25,12 +25,12 @@ query-parameter must be entered.
 |`incl_dir`|Whether to include directories when outputting the list|
 
 
-### response-body
+### status code
 
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`|return [file information](../../99-schema/file_info) `list`|
-|`404 Not Found`| no file exists |
+- 200 : Request succeeded
+  - return [file information](../../99-schema/file_info) `list`
+- 403 : Request failed
+  - no file exists
 
 
 ### Example

@@ -18,11 +18,14 @@ GET /file_manager/mkdir
 
 ## response-body
 
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`| Directory creation completed in target location|
-|`500 Internal Server Error`| When directory names are duplicated in the target location |
+- { `path`: ${target path} }
 
+## status code
+
+- 200 : Request succeeded
+  - Directory creation completed in target location
+- 400 : Request failed
+  - When directory names are duplicated in the target location
 
 ## Example
 
