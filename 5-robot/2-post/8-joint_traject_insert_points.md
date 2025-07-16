@@ -46,7 +46,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	| ----------------: | :-----------: | --------------------------- | -------------------------------------------- |
 	|     `joint_names` | array(string) | List of joint names for the trajectory          | e.g., for a 6-axis robot: "j1" to "j6", **order must be exact** |
 	|          `points` |     object({})    | List of trajectory points to execute      | 	Keys: "point_n", where n starts from 1. **at least 2 points are required**   |
-	|       `positions` | array(double) | Target positions for each joint<br>(expressed in radians, for **additional axes, be mindful of the coordinate unit**)| Positions must be specified according to the current number of joints. |
+	|       `positions` | array(double) | Target positions for each joint expressed in radians,<br>for **additional axes, be mindful of the coordinate unit**)| Positions must be specified according to the current number of joints. |
 	| `time_from_start` |     number    | Start time of the point (in seconds) | Must be **<u>0.0</u>** or **<u>greater</u>**, and greater than the previous point. |
 
 
@@ -82,7 +82,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 - 	| error code     | Error constant name     | Description                                           |
 	| ---------- | --------------------------- | ----------------------------------------------------- |
 	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | If the joint_names field is missing |
-	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | If the joint_name format is invalid (e.g., "x1"), the number of requested joints does not match the robot's current number of joints, or the joint names are in the wrong order (e.g., ["j1", "j3", "j2", ..., "j6"]) |
+	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | If the joint_name format is invalid (e.g., "x1"), the number of requested joints does not match<br>the robot's current number of joints, or the joint names are in the wrong order.<br>(e.g., ["j1", "j3", "j2", ..., "j6"]) |
 	| `-4`       | `ERR_MISSING_POINTS`        | If the points field is missing |
 	| `-5`       | `ERR_INVALID_POINTS`        | If the value of points is not an object (i.e., not a Python dictionary), such as an integer or a string |
 	| `-6`       | `ERR_TOO_FEW_POINTS`        | If the number of trajectory points is less than 2 |
