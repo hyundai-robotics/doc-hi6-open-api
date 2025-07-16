@@ -9,9 +9,15 @@
 
 ### path-parameter
 
+
+<div style="max-width:fit-content">
+
+
 ```python
 POST /project/robot/emergency_stop_test
 ```
+
+</div>
 
 ### request-body
 
@@ -43,6 +49,8 @@ POST /project/robot/emergency_stop_test
 
 
 ### Usage Example  
+
+<div style="max-width:fit-content">
 
 ```emergency_stop_test
 POST /project/robot/emergency_stop_test
@@ -84,3 +92,5 @@ print(f"response: {emergency_stop_test()}")
 $python test.py
 response: 200
 ```
+
+</div>
