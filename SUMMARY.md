@@ -49,6 +49,7 @@
     * [5.1.4 tools](5-robot/1-get/4-tools.md)
     * [5.1.5 tools_t](5-robot/1-get/5-tools_t.md)
     * [5.1.6 emergency_stop](5-robot/1-get/6-emergency_stop.md)
+    * [5.1.7 joint_traject_buf_avail](5-robot/1-get/7-joint_traject_buf_avail.md)
   * [5.2 post](5-robot/2-post/README.md)
     * [5.2.1 motor-on](5-robot/2-post/1-motor-on.md)
     * [5.2.2 start-stop](5-robot/2-post/2-start-stop.md)
@@ -56,6 +57,8 @@
     * [5.2.4 crd_sys](5-robot/2-post/4-crd_sys.md)
     * [5.2.5 emergency_stop](5-robot/2-post/5-emergency_stop.md)
     * [5.2.6 emergency_stop_test](5-robot/2-post/6-emergency_stop_test.md)
+    * [5.2.7 joint_traject_init](5-robot/2-post/7-joint_traject_init.md)
+    * [5.2.8 joint_traject_insert_points](5-robot/2-post/8-joint_traject_insert_points.md)
 
 * [6. I/O plc](6-io_plc/README.md)
   * [6.1 get](6-io_plc/1-get/README.md)
