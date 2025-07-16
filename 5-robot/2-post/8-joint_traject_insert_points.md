@@ -79,17 +79,16 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	| ---------- | --------------------------- | ----------------------------------------------------- |
 	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | joint\_names 필드가 누락된 경우 |
 	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | joint\_name 형식이 잘못되거나("x1"), 요청한 축들의 수가 현재 로봇 축수와 일치하지 않거나, joint 이름 표기 순서 오류(["j1", "j3", "j2", ... ,"j6"]) |
-	| `-4`       | `ERR_TOO_MANY_JOINTS`       | 현재 로봇이 7축 이상인 경우                                       |
-	| `-5`       | `ERR_MISSING_POINTS`        | points 필드가 누락된 경우                                       |
-	| `-6`       | `ERR_INVALID_POINTS`        | points 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등) |
-	| `-7`       | `ERR_TOO_FEW_POINTS`        | 궤적의 포인트 개수가 2개 미만인 경우                                |
-	| `-8`       | `ERR_TOO_MANY_POINTS`       | 허용 가능한 포인트 개수 2048개를 초과하여 궤적을 요청한 경우            |
-	| `-9`       | `ERR_POINTS_EXCEED_BUFFER`  | 현재 비어있는 버퍼공간보다 많은 포인트로 이루어진 궤적을 요청한 경우          |
-	| `-10`      | `ERR_INVALID_POINT_OBJECT`  | point\_n 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등)  |
-	| `-11`      | `ERR_MISSING_POSITIONS`     | positions 필드가 누락된 경우                     |
-	| `-12`      | `ERR_INVALID_POSITIONS`     | positions 가 배열이 아니거나, position 값이 number가 아니거나, 길이가 축 수와 일치하지 않거나 |
-	| `-13`      | `ERR_MISSING_TIME`          | time\_from\_start가 누락된 경우         |
-	| `-14`      | `ERR_INVALID_TIME`          | time\_from\_start가 number가 아니거나, time\_from\_start가 0보다 작거나, 움직이는 상태에서 이전 값보다 작은 값을 요청한 경우 |
+	| `-4`       | `ERR_MISSING_POINTS`        | points 필드가 누락된 경우                                       |
+	| `-5`       | `ERR_INVALID_POINTS`        | points 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등) |
+	| `-6`       | `ERR_TOO_FEW_POINTS`        | 궤적의 포인트 개수가 2개 미만인 경우                                |
+	| `-7`       | `ERR_TOO_MANY_POINTS`       | 허용 가능한 포인트 개수 2048개를 초과하여 궤적을 요청한 경우            |
+	| `-8`       | `ERR_POINTS_EXCEED_BUFFER`  | 현재 비어있는 버퍼공간보다 많은 포인트로 이루어진 궤적을 요청한 경우          |
+	| `-9`      | `ERR_INVALID_POINT_OBJECT`  | point\_n 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등)  |
+	| `-10`      | `ERR_MISSING_POSITIONS`     | positions 필드가 누락된 경우                     |
+	| `-11`      | `ERR_INVALID_POSITIONS`     | positions 가 배열이 아니거나, position 값이 number가 아니거나, 길이가 축 수와 일치하지 않거나 |
+	| `-12`      | `ERR_MISSING_TIME`          | time\_from\_start가 누락된 경우         |
+	| `-13`      | `ERR_INVALID_TIME`          | time\_from\_start가 number가 아니거나, time\_from\_start가 0보다 작거나, 움직이는 상태에서 이전 값보다 작은 값을 요청한 경우 |
 
 </div>
 
