@@ -448,6 +448,117 @@ References
 
 	</div>
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
+  📝 Release Notes - v61.00-00
+  <span style="
+    background: #F44336; 
+    color: #FFFFFF; 
+    border: 2px solid #FFD700; 
+    padding: 1px 5px; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    font-size: 14px; /* h2 크기에 맞춤 */
+    text-transform: uppercase; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    height: 1.6em; /* h2 높이에 맞게 조정 */
+  ">
+    PREVIEW
+  </span>
+</h2>
+
+<br>
+
+Version v61.00 is scheduled for release in September.  
+The listed features are currently undergoing internal testing and will be deployed accordingly.  
+Depending on circumstances, the release date may be moved forward.
+
+<br>
+
+<h4 style="
+  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  margin: 0; 
+  font-size: 14px; 
+  font-weight: bold; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ✨ New Feature
+</h4>
+
+
+- joint_traject_init
+  - Initializes the trajectory buffer index.
+  - This API must be called when requesting a new trajectory step while the robot is in a stopped state.
+- joint_traject_insert_points
+  - Receives multiple trajectory points from an external source and applies them to the robot's motion.
+  - This API enables smooth motion execution based on externally provided trajectory data.
+- joint_traject_buf_avail
+  - Returns the number of available trajectory buffer slots.
+  - This API allows external systems to check how many trajectory points can currently be submitted.
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  🔧 Improvement & Change
+</div>
+
+- emergency_stop_test 
+  - Fixed a bug where a 403 Bad Request response was incorrectly returned when issuing a Category 0 (immediate stop) request.
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ❌ Deprecated
+</div>
+
+- none
+
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  📌 API List
+</div>  
+
+- ✨ \[<b style="color: #4CAF50">get</b>\] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail)  
+- ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
+- ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
+- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+<h2 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.30-00 
 </h2>
 

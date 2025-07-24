@@ -14,6 +14,7 @@
     * [0.5.1 Keep-Alive vs Close connection](0-intro/5-caution/1-http-connection.md)
 
 * [1. release note](1-release-note/README.md)
+  * [61.00-00](1-release-note/61-00.md)
   * [60.30-00](1-release-note/60-30.md)
   * [60.28-00](1-release-note/60-28.md)
 
