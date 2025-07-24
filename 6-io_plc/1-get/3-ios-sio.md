@@ -1,4 +1,4 @@
-﻿## 4.1.3 `ios/sio/{sio_val}` 
+﻿## 6.1.3 `ios/sio/{sio_val}` 
 
 ### Description
 

@@ -1,8 +1,9 @@
-﻿## 4.1.2 `ios/dio/{dio_val}`
+﻿## 6.1.2 `ios/dio/{dio_val}`
 
 ### Description
 
 - `GET` : Obtain user IO values.
+- Please refer to the [sio api](./3-ios-sio.md) for system input/output values.
 
 ### path-parameter
 

@@ -33,11 +33,8 @@
 * [4. control](4-control/README.md)
   * [4.1 get](4-control/1-get/README.md)
     * [4.1.1 op_cnd](4-control/1-get/1-op_cnd.md)
-    * [4.1.2 ios-dio](4-control/1-get/2-ios-dio.md)
-    * [4.1.3 ios-sio](4-control/1-get/3-ios-sio.md)
     * [4.1.4 ucss-ucs_nos](4-control/1-get/4-ucss-ucs_nos.md)
   * [4.2 post](4-control/2-post/README.md)
-    * [4.2.1 ios-dio](4-control/2-post/1-ios-dio.md)
   * [4.3 put](4-control/3-put/README.md)
     * [4.3.1 op_cnd](4-control/3-put/1-op_cnd.md)
 
@@ -63,8 +60,11 @@
 * [6. I/O plc](6-io_plc/README.md)
   * [6.1 get](6-io_plc/1-get/README.md)
     * [6.1.1 get relay values](6-io_plc/1-get/1-relay-value.md)
+    * [6.1.2 ios-dio](6-io_plc/1-get/2-ios-dio.md)
+    * [6.1.3 ios-sio](6-io_plc/1-get/3-ios-sio.md)
   * [6.2 post](6-io_plc/2-post/README.md)
     * [6.2.1 set relay values](6-io_plc/2-post/1-set_relay_value.md)
+    * [6.2.2 ios-dio](6-io_plc/2-post/2-ios-dio.md)
 
 * [7. log manager](7-log_manager/README.md)
   * [7.1 get](7-log_manager/1-get/README.md)

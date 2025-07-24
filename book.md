@@ -1067,134 +1067,6 @@ print(get_operation_condition())
 ```sh
 $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
-```## 4.1.2 `ios/dio/{dio_val}`
-
-### Description
-
-- `GET` : Obtain user IO values.
-
-### path-parameter
-
-```python
-GET /project/control/ios/dio/{dio_val}
-```
-
-### path-variable
-
-- `dio_val` :
-  - `di_val` : Get the input(di) value.
-  - `do_val` : Get the output(do) value.
-
-### query-parameter
-
-- `type` : Type of io value
-  - di or do : bit
-  - dib or dob : signed-byte
-  - diw or dow : signed-word (2byte)
-  - dil or dol : signed-dword (4yte)
-  - dif or dof : float
-- `blk_no` : block number (0~9)
-- `sig_no` : signal index (0~)
-
-### Example
-
-- Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
-
-```python
-request url:
-GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
-
-response-body:
-{
-    "_type" : "JObject",
-    "val" : -56,
-}
-```
-
-Python Script Example
-
-```python
-# test.py
-import requests
-
-def get_dio_val() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/control/ios/dio/do_val'
-    query_parameter = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
-    
-    response = requests.get(url=base_url + path_parameter, params=query_parameter).json()
-
-    return response
-
-print(get_dio_val())
-```
-```sh
-$python test.py
-{'_type': 'JObject', 'val': -56}
-```## 4.1.3 `ios/sio/{sio_val}` 
-
-### Description
-
-- `GET` : Get system IO values.
-
-### path-parameter
-
-```python
-GET /project/control/ios/sio/{sio_val}
-```
-
-### path-variable
-
-- `sio_val` :
-  - `si_val` : Get the input(si) value.
-  - `so_val` : Get the output(so) value.
-
-### query-parameter
-
-- `type` : Type of io value
-  - si or so : bit
-  - sib or sob : signed-byte
-  - siw or sow : signed-word (2byte)
-  - sil or sol : signed-dword (4yte)
-  - sif or sof : float
-- `sig_no` : signal index (0~)
-
-
-### Example
-
-- Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
-
-```python
-request url:
-GET /project/control/ios/sio/si_val?type=sib&sig_no=1
-
-response-body:
-{
-    "_type" : "JObject",
-    "val" : 2,
-}
-```
-
-Python Script Example
-
-```python
-# test.py
-import requests
-
-def get_sio_val() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/control/ios/sio/so_val'
-    query_parameter = { 'type': 'sob', 'sig_no': 3 }
-    
-    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
-
-    return response
-
-print(get_sio_val())
-```
-```sh
-$python test.py
-{'_type': 'JObject', 'val': 0}
 ```## 4.1.4 `ucss/ucs_nos`
 
 ### Description
@@ -1243,80 +1115,7 @@ $python test.py
 ```## 4.2 control/post
 
 - Sends a POST request for the controller’s setting information and input/output values.
-- You must write the correct request-body for each API.## 4.2.1 `ios/dio/{do_val}`
-
-### Description
-
-- `POST` : Change digital output.
-
-### path-parameter
-
-```python
-POST /project/control/ios/dio/do_val
-```
-
-### request-body
-
-```json
-{
-    "type": "do",
-    "blk_no": 1,
-    "sig_no": 1,
-    "val": 1
-}
-```
-
-
-### query-parameter
-
-- `type` : Type of io value
-  - di or do : bit
-  - dib or dob : signed-byte
-  - diw or dow : signed-word (2byte)
-  - dil or dol : signed-dword (4yte)
-  - dif or dof : float
-- `blk_no` : block number (0~9)
-- `sig_no` : signal index (0~)
-- `val` : Setting value you want to change
-
-
-### Example
-
-```python
-request url:
-POST /project/control/ios/dio/do_val
-
-request-body:
-{
-    "type": "do",
-    "blk_no": 2,
-    "sig_no": 3,
-    "val": -99
-}
-```
-
-Python Script Example
-
-- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
-```python
-# test.py
-import requests 
-
-def post_do_val() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/control/ios/dio/do_val'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"type": "dob", "blk_no": 2, "sig_no": 3,"val": -99}
-
-    response = requests.post(url = base_url + path_parameter, headers = head,  json = body)
-    return response.status_code
-
-print(f"response: {post_do_val()}")
-```
-```sh
-$python test.py
-response: 200 
-```## 4.3 control/put
+- You must write the correct request-body for each API.## 4.3 control/put
 
 - Sends a PUT request for the controller’s setting information and input/output values.
 - You must write the correct request-body for each API.## 4.3.1 `op_cnd`
@@ -2160,11 +1959,20 @@ response: 200
 
 ### path-parameter
 
+
+<div style="max-width:fit-content">
+
+
 ```python
 POST /project/robot/emergency_stop_test
 ```
 
+</div>
+
 ### request-body
+
+  <div style="max-width:fit-content">
+
 -  |key|type|contents|validation|
 	|---|---|---|---|
 	|`step_no`| int | Target step number for emergency stop, within the total step number of the current job | 1 ~ 999 |
@@ -2179,6 +1987,8 @@ POST /project/robot/emergency_stop_test
 - `2: Pause`  
 	&rightarrow;  Temporarily stops the robot motion. The motor does not turn off after stopping.  
 
+</div>
+
 ### status code
 
 - 200 : Request successful    
@@ -2189,6 +1999,8 @@ POST /project/robot/emergency_stop_test
 
 
 ### Usage Example  
+
+<div style="max-width:fit-content">
 
 ```emergency_stop_test
 POST /project/robot/emergency_stop_test
@@ -2229,7 +2041,9 @@ print(f"response: {emergency_stop_test()}")
 ```sh
 $python test.py
 response: 200
-```## 5.2.7 `joint_traject_init`
+```
+
+</div>## 5.2.7 `joint_traject_init`
 
 ### Description
 
@@ -2364,7 +2178,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	| ----------------: | :-----------: | --------------------------- | -------------------------------------------- |
 	|     `joint_names` | array(string) | List of joint names for the trajectory          | e.g., for a 6-axis robot: "j1" to "j6", **order must be exact** |
 	|          `points` |     object({})    | List of trajectory points to execute      | 	Keys: "point_n", where n starts from 1. **at least 2 points are required**   |
-	|       `positions` | array(double) | Target positions for each joint<br>(expressed in radians, for **additional axes, be mindful of the coordinate unit**)| Positions must be specified according to the current number of joints. |
+	|       `positions` | array(double) | Target positions for each joint expressed in radians,<br>for **additional axes, be mindful of the coordinate unit**)| Positions must be specified according to the current number of joints. |
 	| `time_from_start` |     number    | Start time of the point (in seconds) | Must be **<u>0.0</u>** or **<u>greater</u>**, and greater than the previous point. |
 
 
@@ -2400,7 +2214,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 - 	| error code     | Error constant name     | Description                                           |
 	| ---------- | --------------------------- | ----------------------------------------------------- |
 	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | If the joint_names field is missing |
-	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | If the joint_name format is invalid (e.g., "x1"), the number of requested joints does not match the robot's current number of joints, or the joint names are in the wrong order (e.g., ["j1", "j3", "j2", ..., "j6"]) |
+	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | If the joint_name format is invalid (e.g., "x1"), the number of requested joints does not match<br>the robot's current number of joints, or the joint names are in the wrong order.<br>(e.g., ["j1", "j3", "j2", ..., "j6"]) |
 	| `-4`       | `ERR_MISSING_POINTS`        | If the points field is missing |
 	| `-5`       | `ERR_INVALID_POINTS`        | If the value of points is not an object (i.e., not a Python dictionary), such as an integer or a string |
 	| `-6`       | `ERR_TOO_FEW_POINTS`        | If the number of trajectory points is less than 2 |
@@ -2749,6 +2563,135 @@ print(f"{get_relay_value()}")
 ```sh
 $python test.py
 [0, 0, 0, 0]
+```## 6.1.2 `ios/dio/{dio_val}`
+
+### Description
+
+- `GET` : Obtain user IO values.
+- Please refer to the [sio api](./3-ios-sio.md) for system input/output values.
+
+### path-parameter
+
+```python
+GET /project/control/ios/dio/{dio_val}
+```
+
+### path-variable
+
+- `dio_val` :
+  - `di_val` : Get the input(di) value.
+  - `do_val` : Get the output(do) value.
+
+### query-parameter
+
+- `type` : Type of io value
+  - di or do : bit
+  - dib or dob : signed-byte
+  - diw or dow : signed-word (2byte)
+  - dil or dol : signed-dword (4yte)
+  - dif or dof : float
+- `blk_no` : block number (0~9)
+- `sig_no` : signal index (0~)
+
+### Example
+
+- Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
+
+```python
+request url:
+GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
+
+response-body:
+{
+    "_type" : "JObject",
+    "val" : -56,
+}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+def get_dio_val() -> dict:
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/control/ios/dio/do_val'
+    query_parameter = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
+    
+    response = requests.get(url=base_url + path_parameter, params=query_parameter).json()
+
+    return response
+
+print(get_dio_val())
+```
+```sh
+$python test.py
+{'_type': 'JObject', 'val': -56}
+```## 6.1.3 `ios/sio/{sio_val}` 
+
+### Description
+
+- `GET` : Get system IO values.
+
+### path-parameter
+
+```python
+GET /project/control/ios/sio/{sio_val}
+```
+
+### path-variable
+
+- `sio_val` :
+  - `si_val` : Get the input(si) value.
+  - `so_val` : Get the output(so) value.
+
+### query-parameter
+
+- `type` : Type of io value
+  - si or so : bit
+  - sib or sob : signed-byte
+  - siw or sow : signed-word (2byte)
+  - sil or sol : signed-dword (4yte)
+  - sif or sof : float
+- `sig_no` : signal index (0~)
+
+
+### Example
+
+- Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
+
+```python
+request url:
+GET /project/control/ios/sio/si_val?type=sib&sig_no=1
+
+response-body:
+{
+    "_type" : "JObject",
+    "val" : 2,
+}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+def get_sio_val() -> dict:
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/control/ios/sio/so_val'
+    query_parameter = { 'type': 'sob', 'sig_no': 3 }
+    
+    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
+
+    return response
+
+print(get_sio_val())
+```
+```sh
+$python test.py
+{'_type': 'JObject', 'val': 0}
 ```## 6.2 io_plc/post
 
 - Sends a POST request for input/output values from a built-in PLC.
@@ -2821,6 +2764,79 @@ $python test.py
 [0, 0, 0, 0, 0, 0, 0, 0]
 response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
+```## 6.2.2 `ios/dio/{do_val}`
+
+### Description
+
+- `POST` : Change digital output.
+
+### path-parameter
+
+```python
+POST /project/control/ios/dio/do_val
+```
+
+### request-body
+
+```json
+{
+    "type": "do",
+    "blk_no": 1,
+    "sig_no": 1,
+    "val": 1
+}
+```
+
+
+### query-parameter
+
+- `type` : Type of io value
+  - di or do : bit
+  - dib or dob : signed-byte
+  - diw or dow : signed-word (2byte)
+  - dil or dol : signed-dword (4yte)
+  - dif or dof : float
+- `blk_no` : block number (0~9)
+- `sig_no` : signal index (0~)
+- `val` : Setting value you want to change
+
+
+### Example
+
+```python
+request url:
+POST /project/control/ios/dio/do_val
+
+request-body:
+{
+    "type": "do",
+    "blk_no": 2,
+    "sig_no": 3,
+    "val": -99
+}
+```
+
+Python Script Example
+
+- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
+```python
+# test.py
+import requests 
+
+def post_do_val() -> int:
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/control/ios/dio/do_val'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {"type": "dob", "blk_no": 2, "sig_no": 3,"val": -99}
+
+    response = requests.post(url = base_url + path_parameter, headers = head,  json = body)
+    return response.status_code
+
+print(f"response: {post_do_val()}")
+```
+```sh
+$python test.py
+response: 200 
 ```# 7.1 event-log
 
 - Outputs errors, warnings, execution history, etc. recorded in the controller.## 7.1 log_manager/get
