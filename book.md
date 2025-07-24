@@ -1257,152 +1257,6 @@ print(get_operation_condition())
 $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
 ```
-</div>## 4.1.2 `ios/dio/{dio_val}`
-
-### 설명
-
-- `GET` : 사용자 IO 값을 얻습니다.
-
-### path-parameter
-
-
-<div style="width: fit-content;">
-
-```python
-GET /project/control/ios/dio/{dio_val}
-```  
-</div>
-
-### path-variable
-
-- `dio_val` :
-  - `di_val` : 입력(di) 값을 얻습니다.
-  - `do_val` : 출력(do) 값을 얻습니다.
-
-### query-parameter
-
-- `type` : io 값의 타입
-  - di or do : bit
-  - dib or dob : signed-byte
-  - diw or dow : signed-word (2byte)
-  - dil or dol : signed-dword (4yte)
-  - dif or dof : float
-- `blk_no` : 블럭 번호 (0~9)
-- `sig_no` : 신호 인덱스 (0~)
-
-### 사용 예
-
-- fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
-
-<div style="width: fit-content;">
-
-```python
-request url:
-GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
-
-response-body:
-{
-    "_type" : "JObject",
-    "val" : -56,
-}
-```
-</div>
-
-Python Script 예시
-
-<div style="width: fit-content;">
-
-```python
-# test.py
-import requests
-
-def get_dio_val() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/control/ios/dio/do_val'
-    query_parameter = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
-    
-    response = requests.get(url=base_url + path_parameter, params=query_parameter).json()
-
-    return response
-
-print(get_dio_val())
-```
-```sh
-$python test.py
-{'_type': 'JObject', 'val': -56}
-```
-</div>## 4.1.3 `ios/sio/{sio_val}`
-
-### 설명
-
-- `GET` : 시스템 IO 값을 얻습니다.
-
-### path-parameter
-
-
-<div style="width: fit-content;">
-
-```python
-GET /project/control/ios/sio/{sio_val}
-```
-
-### path-variable
-
-- `sio_val` :
-  - `si_val` : 입력(si) 값을 얻습니다.
-  - `so_val` : 출력(so) 값을 얻습니다.
-
-### query-parameter
-
-- `type` : io 값의 타입
-  - si or so : bit
-  - sib or sob : signed-byte
-  - siw or sow : signed-word (2byte)
-  - sil or sol : signed-dword (4yte)
-  - sif or sof : float
-- `sig_no` : 신호 인덱스 (0~)
-
-
-### 사용 예
-
-- sib1 값 얻기. (결과값 : 0b00000010 = 0x02 = 2)
-
-```python
-request url:
-GET /project/control/ios/sio/si_val?type=sib&sig_no=1
-
-response-body:
-{
-    "_type" : "JObject",
-    "val" : 2,
-}
-```  
-</div>
-
-Python Script 예시
-
-
-<div style="width: fit-content;">
-
-```python
-# test.py
-import requests
-
-def get_sio_val() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/control/ios/sio/so_val'
-    query_parameter = { 'type': 'sob', 'sig_no': 3 }
-    
-    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
-
-    return response
-
-print(get_sio_val())
-```
-```sh
-$python test.py
-{'_type': 'JObject', 'val': 0}
-```
 </div>## 4.1.4 `ucss/ucs_nos`
 
 ### 설명
@@ -1458,95 +1312,7 @@ $python test.py
 </div>## 4.2 control/post
 
 - 제어기의 설정 정보, 입출력 값에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 4.2.1 `ios/dio/{do_val}`
-
-### 설명
-
-- `POST` : 디지털 출력을 변경합니다.
-
-### path-parameter
-
-
-<div style="width: fit-content;">
-
-```python
-POST /project/control/ios/dio/do_val
-```
-</div>
-
-### request-body
-
-
-<div style="width: fit-content;">
-
-```json
-{
-  "type": "do",
-  "blk_no": 1,
-  "sig_no": 1,
-  "val": 1
-}
-```
-</div>
-
-### query-parameter
-
-- `type` : io 값의 타입
-  - di or do : bit
-  - dib or dob : signed-byte
-  - diw or dow : signed-word (2byte)
-  - dil or dol : signed-dword (4yte)
-  - dif or dof : float
-- `blk_no` : 블럭 번호 (0~9)
-- `sig_no` : 신호 인덱스 (0~)
-- `val` : 변경하고자 하는 설정값
-
-
-### 사용 예
-
-<div style="width: fit-content;">
-
-```python
-request url:
-POST /project/control/ios/dio/do_val
-
-request-body:
-{
-    "type": "do",
-    "blk_no": 2,
-    "sig_no": 3,
-    "val": -99
-}
-```
-</div>
-
-Python Script 예시
-
-- 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
-
-
-<div style="width: fit-content;">
-
-```python
-# test.py
-import requests 
-
-def post_do_val() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/control/ios/dio/do_val'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"type": "dob", "blk_no": 2, "sig_no": 3,"val": -99}
-
-    response = requests.post(url = base_url + path_parameter, headers = head,  json = body)
-    return response.status_code
-
-print(f"response: {post_do_val()}")
-```
-```sh
-$python test.py
-response: 200 
-```
-</div>## 4.3 control/put
+- API 별로 정확한 request-body 를 작성해야합니다.## 4.3 control/put
 
 - 제어기의 설정 정보, 입출력 값에 대한 PUT 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 4.3.1 `op_cnd`
@@ -2719,29 +2485,30 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ### error code (response 403)
 
+<div style="width: fit-content;">
+
 - 	| 에러코드     | 에러 상수명                   | 설명                                             |
 	| ---------- | --------------------------- | ----------------------------------------------------- |
 	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | joint\_names 필드가 누락된 경우 |
 	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | joint\_name 형식이 잘못되거나("x1"), 요청한 축들의 수가 현재 로봇 축수와 일치하지 않거나, joint 이름 표기 순서 오류(["j1", "j3", "j2", ... ,"j6"]) |
-	| `-4`       | `ERR_TOO_MANY_JOINTS`       | 현재 로봇이 7축 이상인 경우                                       |
-	| `-5`       | `ERR_MISSING_POINTS`        | points 필드가 누락된 경우                                       |
-	| `-6`       | `ERR_INVALID_POINTS`        | points 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등) |
-	| `-7`       | `ERR_TOO_FEW_POINTS`        | 궤적의 포인트 개수가 2개 미만인 경우                                |
-	| `-8`       | `ERR_TOO_MANY_POINTS`       | 허용 가능한 포인트 개수 2048개를 초과하여 궤적을 요청한 경우            |
-	| `-9`       | `ERR_POINTS_EXCEED_BUFFER`  | 현재 비어있는 버퍼공간보다 많은 포인트로 이루어진 궤적을 요청한 경우          |
-	| `-10`      | `ERR_INVALID_POINT_OBJECT`  | point\_n 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등)  |
-	| `-11`      | `ERR_MISSING_POSITIONS`     | positions 필드가 누락된 경우                     |
-	| `-12`      | `ERR_INVALID_POSITIONS`     | positions 가 배열이 아니거나, position 값이 number가 아니거나, 길이가 축 수와 일치하지 않거나 |
-	| `-13`      | `ERR_MISSING_TIME`          | time\_from\_start가 누락된 경우         |
-	| `-14`      | `ERR_INVALID_TIME`          | time\_from\_start가 number가 아니거나, time\_from\_start가 0보다 작거나, 움직이는 상태에서 이전 값보다 작은 값을 요청한 경우 |
+	| `-4`       | `ERR_MISSING_POINTS`        | points 필드가 누락된 경우                                       |
+	| `-5`       | `ERR_INVALID_POINTS`        | points 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등) |
+	| `-6`       | `ERR_TOO_FEW_POINTS`        | 궤적의 포인트 개수가 2개 미만인 경우                                |
+	| `-7`       | `ERR_TOO_MANY_POINTS`       | 허용 가능한 포인트 개수 2048개를 초과하여 궤적을 요청한 경우            |
+	| `-8`       | `ERR_POINTS_EXCEED_BUFFER`  | 현재 비어있는 버퍼공간보다 많은 포인트로 이루어진 궤적을 요청한 경우          |
+	| `-9`      | `ERR_INVALID_POINT_OBJECT`  | point\_n 값이 객체(= python의 dict)가 아닌 경우 (예: 정수나 문자열 등)  |
+	| `-10`      | `ERR_MISSING_POSITIONS`     | positions 필드가 누락된 경우                     |
+	| `-11`      | `ERR_INVALID_POSITIONS`     | positions 가 배열이 아니거나, position 값이 number가 아니거나, 길이가 축 수와 일치하지 않거나 |
+	| `-12`      | `ERR_MISSING_TIME`          | time\_from\_start가 누락된 경우         |
+	| `-13`      | `ERR_INVALID_TIME`          | time\_from\_start가 number가 아니거나, time\_from\_start가 0보다 작거나, 움직이는 상태에서 이전 값보다 작은 값을 요청한 경우 |
 
-
+</div>
 
 ### 사용 예
 
-#### 예시1. 정지 상태에서 궤적 요청하기
+**예시1. 정지 상태에서 궤적 요청하기**
 
-<img src="../../_assets/09_online_trajectory_insert_points_single.png" style="max-height: 40vh;">
+<img src="../../_assets/09_online_trajectory_insert_points_single.png" style="max-height: 280px;">
 
 1) 정지 후 궤적을 요청을 할 때는 [joint_traject_init](./7-joint_traject_init.md) api를 활용하여 기존 궤적이 저장된 버퍼를 초기화합니다.
 2) 궤적을 요청하기 전, 프로그램이 실행 중인지 확인하고 남아있는 버퍼의 수를 확인합니다.
@@ -2753,9 +2520,9 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 <br>
 
-#### 예시2. 불연속 모션으로 궤적 요청하기 (궤적과 궤적 사이 정지 시간이 존재)
+**예시2. 불연속 모션으로 궤적 요청하기 (궤적과 궤적 사이 정지 시간이 존재)**
 
-<img src="../../_assets/10_online_trajectory_insert_points_two.png" style="max-height: 40vh;">
+<img src="../../_assets/10_online_trajectory_insert_points_two.png" style="max-height: 240px;">
 
 1) 예시1 의 조건들에 맞춰 traj1 과 traj2 를 요청해야합니다.
 2) 하기 사항에 유의하십시오.
@@ -2764,9 +2531,9 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 <br>
 
-#### 예시3. 연속 모션으로 궤적 요청하기
+**예시3. 연속 모션으로 궤적 요청하기**
 
-<img src="../../_assets/11_online_trajectory_insert_points_continuous.png" style="max-height: 40vh;">
+<img src="../../_assets/11_online_trajectory_insert_points_continuous.png" style="max-height: 350px;">
 
 1) 예시1 의 조건들에 맞춰서 traj1 을 요청합니다.
 2) Pn-1 의 위치로 로봇이 이동 중일 때 하기 사항에 유의하여 traj2 를 요청해야합니다.
@@ -2994,7 +2761,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 [릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression) (소문자 표기)
 
-* `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.   
+* `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.  
   나머지 `relay_type`에는 지정하지 않습니다.
 
 - `obj_type` : 객체 타입 (`fb`, `fn`)
@@ -3003,7 +2770,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 - `relay_type` : `di`, `do`, `x` , `y` , `m` , `s` , `r`, `k`
 
-	
+
 
 ### query-parameter
 
@@ -3066,6 +2833,153 @@ print(f"{get_relay_value()}")
 ```sh
 $python test.py
 [0, 0, 0, 0]
+```
+</div>## 6.1.2 `ios/dio/{dio_val}`
+
+### 설명
+
+- `GET` : 사용자 IO 값을 얻습니다.
+- 시스템 입출력에 대한 값은 [sio api](./3-ios-sio.md)를 참조하십시오.
+
+### path-parameter
+
+
+<div style="width: fit-content;">
+
+```python
+GET /project/control/ios/dio/{dio_val}
+```  
+</div>
+
+### path-variable
+
+- `dio_val` :
+  - `di_val` : 입력(di) 값을 얻습니다.
+  - `do_val` : 출력(do) 값을 얻습니다.
+
+### query-parameter
+
+- `type` : io 값의 타입
+  - di or do : bit
+  - dib or dob : signed-byte
+  - diw or dow : signed-word (2byte)
+  - dil or dol : signed-dword (4yte)
+  - dif or dof : float
+- `blk_no` : 블럭 번호 (0~9)
+- `sig_no` : 신호 인덱스 (0~)
+
+### 사용 예
+
+- fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
+
+<div style="width: fit-content;">
+
+```python
+request url:
+GET /project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3
+
+response-body:
+{
+    "_type" : "JObject",
+    "val" : -56,
+}
+```
+</div>
+
+Python Script 예시
+
+<div style="width: fit-content;">
+
+```python
+# test.py
+import requests
+
+def get_dio_val() -> dict:
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/control/ios/dio/do_val'
+    query_parameter = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
+    
+    response = requests.get(url=base_url + path_parameter, params=query_parameter).json()
+
+    return response
+
+print(get_dio_val())
+```
+```sh
+$python test.py
+{'_type': 'JObject', 'val': -56}
+```
+</div>## 6.1.3 `ios/sio/{sio_val}`
+
+### 설명
+
+- `GET` : 시스템 IO 값을 얻습니다.
+
+### path-parameter
+
+
+<div style="width: fit-content;">
+
+```python
+GET /project/control/ios/sio/{sio_val}
+```
+
+### path-variable
+
+- `sio_val` :
+  - `si_val` : 입력(si) 값을 얻습니다.
+  - `so_val` : 출력(so) 값을 얻습니다.
+
+### query-parameter
+
+- `type` : io 값의 타입
+  - si or so : bit
+  - sib or sob : signed-byte
+  - siw or sow : signed-word (2byte)
+  - sil or sol : signed-dword (4yte)
+  - sif or sof : float
+- `sig_no` : 신호 인덱스 (0~)
+
+
+### 사용 예
+
+- sib1 값 얻기. (결과값 : 0b00000010 = 0x02 = 2)
+
+```python
+request url:
+GET /project/control/ios/sio/si_val?type=sib&sig_no=1
+
+response-body:
+{
+    "_type" : "JObject",
+    "val" : 2,
+}
+```  
+</div>
+
+Python Script 예시
+
+
+<div style="width: fit-content;">
+
+```python
+# test.py
+import requests
+
+def get_sio_val() -> dict:
+    base_url        = 'http://192.168.1.150:8888'
+    path_parameter  = '/project/control/ios/sio/so_val'
+    query_parameter = { 'type': 'sob', 'sig_no': 3 }
+    
+    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
+
+    return response
+
+print(get_sio_val())
+```
+```sh
+$python test.py
+{'_type': 'JObject', 'val': 0}
 ```
 </div>## 6.2 io_plc/post
 
@@ -3145,6 +3059,94 @@ $python test.py
 [0, 0, 0, 0, 0, 0, 0, 0]
 response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
+```
+</div>## 6.2.2 `ios/dio/{do_val}`
+
+### 설명
+
+- `POST` : 디지털 출력을 변경합니다.
+
+### path-parameter
+
+
+<div style="width: fit-content;">
+
+```python
+POST /project/control/ios/dio/do_val
+```
+</div>
+
+### request-body
+
+
+<div style="width: fit-content;">
+
+```json
+{
+  "type": "do",
+  "blk_no": 1,
+  "sig_no": 1,
+  "val": 1
+}
+```
+</div>
+
+### query-parameter
+
+- `type` : io 값의 타입
+  - di or do : bit
+  - dib or dob : signed-byte
+  - diw or dow : signed-word (2byte)
+  - dil or dol : signed-dword (4yte)
+  - dif or dof : float
+- `blk_no` : 블럭 번호 (0~9)
+- `sig_no` : 신호 인덱스 (0~)
+- `val` : 변경하고자 하는 설정값
+
+
+### 사용 예
+
+<div style="width: fit-content;">
+
+```python
+request url:
+POST /project/control/ios/dio/do_val
+
+request-body:
+{
+    "type": "do",
+    "blk_no": 2,
+    "sig_no": 3,
+    "val": -99
+}
+```
+</div>
+
+Python Script 예시
+
+- 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
+
+
+<div style="width: fit-content;">
+
+```python
+# test.py
+import requests 
+
+def post_do_val() -> int:
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/control/ios/dio/do_val'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {"type": "dob", "blk_no": 2, "sig_no": 3,"val": -99}
+
+    response = requests.post(url = base_url + path_parameter, headers = head,  json = body)
+    return response.status_code
+
+print(f"response: {post_do_val()}")
+```
+```sh
+$python test.py
+response: 200 
 ```
 </div># 7.1 event-log
 

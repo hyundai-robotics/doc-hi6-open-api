@@ -1,8 +1,9 @@
-﻿## 4.1.2 `ios/dio/{dio_val}`
+﻿## 6.1.2 `ios/dio/{dio_val}`
 
 ### 설명
 
 - `GET` : 사용자 IO 값을 얻습니다.
+- 시스템 입출력에 대한 값은 [sio api](./3-ios-sio.md)를 참조하십시오.
 
 ### path-parameter
 
