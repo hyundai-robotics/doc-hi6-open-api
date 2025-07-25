@@ -53,7 +53,7 @@ Python Script
 import requests
 
 
-def post_rcode_0() -> int:
+def post_rcode() -> int:
     base_url = "http://192.168.1.150:8888"
     path_parameter = "/project/service/r_code/execute"
     head = {"Content-Type": "application/json; charset=utf-8"}
