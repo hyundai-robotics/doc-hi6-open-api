@@ -24,6 +24,11 @@ POST /project/context/tasks[{task index}]/release_wait
 - 200 : 정상 동작
 - 403 : 상기 필요 조건 불충족
 
+### error code
+
+- -1442069 : 사용자 환경 설정 오류. 상기 필요 조건을 확인하십시오.
+
+
 ### 사용 예
 
 ```json
