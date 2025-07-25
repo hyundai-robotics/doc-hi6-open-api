@@ -20,6 +20,16 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 - [cur_prog_cnt 응답 파라미터](../.././99-schema/cur_prog_cnt.md)
 
+### status code
+
+- 200 : 정상 동작
+- 403 : 허용되지 않은 요청
+
+### error code
+
+- -1442080 : 프로그램 재생 중 적용 불가
+- -1245280 : 유효하지 않은 프로그램 카운터
+
 ### 사용 예
 
 ```python

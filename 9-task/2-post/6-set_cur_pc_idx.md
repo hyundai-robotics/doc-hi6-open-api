@@ -18,6 +18,14 @@ POST /project/context/tasks[{task index}]/set_cur_pc_idx
   "idx": 1
 }
 ```
+### status code
+
+- 200 : 정상 동작
+- 403 : 허용되지 않은 요청
+
+### error code
+
+- -38501 : 재생 중인 task 가 있을 때는 적용이 되지 않습니다.
 
 ### 사용 예
 
