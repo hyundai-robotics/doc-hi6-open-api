@@ -23,6 +23,9 @@ POST /project/context/tasks[0]/release_wait
 - 403 : Request failed
   -  Failure to meet the above requirements
 
+### error code
+- -1442069 : User environment configuration error. Please ensure that all prerequisite requirements are satisfied
+
 ### Example
 
 <blockquote>
