@@ -25,18 +25,20 @@ POST /console/execute_cmd
 
 ### response-body
 
-- 200 : 요청 성공  
-	- 로봇 언어 명령어 규칙을 벗어난 경우 아래와 같이 ecode 1이 반환됩니다.
-		<div style = "width: fit-content;">  
-		
-		```python
-		{'_type': 'JObject', 'ecode': 1}
-		```
-		</div>
-- 400 : 요청 실패  
-	- request body 가 유효성 검사에서 실패한 경우  
-- 403/4 : 요청 실패  
-	- 서비스 되지 않는 API 에 대해서 요청한 경우  
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+- 404 : Not Found
+
+### error code
+
+- ecode: 1
+  - 로봇 언어 명령어 규칙을 벗어난 경우
+
 
 ### 사용 예
 

@@ -21,8 +21,13 @@ POST /project/context/tasks[{task index}]/release_wait
 
 ### response-body
 
-- 200 : 정상 동작
-- 403 : 상기 필요 조건 불충족
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+- 403 : Forbidden
+  - 상기 필요 조건 불충족
+- 404 : Not Found
 
 ### error code
 

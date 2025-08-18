@@ -23,8 +23,13 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ### status code
 
-- 200 : 정상 동작
-- 403 : 허용되지 않은 요청
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - 허용되지 않는 요청을 한 경우
+  - `err_code` (<0) : 초기화 실패
+- 404 : Not Found
 
 ### error code
 

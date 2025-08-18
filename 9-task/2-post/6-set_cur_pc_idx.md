@@ -20,8 +20,11 @@ POST /project/context/tasks[{task index}]/set_cur_pc_idx
 ```
 ### status code
 
-- 200 : 정상 동작
-- 403 : 허용되지 않은 요청
+- 200 : OK
+- 400 : Bad Request
+- 403 : Forbidden
+  - 상기 필요 조건 불충족
+- 404 : Not Found
 
 ### error code
 

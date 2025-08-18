@@ -22,11 +22,18 @@ POST /project/robot/stop
 
 ### response-body
 
-```json
-{
-    "_type": "JObject"
-}
-```
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v61.00 부터 적용)
+- 404 : Not Found
+
+### error code
+
+- -38500: 원격 모드가 아닌 상태로 해당 api 요청
 
 ### 사용 예
 

@@ -32,10 +32,15 @@ POST /project/robot/trajectory/joint_traject_init
 
 ### response-body
 
-- 200: 요청 성공
-- 403: 요청 실패
-  - 서비스 되지 않는 API 에 대해서 요청을 한 경우
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
   - `err_code` (<0) : 초기화 실패
+- 404 : Not Found
 
 ### 사용 예
 

@@ -17,10 +17,14 @@ GET /project/robot/trajectory/joint_traject_buf_avail
 
 - val: 현재 사용 가능한 버퍼의 수 (최대 2048개)
 
-응답 코드
-- 200: 요청 성공
-- 403: 요청 실패
-  - 서비스 되지 않는 API 에 대해서 요청을 한 경우
+
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+- 404 : Not Found
 
 ### 사용 예
 

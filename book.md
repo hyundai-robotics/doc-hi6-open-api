@@ -529,7 +529,7 @@ total request time : 0.2869541645050049 seconds
   🔧 Improvement & Change
 </div>
 
-
+- 로봇을 움직이는 서비스에 대해 반드시 원격모드에서만 동작하도록 유효성 검사 추가 (execute_move, start)
 - emergency_stop_test - 즉시정지(category 0) 요청 시 403 BAD Request 응답 관련 버그 수정
 
 <br><br>
@@ -1847,10 +1847,14 @@ GET /project/robot/trajectory/joint_traject_buf_avail
 
 - val: 현재 사용 가능한 버퍼의 수 (최대 2048개)
 
-응답 코드
-- 200: 요청 성공
-- 403: 요청 실패
-  - 서비스 되지 않는 API 에 대해서 요청을 한 경우
+
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+- 404 : Not Found
 
 ### 사용 예
 
@@ -1988,11 +1992,18 @@ POST /project/robot/stop
 
 ### response-body
 
-```json
-{
-    "_type": "JObject"
-}
-```
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v61.00 부터 적용)
+- 404 : Not Found
+
+### error code
+
+- -38500: 원격 모드가 아닌 상태로 해당 api 요청
 
 ### 사용 예
 
@@ -2272,11 +2283,13 @@ POST /project/robot/emergency_stop_test
 
 ### response-body
 
-- 200 : 요청 성공  
-- 400 : 요청 실패  
-	- request body 가 유효성 검사에서 실패  
-- 403 : 요청 실패  
-	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+- 404 : Not Found
 
 
 ### 사용 예
@@ -2357,10 +2370,15 @@ POST /project/robot/trajectory/joint_traject_init
 
 ### response-body
 
-- 200: 요청 성공
-- 403: 요청 실패
-  - 서비스 되지 않는 API 에 대해서 요청을 한 경우
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
   - `err_code` (<0) : 초기화 실패
+- 404 : Not Found
 
 ### 사용 예
 
@@ -2479,9 +2497,16 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ### response-body
 
-- 200: 요청 성공
-- 403: 요청 실패
-  - 서비스 되지 않는 API 에 대해서 요청을 한 경우
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+  - `err_code` (<0) : 초기화 실패
+- 404 : Not Found
+
 
 ### error code (response 403)
 
@@ -2571,38 +2596,6 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	session = requests.Session()
 
 
-	traj_2 = {
-		"joint_names": ["j1", "j2", "j3", "j4", "j5", "j6"],
-		"points": {
-			"point_1": {
-					"positions": [
-						math.radians(2.89),
-						math.radians(90),
-						0,
-						0,
-						0,
-						0,
-					],
-					"velocities": [0.0] * 6,
-					"accelerations": [0.0] * 6,
-					"time_from_start": 5.0,
-			},
-			"point_2": {
-					"positions": [
-						0,
-						math.radians(90),
-						0,
-						0,
-						0,
-						0,
-					],
-					"velocities": [0.0] * 6,
-					"accelerations": [0.0] * 6,
-					"time_from_start": 7,
-			},
-		},
-	}
-
 	traj_1 = {
 		"joint_names": ["j1", "j2", "j3", "j4", "j5", "j6"],
 		"points": {
@@ -2638,6 +2631,38 @@ POST /project/robot/trajectory/joint_traject_insert_points
 					],
 					"accelerations": [0.0] * 6,
 					"time_from_start": 3.0,
+			},
+		},
+	}
+
+	traj_2 = {
+		"joint_names": ["j1", "j2", "j3", "j4", "j5", "j6"],
+		"points": {
+			"point_1": {
+					"positions": [
+						math.radians(2.89),
+						math.radians(90),
+						0,
+						0,
+						0,
+						0,
+					],
+					"velocities": [0.0] * 6,
+					"accelerations": [0.0] * 6,
+					"time_from_start": 5.0,
+			},
+			"point_2": {
+					"positions": [
+						0,
+						math.radians(90),
+						0,
+						0,
+						0,
+						0,
+					],
+					"velocities": [0.0] * 6,
+					"accelerations": [0.0] * 6,
+					"time_from_start": 7,
 			},
 		},
 	}
@@ -2719,13 +2744,12 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	if __name__ == "__main__":
 		base_url = f"http://192.168.1.150:8888"
 
-		while True:
-			post_init_trajectories(base_url)
-			ret = post_trajectories(base_url, trajectories_go)
-			time.sleep(1) # 1초 후 연속적으로 궤적을 post
-			ret = post_trajectories(base_url, trajectories_back)
-			time.sleep(8) # 최종 time_from_start 를 고려하여 1초를 더한 8초로 설정
-
+    while True:
+		post_init_trajectories(base_url)
+		ret = post_trajectories(base_url, traj_1)
+		time.sleep(1)  # 1초 후 연속적으로 궤적을 post
+		ret = post_trajectories(base_url, traj_2)
+		time.sleep(8)  # 최종 time_from_start 를 고려하여 1초를 더한 8초로 설정
 	```
 
 - ```sh
@@ -3987,10 +4011,33 @@ POST /project/context/tasks[0]/cur_prog_cnt
 ### request-body
 
 - [cur_prog_cnt 요청 파라미터](../.././99-schema/cur_prog_cnt.md)
+- api 는 원격모드에서 동작하므로 외부선택 옵션(ext_sel: 1)을 선택해야합니다.
 
 ### response-body
 
 - [cur_prog_cnt 응답 파라미터](../.././99-schema/cur_prog_cnt.md)
+
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - 허용되지 않는 요청을 한 경우
+  - `err_code` (<0) : 초기화 실패
+- 404 : Not Found
+
+### error code
+
+<div style="width: fit-content;">
+
+- -1442080 : 프로그램 재생 중 적용 불가
+- -1245280 : 유효하지 않은 프로그램 카운터
+  > api 로 프로그램을 start/stop 한 뒤,  
+  > cur_prog_cnt 를 호출 하는 경우 -1245280 에러가 발생할 수 있습니다.  
+  > set_cur_pc_idx api 로 현재 커서 위치를 최상단(idx: 0)으로 옮기고 호출해야합니다.
+
+</div>
 
 ### 사용 예
 
@@ -4000,10 +4047,10 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 request-body:
 {
-    "pno":-1,
+    "pno":1,
     "sno":-1,
     "fno":-1,
-    "ext_sel":0
+    "ext_sel":1
 }
 ```
 
@@ -4016,7 +4063,7 @@ def post_cur_prog_cnt() -> dict:
     base_url       = 'http://192.168.1.150:8888'
     path_parameter = '/project/context/tasks[0]/cur_prog_cnt'
     headers        = { 'Content-Type': 'application/json; charset=utf-8' }
-    body           = {"pno":-1, "sno":-1, "fno":-1, "ext_sel":0 }
+    body           = { "pno":1, "sno":-1, "fno":-1, "ext_sel":1 }
 
     response = requests.request("POST", base_url + path_parameter, headers=headers, json=body)
 
@@ -4034,13 +4081,23 @@ $python python test.py
 
 <div style="width: fit-content;">
 
+
+{% hint style="warning" %}
+
+R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동의 원인이 될 수 있습니다.<br>
+에러 초기화 용도로는 반드시 R코드 1을 사용하십시오.<br>
+주의사항을 무시한 R코드 0 호출로 발생한 문제에 대해 당사는 책임지지 않습니다.
+
+{% endhint %}
+
 ### 설명
 
 - `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
-- [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code)를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
-    R코드 0 이외의 코드는 예정된 동작이 아닙니다.
+- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code)를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+    R코드 1, 0 이외의 코드는 예정된 동작이 아닙니다.
 </span>
- 
+- R코드 1을 진행한 이후에 프로그램 카운터 조작이 필요한 경우는 명시적으로 [cur_prog_cnt](./1-cur_prog_cnt.md), [set_cur_pc_idx](./6-set_cur_pc_idx.md) api 를 활용하십시오.
+
 
 ### path-parameter
 
@@ -4052,7 +4109,7 @@ POST /project/service/r_code/execute
 ### request-body
 
 ```json
-{"code": 0}
+{"code": 1}
 ```
 
 ### 사용 예
@@ -4063,7 +4120,7 @@ POST /project/service/r_code/execute
 
 request-body:
 {
-    "code":0
+    "code":1
 }
 ```
 
@@ -4073,17 +4130,17 @@ Python Script
 import requests
 
 
-def post_rcode_0() -> int:
+def post_rcode() -> int:
     base_url = "http://192.168.1.150:8888"
     path_parameter = "/project/service/r_code/execute"
     head = {"Content-Type": "application/json; charset=utf-8"}
-    body = {"code": 0}
+    body = {"code": 1}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
     return response.status_code
 
 
-print(f"response: {post_rcode_0()}")
+print(f"response: {post_rcode()}")
 
 ```
 ```sh
@@ -4297,8 +4354,18 @@ POST /project/context/tasks[{task index}]/release_wait
 
 ### response-body
 
-- 200 : 정상 동작
-- 403 : 상기 필요 조건 불충족
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+- 403 : Forbidden
+  - 상기 필요 조건 불충족
+- 404 : Not Found
+
+### error code
+
+- -1442069 : 사용자 환경 설정 오류. 상기 필요 조건을 확인하십시오.
+
 
 ### 사용 예
 
@@ -4352,6 +4419,17 @@ POST /project/context/tasks[{task index}]/set_cur_pc_idx
   "idx": 1
 }
 ```
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+- 403 : Forbidden
+  - 상기 필요 조건 불충족
+- 404 : Not Found
+
+### error code
+
+- -38501 : 재생 중인 task 가 있을 때는 적용이 되지 않습니다.
 
 ### 사용 예
 
@@ -4535,11 +4613,16 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ### response-body
 
-- 200 : 요청 성공  
-- 400 : 요청 실패  
-	- request body 가 유효성 검사에서 실패  
-- 403 : 요청 실패  
-	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패
+- 403 : Forbidden
+	- 원격모드가 아닌 상태로 API 요청
+- 404 : Not Found
+
+### error code
+
+- -38500: 원격 모드가 아닌 상태로 해당 api 요청
 
 Python Script 예시
 - 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
@@ -4621,18 +4704,20 @@ POST /console/execute_cmd
 
 ### response-body
 
-- 200 : 요청 성공  
-	- 로봇 언어 명령어 규칙을 벗어난 경우 아래와 같이 ecode 1이 반환됩니다.
-		<div style = "width: fit-content;">  
-		
-		```python
-		{'_type': 'JObject', 'ecode': 1}
-		```
-		</div>
-- 400 : 요청 실패  
-	- request body 가 유효성 검사에서 실패한 경우  
-- 403/4 : 요청 실패  
-	- 서비스 되지 않는 API 에 대해서 요청한 경우  
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+- 404 : Not Found
+
+### error code
+
+- ecode: 1
+  - 로봇 언어 명령어 규칙을 벗어난 경우
+
 
 ### 사용 예
 
@@ -4729,7 +4814,7 @@ GET /clock/date_time
 response-body:
 {
     "_type": "JObject",
-    "year": 2023,
+    "year": 2025,
     "mon": 11,
     "day": 20,
     "min": 40,
@@ -4784,7 +4869,7 @@ PUT /clock/date_time
 
 request-body:
 {
-    "year": 2023,
+    "year": 2025,
     "mon": 10,
     "day": 30,
     "hour": 18,
@@ -4803,7 +4888,7 @@ def put_system_time() -> int:
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/clock/date_time'
     head            = {'Content-Type': 'application/json; charset=utf-8'}
-    body 			= {"year": 2023, "mon": 11, "day": 20, "hour": 21, "min": 2, "sec": 0}
+    body 			= {"year": 2025, "mon": 11, "day": 20, "hour": 21, "min": 2, "sec": 0}
 	
     response = requests.put(url = base_url + path_parameter, headers = head, json = body)
 

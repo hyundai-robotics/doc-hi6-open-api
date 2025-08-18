@@ -25,11 +25,16 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ### response-body
 
-- 200 : 요청 성공  
-- 400 : 요청 실패  
-	- request body 가 유효성 검사에서 실패  
-- 403 : 요청 실패  
-	- 서비스 되지 않는 API 에 대해서 요청을 한 경우
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패
+- 403 : Forbidden
+	- 원격모드가 아닌 상태로 API 요청
+- 404 : Not Found
+
+### error code
+
+- -38500: 원격 모드가 아닌 상태로 해당 api 요청
 
 Python Script 예시
 - 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
