@@ -29,7 +29,7 @@ POST /project/context/tasks[{task index}]/execute_move
 - 400 : Bad Request
 	- request body 가 유효성 검사에서 실패
 - 403 : Forbidden
-	- 원격모드가 아닌 상태로 API 요청
+	- 원격모드가 아닌 상태로 API 요청(v61.00 부터 적용)
 - 404 : Not Found
 
 ### error code
