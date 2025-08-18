@@ -67,9 +67,16 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ### response-body
 
-- 200: 요청 성공
-- 403: 요청 실패
-  - 서비스 되지 않는 API 에 대해서 요청을 한 경우
+### status code
+
+- 200 : OK
+- 400 : Bad Request
+	- request body 가 유효성 검사에서 실패한 경우
+- 403 : Forbidden
+  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+  - `err_code` (<0) : 초기화 실패
+- 404 : Not Found
+
 
 ### error code (response 403)
 
@@ -159,38 +166,6 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	session = requests.Session()
 
 
-	traj_2 = {
-		"joint_names": ["j1", "j2", "j3", "j4", "j5", "j6"],
-		"points": {
-			"point_1": {
-					"positions": [
-						math.radians(2.89),
-						math.radians(90),
-						0,
-						0,
-						0,
-						0,
-					],
-					"velocities": [0.0] * 6,
-					"accelerations": [0.0] * 6,
-					"time_from_start": 5.0,
-			},
-			"point_2": {
-					"positions": [
-						0,
-						math.radians(90),
-						0,
-						0,
-						0,
-						0,
-					],
-					"velocities": [0.0] * 6,
-					"accelerations": [0.0] * 6,
-					"time_from_start": 7,
-			},
-		},
-	}
-
 	traj_1 = {
 		"joint_names": ["j1", "j2", "j3", "j4", "j5", "j6"],
 		"points": {
@@ -226,6 +201,38 @@ POST /project/robot/trajectory/joint_traject_insert_points
 					],
 					"accelerations": [0.0] * 6,
 					"time_from_start": 3.0,
+			},
+		},
+	}
+
+	traj_2 = {
+		"joint_names": ["j1", "j2", "j3", "j4", "j5", "j6"],
+		"points": {
+			"point_1": {
+					"positions": [
+						math.radians(2.89),
+						math.radians(90),
+						0,
+						0,
+						0,
+						0,
+					],
+					"velocities": [0.0] * 6,
+					"accelerations": [0.0] * 6,
+					"time_from_start": 5.0,
+			},
+			"point_2": {
+					"positions": [
+						0,
+						math.radians(90),
+						0,
+						0,
+						0,
+						0,
+					],
+					"velocities": [0.0] * 6,
+					"accelerations": [0.0] * 6,
+					"time_from_start": 7,
 			},
 		},
 	}
@@ -307,13 +314,12 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	if __name__ == "__main__":
 		base_url = f"http://192.168.1.150:8888"
 
-		while True:
-			post_init_trajectories(base_url)
-			ret = post_trajectories(base_url, trajectories_go)
-			time.sleep(1) # 1초 후 연속적으로 궤적을 post
-			ret = post_trajectories(base_url, trajectories_back)
-			time.sleep(8) # 최종 time_from_start 를 고려하여 1초를 더한 8초로 설정
-
+    while True:
+		post_init_trajectories(base_url)
+		ret = post_trajectories(base_url, traj_1)
+		time.sleep(1)  # 1초 후 연속적으로 궤적을 post
+		ret = post_trajectories(base_url, traj_2)
+		time.sleep(8)  # 최종 time_from_start 를 고려하여 1초를 더한 8초로 설정
 	```
 
 - ```sh
