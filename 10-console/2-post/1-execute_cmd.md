@@ -23,21 +23,27 @@ POST /console/execute_cmd
 }
 ```
 
-### response-body
+### response
 
-### status code
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+    	- request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+     - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+   - 404 : Not Found
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
-- 404 : Not Found
+2) response body
+	<div style="width: fit-content;">
 
-### error code
+	```json
+	{ "_type" : "JObject" }
+	```
+	</div>
 
-- ecode: 1
-  - 로봇 언어 명령어 규칙을 벗어난 경우
+3) error code
+
+   - 1: 로봇 언어 명령어 규칙을 벗어난 경우
 
 
 ### 사용 예
@@ -54,55 +60,48 @@ import time
 import requests
 
 
-class ExecuteCmds:
-    request_to = {
-        "com": [
-            "rl.stop",  # 외부정지
-            "rl.reinit",  # 재시작
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 10, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
-            "rl.i end",
-            "rl.start",  # 재생
-        ],
-    }
+cmds = [
+    "rl.stop",   # 외부정지
+    "rl.reinit", # 재시작
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 10, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
+    "rl.i end",
+    "rl.start",  # 재생
+]
 
-
-def post_execute_cmd() -> int:
+def post_execute_cmd(cmd: str) -> int:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/console/execute_cmd"
     head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"cmd_line": cmd}
 
-    execute_cmds = ExecuteCmds.request_to["com"]
+    res = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    response: int = None
-    for cmd in execute_cmds:
-        data = {"cmd_line": cmd}
-        response = requests.post(url=base_url + path_parameter, headers=head, json=data)
-        print(f"response: {response}")
-        time.sleep(0.1)
-
-    return 200
+    return res
 
 
-print(f"response: {post_execute_cmd()}")
+for cmd in cmds:
+    ret = post_execute_cmd(cmd)
+    print((ret.status_code, ret.json()))
+    time.sleep(0.1)
 ```
 ```sh
-$python test.py 
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: 200
+$python test.py
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
 ```
 
 </div>

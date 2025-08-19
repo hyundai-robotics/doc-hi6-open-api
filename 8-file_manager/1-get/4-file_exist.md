@@ -23,17 +23,16 @@ query-parameter 를 반드시 입력해야합니다.
 
 </div>
 
-### response-body
+### response
 
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-<div style="width: fit-content;">
-
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`|`true` (파일 존재)|
-|`200 OK`|`false` (파일 없음)|
-
-</div>
+2) response-body
+   - 파일 존재 여부에 대한 bool 값 (True/False) 반환
 
 ### 사용 예
 
@@ -65,20 +64,23 @@ Python Script 예시
 # test.py
 import requests
 
-def is_file_exist() -> str:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/file_manager/file_exist'
-    query_parameter = {'pathname': 'project/jobs/0001.job'}
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+def get_file_contents() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/files"
+    query_parameter = {"pathname": "project/jobs/0001.job"}
 
-    return response.text
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
-print(is_file_exist())
+    return response
+
+
+print(get_file_contents())
 ```
 ```sh
 $python test.py
-true
+True
 ```
 
 </div>

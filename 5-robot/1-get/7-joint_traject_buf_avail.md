@@ -13,18 +13,24 @@
 GET /project/robot/trajectory/joint_traject_buf_avail
 ```
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- val: 현재 사용 가능한 버퍼의 수 (최대 2048개)
+2) response-body
+   - val: 현재 사용 가능한 버퍼의 수 (최대 2048개)
 
+		<div style="width: fit-content;">
 
-### status code
+		```json
+		{"val": 2048}
+		```
+		</div>
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-- 404 : Not Found
 
 ### 사용 예
 
@@ -68,6 +74,6 @@ if __name__ == "__main__":
 ```
 ```sh
 $python test.py
-{'val': 2048}
+(200, {'val': 2048})
 ```
 </div>

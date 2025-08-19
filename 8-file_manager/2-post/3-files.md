@@ -22,15 +22,21 @@ POST /file_manager/files/{target_filepath}
 - binary 형식의 파일
 - `Content-Type` 은 `application/octet-stream` 이어야합니다.
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-<div style="width: fit-content;">
+2) response-body
 
-|HTTP Status|description|
-|:---:|:---|
-|`200 OK`| 전송 완료 |
+	<div style="width: fit-content;">
 
-</div>
+	```json
+	{"_text": ""})
+	```
+	</div>
 
 ### 사용 예
 
@@ -55,24 +61,29 @@ Python Script 예시
 # test.py
 import requests
 
-def post_file_transfer() -> int:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/file_manager/files'
-    path_value      = '/project/jobs/test.job' # target
 
-    target_file     = base_url + path_parameter + path_value
-    source_file     = 'D:\\temp\\test.job' # source (path for WindowOS)
+def post_file_transfer() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/files"
+    path_value = "/project/jobs/3344.job"  # target
 
-    with open(source_file, 'rb') as file:
-        response = requests.post(url=target_file, 
-                                 data=file, 
-                                 headers={'Content-Type': 'application/octet-stream'})
+    target_file = base_url + path_parameter + path_value
+    source_file = "D:\\temp\\test.job"  # source (path for WindowOS)
 
-    return response.status_code
+    with open(source_file, "rb") as file:
+        response = requests.post(
+            url=target_file,
+            data=file,
+            headers={"Content-Type": "application/octet-stream"},
+        )
 
-print(f"response: {post_file_transfer()}")
+    return response
+
+
+print(post_file_transfer())
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'_text': ''})
 ```

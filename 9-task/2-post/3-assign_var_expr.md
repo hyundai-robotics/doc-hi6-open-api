@@ -32,9 +32,27 @@ POST /project/context/tasks[{task index}]/assign_var_expr
 }
 ```
 
+### response
+
+1) status code
+	- 200 : OK
+	- 400 : Bad Request
+	- 403 : Forbidden
+	- 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject"}
+	```
+	</div>
+
+
+
 ### 사용 예
 
-현재 태스크에 지역 변수 a 가 선언된 상태인 경우  
+현재 태스크에 지역 변수 a 가 선언된 상태인 경우
 
 ```python
 request url:
@@ -56,35 +74,49 @@ Python Script 예시
 # test.py
 import requests
 
-def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/solve_expr'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.json()
+def post_read_var(var: str, scope=None) -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/solve_expr"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"expr": f"{var}", "scope": f"{scope}"}
 
-def assign_var_expr(var_name: str, scope = None, expression: str = '') -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/assign_var_expr"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {"name": f"{var_name}", "expr": f"{expression}", "scope": f"{scope}"}
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+    return response
 
-    return response.status_code
 
-print(f"before: {post_read_var('a', 'local')}")
-print(f"response: {assign_var_expr('a', 'local', '465 + 312')}")
-print(f"after: {post_read_var('a', 'local')}")
+def assign_var_expr(var: str, scope=None, expression: str = "") -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/assign_var_expr"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"name": f"{var}", "expr": f"{expression}", "scope": f"{scope}"}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response
+
+
+ret1 = post_read_var("a", "local")
+ret2 = assign_var_expr("a", "local", "465 + 312")
+ret3 = post_read_var("a", "local")
+
+try:
+    print((ret1.status_code, ret1.json()))
+    print((ret2.status_code, ret2.json()))
+    print((ret3.status_code, ret3.json()))
+except:
+    print(ret1)
+    print(ret2)
+    print(ret3)
 ```
 ```sh
-$python test.py 
-before: 1234
-response: 200
-after: 777   
+$python test.py
+(200, 0)
+(200, {'_type': 'JObject'})
+(200, 777)
 ```
 
 </div>

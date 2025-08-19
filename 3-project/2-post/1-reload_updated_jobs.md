@@ -19,6 +19,20 @@ POST /project/reload_updated_jobs
 {}
 ```
 
+### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	```json
+	{'_type': 'JObject'}
+	```
+
+
 ### 사용 예
 
 ```python
@@ -31,29 +45,29 @@ request-body: {}
 
 Python Script 예시
 
-- 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
-
-
 <div style="width: fit-content;">
 
 ```python
 # test.py
-import requests 
+import requests
 
-def post_reload_updated_jobs() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/reload_updated_jobs'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+def post_reload_updated_jobs() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888" # hrspace
+    path_parameter = "/project/reload_updated_jobs"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
 
-    return response.status_code
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-print(f"response: {post_reload_updated_jobs()}")
+    return response
+
+
+print(post_reload_updated_jobs())
 ```
 ```sh
 $python test.py
-response: 200 
+(200, {'_type': 'JObject'})        
 ```
 </div>

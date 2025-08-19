@@ -20,13 +20,18 @@ POST /project/robot/motor_on
 {}
 ```
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+   - 404 : Not Found
 
-```json
-{
-    "_type": "JObject"
-}
-```
+2) response-body
+	```json
+	{ "_type": "JObject"}
+	```
 
 ### 사용 예
 
@@ -46,21 +51,24 @@ Python Script 예시
 ```python
 import requests
 
-def post_motor_on() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/motor_on'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
+def post_motor_on() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/motor_on"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
 
 
-print(f"Motor-ON  response: {post_motor_on()}")
+print(post_motor_on())
+
 ```
 ```sh
 $python test.py
-Motor-ON  response: 200
+(200, {'_type': 'JObject'})
 ```
 
 </div>

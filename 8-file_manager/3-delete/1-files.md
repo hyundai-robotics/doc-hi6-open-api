@@ -12,11 +12,16 @@
 DELETE /file_manager/files/{target-filepath}
 ```
 
-### response-body
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`| 타겟 삭제 완료, 타겟이 없어도 200 반환됨 |
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
+2) response-body
+   - 없음. status code 만 반환
+   - 삭제할 대상의 파일이 없어도 통신상에 문제가 없으면 상태코드 200 응답
 
 ### 사용 예
 
@@ -25,7 +30,7 @@ DELETE /file_manager/files/{target-filepath}
 ```python
 request url:
 DELETE /file_manager/files/project/jobs/special
-```  
+```
 
 ```text
 hi6
@@ -42,19 +47,26 @@ Python Script 예시
 # test.py
 import requests
 
-def delete_file() -> int:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/file_manager/files'
-    target_file     = '/project/jobs/test.job'
 
-    response = requests.delete(url = base_url + path_parameter + target_file)
+def delete_file() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/files"
+    target_file = "/project/jobs/0001.job"
 
-    return response.status_code
+    response = requests.delete(url=base_url + path_parameter + target_file)
 
-print(f"response: {delete_file()}")
+    return response
+
+
+ret = delete_file()
+try:
+    print((ret.status_code, ret.json()))
+except:
+    print(ret)
 ```
 ```sh
 $python test.py
-response: 200
+<Response [200]>
 ```
 </div>

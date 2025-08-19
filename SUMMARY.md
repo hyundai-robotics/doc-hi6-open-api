@@ -34,7 +34,7 @@
 * [4. control](4-control/README.md)
   * [4.1 get](4-control/1-get/README.md)
     * [4.1.1 op_cnd](4-control/1-get/1-op_cnd.md)
-    * [4.1.4 ucss-ucs_nos](4-control/1-get/4-ucss-ucs_nos.md)
+    * [4.1.2 ucss-ucs_nos](4-control/1-get/2-ucss-ucs_nos.md)
   * [4.2 post](4-control/2-post/README.md)
   * [4.3 put](4-control/3-put/README.md)
     * [4.3.1 op_cnd](4-control/3-put/1-op_cnd.md)

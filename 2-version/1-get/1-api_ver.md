@@ -16,10 +16,16 @@
 ```python
 GET /api_ver
 ```
+### response
 
-### response-body
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- Open API 스키마 버전
+2) response-body
+   - Open API 스키마 버전
 
 
 ### 사용 예
@@ -28,8 +34,8 @@ GET /api_ver
 request url:
 GET /api_ver
 
-response-body:
-5
+response:
+(200, 5)
 ```
 </div>
 
@@ -40,17 +46,17 @@ Python Script 예시
 ```python
 import requests
 
-def get_api_ver() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/api_ver'
-    response = requests.get(url = base_url + path_parameter)
-
-    return response.json()
+def get_api_ver() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+	 # base_url = "http://127.0.0.1:8888" # hrspace
+    path_parameter = "/api_ver"
+    response = requests.get(url=base_url + path_parameter, timeout=5)
+    return response
 
 print(get_api_ver())
 ```
 ```sh
 $python test.py
-5
+(200, 5)
 ```
 </div>

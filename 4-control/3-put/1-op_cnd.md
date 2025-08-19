@@ -17,6 +17,16 @@ PUT /project/control/op_cnd
 
 - [조건설정 파라미터](../../99-schema/op_cnd.md)
 
+### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - {'_text': ''}
 
 ### 사용 예
 
@@ -30,6 +40,9 @@ request-body:
     "step_goback_max_spd": 130,
     "ucrd_num": 2
 }
+
+response-body:
+{'_text': ''}
 ```
 </div>
 
@@ -40,25 +53,35 @@ Python Script 예시
 
 ```python
 # test.py
-import requests 
+import requests
 
-def put_op_cnd() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/control/op_cnd'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = { 
-                          "playback_mode": 1,
-                          "step_goback_max_spd": 130,
-                          "ucrd_num": 2
-                     }
 
-    response = requests.put(url = base_url + path_parameter, headers = head,  json = body)
-    return response.status_code
+def put_op_cnd() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/op_cnd"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {
+        "playback_mode": 2,
+        "step_goback_max_spd": 130,
+        "step_go_func_ex": 0,
+        "func_reexe_on_trace": 1,
+        "path_recov_confirm": 0,
+        "playback_spd_rate": 80,
+        "robot_lock": 0,
+        "intp_base": 0,
+        "ucrd_num": 0,
+        "plc_mode": 0,
+    }
 
-print(f"response: {put_op_cnd()}")
+    response = requests.put(url=base_url + path_parameter, headers=head, json=body)
+    return response
+
+
+print(put_op_cnd())
 ```
 ```sh
 $python test.py
-response: 200 
+(200, {'_text': ''})
 ```
 </div>

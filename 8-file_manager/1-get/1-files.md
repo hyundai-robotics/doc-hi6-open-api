@@ -14,7 +14,7 @@ GET /file_manager/files
 
 ### query-parameter
 
-query-parameter 를 반드시 입력해야합니다.  
+query-parameter 를 반드시 입력해야합니다.
 
 ```text
 ?pathname=project/jobs/0001.job
@@ -22,13 +22,22 @@ query-parameter 를 반드시 입력해야합니다.
 
 - `pathname` : 가져올 파일 이름
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-|HTTP Status|description|
-|:---:|:---|
-|`200 OK`|파일 내용 반환|
-|`404 Not Found`| 파일 없을 때 에러 상태 코드 반환|
+2) response-body
+	- "_text" 를 키값으로 요청한 job 파일의 내용을 반환
+	- e.g.
+		<div style="width: fit-content;">
 
+		```json
+		{ "_text": "Hyundai Robot Job File; { version: 2.0, mech_type: "458(HA006B-01)", total_axis: 6, aux_axis: 0 }\nS1   move P,spd=60%,accu=0,tool=1  [0.000,90.000,0.000,0.000,0.000,0.000]\n     wait di1\n     end\n" }
+		```
+		</div>
 </div>
 
 ### 사용 예
@@ -69,31 +78,23 @@ Python Script 예시
 # test.py
 import requests
 
-def print_file_contents() -> None:
-    base_url	    = "http://192.168.1.150:8888"
-    path_parameter  = "/file_manager/files"
+
+def get_file_contents() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/files"
     query_parameter = {"pathname": "project/jobs/0001.job"}
 
     response = requests.get(url=base_url + path_parameter, params=query_parameter)
-	
-    print(f'response: {response.status_code}')
-    print(response.text)
 
-print_file_contents()
+    return response
+
+
+print(get_file_contents())
 ```
 ```sh
 $python test.py
-response: 200
-Hyundai Robot Job File; { version: 2.0, mech_type: "576(HH020-03)", total_axis: 6, aux_axis: 0 }
-     Pose P1 =po1 = Pose(10, 90, 0, 0, -30, 0, -1240.8)
-     Pose P2
-     Pose P3
-     Pose P4
-S1   move P,tg=po1,spd=100%,accu=0,tool=1
-S2   move P,tg=po1,spd=100%,accu=0,tool=1
-S3   move P,tg=po1,spd=100%,accu=0,tool=1
-S4   move P,tg=po1,spd=100%,accu=0,tool=1
-     end
+(200, {'_text': 'Hyundai Robot Job File; { version: 2.0, mech_type: "458(HA006B-01)", total_axis: 6, aux_axis: 0 }\nS1   move P,spd=60%,accu=0,tool=1  [0.000,90.000,0.000,0.000,0.000,0.000]\n     wait di1\n     end\n'})
 ```  
 
 </div>

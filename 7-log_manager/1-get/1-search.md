@@ -41,14 +41,27 @@ GET /logManager/search
 - `ts_max` : 최대 timestamp 필터. (optional)
   - 년/월/일 시:분:초.밀리초 형식. e.g. 2023/11/20 18:50:30.955
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- `id` : 이벤트 ID (event ID)
-- `ts` : timestamp
-- `cat` : 이벤트 범주 (event category)
-- `code` : 이벤트 코드번호
-- `aux` : 이벤트 보조정보 (event auxiliary info.). 최대 280자입니다.
-  - 에러와 경고, 기동/정지의 경우에는 스냅샷(snapshot) 정보를 담습니다.
+2) response-body
+   - `id` : 이벤트 ID (event ID)
+   - `ts` : timestamp
+   - `cat` : 이벤트 범주 (event category)
+   - `code` : 이벤트 코드번호
+   - `aux` : 이벤트 보조정보 (event auxiliary info.). 최대 280자입니다.
+     - 에러와 경고, 기동/정지의 경우에는 스냅샷(snapshot) 정보를 담습니다.
+   - "_text" 를 키값으로 로그 내용이 반환됩니다.
+		<div style="width: fit-content;">
+
+		```json
+		{ "_text": "..." }
+		```
+		</div>
 
 ### 사용 예
 
@@ -73,31 +86,29 @@ Python Script 예시
 
 ```python
 # test.py
+import json
 import requests
 
-def get_log_search() -> str:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/logManager/search'
-    query_parameter = { 
-                        'cat_p':  "P,O", 
-                        'id_max': "24256", 
-                        'id_min': "24251" 
-                      }
-    
-    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
-    return response.text
+def get_log_search() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/logManager/search"
+    query_parameter = {"cat_p": "H"} # get history log
+
+    responses = requests.get(url=base_url + path_parameter, params=query_parameter)
+
+    return responses
+
 
 print(get_log_search())
+
 ```
 
 ```sh
 $python test.py
-{ "id" : 24256, "ts" : "2023/11/28 16:53:23.450", "cat" : "O", "code" : "K.Up", "aux" : "CTRL" }
-{ "id" : 24255, "ts" : "2023/11/28 16:53:23.045", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
-{ "id" : 24254, "ts" : "2023/11/28 16:53:13.695", "cat" : "O", "code" : "K.Up", "aux" : "CTRL" }
-{ "id" : 24253, "ts" : "2023/11/28 16:53:13.202", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
-{ "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : ... }
-{ "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : ... }
+(200, {'_text': '{ "id" : 63010, "ts" : "2025/08/19 12:24:14.325485", "cat" : "H", "code" : "hist", "aux" : "(     12)Power saving = on " }\r\n{ "id" : 63009, "ts" : "2025/08/19 12:24:14.325480", "cat" : "H", "code" : "hist", "aux" : "(=Stamp=)[2025/8/19 12:24:15](+299921531us)" }\r\n{ "id" : 62997, "ts" : "2025/08/19 12:19:14.403964", "cat" : "H", "code" : "hist", "aux" : "(     14)>online_tracking_finish " }\r\n{ "id" : 62996, "ts" : "2025/08/19 12:19:14.403953", "cat" : "H", "code" : "hist", "aux" : "(7142148)FinalizeTracking " }\r\n
+ 				...
+ \r\n'})
 ```
 </div>

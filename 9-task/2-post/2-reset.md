@@ -8,8 +8,8 @@
 {% hint style="warning" %}
 
 R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동의 원인이 될 수 있습니다.<br>
-에러 초기화 용도로는 반드시 R코드 1을 사용하십시오.<br>
-주의사항을 무시한 R코드 0 호출로 발생한 문제에 대해 당사는 책임지지 않습니다.
+에러 초기화 용도로는 R코드 1을 사용하십시오.<br>
+이를 무시하고 무분별한 R코드 0 호출로 발생한 문제에 대해 당사는 책임지지 않습니다.
 
 {% endhint %}
 
@@ -35,6 +35,26 @@ POST /project/service/r_code/execute
 {"code": 1}
 ```
 
+### response
+
+1) status code
+	- 200 : OK
+	- 400 : Bad Request
+		- request body 가 유효성 검사에서 실패한 경우
+	- 403 : Forbidden
+	  - 허용되지 않는 요청을 한 경우
+	  - `err_code` (<0) 반환. 하기 에러코드 참조
+	- 404 : Not Found
+
+2) response-body
+   - code: 요청한 rcode 번호가 반환
+		<div style="width: fit-content;">
+
+		```json
+		{"code": 1, ... })
+		```
+		</div>
+
 ### 사용 예
 
 ```python
@@ -50,25 +70,26 @@ request-body:
 Python Script
 
 ```python
+# test.py
 import requests
 
 
-def post_rcode() -> int:
+def post_rcode() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/project/service/r_code/execute"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {"code": 1}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
-    return response.status_code
+    return response
 
 
-print(f"response: {post_rcode()}")
-
+print(post_rcode())
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'code': 1, 'description': '', 'params': [], 'subcode': 0})
 ```
 
 </div>

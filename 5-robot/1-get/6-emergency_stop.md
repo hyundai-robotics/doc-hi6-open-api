@@ -13,10 +13,24 @@
 GET /project/robot/emergency_stop
 ```
 
-### response-body
+### response
 
-- 0: released 상태
-- 1: pressed 상태
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject", "val": 0}
+	```
+	</div>
+
+	- 0: released 상태
+   - 1: pressed 상태
 
 ### 사용 예
 
@@ -39,22 +53,20 @@ Python Script 예시
 # test.py
 import requests
 
-def get_emergency_stop() -> Optional[dict]:
+
+def get_emergency_stop() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/project/robot/emergency_stop"
     head = {"Content-Type": "application/json; charset=utf-8"}
 
-    try:
-        response = requests.get(url=base_url + path_parameter, headers=head)
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error in get_emg_state: {e}")
-        return None
+	 response = requests.get(url=base_url + path_parameter, headers=head)
+	 return response
 
 print(f"{get_emergency_stop()}")
 ```
 ```sh
 $python test.py
-{'_type': 'JObject', 'val': 0}
+(200, {'_type': 'JObject', 'val': 0})
 ```
 </div>

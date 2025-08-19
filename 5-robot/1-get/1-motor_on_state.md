@@ -12,12 +12,19 @@
 GET /project/robot/motor_on_state
 ```
 
-### response-body
+### response
 
-- val :
-  - `0` : on
-  - `1` : off
-  - `2` : busy (상태 전환 중)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - val :
+     - `0` : on
+     - `1` : off
+     - `2` : busy (상태 전환 중)
 
 ### 사용 예
 ```python
@@ -40,19 +47,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_motor_on_state() -> dict:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/motor_on_state'
 
-    response = requests.get(url = base_url + path_parameter).json()
+def get_motor_on_state() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/motor_on_state"
+
+    response = requests.get(url=base_url + path_parameter)
 
     return response
 
-print(f"Motor On status: {get_motor_on_state()['val']}")
+
+print(get_motor_on_state())
+
 ```
 ```sh
 $python test.py
-Motor On status: 1
+(200, {'_type': 'JObject', 'val': 1})
 ```
 
 </div>

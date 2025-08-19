@@ -23,10 +23,23 @@ query-parameter 를 반드시 입력해야합니다.
 
 </div>
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- [파일 정보](../../99-schema/file_info.md)
-- 파일이 없을 시 `404 Not Found` 
+2) response-body
+   - [파일 정보](../../99-schema/file_info.md)
+   - 	e.g.
+		<div style="width: fit-content;">
+
+		```json
+		{"mday": 11, "fname": "hi6_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
+		```
+		</div>
+   - 파일이 없을 시 `404 Not Found`
 
 ### 사용 예
 
@@ -74,20 +87,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_file_info() -> dict:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/file_manager/file_info"
-    query_parameter  = {"pathname": "project/hi6_proj.json"}
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+def get_file_info() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/file_info"
+    query_parameter = {"pathname": "project/hi6_proj.json"}
 
-    return response.json()
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
+
+    return response
+
 
 print(get_file_info())
 ```
 ```sh
 $python test.py
-{'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
+(200, {'mday': 11, 'fname': 'hi6_proj.json', 'month': 8, 'is_dir': False, 'min': 51, 'size': 144513, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 38, 'nfolders': 0, 'hour': 14, 'wday': 1})
 ```
 
 </div>

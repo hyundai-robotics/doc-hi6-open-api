@@ -42,6 +42,22 @@ POST /project/control/ios/dio/do_val
 - `val` : 변경하고자 하는 설정값
 
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_text": ""}
+	```
+	</div>
+
+
 ### 사용 예
 
 <div style="width: fit-content;">
@@ -69,21 +85,24 @@ Python Script 예시
 
 ```python
 # test.py
-import requests 
+import requests
 
-def post_do_val() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/control/ios/dio/do_val'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"type": "dob", "blk_no": 2, "sig_no": 3,"val": -99}
 
-    response = requests.post(url = base_url + path_parameter, headers = head,  json = body)
-    return response.status_code
+def post_do_val() -> requests.Response:
+    base_url = f"http://192.168.1.150:8888"
+    # base_url = f"http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/ios/dio/do_val"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"type": "dob", "blk_no": 2, "sig_no": 3, "val": -99}
 
-print(f"response: {post_do_val()}")
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
+
+
+print(post_do_val())
 ```
 ```sh
 $python test.py
-response: 200 
+(200, {'_text': ''})
 ```
 </div>

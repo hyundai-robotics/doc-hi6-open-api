@@ -20,27 +20,36 @@ POST /project/robot/stop
 {}
 ```
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+     - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v61.00 부터 적용)
+   - 404 : Not Found
 
-### status code
+2) response-body
+	<div style="width: fit-content;">
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-  - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v61.00 부터 적용)
-- 404 : Not Found
+	```json
+	{ "_type": "JObject"}
+	```
+	</div>
 
-### error code
 
-- -38500: 원격 모드가 아닌 상태로 해당 api 요청
+1) error code
+   - -38500: 원격 모드가 아닌 상태로 해당 api 요청
 
 ### 사용 예
 
 ```python
 POST /project/robot/start or /project/robot/stop
 
-request-body: 
+request-body:
+{}
+
+response-body:
 {}
 ```
 </div>
@@ -52,31 +61,34 @@ Python Script 예시
 ```python
 import requests
 
-def post_start() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/start'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    # 자동모드 및 모터 온 설정 필요
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
+def post_start() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/start"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
 
-def post_stop() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/stop'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
+def post_stop() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/stop"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
 
-print(f"Start response: {post_start()}")
-print(f"Stop  response: {post_stop()}")
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
+
+
+print(post_start())
+print(post_stop())
 ```
 ```sh
 $python test.py
-Start response: 200
-Stop  response: 200
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
 ```
 </div>

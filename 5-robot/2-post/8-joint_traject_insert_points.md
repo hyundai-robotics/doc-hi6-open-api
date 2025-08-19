@@ -65,18 +65,25 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
   ```
 
-### response-body
+### response
 
-### status code
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+    	- request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+     - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+     - `err_code` (<0) : 초기화 실패
+   - 404 : Not Found
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
-  - `err_code` (<0) : 초기화 실패
-- 404 : Not Found
+2) response body
 
+	<div style="width: fit-content;">
+
+	```json
+	{ "_type": "JObject"}
+	```
+	</div>
 
 ### error code (response 403)
 
@@ -289,7 +296,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 			)
 			post_cnt += 1
 
-			print(ret, ret.json())
+			print((ret.status_code, ret.json()))
 
 			ret.raise_for_status()
 			return ret
@@ -312,9 +319,10 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 
 	if __name__ == "__main__":
-		base_url = f"http://192.168.1.150:8888"
+		base_url = "http://192.168.1.150:8888"
+		# base_url = "http://127.0.0.1:8888"  # hrspace
 
-    while True:
+	while True:
 		post_init_trajectories(base_url)
 		ret = post_trajectories(base_url, traj_1)
 		time.sleep(1)  # 1초 후 연속적으로 궤적을 post
@@ -322,7 +330,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 		time.sleep(8)  # 최종 time_from_start 를 고려하여 1초를 더한 8초로 설정
 	```
 
-- ```sh
+  ```sh
 		$python test.py
 		[0] elapsed_ms: 6.122 ms. available jt buff: 2047/2048
 		<Response [200]> {'_type': 'JObject'}

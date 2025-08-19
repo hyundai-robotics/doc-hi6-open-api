@@ -14,6 +14,18 @@
 GET /project/control/ucss/ucs_nos
 ```
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - 현재 사용중인 사용자 좌표계(list)  
+  	  ex) [1]
+
+
 ### 사용 예
 
 ```python
@@ -21,10 +33,7 @@ request url:
 GET /project/control/ucss/ucs_nos
 
 response-body:
-{
-    "_type" : "JObject",
-    "val" : [1],
-}
+[1]
 ```
 </div>
 
@@ -36,18 +45,21 @@ Python Script 예시
 # test.py
 import requests
 
-def get_ucs_nos():
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/control/ucss/ucs_nos'
- 
-    response = requests.get(url = base_url + path_parameter)
 
-    return response.json()
+def get_ucs_nos() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/ucss/ucs_nos"
 
-print(f"{get_ucs_nos()}")
+    response = requests.get(url=base_url + path_parameter)
+
+    return response
+
+
+print(get_ucs_nos())
 ```
 ```sh
 $python test.py
-[1, 2, 3]
+(200, [1])
 ```
 </div>

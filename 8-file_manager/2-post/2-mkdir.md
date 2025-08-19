@@ -17,29 +17,42 @@ GET /file_manager/mkdir
 
 ### request-body
 
-|key|value|description|
-|:---:|:---:|:---:|
-|`path`|`str`|디렉토리를 생성할 위치|
+<div style="width: fit-content;">
+
+- 생성하려는 디렉토리 타겟 위치
+	```json
+	{ "path" : "project/jobs/special" }
+	```
 
 </div>
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - 변경하려는 타겟 파일이 존재하지 않음
+   - 403 : Forbidden
+   - 404 : Not Found
+   - 500 : Internal Server Error
+     - 타겟 위치에 디렉토리 이름이 중복되는 경우
 
-<div style="width: fit-content;">
+2) response-body
+   - 생성하려는 디렉토리 타겟 위치
+		<div style="width: fit-content;">
 
-|HTTP Status|description|
-|:---:|:---|
-|`200 OK`| 타겟 위치에 디렉토리 생성 완료 |
-|`500 Internal Server Error`| 타겟 위치에 디렉토리 이름이 중복되는 경우 |
-
+		```json
+		{ "path" : "project/jobs/special" }
+		```
+		</div>
 
 ### 사용 예
+<div style="width: fit-content;">
 
 ```python
 request url:
 GET /file_manager/mkdir
 
-request-body: 
+request-body:
 {
     "path" : "project/jobs/special"
 }
@@ -63,20 +76,27 @@ Python Script 예시
 # test.py
 import requests
 
-def post_mkdir() -> int:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/file_manager/mkdir'
-    head            = {'Content-Type': 'application/json; charset=utf-8'}
-    body            = {'path': "project/jobs/special7"}
+
+def post_mkdir() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/mkdir"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"path": "project/jobs/special"}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    return response.status_code
+    return response
 
-print(f"response: {post_mkdir()}")
+
+try:
+    ret = post_mkdir()
+    print(ret.status_code, ret.json())
+except:
+    print(post_mkdir())
 ```
 ```sh
 $python test.py
-response: 200
+200 {'path': 'project/jobs/special'}
 ```
 </div>

@@ -32,6 +32,15 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 - `st` : 시작 byte index (default: 0)
 - `len` : dword 개수 (default: 8)
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - 정상 응답 시 relay 값(list) 반환. e.g [0, 0, 0, 0]
 
 ### 사용 예
 
@@ -74,19 +83,22 @@ Python Script 예제
 # test.py
 import requests
 
-def get_relay_value() -> dict:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/plc/m/val_s32'
+
+def get_relay_value() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/plc/m/val_s32"
     query_parameter = {"st": "32", "len": "4"}
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
-    return response.json()
+    return response
 
-print(f"{get_relay_value()}")
+
+print(get_relay_value())
 ```
 ```sh
 $python test.py
-[0, 0, 0, 0]
+(200, [0, 0, 0, 0])
 ```
 </div>

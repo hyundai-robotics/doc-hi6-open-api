@@ -33,16 +33,24 @@ query-parameter 를 반드시 입력해야합니다.
 
 </div>
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-<div style="width: fit-content;">
+2) response-body
+   - 파일 리스트를 반환
+   - 	e.g.
+		<div style="width: fit-content;">
 
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`|[파일 정보](../../99-schema/file_info.md) `리스트`를 반환|
-|`404 Not Found`| 파일 없을 때 반환|
+		```json
+		{"mday": 11, "fname": "hi6_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
+		```
+		</div>
+   - 파일이 없을 시 `404 Not Found`
 
-</div>
 
 ### 사용 예
 
@@ -99,25 +107,27 @@ response-body:
 Python Script 예시
 
 ```python
-# test.py
 import requests
 
-def print_file_list() -> None:
+
+def print_file_list() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/file_manager/file_list"
-    query_parameter = {"incl_file": "true", "incl_dir": "true", "path": "project"}
+    query_parameter = {"incl_file": "true", "incl_dir": "true", "path": "project/jobs"}
 
     response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
-    for x in response.json()[:3]:
-        print(x)
+    return response
 
-print_file_list()
+
+print(print_file_list())
 ```
 ```sh
-$python final_test.py 
-{'mday': 20, 'sec': 8, 'fname': 'jobs', 'wday': 1, 'size': 8192, 'year': 2023, 'hour': 21, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 50}
-{'mday': 1, 'sec': 50, 'fname': 'vars', 'wday': 3, 'size': 8192, 'year': 2023, 'hour': 12, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 29}
-{'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
+$python final_test.py
+(200, [{'mday': 18, 'fname': '0002.job', 'month': 7, 'is_dir': False, 'min': 8, 'size': 543, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 44, 'nfolders': 0, 'hour': 14, 'wday': 5}, {'mday': 18, 'fname': '0003.job', 'month': 7, 'is_dir': False, 'min': 8, 'size': 1043, 
+                                ...
+, {'mday': 19, 'fname': '0001.job', 'month': 8, 'is_dir': False, 'min': 42, 'size': 198, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 6, 'nfolders': 0, 'hour': 7, 'wday': 2}])
+
 ```
 </div>

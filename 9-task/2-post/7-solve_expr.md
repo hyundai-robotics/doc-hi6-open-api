@@ -20,18 +20,27 @@ POST /project/context/tasks[{task index}]/solve_expr
 	|:---|:---|:---|
 	|지역 변수|전역 변수|전체 스코프|
 
-```json
-{
-    "expr" : "a",
-    "scope" : "local"
-}
-```
+	```json
+	{
+		"expr" : "a",
+		"scope" : "local"
+	}
+	```
+### response
 
-### response-body
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-```json
-13 // 현재 지정된 scope 안의 expr 값을 읽어옵니다.
-```
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	13 // 현재 지정된 scope 안의 expr 값을 읽어옵니다.
+	```
+	</div>
 
 ### 사용 예
 
@@ -98,24 +107,25 @@ Python Script 예시
 # test.py
 import requests
 
-def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/solve_expr'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.json()
+def post_read_var(var_name: str, scope=None) -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/solve_expr"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"expr": f"{var_name}", "scope": f"{scope}"}
 
-print(f"{post_read_var('a', 'local')}")
-print(f"{post_read_var('a', 'global')}")
-print(f"{post_read_var('a + (-234)')}")
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response
+
+
+print(post_read_var("a", "local"))
+print(post_read_var("a", "global"))
 ```
 ```sh
-$python test.py 
-1234
-10
-1000
+$python test.py
+(200, 1234)
+(200, 0)
 ```
 </div>

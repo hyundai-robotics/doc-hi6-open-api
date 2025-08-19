@@ -32,6 +32,25 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : 블럭 번호 (0~9)
 - `sig_no` : 신호 인덱스 (0~)
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	- 정상 응답 시 signed decimal 값 반환
+		<div style="width: fit-content;">
+
+		```json
+		{"_type" : "JObject", "val" : -99}
+		```
+		</div>
+	- 값은 내부적으로 2의 보수로 처리되며, TP 화면에는 해당 값의 하위 8비트로 표시됩니다.
+    	- TP 창조정 > 범용 출력 화면에서는 1은 녹색 신호, 0은 신호 없음을 뜻합니다.
+
+
 ### 사용 예
 
 - fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
@@ -58,19 +77,25 @@ Python Script 예시
 # test.py
 import requests
 
-def get_dio_val() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/control/ios/dio/do_val'
-    query_parameter = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
-    
-    response = requests.get(url=base_url + path_parameter, params=query_parameter).json()
+
+def get_dio_val() -> requests.Response:
+    base_url = f"http://192.168.1.150:8888"
+    # base_url = f"http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/ios/dio/do_val"
+    query_parameter = {"type": "dob", "blk_no": 2, "sig_no": 3}
+
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
     return response
 
-print(get_dio_val())
+
+ret = get_dio_val()
+print(ret)
+print(format(ret[1]["val"] & 0xFF, "08b"))
 ```
 ```sh
 $python test.py
-{'_type': 'JObject', 'val': -56}
+(200, {'_type': 'JObject', 'val': -99})
+10011101 # TP > fb2/9.do's 4th row => 1011001
 ```
 </div>

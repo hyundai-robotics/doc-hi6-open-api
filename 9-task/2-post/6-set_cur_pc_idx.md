@@ -4,7 +4,7 @@
 
 ### 설명
 
-- `POST` : 현재 커서를 index 라인에 위치 시키는 함수
+- `POST` : 현재 커서를 index 라인(>=0)에 위치 시키는 함수
 
 ### path-parameter
 
@@ -13,18 +13,31 @@ POST /project/context/tasks[{task index}]/set_cur_pc_idx
 ```
 
 ### request-body
-```json
-{
-  "idx": 1
-}
-```
-### status code
+-
+	<div style="width: fit-content;">
 
-- 200 : OK
-- 400 : Bad Request
-- 403 : Forbidden
-  - 상기 필요 조건 불충족
-- 404 : Not Found
+	```json
+	{ "idx": 1 }
+	```
+	</div>
+
+### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject"}
+	```
+	</div>
+
+
 
 ### error code
 
@@ -49,20 +62,23 @@ Python Script
 # test.py
 import requests
 
-def set_cur_pc_idx() -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/set_cur_pc_idx"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {"idx": 1}
 
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+def set_cur_pc_idx() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/set_cur_pc_idx"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"idx": 1}
 
-    return response.status_code
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-print(f"response: {set_cur_pc_idx()}")
+    return response
+
+
+print(set_cur_pc_idx())
 ```
 ```sh
-$python test.py 
-response 200 # + TP 상 커서 위치 변경 됨
+$python test.py
+(200, {'_type': 'JObject'})
 ```
 </div>

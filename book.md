@@ -530,7 +530,13 @@ total request time : 0.2869541645050049 seconds
 </div>
 
 - 로봇을 움직이는 서비스에 대해 반드시 원격모드에서만 동작하도록 유효성 검사 추가 (execute_move, start)
-- emergency_stop_test - 즉시정지(category 0) 요청 시 403 BAD Request 응답 관련 버그 수정
+- set_cur_pc_idx - 프로그램 재생 중 호출을 방지하는 유효성 검사 추가
+- emergency_stop_test - 즉시정지(category 0) 요청 시 403 BAD Request 응답 관련 버그 수정, 유효성 검사 에 따른 에러코드 세분화
+- motor_on API - 원격모드에서 프로그램 재생 중 수동 모드 전환 후 motor_on 시도 시 동작 안하는 버그 수정
+- start / stop - 원격모드에서 호출 안되는 버그 수정
+- reset - 원격모드에서 정상 동작하지 않는 버그 수정
+- 하기 시퀀스로 API 호출시 프로그램 중복 실행되는 버그 수정
+  - 모터온 -> R0 -> Delete Job -> Upload Job -> Reload Job -> Current PC 설정 -> 로봇 재생
 
 <br><br>
 
@@ -571,7 +577,12 @@ total request time : 0.2869541645050049 seconds
 - ✨ \[<b style="color: #4CAF50">get</b>\] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)
 - ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)
 - ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)<link rel="stylesheet" href="../_assets/style.css">
+- 🔧 \[<b style="color: #FF9800">post</b>\] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [motor_on](../5-robot/2-post/1-motor-on.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [start](../5-robot/2-post/2-start-stop.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [stop](../5-robot/2-post/2-start-stop.md)<link rel="stylesheet" href="../_assets/style.css">
 
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.30-00
@@ -765,10 +776,16 @@ total request time : 0.2869541645050049 seconds
 ```python
 GET /api_ver
 ```
+### response
 
-### response-body
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- Open API 스키마 버전
+2) response-body
+   - Open API 스키마 버전
 
 
 ### 사용 예
@@ -777,8 +794,8 @@ GET /api_ver
 request url:
 GET /api_ver
 
-response-body:
-5
+response:
+(200, 5)
 ```
 </div>
 
@@ -789,18 +806,18 @@ Python Script 예시
 ```python
 import requests
 
-def get_api_ver() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/api_ver'
-    response = requests.get(url = base_url + path_parameter)
-
-    return response.json()
+def get_api_ver() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+	 # base_url = "http://127.0.0.1:8888" # hrspace
+    path_parameter = "/api_ver"
+    response = requests.get(url=base_url + path_parameter, timeout=5)
+    return response
 
 print(get_api_ver())
 ```
 ```sh
 $python test.py
-5
+(200, 5)
 ```
 </div>## 2.1.2 sysver
 
@@ -817,17 +834,21 @@ GET /versions/sysver
 ```
 </div>
 
-### response-body
+### response
 
-modules : 모듈 버전 정보의 배열
-  - 모듈 버전 정보 :
-    - `name` : 모듈명
-        - `com` : 로봇 제어기
-        - `tp` : 티칭 펜던트
-    - `ver` : 버전번호
-    - `build-date` : 빌드 날짜
-    - `build-time` : 빌드 시간
-    - `commit-id` : 소스코드의 커밋 ID
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - modules : 모듈 버전 정보의 배열
+     - `name` : 모듈명(`com` : 로봇 제어기, `tp` : 티칭 펜던트)
+      - `ver` : 버전번호
+      - `build-date` : 빌드 날짜
+      - `build-time` : 빌드 시간
+      - `commit-id` : 소스코드의 커밋 ID
 
 ### 사용 예
 
@@ -837,17 +858,8 @@ modules : 모듈 버전 정보의 배열
 request url:
 GET /versions/sysver
 
-response-body:
-{
-    "modules" : [
-        {
-            "build-date": ...
-            "build-time": ...
-                 ...
-            "ver": ...
-        }
-    ] 
-}
+response:
+(200,{"modules" : [{"build-date": ..., "build-time": ..., "ver": ...}]})
 ```
 </div>
 
@@ -858,18 +870,23 @@ Python Script 예시
 ```python
 import requests
 
-def get_sysver() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/versions/sysver'
-    response = requests.get(url = base_url + path_parameter)
 
-    return response.json()
+def get_sysver() -> dict:
+    base_url = "http://192.168.1.150:8888"
+	 # base_url = "http://127.0.0.1:8888" # hrspace
+    path_parameter = "/versions/sysver"
+    response = requests.get(url=base_url + path_parameter)
+
+    return response
+
 
 print(get_sysver())
+
 ```
 ```sh
 $python test.py
-{'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
+(200, {'modules': [{'build-date': 'Aug 13 2025', 'build-time': '12:50:21', 'commit-id': 'a11c02406c', 'name': 'com', 'sub-modules': [{'build-date': '', 'build-time': '', 'commit-id': '', 'name': 'fbr', 'ver': '2.1-1(1.1-3)'}], 'ver': '61.01-01.dev'}, {'build-date': 'Aug 13 2025
+', 'build-time': '12:59:33', 'commit-id': 'fadf82cbb9', 'name': 'tp', 'ver': '61.01-01.dev'}]})
 ```
 </div># 3. project
 
@@ -893,71 +910,80 @@ GET /project/rgen
 ```
 </div>
 
-### response-body
+### response
 
-#### 1) 모드
-<div style="width: fit-content;">
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-|key|value|type|description|
-|:---|:---|:---|:---|
-|`cur_mode`| `0` : 수동 <br> `1` : 수동, 시스템 설정 <br>`3` : 자동, 1-cycle <br> `4` : 자동, 연속 (cycle 반복)|`int`|수동/자동 모드|
-|`enable_state`|`0번` 바이트(`LSB`) : 모터 ON (0: On / 1: Off / 2: Busy) <br> `1번` 바이트 : TP Enable (deadman) 스위치 (0: OFF / 1: ON)<br>`2번` 바이트 : 머신 Lock (0: OFF / 1: ON)<br>`3번` 바이트 : 건(gun) Lock (0: OFF / 1: ON)<br>`4번` 바이트 : 건(gun) (0: OFF / 1: ON)|`int`||
-|`is_playback`|`0` : 정지 중 <br>`1` : 재생 중|`int`||
-|`is_remote_mode`|`0`: False <br> `1`: True|`int`|원격(Remote) 모드 여부|
-|`is_ext_start`|`0`: False <br> `1`: True|`int`|외부 기동 여부|
-|`is_ext_prog_sel`|`0`: False <br> `1`: True|`int`|외부 프로그램 선택 여부|
+2) response-body
 
-</div>
+	#### 2-1) 모드 정보
+	<div style="width: fit-content;">
 
-<br>
+	|key|value|type|description|
+	|:---|:---|:---|:---|
+	|`cur_mode`| `0` : 수동 <br> `1` : 수동, 시스템 설정 <br>`3` : 자동, 1-cycle <br> `4` : 자동, 연속 (cycle 반복)|`int`|수동/자동 모드|
+	|`enable_state`|`0번` 바이트(`LSB`) : 모터 ON (0: On / 1: Off / 2: Busy) <br> `1번` 바이트 : TP Enable (deadman) 스위치 (0: OFF / 1: ON)<br>`2번` 바이트 : 머신 Lock (0: OFF / 1: ON)<br>`3번` 바이트 : 건(gun) Lock (0: OFF / 1: ON)<br>`4번` 바이트 : 건(gun) (0: OFF / 1: ON)|`int`||
+	|`is_playback`|`0` : 정지 중 <br>`1` : 재생 중|`int`||
+	|`is_remote_mode`|`0`: False <br> `1`: True|`int`|원격(Remote) 모드 여부|
+	|`is_ext_start`|`0`: False <br> `1`: True|`int`|외부 기동 여부|
+	|`is_ext_prog_sel`|`0`: False <br> `1`: True|`int`|외부 프로그램 선택 여부|
 
-#### 2) current 프로그램 카운터
-수동모드나 자동모드에서 티치펜던트 JOB 패널의 막대형 커서가 위치한 지점입니다. 현재 실행되고 있는 명령문, 혹은 편집의 대상 위치입니다.
+	</div>
 
-
-<div style="width: fit-content;">
-
-|key|type|description|
-|:---|:---|:---|
-|`cur_prog_no`|`int`|current 프로그램 번호|
-|`cur_step_no`|`int`|current 스텝 번호|
-|`cur_func_no`|`int`|current 펑션 번호|
-
-</div>
-
-<br>
-
-#### 3) moving 프로그램 카운터
-
-재생 중 로봇이 이동하고 있는 목표 스텝입니다.
-
-<div style="width: fit-content;">
-
-|key|type|description|
-|:---|:---|:---|
-|`mov_prog_no`|`int`|moving 프로그램 번호|
-|`mov_step_no`|`int`|moving 스텝 번호|
-|`mov_func_no`|`int`|moving 펑션 번호|
-
-</div>
-
-<br>
-
-#### 4) 속도
+	<br>
 
 
-<div style="width: fit-content;">
+	#### 2-2) current 프로그램 카운터
+	수동모드나 자동모드에서 티치펜던트 JOB 패널의 막대형 커서가 위치한 지점입니다. 현재 실행되고 있는 명령문, 혹은 편집의 대상 위치입니다.
 
-|key|type|description|
-|:---|:---|:---|
-|`spd_lev`|`int`|수동모드 조그 속도 레벨 (1~8)|
-|`manual_spd_max`|`int`|수동모드 최대 속도 (mm/sec)|
-|`auto_spd`|`int`|자동모드 재생 속도 (%)|
-|`jog_inch_status`|`int`|조그 인칭 상태 (0:OFF/ 1:ON)|
-|`step_execute_unit_status`|`int`|StepFWD의 실행단위 (run to)<br>0: Cmd (명령문)<br>1: Step (스텝)<br>2: End (end문까지)|
-|`cont_path`|`int`|연속 모션 모드 (0~2)|
 
-</div>
+	<div style="width: fit-content;">
+
+	|key|type|description|
+	|:---|:---|:---|
+	|`cur_prog_no`|`int`|current 프로그램 번호|
+	|`cur_step_no`|`int`|current 스텝 번호|
+	|`cur_func_no`|`int`|current 펑션 번호|
+
+	</div>
+
+	<br>
+
+	#### 2-3) moving 프로그램 카운터
+
+	재생 중 로봇이 이동하고 있는 목표 스텝입니다.
+
+	<div style="width: fit-content;">
+
+	|key|type|description|
+	|:---|:---|:---|
+	|`mov_prog_no`|`int`|moving 프로그램 번호|
+	|`mov_step_no`|`int`|moving 스텝 번호|
+	|`mov_func_no`|`int`|moving 펑션 번호|
+
+	</div>
+
+	<br>
+
+	#### 2-4) 속도
+
+
+	<div style="width: fit-content;">
+
+	|key|type|description|
+	|:---|:---|:---|
+	|`spd_lev`|`int`|수동모드 조그 속도 레벨 (1~8)|
+	|`manual_spd_max`|`int`|수동모드 최대 속도 (mm/sec)|
+	|`auto_spd`|`int`|자동모드 재생 속도 (%)|
+	|`jog_inch_status`|`int`|조그 인칭 상태 (0:OFF/ 1:ON)|
+	|`step_execute_unit_status`|`int`|StepFWD의 실행단위 (run to)<br>0: Cmd (명령문)<br>1: Step (스텝)<br>2: End (end문까지)|
+	|`cont_path`|`int`|연속 모션 모드 (0~2)|
+
+	</div>
 
 <br>
 
@@ -969,21 +995,28 @@ Python Script 예시
 ```python
 import requests
 
-def get_is_remote_mode() -> bool:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/rgen'    
-    
-    response = requests.get(url = base_url + path_parameter).json()    
 
-    print(f"is remote mode? {response['is_remote_mode']}")    
-    
-    return response['is_remote_mode']
+def get_rgen() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+	 # base_url = "http://127.0.0.1:8888" # hrspace
+    path_parameter = "/project/rgen"
 
-get_is_remote_mode()
+    response = requests.get(url=base_url + path_parameter)
+
+    return response
+
+
+print(get_rgen())
 ```
 ```sh
 $python test.py
-is remote mode? 0
+(200, {'_type': 'JObject', 'plc_mode': 4, 'safety_recovery_mode': 0, 'arcon_welder_0': 0, 'job_sub_state': 0, 'arcon_welder_1': -1, 'maintenance_status': 0, 'cur_mode': 0, 'cur_crd': 0, 'eid_last_err': 50033, 'eid_last_con_out': -1, 'is_manual_full_spd': 0, 'axis_ctrl': [1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'reducer_status': 0, 'cur_mech_no': 0, 'in_position': [1, 0, 0, 0, 0, 0, 0, 0], 'posi_sync': 0, 'job_state': 0, 'shift_state': 0, 'enable_state': 256, 'apps_sync_seq': 0, 'task_no': 0, 'a
+uto_spd': 100, 'battery_status': 0, 'cooper_ctrl': 16128, 'cur_scm_status': 0, 'base_intp': 0, 'eid_last_start_stop': -1, 'is_ext_prog_sel': 0, 'arc_welder_no': 0, 'is_remote_mode': 0, 'is_playback': 0, 'axis_lock': 0, 'mov_prog_no': 3344, 'call_pno': -1, 'spot_seq_no': [0, 0, 
+0, 0], 'eid_last_history': 50761, 'arcon_cnd_no_-1': 1, 'task_enable': [1, 0, 0, 0, 0, 0, 0, 0], 'ucrd_no': 0, 'high_load': 0, 'cur_prog_no': 3344, 'arc_weld_appl': 1, 'rec_step_ex_sw': 0, 'job_state_msg': '', 'spot_gun_no': [0, 0, 0, 0], 'step_execute_unit_status': 0, 'direct_
+teaching': 0, 'jog_inch_status': 0, 'gun_search_status': 0, 'eid_last_noti': 36154, 'tool_no': 0, 'next_exe_pno': -1, 'paint_gun_no': 0, 'n_forced_io': 0, 'load_esti': 1, 'chk_brake_release': [1, 1, 1, 1, 1, 1], 'eng_code': 0, 'spd_lev': 1, 'spot_cnd_no': [0, 0, 0, 0], 'mov_fun
+c_no': 0, 'confirm_command_delete': 1, 'paint_block_state': 0, 'cont_path': 1, 'cur_mech_axis_info': 63, 'arcon_cnd_no_0': 1, 'spot_panel_thickness': 0.0, 'robot_model': 'HA006B-01', 'manual_spd_max': 250, 'cur_step_no': 1, 'cur_func_no': 0, 'is_ext_start': 0, 'opc_ua_server_st
+ate': -1, 'n_prompt': 0, 'svgun_state': 0, 'mov_step_no': 1, 'step_goback_resume': 0, 'call_depth': 0, 'eid_last_warn': -1})
 ```
 </div>
 ## 3.1.2 `jobs_info`
@@ -1001,9 +1034,18 @@ GET /project/jobs_info
 ```
 </div>
 
-### response-body
+### response
 
-- [job 파일 관련 정보](../../99-schema/jobs_info.md)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+
+   - [job 파일 관련 정보](../../99-schema/jobs_info.md)
+
 ### 사용 예
 
 
@@ -1053,22 +1095,30 @@ Python Script 예시
 # test.py
 import requests
 
-def get_jobs_info() -> dict:
-    base_url       = "http://192.168.1.150:8888"
+
+def get_jobs_info() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888" # hrspace
     path_parameter = "/project/jobs_info"
+    res = requests.get(url=base_url + path_parameter)
 
-    response = requests.get(url=base_url + path_parameter).json()
+    return res
 
-    return response
 
 print(get_jobs_info())
 ```
 ```sh
 $python test.py
-[{'_type': 'JObject', 'job_comment': '', 'fname': '0001.job', 'n_step': 0, 'n_aux_ax': 0, 'n_total_ax': 6}, 
-{'_type': 'JObject', 'job_comment': '', 'fname': '0002.job', 'n_step': 9, 'n_aux_ax': -1, 'n_total_ax': -1}, 
-{'_type': 'JObject', 'job_comment': '', 'fname': '0003.job', 'n_step': 0, 'n_aux_ax': -1, 'n_total_ax': -1}]
-```  
+(200, [
+	{'_type': 'JObject', 'fname': '0055.job', 'n_step': 1, 'n_total_ax': 6, 'job_comment': '', 'n_aux_ax': 0},  
+	{'_type': 'JObject', 'fname': '0001.job', 'n_step': 2, 'n_total_ax': -1, 'job_comment': '', 'n_aux_ax': -1}, 
+	{'_type': 'JObject', 'fname': '9999.job', 'n_step': 1, 'n_total_ax': 12, 'job_comment': '', 'n_aux_ax': 6}, 
+	{'_type': 'JObject', 'fname': '1111.job', 'n_step': 13, 'n_total_ax': -1, 'job_comment': '', 'n_aux_ax': -1}, 
+	{'_type': 'JObject', 'fname': '0005.job', 'n_step': 0, 'n_total_ax': 12, 'job_comment': '', 'n_aux_ax': 6}, 
+	{'_type': 'JObject', 'fname': '0021.job', 'n_step': 3, 'n_total_ax': 12, 'job_comment': '', 'n_aux_ax': 6}, 
+	...
+])
+```
 </div>## 3.1 project/post
 
 - 조건설정, 프로젝트 정보, job 파일 정보에 대한 POST 요청을 보냅니다.
@@ -1093,6 +1143,20 @@ POST /project/reload_updated_jobs
 {}
 ```
 
+### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	```json
+	{'_type': 'JObject'}
+	```
+
+
 ### 사용 예
 
 ```python
@@ -1105,30 +1169,30 @@ request-body: {}
 
 Python Script 예시
 
-- 응답되는 HTTP 상태 코드는 [이곳](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)을 참조해주십시오.
-
-
 <div style="width: fit-content;">
 
 ```python
 # test.py
-import requests 
+import requests
 
-def post_reload_updated_jobs() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/reload_updated_jobs'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+def post_reload_updated_jobs() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888" # hrspace
+    path_parameter = "/project/reload_updated_jobs"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
 
-    return response.status_code
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-print(f"response: {post_reload_updated_jobs()}")
+    return response
+
+
+print(post_reload_updated_jobs())
 ```
 ```sh
 $python test.py
-response: 200 
+(200, {'_type': 'JObject'})        
 ```
 </div>## 3.2.2 `delete_job`
 
@@ -1152,6 +1216,18 @@ POST /project/jobs/delete_job
 }
 ```
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   ```json
+	{}
+	```
+
 ### 사용 예
 
 ```json
@@ -1172,24 +1248,27 @@ Python Script 예시
 <div style="width: fit-content;">
 
 ```python
-# test.py
-import requests 
+#test.py
+import requests
 
-def post_delete_job(file_name: str = "0001.job") -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/jobs/delete_job'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"fname": file_name}
- 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.status_code
 
-print(f"response: {post_delete_job('0002.job')}")
+def post_delete_job(file_name: str = "0001.job") -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888" # hrspace
+    path_parameter = "/project/jobs/delete_job"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"fname": file_name}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response
+
+
+print(post_delete_job())
 ```
 ```sh
 $python test.py
-response: 200 
+(200, {})
 ```
 </div># 4. control
 
@@ -1213,25 +1292,31 @@ response: 200
 GET /project/control/op_cnd
 ```
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- [조건설정 파라미터](../../99-schema/op_cnd.md)
+2) response-body
+   - [조건설정 파라미터](../../99-schema/op_cnd.md)
 
-```json
-{
-	"_type": "CondGrp",
-	"step_goback_max_spd": 200,
-	"playback_mode": 1,        
-	"step_go_func_ex": 1,      
-	"robot_lock": 0,           
-	"playback_spd_rate": 100,  
-	"intp_base": 0,            
-	"ucrd_num": 0,             
-	"path_recov_confirm": 2,   
-	"func_reexe_on_trace": 1,  
-	"plc_mode": 1              
-}
-```
+		```json
+		{
+			"_type": "CondGrp",
+			"step_goback_max_spd": 200,
+			"playback_mode": 1,
+			"step_go_func_ex": 1,
+			"robot_lock": 0,
+			"playback_spd_rate": 100,
+			"intp_base": 0,
+			"ucrd_num": 0,
+			"path_recov_confirm": 2,
+			"func_reexe_on_trace": 1,
+			"plc_mode": 1
+		}
+		```
 </div>
 
 Python Script 예시
@@ -1243,19 +1328,22 @@ Python Script 예시
 # test.py
 import requests
 
-def get_operation_condition() -> dict:
-    base_url       = "http://192.168.1.150:8888"
+
+def get_operation_condition() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888" # hrspace
     path_parameter = "/project/control/op_cnd"
 
-    response = requests.get(url=base_url + path_parameter).json()
+    response = requests.get(url=base_url + path_parameter)
 
     return response
+
 
 print(get_operation_condition())
 ```
 ```sh
 $python test.py
-{'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
+(200, {'plc_mode': 1, 'step_go_func_ex': 1, '_type': 'CondGrp', 'intp_base': 0, 'playback_spd_rate': 100, 'step_goback_max_spd': 250, 'robot_lock': 0, 'func_reexe_on_trace': 1, 'ucrd_num': 0, 'playback_mode': 1, 'path_recov_confirm': 2})
 ```
 </div>## 4.1.4 `ucss/ucs_nos`
 
@@ -1273,6 +1361,18 @@ $python test.py
 GET /project/control/ucss/ucs_nos
 ```
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - 현재 사용중인 사용자 좌표계(list)  
+  	  ex) [1]
+
+
 ### 사용 예
 
 ```python
@@ -1280,10 +1380,7 @@ request url:
 GET /project/control/ucss/ucs_nos
 
 response-body:
-{
-    "_type" : "JObject",
-    "val" : [1],
-}
+[1]
 ```
 </div>
 
@@ -1295,19 +1392,22 @@ Python Script 예시
 # test.py
 import requests
 
-def get_ucs_nos():
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/control/ucss/ucs_nos'
- 
-    response = requests.get(url = base_url + path_parameter)
 
-    return response.json()
+def get_ucs_nos() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/ucss/ucs_nos"
 
-print(f"{get_ucs_nos()}")
+    response = requests.get(url=base_url + path_parameter)
+
+    return response
+
+
+print(get_ucs_nos())
 ```
 ```sh
 $python test.py
-[1, 2, 3]
+(200, [1])
 ```
 </div>## 4.2 control/post
 
@@ -1334,6 +1434,16 @@ PUT /project/control/op_cnd
 
 - [조건설정 파라미터](../../99-schema/op_cnd.md)
 
+### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - {'_text': ''}
 
 ### 사용 예
 
@@ -1347,6 +1457,9 @@ request-body:
     "step_goback_max_spd": 130,
     "ucrd_num": 2
 }
+
+response-body:
+{'_text': ''}
 ```
 </div>
 
@@ -1357,26 +1470,36 @@ Python Script 예시
 
 ```python
 # test.py
-import requests 
+import requests
 
-def put_op_cnd() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/control/op_cnd'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = { 
-                          "playback_mode": 1,
-                          "step_goback_max_spd": 130,
-                          "ucrd_num": 2
-                     }
 
-    response = requests.put(url = base_url + path_parameter, headers = head,  json = body)
-    return response.status_code
+def put_op_cnd() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/op_cnd"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {
+        "playback_mode": 2,
+        "step_goback_max_spd": 130,
+        "step_go_func_ex": 0,
+        "func_reexe_on_trace": 1,
+        "path_recov_confirm": 0,
+        "playback_spd_rate": 80,
+        "robot_lock": 0,
+        "intp_base": 0,
+        "ucrd_num": 0,
+        "plc_mode": 0,
+    }
 
-print(f"response: {put_op_cnd()}")
+    response = requests.put(url=base_url + path_parameter, headers=head, json=body)
+    return response
+
+
+print(put_op_cnd())
 ```
 ```sh
 $python test.py
-response: 200 
+(200, {'_text': ''})
 ```
 </div># 5. robot
 
@@ -1399,12 +1522,19 @@ response: 200
 GET /project/robot/motor_on_state
 ```
 
-### response-body
+### response
 
-- val :
-  - `0` : on
-  - `1` : off
-  - `2` : busy (상태 전환 중)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - val :
+     - `0` : on
+     - `1` : off
+     - `2` : busy (상태 전환 중)
 
 ### 사용 예
 ```python
@@ -1427,19 +1557,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_motor_on_state() -> dict:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/motor_on_state'
 
-    response = requests.get(url = base_url + path_parameter).json()
+def get_motor_on_state() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/motor_on_state"
+
+    response = requests.get(url=base_url + path_parameter)
 
     return response
 
-print(f"Motor On status: {get_motor_on_state()['val']}")
+
+print(get_motor_on_state())
+
 ```
 ```sh
 $python test.py
-Motor On status: 1
+(200, {'_type': 'JObject', 'val': 1})
 ```
 
 </div>## 5.1.2 `po_cur`
@@ -1468,9 +1602,16 @@ GET /project/robot/po_cur
 - `ucrd_no` : 사용자 좌표계 번호 (crd가 user일 때만 지정함.)
 - `mechinfo` : [메커니즘 정보](../../99-schema/mechinfo.md)
 
-### response-body
+### response
 
-- [포즈 정보](../../99-schema/pose.md)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - [포즈 정보](../../99-schema/pose.md)
 
 
 ### 사용 예
@@ -1559,20 +1700,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_base_coordinate() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/robot/po_cur'
-    query_parameter = {'crd': 0, 'mechinfo': 1}
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
+def get_po_cur() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/po_cur"
+    query_parameter = {"crd": 2, "mechinfo": 1}
+
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
     return response
 
-print(get_base_coordinate())
+
+print(get_po_cur())
 ```
 ```sh
 $python test.py
-{'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
+(200, {'_type': 'Pose', 'nsync': 0, 'crd': 'joint', 'mechinfo': 1, 'j2': 90.106, 'j3': 0.0, 'j1': 0.0, 'j6': 0.0, 'j4': 0.0, 'j5': -90.0})
 ```
 
 </div>## 5.1.3 `cur_tool_data`
@@ -1589,9 +1733,16 @@ $python test.py
 GET /project/robot/cur_tool_data
 ```
 
-### response-body
+### response
 
-- val : [툴 데이터](../../99-schema/tool_data.md)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - val : [툴 데이터](../../99-schema/tool_data.md)
 
 ### 사용 예
 
@@ -1628,19 +1779,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_cur_tool_data() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/robot/cur_tool_data'
 
-    response = requests.get(url = base_url + path_parameter).json()
+def get_cur_tool_data() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/cur_tool_data"
+
+    response = requests.get(url=base_url + path_parameter)
 
     return response
+
 
 print(get_cur_tool_data())
 ```
 ```sh
 $python test.py
-{'_type': 'Tool', 'x': 0.0, 'rx': 0.0, 'y': 0.0, 'ry': 0.0, 'z': 0.0, 'rz': 0.0, 'cy': 0.0, 'mass': 20.0, 'cx': 100.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'bias_2': 0.0, 'mass_esti': 20.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
+(200, {'_type': 'Tool', 'mass': 6.0, 'rz': 0.0, 'rx': 0.0, 'ry': 0.0, 'mass_esti': 6.0, 'bias_4': 0.0, 'bias_5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.0, 'bias_1': 0.0, 'x': 0.0, 'y': 0.0, 'izz': 0.013, 'z': 0.0, 'iyy': 0.024, '
+ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0})
 ```
 
 </div>## 5.1.4 `tools`
@@ -1658,17 +1813,22 @@ $python test.py
 GET /project/robot/tools
 ```
 
-### response-body
+### response
 
-- t_0 : [툴 데이터](../../99-schema/tool_data.md)
-- t_1 : 툴 데이터
-- t_2 : 툴 데이터  
-...
-- t_31 : 툴 데이터
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - t_0 : [툴 데이터](../../99-schema/tool_data.md)
+   - t_1 : 툴 데이터
+   - t_2 : 툴 데이터  
+   ...
+   - t_31 : 툴 데이터
 
 ### 사용 예
-
-툴 0과 툴 31만 존재하는 시스템의 사례.
 
 ```python
 request url:
@@ -1689,22 +1849,28 @@ Python Script 예시
 <div style="width: fit-content;">
 
 ```python
-# test.py
 import requests
 
-def get_tools_data() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/robot/tools'
 
-    response = requests.get(url = base_url + path_parameter).json()
+def get_tools_data() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/tools"
+
+    response = requests.get(url=base_url + path_parameter)
 
     return response
+
 
 print(get_tools_data())
 ```
 ```sh
 $python test.py
-{'_type': 'Tools', 't_31': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_0': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0, 'load_rate': {'_type': 'JObject', 'high_load_mode': -11, 'moment_rate': 0, 'inertia_rate': 0, 'mass_rate': 0}}, 't_1': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_15': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}}
+(200, {'_type': 'Tools', 't_1': {'mass': 6.0, '_type': 'Tool', 'rz': 0.0, 'rx': 0.0, 'ry': 0.0, 'mass_esti': 6.0, 'bias_4': 0.0, 'bias_5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.0, 'bias_1': 0.0, 'x': 0.0, 'izz': 0.013, 'y': 0.0,
+ 'z': 0.0, 'iyy': 0.024, 'ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0}, 't_0': {'mass': 6.0, '_type': 'Tool', 'rz': 0.0, 'rx': 0.0, 'ry': 0.0, 'mass_esti': 6.0, 'bias_4': 0.0, 'bias_5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.
+0, 'bias_1': 0.0, 'x': 0.0, 'izz': 0.013, 'y': 0.0, 'z': 0.0, 'iyy': 0.024, 'ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0}, 't_31': {'mass': 6.0, '_type': 'Tool', 'rz': 0.0, 'rx': 0.0, 'ry': 0.0, 'mass_esti': 6.0, 'bias_4': 0.0, 'bias
+_5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.0, 'bias_1': 0.0, 'x': 0.0, 'izz': 0.013, 'y': 0.0, 'z': 0.0, 'iyy': 0.024, 'ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0}, 't_15': {'mass': 6.0, '_type': 'Tool', 'rz': 0.0, 'rx': 0.
+0, 'ry': 0.0, 'mass_esti': 6.0, 'bias_4': 0.0, 'bias_5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.0, 'bias_1': 0.0, 'x': 0.0, 'izz': 0.013, 'y': 0.0, 'z': 0.0, 'iyy': 0.024, 'ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0}})
 ```
 
 </div>## 5.1.5 `tools/t_{number}`
@@ -1722,9 +1888,16 @@ $python test.py
 GET /project/robot/tools/t_{number}
 ```
 
-### response-body
+### response
 
-- [툴 데이터](../../99-schema/tool_data.md)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - [툴 데이터](../../99-schema/tool_data.md)
 
 ### 사용 예
 
@@ -1754,19 +1927,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_tool1_data() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/robot/tools/t_1'
 
-    response = requests.get(url = base_url + path_parameter).json()
+def get_tool1_data() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/tools/t_1"
+
+    response = requests.get(url=base_url + path_parameter)
 
     return response
+
 
 print(get_tool1_data())
 ```
 ```sh
 $python test.py
-{'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
+(200, {'mass': 6.0, '_type': 'Tool', 'rz': 0.0, 'rx': 0.0, 'ry': 0.0, 'mass_esti': 6.0, 'bias_4': 0.0, 'bias_5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.0, 'bias_1': 0.0, 'x': 0.0, 'izz': 0.013, 'y': 0.0, 'z': 0.0, 'iyy': 0.024, '
+ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0})
 ```
 
 </div>## 5.1.6 `emergency_stop`
@@ -1784,10 +1961,24 @@ $python test.py
 GET /project/robot/emergency_stop
 ```
 
-### response-body
+### response
 
-- 0: released 상태
-- 1: pressed 상태
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject", "val": 0}
+	```
+	</div>
+
+	- 0: released 상태
+   - 1: pressed 상태
 
 ### 사용 예
 
@@ -1810,23 +2001,21 @@ Python Script 예시
 # test.py
 import requests
 
-def get_emergency_stop() -> Optional[dict]:
+
+def get_emergency_stop() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/project/robot/emergency_stop"
     head = {"Content-Type": "application/json; charset=utf-8"}
 
-    try:
-        response = requests.get(url=base_url + path_parameter, headers=head)
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error in get_emg_state: {e}")
-        return None
+	 response = requests.get(url=base_url + path_parameter, headers=head)
+	 return response
 
 print(f"{get_emergency_stop()}")
 ```
 ```sh
 $python test.py
-{'_type': 'JObject', 'val': 0}
+(200, {'_type': 'JObject', 'val': 0})
 ```
 </div>## 5.1.7 `joint_traject_buf_avail`
 
@@ -1843,18 +2032,24 @@ $python test.py
 GET /project/robot/trajectory/joint_traject_buf_avail
 ```
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- val: 현재 사용 가능한 버퍼의 수 (최대 2048개)
+2) response-body
+   - val: 현재 사용 가능한 버퍼의 수 (최대 2048개)
 
+		<div style="width: fit-content;">
 
-### status code
+		```json
+		{"val": 2048}
+		```
+		</div>
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-- 404 : Not Found
 
 ### 사용 예
 
@@ -1898,7 +2093,7 @@ if __name__ == "__main__":
 ```
 ```sh
 $python test.py
-{'val': 2048}
+(200, {'val': 2048})
 ```
 </div>## 5.2 robot/post
 
@@ -1925,13 +2120,18 @@ POST /project/robot/motor_on
 {}
 ```
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+   - 404 : Not Found
 
-```json
-{
-    "_type": "JObject"
-}
-```
+2) response-body
+	```json
+	{ "_type": "JObject"}
+	```
 
 ### 사용 예
 
@@ -1951,21 +2151,24 @@ Python Script 예시
 ```python
 import requests
 
-def post_motor_on() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/motor_on'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
+def post_motor_on() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/motor_on"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
 
 
-print(f"Motor-ON  response: {post_motor_on()}")
+print(post_motor_on())
+
 ```
 ```sh
 $python test.py
-Motor-ON  response: 200
+(200, {'_type': 'JObject'})
 ```
 
 </div>## 5.2.2 `start / stop`
@@ -1990,27 +2193,36 @@ POST /project/robot/stop
 {}
 ```
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+     - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v61.00 부터 적용)
+   - 404 : Not Found
 
-### status code
+2) response-body
+	<div style="width: fit-content;">
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-  - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v61.00 부터 적용)
-- 404 : Not Found
+	```json
+	{ "_type": "JObject"}
+	```
+	</div>
 
-### error code
 
-- -38500: 원격 모드가 아닌 상태로 해당 api 요청
+1) error code
+   - -38500: 원격 모드가 아닌 상태로 해당 api 요청
 
 ### 사용 예
 
 ```python
 POST /project/robot/start or /project/robot/stop
 
-request-body: 
+request-body:
+{}
+
+response-body:
 {}
 ```
 </div>
@@ -2022,32 +2234,35 @@ Python Script 예시
 ```python
 import requests
 
-def post_start() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/start'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
 
-    # 자동모드 및 모터 온 설정 필요
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
+def post_start() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/start"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
 
-def post_stop() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/stop'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
+def post_stop() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/stop"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
 
-print(f"Start response: {post_start()}")
-print(f"Stop  response: {post_stop()}")
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
+
+
+print(post_start())
+print(post_stop())
 ```
 ```sh
 $python test.py
-Start response: 200
-Stop  response: 200
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
 ```
 </div>## 5.2.3 `tool_no`
 
@@ -2070,13 +2285,19 @@ POST /project/robot/tool_no
   - `로봇 툴` : `0` ~ `31`
   - `정치 툴` : `0` ~ `3`
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+   - 404 : Not Found
 
-```json
-{
-	"_type": "JObject"
-}
-```
+2) response-body
+
+	```json
+	{ "_type": "JObject"}
+	```
 
 ### 사용 예
 
@@ -2098,21 +2319,24 @@ Python Script 예시
 ```python
 import requests
 
-def post_tool_no(x: int = 0) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/tool_no'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"val": x}
 
-    # 자동모드 및 모터 온 설정 필요
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
+def set_tool_no(tool_no: int = 0) -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
 
-print(f"response: {post_tool_no(1)}")
+    url = f"{base_url}/project/robot/tool_no"
+    body = {"val": tool_no}
+
+    response = requests.post(url, json=body)
+    return response
+
+
+print(set_tool_no(tool_no=1))
+
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'_type': 'JObject'})
 ```
 </div>## 5.2.4 `crd_sys`
 
@@ -2132,16 +2356,26 @@ POST /project/robot/crd_sys
 
 - [좌표계](../../99-schema/crdsys.md)
 
-### response-body
+### response
 
-```json
-{
-	"_type": "JObject",
-  "cur_crd": 1,
-  "ucrd_no": 1
-}
-```
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+   - 404 : Not Found
 
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{
+		"_type": "JObject",
+		"cur_crd": 1,
+		"ucrd_no": 1
+	}
+	```
+	</div>
 
 ### 사용 예
 
@@ -2163,20 +2397,23 @@ Python Script 예시
 ```python
 import requests
 
-def post_crd_sys(x: int = 0) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/robot/crd_sys'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"val": x}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
-    return response.status_code
+def post_crd_sys(x: int = 0) -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/crd_sys"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"val": x}
 
-print(f"response: {post_crd_sys(1)}")
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
+
+
+print(post_crd_sys(1))
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'_type': 'JObject', 'cur_crd': 1, 'ucrd_no': 0})
 ```
 
 </div>## 5.2.5 `emergency_stop`
@@ -2202,10 +2439,29 @@ POST /project/robot/emergency_stop
 {}
 ```
 
-### response-body
+### response
 
-- 200 : 요청 성공  
-- 400 : 요청 실패 (비상정지 시퀀스 호출에 실패)  
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+   - 404 : Not Found
+2) response-body
+	- v60.30 이하
+		<div style="width: fit-content;">
+
+		```json
+		{"err_code": 200}
+		```
+		</div>
+	- v61.00 이상
+		<div style="width: fit-content;">
+
+		```json
+		{"_type": "JObject"}
+		```
+		</div>
 
 ### 사용 예
 
@@ -2223,25 +2479,28 @@ Python Script 예시
 <div style="width: fit-content;">
 
 ```python
+# test.py
 import requests
 
 
 def post_emergency_stop() -> int:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/project/robot/emergency_stop"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    return response.status_code
+    return response
 
 
-print(f"response: {post_emergency_stop()}")
+print(post_emergency_stop())
+
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'_type': 'JObject'})
 ```
 </div>## 5.2.6 `emergency_stop_test`
 
@@ -2281,15 +2540,46 @@ POST /project/robot/emergency_stop_test
 - `2: 일시정지`  
 	&rightarrow;  로봇 모션을 잠시 정지하는 경우. 정지 후 모터 오프가 되지 않음
 
-### response-body
+### response 
 
-### status code
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+    	- request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+     - v61.00-00 미만
+       - 400 반환
+     - v61.00-00 이상 (에러 세분화)
+       - -38502: step number 유효성 검사 실패
+       - -38503: stop at 유효성 검사 실패
+       - -38504: stop at corner 유효성 검사 실패
+       - -38505: category 유효성 검사 실패
+       - -38506: request-body key 유효성 검사 실패
+   - 404 : Not Found
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-- 404 : Not Found
+2) response-body
+	- v60.30 이하
+		<div style="width: fit-content;">
+
+		```json
+		{"err_code": 200}
+		```
+		</div>
+	- v61.00 이상
+		<span>
+		<div style="width: fit-content;">
+
+		```json
+		{"_type": "JObject"}
+		```
+		</div>
+		<div style="width: fit-content;">
+
+		```json
+		{"err_code": "-38502"}
+		```
+		</div>
+		</span>
 
 
 ### 사용 예
@@ -2314,27 +2604,33 @@ Python Script 예시
 import requests
 
 
-def post_emergency_stop() -> int:
+def post_emergency_stop_test() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/project/robot/emergency_stop_test"
     head = {"Content-Type": "application/json; charset=utf-8"}
-    body = {
-        "step_no": 2,
-        "stop_at": 20,
+    body_0 = {
+        "step_no": 1,
+        "stop_at": 1,
         "stop_at_corner": 0,
         "category": 1,
     }
 
-    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body_0)
 
-    return response.status_code
+    return response
 
 
-print(f"response: {post_emergency_stop()}")
+ret = post_emergency_stop_test()
+try:
+    print((ret.status_code, ret.json()))
+except:
+    print(ret)
+
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'_type': 'JObject'})
 ```
 </div>## 5.2.7 `joint_traject_init`
 
@@ -2368,17 +2664,25 @@ POST /project/robot/trajectory/joint_traject_init
 </div>
 
 
-### response-body
 
-### status code
+### response
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
-  - `err_code` (<0) : 초기화 실패
-- 404 : Not Found
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+     - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+     - `err_code` (<0) : 초기화 실패
+   - 404 : Not Found
+
+2) response body
+
+	<div style="width: fit-content;">
+
+	```json
+	{ "_type": "JObject"}
+	```
+	</div>
 
 ### 사용 예
 
@@ -2389,18 +2693,20 @@ POST /project/robot/trajectory/joint_traject_init
 
 request-body
 {}
+
+response-body
+{'_type': 'JObject'}
 ```
 
 Python Script 예시
 ```python
 # test.py
-
 from typing import Union
 import requests
 
 
 def post_init_trajectories(
-base_url: str, session: requests.Session
+    base_url: str, session: requests.Session
 ) -> Union[requests.Response, None]:
     uri = f"{base_url}/project/robot/trajectory/joint_traject_init"
     headers = {"Content-Type": "application/json; charset=utf-8"}
@@ -2417,16 +2723,20 @@ base_url: str, session: requests.Session
 
 def main():
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+
     with requests.Session() as session:
         response = post_init_trajectories(base_url, session)
+        print(response)
 
 
 if __name__ == "__main__":
     main()
+
 ```
 ```sh
 $python test.py
-[INFO] Initialization successful: status=200
+(200, {'_type': 'JObject'})
 ```
 </div>## 5.2.8 `joint_traject_insert_points`
 
@@ -2495,18 +2805,25 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
   ```
 
-### response-body
+### response
 
-### status code
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+    	- request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+     - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+     - `err_code` (<0) : 초기화 실패
+   - 404 : Not Found
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
-  - `err_code` (<0) : 초기화 실패
-- 404 : Not Found
+2) response body
 
+	<div style="width: fit-content;">
+
+	```json
+	{ "_type": "JObject"}
+	```
+	</div>
 
 ### error code (response 403)
 
@@ -2719,7 +3036,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 			)
 			post_cnt += 1
 
-			print(ret, ret.json())
+			print((ret.status_code, ret.json()))
 
 			ret.raise_for_status()
 			return ret
@@ -2742,9 +3059,10 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 
 	if __name__ == "__main__":
-		base_url = f"http://192.168.1.150:8888"
+		base_url = "http://192.168.1.150:8888"
+		# base_url = "http://127.0.0.1:8888"  # hrspace
 
-    while True:
+	while True:
 		post_init_trajectories(base_url)
 		ret = post_trajectories(base_url, traj_1)
 		time.sleep(1)  # 1초 후 연속적으로 궤적을 post
@@ -2752,7 +3070,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 		time.sleep(8)  # 최종 time_from_start 를 고려하여 1초를 더한 8초로 설정
 	```
 
-- ```sh
+  ```sh
 		$python test.py
 		[0] elapsed_ms: 6.122 ms. available jt buff: 2047/2048
 		<Response [200]> {'_type': 'JObject'}
@@ -2801,6 +3119,15 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 - `st` : 시작 byte index (default: 0)
 - `len` : dword 개수 (default: 8)
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - 정상 응답 시 relay 값(list) 반환. e.g [0, 0, 0, 0]
 
 ### 사용 예
 
@@ -2843,20 +3170,23 @@ Python Script 예제
 # test.py
 import requests
 
-def get_relay_value() -> dict:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/plc/m/val_s32'
+
+def get_relay_value() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/plc/m/val_s32"
     query_parameter = {"st": "32", "len": "4"}
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
-    return response.json()
+    return response
 
-print(f"{get_relay_value()}")
+
+print(get_relay_value())
 ```
 ```sh
 $python test.py
-[0, 0, 0, 0]
+(200, [0, 0, 0, 0])
 ```
 </div>## 6.1.2 `ios/dio/{dio_val}`
 
@@ -2892,6 +3222,25 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : 블럭 번호 (0~9)
 - `sig_no` : 신호 인덱스 (0~)
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	- 정상 응답 시 signed decimal 값 반환
+		<div style="width: fit-content;">
+
+		```json
+		{"_type" : "JObject", "val" : -99}
+		```
+		</div>
+	- 값은 내부적으로 2의 보수로 처리되며, TP 화면에는 해당 값의 하위 8비트로 표시됩니다.
+    	- TP 창조정 > 범용 출력 화면에서는 1은 녹색 신호, 0은 신호 없음을 뜻합니다.
+
+
 ### 사용 예
 
 - fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
@@ -2918,20 +3267,26 @@ Python Script 예시
 # test.py
 import requests
 
-def get_dio_val() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/control/ios/dio/do_val'
-    query_parameter = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
-    
-    response = requests.get(url=base_url + path_parameter, params=query_parameter).json()
+
+def get_dio_val() -> requests.Response:
+    base_url = f"http://192.168.1.150:8888"
+    # base_url = f"http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/ios/dio/do_val"
+    query_parameter = {"type": "dob", "blk_no": 2, "sig_no": 3}
+
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
     return response
 
-print(get_dio_val())
+
+ret = get_dio_val()
+print(ret)
+print(format(ret[1]["val"] & 0xFF, "08b"))
 ```
 ```sh
 $python test.py
-{'_type': 'JObject', 'val': -56}
+(200, {'_type': 'JObject', 'val': -99})
+10011101 # TP > fb2/9.do's 4th row => 1011001
 ```
 </div>## 6.1.3 `ios/sio/{sio_val}`
 
@@ -2964,21 +3319,37 @@ GET /project/control/ios/sio/{sio_val}
   - sif or sof : float
 - `sig_no` : 신호 인덱스 (0~)
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	- 정상 응답 시 decimal 값 반환
+		<div style="width: fit-content;">
+
+		```json
+		{"_type" : "JObject", "val" : 6}
+		```
+		</div>
+		이를 binary 로 표현하면 0b0110 으로, 시스템 출력의 둘째,셋째 칸에 녹색 불이 들어오게 됨
 
 ### 사용 예
 
-- sib1 값 얻기. (결과값 : 0b00000010 = 0x02 = 2)
+- sob2 값 얻기. (결과값 : 6 = 0x06 = 0b0110)
 
 ```python
 request url:
-GET /project/control/ios/sio/si_val?type=sib&sig_no=1
+GET /project/control/ios/sio/si_val?type=sob&sig_no=2
 
 response-body:
 {
     "_type" : "JObject",
     "val" : 2,
 }
-```  
+```
 </div>
 
 Python Script 예시
@@ -2990,20 +3361,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_sio_val() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/control/ios/sio/so_val'
-    query_parameter = { 'type': 'sob', 'sig_no': 3 }
-    
-    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
+
+def get_sio_val() -> requests.Response:
+    base_url = f"http://192.168.1.150:8888"
+    # base_url = f"http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/ios/sio/so_val"
+    query_parameter = {"type": "sob", "sig_no": 2}
+
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
     return response
+
 
 print(get_sio_val())
 ```
 ```sh
 $python test.py
-{'_type': 'JObject', 'val': 0}
+(200, {'_type': 'JObject', 'val': 6})
 ```
 </div>## 6.2 io_plc/post
 
@@ -3033,7 +3407,25 @@ POST /project/plc/set_relay_value
 }
 ```
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{ "_type":"JObject" }
+	```
+	</div>
+</div>
+
 ### 사용 예
+
+<div style="width: fit-content;">
 
 ```json
 request url:
@@ -3044,9 +3436,11 @@ request-body:
     "name": "fb1.do0",
     "value": "1"
 }
+
+response-body:
+{ "_type":"JObject" }
 ```
 </div>
-
 
 <div style="width: fit-content;">
 
@@ -3056,33 +3450,44 @@ Python Script 예제
 # test.py
 import requests
 
-def get_relay_value() -> dict:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/plc/fb1_do/val_s32'
- 
-    response = requests.get(url = base_url + path_parameter)
 
-    return response.json()
+def get_relay_value() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/plc/fb1_do/val_s32"
 
-def post_set_relay_value() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/plc/set_relay_value'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"name": "fb1.do0", "value": 1}
- 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.status_code
+    response = requests.get(url=base_url + path_parameter)
 
-print(f"{get_relay_value()}")
-print(f"response: {post_set_relay_value()}")
-print(f"{get_relay_value()}")
+    return response
+
+
+# @measure_api
+def post_set_relay_value() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/plc/set_relay_value"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"name": "fb1.do0", "value": 1}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response
+
+
+ret1 = get_relay_value()
+ret2 = post_set_relay_value()
+ret3 = get_relay_value()
+
+print((ret1.status_code, ret1.json()))
+print((ret2.status_code, ret2.json()))
+print((ret3.status_code, ret3.json()))
+
 ```
 ```sh
 $python test.py
-[0, 0, 0, 0, 0, 0, 0, 0]
-response: 200
-[1, 0, 0, 0, 0, 0, 0, 0]
+(200, [0, 0, 0, 0, 0, 0, 0, 0])
+(200, {'_type': 'JObject'})
+(200, [1, 0, 0, 0, 0, 0, 0, 0])
 ```
 </div>## 6.2.2 `ios/dio/{do_val}`
 
@@ -3128,6 +3533,22 @@ POST /project/control/ios/dio/do_val
 - `val` : 변경하고자 하는 설정값
 
 
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_text": ""}
+	```
+	</div>
+
+
 ### 사용 예
 
 <div style="width: fit-content;">
@@ -3155,22 +3576,25 @@ Python Script 예시
 
 ```python
 # test.py
-import requests 
+import requests
 
-def post_do_val() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/control/ios/dio/do_val'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"type": "dob", "blk_no": 2, "sig_no": 3,"val": -99}
 
-    response = requests.post(url = base_url + path_parameter, headers = head,  json = body)
-    return response.status_code
+def post_do_val() -> requests.Response:
+    base_url = f"http://192.168.1.150:8888"
+    # base_url = f"http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/control/ios/dio/do_val"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"type": "dob", "blk_no": 2, "sig_no": 3, "val": -99}
 
-print(f"response: {post_do_val()}")
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+    return response
+
+
+print(post_do_val())
 ```
 ```sh
 $python test.py
-response: 200 
+(200, {'_text': ''})
 ```
 </div># 7.1 event-log
 
@@ -3220,14 +3644,27 @@ GET /logManager/search
 - `ts_max` : 최대 timestamp 필터. (optional)
   - 년/월/일 시:분:초.밀리초 형식. e.g. 2023/11/20 18:50:30.955
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- `id` : 이벤트 ID (event ID)
-- `ts` : timestamp
-- `cat` : 이벤트 범주 (event category)
-- `code` : 이벤트 코드번호
-- `aux` : 이벤트 보조정보 (event auxiliary info.). 최대 280자입니다.
-  - 에러와 경고, 기동/정지의 경우에는 스냅샷(snapshot) 정보를 담습니다.
+2) response-body
+   - `id` : 이벤트 ID (event ID)
+   - `ts` : timestamp
+   - `cat` : 이벤트 범주 (event category)
+   - `code` : 이벤트 코드번호
+   - `aux` : 이벤트 보조정보 (event auxiliary info.). 최대 280자입니다.
+     - 에러와 경고, 기동/정지의 경우에는 스냅샷(snapshot) 정보를 담습니다.
+   - "_text" 를 키값으로 로그 내용이 반환됩니다.
+		<div style="width: fit-content;">
+
+		```json
+		{ "_text": "..." }
+		```
+		</div>
 
 ### 사용 예
 
@@ -3252,32 +3689,30 @@ Python Script 예시
 
 ```python
 # test.py
+import json
 import requests
 
-def get_log_search() -> str:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/logManager/search'
-    query_parameter = { 
-                        'cat_p':  "P,O", 
-                        'id_max': "24256", 
-                        'id_min': "24251" 
-                      }
-    
-    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
-    return response.text
+def get_log_search() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/logManager/search"
+    query_parameter = {"cat_p": "H"} # get history log
+
+    responses = requests.get(url=base_url + path_parameter, params=query_parameter)
+
+    return responses
+
 
 print(get_log_search())
+
 ```
 
 ```sh
 $python test.py
-{ "id" : 24256, "ts" : "2023/11/28 16:53:23.450", "cat" : "O", "code" : "K.Up", "aux" : "CTRL" }
-{ "id" : 24255, "ts" : "2023/11/28 16:53:23.045", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
-{ "id" : 24254, "ts" : "2023/11/28 16:53:13.695", "cat" : "O", "code" : "K.Up", "aux" : "CTRL" }
-{ "id" : 24253, "ts" : "2023/11/28 16:53:13.202", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
-{ "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : ... }
-{ "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : ... }
+(200, {'_text': '{ "id" : 63010, "ts" : "2025/08/19 12:24:14.325485", "cat" : "H", "code" : "hist", "aux" : "(     12)Power saving = on " }\r\n{ "id" : 63009, "ts" : "2025/08/19 12:24:14.325480", "cat" : "H", "code" : "hist", "aux" : "(=Stamp=)[2025/8/19 12:24:15](+299921531us)" }\r\n{ "id" : 62997, "ts" : "2025/08/19 12:19:14.403964", "cat" : "H", "code" : "hist", "aux" : "(     14)>online_tracking_finish " }\r\n{ "id" : 62996, "ts" : "2025/08/19 12:19:14.403953", "cat" : "H", "code" : "hist", "aux" : "(7142148)FinalizeTracking " }\r\n
+ 				...
+ \r\n'})
 ```
 </div># 8. file_manager
 
@@ -3301,7 +3736,7 @@ GET /file_manager/files
 
 ### query-parameter
 
-query-parameter 를 반드시 입력해야합니다.  
+query-parameter 를 반드시 입력해야합니다.
 
 ```text
 ?pathname=project/jobs/0001.job
@@ -3309,13 +3744,22 @@ query-parameter 를 반드시 입력해야합니다.
 
 - `pathname` : 가져올 파일 이름
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-|HTTP Status|description|
-|:---:|:---|
-|`200 OK`|파일 내용 반환|
-|`404 Not Found`| 파일 없을 때 에러 상태 코드 반환|
+2) response-body
+	- "_text" 를 키값으로 요청한 job 파일의 내용을 반환
+	- e.g.
+		<div style="width: fit-content;">
 
+		```json
+		{ "_text": "Hyundai Robot Job File; { version: 2.0, mech_type: "458(HA006B-01)", total_axis: 6, aux_axis: 0 }\nS1   move P,spd=60%,accu=0,tool=1  [0.000,90.000,0.000,0.000,0.000,0.000]\n     wait di1\n     end\n" }
+		```
+		</div>
 </div>
 
 ### 사용 예
@@ -3356,31 +3800,23 @@ Python Script 예시
 # test.py
 import requests
 
-def print_file_contents() -> None:
-    base_url	    = "http://192.168.1.150:8888"
-    path_parameter  = "/file_manager/files"
+
+def get_file_contents() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/files"
     query_parameter = {"pathname": "project/jobs/0001.job"}
 
     response = requests.get(url=base_url + path_parameter, params=query_parameter)
-	
-    print(f'response: {response.status_code}')
-    print(response.text)
 
-print_file_contents()
+    return response
+
+
+print(get_file_contents())
 ```
 ```sh
 $python test.py
-response: 200
-Hyundai Robot Job File; { version: 2.0, mech_type: "576(HH020-03)", total_axis: 6, aux_axis: 0 }
-     Pose P1 =po1 = Pose(10, 90, 0, 0, -30, 0, -1240.8)
-     Pose P2
-     Pose P3
-     Pose P4
-S1   move P,tg=po1,spd=100%,accu=0,tool=1
-S2   move P,tg=po1,spd=100%,accu=0,tool=1
-S3   move P,tg=po1,spd=100%,accu=0,tool=1
-S4   move P,tg=po1,spd=100%,accu=0,tool=1
-     end
+(200, {'_text': 'Hyundai Robot Job File; { version: 2.0, mech_type: "458(HA006B-01)", total_axis: 6, aux_axis: 0 }\nS1   move P,spd=60%,accu=0,tool=1  [0.000,90.000,0.000,0.000,0.000,0.000]\n     wait di1\n     end\n'})
 ```  
 
 </div>## 8.1.2 `file_info`
@@ -3408,10 +3844,23 @@ query-parameter 를 반드시 입력해야합니다.
 
 </div>
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-- [파일 정보](../../99-schema/file_info.md)
-- 파일이 없을 시 `404 Not Found` 
+2) response-body
+   - [파일 정보](../../99-schema/file_info.md)
+   - 	e.g.
+		<div style="width: fit-content;">
+
+		```json
+		{"mday": 11, "fname": "hi6_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
+		```
+		</div>
+   - 파일이 없을 시 `404 Not Found`
 
 ### 사용 예
 
@@ -3459,20 +3908,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_file_info() -> dict:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/file_manager/file_info"
-    query_parameter  = {"pathname": "project/hi6_proj.json"}
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+def get_file_info() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/file_info"
+    query_parameter = {"pathname": "project/hi6_proj.json"}
 
-    return response.json()
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
+
+    return response
+
 
 print(get_file_info())
 ```
 ```sh
 $python test.py
-{'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
+(200, {'mday': 11, 'fname': 'hi6_proj.json', 'month': 8, 'is_dir': False, 'min': 51, 'size': 144513, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 38, 'nfolders': 0, 'hour': 14, 'wday': 1})
 ```
 
 </div>## 8.1.3 `file_list`
@@ -3510,16 +3962,24 @@ query-parameter 를 반드시 입력해야합니다.
 
 </div>
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-<div style="width: fit-content;">
+2) response-body
+   - 파일 리스트를 반환
+   - 	e.g.
+		<div style="width: fit-content;">
 
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`|[파일 정보](../../99-schema/file_info.md) `리스트`를 반환|
-|`404 Not Found`| 파일 없을 때 반환|
+		```json
+		{"mday": 11, "fname": "hi6_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
+		```
+		</div>
+   - 파일이 없을 시 `404 Not Found`
 
-</div>
 
 ### 사용 예
 
@@ -3576,26 +4036,28 @@ response-body:
 Python Script 예시
 
 ```python
-# test.py
 import requests
 
-def print_file_list() -> None:
+
+def print_file_list() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/file_manager/file_list"
-    query_parameter = {"incl_file": "true", "incl_dir": "true", "path": "project"}
+    query_parameter = {"incl_file": "true", "incl_dir": "true", "path": "project/jobs"}
 
     response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
-    for x in response.json()[:3]:
-        print(x)
+    return response
 
-print_file_list()
+
+print(print_file_list())
 ```
 ```sh
-$python final_test.py 
-{'mday': 20, 'sec': 8, 'fname': 'jobs', 'wday': 1, 'size': 8192, 'year': 2023, 'hour': 21, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 50}
-{'mday': 1, 'sec': 50, 'fname': 'vars', 'wday': 3, 'size': 8192, 'year': 2023, 'hour': 12, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 29}
-{'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
+$python final_test.py
+(200, [{'mday': 18, 'fname': '0002.job', 'month': 7, 'is_dir': False, 'min': 8, 'size': 543, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 44, 'nfolders': 0, 'hour': 14, 'wday': 5}, {'mday': 18, 'fname': '0003.job', 'month': 7, 'is_dir': False, 'min': 8, 'size': 1043, 
+                                ...
+, {'mday': 19, 'fname': '0001.job', 'month': 8, 'is_dir': False, 'min': 42, 'size': 198, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 6, 'nfolders': 0, 'hour': 7, 'wday': 2}])
+
 ```
 </div>## 8.1.4 `file_exist`
 
@@ -3622,17 +4084,16 @@ query-parameter 를 반드시 입력해야합니다.
 
 </div>
 
-### response-body
+### response
 
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-<div style="width: fit-content;">
-
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`|`true` (파일 존재)|
-|`200 OK`|`false` (파일 없음)|
-
-</div>
+2) response-body
+   - 파일 존재 여부에 대한 bool 값 (True/False) 반환
 
 ### 사용 예
 
@@ -3664,20 +4125,23 @@ Python Script 예시
 # test.py
 import requests
 
-def is_file_exist() -> str:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/file_manager/file_exist'
-    query_parameter = {'pathname': 'project/jobs/0001.job'}
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter)
+def get_file_contents() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/files"
+    query_parameter = {"pathname": "project/jobs/0001.job"}
 
-    return response.text
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
-print(is_file_exist())
+    return response
+
+
+print(get_file_contents())
 ```
 ```sh
 $python test.py
-true
+True
 ```
 
 </div>## 8.2 file_manager/post
@@ -3710,14 +4174,28 @@ POST /file_manager/rename_file
 - `pathname_from` : 변경 전 파일 경로
 - `pathname_to` : 변경 후 파일 경로
 
-### response-body
+### response
 
-|HTTP Status|description|
-|:---:|:---|
-|`200`| 이름 변경 완료 |
-|`400`| 변경하려는 타겟 파일이 존재하지 않음 |
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - 변경하려는 타겟 파일이 존재하지 않음
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - 변경하려는 파일 경로와 변경되었을 때의 파일 경로를 응답
+	 <div style="width: fit-content;">
+
+		```json
+		{"pathname_from": "project/jobs/0001.job", "pathname_to": "project/jobs/0882.job"}
+		```
+	</div>
+
 
 ### 사용 예
+
+<div style="width: fit-content;">
 
 ```python
 request url:
@@ -3729,6 +4207,7 @@ request-body:
     "pathname_to"   : "project/jobs/4321.job"
 }
 ```
+
 ```text
 hi6
 `-- project
@@ -3746,22 +4225,26 @@ Python Script 예시
 # test.py
 import requests
 
-def rename_file():
+def rename_file() -> requests.Response:
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/file_manager/rename_file'
     head            = {'Content-Type': 'application/json; charset=utf-8'}
-    body            = { "pathname_from" : "project/jobs/0001.job", 
+    body            = { "pathname_from" : "project/jobs/0001.job",
                         "pathname_to"   : "project/jobs/4321.job" }
 
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
 
     return response.status_code
 
-print(f"response: {rename_file()}")
+try:
+    ret = rename_file()
+    print(ret.status_code, ret.json())
+except:
+    print(rename_file())
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'pathname_from': 'project/jobs/0001.job', 'pathname_to': 'project/jobs/4321.job'})
 ```
 
 </div>## 8.2.2 `mkdir`
@@ -3783,29 +4266,42 @@ GET /file_manager/mkdir
 
 ### request-body
 
-|key|value|description|
-|:---:|:---:|:---:|
-|`path`|`str`|디렉토리를 생성할 위치|
+<div style="width: fit-content;">
+
+- 생성하려는 디렉토리 타겟 위치
+	```json
+	{ "path" : "project/jobs/special" }
+	```
 
 </div>
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - 변경하려는 타겟 파일이 존재하지 않음
+   - 403 : Forbidden
+   - 404 : Not Found
+   - 500 : Internal Server Error
+     - 타겟 위치에 디렉토리 이름이 중복되는 경우
 
-<div style="width: fit-content;">
+2) response-body
+   - 생성하려는 디렉토리 타겟 위치
+		<div style="width: fit-content;">
 
-|HTTP Status|description|
-|:---:|:---|
-|`200 OK`| 타겟 위치에 디렉토리 생성 완료 |
-|`500 Internal Server Error`| 타겟 위치에 디렉토리 이름이 중복되는 경우 |
-
+		```json
+		{ "path" : "project/jobs/special" }
+		```
+		</div>
 
 ### 사용 예
+<div style="width: fit-content;">
 
 ```python
 request url:
 GET /file_manager/mkdir
 
-request-body: 
+request-body:
 {
     "path" : "project/jobs/special"
 }
@@ -3829,21 +4325,28 @@ Python Script 예시
 # test.py
 import requests
 
-def post_mkdir() -> int:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/file_manager/mkdir'
-    head            = {'Content-Type': 'application/json; charset=utf-8'}
-    body            = {'path': "project/jobs/special7"}
+
+def post_mkdir() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/mkdir"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"path": "project/jobs/special"}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    return response.status_code
+    return response
 
-print(f"response: {post_mkdir()}")
+
+try:
+    ret = post_mkdir()
+    print(ret.status_code, ret.json())
+except:
+    print(post_mkdir())
 ```
 ```sh
 $python test.py
-response: 200
+200 {'path': 'project/jobs/special'}
 ```
 </div>## 8.2.3 `files`
 
@@ -3869,15 +4372,21 @@ POST /file_manager/files/{target_filepath}
 - binary 형식의 파일
 - `Content-Type` 은 `application/octet-stream` 이어야합니다.
 
-### response-body
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-<div style="width: fit-content;">
+2) response-body
 
-|HTTP Status|description|
-|:---:|:---|
-|`200 OK`| 전송 완료 |
+	<div style="width: fit-content;">
 
-</div>
+	```json
+	{"_text": ""})
+	```
+	</div>
 
 ### 사용 예
 
@@ -3902,26 +4411,31 @@ Python Script 예시
 # test.py
 import requests
 
-def post_file_transfer() -> int:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/file_manager/files'
-    path_value      = '/project/jobs/test.job' # target
 
-    target_file     = base_url + path_parameter + path_value
-    source_file     = 'D:\\temp\\test.job' # source (path for WindowOS)
+def post_file_transfer() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/files"
+    path_value = "/project/jobs/3344.job"  # target
 
-    with open(source_file, 'rb') as file:
-        response = requests.post(url=target_file, 
-                                 data=file, 
-                                 headers={'Content-Type': 'application/octet-stream'})
+    target_file = base_url + path_parameter + path_value
+    source_file = "D:\\temp\\test.job"  # source (path for WindowOS)
 
-    return response.status_code
+    with open(source_file, "rb") as file:
+        response = requests.post(
+            url=target_file,
+            data=file,
+            headers={"Content-Type": "application/octet-stream"},
+        )
 
-print(f"response: {post_file_transfer()}")
+    return response
+
+
+print(post_file_transfer())
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'_text': ''})
 ```## 8.3 file_manager/delete
 
 - 제어기의 파일 정보에 대한 DELETE 요청을 보냅니다.## 8.3.1 `files`
@@ -3938,11 +4452,16 @@ response: 200
 DELETE /file_manager/files/{target-filepath}
 ```
 
-### response-body
-|HTTP Status|description|
-|:---|:---|
-|`200 OK`| 타겟 삭제 완료, 타겟이 없어도 200 반환됨 |
+### response
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
+2) response-body
+   - 없음. status code 만 반환
+   - 삭제할 대상의 파일이 없어도 통신상에 문제가 없으면 상태코드 200 응답
 
 ### 사용 예
 
@@ -3951,7 +4470,7 @@ DELETE /file_manager/files/{target-filepath}
 ```python
 request url:
 DELETE /file_manager/files/project/jobs/special
-```  
+```
 
 ```text
 hi6
@@ -3968,20 +4487,27 @@ Python Script 예시
 # test.py
 import requests
 
-def delete_file() -> int:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/file_manager/files'
-    target_file     = '/project/jobs/test.job'
 
-    response = requests.delete(url = base_url + path_parameter + target_file)
+def delete_file() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/file_manager/files"
+    target_file = "/project/jobs/0001.job"
 
-    return response.status_code
+    response = requests.delete(url=base_url + path_parameter + target_file)
 
-print(f"response: {delete_file()}")
+    return response
+
+
+ret = delete_file()
+try:
+    print((ret.status_code, ret.json()))
+except:
+    print(ret)
 ```
 ```sh
 $python test.py
-response: 200
+<Response [200]>
 ```
 </div># 9.task
 
@@ -4011,33 +4537,35 @@ POST /project/context/tasks[0]/cur_prog_cnt
 ### request-body
 
 - [cur_prog_cnt 요청 파라미터](../.././99-schema/cur_prog_cnt.md)
-- api 는 원격모드에서 동작하므로 외부선택 옵션(ext_sel: 1)을 선택해야합니다.
+- 원격모드에서 동작하는 api로, 외부선택 옵션(ext_sel: 1)을 선택해야합니다.
 
-### response-body
+### response
 
-- [cur_prog_cnt 응답 파라미터](../.././99-schema/cur_prog_cnt.md)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+    	- request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+     - 허용되지 않는 요청을 한 경우
+     - `err_code` (<0) 반환. 하기 에러코드 참조
+   - 404 : Not Found
 
-### status code
+2) response-body
+   - [cur_prog_cnt 응답 파라미터](../.././99-schema/cur_prog_cnt.md)
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-  - 허용되지 않는 요청을 한 경우
-  - `err_code` (<0) : 초기화 실패
-- 404 : Not Found
+3) error code
 
-### error code
+	<div style="width: fit-content;">
 
-<div style="width: fit-content;">
+   	- -1114208 : 원격모드가 아닌 경우
+   	- -1442080 : 프로그램 재생 중 적용 불가
+   	- -1245280 : 유효하지 않은 프로그램 카운터
 
-- -1442080 : 프로그램 재생 중 적용 불가
-- -1245280 : 유효하지 않은 프로그램 카운터
-  > api 로 프로그램을 start/stop 한 뒤,  
-  > cur_prog_cnt 를 호출 하는 경우 -1245280 에러가 발생할 수 있습니다.  
-  > set_cur_pc_idx api 로 현재 커서 위치를 최상단(idx: 0)으로 옮기고 호출해야합니다.
+   		> api 로 프로그램을 start/stop 한 뒤 cur_prog_cnt 를 호출 하는 경우  
+   		> '유효하지 않은 프로그램 카운터' 에러가 발생할 수 있습니다.  
+   		> set_cur_pc_idx api 로 현재 커서 위치를 상단(idx: 1)으로 옮기고 호출하면 정상 동작합니다.
 
-</div>
+	</div>
 
 ### 사용 예
 
@@ -4059,21 +4587,31 @@ Python Script 예시
 ```python
 import requests
 
-def post_cur_prog_cnt() -> dict:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/cur_prog_cnt'
-    headers        = { 'Content-Type': 'application/json; charset=utf-8' }
-    body           = { "pno":1, "sno":-1, "fno":-1, "ext_sel":1 }
 
-    response = requests.request("POST", base_url + path_parameter, headers=headers, json=body)
+def post_cur_prog_cnt() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://192.168.1.150:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/cur_prog_cnt"
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"pno": 1, "sno": 0, "fno": 0, "ext_sel": 1}
 
-    return response.json()
+    response = requests.request(
+        "POST", base_url + path_parameter, headers=headers, json=body
+    )
 
-print(post_cur_prog_cnt())
+    return response
+
+
+ret = post_cur_prog_cnt()
+try:
+    print((ret.status_code, ret.json()))
+except:
+    print(ret)
+
 ```
 ```sh
 $python python test.py
-{'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
+(200, {'_type': 'JObject', 'sno_new': 0, 'ofs_moved': 0, 'fno_new': 0, 'ln_new': 0})
 ```
 </div><link rel="stylesheet" href="../../_assets/style.css">
 
@@ -4085,8 +4623,8 @@ $python python test.py
 {% hint style="warning" %}
 
 R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동의 원인이 될 수 있습니다.<br>
-에러 초기화 용도로는 반드시 R코드 1을 사용하십시오.<br>
-주의사항을 무시한 R코드 0 호출로 발생한 문제에 대해 당사는 책임지지 않습니다.
+에러 초기화 용도로는 R코드 1을 사용하십시오.<br>
+이를 무시하고 무분별한 R코드 0 호출로 발생한 문제에 대해 당사는 책임지지 않습니다.
 
 {% endhint %}
 
@@ -4112,6 +4650,26 @@ POST /project/service/r_code/execute
 {"code": 1}
 ```
 
+### response
+
+1) status code
+	- 200 : OK
+	- 400 : Bad Request
+		- request body 가 유효성 검사에서 실패한 경우
+	- 403 : Forbidden
+	  - 허용되지 않는 요청을 한 경우
+	  - `err_code` (<0) 반환. 하기 에러코드 참조
+	- 404 : Not Found
+
+2) response-body
+   - code: 요청한 rcode 번호가 반환
+		<div style="width: fit-content;">
+
+		```json
+		{"code": 1, ... })
+		```
+		</div>
+
 ### 사용 예
 
 ```python
@@ -4127,25 +4685,26 @@ request-body:
 Python Script
 
 ```python
+# test.py
 import requests
 
 
-def post_rcode() -> int:
+def post_rcode() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/project/service/r_code/execute"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {"code": 1}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
-    return response.status_code
+    return response
 
 
-print(f"response: {post_rcode()}")
-
+print(post_rcode())
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'code': 1, 'description': '', 'params': [], 'subcode': 0})
 ```
 
 </div>## 9.2.3 `assign_var_expr`
@@ -4182,9 +4741,27 @@ POST /project/context/tasks[{task index}]/assign_var_expr
 }
 ```
 
+### response
+
+1) status code
+	- 200 : OK
+	- 400 : Bad Request
+	- 403 : Forbidden
+	- 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject"}
+	```
+	</div>
+
+
+
 ### 사용 예
 
-현재 태스크에 지역 변수 a 가 선언된 상태인 경우  
+현재 태스크에 지역 변수 a 가 선언된 상태인 경우
 
 ```python
 request url:
@@ -4206,35 +4783,49 @@ Python Script 예시
 # test.py
 import requests
 
-def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/solve_expr'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.json()
+def post_read_var(var: str, scope=None) -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/solve_expr"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"expr": f"{var}", "scope": f"{scope}"}
 
-def assign_var_expr(var_name: str, scope = None, expression: str = '') -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/assign_var_expr"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {"name": f"{var_name}", "expr": f"{expression}", "scope": f"{scope}"}
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+    return response
 
-    return response.status_code
 
-print(f"before: {post_read_var('a', 'local')}")
-print(f"response: {assign_var_expr('a', 'local', '465 + 312')}")
-print(f"after: {post_read_var('a', 'local')}")
+def assign_var_expr(var: str, scope=None, expression: str = "") -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/assign_var_expr"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"name": f"{var}", "expr": f"{expression}", "scope": f"{scope}"}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response
+
+
+ret1 = post_read_var("a", "local")
+ret2 = assign_var_expr("a", "local", "465 + 312")
+ret3 = post_read_var("a", "local")
+
+try:
+    print((ret1.status_code, ret1.json()))
+    print((ret2.status_code, ret2.json()))
+    print((ret3.status_code, ret3.json()))
+except:
+    print(ret1)
+    print(ret2)
+    print(ret3)
 ```
 ```sh
-$python test.py 
-before: 1234
-response: 200
-after: 777   
+$python test.py
+(200, 0)
+(200, {'_type': 'JObject'})
+(200, 777)
 ```
 
 </div>## 9.2.4 `assign_var_json`
@@ -4262,14 +4853,39 @@ POST /project/context/tasks[{task index}]/assign_var_json
 	|지역 변수|전역 변수|전체 스코프|
 
 
-```json
-{
-    "name" : "a",
-    "scope": "local",
-    "json" : "{\"test\": 10}",
-    "save" : "true"
-}
-```
+	```json
+	{
+		"name" : "a",
+		"scope": "local",
+		"json" : "{\"test\": 10}",
+		"save" : "true"
+	}
+	```
+
+### response
+
+1) status code
+	- 200 : OK
+	- 400 : Bad Request
+	- 403 : Forbidden
+	- 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject", ${request-body 에서 요청한 body의 json값}}
+	```
+	</div>
+
+	e.g. "json" 으로 {"test":10} 을 요청한 경우
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject", "test": 10}
+	```
+	</div>
+
 
 ### 사용 예
 
@@ -4295,41 +4911,46 @@ Python Script 예시
 # test.py
 import requests
 
-def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/solve_expr'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
+def post_read_var(var_name: str, scope=None) -> int:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/solve_expr"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"expr": f"{var_name}", "scope": f"{scope}"}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
     return response.json()
 
-def assign_var_json(var_name: str, scope = None, var_json: str = '') -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/assign_var_json"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {
-                         "name" : f"{var_name}",
-                         "scope": f"{scope}",
-                         "json" : f"{var_json}",
-                         "save" : "true"
-                       }
 
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+def assign_var_json(var_name: str, scope=None, var_json: str = "") -> int:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/assign_var_json"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {
+        "name": f"{var_name}",
+        "scope": f"{scope}",
+        "json": f"{var_json}",
+        "save": "true",
+    }
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
     return response.status_code
+
 
 print(f"before: {post_read_var('a', 'local')}")
 print(f"""response: {assign_var_json('a', 'local', '{"test": 10}')}""")
 print(f"after: {post_read_var('a', 'local')}")
 ```
 ```sh
-$python test.py 
-before: 1234
+$python test.py
+before: 777
 response: 200
 after: {'_type': 'JObject', 'test': 10}
-```  
+```
 
 </div>## 9.2.5 `release_wait`
 
@@ -4337,8 +4958,8 @@ after: {'_type': 'JObject', 'test': 10}
 
 ### 설명
 
-- `POST` : 태스크의 구문 정지해제
-- 필요 조건 : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
+- `POST` : WAIT 을 실행중인 태스크에 대해서 wait 상태를 강제로 해제합니다.
+- **<u>필요 조건</u>** : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
 
 ### path-parameter
 
@@ -4352,19 +4973,25 @@ POST /project/context/tasks[{task index}]/release_wait
 {}
 ```
 
-### response-body
+### response
 
-### status code
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+     - 상기 필요 조건 불충족
+   - 404 : Not Found
 
-- 200 : OK
-- 400 : Bad Request
-- 403 : Forbidden
-  - 상기 필요 조건 불충족
-- 404 : Not Found
+2) response-body
+	<div style="width: fit-content;">
 
-### error code
+	```json
+	{"_type": "JObject"}
+	```
+	</div>
 
-- -1442069 : 사용자 환경 설정 오류. 상기 필요 조건을 확인하십시오.
+3) error code
+   - -1442069 : 사용자 환경 설정 오류. 상기 필요 조건을 확인하십시오.
 
 
 ### 사용 예
@@ -4382,21 +5009,29 @@ Python Script 예시
 ```python
 import requests
 
+
 def post_release_wait() -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/release_wait'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {}
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/release_wait"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    return response.status_code
+    return response
 
-print(f"response: {post_release_wait()}")
+
+ret = post_release_wait()
+try:
+    print((ret.status_code, ret.json()))
+except:
+    print(ret)
+
 ```
 ```sh
 $python test.py
-response: 200
+(200, {'_type': 'JObject'})
 ```
 
 </div>## 9.2.6 `set_cur_pc_idx`
@@ -4405,7 +5040,7 @@ response: 200
 
 ### 설명
 
-- `POST` : 현재 커서를 index 라인에 위치 시키는 함수
+- `POST` : 현재 커서를 index 라인(>=0)에 위치 시키는 함수
 
 ### path-parameter
 
@@ -4414,18 +5049,31 @@ POST /project/context/tasks[{task index}]/set_cur_pc_idx
 ```
 
 ### request-body
-```json
-{
-  "idx": 1
-}
-```
-### status code
+-
+	<div style="width: fit-content;">
 
-- 200 : OK
-- 400 : Bad Request
-- 403 : Forbidden
-  - 상기 필요 조건 불충족
-- 404 : Not Found
+	```json
+	{ "idx": 1 }
+	```
+	</div>
+
+### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject"}
+	```
+	</div>
+
+
 
 ### error code
 
@@ -4450,21 +5098,24 @@ Python Script
 # test.py
 import requests
 
-def set_cur_pc_idx() -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/set_cur_pc_idx"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {"idx": 1}
 
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+def set_cur_pc_idx() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/set_cur_pc_idx"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"idx": 1}
 
-    return response.status_code
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-print(f"response: {set_cur_pc_idx()}")
+    return response
+
+
+print(set_cur_pc_idx())
 ```
 ```sh
-$python test.py 
-response 200 # + TP 상 커서 위치 변경 됨
+$python test.py
+(200, {'_type': 'JObject'})
 ```
 </div>## 9.2.7 `solve_expr`
 
@@ -4488,18 +5139,27 @@ POST /project/context/tasks[{task index}]/solve_expr
 	|:---|:---|:---|
 	|지역 변수|전역 변수|전체 스코프|
 
-```json
-{
-    "expr" : "a",
-    "scope" : "local"
-}
-```
+	```json
+	{
+		"expr" : "a",
+		"scope" : "local"
+	}
+	```
+### response
 
-### response-body
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
 
-```json
-13 // 현재 지정된 scope 안의 expr 값을 읽어옵니다.
-```
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	13 // 현재 지정된 scope 안의 expr 값을 읽어옵니다.
+	```
+	</div>
 
 ### 사용 예
 
@@ -4566,25 +5226,26 @@ Python Script 예시
 # test.py
 import requests
 
-def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/solve_expr'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
-    return response.json()
+def post_read_var(var_name: str, scope=None) -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/solve_expr"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"expr": f"{var_name}", "scope": f"{scope}"}
 
-print(f"{post_read_var('a', 'local')}")
-print(f"{post_read_var('a', 'global')}")
-print(f"{post_read_var('a + (-234)')}")
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
+    return response
+
+
+print(post_read_var("a", "local"))
+print(post_read_var("a", "global"))
 ```
 ```sh
-$python test.py 
-1234
-10
-1000
+$python test.py
+(200, 1234)
+(200, 0)
 ```
 </div>## 9.2.8 `execute_move`
 
@@ -4604,25 +5265,41 @@ POST /project/context/tasks[{task index}]/execute_move
 ### request-body
 - `stmt` : 요청 바디의 키 값으로, 구문(statment)을 뜻합니다.
 - move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move)을 참조 바랍니다.
+	<div style="width: fit-content;">
 
-```json
-{
-    "stmt" : "move SP,spd=1sec,accu=0,tool=1 [0 90 0 0 0 0]"
-}
-```
+	```json
+	{
+		"stmt" : "move SP,spd=1sec,accu=0,tool=1 [0 90 0 0 0 0]"
+	}
+	```
+	</div>
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+    	- request body 가 유효성 검사에서 실패
+   - 403 : Forbidden
+    	- 원격모드가 아닌 상태로 API 요청(v61.00 부터 적용)
+   - 404 : Not Found
 
-### response-body
+2) response-body
+	- v60.30 이하 정상 응답
+		<div style="width: fit-content;">
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패
-- 403 : Forbidden
-	- 원격모드가 아닌 상태로 API 요청
-- 404 : Not Found
+		```json
+		{ "err_code" : 0 }
+		```
+		</div>
+	- v61.00 이상 정상 응답
 
-### error code
+		<div style="width: fit-content;">
 
-- -38500: 원격 모드가 아닌 상태로 해당 api 요청
+		```json
+		{ "_type" : "JObject" }
+		```
+		</div>
+
+3) error code
+   - -38500 : 원격 모드가 아닌 상태로 해당 api 요청
 
 Python Script 예시
 - 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
@@ -4632,40 +5309,34 @@ Python Script 예시
 import requests
 import time
 
-def post_execute_move(in_pose: str) -> int:
-    # base_url = "http://192.168.1.150:8888" # for Hi6COM
-    base_url = "http://127.0.0.1:8888" # for HRSpace - virtual robot controller
+
+def post_execute_move(in_pose: str) -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/project/context/tasks[0]/execute_move"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {"stmt": f"move SP,spd=1sec,accu=0,tool=1  {str(in_pose)}"}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    return response.status_code
+    return response
 
-poses = [
-    "[-10, 90, -10, 0, 0, 0]",
-    "[-5, 90, 5, 0, 0, 0]",
-    "[0, 90, 0, 0, 0, 0]"
-]
+
+poses = ["[-10, 90, -10, 0, 0, 0]", "[-5, 90, 5, 0, 0, 0]", "[0, 90, 0, 0, 0, 0]"]
 
 for idx, pose in enumerate(poses):
-    print(f"Request {idx + 1}: Sending pose {pose}")
-    status_code = post_execute_move(pose)
-    print(f"Status code: {status_code}")
-    if idx < len(poses) - 1:  
-        time.sleep(1.5)
+    res = post_execute_move(pose)
+    print((res.status_code, res.json()))
 
+    if idx < len(poses) - 1:
+        time.sleep(1.5)
 ```
 ```sh
-$python test.py 
-Request 1: Sending pose [-10, 90, -10, 0, 0, 0]
-Status code: 200
-Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
-Status code: 200
-Request 3: Sending pose [0, 90, 0, 0, 0, 0]
-Status code: 200
-``````  
+$python test.py
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+``````
 
 </div># 10. console
 
@@ -4702,21 +5373,27 @@ POST /console/execute_cmd
 }
 ```
 
-### response-body
+### response
 
-### status code
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+    	- request body 가 유효성 검사에서 실패한 경우
+   - 403 : Forbidden
+     - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+   - 404 : Not Found
 
-- 200 : OK
-- 400 : Bad Request
-	- request body 가 유효성 검사에서 실패한 경우
-- 403 : Forbidden
-  - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
-- 404 : Not Found
+2) response body
+	<div style="width: fit-content;">
 
-### error code
+	```json
+	{ "_type" : "JObject" }
+	```
+	</div>
 
-- ecode: 1
-  - 로봇 언어 명령어 규칙을 벗어난 경우
+3) error code
+
+   - 1: 로봇 언어 명령어 규칙을 벗어난 경우
 
 
 ### 사용 예
@@ -4733,55 +5410,48 @@ import time
 import requests
 
 
-class ExecuteCmds:
-    request_to = {
-        "com": [
-            "rl.stop",  # 외부정지
-            "rl.reinit",  # 재시작
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 10, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
-            "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
-            "rl.i end",
-            "rl.start",  # 재생
-        ],
-    }
+cmds = [
+    "rl.stop",   # 외부정지
+    "rl.reinit", # 재시작
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 10, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
+    "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
+    "rl.i end",
+    "rl.start",  # 재생
+]
 
-
-def post_execute_cmd() -> int:
+def post_execute_cmd(cmd: str) -> int:
     base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/console/execute_cmd"
     head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"cmd_line": cmd}
 
-    execute_cmds = ExecuteCmds.request_to["com"]
+    res = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    response: int = None
-    for cmd in execute_cmds:
-        data = {"cmd_line": cmd}
-        response = requests.post(url=base_url + path_parameter, headers=head, json=data)
-        print(f"response: {response}")
-        time.sleep(0.1)
-
-    return 200
+    return res
 
 
-print(f"response: {post_execute_cmd()}")
+for cmd in cmds:
+    ret = post_execute_cmd(cmd)
+    print((ret.status_code, ret.json()))
+    time.sleep(0.1)
 ```
 ```sh
-$python test.py 
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: 200
+$python test.py
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
 ```
 
 </div># 11. etc
@@ -4799,9 +5469,23 @@ response: 200
 
 - `GET` : 설정된 시스템 시간을 가져옵니다.
 
-### response-body
+### response
 
-- [시스템 시간 정보](../../../99-schema/date_time.md)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response body
+   - [시스템 시간 정보](../../../99-schema/date_time.md)
+		<div style="width: fit-content;">
+
+		```json
+		{"_type": "JObject", "year": 2025, "min": 43, "sec": 39, "hour": 15, "wday": 2, "mon": 8, "day": 19}
+		```
+		</div>
+
 
 ### 사용 예
 
@@ -4829,22 +5513,30 @@ Python Script 예시
 ```python
 # test.py
 import requests
+import time
 
-def get_system_time() -> str:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/clock/date_time'
 
-    response = requests.get(url = base_url + path_parameter).json()
+def get_system_time() -> requests.Response:
+    base_url = f"http://192.168.1.150:8888"
+    # base_url = f"http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/clock/date_time"
+    res = requests.get(url=base_url + path_parameter)
 
-    t = f'[{response["mon"]}/{response["day"]}] {response["hour"]}:{response["min"]}'
+    return res
 
-    return t
 
-print(get_system_time())
+for idx in range(5):
+    res = get_system_time()
+    print((res.status_code, res.json()))
+    time.sleep(1)
 ```
 ```sh
 $python test.py
-[11/20] 19:55
+(200, {'_type': 'JObject', 'year': 2025, 'min': 43, 'sec': 39, 'hour': 15, 'wday': 2, 'mon': 8, 'day': 19})
+(200, {'_type': 'JObject', 'year': 2025, 'min': 43, 'sec': 40, 'hour': 15, 'wday': 2, 'mon': 8, 'day': 19})
+(200, {'_type': 'JObject', 'year': 2025, 'min': 43, 'sec': 41, 'hour': 15, 'wday': 2, 'mon': 8, 'day': 19})
+(200, {'_type': 'JObject', 'year': 2025, 'min': 43, 'sec': 42, 'hour': 15, 'wday': 2, 'mon': 8, 'day': 19})
+(200, {'_type': 'JObject', 'year': 2025, 'min': 43, 'sec': 43, 'hour': 15, 'wday': 2, 'mon': 8, 'day': 19})
 ```
 </div>## 11.1.2 clock/put
 
@@ -4856,10 +5548,27 @@ $python test.py
 ### 설명
 
 - `PUT` : 시스템 시간을 변경합니다.
+- 요청 후 TP > 서비스 > 9: TP 응용 프로그램 종료를 통해 TP 를 재부팅하면 ui에 적용됩니다.
 
 ### request-body
 
 - [시스템 시간 정보](../../../99-schema/date_time.md)
+
+### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response body
+	<div style="width: fit-content;">
+
+	```json
+	{}
+	```
+	</div>
 
 ### 사용 예
 
@@ -4884,22 +5593,25 @@ Python Script 예시
 # test.py
 import requests
 
-def put_system_time() -> int:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/clock/date_time'
-    head            = {'Content-Type': 'application/json; charset=utf-8'}
-    body 			= {"year": 2025, "mon": 11, "day": 20, "hour": 21, "min": 2, "sec": 0}
-	
-    response = requests.put(url = base_url + path_parameter, headers = head, json = body)
 
-    return response.status_code
+def put_system_time() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.18888"  # hrspace
+    path_parameter = "/clock/date_time"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"year": 2025, "mon": 8, "day": 19, "hour": 16, "min": 50, "sec": 0}
 
-print(f"response: {put_system_time()}")
+    response = requests.put(url=base_url + path_parameter, headers=head, json=body)
+
+    return response
+
+
+print(put_system_time())
 ```
 
 ```sh
 $python test.py
-response: 200
+(200, {})
 ```
 </div># 7. 스키마 (schema)
 

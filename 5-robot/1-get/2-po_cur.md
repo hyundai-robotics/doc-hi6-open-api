@@ -24,9 +24,16 @@ GET /project/robot/po_cur
 - `ucrd_no` : 사용자 좌표계 번호 (crd가 user일 때만 지정함.)
 - `mechinfo` : [메커니즘 정보](../../99-schema/mechinfo.md)
 
-### response-body
+### response
 
-- [포즈 정보](../../99-schema/pose.md)
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - [포즈 정보](../../99-schema/pose.md)
 
 
 ### 사용 예
@@ -115,20 +122,23 @@ Python Script 예시
 # test.py
 import requests
 
-def get_base_coordinate() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/robot/po_cur'
-    query_parameter = {'crd': 0, 'mechinfo': 1}
 
-    response = requests.get(url = base_url + path_parameter, params = query_parameter).json()
+def get_po_cur() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/robot/po_cur"
+    query_parameter = {"crd": 2, "mechinfo": 1}
+
+    response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
     return response
 
-print(get_base_coordinate())
+
+print(get_po_cur())
 ```
 ```sh
 $python test.py
-{'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
+(200, {'_type': 'Pose', 'nsync': 0, 'crd': 'joint', 'mechinfo': 1, 'j2': 90.106, 'j3': 0.0, 'j1': 0.0, 'j6': 0.0, 'j4': 0.0, 'j5': -90.0})
 ```
 
 </div>

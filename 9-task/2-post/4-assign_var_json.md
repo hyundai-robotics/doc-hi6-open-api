@@ -23,14 +23,39 @@ POST /project/context/tasks[{task index}]/assign_var_json
 	|지역 변수|전역 변수|전체 스코프|
 
 
-```json
-{
-    "name" : "a",
-    "scope": "local",
-    "json" : "{\"test\": 10}",
-    "save" : "true"
-}
-```
+	```json
+	{
+		"name" : "a",
+		"scope": "local",
+		"json" : "{\"test\": 10}",
+		"save" : "true"
+	}
+	```
+
+### response
+
+1) status code
+	- 200 : OK
+	- 400 : Bad Request
+	- 403 : Forbidden
+	- 404 : Not Found
+
+2) response-body
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject", ${request-body 에서 요청한 body의 json값}}
+	```
+	</div>
+
+	e.g. "json" 으로 {"test":10} 을 요청한 경우
+	<div style="width: fit-content;">
+
+	```json
+	{"_type": "JObject", "test": 10}
+	```
+	</div>
+
 
 ### 사용 예
 
@@ -56,40 +81,45 @@ Python Script 예시
 # test.py
 import requests
 
-def post_read_var(var_name: str, scope = None) -> int:
-    base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/solve_expr'
-    head           = {'Content-Type': 'application/json; charset=utf-8'}
-    body           = {"expr": f"{var_name}", "scope": f"{scope}"}
 
-    response = requests.post(url = base_url + path_parameter, headers = head, json = body)
- 
+def post_read_var(var_name: str, scope=None) -> int:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/solve_expr"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {"expr": f"{var_name}", "scope": f"{scope}"}
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
+
     return response.json()
 
-def assign_var_json(var_name: str, scope = None, var_json: str = '') -> int:
-    base_url         = "http://192.168.1.150:8888"
-    path_parameter   = "/project/context/tasks[0]/assign_var_json"
-    head             = {'Content-Type': 'application/json; charset=utf-8'}
-    body             = {
-                         "name" : f"{var_name}",
-                         "scope": f"{scope}",
-                         "json" : f"{var_json}",
-                         "save" : "true"
-                       }
 
-    response = requests.post(url = base_url + path_parameter, headers=head, json=body)
+def assign_var_json(var_name: str, scope=None, var_json: str = "") -> int:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks[0]/assign_var_json"
+    head = {"Content-Type": "application/json; charset=utf-8"}
+    body = {
+        "name": f"{var_name}",
+        "scope": f"{scope}",
+        "json": f"{var_json}",
+        "save": "true",
+    }
+
+    response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
     return response.status_code
+
 
 print(f"before: {post_read_var('a', 'local')}")
 print(f"""response: {assign_var_json('a', 'local', '{"test": 10}')}""")
 print(f"after: {post_read_var('a', 'local')}")
 ```
 ```sh
-$python test.py 
-before: 1234
+$python test.py
+before: 777
 response: 200
 after: {'_type': 'JObject', 'test': 10}
-```  
+```
 
 </div>
