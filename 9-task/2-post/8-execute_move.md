@@ -51,6 +51,9 @@ POST /project/context/tasks[{task index}]/execute_move
 
 3) error code
    - -38500 : 원격 모드가 아닌 상태로 해당 api 요청
+   - -1442071 : MOTOR OFF 에서 api 요청
+   - -1442080 : 프로그램 자동 운전 중에 api 요청
+   - -1376272 : api 요청 수행 중 로봇 언어 문법 오류 발생
 
 Python Script 예시
 - 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
