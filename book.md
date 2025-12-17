@@ -459,7 +459,7 @@ total request time : 0.2869541645050049 seconds
 
 	|COM 버전|배포 일정|링크|
 	|:--:|:--:|:--:|
-	|v61-00.00|2025.09|[🔗](61-00.md)|
+	|v60-32.00|2025.11|[🔗](60-32.md)|
 	|v60-30.00|2025.03|[🔗](60-30.md)|
 	|v60-28.00|2024.08|[🔗](60-28.md)|
 	|v60-26.00|-||
@@ -469,7 +469,7 @@ total request time : 0.2869541645050049 seconds
 <link rel="stylesheet" href="../_assets/style.css">
 
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
-  📝 Release Notes - v61.00-00
+  📝 Release Notes - v60.32-00
   <span style="
     background: #F44336; 
     color: #FFFFFF; 
@@ -484,14 +484,9 @@ total request time : 0.2869541645050049 seconds
     align-items: center;
     height: 1.6em; /* h2 높이에 맞게 조정 */
   ">
-    PREVIEW
+    NEW
   </span>
 </h2>
-
-<br>
-
-현재 v61.00 은 9월 배포 예정으로 하기 기능들은 내부적으로 테스트 기간을 거쳐 배포될 예정입니다.  
-상황에 따라서 배포 시기가 앞당겨질 수 있습니다.
 
 <br>
 
@@ -509,9 +504,12 @@ total request time : 0.2869541645050049 seconds
   ✨ New Feature
 </h4>
 
-- joint_traject_init - 로봇 정지 상태에서 새로운 스텝에 대한 궤적을 요청할 때 **<u>필수적으로</u>** 진행해야하는 버퍼 인덱스 초기화 API 추가
-- joint_traject_insert_points - 외부로부터 복수의 궤적 포인트들을 수신하여 로봇의 모션에 반영하는 API 추가
-- joint_traject_buf_avail - 외부에서 궤적을 요청할 때, 현재 요청 가능한 상태의 버퍼 개수 조회 기능 API 추가
+- joint_traject_init<br>
+  - 로봇 정지 상태에서 새로운 스텝에 대한 궤적을 요청할 때 **<u>필수적으로</u>** 진행해야하는 버퍼 인덱스 초기화 API 추가
+- joint_traject_insert_points<br>
+  - 외부로부터 복수의 궤적 포인트들을 수신하여 로봇의 모션에 반영하는 API 추가
+- joint_traject_buf_avail<br>
+  - 외부에서 궤적을 요청할 때, 현재 요청 가능한 상태의 버퍼 개수 조회 기능 API 추가
 
 <br><br>
 
@@ -529,13 +527,29 @@ total request time : 0.2869541645050049 seconds
   🔧 Improvement & Change
 </div>
 
-- 로봇을 움직이는 서비스에 대해 반드시 원격모드에서만 동작하도록 유효성 검사 추가 (execute_move, start)
-- set_cur_pc_idx - 프로그램 재생 중 호출을 방지하는 유효성 검사 추가
-- emergency_stop_test - 즉시정지(category 0) 요청 시 403 BAD Request 응답 관련 버그 수정, 유효성 검사 에 따른 에러코드 세분화
-- motor_on API - 원격모드에서 프로그램 재생 중 수동 모드 전환 후 motor_on 시도 시 동작 안하는 버그 수정
-- start / stop - 원격모드에서 호출 안되는 버그 수정
-- reset - 원격모드에서 정상 동작하지 않는 버그 수정
-- 하기 시퀀스로 API 호출시 프로그램 중복 실행되는 버그 수정
+- set_cur_pc_idx<br>
+  - 프로그램 재생 중 호출을 방지하는 유효성 검사 추가
+- emergency_stop<br>
+  - 호출 시 notice 팝업 출력
+- emergency_stop_test<br>
+  - 즉시정지(category 0) 요청 시 403 BAD Request 응답 버그 수정
+  - 유효성 검사 별 에러코드 세분화
+  - 호출 시 notice 팝업 출력
+- execute_move<br>
+  - 응답 관련 버그 수정 및 에러 코드 세분화
+  - 원격모드에서만 동작하도록 유효성 검사 추가
+- motor_on API<br>
+  - 원격모드에서 프로그램 재생 중 수동 모드 전환 후 motor_on 시도 시 동작 안하는 버그 수정
+  - 원격모드에서만 동작하도록 유효성 검사 추가
+- start<br>
+  - 원격모드에서 호출 안되는 버그 수정
+  - 원격모드에서만 동작하도록 유효성 검사 추가
+- stop<br>
+  - 원격모드에서 호출 안되는 버그 수정
+  - 호출 시 notice 팝업 출력
+- reset<br>
+  - 원격모드에서 정상 동작하지 않는 버그 수정
+- 하기 시퀀스로 API 호출시 프로그램 중복 실행되는 버그 수정<br>
   - 모터온 -> R0 -> Delete Job -> Upload Job -> Reload Job -> Current PC 설정 -> 로봇 재생
 
 <br><br>
@@ -579,10 +593,12 @@ total request time : 0.2869541645050049 seconds
 - ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
 - 🔧 \[<b style="color: #FF9800">post</b>\] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
 - 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [motor_on](../5-robot/2-post/1-motor-on.md)
 - 🔧 \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [motor_on](../5-robot/2-post/1-motor-on.md)
 - 🔧 \[<b style="color: #FF9800">post</b>\] [start](../5-robot/2-post/2-start-stop.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [stop](../5-robot/2-post/2-start-stop.md)<link rel="stylesheet" href="../_assets/style.css">
+- 🔧 \[<b style="color: #FF9800">post</b>\] [stop](../5-robot/2-post/2-start-stop.md)
+- 🔧 \[<b style="color: #FF9800">post</b>\] [reset](../9-task/2-post/2-reset.md)
+<link rel="stylesheet" href="../_assets/style.css">
 
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.30-00
@@ -2020,7 +2036,7 @@ $python test.py
 </div>## 5.1.7 `joint_traject_buf_avail`
 
 ### 설명
-- 지원 버전 : `61.00-00` &uparrow;
+- 지원 버전 : `60.32-00` &uparrow;
 - `GET` : 현재 궤적을 저장하는 버퍼의 사용가능한 크기를 반환합니다.
 - 궤적을 연속해서 요청을 하는 경우, 해당 함수를 활용해 남은 저장 공간의 크기 이내의 크기의 궤적을 요청해야합니다.
 
@@ -2095,7 +2111,8 @@ if __name__ == "__main__":
 $python test.py
 (200, {'val': 2048})
 ```
-</div>## 5.2 robot/post
+</div>
+## 5.2 robot/post
 
 - 로봇과 툴 데이터에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.## 5.2.1 `motor_on`
@@ -2199,7 +2216,7 @@ POST /project/robot/stop
    - 400 : Bad Request
      - request body 가 유효성 검사에서 실패한 경우
    - 403 : Forbidden
-     - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v61.00 부터 적용)
+     - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v60.32 부터 적용)
    - 404 : Not Found
 
 2) response-body
@@ -2264,7 +2281,8 @@ $python test.py
 (200, {'_type': 'JObject'})
 (200, {'_type': 'JObject'})
 ```
-</div>## 5.2.3 `tool_no`
+</div>
+## 5.2.3 `tool_no`
 
 ### 설명
 
@@ -2455,7 +2473,7 @@ POST /project/robot/emergency_stop
 		{"err_code": 200}
 		```
 		</div>
-	- v61.00 이상
+	- v60.32 이상
 		<div style="width: fit-content;">
 
 		```json
@@ -2502,7 +2520,8 @@ print(post_emergency_stop())
 $python test.py
 (200, {'_type': 'JObject'})
 ```
-</div>## 5.2.6 `emergency_stop_test`
+</div>
+## 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> 해당 API 는 `60.28-00` 까지 `emergency_stop` API 로 사용되었습니다. </b>  
 
@@ -2547,9 +2566,9 @@ POST /project/robot/emergency_stop_test
    - 400 : Bad Request
     	- request body 가 유효성 검사에서 실패한 경우
    - 403 : Forbidden
-     - v61.00-00 미만
+     - v60.32-00 미만
        - 400 반환
-     - v61.00-00 이상 (에러 세분화)
+     - v60.32-00 이상 (에러 세분화)
        - -38502: step number 유효성 검사 실패
        - -38503: stop at 유효성 검사 실패
        - -38504: stop at corner 유효성 검사 실패
@@ -2565,7 +2584,7 @@ POST /project/robot/emergency_stop_test
 		{"err_code": 200}
 		```
 		</div>
-	- v61.00 이상
+	- v60.32-00 이상
 		<span>
 		<div style="width: fit-content;">
 
@@ -2632,11 +2651,12 @@ except:
 $python test.py
 (200, {'_type': 'JObject'})
 ```
-</div>## 5.2.7 `joint_traject_init`
+</div>
+## 5.2.7 `joint_traject_init`
 
 ### 설명
 
-- 지원 버전 : `61.00-00` &uparrow;
+- 지원 버전 : `60.32-00` &uparrow;
 - `POST` : 버퍼를 초기화를 진행합니다.
 - 로봇이 정지 상태에서 궤적을 요청할 때, 직전에 저장된 궤적을 지워줍니다.
 - 다음과 같은 상황에서도 버퍼 초기화를 진행해주어야 합니다.
@@ -2738,11 +2758,12 @@ if __name__ == "__main__":
 $python test.py
 (200, {'_type': 'JObject'})
 ```
-</div>## 5.2.8 `joint_traject_insert_points`
+</div>
+## 5.2.8 `joint_traject_insert_points`
 
 ### 설명
 
-- 지원 버전 : `61.00-00` &uparrow;
+- 지원 버전 : `60.32-00` &uparrow;
 - `POST` : 복수 개의 joint trajectory 포인트를 제어기 내부 버퍼에 저장하여 모션에 반영합니다.
 
 ---
@@ -3080,7 +3101,8 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	```
 
 
-</div># 6. I/O PLC
+</div>
+# 6. I/O PLC
 
 - 내장 PLC(built-in plc)의 입출력 값을 읽어오거나 설정합니다.## 6.1 io_plc/get
 
@@ -5278,7 +5300,7 @@ POST /project/context/tasks[{task index}]/execute_move
    - 400 : Bad Request
     	- request body 가 유효성 검사에서 실패
    - 403 : Forbidden
-    	- 원격모드가 아닌 상태로 API 요청(v61.00 부터 적용)
+    	- 원격모드가 아닌 상태로 API 요청(v60.32 부터 적용)
    - 404 : Not Found
 
 2) response-body
@@ -5289,7 +5311,7 @@ POST /project/context/tasks[{task index}]/execute_move
 		{ "err_code" : 0 }
 		```
 		</div>
-	- v61.00 이상 정상 응답
+	- v60.32 이상 정상 응답
 
 		<div style="width: fit-content;">
 
@@ -5300,6 +5322,9 @@ POST /project/context/tasks[{task index}]/execute_move
 
 3) error code
    - -38500 : 원격 모드가 아닌 상태로 해당 api 요청
+   - -1442071 : MOTOR OFF 에서 api 요청
+   - -1442080 : 프로그램 자동 운전 중에 api 요청
+   - -1376272 : api 요청 수행 중 로봇 언어 문법 오류 발생
 
 Python Script 예시
 - 모터온이 된 상태에서, 현재 로봇 축에 맞는 pose 명령문 입력
@@ -5338,7 +5363,8 @@ $python test.py
 (200, {'_type': 'JObject'})
 ``````
 
-</div># 10. console
+</div>
+# 10. console
 
 - Hi6 제어기 S/W 의 CLI 명령어를 사용할 수 있습니다.
 - 로봇언어로 할 수 있는 다양한 동작을 수행할 수 있습니다.
