@@ -43,9 +43,9 @@ POST /project/robot/emergency_stop_test
    - 400 : Bad Request
     	- request body 가 유효성 검사에서 실패한 경우
    - 403 : Forbidden
-     - v61.00-00 미만
+     - v60.32-00 미만
        - 400 반환
-     - v61.00-00 이상 (에러 세분화)
+     - v60.32-00 이상 (에러 세분화)
        - -38502: step number 유효성 검사 실패
        - -38503: stop at 유효성 검사 실패
        - -38504: stop at corner 유효성 검사 실패
@@ -61,7 +61,7 @@ POST /project/robot/emergency_stop_test
 		{"err_code": 200}
 		```
 		</div>
-	- v61.00 이상
+	- v60.32-00 이상
 		<span>
 		<div style="width: fit-content;">
 

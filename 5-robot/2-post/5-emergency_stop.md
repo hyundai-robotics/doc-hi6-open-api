@@ -37,7 +37,7 @@ POST /project/robot/emergency_stop
 		{"err_code": 200}
 		```
 		</div>
-	- v61.00 이상
+	- v60.32 이상
 		<div style="width: fit-content;">
 
 		```json

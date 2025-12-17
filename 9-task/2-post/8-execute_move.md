@@ -29,7 +29,7 @@ POST /project/context/tasks[{task index}]/execute_move
    - 400 : Bad Request
     	- request body 가 유효성 검사에서 실패
    - 403 : Forbidden
-    	- 원격모드가 아닌 상태로 API 요청(v61.00 부터 적용)
+    	- 원격모드가 아닌 상태로 API 요청(v60.32 부터 적용)
    - 404 : Not Found
 
 2) response-body
@@ -40,7 +40,7 @@ POST /project/context/tasks[{task index}]/execute_move
 		{ "err_code" : 0 }
 		```
 		</div>
-	- v61.00 이상 정상 응답
+	- v60.32 이상 정상 응답
 
 		<div style="width: fit-content;">
 
