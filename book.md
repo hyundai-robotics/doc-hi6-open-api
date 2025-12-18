@@ -1,10 +1,10 @@
-﻿# Hi6 Open API 설명서
+﻿# ${cont_model} Open API 설명서
 
 {% hint style="warning" %}
 
-본 제품 설명서에서 제공되는 정보는 현대로보틱스의 자산입니다.
+본 제품 설명서에서 제공되는 정보는 HD현대로보틱스의 자산입니다.
 
-현대로보틱스의 서면에 의한 동의 없이 전부 또는 일부를 무단 전재 및 재배포할 수 없으며, 제3자에게 제공되거나 다른 목적에 사용할 수 없습니다.
+HD현대로보틱스의 서면에 의한 동의 없이 전부 또는 일부를 무단 전재 및 재배포할 수 없으며, 제3자에게 제공되거나 다른 목적에 사용할 수 없습니다.
 
 
 본 설명서는 사전 예고 없이 변경될 수 있습니다.
@@ -18,20 +18,20 @@
 
 {% hint style="warning" %}
 
-Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 를 활용하여 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
+${cont_model} Open API 설명서에 공식적으로 언급되지 않은 API 를 활용하여 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
 
 {% endhint %}## 0.1 개요
 
-Hi6 Open API 와 관련된 아래의 기본적인 내용들을 확인하실 수 있습니다.
+${cont_model} Open API 와 관련된 아래의 기본적인 내용들을 확인하실 수 있습니다.
 
-[1.1 Hi6 Open API 개요](./1-concept/README.md) <br>
+[1.1 ${cont_model} Open API 개요](./1-concept/README.md) <br>
 [1.2 필요한 사전 지식](./2-prerequisite/README.md) <br>
-[1.3 Hi6 Open API 예제 코드](./3-sample-code/README.md) <br>
+[1.3 ${cont_model} Open API 예제 코드](./3-sample-code/README.md) <br>
 [1.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)
-[1.5 시작 전 주의사항](./4-api-test/README.md)### 0.1 Hi6 Open API 에 대하여
+[1.5 시작 전 주의사항](./4-api-test/README.md)### 0.1 ${cont_model} Open API 에 대하여
 
-HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 제어기(이하, Hi6)를 모니터링하고 원격으로 제어하기 위한 API 를 해당 문서에서 공개합니다.<br>
-이를 통해 개발자들은 Hi6 개발에 적용된 소스코드에 대한 깊은 이해 없이도 Hi6의 다양한 데이터를 읽고 쓸 수 있습니다.<br>
+HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 제어기(이하, ${cont_model})를 모니터링하고 원격으로 제어하기 위한 API 를 해당 문서에서 공개합니다.<br>
+이를 통해 개발자들은 ${cont_model} 개발에 적용된 소스코드에 대한 깊은 이해 없이도 ${cont_model} 다양한 데이터를 읽고 쓸 수 있습니다.<br>
 아래 그림을 통해서 Open API 역할을 보다 쉽게 이해할 수 있습니다.
 
 
@@ -44,12 +44,12 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 |화살표|설명|
 |:---|:---|
-|`실선`|개발자(클라이언트)가 정해진 4가지 방법(GET, POST, PUT, DELETE)을 이용하여 Hi6(서버)에 정보를 `요청`하는 것을 의미|
+|`실선`|개발자(클라이언트)가 정해진 4가지 방법(GET, POST, PUT, DELETE)을 이용하여 ${cont_model}(서버)에 정보를 `요청`하는 것을 의미|
 |`점선`|요청을 받은 제어기가 그에 맞는 `응답`을 json 혹은 text 형식으로 반환하는 것을 의미|
 
 </div>
 
-이처럼 개발자는 해당 문서의 Open API 를 활용해서 Hi6 와 이더넷으로 연결된 본인의 데스크탑, 노트북, 태블릿 pc 등을 http 와 REST API 기반으로 원격 제어 또는 모니터링을 할 수 있게 됩니다.
+이처럼 개발자는 해당 문서의 Open API 를 활용해서 ${cont_model} 와 이더넷으로 연결된 본인의 데스크탑, 노트북, 태블릿 pc 등을 http 와 REST API 기반으로 원격 제어 또는 모니터링을 할 수 있게 됩니다.
 
 
 <br><br>
@@ -57,30 +57,30 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 ### 시작하기 전에 꼭 확인하세요!
 
-* 현재 문서는 Hi6 Open API 스키마 버전 `5`를 기준으로 작성되었습니다. [API](../../2-version/1-get/1-api_ver.md) 를 통해 확인 가능합니다.
+* 현재 문서는 ${cont_model} Open API 스키마 버전 `5`를 기준으로 작성되었습니다. [API](../../2-version/1-get/1-api_ver.md) 를 통해 확인 가능합니다.
 
 * HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`1.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`1.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
 
 
 {% hint style="warning" %}
 
-본 문서에 설명된 API들은 별도의 지원버전 명기가 없으면 Hi6 V60.24-00부터 지원됩니다.
+본 문서에 설명된 API들은 별도의 지원버전 명기가 없으면 ${cont_model} V60.24-00부터 지원됩니다.
 
 본 문서에 명시되지 않은 URL 및 속성은 동일 API 버전에서 예고없이 변경될 수 있으므로, 주의 바랍니다.
 
 {% endhint %}## 0.2 필요한 사전 지식
 
-Open API를 활용하기 위해서는 Hi6 제어기의 기본적인 사용법을 습득해야 합니다.<br>
-아래 설명서를 참고하시거나 현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
+Open API를 활용하기 위해서는 ${cont_model} 제어기의 기본적인 사용법을 습득해야 합니다.<br>
+아래 설명서를 참고하시거나 HD현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
 
-- [Hi6 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/README)
-- [현대로보틱스 공동훈련센터](https://www.hyundai-robotics.com/customer/customer5intro.html)
+- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-${cont_model}-tp630/README)
+- [HD현대로보틱스 공동훈련센터](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>
 
 Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
 다양한 개발 언어들에서 REST API (일명 RESTful API) 호출을 위한 라이브러리를 제공하고 있으며 많은 개발자들이 이를 이용해 프로그램을 개발하고 있습니다.<br>
-이러한 숙련된 개발자가 아니라면, [1.1 Hi6 Open API 에 대하여](.././1-concept/README.md)에서 언급한 웹 기반의 서비스 호출과 응답이 어떻게 이뤄지는지에 대한 기본적인 개념에는 익숙한 상태여야만 합니다.<br>
+이러한 숙련된 개발자가 아니라면, [1.1 ${cont_model} Open API 에 대하여](.././1-concept/README.md)에서 언급한 웹 기반의 서비스 호출과 응답이 어떻게 이뤄지는지에 대한 기본적인 개념에는 익숙한 상태여야만 합니다.<br>
 
 이와 관련하여 아래 사항들을 참고하시기 바랍니다.
 
@@ -94,7 +94,7 @@ Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
 
 당사는 통상적인 REST API 클라이언트 코딩 방법에 대한 문의는 받지 않습니다.
 
-당사는 Hi6 Open API 설명서에 공식적으로 언급되지 않은 API 사용에 의해 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
+당사는 ${cont_model} Open API 설명서에 공식적으로 언급되지 않은 API 사용에 의해 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
 
 {% endhint %}
 
@@ -126,7 +126,7 @@ HTTP 요청을 통해 통신함으로써 리소스 내에서 레코드의 작성
 
 - 여기서는 C#과 python을 활용한 GET과 POST 메소드의 호출만 설명하도록 하겠습니다.
 
-- IP 주소가 192.168.1.150인 Hi6 제어기에 대해 요청을 수행한다고 가정하겠습니다.
+- IP 주소가 192.168.1.150인 ${cont_model} 제어기에 대해 요청을 수행한다고 가정하겠습니다.
 ### 0.3.1 예제 코드 - C#
 
 JSON parsing을 위한 라이브러리인 `Newtonsoft.Json`를 사용했습니다.
@@ -198,7 +198,7 @@ VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manage
 2. 서버(컨트롤러) 측의 문제로 인해 응답을 받지 못하는 경우, 애플리케이션 UI가 정지될 수 있습니다(`Hanging 문제`).
 
 따라서 실제 애플리케이션을 개발할 때에는 비동기식 요청 기반으로 작성하시기 바랍니다.
-- Hi6 Open API 설명에 작성된 Python 스크립트 예시는 이해하기 쉽도록 동기적으로 작성되었으니 유의하시기 바랍니다.
+- ${cont_model} Open API 설명에 작성된 Python 스크립트 예시는 이해하기 쉽도록 동기적으로 작성되었으니 유의하시기 바랍니다.
 
 <br><br>
 
@@ -333,7 +333,7 @@ total request time : 0.2869541645050049 seconds
 `get` 요청은 웹 브라우저를 통해 보다 간편하고 신속하게 확인할 수 있습니다. 순서는 다음과 같습니다.
 1. 웹 브라우저 엽니다.
 2. 주소 창에 `get` 요청의 서버 측 url 을 입력합니다.
-	- 서버 측 url 은 `http://<Hi6 제어기의 ip 주소>:<http 통신 포트>`로 시작되며 추출하려는 정보에 맞는 경로와 쿼리를 이어 적습니다.
+	- 서버 측 url 은 `http://<${cont_model} 제어기의 ip 주소>:<http 통신 포트>`로 시작되며 추출하려는 정보에 맞는 경로와 쿼리를 이어 적습니다.
 	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
 3. 해당 url 의 페이지가 열리고 아래와 같이 응답이 출력됩니다.
 
@@ -404,7 +404,7 @@ total request time : 0.2869541645050049 seconds
 - close 연결 방식은, 많은 요청과 응답이 필요한 상황에서도 매번 연결을 맺고 끊는 과정이 이루어집니다.<br>
   이러한 동작은 처리 시간과 리소스를 낭비하며, 서버와 클라이언트 모두에게 과도한 부담을 초래합니다.
 
-- Hi6는 HTTP/1.1을 사용하고 있습니다. 따라서 별도의 설정을 바꾸지 않는 경우, 자동으로 Keep-Alive 방식으로 동작합니다.
+- ${cont_model} HTTP/1.1을 사용하고 있습니다. 따라서 별도의 설정을 바꾸지 않는 경우, 자동으로 Keep-Alive 방식으로 동작합니다.
 
 - 아래 예제 코드를 참조하여, 반복 호출되는 API 들은 close 방식이 아닌 keep-alive 방식으로 구현하십시오.
 
@@ -710,7 +710,7 @@ total request time : 0.2869541645050049 seconds
 
 - emergency_stop - 비상정지 API 추가. step_no, stop_at 등의 값을 입력하여 특정 시점에 원하는 카테고리의 비상정지를 수행할 수 있도록 지원
 - execute_move - 지정된 포즈로 이동하는 API가 추가
-- execute_cmd - Hi6 COM의 콘솔 명령어를 실행하는 API 추가  
+- execute_cmd - ${cont_model} COM의 콘솔 명령어를 실행하는 API 추가  
 
 
 <br><br>
@@ -3789,7 +3789,7 @@ query-parameter 를 반드시 입력해야합니다.
 <div style="width: fit-content;">
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job   <- target
@@ -3889,7 +3889,7 @@ query-parameter 를 반드시 입력해야합니다.
 <div style="width: fit-content;">
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job <- target 
@@ -4008,7 +4008,7 @@ query-parameter 를 반드시 입력해야합니다.
 <div style="width: fit-content;">
 
 ```text
-hi6
+${cont_model}
 `-- project     <- target
     |-- jobs
     |   `-- 0001.job
@@ -4130,7 +4130,7 @@ false
 ```  
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job
@@ -4231,7 +4231,7 @@ request-body:
 ```
 
 ```text
-hi6
+${cont_model}
 `-- project
     `-- jobs
         `-- 0001.job   ->   4321.job
@@ -4330,7 +4330,7 @@ request-body:
 ```
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target
@@ -4413,7 +4413,7 @@ POST /file_manager/files/{target_filepath}
 ### 사용 예
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
@@ -4495,7 +4495,7 @@ DELETE /file_manager/files/project/jobs/special
 ```
 
 ```text
-hi6
+${cont_model}
 `-- project
     `-- jobs
         `-- test.job   <- target
@@ -4653,7 +4653,7 @@ R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동�
 ### 설명
 
 - `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
-- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-tp630/8-r-code/1-use-r-code)를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-Hi6-tp630/8-r-code/1-use-r-code) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-Hi6-tp630/8-r-code/1-use-r-code)를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
     R코드 1, 0 이외의 코드는 예정된 동작이 아닙니다.
 </span>
 - R코드 1을 진행한 이후에 프로그램 카운터 조작이 필요한 경우는 명시적으로 [cur_prog_cnt](./1-cur_prog_cnt.md), [set_cur_pc_idx](./6-set_cur_pc_idx.md) api 를 활용하십시오.
@@ -5366,7 +5366,7 @@ $python test.py
 </div>
 # 10. console
 
-- Hi6 제어기 S/W 의 CLI 명령어를 사용할 수 있습니다.
+- ${cont_model}s 제어기 S/W 의 CLI 명령어를 사용할 수 있습니다.
 - 로봇언어로 할 수 있는 다양한 동작을 수행할 수 있습니다.
 ## 10.1 console/get
 
@@ -5382,7 +5382,7 @@ $python test.py
 ### 설명
 
 - 지원 버전 : `60.28-00` &uparrow;
-- `POST` : Hi6 제어기의 콘솔 명령어를 실행합니다.    
+- `POST` : ${cont_model} 제어기의 콘솔 명령어를 실행합니다.    
 - [CLI 로봇 언어 명령어 형식](../.././99-schema/robotlang.md)에 따른 명령을 수행할 수 있습니다.  
 
 ### path-parameter

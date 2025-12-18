@@ -4,5 +4,8 @@
     "title": "Open API 설명서",
     "publisher": "HD현대로보틱스",
     "tocTitle": "목차",
-    "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]"
+    "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
+	 "variables": {
+        "cont_model": "Hi6"
+    }
 }

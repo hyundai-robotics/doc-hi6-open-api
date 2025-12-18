@@ -1,10 +1,10 @@
 ﻿# Table of contents
 
-* [Hi6 Open API 설명서](README.md)
+* [${cont_model} Open API 설명서](README.md)
 * [0. 개요](0-intro/README.md)
-  * [0.1 Hi6 Open API 에 대하여](0-intro/1-concept/README.md)
+  * [0.1 ${cont_model} Open API 에 대하여](0-intro/1-concept/README.md)
   * [0.2 필요한 사전 지식](0-intro/2-prerequisite/README.md)
-  * [0.3 Hi6 Open API 예제 코드](0-intro/3-sample-code/README.md)
+  * [0.3 ${cont_model} Open API 예제 코드](0-intro/3-sample-code/README.md)
     * [0.3.1 예제 코드 - C#](0-intro/3-sample-code/1-csharp.md)
     * [0.3.2 예제 코드 - python](0-intro/3-sample-code/2-python.md)
   * [0.4 코딩하지 않고 쉽게 API 호출 해보기](0-intro/4-api-test/README.md)

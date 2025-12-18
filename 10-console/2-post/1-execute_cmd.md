@@ -6,7 +6,7 @@
 ### 설명
 
 - 지원 버전 : `60.28-00` &uparrow;
-- `POST` : Hi6 제어기의 콘솔 명령어를 실행합니다.    
+- `POST` : ${cont_model} 제어기의 콘솔 명령어를 실행합니다.    
 - [CLI 로봇 언어 명령어 형식](../.././99-schema/robotlang.md)에 따른 명령을 수행할 수 있습니다.  
 
 ### path-parameter

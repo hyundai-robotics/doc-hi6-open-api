@@ -59,7 +59,7 @@ request-body:
 ```
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target

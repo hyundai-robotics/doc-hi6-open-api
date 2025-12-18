@@ -33,7 +33,7 @@ DELETE /file_manager/files/project/jobs/special
 ```
 
 ```text
-hi6
+${cont_model}
 `-- project
     `-- jobs
         `-- test.job   <- target

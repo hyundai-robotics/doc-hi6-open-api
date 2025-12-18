@@ -46,7 +46,7 @@ query-parameter 를 반드시 입력해야합니다.
 <div style="width: fit-content;">
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job <- target 

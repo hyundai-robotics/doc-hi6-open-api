@@ -47,7 +47,7 @@ false
 ```  
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job

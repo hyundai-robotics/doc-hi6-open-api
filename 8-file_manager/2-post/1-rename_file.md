@@ -60,7 +60,7 @@ request-body:
 ```
 
 ```text
-hi6
+${cont_model}
 `-- project
     `-- jobs
         `-- 0001.job   ->   4321.job

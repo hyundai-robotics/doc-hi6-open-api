@@ -41,7 +41,7 @@ POST /file_manager/files/{target_filepath}
 ### 사용 예
 
 ```text
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
