@@ -1,9 +1,9 @@
 ﻿## 1.2 Required prior knowledge
 
-In order to utilize Open API,you must first understand how to use the Hi6 controller.  
-Please refer to the manual below or take training at the Hyundai Robotics Joint Training Center.
+In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
+Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
 
-- [Hi6 Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-tp630/README)
+- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-${cont_model}-tp630/README)
 - [HD Hyundai Robotics Joint training center](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>
@@ -25,7 +25,7 @@ extensive development experience in applying it, please study first and then use
 
 We do not accept inquiries about how to code conventional REST API clients.
 
-We are not responsible for any damages or problems arising from the use of APIs not officially mentioned in the Hi6 Open API manual.
+We are not responsible for any damages or problems arising from the use of APIs not officially mentioned in the ${cont_model} Open API manual.
 
 {% endhint %}
 

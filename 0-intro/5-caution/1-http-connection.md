@@ -26,7 +26,7 @@ If your application involves frequent API calls, please follow the instructions 
 - The `close` connection type establishes and terminates a connection for every single request and response.<br>
   This process results in increased latency and resource usage, placing a heavy burden on both the server and the client.
 
-- Hi6 uses HTTP/1.1, which defaults to Keep-Alive connections unless explicitly overridden.
+- ${cont_model} uses HTTP/1.1, which defaults to Keep-Alive connections unless explicitly overridden.
 
 - Please refer to the sample code below and make sure that frequently called APIs are implemented using Keep-Alive, not the close method.
 

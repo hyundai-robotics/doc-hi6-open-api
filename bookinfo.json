@@ -4,5 +4,8 @@
     "title": "Open API Manual",
     "publisher": "HD Hyundai Robotics",
     "tocTitle": "Contents",
-    "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]"
+    "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
+	 "variables": {
+        "cont_model": "Hi6"
+    }
 }

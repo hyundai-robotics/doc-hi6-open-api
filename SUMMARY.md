@@ -1,8 +1,8 @@
 ﻿# Table of contents
 
-* [Hi6 Open API Manual](README.md)
+* [${cont_model} Open API Manual](README.md)
 * [0. Intro](0-intro/README.md)
-  * [0.1 About Hi6 Open API](0-intro/1-concept/README.md)
+  * [0.1 About ${cont_model} Open API](0-intro/1-concept/README.md)
   * [0.2 Required prior knowledge](0-intro/2-prerequisite/README.md)
   * [0.3 Sample code](0-intro/3-sample-code/README.md)
     * [0.3.1 Sample code - C#](0-intro/3-sample-code/1-csharp.md)

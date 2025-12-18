@@ -5,4 +5,4 @@ To learn how to use it, you can easily search and refer to the technical documen
 
 - In this document, we will only explain the calls to the GET and POST methods using C# and python.
 
-- Let's assume you are making a request to a Hi6 controller with IP address 192.168.1.150.
+- Let's assume you are making a request to a ${cont_model} controller with IP address 192.168.1.150.

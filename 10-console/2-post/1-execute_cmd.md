@@ -4,7 +4,7 @@
 ### Description
 
 - Supported version : `60.28-00` &uparrow;
-- `POST` : Executes console commands for the Hi6 controller.  
+- `POST` : Executes console commands for the ${cont_model} controller.  
 - You can perform [CLI robot language commands](../.././99-schema/robotlang.md).  
 
 ### path-parameter

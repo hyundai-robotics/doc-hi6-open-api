@@ -1,10 +1,10 @@
-﻿# Hi6 Open API Manual
+﻿# ${cont_model} Open API Manual
 
 {% hint style="warning" %}
 
-The information provided in this product manual is the property of Hyundai Robotics.
+The information provided in this product manual is the property of HD Hyundai Robotics.
 
-It cannot be reproduced or redistributed in whole or in part without the written consent of Hyundai Robotics, and cannot be provided to a third party or used for any other purpose.
+It cannot be reproduced or redistributed in whole or in part without the written consent of HD Hyundai Robotics, and cannot be provided to a third party or used for any other purpose.
 
 
 This manual is subject to change without prior notice.
@@ -18,20 +18,20 @@ This manual is subject to change without prior notice.
 
 {% hint style="warning" %}
 
-We are not responsible for any damage or problems that arise from using an API that is not officially mentioned in the Hi6 Open API manual.
+We are not responsible for any damage or problems that arise from using an API that is not officially mentioned in the ${cont_model} Open API manual.
 
 {% endhint %}## 1.1 Intro
 
-You can check the basic information related to Hi6 Open API below.
+You can check the basic information related to ${cont_model} Open API below.
 
-[1.1 About Hi6 Open API](./1-concept/README.md) <br>
+[1.1 About ${cont_model} Open API](./1-concept/README.md) <br>
 [1.2 Required prior knowledge](./2-prerequisite/README.md) <br>
 [1.3 Sample code](./3-sample-code/README.md) <br>
 [1.4 Simple API call without coding](./4-api-test/README.md)
-[1.5 Precautions Before Starting](./4-api-test/README.md)## 1.1 About Hi6 Open API
+[1.5 Precautions Before Starting](./4-api-test/README.md)## 1.1 About ${cont_model} Open API
 
-In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as Hi6).<br>
-This enables developers to read and write Hi6 data without requiring a thorough comprehension of the source code used in Hi6 development.<br>
+In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as ${cont_model}).<br>
+This enables developers to read and write ${cont_model} data without requiring a thorough comprehension of the source code used in ${cont_model} development.<br>
 The image below will help you better grasp the role of Open API.
 
 <img src="../../_assets/05_open_api_flow.png" style="max-height: 22vh;">
@@ -40,10 +40,10 @@ The parts marked in orange in the picture above show the role of Open API.
 
 |Arrow sign|Description|
 |:---|:---|
-|`Solid line`|This means that the `developer` (`client`) `requests` information to `Hi6` (`server`) using one of four methods (GET, POST, PUT, DELETE).|
+|`Solid line`|This means that the `developer` (`client`) `requests` information to `${cont_model}` (`server`) using one of four methods (GET, POST, PUT, DELETE).|
 |`Dotted line`|This means that the `controller` that `received` the `request` `sends back` the appropriate `response` in json or text format.|
 
-In this way, developers can use the Open API in the document to remotely control or monitor their desktops, laptops, tablet PCs, etc. connected via Hi6 and Ethernet based on http and REST API.
+In this way, developers can use the Open API in the document to remotely control or monitor their desktops, laptops, tablet PCs, etc. connected via ${cont_model} and Ethernet based on http and REST API.
 
 
 <br><br>
@@ -51,23 +51,23 @@ In this way, developers can use the Open API in the document to remotely control
 
 ### Be sure to check before you start!
 
-* The current document is written based on Hi6 Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
+* The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
 
 * For developers who are familiar with developing HTTP REST API client functions, you can skip from [1.2 Required prior knowledge](../2-prerequisite/README.md) to [1.4 Simple API call without coding](../4-api-test/README.md).
 
 
 {% hint style="warning" %}
 
-The APIs described in this document are supported starting from `Hi6 V60.24-00` unless otherwise specified.
+The APIs described in this document are supported starting from `${cont_model} V60.24-00` unless otherwise specified.
 
 Please note that URLs and properties not specified in this document may change without notice in the same API version.
 
 {% endhint %}## 1.2 Required prior knowledge
 
-In order to utilize Open API,you must first understand how to use the Hi6 controller.  
-Please refer to the manual below or take training at the Hyundai Robotics Joint Training Center.
+In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
+Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
 
-- [Hi6 Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-tp630/README)
+- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-${cont_model}-tp630/README)
 - [HD Hyundai Robotics Joint training center](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>
@@ -89,7 +89,7 @@ extensive development experience in applying it, please study first and then use
 
 We do not accept inquiries about how to code conventional REST API clients.
 
-We are not responsible for any damages or problems arising from the use of APIs not officially mentioned in the Hi6 Open API manual.
+We are not responsible for any damages or problems arising from the use of APIs not officially mentioned in the ${cont_model} Open API manual.
 
 {% endhint %}
 
@@ -122,7 +122,7 @@ To learn how to use it, you can easily search and refer to the technical documen
 
 - In this document, we will only explain the calls to the GET and POST methods using C# and python.
 
-- Let's assume you are making a request to a Hi6 controller with IP address 192.168.1.150.
+- Let's assume you are making a request to a ${cont_model} controller with IP address 192.168.1.150.
 ### 1.3.1 Sample code - C#
 
 This document uses `Newtonsoft.Json`, a library for JSON parsing.  
@@ -183,7 +183,7 @@ Differences between the two methods can have serious consequences for TPs and co
 
 	
 Therefore, when developing actual applications, please write your code in an asynchronous manner.  
-- Please note that the python script example written in the Hi6 Open API description is written synchronously for easy understanding.  
+- Please note that the python script example written in the ${cont_model} Open API description is written synchronously for easy understanding.  
 
 
 <br>
@@ -316,7 +316,7 @@ You can check the main UI composition through the picture below.
 `get` requests can be checked more simply and quickly through a web browser. The order is as follows:
 1. Open web browser
 2. Enter the server-side url of the `get` request in the address bar.
-	- The server-side URL begins with `http://<IP address of Hi6 controller>:<http communication port>`, followed by the path and query appropriate for the information you want to extract.
+	- The server-side URL begins with `http://<IP address of ${cont_model} controller>:<http communication port>`, followed by the path and query appropriate for the information you want to extract.
 	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
 3. The page for that URL opens and a response is output as shown below.
 	```json
@@ -383,7 +383,7 @@ If your application involves frequent API calls, please follow the instructions 
 - The `close` connection type establishes and terminates a connection for every single request and response.<br>
   This process results in increased latency and resource usage, placing a heavy burden on both the server and the client.
 
-- Hi6 uses HTTP/1.1, which defaults to Keep-Alive connections unless explicitly overridden.
+- ${cont_model} uses HTTP/1.1, which defaults to Keep-Alive connections unless explicitly overridden.
 
 - Please refer to the sample code below and make sure that frequently called APIs are implemented using Keep-Alive, not the close method.
 
@@ -673,7 +673,7 @@ Depending on circumstances, the release date may be moved forward.
 
 - emergency_stop - Added emergency stop API. Supports execution of an emergency stop for a specific category at a designated moment by inputting values such as step_no and stop_at.
 - execute_move - Added an API for moving to a specified pose.  
-- execute_cmd - Added an API for executing console commands in Hi6 COM.  
+- execute_cmd - Added an API for executing console commands in ${cont_model} COM.  
 
 
 <br><br>
@@ -755,7 +755,7 @@ GET /api_ver
 ### response-body
 
 - Open API version number
-- The initial Hi6 Open API is a document written based on `version 5`.
+- The initial ${cont_model} Open API is a document written based on `version 5`.
 
 ### Example
 
@@ -3099,7 +3099,7 @@ query-parameter must be entered.
 <blockquote>
 
 ```
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job   <- target
@@ -3186,7 +3186,7 @@ query-parameter must be entered.
 <blockquote>
 
 ```
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job <- target 
@@ -3279,7 +3279,7 @@ query-parameter must be entered.
 <blockquote>
 
 ```
-hi6
+${cont_model}
 `-- project     <- target
     |-- jobs
     |   `-- 0001.job
@@ -3394,7 +3394,7 @@ response-body:
 false
 ```
 ```
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job
@@ -3472,7 +3472,7 @@ request-body:
 }
 ```
 ```
-hi6
+${cont_model}
 `-- project
     `-- jobs
         `-- 0001.job   ->   4321.job
@@ -3546,7 +3546,7 @@ request-body:
 ```
 
 ```
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target
@@ -3607,7 +3607,7 @@ POST /file_manager/files/{target_filepath}
 <blockquote>
 
 ```
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
@@ -3675,7 +3675,7 @@ request url:
 DELETE /file_manager/files/project/jobs/special
 ```
 ```
-hi6
+${cont_model}
 `-- project
     `-- jobs
         `-- test.job   <- target
@@ -3774,7 +3774,7 @@ $python python test.py
 ### Description
 
 - `POST` : Perform a reset on the task.  
-- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-tp630/8-r-code/1-use-r-code). 
+- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-${cont_model}-tp630/8-r-code/1-use-r-code). 
   - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> Any other code is not intended for operation </span>
 
 ### path-parameter
@@ -4041,6 +4041,9 @@ POST /project/context/tasks[0]/release_wait
 - 403 : Request failed
   -  Failure to meet the above requirements
 
+### error code
+- -1442069 : User environment configuration error. Please ensure that all prerequisite requirements are satisfied
+
 ### Example
 
 <blockquote>
@@ -4288,7 +4291,7 @@ import requests
 import time
 
 def post_execute_move(in_pose: str) -> int:
-    # base_url = "http://192.168.1.150:8888" # for Hi6COM 
+    # base_url = "http://192.168.1.150:8888" # for ${cont_model}COM 
     base_url = "http://127.0.0.1:8888" # for HRSpace - virtual robot controller
     path_parameter = "/project/context/tasks[0]/execute_move"
     head = {"Content-Type": "application/json; charset=utf-8"}
@@ -4322,7 +4325,7 @@ Request 3: Sending pose [0, 90, 0, 0, 0, 0]
 Status code: 200
 ```# 10. console
 
-- You can use CLI commands of the Hi6 controller software.  
+- You can use CLI commands of the ${cont_model} controller software.  
 - Various actions can be performed using robot language.  ## 10.1 console/get
 
 - Sends a GET request for information related to executing robot commands.  
@@ -4335,7 +4338,7 @@ Status code: 200
 ### Description
 
 - Supported version : `60.28-00` &uparrow;
-- `POST` : Executes console commands for the Hi6 controller.  
+- `POST` : Executes console commands for the ${cont_model} controller.  
 - You can perform [CLI robot language commands](../.././99-schema/robotlang.md).  
 
 ### path-parameter
@@ -4730,7 +4733,7 @@ Robot's tool data.
 
 ### Description
 
-This is a list of robot language commands that can be executed from the Hi6 controller console.  
+This is a list of robot language commands that can be executed from the ${cont_model} controller console.  
 
 |option|description|example|
 |:---|:---|:---|

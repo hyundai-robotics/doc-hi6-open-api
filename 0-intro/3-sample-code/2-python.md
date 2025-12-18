@@ -14,7 +14,7 @@ Differences between the two methods can have serious consequences for TPs and co
 
 	
 Therefore, when developing actual applications, please write your code in an asynchronous manner.  
-- Please note that the python script example written in the Hi6 Open API description is written synchronously for easy understanding.  
+- Please note that the python script example written in the ${cont_model} Open API description is written synchronously for easy understanding.  
 
 
 <br>

@@ -28,7 +28,7 @@ POST /file_manager/files/{target_filepath}
 <blockquote>
 
 ```
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target

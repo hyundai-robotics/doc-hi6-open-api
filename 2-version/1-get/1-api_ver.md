@@ -17,7 +17,7 @@ GET /api_ver
 ### response-body
 
 - Open API version number
-- The initial Hi6 Open API is a document written based on `version 5`.
+- The initial ${cont_model} Open API is a document written based on `version 5`.
 
 ### Example
 

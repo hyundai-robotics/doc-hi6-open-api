@@ -32,7 +32,7 @@ query-parameter must be entered.
 <blockquote>
 
 ```
-hi6
+${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job   <- target

@@ -24,7 +24,7 @@ request url:
 DELETE /file_manager/files/project/jobs/special
 ```
 ```
-hi6
+${cont_model}
 `-- project
     `-- jobs
         `-- test.job   <- target

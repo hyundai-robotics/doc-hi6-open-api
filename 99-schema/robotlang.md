@@ -2,7 +2,7 @@
 
 ### Description
 
-This is a list of robot language commands that can be executed from the Hi6 controller console.  
+This is a list of robot language commands that can be executed from the ${cont_model} controller console.  
 
 |option|description|example|
 |:---|:---|:---|

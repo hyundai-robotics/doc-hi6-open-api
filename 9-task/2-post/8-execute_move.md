@@ -38,7 +38,7 @@ import requests
 import time
 
 def post_execute_move(in_pose: str) -> int:
-    # base_url = "http://192.168.1.150:8888" # for Hi6COM 
+    # base_url = "http://192.168.1.150:8888" # for ${cont_model}COM 
     base_url = "http://127.0.0.1:8888" # for HRSpace - virtual robot controller
     path_parameter = "/project/context/tasks[0]/execute_move"
     head = {"Content-Type": "application/json; charset=utf-8"}

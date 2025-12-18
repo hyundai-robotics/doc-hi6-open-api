@@ -5,7 +5,7 @@
 `get` requests can be checked more simply and quickly through a web browser. The order is as follows:
 1. Open web browser
 2. Enter the server-side url of the `get` request in the address bar.
-	- The server-side URL begins with `http://<IP address of Hi6 controller>:<http communication port>`, followed by the path and query appropriate for the information you want to extract.
+	- The server-side URL begins with `http://<IP address of ${cont_model} controller>:<http communication port>`, followed by the path and query appropriate for the information you want to extract.
 	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
 3. The page for that URL opens and a response is output as shown below.
 	```json
