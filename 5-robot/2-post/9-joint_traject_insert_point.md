@@ -88,35 +88,91 @@ request-body:
 
 Python Script 예시
 
+사전준비
+1. 원점으로 로봇을 이동시킨다.
+2. job 에서 ```wait di1``` 의 구문을 입력한다
+3. 자동모드로 전환하고 프로그램을 재생한다.
+4. 그 상태로 하기 테스트 코드를 실행한다.
+
 <div style="width: fit-content;">
 
 ```python
-import requests
+
+base_url = "http://192.168.1.150:8888"
+# base_url = "http://127.0.0.1:8888"  # hrspace
 
 
-def post_joint_traject_insert_point() -> requests.Response:
-    base_url = "http://192.168.1.150:8888"
-    # base_url = "http://127.0.0.1:8888"  # hrspace
-    path_parameter = "/project/robot/trajectory/joint_traject_insert_point"
+def get_joint_positions():
+    path = "/project/robot/joints/joint_states"
+    query = {"jno_start": 1, "jno_n": 6}
+    return requests.get(url=base_url + path, params=query).json()["position"]
 
+
+def insert_point(point, interval, look_ahead_time, time_from_start):
+    path = "/project/robot/trajectory/joint_traject_insert_point"
     body = {
-        "interval": 0.01,
-        "time_from_start": 0.0,
-        "look_ahead_time": 0.5,
-        "point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+        "interval": interval,
+        "look_ahead_time": look_ahead_time,
+        "time_from_start": time_from_start,
+        "point": point,
     }
-
-    response = requests.post(url=base_url + path_parameter, json=body)
-
-    return response
+    return requests.post(url=base_url + path, json=body)
 
 
-print(post_joint_traject_insert_point())
+def main():
+    interval = 0.002          # 2 ms
+    look_ahead_time = 0.010   # 10 ms
+
+    points = [
+        [0.02,  89.98, 0.0, 0.0, -90.0, 0.0],
+        [0.04,  89.96, 0.0, 0.0, -90.0, 0.0],
+        [0.06,  89.94, 0.0, 0.0, -90.0, 0.0],
+        [0.08,  89.92, 0.0, 0.0, -90.0, 0.0],
+        [0.10,  89.90, 0.0, 0.0, -90.0, 0.0],
+    ]
+
+    before = get_joint_positions()
+    print("=== Joint States (BEFORE) ===")
+    print(before)
+
+    t = 0.0
+    for i, p in enumerate(points, start=1):
+        t += interval
+        res = insert_point(p, interval, look_ahead_time, t)
+        print(f"[INSERT {i}] status={res.status_code}, t={t:.3f}s")
+        time.sleep(0.001)
+
+    time.sleep(0.05)
+
+    after = get_joint_positions()
+    print("\n=== Joint States (AFTER) ===")
+    print(after)
+
+    diff = [round(a - b, 4) for a, b in zip(after, before)]
+    print("\n=== Joint States DIFF (AFTER - BEFORE) ===")
+    print(diff)
+
+
+if __name__ == "__main__":
+    main()
+
 ```
 
 ```sh
 $python test.py
-<Response [200]>
+=== Joint States (BEFORE) ===
+[0.0, 90.0, 0.0, 0.0, -90.0, 0.0]
+[INSERT 1] status=200, t=0.002s
+[INSERT 2] status=200, t=0.004s
+[INSERT 3] status=200, t=0.006s
+[INSERT 4] status=200, t=0.008s
+[INSERT 5] status=200, t=0.010s
+
+=== Joint States (AFTER) ===
+[0.029192, 89.971326, 0.000321, -0.001149, -90.000586, -0.001416]
+
+=== Joint States DIFF (AFTER - BEFORE) ===
+[0.0292, -0.0287, 0.0003, -0.0011, -0.0006, -0.0014]
 ```
 
 </div>
