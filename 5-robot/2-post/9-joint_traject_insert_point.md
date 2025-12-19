@@ -139,7 +139,7 @@ def main():
 
     with requests.Session() as s:
         before = get_joint_positions(s)
-        print("=== Joint States (BEFORE) ===", fmt6(before), end="\n\n")
+        print("BEFORE: ", fmt6(before), end="\n\n")
 
         t = 0.0
         for i, p in enumerate(points, 1):
@@ -151,11 +151,7 @@ def main():
         time.sleep(0.05)
 
         after = get_joint_positions(s)
-        print("\n=== Joint States (AFTER) ===", fmt6(after))
-
-        diff = [a - b for a, b in zip(after, before)]
-        print("\n=== Joint States DIFF (AFTER - BEFORE) ===", fmt6(diff))
-
+        print("\nAFTER:", fmt6(after))
 
 if __name__ == "__main__":
     main()
@@ -163,7 +159,7 @@ if __name__ == "__main__":
 
 ```sh
 $python test.py
-=== Joint States (BEFORE) === ['0.000000', '90.000000', '0.000000', '0.000000', '-90.000000', '0.000000']
+BEFORE:  ['0.000000', '90.000000', '0.000000', '0.000000', '-90.000000', '0.000000']
 
 [INSERT 1] OK  t=0.002000s
 [INSERT 2] OK  t=0.004000s
@@ -171,9 +167,7 @@ $python test.py
 [INSERT 4] OK  t=0.008000s
 [INSERT 5] OK  t=0.010000s
 
-=== Joint States (AFTER) === ['0.074079', '89.926446', '0.000000', '-0.000574', '-90.000000', '-0.001393']
-
-=== Joint States DIFF (AFTER - BEFORE) === ['0.074079', '-0.073554', '0.000000', '-0.000574', '0.000000', '-0.001393']
+AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.001393']
 ```
 
 </div>
