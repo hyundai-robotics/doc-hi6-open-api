@@ -97,18 +97,20 @@ Python Script 예시
 <div style="width: fit-content;">
 
 ```python
+import time
+import requests
 
-base_url = "http://192.168.1.150:8888"
-# base_url = "http://127.0.0.1:8888"  # hrspace
+BASE_URL = "http://192.168.1.150:8888"
+# BASE_URL = "http://127.0.0.1:8888"  # hrspace
 
 
-def get_joint_positions():
+def get_joint_positions(session):
     path = "/project/robot/joints/joint_states"
-    query = {"jno_start": 1, "jno_n": 6}
-    return requests.get(url=base_url + path, params=query).json()["position"]
+    params = {"jno_start": 1, "jno_n": 6}
+    return session.get(BASE_URL + path, params=params).json()["position"]
 
 
-def insert_point(point, interval, look_ahead_time, time_from_start):
+def insert_point(session, point, interval, look_ahead_time, time_from_start):
     path = "/project/robot/trajectory/joint_traject_insert_point"
     body = {
         "interval": interval,
@@ -116,12 +118,16 @@ def insert_point(point, interval, look_ahead_time, time_from_start):
         "time_from_start": time_from_start,
         "point": point,
     }
-    return requests.post(url=base_url + path, json=body)
+    session.post(BASE_URL + path, json=body)
+
+
+def fmt6(arr):
+    return [f"{v:.6f}" for v in arr]
 
 
 def main():
-    interval = 0.002          # 2 ms
-    look_ahead_time = 0.010   # 10 ms
+    interval = 0.002
+    look_ahead_time = 0.010
 
     points = [
         [0.02,  89.98, 0.0, 0.0, -90.0, 0.0],
@@ -131,48 +137,43 @@ def main():
         [0.10,  89.90, 0.0, 0.0, -90.0, 0.0],
     ]
 
-    before = get_joint_positions()
-    print("=== Joint States (BEFORE) ===")
-    print(before)
+    with requests.Session() as s:
+        before = get_joint_positions(s)
+        print("=== Joint States (BEFORE) ===", fmt6(before), end="\n\n")
 
-    t = 0.0
-    for i, p in enumerate(points, start=1):
-        t += interval
-        res = insert_point(p, interval, look_ahead_time, t)
-        print(f"[INSERT {i}] status={res.status_code}, t={t:.3f}s")
-        time.sleep(0.001)
+        t = 0.0
+        for i, p in enumerate(points, 1):
+            t += interval
+            insert_point(s, p, interval, look_ahead_time, t)
+            print(f"[INSERT {i}] OK  t={t:.6f}s")
+            time.sleep(0.001)
 
-    time.sleep(0.05)
+        time.sleep(0.05)
 
-    after = get_joint_positions()
-    print("\n=== Joint States (AFTER) ===")
-    print(after)
+        after = get_joint_positions(s)
+        print("\n=== Joint States (AFTER) ===", fmt6(after))
 
-    diff = [round(a - b, 4) for a, b in zip(after, before)]
-    print("\n=== Joint States DIFF (AFTER - BEFORE) ===")
-    print(diff)
+        diff = [a - b for a, b in zip(after, before)]
+        print("\n=== Joint States DIFF (AFTER - BEFORE) ===", fmt6(diff))
 
 
 if __name__ == "__main__":
     main()
-
 ```
 
 ```sh
 $python test.py
-=== Joint States (BEFORE) ===
-[0.0, 90.0, 0.0, 0.0, -90.0, 0.0]
-[INSERT 1] status=200, t=0.002s
-[INSERT 2] status=200, t=0.004s
-[INSERT 3] status=200, t=0.006s
-[INSERT 4] status=200, t=0.008s
-[INSERT 5] status=200, t=0.010s
+=== Joint States (BEFORE) === ['0.000000', '90.000000', '0.000000', '0.000000', '-90.000000', '0.000000']
 
-=== Joint States (AFTER) ===
-[0.029192, 89.971326, 0.000321, -0.001149, -90.000586, -0.001416]
+[INSERT 1] OK  t=0.002000s
+[INSERT 2] OK  t=0.004000s
+[INSERT 3] OK  t=0.006000s
+[INSERT 4] OK  t=0.008000s
+[INSERT 5] OK  t=0.010000s
 
-=== Joint States DIFF (AFTER - BEFORE) ===
-[0.0292, -0.0287, 0.0003, -0.0011, -0.0006, -0.0014]
+=== Joint States (AFTER) === ['0.074079', '89.926446', '0.000000', '-0.000574', '-90.000000', '-0.001393']
+
+=== Joint States DIFF (AFTER - BEFORE) === ['0.074079', '-0.073554', '0.000000', '-0.000574', '0.000000', '-0.001393']
 ```
 
 </div>
