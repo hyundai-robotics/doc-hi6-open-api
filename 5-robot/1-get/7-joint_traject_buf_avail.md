@@ -1,7 +1,7 @@
 ﻿## 5.1.7 `joint_traject_buf_avail`
 
 ### Description
-- Supported Version : `61.00-00` &uparrow;
+- Supported Version : `60.32-00` &uparrow;
 - `GET` : Returns the available size of the trajectory buffer.
 - When requesting trajectories consecutively, you must use this function to ensure that the size of each trajectory request does not exceed the available buffer space.
 

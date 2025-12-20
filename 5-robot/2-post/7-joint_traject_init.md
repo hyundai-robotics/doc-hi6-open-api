@@ -2,7 +2,7 @@
 
 ### Description
 
-- Supported version : `61.00-00` &uparrow;
+- Supported version : `60.32-00` &uparrow;
 - `POST` : Initializes the trajectory buffer.
 - Before requesting a new trajectory while the robot is stopped, the previously stored trajectory must be cleared by the user.
 - ex)
