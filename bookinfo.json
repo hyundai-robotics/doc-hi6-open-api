@@ -1,11 +1,12 @@
 {
     "langCode": "ko",
-    "series": "Hi6 Open API 설명서 (based on version 5)",
-    "title": "Open API 설명서",
+    "series": "${cont_model} 제어기",
+    "title": "기능 설명서 - Open API(based on version 5)",
     "publisher": "HD현대로보틱스",
     "tocTitle": "목차",
     "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
-	 "variables": {
-        "cont_model": "Hi6"
-    }
+    "docId": "${cont_model:upper}OPENAPI_KO_001",
+    "references": [
+        { "rpath" : "doc-hi6-operation/ko-tp630" }
+    ]
 }
