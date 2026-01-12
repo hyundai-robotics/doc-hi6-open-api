@@ -1,11 +1,12 @@
 {
     "langCode": "en",
-    "series": "Hi6 Open API Manual (based on version 5)",
-    "title": "Open API Manual",
+    "series": "${cont_model} Controller",
+    "title": "Function Manual - Open API (based on version 5)",
     "publisher": "HD Hyundai Robotics",
     "tocTitle": "Contents",
     "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
-	 "variables": {
-        "cont_model": "Hi6"
-    }
+    "docId": "${cont_model:upper}OPENAPI_EN_001",
+    "references": [
+        { "rpath" : "doc-hi6-operation/en-tp630" }
+    ]
 }
