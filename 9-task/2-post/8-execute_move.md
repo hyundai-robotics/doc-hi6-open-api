@@ -15,7 +15,7 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ### request-body
 - `stmt` : 요청 바디의 키 값으로, 구문(statment)을 뜻합니다.
-- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move)을 참조 바랍니다.
+- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/ko/5-moving-robot/4-move?cont_model=${cont_model})을 참조 바랍니다.
 	<div style="width: fit-content;">
 
 	```json

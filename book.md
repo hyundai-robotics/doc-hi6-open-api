@@ -1,26 +1,14 @@
-﻿# ${cont_model} Open API 설명서
-
-{% hint style="warning" %}
-
-본 제품 설명서에서 제공되는 정보는 HD현대로보틱스의 자산입니다.
-
-HD현대로보틱스의 서면에 의한 동의 없이 전부 또는 일부를 무단 전재 및 재배포할 수 없으며, 제3자에게 제공되거나 다른 목적에 사용할 수 없습니다.
-
-
-본 설명서는 사전 예고 없이 변경될 수 있습니다.
-
-
-**Copyright ⓒ 2023 by HD Hyundai Robotics**
-
-
-
-{% endhint %}
+﻿
+[__SOURCE](README.md)
+# ${cont_model} 제어기 기능설명서 - Open API
 
 {% hint style="warning" %}
 
 ${cont_model} Open API 설명서에 공식적으로 언급되지 않은 API 를 활용하여 발생하는 모든 피해 및 문제에 대해서는 책임을 지지않습니다.
 
-{% endhint %}## 0.1 개요
+{% endhint %}
+[__SOURCE](0-intro/README.md)
+## 0.1 개요
 
 ${cont_model} Open API 와 관련된 아래의 기본적인 내용들을 확인하실 수 있습니다.
 
@@ -28,7 +16,9 @@ ${cont_model} Open API 와 관련된 아래의 기본적인 내용들을 확인�
 [1.2 필요한 사전 지식](./2-prerequisite/README.md) <br>
 [1.3 ${cont_model} Open API 예제 코드](./3-sample-code/README.md) <br>
 [1.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)
-[1.5 시작 전 주의사항](./4-api-test/README.md)### 0.1 ${cont_model} Open API 에 대하여
+[1.5 시작 전 주의사항](./4-api-test/README.md)
+[__SOURCE](0-intro/1-concept/README.md)
+### 0.1 ${cont_model} Open API 에 대하여
 
 HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 제어기(이하, ${cont_model})를 모니터링하고 원격으로 제어하기 위한 API 를 해당 문서에서 공개합니다.<br>
 이를 통해 개발자들은 ${cont_model} 개발에 적용된 소스코드에 대한 깊은 이해 없이도 ${cont_model} 다양한 데이터를 읽고 쓸 수 있습니다.<br>
@@ -68,12 +58,14 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 본 문서에 명시되지 않은 URL 및 속성은 동일 API 버전에서 예고없이 변경될 수 있으므로, 주의 바랍니다.
 
-{% endhint %}## 0.2 필요한 사전 지식
+{% endhint %}
+[__SOURCE](0-intro/2-prerequisite/README.md)
+## 0.2 필요한 사전 지식
 
 Open API를 활용하기 위해서는 ${cont_model} 제어기의 기본적인 사용법을 습득해야 합니다.<br>
 아래 설명서를 참고하시거나 HD현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
 
-- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-${cont_model}-tp630/README)
+- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/README?cont_model=${cont_model})
 - [HD현대로보틱스 공동훈련센터](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>
@@ -120,13 +112,17 @@ HTTP 요청을 통해 통신함으로써 리소스 내에서 레코드의 작성
 - `GET` : 클라이언트는 GET을 사용하여 서버의 지정된 URL에 있는 리소스에 액세스합니다. GET 요청을 캐싱하고 RESTful API 요청에 파라미터를 넣어 전송하여 전송 전에 데이터를 필터링하도록 서버에 지시할 수 있습니다.
 - `POST` : 클라이언트는 POST를 사용하여 서버에 데이터를 전송합니다. 여기에는 요청과 함께 데이터 표현이 포함됩니다. 동일한 POST 요청을 여러 번 전송하면 동일한 리소스를 여러 번 생성하는 부작용이 있습니다.
 - `PUT` : 클라이언트는 PUT을 사용하여 서버의 기존 리소스를 업데이트합니다. POST와 달리, RESTful 웹 서비스에서 동일한 PUT 요청을 여러 번 전송해도 결과는 동일합니다.
-- `DELETE` : 클라이언트는 DELETE 요청을 사용하여 리소스를 제거합니다. DELETE 요청은 서버 상태를 변경할 수 있습니다. 하지만 사용자에게 적절한 인증이 없으면 요청은 실패합니다.## 0.3 예제 코드
+- `DELETE` : 클라이언트는 DELETE 요청을 사용하여 리소스를 제거합니다. DELETE 요청은 서버 상태를 변경할 수 있습니다. 하지만 사용자에게 적절한 인증이 없으면 요청은 실패합니다.
+[__SOURCE](0-intro/3-sample-code/README.md)
+## 0.3 예제 코드
 
 다양한 개발 언어들은 REST API 호출을 위한 라이브러리를 제공하고 있습니다. 활용방법은 각 개발언어의 기술 문서들을 쉽게 검색하여 참고할 수 있습니다.
 
 - 여기서는 C#과 python을 활용한 GET과 POST 메소드의 호출만 설명하도록 하겠습니다.
 
 - IP 주소가 192.168.1.150인 ${cont_model} 제어기에 대해 요청을 수행한다고 가정하겠습니다.
+
+[__SOURCE](0-intro/3-sample-code/1-csharp.md)
 ### 0.3.1 예제 코드 - C#
 
 JSON parsing을 위한 라이브러리인 `Newtonsoft.Json`를 사용했습니다.
@@ -179,7 +175,9 @@ VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manage
 
 > 링크 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)
 
-</div>### 0.3.2 예제 코드 - python
+</div>
+[__SOURCE](0-intro/3-sample-code/2-python.md)
+### 0.3.2 예제 코드 - python
 
 예제 코드는 크게 `a. 동기식 요청(blocking & 동기식)`방식과 `b. 비동기식 요청(non-blocking & 비동기식)`   
 두 가지 방식 중 `a. 동기식 요청`에 대해서 설명합니다.
@@ -253,7 +251,9 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.06168508529663086 seconds
 total request time : 0.2869541645050049 seconds
 ```
-</div>## 0.4 코딩하지 않고 쉽게 API 호출 해보기
+</div>
+[__SOURCE](0-intro/4-api-test/README.md)
+## 0.4 코딩하지 않고 쉽게 API 호출 해보기
 
 [앞선 예제 코드](../3-sample-code/README.md)처럼 client 어플리케이션을 개발하면서 Open API 를 사용하는 경우, 코딩을 따로 하지 않고도 손쉽게 API를 호출해 볼 수 있습니다.  
 이러한 호출 과정을 통해서 요청이 제대로 동작했는지, 응답으로 어떠한 데이터가 반환되는지 확인 가능 합니다.  
@@ -275,7 +275,9 @@ total request time : 0.2869541645050049 seconds
 
 간단한 `get` 요청은 웹 브라우저를 통해 간편하고 신속하게 확인할 수 있습니다.  
 추가로 웹 브라우저의 확장 프로그램을 활용하여 `get` 요청과 다른 API 요청들을 직접 호출하고 결과를 볼 수 있습니다.  
-[1.4.2 웹 브라우저에서 API 호출하기](./2-web-browser.md)에서 간단한 사용법을 확인할 수 있습니다.## 0.4.1 `Postman` 에서 `POST` 요청하기
+[1.4.2 웹 브라우저에서 API 호출하기](./2-web-browser.md)에서 간단한 사용법을 확인할 수 있습니다.
+[__SOURCE](0-intro/4-api-test/1-postman.md)
+## 0.4.1 `Postman` 에서 `POST` 요청하기
 
 해당 페이지에서는 `postman` 을 활용해서 REST API 의 `POST` 요청을 호출하고 결과를 확인합니다.  
 추가로 간단한 UI 구성을 통해 사용법을 파악합니다.
@@ -326,7 +328,9 @@ total request time : 0.2869541645050049 seconds
 		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`
 
-		</blockquote>## 0.4.2 웹 브라우저에서 API 호출하기
+		</blockquote>
+[__SOURCE](0-intro/4-api-test/2-web-browser.md)
+## 0.4.2 웹 브라우저에서 API 호출하기
 
 ### a. 간단한 `GET` 요청하기
 
@@ -367,7 +371,9 @@ total request time : 0.2869541645050049 seconds
 `(4) History` : 요청 이력을 출력합니다.  
 `(5) History 탭` : 열었다 닫았다 할 수 있는 `(4)`의 요청 이력 리스트보다 많은 양의 이력이 확인 가능한 탭입니다.
 
-</blockquote>{% hint style="caution" %}
+</blockquote>
+[__SOURCE](0-intro/5-caution/README.md)
+{% hint style="caution" %}
 
 로봇 제어기에 심각한 에러를 유발할 수 있는 주의 사항과 관련된 내용들을 정리합니다.
 
@@ -377,7 +383,9 @@ total request time : 0.2869541645050049 seconds
 
 #### 목차
 
-1. [Keep-Alive vs Close connection](./1-http-connection.md)## 1. Keep-Alive vs Close connection
+1. [Keep-Alive vs Close connection](./1-http-connection.md)
+[__SOURCE](0-intro/5-caution/1-http-connection.md)
+## 1. Keep-Alive vs Close connection
 {% hint style="caution" %}
 
 로봇 제어기의 경우, close 연결 방식으로 API 요청이 반복적으로 이뤄지면 cpu 부하가 발생하여 로봇이 정지되는 에러가 발생할 수 있습니다.
@@ -450,7 +458,9 @@ total request time : 0.2869541645050049 seconds
 <br><br>
 
 참고 문서
-  1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)## 1. release note 
+  1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
+[__SOURCE](1-release-note/README.md)
+## 1. release note 
 
 - COM 버전을 기준으로 API 변경사항에 대해서 정리를 해두었습니다.
 - 본인이 사용 중인 제어기 버전보다 더 높은 버전에서 동작하는 API 를 사용하려면 버전업을 진행해야 합니다.
@@ -466,6 +476,8 @@ total request time : 0.2869541645050049 seconds
 	|v60-24.00|-||
 
 	</div>
+
+[__SOURCE](1-release-note/60-32.md)
 <link rel="stylesheet" href="../_assets/style.css">
 
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
@@ -598,6 +610,8 @@ total request time : 0.2869541645050049 seconds
 - 🔧 \[<b style="color: #FF9800">post</b>\] [start](../5-robot/2-post/2-start-stop.md)
 - 🔧 \[<b style="color: #FF9800">post</b>\] [stop](../5-robot/2-post/2-start-stop.md)
 - 🔧 \[<b style="color: #FF9800">post</b>\] [reset](../9-task/2-post/2-reset.md)
+
+[__SOURCE](1-release-note/60-30.md)
 <link rel="stylesheet" href="../_assets/style.css">
 
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
@@ -686,6 +700,8 @@ total request time : 0.2869541645050049 seconds
 - 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
 - 🔧 \[<b style="color: #FF9800">post</b>\] [task reset](../9-task/2-post/2-reset.md)
 - ❌ ~~\[<b style="color: #FF9800">post</b>\] [motor_off](../5-robot/2-post/1-motor-on.md)~~  
+
+[__SOURCE](1-release-note/60-28.md)
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.28-00 
 </h2>  
@@ -769,12 +785,18 @@ total request time : 0.2869541645050049 seconds
 - ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
 - ✨ \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
 - ✨ \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
+
+[__SOURCE](2-version/README.md)
 ## 2. version
 
-- 현재 api 의 버전 또는 로봇제어기의 시스템 버전을 확인합니다.## 2.1 version/get
+- 현재 api 의 버전 또는 로봇제어기의 시스템 버전을 확인합니다.
+[__SOURCE](2-version/1-get/README.md)
+## 2.1 version/get
 
 - 현재 api 의 버전 또는 로봇제어기의 시스템 버전 관련 정보에 대하여 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 2.1.1 api_ver 
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](2-version/1-get/1-api_ver.md)
+## 2.1.1 api_ver 
 
 ### 설명
 
@@ -835,7 +857,9 @@ print(get_api_ver())
 $python test.py
 (200, 5)
 ```
-</div>## 2.1.2 sysver
+</div>
+[__SOURCE](2-version/1-get/2-sysver.md)
+## 2.1.2 sysver
 
 ### 설명
 
@@ -904,13 +928,19 @@ $python test.py
 (200, {'modules': [{'build-date': 'Aug 13 2025', 'build-time': '12:50:21', 'commit-id': 'a11c02406c', 'name': 'com', 'sub-modules': [{'build-date': '', 'build-time': '', 'commit-id': '', 'name': 'fbr', 'ver': '2.1-1(1.1-3)'}], 'ver': '61.01-01.dev'}, {'build-date': 'Aug 13 2025
 ', 'build-time': '12:59:33', 'commit-id': 'fadf82cbb9', 'name': 'tp', 'ver': '61.01-01.dev'}]})
 ```
-</div># 3. project
+</div>
+[__SOURCE](3-project/README.md)
+# 3. project
 
 - 조건설정, 프로젝트 정보, job 파일 정보들을 읽습니다.
-- 업데이트된 job 파일들을 새로이 로드하거나 특정 job 파일들을 삭제할 수 있습니다.## 3.1 project/get
+- 업데이트된 job 파일들을 새로이 로드하거나 특정 job 파일들을 삭제할 수 있습니다.
+[__SOURCE](3-project/1-get/README.md)
+## 3.1 project/get
 
 - 조건설정, 프로젝트 정보, job 파일 정보에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 3.1.1 `rgen`
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](3-project/1-get/1-rgen.md)
+## 3.1.1 `rgen`
 
 ### 설명
 
@@ -1035,6 +1065,8 @@ c_no': 0, 'confirm_command_delete': 1, 'paint_block_state': 0, 'cont_path': 1, '
 ate': -1, 'n_prompt': 0, 'svgun_state': 0, 'mov_step_no': 1, 'step_goback_resume': 0, 'call_depth': 0, 'eid_last_warn': -1})
 ```
 </div>
+
+[__SOURCE](3-project/1-get/2-jobs_info.md)
 ## 3.1.2 `jobs_info`
 
 ### 설명
@@ -1135,10 +1167,14 @@ $python test.py
 	...
 ])
 ```
-</div>## 3.1 project/post
+</div>
+[__SOURCE](3-project/2-post/README.md)
+## 3.1 project/post
 
 - 조건설정, 프로젝트 정보, job 파일 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 3.2.1 `reload_updated_jobs`
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](3-project/2-post/1-reload_updated_jobs.md)
+## 3.2.1 `reload_updated_jobs`
 
 ### 설명
 
@@ -1210,7 +1246,9 @@ print(post_reload_updated_jobs())
 $python test.py
 (200, {'_type': 'JObject'})        
 ```
-</div>## 3.2.2 `delete_job`
+</div>
+[__SOURCE](3-project/2-post/2-jobs-delete_job.md)
+## 3.2.2 `delete_job`
 
 ### 설명
 
@@ -1286,15 +1324,21 @@ print(post_delete_job())
 $python test.py
 (200, {})
 ```
-</div># 4. control
+</div>
+[__SOURCE](4-control/README.md)
+# 4. control
 
 - 제어기(controller)의 설정값 적용 및 입출력 값을 처리합니다.
 - 시스템 입출력, 디지털 입출력, 조건설정, 사용자 좌표계 관련 정보를 다룹니다.
 
-<br>## 4.1 control/get
+<br>
+[__SOURCE](4-control/1-get/README.md)
+## 4.1 control/get
 
 - 제어기의 설정 정보, 입출력 값에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 4.1.1 `op_cnd`
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](4-control/1-get/1-op_cnd.md)
+## 4.1.1 `op_cnd`
 
 ### 설명
 
@@ -1361,7 +1405,9 @@ print(get_operation_condition())
 $python test.py
 (200, {'plc_mode': 1, 'step_go_func_ex': 1, '_type': 'CondGrp', 'intp_base': 0, 'playback_spd_rate': 100, 'step_goback_max_spd': 250, 'robot_lock': 0, 'func_reexe_on_trace': 1, 'ucrd_num': 0, 'playback_mode': 1, 'path_recov_confirm': 2})
 ```
-</div>## 4.1.4 `ucss/ucs_nos`
+</div>
+[__SOURCE](4-control/1-get/2-ucss-ucs_nos.md)
+## 4.1.4 `ucss/ucs_nos`
 
 ### 설명
 
@@ -1425,13 +1471,19 @@ print(get_ucs_nos())
 $python test.py
 (200, [1])
 ```
-</div>## 4.2 control/post
+</div>
+[__SOURCE](4-control/2-post/README.md)
+## 4.2 control/post
 
 - 제어기의 설정 정보, 입출력 값에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 4.3 control/put
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](4-control/3-put/README.md)
+## 4.3 control/put
 
 - 제어기의 설정 정보, 입출력 값에 대한 PUT 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 4.3.1 `op_cnd`
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](4-control/3-put/1-op_cnd.md)
+## 4.3.1 `op_cnd`
 
 ### 설명
 
@@ -1517,14 +1569,20 @@ print(put_op_cnd())
 $python test.py
 (200, {'_text': ''})
 ```
-</div># 5. robot
+</div>
+[__SOURCE](5-robot/README.md)
+# 5. robot
 
 - 로봇과 툴 데이터에 대한 원격 제어와 모니터링을 확인할 수 있습니다.
 - 모터 on/off, 로봇 자세, 툴, 조그 좌표계 등을 다루고 있습니다.
+
+[__SOURCE](5-robot/1-get/README.md)
 ## 5.1 robot/get
 
 - 로봇과 툴 데이터에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 5.1.1 `motor_on_state`
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](5-robot/1-get/1-motor_on_state.md)
+## 5.1.1 `motor_on_state`
 
 ### 설명
 
@@ -1592,7 +1650,9 @@ $python test.py
 (200, {'_type': 'JObject', 'val': 1})
 ```
 
-</div>## 5.1.2 `po_cur`
+</div>
+[__SOURCE](5-robot/1-get/2-po_cur.md)
+## 5.1.2 `po_cur`
 
 ### 설명
 
@@ -1735,7 +1795,9 @@ $python test.py
 (200, {'_type': 'Pose', 'nsync': 0, 'crd': 'joint', 'mechinfo': 1, 'j2': 90.106, 'j3': 0.0, 'j1': 0.0, 'j6': 0.0, 'j4': 0.0, 'j5': -90.0})
 ```
 
-</div>## 5.1.3 `cur_tool_data`
+</div>
+[__SOURCE](5-robot/1-get/3-cur_tool_data.md)
+## 5.1.3 `cur_tool_data`
 
 ### 설명
 
@@ -1814,7 +1876,9 @@ $python test.py
 ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0})
 ```
 
-</div>## 5.1.4 `tools`
+</div>
+[__SOURCE](5-robot/1-get/4-tools.md)
+## 5.1.4 `tools`
 
 ### 설명
 
@@ -1889,7 +1953,9 @@ _5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.0, 'bias_1': 0.0, 'x': 0.0, 
 0, 'ry': 0.0, 'mass_esti': 6.0, 'bias_4': 0.0, 'bias_5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.0, 'bias_1': 0.0, 'x': 0.0, 'izz': 0.013, 'y': 0.0, 'z': 0.0, 'iyy': 0.024, 'ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0}})
 ```
 
-</div>## 5.1.5 `tools/t_{number}`
+</div>
+[__SOURCE](5-robot/1-get/5-tools_t.md)
+## 5.1.5 `tools/t_{number}`
 
 ### 설명
 
@@ -1962,7 +2028,9 @@ $python test.py
 ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0})
 ```
 
-</div>## 5.1.6 `emergency_stop`
+</div>
+[__SOURCE](5-robot/1-get/6-emergency_stop.md)
+## 5.1.6 `emergency_stop`
 
 ### 설명
 
@@ -2033,7 +2101,9 @@ print(f"{get_emergency_stop()}")
 $python test.py
 (200, {'_type': 'JObject', 'val': 0})
 ```
-</div>## 5.1.7 `joint_traject_buf_avail`
+</div>
+[__SOURCE](5-robot/1-get/7-joint_traject_buf_avail.md)
+## 5.1.7 `joint_traject_buf_avail`
 
 ### 설명
 - 지원 버전 : `60.32-00` &uparrow;
@@ -2112,10 +2182,14 @@ $python test.py
 (200, {'val': 2048})
 ```
 </div>
+
+[__SOURCE](5-robot/2-post/README.md)
 ## 5.2 robot/post
 
 - 로봇과 툴 데이터에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 5.2.1 `motor_on`
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](5-robot/2-post/1-motor-on.md)
+## 5.2.1 `motor_on`
 
 - <b style="color:orange"> `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.</b>
 
@@ -2188,7 +2262,9 @@ $python test.py
 (200, {'_type': 'JObject'})
 ```
 
-</div>## 5.2.2 `start / stop`
+</div>
+[__SOURCE](5-robot/2-post/2-start-stop.md)
+## 5.2.2 `start / stop`
 
 ### 설명
 
@@ -2282,6 +2358,8 @@ $python test.py
 (200, {'_type': 'JObject'})
 ```
 </div>
+
+[__SOURCE](5-robot/2-post/3-tool_no.md)
 ## 5.2.3 `tool_no`
 
 ### 설명
@@ -2356,7 +2434,9 @@ print(set_tool_no(tool_no=1))
 $python test.py
 (200, {'_type': 'JObject'})
 ```
-</div>## 5.2.4 `crd_sys`
+</div>
+[__SOURCE](5-robot/2-post/4-crd_sys.md)
+## 5.2.4 `crd_sys`
 
 ### 설명
 
@@ -2434,7 +2514,9 @@ $python test.py
 (200, {'_type': 'JObject', 'cur_crd': 1, 'ucrd_no': 0})
 ```
 
-</div>## 5.2.5 `emergency_stop`
+</div>
+[__SOURCE](5-robot/2-post/5-emergency_stop.md)
+## 5.2.5 `emergency_stop`
 
 ### 설명
 
@@ -2521,6 +2603,8 @@ $python test.py
 (200, {'_type': 'JObject'})
 ```
 </div>
+
+[__SOURCE](5-robot/2-post/6-emergency_stop_test.md)
 ## 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> 해당 API 는 `60.28-00` 까지 `emergency_stop` API 로 사용되었습니다. </b>  
@@ -2652,6 +2736,8 @@ $python test.py
 (200, {'_type': 'JObject'})
 ```
 </div>
+
+[__SOURCE](5-robot/2-post/7-joint_traject_init.md)
 ## 5.2.7 `joint_traject_init`
 
 ### 설명
@@ -2759,6 +2845,8 @@ $python test.py
 (200, {'_type': 'JObject'})
 ```
 </div>
+
+[__SOURCE](5-robot/2-post/8-joint_traject_insert_points.md)
 ## 5.2.8 `joint_traject_insert_points`
 
 ### 설명
@@ -3102,12 +3190,18 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 
 </div>
+
+[__SOURCE](6-io_plc/README.md)
 # 6. I/O PLC
 
-- 내장 PLC(built-in plc)의 입출력 값을 읽어오거나 설정합니다.## 6.1 io_plc/get
+- 내장 PLC(built-in plc)의 입출력 값을 읽어오거나 설정합니다.
+[__SOURCE](6-io_plc/1-get/README.md)
+## 6.1 io_plc/get
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 6.1.1 `get relay values`
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](6-io_plc/1-get/1-relay-value.md)
+## 6.1.1 `get relay values`
 
 ### 설명
 
@@ -3123,7 +3217,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ### path-variable
 
-[릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression) (소문자 표기)
+[릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model}) (소문자 표기)
 
 * `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.  
   나머지 `relay_type`에는 지정하지 않습니다.
@@ -3210,7 +3304,9 @@ print(get_relay_value())
 $python test.py
 (200, [0, 0, 0, 0])
 ```
-</div>## 6.1.2 `ios/dio/{dio_val}`
+</div>
+[__SOURCE](6-io_plc/1-get/2-ios-dio.md)
+## 6.1.2 `ios/dio/{dio_val}`
 
 ### 설명
 
@@ -3310,7 +3406,9 @@ $python test.py
 (200, {'_type': 'JObject', 'val': -99})
 10011101 # TP > fb2/9.do's 4th row => 1011001
 ```
-</div>## 6.1.3 `ios/sio/{sio_val}`
+</div>
+[__SOURCE](6-io_plc/1-get/3-ios-sio.md)
+## 6.1.3 `ios/sio/{sio_val}`
 
 ### 설명
 
@@ -3401,10 +3499,14 @@ print(get_sio_val())
 $python test.py
 (200, {'_type': 'JObject', 'val': 6})
 ```
-</div>## 6.2 io_plc/post
+</div>
+[__SOURCE](6-io_plc/2-post/README.md)
+## 6.2 io_plc/post
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 6.2.1 `set relay values`
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](6-io_plc/2-post/1-set_relay_value.md)
+## 6.2.1 `set relay values`
 
 ### 설명
 
@@ -3420,7 +3522,7 @@ POST /project/plc/set_relay_value
 
 ### request-parameter
 
-- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/korean/3-relay/2-relay-expression)에 맞춰 입력합니다.
+- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model})에 맞춰 입력합니다.
 - `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
 ```json
 {
@@ -3511,7 +3613,9 @@ $python test.py
 (200, {'_type': 'JObject'})
 (200, [1, 0, 0, 0, 0, 0, 0, 0])
 ```
-</div>## 6.2.2 `ios/dio/{do_val}`
+</div>
+[__SOURCE](6-io_plc/2-post/2-ios-dio.md)
+## 6.2.2 `ios/dio/{do_val}`
 
 ### 설명
 
@@ -3618,12 +3722,18 @@ print(post_do_val())
 $python test.py
 (200, {'_text': ''})
 ```
-</div># 7.1 event-log
+</div>
+[__SOURCE](7-log_manager/README.md)
+# 7.1 event-log
 
-- 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.## 7.1 log_manager/get
+- 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.
+[__SOURCE](7-log_manager/1-get/README.md)
+## 7.1 log_manager/get
 
 - 제어기에 기록되는 에러, 경고, 실행이력에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 7.1.1 search
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](7-log_manager/1-get/1-search.md)
+## 7.1.1 search
 
 ### 설명
 
@@ -3736,13 +3846,19 @@ $python test.py
  				...
  \r\n'})
 ```
-</div># 8. file_manager
+</div>
+[__SOURCE](8-file_manager/README.md)
+# 8. file_manager
 
 - 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
-- 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.## 8.1 file_manager/get
+- 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.
+[__SOURCE](8-file_manager/1-get/README.md)
+## 8.1 file_manager/get
 
 - 제어기의 파일 정보에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 8.1.1 `files`
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](8-file_manager/1-get/1-files.md)
+## 8.1.1 `files`
 
 ### 설명
 
@@ -3841,7 +3957,9 @@ $python test.py
 (200, {'_text': 'Hyundai Robot Job File; { version: 2.0, mech_type: "458(HA006B-01)", total_axis: 6, aux_axis: 0 }\nS1   move P,spd=60%,accu=0,tool=1  [0.000,90.000,0.000,0.000,0.000,0.000]\n     wait di1\n     end\n'})
 ```  
 
-</div>## 8.1.2 `file_info`
+</div>
+[__SOURCE](8-file_manager/1-get/2-file_info.md)
+## 8.1.2 `file_info`
 
 ### 설명
 
@@ -3949,7 +4067,9 @@ $python test.py
 (200, {'mday': 11, 'fname': 'hi6_proj.json', 'month': 8, 'is_dir': False, 'min': 51, 'size': 144513, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 38, 'nfolders': 0, 'hour': 14, 'wday': 1})
 ```
 
-</div>## 8.1.3 `file_list`
+</div>
+[__SOURCE](8-file_manager/1-get/3-file_list.md)
+## 8.1.3 `file_list`
 
 ### 설명
 
@@ -4081,7 +4201,9 @@ $python final_test.py
 , {'mday': 19, 'fname': '0001.job', 'month': 8, 'is_dir': False, 'min': 42, 'size': 198, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 6, 'nfolders': 0, 'hour': 7, 'wday': 2}])
 
 ```
-</div>## 8.1.4 `file_exist`
+</div>
+[__SOURCE](8-file_manager/1-get/4-file_exist.md)
+## 8.1.4 `file_exist`
 
 ### 설명
 
@@ -4166,10 +4288,14 @@ $python test.py
 True
 ```
 
-</div>## 8.2 file_manager/post
+</div>
+[__SOURCE](8-file_manager/2-post/README.md)
+## 8.2 file_manager/post
 
 - 제어기의 파일 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 8.2.1 `rename_file`
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](8-file_manager/2-post/1-rename_file.md)
+## 8.2.1 `rename_file`
 
 <div style="width: fit-content;">
 
@@ -4269,7 +4395,9 @@ $python test.py
 (200, {'pathname_from': 'project/jobs/0001.job', 'pathname_to': 'project/jobs/4321.job'})
 ```
 
-</div>## 8.2.2 `mkdir`
+</div>
+[__SOURCE](8-file_manager/2-post/2-mkdir.md)
+## 8.2.2 `mkdir`
 
 
 
@@ -4370,7 +4498,9 @@ except:
 $python test.py
 200 {'path': 'project/jobs/special'}
 ```
-</div>## 8.2.3 `files`
+</div>
+[__SOURCE](8-file_manager/2-post/3-files.md)
+## 8.2.3 `files`
 
 ### 설명
 
@@ -4458,9 +4588,13 @@ print(post_file_transfer())
 ```sh
 $python test.py
 (200, {'_text': ''})
-```## 8.3 file_manager/delete
+```
+[__SOURCE](8-file_manager/3-delete/README.md)
+## 8.3 file_manager/delete
 
-- 제어기의 파일 정보에 대한 DELETE 요청을 보냅니다.## 8.3.1 `files`
+- 제어기의 파일 정보에 대한 DELETE 요청을 보냅니다.
+[__SOURCE](8-file_manager/3-delete/1-files.md)
+## 8.3.1 `files`
 
 <div style="width: fit-content;">
 
@@ -4531,18 +4665,26 @@ except:
 $python test.py
 <Response [200]>
 ```
-</div># 9.task
+</div>
+[__SOURCE](9-task/README.md)
+# 9.task
 
 - 태스크와 관련된 내용들을 다룹니다.
 - 특정 태스크나 전체 태스크에 대해서 리셋을 할 수 있습니다.
 - 현재 태스크의 지역 또는 전역 변수에 대해서 값을 읽어오거나 새로운 변수를 선언할 수 있습니다.
-- 태스크 실행 중 특정 작업 흐름(ex. wait)에 대해서 특정 조치(ex. release)를 취할 수 있습니다.## 9.1 task/get
+- 태스크 실행 중 특정 작업 흐름(ex. wait)에 대해서 특정 조치(ex. release)를 취할 수 있습니다.
+[__SOURCE](9-task/1-get/README.md)
+## 9.1 task/get
 
 - 태스크와 관련된 정보에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 9.2 task/post
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](9-task/2-post/README.md)
+## 9.2 task/post
 
 - 태스크와 관련된 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 9.2.1 `task/cur_prog_cnt`
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](9-task/2-post/1-cur_prog_cnt.md)
+## 9.2.1 `task/cur_prog_cnt`
 
 <div style="width: fit-content;">
 
@@ -4635,7 +4777,9 @@ except:
 $python python test.py
 (200, {'_type': 'JObject', 'sno_new': 0, 'ofs_moved': 0, 'fno_new': 0, 'ln_new': 0})
 ```
-</div><link rel="stylesheet" href="../../_assets/style.css">
+</div>
+[__SOURCE](9-task/2-post/2-reset.md)
+<link rel="stylesheet" href="../../_assets/style.css">
 
 ## 9.2.2 `task/reset`
 
@@ -4653,7 +4797,7 @@ R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동�
 ### 설명
 
 - `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
-- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-Hi6-tp630/8-r-code/1-use-r-code) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/korean-Hi6-tp630/8-r-code/1-use-r-code)를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model})를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
     R코드 1, 0 이외의 코드는 예정된 동작이 아닙니다.
 </span>
 - R코드 1을 진행한 이후에 프로그램 카운터 조작이 필요한 경우는 명시적으로 [cur_prog_cnt](./1-cur_prog_cnt.md), [set_cur_pc_idx](./6-set_cur_pc_idx.md) api 를 활용하십시오.
@@ -4729,7 +4873,9 @@ $python test.py
 (200, {'code': 1, 'description': '', 'params': [], 'subcode': 0})
 ```
 
-</div>## 9.2.3 `assign_var_expr`
+</div>
+[__SOURCE](9-task/2-post/3-assign_var_expr.md)
+## 9.2.3 `assign_var_expr`
 
 <div style="width: fit-content;">
 
@@ -4850,7 +4996,9 @@ $python test.py
 (200, 777)
 ```
 
-</div>## 9.2.4 `assign_var_json`
+</div>
+[__SOURCE](9-task/2-post/4-assign_var_json.md)
+## 9.2.4 `assign_var_json`
 
 <div style="width: fit-content;">
 
@@ -4974,7 +5122,9 @@ response: 200
 after: {'_type': 'JObject', 'test': 10}
 ```
 
-</div>## 9.2.5 `release_wait`
+</div>
+[__SOURCE](9-task/2-post/5-release_wait.md)
+## 9.2.5 `release_wait`
 
 <div style="width: fit-content;">
 
@@ -5056,7 +5206,9 @@ $python test.py
 (200, {'_type': 'JObject'})
 ```
 
-</div>## 9.2.6 `set_cur_pc_idx`
+</div>
+[__SOURCE](9-task/2-post/6-set_cur_pc_idx.md)
+## 9.2.6 `set_cur_pc_idx`
 
 <div style="width: fit-content;">
 
@@ -5139,7 +5291,9 @@ print(set_cur_pc_idx())
 $python test.py
 (200, {'_type': 'JObject'})
 ```
-</div>## 9.2.7 `solve_expr`
+</div>
+[__SOURCE](9-task/2-post/7-solve_expr.md)
+## 9.2.7 `solve_expr`
 
 <div style="width: fit-content;">
 
@@ -5269,7 +5423,9 @@ $python test.py
 (200, 1234)
 (200, 0)
 ```
-</div>## 9.2.8 `execute_move`
+</div>
+[__SOURCE](9-task/2-post/8-execute_move.md)
+## 9.2.8 `execute_move`
 
 <div style="width: fit-content;">
 
@@ -5286,7 +5442,7 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ### request-body
 - `stmt` : 요청 바디의 키 값으로, 구문(statment)을 뜻합니다.
-- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/korean/5-moving-robot/4-move)을 참조 바랍니다.
+- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/ko/5-moving-robot/4-move?cont_model=${cont_model})을 참조 바랍니다.
 	<div style="width: fit-content;">
 
 	```json
@@ -5364,17 +5520,25 @@ $python test.py
 ``````
 
 </div>
+
+[__SOURCE](10-console/README.md)
 # 10. console
 
 - ${cont_model}s 제어기 S/W 의 CLI 명령어를 사용할 수 있습니다.
 - 로봇언어로 할 수 있는 다양한 동작을 수행할 수 있습니다.
+
+[__SOURCE](10-console/1-get/README.md)
 ## 10.1 console/get
 
 - 로봇 명령문 실행과 관련된 정보에 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 10.2 console/post
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](10-console/2-post/README.md)
+## 10.2 console/post
 
 - 로봇 명령문 실행과 관련된 정보에 대한 POST 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.<div style="width: fit-content;">
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](10-console/2-post/1-execute_cmd.md)
+<div style="width: fit-content;">
 
 ## 10.2.1 `execute_cmd`
 
@@ -5480,14 +5644,22 @@ $python test.py
 (200, {'_type': 'JObject'})
 ```
 
-</div># 11. etc
+</div>
+[__SOURCE](11-etc/README.md)
+# 11. etc
 
-- 시스템 버전, 이벤트 로그, 클럭 등을 다루고 있습니다.# 11.1 clock
+- 시스템 버전, 이벤트 로그, 클럭 등을 다루고 있습니다.
+[__SOURCE](11-etc/1-clock/README.md)
+# 11.1 clock
 
-- 제어기의 시스템 시간을 읽고 설정할 수 있습니다.## 11.1.1 clock/get
+- 제어기의 시스템 시간을 읽고 설정할 수 있습니다.
+[__SOURCE](11-etc/1-clock/1-get/README.md)
+## 11.1.1 clock/get
 
 - 제어기 시스템 시간 대한 GET 요청을 보냅니다.
-- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.## 11.1.1.1 `date_time`
+- API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
+[__SOURCE](11-etc/1-clock/1-get/1-date_time.md)
+## 11.1.1.1 `date_time`
 
 <div style="width: fit-content;">
 
@@ -5564,10 +5736,14 @@ $python test.py
 (200, {'_type': 'JObject', 'year': 2025, 'min': 43, 'sec': 42, 'hour': 15, 'wday': 2, 'mon': 8, 'day': 19})
 (200, {'_type': 'JObject', 'year': 2025, 'min': 43, 'sec': 43, 'hour': 15, 'wday': 2, 'mon': 8, 'day': 19})
 ```
-</div>## 11.1.2 clock/put
+</div>
+[__SOURCE](11-etc/1-clock/2-put/README.md)
+## 11.1.2 clock/put
 
 - 제어기 시스템 시간 대한 PUT 요청을 보냅니다.
-- API 별로 정확한 request-body 를 작성해야합니다.## 11.1.2.1 `date_time`
+- API 별로 정확한 request-body 를 작성해야합니다.
+[__SOURCE](11-etc/1-clock/2-put/1-date_time.md)
+## 11.1.2.1 `date_time`
 
 <div style = "width: max-content">  
 
@@ -5639,10 +5815,14 @@ print(put_system_time())
 $python test.py
 (200, {})
 ```
-</div># 7. 스키마 (schema)
+</div>
+[__SOURCE](99-schema/README.md)
+# 7. 스키마 (schema)
 
 이 챕터는 Open API에서 사용되는 각종 열거자(enumeration)와 구조체(structure)의 참조자료(reference)를 담고 있습니다.
 
+
+[__SOURCE](99-schema/crdsys.md)
 ## crdsys
 
 ### 설명
@@ -5659,7 +5839,9 @@ $python test.py
 |`2`|`사용자` 좌표계|
 |`3`|`툴` 좌표계|
 
-</div>## cur_prog_cnt
+</div>
+[__SOURCE](99-schema/cur_prog_cnt.md)
+## cur_prog_cnt
 
 ### 설명
 태스크의 현재 프로그램 카운터를 설정합니다.
@@ -5685,7 +5867,9 @@ $python test.py
 |`fno_new`|int|새로 이동한 펑션 번호|
 |`ln_new`|int|새로 이동한 라인번호 (프로그램 헤더가 0, 첫 명령문이 1)|
 
-</div>## date_time
+</div>
+[__SOURCE](99-schema/date_time.md)
+## date_time
 
 ### 설명
 
@@ -5701,7 +5885,9 @@ $python test.py
 |"min"|`int`|현재 시스템의 분|
 |"sec"|`int`|현재 시스템의 초|
 
-</div>## file_info
+</div>
+[__SOURCE](99-schema/file_info.md)
+## file_info
 
 ### 설명
 
@@ -5723,7 +5909,9 @@ $python test.py
 |is_dir|`bool`| 현재 파일이 디렉토리인지 확인 |
 |readonly|`bool`| 읽기 전용 파일 여부 확인 |
 
-</div>## jobs_info
+</div>
+[__SOURCE](99-schema/jobs_info.md)
+## jobs_info
 
 ### 설명
 
@@ -5739,7 +5927,9 @@ job 파일 정보 파라미터 입니다.
 |n_total_ax|`int`|총 축 수|
 |n_aux_ax|`int`|부가축 수|
 
-</div>## mechinfo
+</div>
+[__SOURCE](99-schema/mechinfo.md)
+## mechinfo
 
 ### 설명
 
@@ -5764,7 +5954,9 @@ job 파일 정보 파라미터 입니다.
 # 메커니즘 M0, M1, M4를 지정합니다.
 ```
 
-</div>## op_cnd
+</div>
+[__SOURCE](99-schema/op_cnd.md)
+## op_cnd
 
 ### 설명
 op_cnd (operation condition) : 로봇의 조건설정 값입니다.  
@@ -5811,7 +6003,9 @@ TP 에서 `조건설정` 버튼을 눌렀을 때 해당 값들을 확인할 수 
 }
 ```
 
-</div>## Pose
+</div>
+[__SOURCE](99-schema/pose.md)
+## Pose
 
 ### 설명
 
