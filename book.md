@@ -1,26 +1,14 @@
-﻿# ${cont_model} Open API Manual
-
-{% hint style="warning" %}
-
-The information provided in this product manual is the property of HD Hyundai Robotics.
-
-It cannot be reproduced or redistributed in whole or in part without the written consent of HD Hyundai Robotics, and cannot be provided to a third party or used for any other purpose.
-
-
-This manual is subject to change without prior notice.
-
-
-**Copyright ⓒ 2023 by HD Hyundai Robotics**
-
-
-
-{% endhint %}
+﻿
+[__SOURCE](README.md)
+# ${cont_model} Controller Function Manual - Open API
 
 {% hint style="warning" %}
 
 We are not responsible for any damage or problems that arise from using an API that is not officially mentioned in the ${cont_model} Open API manual.
 
-{% endhint %}## 1.1 Intro
+{% endhint %}
+[__SOURCE](0-intro/README.md)
+## 1.1 Intro
 
 You can check the basic information related to ${cont_model} Open API below.
 
@@ -28,7 +16,9 @@ You can check the basic information related to ${cont_model} Open API below.
 [1.2 Required prior knowledge](./2-prerequisite/README.md) <br>
 [1.3 Sample code](./3-sample-code/README.md) <br>
 [1.4 Simple API call without coding](./4-api-test/README.md)
-[1.5 Precautions Before Starting](./4-api-test/README.md)## 1.1 About ${cont_model} Open API
+[1.5 Precautions Before Starting](./4-api-test/README.md)
+[__SOURCE](0-intro/1-concept/README.md)
+## 1.1 About ${cont_model} Open API
 
 In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as ${cont_model}).<br>
 This enables developers to read and write ${cont_model} data without requiring a thorough comprehension of the source code used in ${cont_model} development.<br>
@@ -62,19 +52,21 @@ The APIs described in this document are supported starting from `${cont_model} V
 
 Please note that URLs and properties not specified in this document may change without notice in the same API version.
 
-{% endhint %}## 1.2 Required prior knowledge
+{% endhint %}
+[__SOURCE](0-intro/2-prerequisite/README.md)
+## 1.2 Required prior knowledge
 
 In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
 Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
 
-- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-${cont_model}-tp630/README)
+- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/README?cont_model=${cont_model})
 - [HD Hyundai Robotics Joint training center](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>
 
 Open API is an HTTP-based REST API.Various development languages provide libraries for calling REST API (aka RESTful API),  
 and many developers use them to develop programs. Unless you are an experienced developer,  
-you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About Hi6 Open API](../1-concept/README.md).
+you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About ${cont_model} Open API](../1-concept/README.md).
 
 In this regard, please refer to the points below.
 
@@ -115,7 +107,9 @@ Developers often implement RESTful APIs using four common Hypertext Transfer Pro
 - `GET` : Clients use GET to access resources that are located at the specified URL on the server. They can cache GET requests and send parameters in the RESTful API request to instruct the server to filter data before sending.
 - `POST` : Clients use POST to send data to the server. They include the data representation with the request. Sending the same POST request multiple times has the side effect of creating the same resource multiple times.
 - `PUT` : Clients use PUT to update existing resources on the server. Unlike POST, sending the same PUT request multiple times in a RESTful web service gives the same result.
-- `DELETE` : Clients use the DELETE request to remove the resource. A DELETE request can change the server state. However, if the user does not have appropriate authentication, the request fails.## 1.3 Sample code
+- `DELETE` : Clients use the DELETE request to remove the resource. A DELETE request can change the server state. However, if the user does not have appropriate authentication, the request fails.
+[__SOURCE](0-intro/3-sample-code/README.md)
+## 1.3 Sample code
 
 Various development languages provide libraries for calling REST APIs.  
 To learn how to use it, you can easily search and refer to the technical documentation for each development language.
@@ -123,6 +117,8 @@ To learn how to use it, you can easily search and refer to the technical documen
 - In this document, we will only explain the calls to the GET and POST methods using C# and python.
 
 - Let's assume you are making a request to a ${cont_model} controller with IP address 192.168.1.150.
+
+[__SOURCE](0-intro/3-sample-code/1-csharp.md)
 ### 1.3.1 Sample code - C#
 
 This document uses `Newtonsoft.Json`, a library for JSON parsing.  
@@ -167,7 +163,9 @@ Console.WriteLine(str);
 ```
 
 You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
-> Link : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)### 1.3.2 Sample code - python
+> Link : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)
+[__SOURCE](0-intro/3-sample-code/2-python.md)
+### 1.3.2 Sample code - python
 
 The example code mainly describes `a. synchronous request`.
 
@@ -237,7 +235,9 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.06106710433959961 seconds
 [get] 0x79 from fb2.do3 Time taken: 0.04711771011352539 seconds
 total request time : 0.292741060256958 seconds
-```## 1.4 Simple API call without coding
+```
+[__SOURCE](0-intro/4-api-test/README.md)
+## 1.4 Simple API call without coding
 
 If you use Open API while developing a client application like [previous example code](../3-sample-code/README.md), you can easily call the API without coding.  
 Through this calling process, you can check whether the request worked properly and what data is returned in response.  
@@ -259,7 +259,9 @@ Simple usage instructions can be found in [1.4.1 Requesting POST in Postman](../
 
 Simple `get` requests can be made easily and quickly through a web browser.  
 Additionally, you can use your web browser's extension to directly call `get` requests and other API requests and view the results.  
-You can check simple usage instructions in [1.4.2 Calling API from web browser](../4-api-test/2-web-browser.md).## 1.4.1 Requesting POST in Postman
+You can check simple usage instructions in [1.4.2 Calling API from web browser](../4-api-test/2-web-browser.md).
+[__SOURCE](0-intro/4-api-test/1-postman.md)
+## 1.4.1 Requesting POST in Postman
 
 On this page, use `postman` to call the `POST` request of the REST API and check the result.  
 Additionally, simple UI configuration helps you understand how to use it.
@@ -309,7 +311,9 @@ You can check the main UI composition through the picture below.
 		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
 		`(2) Python Code snippet` : codes for `post` request in python.  
 
-		</blockquote>## 1.4.2 Calling API from web browser  
+		</blockquote>
+[__SOURCE](0-intro/4-api-test/2-web-browser.md)
+## 1.4.2 Calling API from web browser  
 
 ### a. Make a simple `GET` request
 
@@ -345,7 +349,9 @@ Through this program, you can easily call various APIs like `postman`.
 `(4) History` : Prints request history.   
 `(5) Side History Tab` : This tab allows you to check a larger amount of history than the request history list in `(4)`, which can be opened and closed.
 
-</blockquote>{% hint style="caution" %}
+</blockquote>
+[__SOURCE](0-intro/5-caution/README.md)
+{% hint style="caution" %}
 
 This section outlines critical precautions that may cause serious errors in the robot controller.
 
@@ -355,7 +361,9 @@ Please ensure you fully understand these items before using the API.
 
 #### Table of Contents
 
-1. [Keep-Alive vs Close connection](./1-http-connection.md)## 1. Keep-Alive vs Close connection
+1. [Keep-Alive vs Close connection](./1-http-connection.md)
+[__SOURCE](0-intro/5-caution/1-http-connection.md)
+## 1. Keep-Alive vs Close connection
 
 {% hint style="caution" %}
 
@@ -430,7 +438,9 @@ If your application involves frequent API calls, please follow the instructions 
 <br><br>
 
 References
-  1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)## 1. release note 
+  1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
+[__SOURCE](1-release-note/README.md)
+## 1. release note 
 
 - API changes have been documented based on the COM version.  
 - If you wish to use an API that operates on a higher controller version than your current one, a version upgrade is required.  
@@ -447,6 +457,8 @@ References
 	|v60-24.00|-||
 
 	</div>
+
+[__SOURCE](1-release-note/61-00.md)
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v61.00-00
   <span style="
@@ -558,6 +570,8 @@ Depending on circumstances, the release date may be moved forward.
 - ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
 - ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
 - 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+
+[__SOURCE](1-release-note/60-30.md)
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.30-00 
 </h2>
@@ -651,6 +665,8 @@ Depending on circumstances, the release date may be moved forward.
 - 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
 - 🔧 \[<b style="color: #FF9800">post</b>\] [task_reset](../9-task/2-post/2-reset.md)
 - ❌ ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
+
+[__SOURCE](1-release-note/60-28.md)
 <h2 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.28-00 
 </h2>
@@ -731,12 +747,18 @@ Depending on circumstances, the release date may be moved forward.
 - ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
 - ✨ \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
 - ✨ \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
+
+[__SOURCE](2-version/README.md)
 ## 2. version
 
-- Check the current API version or robot controller system version.## 2.1 version/get
+- Check the current API version or robot controller system version.
+[__SOURCE](2-version/1-get/README.md)
+## 2.1 version/get
 
 - Send a GET request for information about the current API version or robot controller system version.  
-- Receive a response by setting the correct path-parameter and query-parameter for each API.  ## 2.1.1 api_ver
+- Receive a response by setting the correct path-parameter and query-parameter for each API.  
+[__SOURCE](2-version/1-get/1-api_ver.md)
+## 2.1.1 api_ver
 
 ### Description
 
@@ -784,7 +806,9 @@ print(get_api_ver())
 ```sh
 $python test.py
 5
-```## 2.1.2 sysver
+```
+[__SOURCE](2-version/1-get/2-sysver.md)
+## 2.1.2 sysver
 
 ### Description
 
@@ -846,13 +870,19 @@ print(get_sysver())
 ```sh
 $python test.py
 {'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
-```# 3. project
+```
+[__SOURCE](3-project/README.md)
+# 3. project
 
 - Reads condition settings, project information, and job file information.
-- You can reload updated job files or delete specific job files.## 3.1 project/get
+- You can reload updated job files or delete specific job files.
+[__SOURCE](3-project/1-get/README.md)
+## 3.1 project/get
 
 - Send a GET request for condition settings, project information, and job file information.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 3.1.1 `rgen`
+- Receive a response by setting the correct path-parameter and query-parameter for each API.
+[__SOURCE](3-project/1-get/1-rgen.md)
+## 3.1.1 `rgen`
 
 ### Description
 
@@ -934,6 +964,8 @@ get_is_remote_mode()
 $python test.py
 is remote mode? 0
 ```
+
+[__SOURCE](3-project/1-get/2-jobs_info.md)
 ## 3.1.2 `jobs_info`
 
 ### Description
@@ -1009,10 +1041,14 @@ $python test.py
 [{'_type': 'JObject', 'job_comment': '', 'fname': '0001.job', 'n_step': 0, 'n_aux_ax': 0, 'n_total_ax': 6}, 
 {'_type': 'JObject', 'job_comment': '', 'fname': '0002.job', 'n_step': 9, 'n_aux_ax': -1, 'n_total_ax': -1}, 
 {'_type': 'JObject', 'job_comment': '', 'fname': '0003.job', 'n_step': 0, 'n_aux_ax': -1, 'n_total_ax': -1}]
-```## 3.1 project/post
+```
+[__SOURCE](3-project/2-post/README.md)
+## 3.1 project/post
 
 - Send a POST request for condition settings, project information, and job file information.
-- You must write the correct request-body for each API.## 3.2.1 `reload_updated_jobs`
+- You must write the correct request-body for each API.
+[__SOURCE](3-project/2-post/1-reload_updated_jobs.md)
+## 3.2.1 `reload_updated_jobs`
 
 ### Description
 
@@ -1063,6 +1099,8 @@ print(f"response: {post_reload_updated_jobs()}")
 $python test.py
 response: 200 
 ```
+
+[__SOURCE](3-project/2-post/2-jobs-delete_job.md)
 ## 3.2.2 `delete_job`
 
 ### Description
@@ -1116,15 +1154,21 @@ print(f"response: {post_delete_job('0002.job')}")
 ```sh
 $python test.py
 response: 200 
-```# 4. control
+```
+[__SOURCE](4-control/README.md)
+# 4. control
 
 - Apply settings of the controller and process input/output values.
 - It covers information on system input/output, digital input/output, condition settings, and user coordinate system.
 
-<br>## 4.1 control/get
+<br>
+[__SOURCE](4-control/1-get/README.md)
+## 4.1 control/get
 
 - Send a GET request for controller setting information and input/output values.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 4.1.1 `op_cnd`
+- Receive a response by setting the correct path-parameter and query-parameter for each API.
+[__SOURCE](4-control/1-get/1-op_cnd.md)
+## 4.1.1 `op_cnd`
 
 ### Description
 
@@ -1178,7 +1222,9 @@ print(get_operation_condition())
 ```sh
 $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
-```## 4.1.4 `ucss/ucs_nos`
+```
+[__SOURCE](4-control/1-get/4-ucss-ucs_nos.md)
+## 4.1.4 `ucss/ucs_nos`
 
 ### Description
 
@@ -1223,17 +1269,23 @@ print(f"{get_ucs_nos()}")
 ```sh
 $python test.py
 [1, 2, 3]
-```## 4.2 control/post
+```
+[__SOURCE](4-control/2-post/README.md)
+## 4.2 control/post
 
-- Sends a POST request for the controller’s setting information and input/output values.
-- You must write the correct request-body for each API.## 4.3 control/put
+- Sends a POST request for the controller's setting information and input/output values.
+- You must write the correct request-body for each API.
+[__SOURCE](4-control/3-put/README.md)
+## 4.3 control/put
 
-- Sends a PUT request for the controller’s setting information and input/output values.
-- You must write the correct request-body for each API.## 4.3.1 `op_cnd`
+- Sends a PUT request for the controller's setting information and input/output values.
+- You must write the correct request-body for each API.
+[__SOURCE](4-control/3-put/1-op_cnd.md)
+## 4.3.1 `op_cnd`
 
 ### Description
 
-- `PUT` : Change the robot’s condition setting values.
+- `PUT` : Change the robot's condition setting values.
 - If you open the `condition setting window(cond.set)` in TP and request the corresponding method,  
 you must close and reopen the window for the value to be reflected.
 
@@ -1286,14 +1338,20 @@ print(f"response: {put_op_cnd()}")
 ```sh
 $python test.py
 response: 200 
-```# 5. robot
+```
+[__SOURCE](5-robot/README.md)
+# 5. robot
 
 - You can check remote control and monitoring of robot and tool data.
 - It covers motor on/off, robot posture, tools, jog coordinate system, etc.
+
+[__SOURCE](5-robot/1-get/README.md)
 ## 5.1 robot/get
 
 - Send GET requests for robot and tool data.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 5.1.1 `motor_on_state`
+- Receive a response by setting the correct path-parameter and query-parameter for each API.
+[__SOURCE](5-robot/1-get/1-motor_on_state.md)
+## 5.1.1 `motor_on_state`
 
 ### Description
 
@@ -1345,7 +1403,9 @@ print(f"Motor On status: {get_motor_on_state()['val']}")
 ```sh
 $python test.py
 Motor On status: 1
-```## 5.1.2 `po_cur`
+```
+[__SOURCE](5-robot/1-get/2-po_cur.md)
+## 5.1.2 `po_cur`
 
 ### Description
 
@@ -1470,7 +1530,9 @@ print(get_base_coordinate())
 ```sh
 $python test.py
 {'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
-```## 5.1.3 `cur_tool_data`
+```
+[__SOURCE](5-robot/1-get/3-cur_tool_data.md)
+## 5.1.3 `cur_tool_data`
 
 ### Description
 
@@ -1531,7 +1593,9 @@ print(get_cur_tool_data())
 ```sh
 $python test.py
 {'_type': 'Tool', 'x': 0.0, 'rx': 0.0, 'y': 0.0, 'ry': 0.0, 'z': 0.0, 'rz': 0.0, 'cy': 0.0, 'mass': 20.0, 'cx': 100.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'bias_2': 0.0, 'mass_esti': 20.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
-```## 5.1.4 `tools`
+```
+[__SOURCE](5-robot/1-get/4-tools.md)
+## 5.1.4 `tools`
 
 ### Description
 
@@ -1587,7 +1651,9 @@ print(get_tools_data())
 ```sh
 $python test.py
 {'_type': 'Tools', 't_31': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_0': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0, 'load_rate': {'_type': 'JObject', 'high_load_mode': -11, 'moment_rate': 0, 'inertia_rate': 0, 'mass_rate': 0}}, 't_1': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_15': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}}
-```## 5.1.5 `tools/t_{number}`
+```
+[__SOURCE](5-robot/1-get/5-tools_t.md)
+## 5.1.5 `tools/t_{number}`
 
 ### Description
 
@@ -1641,7 +1707,9 @@ print(get_tool1_data())
 ```sh
 $python test.py
 {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
-```## 5.1.6 `emergency_stop`
+```
+[__SOURCE](5-robot/1-get/6-emergency_stop.md)
+## 5.1.6 `emergency_stop`
 
 ### Description
 
@@ -1694,7 +1762,9 @@ print(f"{get_emergency_stop()}")
 ```sh
 $python test.py
 {'_type': 'JObject', 'val': 0}
-```## 5.1.7 `joint_traject_buf_avail`
+```
+[__SOURCE](5-robot/1-get/7-joint_traject_buf_avail.md)
+## 5.1.7 `joint_traject_buf_avail`
 
 ### Description
 - Supported Version : `61.00-00` &uparrow;
@@ -1762,10 +1832,14 @@ if __name__ == "__main__":
 $python test.py
 {'val': 2048}
 ```
-</div>## 5.2 robot/post
+</div>
+[__SOURCE](5-robot/2-post/README.md)
+## 5.2 robot/post
 
 - Send POST requests for robot and tool data.
-- You must write the correct request-body for each API.## 5.2.1 `motor_on`
+- You must write the correct request-body for each API.
+[__SOURCE](5-robot/2-post/1-motor-on.md)
+## 5.2.1 `motor_on`
 
 ### Description
 
@@ -1820,7 +1894,9 @@ print(f"Motor-ON  response: {post_motor_on()}")
 ```sh
 $python test.py
 Motor-ON  response: 200
-```## 5.2.2 `start / stop`
+```
+[__SOURCE](5-robot/2-post/2-start-stop.md)
+## 5.2.2 `start / stop`
 
 ### Description
 
@@ -1887,7 +1963,9 @@ print(f"Stop  response: {post_stop()}")
 $python test.py
 Start response: 200
 Stop  response: 200
-```## 5.2.3 `tool_no`
+```
+[__SOURCE](5-robot/2-post/3-tool_no.md)
+## 5.2.3 `tool_no`
 
 ### Description
 
@@ -1943,7 +2021,9 @@ print(f"response: {post_tool_no(1)}")
 ```sh
 $python test.py
 response: 200
-```## 5.2.4 `crd_sys`
+```
+[__SOURCE](5-robot/2-post/4-crd_sys.md)
+## 5.2.4 `crd_sys`
 
 ### Description
 
@@ -2000,7 +2080,9 @@ print(f"response: {post_crd_sys(1)}")
 ```sh
 $python test.py
 response: 200
-```## 5.2.5 `emergency_stop`
+```
+[__SOURCE](5-robot/2-post/5-emergency_stop.md)
+## 5.2.5 `emergency_stop`
 
 - <b style="color:orange"> For versions prior to ***<u>60.30-00</u>***, refer to ***<u>[emergency_stop_test](./6-emergency_stop_test.md)</u>*** instead of emergency_stop. </b>  
 
@@ -2059,7 +2141,9 @@ print(f"response: {post_emergency_stop()}")
 ```sh
 $python test.py
 response: 200
-```## 5.2.6 `emergency_stop_test`
+```
+[__SOURCE](5-robot/2-post/6-emergency_stop_test.md)
+## 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
 
@@ -2154,7 +2238,9 @@ $python test.py
 response: 200
 ```
 
-</div>## 5.2.7 `joint_traject_init`
+</div>
+[__SOURCE](5-robot/2-post/7-joint_traject_init.md)
+## 5.2.7 `joint_traject_init`
 
 ### Description
 
@@ -2241,13 +2327,15 @@ if __name__ == "__main__":
 $python test.py
 [INFO] Initialization successful: status=200
 ```
-</div>## 5.2.8 `joint_traject_insert_points`
+</div>
+[__SOURCE](5-robot/2-post/8-joint_traject_insert_points.md)
+## 5.2.8 `joint_traject_insert_points`
 
 ### Description
 
 - Supported version : `61.00-00` &uparrow;
 - `POST` : Sends a trajectory composed of multiple points to the robot controller.
-  - Multiple joint trajectory points are stored in the controller’s internal buffer and reflected in the robot’s motion.
+  - Multiple joint trajectory points are stored in the controller's internal buffer and reflected in the robot's motion.
 
 ---
 
@@ -2583,12 +2671,18 @@ POST /project/robot/trajectory/joint_traject_insert_points
 </div>
 
 
+
+[__SOURCE](6-io_plc/README.md)
 # 6. I/O PLC
 
-- Reads or sets the input/output values of the built-in PLC.## 6.1 io_plc/get
+- Reads or sets the input/output values of the built-in PLC.
+[__SOURCE](6-io_plc/1-get/README.md)
+## 6.1 io_plc/get
 
 - Sends a GET request for input/output values of a built-in PLC.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 6.1.1 `get relay values`
+- Receive a response by setting the correct path-parameter and query-parameter for each API.
+[__SOURCE](6-io_plc/1-get/1-relay-value.md)
+## 6.1.1 `get relay values`
 
 ### Description
 
@@ -2602,7 +2696,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ### path-variable
 
-[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/english/3-relay/2-relay-expression) (lowercase letter)
+[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
 
 * (`{obj_type}{obj_idx}_` must be specified for `di`, `do`, `x`, and `y`. The remaining `relay_type` is not specified.)
 
@@ -2674,7 +2768,9 @@ print(f"{get_relay_value()}")
 ```sh
 $python test.py
 [0, 0, 0, 0]
-```## 6.1.2 `ios/dio/{dio_val}`
+```
+[__SOURCE](6-io_plc/1-get/2-ios-dio.md)
+## 6.1.2 `ios/dio/{dio_val}`
 
 ### Description
 
@@ -2739,7 +2835,9 @@ print(get_dio_val())
 ```sh
 $python test.py
 {'_type': 'JObject', 'val': -56}
-```## 6.1.3 `ios/sio/{sio_val}` 
+```
+[__SOURCE](6-io_plc/1-get/3-ios-sio.md)
+## 6.1.3 `ios/sio/{sio_val}` 
 
 ### Description
 
@@ -2803,10 +2901,14 @@ print(get_sio_val())
 ```sh
 $python test.py
 {'_type': 'JObject', 'val': 0}
-```## 6.2 io_plc/post
+```
+[__SOURCE](6-io_plc/2-post/README.md)
+## 6.2 io_plc/post
 
 - Sends a POST request for input/output values from a built-in PLC.
-- You must write the correct request-body for each API.## 6.2.1 `set relay values`
+- You must write the correct request-body for each API.
+[__SOURCE](6-io_plc/2-post/1-set_relay_value.md)
+## 6.2.1 `set relay values`
 
 ### Description
 
@@ -2820,8 +2922,8 @@ POST /project/plc/set_relay_value
 
 ### request-parameter
 
-- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/english/3-relay/2-relay-expression).
-- `value` : Please pay attention to ‘data-type’ in the notation above and enter the value you want to set.
+- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
+- `value` : Please pay attention to 'data-type' in the notation above and enter the value you want to set.
 ```json
 {
     "name": "fb3.dof14",
@@ -2875,7 +2977,9 @@ $python test.py
 [0, 0, 0, 0, 0, 0, 0, 0]
 response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
-```## 6.2.2 `ios/dio/{do_val}`
+```
+[__SOURCE](6-io_plc/2-post/2-ios-dio.md)
+## 6.2.2 `ios/dio/{do_val}`
 
 ### Description
 
@@ -2948,12 +3052,18 @@ print(f"response: {post_do_val()}")
 ```sh
 $python test.py
 response: 200 
-```# 7.1 event-log
+```
+[__SOURCE](7-log_manager/README.md)
+# 7.1 event-log
 
-- Outputs errors, warnings, execution history, etc. recorded in the controller.## 7.1 log_manager/get
+- Outputs errors, warnings, execution history, etc. recorded in the controller.
+[__SOURCE](7-log_manager/1-get/README.md)
+## 7.1 log_manager/get
 
 - Send a GET request for errors, warnings, and execution history recorded in the controller.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 7.1.1 search
+- Receive a response by setting the correct path-parameter and query-parameter for each API.
+[__SOURCE](7-log_manager/1-get/1-search.md)
+## 7.1.1 search
 
 ### Description
 
@@ -3059,13 +3169,19 @@ $python test.py
 { "id" : 24253, "ts" : "2023/11/28 16:53:13.202", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
 { "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 { "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
-```# 8. file_manager
+```
+[__SOURCE](8-file_manager/README.md)
+# 8. file_manager
 
 - This covers functions such as reading file information from the controller, changing file names, and transferring files.
-- Functions for checking the existence of a directory or creating and deleting it are also covered.## 8.1 file_manager/get
+- Functions for checking the existence of a directory or creating and deleting it are also covered.
+[__SOURCE](8-file_manager/1-get/README.md)
+## 8.1 file_manager/get
 
 - Send a GET request for file information from the controller.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 8.1.1 `files`
+- Receive a response by setting the correct path-parameter and query-parameter for each API.
+[__SOURCE](8-file_manager/1-get/1-files.md)
+## 8.1.1 `files`
 
 ### Description
 
@@ -3154,7 +3270,9 @@ S2   move P,tg=po1,spd=100%,accu=0,tool=1
 S3   move P,tg=po1,spd=100%,accu=0,tool=1
 S4   move P,tg=po1,spd=100%,accu=0,tool=1
      end
-```## 8.1.2 `file_info`
+```
+[__SOURCE](8-file_manager/1-get/2-file_info.md)
+## 8.1.2 `file_info`
 
 ### Description
 
@@ -3239,7 +3357,9 @@ print(get_file_info())
 ```sh
 $python test.py
 {'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
-```## 8.1.3 `file_list`
+```
+[__SOURCE](8-file_manager/1-get/3-file_list.md)
+## 8.1.3 `file_list`
 
 ### Description
 
@@ -3347,7 +3467,9 @@ $python final_test.py
 {'mday': 20, 'sec': 8, 'fname': 'jobs', 'wday': 1, 'size': 8192, 'year': 2023, 'hour': 21, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 50}
 {'mday': 1, 'sec': 50, 'fname': 'vars', 'wday': 3, 'size': 8192, 'year': 2023, 'hour': 12, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 29}
 {'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
-```## 8.1.4 `file_exist`
+```
+[__SOURCE](8-file_manager/1-get/4-file_exist.md)
+## 8.1.4 `file_exist`
 
 ### Description
 
@@ -3423,10 +3545,14 @@ print(is_file_exist())
 ```sh
 $python test.py
 true
-```## 8.2 file_manager/post
+```
+[__SOURCE](8-file_manager/2-post/README.md)
+## 8.2 file_manager/post
 
 - Sends a POST request for file information from the controller.
-- You must write the correct request-body for each API.# 8.2.1 `rename_file`
+- You must write the correct request-body for each API.
+[__SOURCE](8-file_manager/2-post/1-rename_file.md)
+# 8.2.1 `rename_file`
 
 ## Description
 
@@ -3502,7 +3628,9 @@ print(f"response: {rename_file()}")
 ```sh
 $python test.py
 response: 200
-```# 8.2.2 `mkdir`
+```
+[__SOURCE](8-file_manager/2-post/2-mkdir.md)
+# 8.2.2 `mkdir`
 
 ## Description
 
@@ -3577,7 +3705,9 @@ print(f"response: {post_mkdir()}")
 ```sh
 $python test.py
 response: 200
-```# 8.2.3 `files`
+```
+[__SOURCE](8-file_manager/2-post/3-files.md)
+# 8.2.3 `files`
 
 ## Description
 
@@ -3647,9 +3777,13 @@ print(f"response: {post_file_transfer()}")
 ```sh
 $python test.py
 response: 200
-```## 8.3 file_manager/delete
+```
+[__SOURCE](8-file_manager/3-delete/README.md)
+## 8.3 file_manager/delete
 
-- Send a DELETE request for file information from the controller.## 8.3.1 `files`
+- Send a DELETE request for file information from the controller.
+[__SOURCE](8-file_manager/3-delete/1-files.md)
+## 8.3.1 `files`
 
 ### Description
 
@@ -3703,18 +3837,26 @@ print(f"response: {delete_file()}")
 ```sh
 $python test.py
 response: 200
-```# 9.task
+```
+[__SOURCE](9-task/README.md)
+# 9.task
 
 - It covers content related to the task.
 - You can reset a specific task or all tasks.
 - You can read values from local or global variables of the current task or declare new variables.
-- During task execution, specific actions (e.g. release) can be taken for a specific work flow (e.g. wait).## 9.1 task/get
+- During task execution, specific actions (e.g. release) can be taken for a specific work flow (e.g. wait).
+[__SOURCE](9-task/1-get/README.md)
+## 9.1 task/get
 
 - Send a GET request for information related to the task.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 9.2 task/post
+- Receive a response by setting the correct path-parameter and query-parameter for each API.
+[__SOURCE](9-task/2-post/README.md)
+## 9.2 task/post
 
 - Sends a POST request for information related to the task.
-- You must write the correct request-body for each API.## 9.2.1 `task/cur_prog_cnt`
+- You must write the correct request-body for each API.
+[__SOURCE](9-task/2-post/1-cur_prog_cnt.md)
+## 9.2.1 `task/cur_prog_cnt`
 
 ### Description
 
@@ -3769,12 +3911,14 @@ print(post_cur_prog_cnt())
 ```sh
 $python python test.py
 {'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
-```## 9.2.2 `task/reset`
+```
+[__SOURCE](9-task/2-post/2-reset.md)
+## 9.2.2 `task/reset`
 
 ### Description
 
 - `POST` : Perform a reset on the task.  
-- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/english-${cont_model}-tp630/8-r-code/1-use-r-code). 
+- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}). 
   - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> Any other code is not intended for operation </span>
 
 ### path-parameter
@@ -3823,7 +3967,9 @@ print(f"response: {post_rcode_0()}")
 ```sh
 $python test.py
 response: 200
-```## 9.2.3 `assign_var_expr`
+```
+[__SOURCE](9-task/2-post/3-assign_var_expr.md)
+## 9.2.3 `assign_var_expr`
 
 ### Description
 
@@ -3917,7 +4063,9 @@ $python test.py
 before: 1234
 response: 200
 after: 777   
-```## 9.2.4 `assign_var_json`
+```
+[__SOURCE](9-task/2-post/4-assign_var_json.md)
+## 9.2.4 `assign_var_json`
 
 ### Description
 
@@ -4016,7 +4164,9 @@ $python test.py
 before: 1234
 response: 200
 after: {'_type': 'JObject', 'test': 10}
-```## 9.2.5 `release_wait`
+```
+[__SOURCE](9-task/2-post/5-release_wait.md)
+## 9.2.5 `release_wait`
 
 ### Description
 
@@ -4078,7 +4228,9 @@ print(f"response: {post_release_wait()}")
 ```sh
 $python test.py
 response: 200
-```## 9.2.6 `set_cur_pc_idx`
+```
+[__SOURCE](9-task/2-post/6-set_cur_pc_idx.md)
+## 9.2.6 `set_cur_pc_idx`
 
 ### Description
 
@@ -4134,7 +4286,9 @@ print(f"response: {set_cur_pc_idx()}")
 ```sh
 $python test.py 
 response 200 # Cursor position on TP changed
-```## 9.2.7 `solve_expr`
+```
+[__SOURCE](9-task/2-post/7-solve_expr.md)
+## 9.2.7 `solve_expr`
 
 ### Description
 
@@ -4172,7 +4326,7 @@ POST /project/context/tasks[0]/solve_expr
 <blockquote>
 
 ```python
-# 1. Read the value of “local” variable a declared in the current Task
+# 1. Read the value of "local" variable a declared in the current Task
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -4191,7 +4345,7 @@ response-body:
 <blockquote>
 
 ```python
-# 2. Read the value of “global” variable a declared in the current Task
+# 2. Read the value of "global" variable a declared in the current Task
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -4251,7 +4405,9 @@ $python test.py
 1234
 10
 1000
-```## 9.2.8 `execute_move`
+```
+[__SOURCE](9-task/2-post/8-execute_move.md)
+## 9.2.8 `execute_move`
 
 ### Description
 
@@ -4266,7 +4422,7 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ### request-body
 - `stmt` : Key value in the request body, referring to the statement.  
-- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/english/5-moving-robot/4-move).
+- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/en/5-moving-robot/4-move?cont_model=${cont_model}).
 
 ```json
 {
@@ -4323,16 +4479,24 @@ Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
 Status code: 200
 Request 3: Sending pose [0, 90, 0, 0, 0, 0]
 Status code: 200
-```# 10. console
+```
+[__SOURCE](10-console/README.md)
+# 10. console
 
 - You can use CLI commands of the ${cont_model} controller software.  
-- Various actions can be performed using robot language.  ## 10.1 console/get
+- Various actions can be performed using robot language.  
+[__SOURCE](10-console/1-get/README.md)
+## 10.1 console/get
 
 - Sends a GET request for information related to executing robot commands.  
-- The exact path-parameter and query-parameter must be set for each API to receive a response.  ## 10.2 console/post
+- The exact path-parameter and query-parameter must be set for each API to receive a response.  
+[__SOURCE](10-console/2-post/README.md)
+## 10.2 console/post
 
 - Sends a POST request for information related to executing robot commands.  
-- The exact request-body must be written for each API.  ## 10.2.1 `execute_cmd`
+- The exact request-body must be written for each API.  
+[__SOURCE](10-console/2-post/1-execute_cmd.md)
+## 10.2.1 `execute_cmd`
 
 
 ### Description
@@ -4434,14 +4598,22 @@ response: <Response [200]>
 response: <Response [200]>
 response: <Response [200]>
 response: 200
-```# 11. etc
+```
+[__SOURCE](11-etc/README.md)
+# 11. etc
 
-- It covers system version, event log, clock, etc.# 11.1 clock
+- It covers system version, event log, clock, etc.
+[__SOURCE](11-etc/1-clock/README.md)
+# 11.1 clock
 
-- You can read and set the controller's system time.## 11.1.1 clock/get
+- You can read and set the controller's system time.
+[__SOURCE](11-etc/1-clock/1-get/README.md)
+## 11.1.1 clock/get
 
 - Send a GET request for the controller system time.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.## 11.1.1.1 `date_time`
+- Receive a response by setting the correct path-parameter and query-parameter for each API.
+[__SOURCE](11-etc/1-clock/1-get/1-date_time.md)
+## 11.1.1.1 `date_time`
 
 ### Description
 
@@ -4493,10 +4665,14 @@ print(get_system_time())
 ```sh
 $python test.py
 [11/20] 19:55
-```## 11.1.2 clock/put
+```
+[__SOURCE](11-etc/1-clock/2-put/README.md)
+## 11.1.2 clock/put
 
 - Sends a PUT request to the controller system time.
-- You must write the correct request-body for each API.## 11.1.2.1 `date_time`
+- You must write the correct request-body for each API.
+[__SOURCE](11-etc/1-clock/2-put/1-date_time.md)
+## 11.1.2.1 `date_time`
 
 ### Description
 
@@ -4547,10 +4723,14 @@ print(f"response: {put_system_time()}")
 ```sh
 $python test.py
 response: 200
-```# Schema
+```
+[__SOURCE](99-schema/README.md)
+# Schema
 
 This chapter contains references to various enumerations and structures used in Open API.
 
+
+[__SOURCE](99-schema/crdsys.md)
 ## crdsys
 
 ### Description
@@ -4563,6 +4743,8 @@ This is an enumeration that specifies the coordinate system.
 |`1`|`orthogonal`(= `robot`) coordinate system|
 |`2`|`user` coordinate system|
 |`3`|`tool` coordinate system|
+
+[__SOURCE](99-schema/cur_prog_cnt.md)
 ## cur_prog_cnt
 
 ### Description
@@ -4581,7 +4763,9 @@ Sets the current program counter for the task.
 |:---|:---|:---|
 |`sno_new`|int|Newly moved step number|
 |`fno_new`|int|Newly moved function number|
-|`ln_new`|int|Newly moved line number (program header is 0, first statement is 1)|## date_time
+|`ln_new`|int|Newly moved line number (program header is 0, first statement is 1)|
+[__SOURCE](99-schema/date_time.md)
+## date_time
 
 ### Description
 
@@ -4594,6 +4778,8 @@ Indicates system time-related information.
 |"hour"|`int`|Hour of current system|
 |"min"|`int`|Minute of current system|
 |"sec"|`int`|Second of current system|
+
+[__SOURCE](99-schema/file_info.md)
 ## file_info
 
 ### Description
@@ -4613,6 +4799,8 @@ This parameter is returned when requesting file information.
 |sec|`int`| `second` the file was modified |
 |is_dir|`bool`| Check if current file is a directory |
 |readonly|`bool`| Check if the file is read-only |
+
+[__SOURCE](99-schema/jobs_info.md)
 ## jobs_info
 
 ### Description
@@ -4626,6 +4814,8 @@ This is a job file information parameter.
 |n_step|`int`|number of steps|
 |n_total_ax|`int`|number of axes|
 |n_aux_ax|`int`|Number of additional axes|
+
+[__SOURCE](99-schema/mechinfo.md)
 ## mechinfo
 
 ### Description
@@ -4648,6 +4838,8 @@ Celebrate with a bit-field which activities are used.
 0x13 = 0b00010011 = M4 | M1 | M0
 # Specify mechanisms M0, M1, and M4.
 ```
+
+[__SOURCE](99-schema/op_cnd.md)
 ## op_cnd
 
 ### Description
@@ -4688,6 +4880,8 @@ You can check the values when you press the `Condition setting` button in TP.
     "plc_mode": 4
 }
 ```
+
+[__SOURCE](99-schema/pose.md)
 ## Pose
 
 ### Description
@@ -4706,7 +4900,9 @@ Pose Data.
 |crd|[Coordinate system](./crdsys.md)|
 |mechinfo|[Mechanism information](./mechinfo.md)|
 |nsync|Number of sensor synchronization values (0~2)|
-|sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|## tool_data
+|sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|
+[__SOURCE](99-schema/tool_data.md)
+## tool_data
 
 ### Description
 
@@ -4729,6 +4925,8 @@ Robot's tool data.
 |`izz`| inertial Z (kgm2)|
 |`mass_esti`|Load estimate weight (kg.)|
 
+
+[__SOURCE](99-schema/robotlang.md)
 ## CLI Robot Language Commands
 
 ### Description

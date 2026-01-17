@@ -36,7 +36,7 @@ POST /project/context/tasks[0]/solve_expr
 <blockquote>
 
 ```python
-# 1. Read the value of “local” variable a declared in the current Task
+# 1. Read the value of "local" variable a declared in the current Task
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -55,7 +55,7 @@ response-body:
 <blockquote>
 
 ```python
-# 2. Read the value of “global” variable a declared in the current Task
+# 2. Read the value of "global" variable a declared in the current Task
 request url:
 GET /project/context/tasks[0]/solve_expr
 

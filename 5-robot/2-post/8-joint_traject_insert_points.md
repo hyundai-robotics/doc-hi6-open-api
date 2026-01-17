@@ -4,7 +4,7 @@
 
 - Supported version : `61.00-00` &uparrow;
 - `POST` : Sends a trajectory composed of multiple points to the robot controller.
-  - Multiple joint trajectory points are stored in the controller’s internal buffer and reflected in the robot’s motion.
+  - Multiple joint trajectory points are stored in the controller's internal buffer and reflected in the robot's motion.
 
 ---
 

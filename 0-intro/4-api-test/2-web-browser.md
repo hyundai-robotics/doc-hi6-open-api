@@ -1,4 +1,4 @@
-## 1.4.2 Calling API from web browser  
+﻿## 1.4.2 Calling API from web browser  
 
 ### a. Make a simple `GET` request
 
