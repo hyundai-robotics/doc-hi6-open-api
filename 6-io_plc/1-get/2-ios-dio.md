@@ -12,7 +12,7 @@
 
 ```python
 GET /project/control/ios/dio/{dio_val}
-```  
+```
 </div>
 
 ### path-variable
@@ -74,28 +74,53 @@ Python Script 예시
 <div style="width: fit-content;">
 
 ```python
-# test.py
 import requests
 
-
-def get_dio_val() -> requests.Response:
-    base_url = f"http://192.168.1.150:8888"
-    # base_url = f"http://127.0.0.1:8888"  # hrspace
-    path_parameter = "/project/control/ios/dio/do_val"
-    query_parameter = {"type": "dob", "blk_no": 2, "sig_no": 3}
-
-    response = requests.get(url=base_url + path_parameter, params=query_parameter)
-
-    return response
+BASE_URL = "http://127.0.0.1:8888"
 
 
-ret = get_dio_val()
-print(ret)
-print(format(ret[1]["val"] & 0xFF, "08b"))
+def get_do_val(sig_no: int = 0) -> requests.Response:
+    path = "/project/control/ios/dio/do_val"
+    params = {"type": "dob", "blk_no": 0, "sig_no": sig_no}
+    return requests.get(BASE_URL + path, params=params)
+
+
+def get_di_val(sig_no: int = 0) -> requests.Response:
+    path = "/project/control/ios/dio/di_val"
+    params = {"type": "dib", "blk_no": 0, "sig_no": sig_no}
+    return requests.get(BASE_URL + path, params=params)
+
+
+def extract_u8(res: requests.Response) -> int:
+    assert res is not None, "response is necessary."
+
+    res.raise_for_status()
+
+    payload = res.json()
+    if "val" not in payload:
+        raise KeyError(f"no 'val' in response: {payload}")
+
+    # MSB (Most Significant Bit) -> LSB (Least Significant Bit)
+    return int(payload["val"]) & 0xFF
+
+
+def lsb_first(u8: int) -> str:
+    # LSB -> MSB
+    return format(u8, "08b")[::-1]
+
+
+do_u8 = extract_u8(get_do_val(2))
+di_u8 = extract_u8(get_di_val(1))
+
+print("do value:", lsb_first(do_u8))
+print("di value:", lsb_first(di_u8))
+
 ```
 ```sh
+# (when fb0.do18 = 1, fb0.do20 = 1 / fb0.di14 = 1)
 $python test.py
-(200, {'_type': 'JObject', 'val': -99})
-10011101 # TP > fb2/9.do's 4th row => 1011001
+do value: 00101000
+di value: 00000010
 ```
+
 </div>
