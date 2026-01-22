@@ -32,11 +32,11 @@ POST /project/control/ios/dio/do_val
 ### query-parameter
 
 - `type` : io 값의 타입
-  - di or do : bit
-  - dib or dob : signed-byte
-  - diw or dow : signed-word (2byte)
-  - dil or dol : signed-dword (4yte)
-  - dif or dof : float
+  - do : bit
+  - dob : signed-byte
+  - dow : signed-word (2byte)
+  - dol : signed-dword (4yte)
+  - dof : float
 - `blk_no` : 블럭 번호 (0~9)
 - `sig_no` : 신호 인덱스 (0~)
 - `val` : 변경하고자 하는 설정값
