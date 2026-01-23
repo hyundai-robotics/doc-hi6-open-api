@@ -3,7 +3,7 @@
 ### Description
 
 - `POST` : Performs motor ON.
-- The `motor off API` has been deprecated as of [v60.30-00](../../1-release-note/60-30.md).
+- The `motor_off` API has been deprecated and is no longer supported starting from [v60.30-00](../../1-release-note/60-30.md).
 
 ### path-parameter
 
@@ -17,13 +17,28 @@ POST /project/robot/motor_on
 {}
 ```
 
-### response-body
+### response
+
+1) status code
+
+- 200 : OK
+- 400 : Bad Request
+  - The request body failed validation
+- 403 : Forbidden
+  - The request was made while not in Remote Mode (applied from v60.32)
+- 404 : Not Found
+
+2) response-body
 
 ```json
 {
     "_type": "JObject"
 }
 ```
+
+3) error code
+
+- -38500 : API request rejected because the system is not in Remote Mode
 
 ### Example
 
