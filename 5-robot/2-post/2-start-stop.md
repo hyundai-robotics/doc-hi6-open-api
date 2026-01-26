@@ -26,7 +26,7 @@ POST /project/robot/stop
    - 400 : Bad Request
      - request body 가 유효성 검사에서 실패한 경우
    - 403 : Forbidden
-     - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v60.32 부터 적용)
+     - start 요청 시 원격모드가 아닌 상태에서 요청한 경우(v60.30-07 부터 적용)
    - 404 : Not Found
 
 2) response-body
