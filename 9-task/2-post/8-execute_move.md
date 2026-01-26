@@ -8,7 +8,8 @@
 - `POST` : 지정한 포즈로 이동합니다.
 
 {% hint style="warning" %}
-HRSpace 사용 시 주의! v60.30-10 ~ v60.32-06에서 execute_move 원격 제한 오류 발생<br>
+HRSpace 사용 시 주의<br>
+VRC_Hi6 버전 v60.30-10 ~ v60.32-06에서 execute_move 원격 제한 오류 발생<br>
 → v60.30-09 이하 또는 v60.32-07 이상 사용 권장 (실제 Hi6 제어기 영향 없음)
 {% endhint %}
 
