@@ -7,6 +7,12 @@
 - 지원 버전 : `60.28-00` &uparrow;
 - `POST` : 지정한 포즈로 이동합니다.
 
+{% hint style="warning" %}
+VRC_Hi6 전용: v60.30-10 ~ v60.32-06에서 execute_move 오류 발생
+→ v60.30-09 이하 또는 v60.32-07 이상 사용 권장
+(실제 Hi6 제어기 영향 없음)
+{% endhint %}
+
 ### path-parameter
 
 ```python
@@ -24,7 +30,7 @@ POST /project/context/tasks[{task index}]/execute_move
 	}
 	```
 	</div>
-1) status code
+1. status code
    - 200 : OK
    - 400 : Bad Request
     - request body 가 유효성 검사에서 실패
@@ -32,18 +38,7 @@ POST /project/context/tasks[{task index}]/execute_move
     - 원격모드가 아닌 상태로 API 요청(v60.30-07 부터 적용)
    - 404 : Not Found
 
-2) 주의
-   - HRSpace VRC_Hi6 환경에서<br>
-     제어기 v60.30-10 ~ v60.32-06 버전은 execute_move 호출 시<br>
-     원격 모드 검증 오류가 발생할 수 있습니다.
-
-   - 정상 동작을 위해 HRSpace 프로그램 버전에 맞는 VRC_Hi6 버전을 사용해야 하며,<br>
-     다음 제어기 버전 범위를 사용해야 합니다.<br>
-     - v60.30-09 이하<br>
-     - v60.32-07 이상
-
-
-3) response-body
+2. response-body
 	- v60.30 이하 정상 응답
 		<div style="width: fit-content;">
 
@@ -60,7 +55,7 @@ POST /project/context/tasks[{task index}]/execute_move
 		```
 		</div>
 
-4) error code
+3. error code
    - -38500 : 원격 모드가 아닌 상태로 해당 api 요청
    - -1442071 : MOTOR OFF 에서 api 요청
    - -1442080 : 프로그램 자동 운전 중에 api 요청
