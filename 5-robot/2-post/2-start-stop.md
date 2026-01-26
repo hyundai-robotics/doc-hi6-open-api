@@ -19,18 +19,32 @@ POST /project/robot/stop
 
 ### response-body
 
+1. status code
+
+- 200 : OK
+- 400 : Bad Request
+   - The request body failed validation.
+- 403 : Forbidden
+    - A start request was attempted while not in Remote Mode (effective from v60.30-07).
+- 404 : Not Found
+
+2. response-body
+
 ```json
 {
     "_type": "JObject"
 }
 ```
+3. error code
+
+- -38500: API request rejected because the controller is not in Remote Mode
 
 ### Example
 
 ```python
 POST /project/robot/start or /project/robot/stop
 
-request-body: 
+request-body:
 {}
 ```
 
