@@ -25,7 +25,7 @@ POST /project/robot/stop
 - 400 : Bad Request
    - The request body failed validation.
 - 403 : Forbidden
-    - A start request was attempted while not in Remote Mode (effective from v60.30-07).
+    - A `start` request was attempted while not in Remote Mode (effective from v60.30-07).
 - 404 : Not Found
 
 2. response-body

@@ -19,26 +19,17 @@ POST /project/robot/motor_on
 
 ### response
 
-1) status code
+1. status code
 
 - 200 : OK
 - 400 : Bad Request
   - The request body failed validation
 - 403 : Forbidden
-  - An API request was attempted while not in Remote Mode (effective from v60.30-07).
+  - An API request was attempted while not in Remote Mode (effective from v60.30-09).
 - 404 : Not Found
 
-2) Cautions
 
-- In the HRSpace VRC_Hi6 environment, controllers running versions v60.30-10 to v60.32-06<br>
-  may encounter a Remote Mode validation error when calling execute_move.
-
-- For normal operation, use a VRC_Hi6 version that is compatible with the HRSpace program version,<br>
-  and one of the following controller versions:
-    - v60.30-09 or earlier, or
-    - v60.32-07 or later
-
-3) response-body
+2. response-body
 
 ```json
 {
@@ -46,7 +37,7 @@ POST /project/robot/motor_on
 }
 ```
 
-4) error code
+3. error code
 
 - -38500 : API request rejected because the system is not in Remote Mode
 
