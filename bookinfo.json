@@ -5,5 +5,9 @@
     "publisher": "HD현대로보틱스",
     "tocTitle": "목차",
     "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
-    "docId": "${cont_model:upper}OPENAPI_KO_001"
+    "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
+    "docId": "${cont_model:upper}OPENAPI_KO_001",
+    "references": [
+        { "rpath" : "doc-hi6-operation/ko-tp630" }
+    ]
 }
