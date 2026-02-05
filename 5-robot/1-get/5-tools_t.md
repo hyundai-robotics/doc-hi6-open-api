@@ -1,10 +1,10 @@
-﻿### 5.1.5 `tools/t_{number}`
+﻿#### 5.1.5 `tools/t_{number}`
 
-#### 설명
+##### 설명
 
 - `GET` : 특정 툴의 설정값 정보를 받는 함수입니다.
 
-#### path-parameter
+##### path-parameter
 
 
 <div style="width: fit-content;">
@@ -13,7 +13,7 @@
 GET /project/robot/tools/t_{number}
 ```
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -24,7 +24,7 @@ GET /project/robot/tools/t_{number}
 2) response-body
    - [툴 데이터](../../99-schema/tool_data.md)
 
-#### 사용 예
+##### 사용 예
 
 ```python
 request url:

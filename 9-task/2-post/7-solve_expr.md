@@ -1,18 +1,18 @@
-﻿### 9.2.7 `solve_expr`
+﻿#### 9.2.7 `solve_expr`
 
 <div style="width: fit-content;">
 
-#### 설명
+##### 설명
 
 - `POST` : 표현식(expression)을 풀어서 나오는 결과 값을 태스크의 지역 또는 전역 변수에 설정합니다.
 
-#### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[{task index}]/solve_expr
 ```
 
-#### request-body
+##### request-body
 - `expr` : 풀려고 하는 수식(expression)을 입력합니다
 - `scope` : `expr` 에 대한 스코프를 설정합니다.
 
@@ -26,7 +26,7 @@ POST /project/context/tasks[{task index}]/solve_expr
 		"scope" : "local"
 	}
 	```
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -42,7 +42,7 @@ POST /project/context/tasks[{task index}]/solve_expr
 	```
 	</div>
 
-#### 사용 예
+##### 사용 예
 
 <blockquote>
 

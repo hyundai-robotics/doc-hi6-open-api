@@ -1,13 +1,13 @@
-﻿### 5.2.6 `emergency_stop_test`
+﻿#### 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> 해당 API 는 `60.28-00` 까지 `emergency_stop` API 로 사용되었습니다. </b>  
 
-#### 설명
+##### 설명
 
 - 지원 버전 : `60.30-00` &uparrow;
 - `POST` : 비상 정지 테스트 요청을 보냅니다.
 
-#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -16,7 +16,7 @@ POST /project/robot/emergency_stop_test
 ```
 </div>
 
-#### request-body
+##### request-body
 
 <div style="width: fit-content;">
 
@@ -36,7 +36,7 @@ POST /project/robot/emergency_stop_test
 - `2: 일시정지`  
 	&rightarrow;  로봇 모션을 잠시 정지하는 경우. 정지 후 모터 오프가 되지 않음
 
-#### response 
+##### response 
 
 1) status code
    - 200 : OK
@@ -78,7 +78,7 @@ POST /project/robot/emergency_stop_test
 		</span>
 
 
-#### 사용 예
+##### 사용 예
 
 <div style="width: fit-content;">
 

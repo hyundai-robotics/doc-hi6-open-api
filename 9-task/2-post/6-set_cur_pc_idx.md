@@ -1,18 +1,18 @@
-﻿### 9.2.6 `set_cur_pc_idx`
+﻿#### 9.2.6 `set_cur_pc_idx`
 
 <div style="width: fit-content;">
 
-#### 설명
+##### 설명
 
 - `POST` : 현재 커서를 index 라인(>=0)에 위치 시키는 함수
 
-#### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[{task index}]/set_cur_pc_idx
 ```
 
-#### request-body
+##### request-body
 -
 	<div style="width: fit-content;">
 
@@ -21,7 +21,7 @@ POST /project/context/tasks[{task index}]/set_cur_pc_idx
 	```
 	</div>
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -39,11 +39,11 @@ POST /project/context/tasks[{task index}]/set_cur_pc_idx
 
 
 
-#### error code
+##### error code
 
 - -38501 : 재생 중인 task 가 있을 때는 적용이 되지 않습니다.
 
-#### 사용 예
+##### 사용 예
 
 ```python
 request url:

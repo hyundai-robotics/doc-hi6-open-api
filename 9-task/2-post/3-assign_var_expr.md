@@ -1,18 +1,18 @@
-﻿### 9.2.3 `assign_var_expr`
+﻿#### 9.2.3 `assign_var_expr`
 
 <div style="width: fit-content;">
 
-#### 설명
+##### 설명
 
 - `POST` : 태스크 구문의 변수를 재지정합니다.
 
-#### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[{task index}]/assign_var_expr
 ```
 
-#### request-body
+##### request-body
 
 - `name` : 변수명
 - `expr` : 변수에 대입할 수식
@@ -32,7 +32,7 @@ POST /project/context/tasks[{task index}]/assign_var_expr
 }
 ```
 
-#### response
+##### response
 
 1) status code
 	- 200 : OK
@@ -50,7 +50,7 @@ POST /project/context/tasks[{task index}]/assign_var_expr
 
 
 
-#### 사용 예
+##### 사용 예
 
 현재 태스크에 지역 변수 a 가 선언된 상태인 경우
 

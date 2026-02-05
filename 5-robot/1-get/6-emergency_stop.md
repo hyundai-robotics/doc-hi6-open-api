@@ -1,11 +1,11 @@
-﻿### 5.1.6 `emergency_stop`
+﻿#### 5.1.6 `emergency_stop`
 
-#### 설명
+##### 설명
 
 - `GET` : 비상정지 버튼이 눌려져있는 상태에 대해서 정보를 얻습니다.
 -  API 로 비상정지를 요청하는 경우에 대해서는 API 가 들어오는 시점에 1이 반환됩니다.  
 
-#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -13,7 +13,7 @@
 GET /project/robot/emergency_stop
 ```
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -32,7 +32,7 @@ GET /project/robot/emergency_stop
 	- 0: released 상태
    - 1: pressed 상태
 
-#### 사용 예
+##### 사용 예
 
 ```python
 request url:

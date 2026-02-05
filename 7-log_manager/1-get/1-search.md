@@ -1,10 +1,10 @@
-﻿### 7.1.1 search
+﻿#### 7.1.1 search
 
-#### 설명
+##### 설명
 
 - `GET` : 지정한 필터 조건으로 이벤트 이력(event log)를 열람합니다.  
 
-#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -13,7 +13,7 @@ GET /logManager/search
 ```
 </div>
 
-#### query-parameter
+##### query-parameter
 
 - `n_item` : 요청 event 개수 (default=100)
 - `cat_p` : 요청 범주 필터 (category positive). 각 타입을 의미하는 글자를 쉼표(,)로 결합하여 지정합니다.
@@ -41,7 +41,7 @@ GET /logManager/search
 - `ts_max` : 최대 timestamp 필터. (optional)
   - 년/월/일 시:분:초.밀리초 형식. e.g. 2023/11/20 18:50:30.955
 
-#### response
+##### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -63,7 +63,7 @@ GET /logManager/search
 		```
 		</div>
 
-#### 사용 예
+##### 사용 예
 
 <div style="width: fit-content;">
 

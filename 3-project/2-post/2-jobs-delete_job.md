@@ -1,10 +1,10 @@
-﻿### 3.2.2 `delete_job`
+﻿#### 3.2.2 `delete_job`
 
-#### 설명
+##### 설명
 
 - `POST` : 작업 파일을 제거하는 요청을 보냅니다.
 
-#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -12,7 +12,7 @@
 POST /project/jobs/delete_job
 ```
 
-#### request-body
+##### request-body
 
 ```json
 {
@@ -20,7 +20,7 @@ POST /project/jobs/delete_job
 }
 ```
 
-#### response
+##### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -32,7 +32,7 @@ POST /project/jobs/delete_job
 	{}
 	```
 
-#### 사용 예
+##### 사용 예
 
 ```json
 request url:

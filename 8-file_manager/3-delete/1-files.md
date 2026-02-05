@@ -1,18 +1,18 @@
-﻿### 8.3.1 `files`
+﻿#### 8.3.1 `files`
 
 <div style="width: fit-content;">
 
-#### 설명
+##### 설명
 
 - `DELETE` : 타겟 파일 또는 디렉토리를 삭제합니다.
 
-#### path-parameter
+##### path-parameter
 
 ```python
 DELETE /file_manager/files/{target-filepath}
 ```
 
-#### response
+##### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -23,7 +23,7 @@ DELETE /file_manager/files/{target-filepath}
    - 없음. status code 만 반환
    - 삭제할 대상의 파일이 없어도 통신상에 문제가 없으면 상태코드 200 응답
 
-#### 사용 예
+##### 사용 예
 
 <blockquote>
 

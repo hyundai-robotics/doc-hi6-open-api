@@ -1,10 +1,10 @@
-﻿### 3.1.2 `jobs_info`
+﻿#### 3.1.2 `jobs_info`
 
-#### 설명
+##### 설명
 
 - `GET` : job 프로그램 관련 정보들을 받는 함수입니다.
 
-$### path-parameter
+$#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -13,7 +13,7 @@ GET /project/jobs_info
 ```
 </div>
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -25,7 +25,7 @@ GET /project/jobs_info
 
    - [job 파일 관련 정보](../../99-schema/jobs_info.md)
 
-#### 사용 예
+##### 사용 예
 
 
 <div style="width: fit-content;">

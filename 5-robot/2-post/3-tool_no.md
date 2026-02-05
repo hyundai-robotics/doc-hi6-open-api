@@ -1,10 +1,10 @@
-﻿### 5.2.3 `tool_no`
+﻿#### 5.2.3 `tool_no`
 
-#### 설명
+##### 설명
 
 - `POST` : 현재 툴 번호를 설정합니다.
 
-#### path-parameter
+##### path-parameter
 
 
 <div style="width: fit-content;">
@@ -13,13 +13,13 @@
 POST /project/robot/tool_no
 ``` 
 
-#### request-body
+##### request-body
 
 - `val` : 툴 번호
   - `로봇 툴` : `0` ~ `31`
   - `정치 툴` : `0` ~ `3`
 
-#### response
+##### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -33,7 +33,7 @@ POST /project/robot/tool_no
 	{ "_type": "JObject"}
 	```
 
-#### 사용 예
+##### 사용 예
 
 ```json
 POST /project/robot/tool_no

@@ -120,3 +120,5 @@
   * [mechinfo](99-schema/mechinfo.md)
   * [op_cnd](99-schema/op_cnd.md)
   * [pose](99-schema/pose.md)
+  * [tool_data](99-schema/tool_data.md)
+  * [CLI Robot Language Commands](99-schema/robotlang.md)

@@ -1,10 +1,10 @@
-﻿### 3.1.1 `rgen`
+﻿#### 3.1.1 `rgen`
 
-#### 설명
+##### 설명
 
 - `GET` : 제어기에 설정된 일반적인 정보들을 읽습니다.
 
-#### path-parameter
+##### path-parameter
 
 
 <div style="width: fit-content;">
@@ -14,7 +14,7 @@ GET /project/rgen
 ```
 </div>
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -24,7 +24,7 @@ GET /project/rgen
 
 2) response-body
 
-	#### 2-1) 모드 정보
+	##### 2-1) 모드 정보
 	<div style="width: fit-content;">
 
 	|key|value|type|description|
@@ -41,7 +41,7 @@ GET /project/rgen
 	<br>
 
 
-	#### 2-2) current 프로그램 카운터
+	##### 2-2) current 프로그램 카운터
 	수동모드나 자동모드에서 티치펜던트 JOB 패널의 막대형 커서가 위치한 지점입니다. 현재 실행되고 있는 명령문, 혹은 편집의 대상 위치입니다.
 
 
@@ -57,7 +57,7 @@ GET /project/rgen
 
 	<br>
 
-	#### 2-3) moving 프로그램 카운터
+	##### 2-3) moving 프로그램 카운터
 
 	재생 중 로봇이 이동하고 있는 목표 스텝입니다.
 
@@ -73,7 +73,7 @@ GET /project/rgen
 
 	<br>
 
-	#### 2-4) 속도
+	##### 2-4) 속도
 
 
 	<div style="width: fit-content;">
@@ -91,7 +91,7 @@ GET /project/rgen
 
 <br>
 
-#### 사용 예
+##### 사용 예
 Python Script 예시
 
 <div style="width: fit-content;">

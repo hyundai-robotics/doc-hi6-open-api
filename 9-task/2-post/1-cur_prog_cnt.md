@@ -1,23 +1,23 @@
-﻿### 9.2.1 `task/cur_prog_cnt`
+﻿#### 9.2.1 `task/cur_prog_cnt`
 
 <div style="width: fit-content;">
 
-#### 설명
+##### 설명
 
 - `POST` : 태스크의 현재 프로그램 카운터를 설정합니다.
 
-#### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/cur_prog_cnt
 ```
 
-#### request-body
+##### request-body
 
 - [cur_prog_cnt 요청 파라미터](../.././99-schema/cur_prog_cnt.md)
 - 원격모드에서 동작하는 api로, 외부선택 옵션(ext_sel: 1)을 선택해야합니다.
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -45,7 +45,7 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 	</div>
 
-#### 사용 예
+##### 사용 예
 
 ```python
 request url:

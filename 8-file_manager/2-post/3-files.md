@@ -1,10 +1,10 @@
-﻿### 8.2.3 `files`
+﻿#### 8.2.3 `files`
 
-#### 설명
+##### 설명
 
 - `POST` : 타겟 경로에 파일을 전송합니다.
 
-#### path-parameter
+##### path-parameter
 
 
 <div style="width: fit-content;">
@@ -13,16 +13,16 @@
 POST /file_manager/files/{target_filepath}
 ```
 
-#### path-variable
+##### path-variable
 
 - `target_filepath` : 확장자를 포함한 타겟 파일 경로
 
-#### request-body
+##### request-body
 
 - binary 형식의 파일
 - `Content-Type` 은 `application/octet-stream` 이어야합니다.
 
-#### response
+##### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -38,7 +38,7 @@ POST /file_manager/files/{target_filepath}
 	```
 	</div>
 
-#### 사용 예
+##### 사용 예
 
 ```text
 ${cont_model}

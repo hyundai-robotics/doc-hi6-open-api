@@ -1,10 +1,10 @@
-﻿### 5.1.4 `tools`
+﻿#### 5.1.4 `tools`
 
-#### 설명
+##### 설명
 
 - `GET` : 로봇의 모든 툴 정보 얻기. T0~T31까지의 툴 중 존재하는 툴만 얻습니다.
 
-#### path-parameter
+##### path-parameter
 
 
 <div style="width: fit-content;">
@@ -13,7 +13,7 @@
 GET /project/robot/tools
 ```
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -28,7 +28,7 @@ GET /project/robot/tools
    ...
    - t_31 : 툴 데이터
 
-#### 사용 예
+##### 사용 예
 
 ```python
 request url:

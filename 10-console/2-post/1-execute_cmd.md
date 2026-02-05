@@ -1,21 +1,21 @@
 ﻿<div style="width: fit-content;">
 
-### 10.2.1 `execute_cmd`
+#### 10.2.1 `execute_cmd`
 
 
-#### 설명
+##### 설명
 
 - 지원 버전 : `60.28-00` &uparrow;
 - `POST` : ${cont_model} 제어기의 콘솔 명령어를 실행합니다.    
 - [CLI 로봇 언어 명령어 형식](../.././99-schema/robotlang.md)에 따른 명령을 수행할 수 있습니다.  
 
-#### path-parameter
+##### path-parameter
 
 ```python
 POST /console/execute_cmd
 ```
 
-#### request-body
+##### request-body
 
 ```json
 {
@@ -23,7 +23,7 @@ POST /console/execute_cmd
 }
 ```
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -46,7 +46,7 @@ POST /console/execute_cmd
    - 1: 로봇 언어 명령어 규칙을 벗어난 경우
 
 
-#### 사용 예
+##### 사용 예
 
 </blockquote>
 

@@ -1,10 +1,10 @@
-﻿### 5.1.3 `cur_tool_data`
+﻿#### 5.1.3 `cur_tool_data`
 
-#### 설명
+##### 설명
 
 - `GET` : 로봇의 현재 툴 데이터 얻기.
 
-#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -12,7 +12,7 @@
 GET /project/robot/cur_tool_data
 ```
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -23,7 +23,7 @@ GET /project/robot/cur_tool_data
 2) response-body
    - val : [툴 데이터](../../99-schema/tool_data.md)
 
-#### 사용 예
+##### 사용 예
 
 ```python
 request url:

@@ -1,11 +1,11 @@
-﻿### 5.1.7 `joint_traject_buf_avail`
+﻿#### 5.1.7 `joint_traject_buf_avail`
 
-#### 설명
+##### 설명
 - 지원 버전 : `60.32-00` &uparrow;
 - `GET` : 현재 궤적을 저장하는 버퍼의 사용가능한 크기를 반환합니다.
 - 궤적을 연속해서 요청을 하는 경우, 해당 함수를 활용해 남은 저장 공간의 크기 이내의 크기의 궤적을 요청해야합니다.
 
-#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -13,7 +13,7 @@
 GET /project/robot/trajectory/joint_traject_buf_avail
 ```
 
-#### response
+##### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -32,7 +32,7 @@ GET /project/robot/trajectory/joint_traject_buf_avail
 		</div>
 
 
-#### 사용 예
+##### 사용 예
 
 ```python
 request url:

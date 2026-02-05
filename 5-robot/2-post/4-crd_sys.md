@@ -1,10 +1,10 @@
-﻿### 5.2.4 `crd_sys`
+﻿#### 5.2.4 `crd_sys`
 
-#### 설명
+##### 설명
 
 - `POST` : 현재 조그(jog) 좌표계를 설정합니다.
 
-#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -12,11 +12,11 @@
 POST /project/robot/crd_sys
 ```
 
-#### request-body
+##### request-body
 
 - [좌표계](../../99-schema/crdsys.md)
 
-#### response
+##### response
 
 1) status code
    - 200 : OK
@@ -37,7 +37,7 @@ POST /project/robot/crd_sys
 	```
 	</div>
 
-#### 사용 예
+##### 사용 예
 
 ```json
 POST /project/robot/crd_sys
