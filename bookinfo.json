@@ -5,5 +5,8 @@
     "publisher": "HD Hyundai Robotics",
     "tocTitle": "Contents",
     "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
-    "docId": "${cont_model:upper}OPENAPI_EN_001"
+    "docId": "${cont_model:upper}OPENAPI_EN_001",
+    "references": [
+        { "rpath" : "doc-hi6-operation/en-tp630" }
+    ]
 }

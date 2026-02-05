@@ -8,7 +8,7 @@ We are not responsible for any damage or problems that arise from using an API t
 
 {% endhint %}
 [__SOURCE](0-intro/README.md)
-## 0. Intro
+# 0. Intro
 
 You can check the basic information related to ${cont_model} Open API below.
 
