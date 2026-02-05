@@ -1,16 +1,16 @@
-﻿## 6.1.1 `get relay values`
+﻿#### 6.1.1 `get relay values`
 
-### Description
+##### Description
 
 - `GET` :Obtain the relay value for the entire object type.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 ```
 
-### path-variable
+##### path-variable
 
 [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
 
@@ -26,13 +26,13 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 	
 
-### query-parameter
+##### query-parameter
 
 - `st` : start byte index (default: 0)
 - `len` : number of words (default: 8)
 
 
-### Example
+##### Example
 
 ```python
 request url:

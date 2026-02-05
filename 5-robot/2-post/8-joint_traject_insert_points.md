@@ -1,6 +1,6 @@
-﻿## 5.2.8 `joint_traject_insert_points`
+﻿#### 5.2.8 `joint_traject_insert_points`
 
-### Description
+##### Description
 
 - Supported version : `60.32-00` &uparrow;
 - `POST` : Sends a trajectory composed of multiple points to the robot controller.
@@ -8,7 +8,7 @@
 
 ---
 
-### Caution
+##### Caution
 
 1. This API is functional only while the program is in a <u>running state</u>.
    - ex) The API only works when the program is being played back in automatic mode.
@@ -29,7 +29,7 @@
 
 ---
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -38,7 +38,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 ```
 </div>
 
-### request-body
+##### request-body
 
 <div style="width: fit-content;">
 
@@ -69,13 +69,13 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
   ```
 
-### status code
+##### status code
 
 - 200 : Request succeeded
 - 403 : Request failed
   - Returned when calling an unsupported API
 
-### error code (response 403)
+##### error code (response 403)
 
 <div style="width: fit-content;">
 
@@ -96,7 +96,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 </div>
 
-### Example
+##### Example
 
 **Ex1. Requesting a trajectory while the robot is at rest**
 
@@ -138,7 +138,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 <br>
 
-#### Python Script Example
+##### Python Script Example
 
 - Move the robot to its default pose (based on a 6-axis configuration, [0, 90, 0, 0, 0, 0])
 - Create and `play` the following 0001.job in `automatic mode` to enter the program play state.

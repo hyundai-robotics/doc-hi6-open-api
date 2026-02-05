@@ -1,20 +1,20 @@
-﻿## 5.1.5 `tools/t_{number}`
+﻿#### 5.1.5 `tools/t_{number}`
 
-### Description
+##### Description
 
 - `GET` : This is a function that receives information on the settings of a specific tool.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/tools/t_{number}
 ```
 
-### response-body
+##### response-body
 
 - [Tool data](../../99-schema/tool_data.md)
 
-### Example
+##### Example
 
 ```python
 request url:

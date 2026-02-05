@@ -1,4 +1,4 @@
-﻿### 1.3.1 Sample code - C#
+﻿#### 0.3.1 Sample code - C#
 
 This document uses `Newtonsoft.Json`, a library for JSON parsing.  
 If it is not installed in your Visual Studio project, please install it using NuGet Package Manager.

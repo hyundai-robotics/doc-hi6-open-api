@@ -1,4 +1,4 @@
-﻿## 1.2 Required prior knowledge
+﻿## 0.2 Required prior knowledge
 
 In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
 Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
@@ -31,7 +31,7 @@ We are not responsible for any damages or problems arising from the use of APIs 
 
 ---- 
 
-### 1.2.1 What is an API?
+#### 0.2.1 What is an API?
 
 `API` (Application Programming Interface) is a `set of definitions and protocols` for building and  integrating application software ([ref](https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces)).  
 This is how the user sends a `request structured in a particular way` and the provider's software `responds` to it.  
@@ -40,7 +40,7 @@ This allows you to communicate with products or services you don't know how to s
 <br>
 
 
-### 1.2.2 What is REST API?
+#### 0.2.2 What is REST API?
 
 `REST` (Representational State Transfer) is a `software architecture` that imposes conditions on how an API behaves.  
 `REST API` refers to an API that follows the REST architecture style. Also called RESTful API ([ref](https://aws.amazon.com/what-is/restful-api/)).  

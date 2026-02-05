@@ -1,18 +1,18 @@
-﻿## 3.1.1 `rgen`
+﻿#### 3.1.1 `rgen`
 
-### Description
+##### Description
 
 - `GET` : Obtain remote general information in the controller.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/rgen
 ```
 
-### response-body
+##### response-body
 
-#### 1) Mode
+###### 1) Mode
 |key|value|type|description|
 |:---|:---|:---|:---|
 |`cur_mode`| `0` : manual <br> `1` : manual, system settings <br>`3` : auto, 1-cycle <br> `4` : auto, continue (cycle)|`int`|manual/auto mode|
@@ -24,7 +24,7 @@ GET /project/rgen
 
 <br>
 
-#### 2) current program counter
+###### 2) current program counter
 This is the point where the bar cursor on the teach pendant JOB panel is located in manual mode or automatic mode. This is the currently executing statement or the target location for editing.
 |key|type|description|
 |:---|:---|:---|
@@ -34,8 +34,7 @@ This is the point where the bar cursor on the teach pendant JOB panel is located
 
 <br>
 
-#### 3) moving program counter
-
+###### 3) moving program counter
 This is the target step the robot is moving during playback.
 |key|type|description|
 |:---|:---|:---|
@@ -45,8 +44,7 @@ This is the target step the robot is moving during playback.
 
 <br>
 
-#### 4) Speed
-
+###### 4) Speed
 |key|type|description|
 |:---|:---|:---|
 |`spd_lev`|`int`|Manual mode jog speed level (1~8)|
@@ -58,7 +56,7 @@ This is the target step the robot is moving during playback.
 
 <br>
 
-### Example
+##### Example
 Python Script Example
 
 ```python

@@ -1,8 +1,8 @@
-﻿## 5.2.5 `emergency_stop`
+﻿#### 5.2.5 `emergency_stop`
 
 - <b style="color:orange"> For versions prior to ***<u>60.30-00</u>***, refer to ***<u>[emergency_stop_test](./6-emergency_stop_test.md)</u>*** instead of emergency_stop. </b>  
 
-### Description
+##### Description
 
 - Supported Version : `60.30-00` &uparrow;
 - `POST` : Executes an emergency stop.  
@@ -10,23 +10,23 @@
 - Due to network latency or request processing time, the API may respond slower than a physical button.  
 
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/robot/emergency_stop
 ```
 
-### request-body
+##### request-body
 ```python 
 {}
 ```
 
-### status code
+##### status code
 
 - 200 : Request successful  
 - 400 : Request failed (Emergency stop sequence execution failed)    
 
-### Example
+##### Example
 
 ```emergency_stop
 POST /project/robot/emergency_stop

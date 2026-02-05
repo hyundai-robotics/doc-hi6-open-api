@@ -1,23 +1,23 @@
-﻿## 6.1.2 `ios/dio/{dio_val}`
+﻿#### 6.1.2 `ios/dio/{dio_val}`
 
-### Description
+##### Description
 
 - `GET` : Obtain user IO values.
 - Please refer to the [sio api](./3-ios-sio.md) for system input/output values.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/control/ios/dio/{dio_val}
 ```
 
-### path-variable
+##### path-variable
 
 - `dio_val` :
   - `di_val` : Get the input(di) value.
   - `do_val` : Get the output(do) value.
 
-### query-parameter
+##### query-parameter
 
 - `type` : Type of io value
   - di or do : bit
@@ -28,7 +28,7 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : block number (0~9)
 - `sig_no` : signal index (0~)
 
-### Example
+##### Example
 
 - Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
 

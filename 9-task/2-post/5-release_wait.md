@@ -1,32 +1,32 @@
-﻿## 9.2.5 `release_wait`
+﻿#### 9.2.5 `release_wait`
 
-### Description
+##### Description
 
 - `POST` : release syntax
 - Requirements: TP > system > 1: User environment > `wait(di/wi) release` > `Enable` click
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/release_wait
 ```
 
-### request-body
+##### request-body
 
 ```json
 {}
 ```
 
-### status code
+##### status code
 
 - 200 : Request succeeded
 - 403 : Request failed
   -  Failure to meet the above requirements
 
-### error code
+##### error code
 - -1442069 : User environment configuration error. Please ensure that all prerequisite requirements are satisfied
 
-### Example
+##### Example
 
 <blockquote>
 

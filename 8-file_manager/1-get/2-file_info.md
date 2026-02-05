@@ -1,16 +1,16 @@
-﻿## 8.1.2 `file_info`
+﻿#### 8.1.2 `file_info`
 
-### Description
+##### Description
 
 - `GET` : Obtain information about that file based on the file path.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /file_manager/file_info
 ```
 
-### query-parameter
+##### query-parameter
 
 query-parameter must be entered.  
 
@@ -20,12 +20,12 @@ query-parameter must be entered.
 
 - `pathname` : target file path
 
-### response-body
+##### response-body
 
 - [file information](../../99-schema/file_info)
 - If the file does not exist, `404 Not Found`
 
-### Example
+##### Example
 
 <blockquote>
 

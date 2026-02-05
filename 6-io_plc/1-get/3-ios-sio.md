@@ -1,22 +1,22 @@
-﻿## 6.1.3 `ios/sio/{sio_val}` 
+﻿#### 6.1.3 `ios/sio/{sio_val}` 
 
-### Description
+##### Description
 
 - `GET` : Get system IO values.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/control/ios/sio/{sio_val}
 ```
 
-### path-variable
+##### path-variable
 
 - `sio_val` :
   - `si_val` : Get the input(si) value.
   - `so_val` : Get the output(so) value.
 
-### query-parameter
+##### query-parameter
 
 - `type` : Type of io value
   - si or so : bit
@@ -27,7 +27,7 @@ GET /project/control/ios/sio/{sio_val}
 - `sig_no` : signal index (0~)
 
 
-### Example
+##### Example
 
 - Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
 

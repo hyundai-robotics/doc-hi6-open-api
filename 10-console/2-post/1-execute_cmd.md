@@ -1,19 +1,19 @@
-﻿## 10.2.1 `execute_cmd`
+﻿#### 10.2.1 `execute_cmd`
 
 
-### Description
+##### Description
 
 - Supported version : `60.28-00` &uparrow;
 - `POST` : Executes console commands for the ${cont_model} controller.  
 - You can perform [CLI robot language commands](../.././99-schema/robotlang.md).  
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /console/execute_cmd
 ```
 
-### request-body
+##### request-body
 
 ```json
 {
@@ -21,7 +21,7 @@ POST /console/execute_cmd
 }
 ```
 
-### status code
+##### status code
 
 - 200: Request successful  
 	- Needs to apply [CLI robot language commands](../.././99-schema/robotlang.md) rules  
@@ -37,7 +37,7 @@ POST /console/execute_cmd
 - 403/4: Request failed
 	- Requested an API that is not serviced
 
-### Example
+##### Example
 
 </blockquote>
 

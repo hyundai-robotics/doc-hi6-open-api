@@ -8,17 +8,18 @@ We are not responsible for any damage or problems that arise from using an API t
 
 {% endhint %}
 [__SOURCE](0-intro/README.md)
-## 1.1 Intro
+## 0. Intro
 
 You can check the basic information related to ${cont_model} Open API below.
 
-[1.1 About ${cont_model} Open API](./1-concept/README.md) <br>
-[1.2 Required prior knowledge](./2-prerequisite/README.md) <br>
-[1.3 Sample code](./3-sample-code/README.md) <br>
-[1.4 Simple API call without coding](./4-api-test/README.md)
-[1.5 Precautions Before Starting](./4-api-test/README.md)
+[0.1 About ${cont_model} Open API](./1-concept/README.md) <br>
+[0.2 Required prior knowledge](./2-prerequisite/README.md) <br>
+[0.3 Sample code](./3-sample-code/README.md) <br>
+[0.4 Simple API call without coding](./4-api-test/README.md)
+[0.5 Precautions Before Starting](./4-api-test/README.md)
+
 [__SOURCE](0-intro/1-concept/README.md)
-## 1.1 About ${cont_model} Open API
+## 0.1 About ${cont_model} Open API
 
 In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as ${cont_model}).<br>
 This enables developers to read and write ${cont_model} data without requiring a thorough comprehension of the source code used in ${cont_model} development.<br>
@@ -39,7 +40,7 @@ In this way, developers can use the Open API in the document to remotely control
 <br><br>
 
 
-### Be sure to check before you start!
+#### Be sure to check before you start!
 
 * The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
 
@@ -53,8 +54,9 @@ The APIs described in this document are supported starting from `${cont_model} V
 Please note that URLs and properties not specified in this document may change without notice in the same API version.
 
 {% endhint %}
+
 [__SOURCE](0-intro/2-prerequisite/README.md)
-## 1.2 Required prior knowledge
+## 0.2 Required prior knowledge
 
 In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
 Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
@@ -87,7 +89,7 @@ We are not responsible for any damages or problems arising from the use of APIs 
 
 ---- 
 
-### 1.2.1 What is an API?
+#### 0.2.1 What is an API?
 
 `API` (Application Programming Interface) is a `set of definitions and protocols` for building and  integrating application software ([ref](https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces)).  
 This is how the user sends a `request structured in a particular way` and the provider's software `responds` to it.  
@@ -96,7 +98,7 @@ This allows you to communicate with products or services you don't know how to s
 <br>
 
 
-### 1.2.2 What is REST API?
+#### 0.2.2 What is REST API?
 
 `REST` (Representational State Transfer) is a `software architecture` that imposes conditions on how an API behaves.  
 `REST API` refers to an API that follows the REST architecture style. Also called RESTful API ([ref](https://aws.amazon.com/what-is/restful-api/)).  
@@ -108,8 +110,9 @@ Developers often implement RESTful APIs using four common Hypertext Transfer Pro
 - `POST` : Clients use POST to send data to the server. They include the data representation with the request. Sending the same POST request multiple times has the side effect of creating the same resource multiple times.
 - `PUT` : Clients use PUT to update existing resources on the server. Unlike POST, sending the same PUT request multiple times in a RESTful web service gives the same result.
 - `DELETE` : Clients use the DELETE request to remove the resource. A DELETE request can change the server state. However, if the user does not have appropriate authentication, the request fails.
+
 [__SOURCE](0-intro/3-sample-code/README.md)
-## 1.3 Sample code
+## 0.3 Sample code
 
 Various development languages provide libraries for calling REST APIs.  
 To learn how to use it, you can easily search and refer to the technical documentation for each development language.
@@ -119,7 +122,7 @@ To learn how to use it, you can easily search and refer to the technical documen
 - Let's assume you are making a request to a ${cont_model} controller with IP address 192.168.1.150.
 
 [__SOURCE](0-intro/3-sample-code/1-csharp.md)
-### 1.3.1 Sample code - C#
+#### 0.3.1 Sample code - C#
 
 This document uses `Newtonsoft.Json`, a library for JSON parsing.  
 If it is not installed in your Visual Studio project, please install it using NuGet Package Manager.
@@ -164,8 +167,9 @@ Console.WriteLine(str);
 
 You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
 > Link : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)
+
 [__SOURCE](0-intro/3-sample-code/2-python.md)
-### 1.3.2 Sample code - python
+#### 0.3.2 Sample code - python
 
 The example code mainly describes `a. synchronous request`.
 
@@ -186,7 +190,7 @@ Therefore, when developing actual applications, please write your code in an asy
 
 <br>
 
-### a. Synchronous request
+##### a. Synchronous request
 Synchronous is a request method in a blocking state in which other tasks cannot be executed until one request is completed and a response is received.  
 A widely used library for `synchronous` HTTP requests in Python is `requests`.
 If you do not have the `requests` library, you can install it through the Python package manager.  
@@ -236,8 +240,9 @@ $python sync.py
 [get] 0x79 from fb2.do3 Time taken: 0.04711771011352539 seconds
 total request time : 0.292741060256958 seconds
 ```
+
 [__SOURCE](0-intro/4-api-test/README.md)
-## 1.4 Simple API call without coding
+## 0.4 Simple API call without coding
 
 If you use Open API while developing a client application like [previous example code](../3-sample-code/README.md), you can easily call the API without coding.  
 Through this calling process, you can check whether the request worked properly and what data is returned in response.  
@@ -245,7 +250,7 @@ There are several ways to do this. This section covers two representative ones.
 
 <br>
 
-### 1.4.1 Using `postman`
+#### 0.4.1 Using `postman`
 
 `postman` is a widely used API testing platform around the world.
 Postman's `workspace` function enables project-level API testing and history tracking, and is equipped with language-specific code snippets and intuitive UI.
@@ -255,20 +260,21 @@ Simple usage instructions can be found in [1.4.1 Requesting POST in Postman](../
 <br>
 
 
-### 1.4.2 Using `Web Browser`
+#### 0.4.2 Using `Web Browser`
 
 Simple `get` requests can be made easily and quickly through a web browser.  
 Additionally, you can use your web browser's extension to directly call `get` requests and other API requests and view the results.  
 You can check simple usage instructions in [1.4.2 Calling API from web browser](../4-api-test/2-web-browser.md).
+
 [__SOURCE](0-intro/4-api-test/1-postman.md)
-## 1.4.1 Requesting POST in Postman
+#### 0.4.1 Requesting POST in Postman
 
 On this page, use `postman` to call the `POST` request of the REST API and check the result.  
 Additionally, simple UI configuration helps you understand how to use it.
 
 <br>
 
-### a. Main UI composition
+##### a. Main UI composition
 
 You can check the main UI composition through the picture below.
 
@@ -285,7 +291,7 @@ You can check the main UI composition through the picture below.
 
 <br>
 
-### b. Testing POST Requests
+##### b. Testing POST Requests
 
 1. `Request Header`  
 	- Enter the `Key`, `Value` below in the Headers tab.
@@ -312,10 +318,11 @@ You can check the main UI composition through the picture below.
 		`(2) Python Code snippet` : codes for `post` request in python.  
 
 		</blockquote>
-[__SOURCE](0-intro/4-api-test/2-web-browser.md)
-## 1.4.2 Calling API from web browser  
 
-### a. Make a simple `GET` request
+[__SOURCE](0-intro/4-api-test/2-web-browser.md)
+#### 0.4.2 Calling API from web browser  
+
+###### a. Make a simple `GET` request
 
 `get` requests can be checked more simply and quickly through a web browser. The order is as follows:
 1. Open web browser
@@ -332,7 +339,7 @@ You can check the main UI composition through the picture below.
 
 <br>
 
-### b. Calling API with `extension`
+###### b. Calling API with `extension`
 If you use Chrome or Edge browsers, you can test APIs other than `get` requests through the Chrome extension.  
 The following extension program is an API tester used by many developers around the world.
 - Chrome extension program : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
@@ -350,7 +357,10 @@ Through this program, you can easily call various APIs like `postman`.
 `(5) Side History Tab` : This tab allows you to check a larger amount of history than the request history list in `(4)`, which can be opened and closed.
 
 </blockquote>
+
 [__SOURCE](0-intro/5-caution/README.md)
+## 0.5 Caution
+
 {% hint style="caution" %}
 
 This section outlines critical precautions that may cause serious errors in the robot controller.
@@ -359,11 +369,11 @@ Please ensure you fully understand these items before using the API.
 
 {% endhint %}
 
-#### Table of Contents
 
-1. [Keep-Alive vs Close connection](./1-http-connection.md)
+0.5.1. [Keep-Alive vs Close connection](./1-http-connection.md)
+
 [__SOURCE](0-intro/5-caution/1-http-connection.md)
-## 1. Keep-Alive vs Close connection
+#### 0.5.1. Keep-Alive vs Close connection
 
 {% hint style="caution" %}
 
@@ -375,7 +385,7 @@ If your application involves frequent API calls, please follow the instructions 
 
 <br>
 
-#### 1-1. Comparing Two HTTP Connection Methods
+###### 1-1. Comparing Two HTTP Connection Methods
 
 <div style="max-width: fit-content">
 
@@ -397,7 +407,7 @@ If your application involves frequent API calls, please follow the instructions 
 
 <br>
 
-#### 1-2. Example Code
+###### 1-2. Example Code
 
 - Switching between `close` and `keep-alive` connections is simple and can be done by modifying the request headers.
 
@@ -439,8 +449,9 @@ If your application involves frequent API calls, please follow the instructions 
 
 References
   1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
+
 [__SOURCE](1-release-note/README.md)
-## 1. release note 
+# 1. release note 
 
 - API changes have been documented based on the COM version.  
 - If you wish to use an API that operates on a higher controller version than your current one, a version upgrade is required.  
@@ -450,17 +461,18 @@ References
 
 	|COM Version|Release Schedule|Link|
 	|:--:|:--:|:--:|
-	|v61-00.00| Scheduled September 2025 _(TBD)_|[🔗](61-00.md)|
+	|v60-34.00| Scheduled March 2026 _(TBD)_|[🔗](60-34.md)|
+	|v60-32.00| 2025.11 |[🔗](60-32.md)|
 	|v60-30.00|March, 2025|[🔗](60-30.md)|
 	|v60-28.00|August, 2024|[🔗](60-28.md)|
-	|v60-26.00|-||
-	|v60-24.00|-||
 
 	</div>
 
-[__SOURCE](1-release-note/61-00.md)
-<h2 style="display: inline-flex; align-items: center; gap: 8px;">
-  📝 Release Notes - v61.00-00
+[__SOURCE](1-release-note/60-34.md)
+<link rel="stylesheet" href="../_assets/style.css">
+
+<h4 style="display: inline-flex; align-items: center; gap: 8px;">
+  Release Notes - v60.34-00
   <span style="
     background: #F44336; 
     color: #FFFFFF; 
@@ -477,13 +489,7 @@ References
   ">
     PREVIEW
   </span>
-</h2>
-
-<br>
-
-Version v61.00 is scheduled for release in September.  
-The listed features are currently undergoing internal testing and will be deployed accordingly.  
-Depending on circumstances, the release date may be moved forward.
+</h4>
 
 <br>
 
@@ -501,16 +507,12 @@ Depending on circumstances, the release date may be moved forward.
   ✨ New Feature
 </h4>
 
-
-- joint_traject_init
-  - Initializes the trajectory buffer index.
-  - This API must be called when requesting a new trajectory step while the robot is in a stopped state.
-- joint_traject_insert_points
-  - Receives multiple trajectory points from an external source and applies them to the robot's motion.
-  - This API enables smooth motion execution based on externally provided trajectory data.
-- joint_traject_buf_avail
-  - Returns the number of available trajectory buffer slots.
-  - This API allows external systems to check how many trajectory points can currently be submitted.
+- joint_states<br>
+  - An API for retrieving the robot's current joint angles (°), velocities, and torques.  
+    It supports querying all axes or selectively querying a specified range of axes.
+- joint_traject_insert_point<br>
+  - An API that sequentially appends the next target joint point to an active joint trajectory,  
+    enabling continuous joint motion of the robot.
 
 <br><br>
 
@@ -528,8 +530,7 @@ Depending on circumstances, the release date may be moved forward.
   🔧 Improvement & Change
 </div>
 
-- emergency_stop_test 
-  - Fixed a bug where a 403 Bad Request response was incorrectly returned when issuing a Category 0 (immediate stop) request.
+- none
 
 <br><br>
 
@@ -549,6 +550,134 @@ Depending on circumstances, the release date may be moved forward.
 
 - none
 
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  📌 Updated API List
+</div>
+
+- ✨ [<b style="color: #4CAF50">get</b>] [joint_states](../5-robot/1-get/8-joint_states.md)
+- ✨ [<b style="color: #FF9800">post</b>] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
+
+[__SOURCE](1-release-note/60-32.md)
+<link rel="stylesheet" href="../_assets/style.css">
+
+<h4 style="display: inline-flex; align-items: center; gap: 8px;">
+Release Notes - v60.32-00
+  <span style="
+    background: #F44336; 
+    color: #FFFFFF; 
+    border: 2px solid #FFD700; 
+    padding: 1px 5px; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    font-size: 14px; /* h2 크기에 맞춤 */
+    text-transform: uppercase; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    height: 1.6em; /* h2 높이에 맞게 조정 */
+  ">
+    NEW
+  </span>
+</h4>
+
+<br>
+
+<h4 style="
+  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  margin: 0; 
+  font-size: 14px; 
+  font-weight: bold; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ✨ New Feature
+</h4>
+
+- joint_traject_init<br>
+  - Added a buffer index initialization API that must be executed **<u>mandatorily</u>**  
+    when requesting a trajectory for a new step while the robot is in a stopped state
+- joint_traject_insert_points<br>
+  - Added an API that receives multiple trajectory points from an external source  
+    and applies them to the robot motion
+- joint_traject_buf_avail<br>
+  - Added an API to query the number of currently available buffers  
+    when requesting trajectories from an external source
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  🔧 Improvement & Change
+</div>
+
+- set_cur_pc_idx<br>
+  - Added validation to prevent invocation while a program is playing
+- emergency_stop<br>
+  - Display a notice popup when invoked
+- emergency_stop_test<br>
+  - Fixed a bug where a request for immediate stop (category 0) returned a 403 BAD Request
+  - Refined error codes by validation case
+  - Display a notice popup when invoked
+- execute_move<br>
+  - Fixed response-related bugs and refined error codes
+  - Added validation to allow operation only in remote mode
+- motor_on API<br>
+  - Fixed a bug where motor_on did not work after switching to manual mode  
+    during program playback in remote mode
+  - Added validation to allow operation only in remote mode
+- start<br>
+  - Fixed a bug where it could not be called in remote mode
+  - Added validation to allow operation only in remote mode
+- stop<br>
+  - Fixed a bug where it could not be called in remote mode
+  - Display a notice popup when invoked
+- reset<br>
+  - Fixed a bug where it did not operate correctly in remote mode
+- Fixed a bug where programs were executed multiple times  
+  when APIs were called in the following sequence<br>
+  - Motor On → R0 → Delete Job → Upload Job → Reload Job → Set Current PC → Start Robot
+
+<br><br>
+
+<div style="
+  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
+  border-radius: 5px; 
+  display: inline-block; 
+  color: white; 
+  padding: 2px 8px; 
+  font-size: 14px; 
+  font-weight: bold; 
+  margin: 8px 0; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+">
+  ❌ Deprecated
+</div>
+
+- none
 
 <br><br>
 
@@ -563,18 +692,24 @@ Depending on circumstances, the release date may be moved forward.
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 API List
-</div>  
+  📌 Updated API List
+</div>
 
-- ✨ \[<b style="color: #4CAF50">get</b>\] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail)  
-- ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
-- ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
-- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- ✨ [<b style="color: #4CAF50">get</b>] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)
+- ✨ [<b style="color: #FF9800">post</b>] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)
+- ✨ [<b style="color: #FF9800">post</b>] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
+- 🔧 [<b style="color: #FF9800">post</b>] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
+- 🔧 [<b style="color: #FF9800">post</b>] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- 🔧 [<b style="color: #FF9800">post</b>] [execute_move](../9-task/2-post/8-execute_move.md)
+- 🔧 [<b style="color: #FF9800">post</b>] [motor_on](../5-robot/2-post/1-motor-on.md)
+- 🔧 [<b style="color: #FF9800">post</b>] [start](../5-robot/2-post/2-start-stop.md)
+- 🔧 [<b style="color: #FF9800">post</b>] [stop](../5-robot/2-post/2-start-stop.md)
+- 🔧 [<b style="color: #FF9800">post</b>] [reset](../9-task/2-post/2-reset.md)
 
 [__SOURCE](1-release-note/60-30.md)
-<h2 style="display: inline-flex; align-items: center; gap: 8px;">
+<h4 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.30-00 
-</h2>
+</h4>
 
 
 <br>
@@ -667,9 +802,9 @@ Depending on circumstances, the release date may be moved forward.
 - ❌ ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
 
 [__SOURCE](1-release-note/60-28.md)
-<h2 style="display: inline-flex; align-items: center; gap: 8px;">
+<h4 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.28-00 
-</h2>
+</h4>
 
 <br>
 
@@ -749,18 +884,19 @@ Depending on circumstances, the release date may be moved forward.
 - ✨ \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
 
 [__SOURCE](2-version/README.md)
-## 2. version
+# 2. version
 
 - Check the current API version or robot controller system version.
+
 [__SOURCE](2-version/1-get/README.md)
 ## 2.1 version/get
 
 - Send a GET request for information about the current API version or robot controller system version.  
 - Receive a response by setting the correct path-parameter and query-parameter for each API.  
 [__SOURCE](2-version/1-get/1-api_ver.md)
-## 2.1.1 api_ver
+#### 2.1.1 api_ver
 
-### Description
+##### Description
 
 In rare cases, the schema version of your API may change the way it communicates with the controller or its data structures.  
 This may cause problems with the client program, so confirmation through the corresponding function is required.  
@@ -768,18 +904,18 @@ If there is a change in the schema version for each API function, it will be not
 
 - `GET` : Optain the Open API version number
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /api_ver
 ```
 
-### response-body
+##### response-body
 
 - Open API version number
 - The initial ${cont_model} Open API is a document written based on `version 5`.
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -807,20 +943,21 @@ print(get_api_ver())
 $python test.py
 5
 ```
-[__SOURCE](2-version/1-get/2-sysver.md)
-## 2.1.2 sysver
 
-### Description
+[__SOURCE](2-version/1-get/2-sysver.md)
+#### 2.1.2 sysver
+
+##### Description
 
 - `GET` : Obtain the software version of the robot controller system.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /versions/sysver
 ```
 
-### response-body
+##### response-body
 
 modules : Array of module version information
   - module version information :
@@ -834,7 +971,7 @@ modules : Array of module version information
     - `build-time` : build time
     - `commit-id` : Commit ID of source code
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -871,6 +1008,7 @@ print(get_sysver())
 $python test.py
 {'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
 ```
+
 [__SOURCE](3-project/README.md)
 # 3. project
 
@@ -882,21 +1020,21 @@ $python test.py
 - Send a GET request for condition settings, project information, and job file information.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
 [__SOURCE](3-project/1-get/1-rgen.md)
-## 3.1.1 `rgen`
+#### 3.1.1 `rgen`
 
-### Description
+##### Description
 
 - `GET` : Obtain remote general information in the controller.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/rgen
 ```
 
-### response-body
+##### response-body
 
-#### 1) Mode
+###### 1) Mode
 |key|value|type|description|
 |:---|:---|:---|:---|
 |`cur_mode`| `0` : manual <br> `1` : manual, system settings <br>`3` : auto, 1-cycle <br> `4` : auto, continue (cycle)|`int`|manual/auto mode|
@@ -908,7 +1046,7 @@ GET /project/rgen
 
 <br>
 
-#### 2) current program counter
+###### 2) current program counter
 This is the point where the bar cursor on the teach pendant JOB panel is located in manual mode or automatic mode. This is the currently executing statement or the target location for editing.
 |key|type|description|
 |:---|:---|:---|
@@ -918,8 +1056,7 @@ This is the point where the bar cursor on the teach pendant JOB panel is located
 
 <br>
 
-#### 3) moving program counter
-
+###### 3) moving program counter
 This is the target step the robot is moving during playback.
 |key|type|description|
 |:---|:---|:---|
@@ -929,8 +1066,7 @@ This is the target step the robot is moving during playback.
 
 <br>
 
-#### 4) Speed
-
+###### 4) Speed
 |key|type|description|
 |:---|:---|:---|
 |`spd_lev`|`int`|Manual mode jog speed level (1~8)|
@@ -942,7 +1078,7 @@ This is the target step the robot is moving during playback.
 
 <br>
 
-### Example
+##### Example
 Python Script Example
 
 ```python
@@ -966,22 +1102,23 @@ is remote mode? 0
 ```
 
 [__SOURCE](3-project/1-get/2-jobs_info.md)
-## 3.1.2 `jobs_info`
+#### 3.1.2 `jobs_info`
 
-### Description
+##### Description
 
 - `GET` : Obtain information about job programs.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/jobs_info
 ```
 
-### response-body
+##### response-body
 
 - [job file information](../../99-schema/jobs_info.md)
-### Example
+
+##### Example
 
 <blockquote>
 
@@ -1042,32 +1179,33 @@ $python test.py
 {'_type': 'JObject', 'job_comment': '', 'fname': '0002.job', 'n_step': 9, 'n_aux_ax': -1, 'n_total_ax': -1}, 
 {'_type': 'JObject', 'job_comment': '', 'fname': '0003.job', 'n_step': 0, 'n_aux_ax': -1, 'n_total_ax': -1}]
 ```
+
 [__SOURCE](3-project/2-post/README.md)
 ## 3.1 project/post
 
 - Send a POST request for condition settings, project information, and job file information.
 - You must write the correct request-body for each API.
 [__SOURCE](3-project/2-post/1-reload_updated_jobs.md)
-## 3.2.1 `reload_updated_jobs`
+#### 3.2.1 `reload_updated_jobs`
 
-### Description
+##### Description
 
 - `POST` : Send a request to update working files.
 - When transmitting a job file to the controller via FTP, a reload request must be made through the corresponding API for the transmitted job file to be reflected in memory.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/reload_updated_jobs
 ```
 
-### request-body
+##### request-body
 
 ```json
 {}
 ```
 
-### Description
+##### Description
 
 ```python
 request url:
@@ -1101,19 +1239,19 @@ response: 200
 ```
 
 [__SOURCE](3-project/2-post/2-jobs-delete_job.md)
-## 3.2.2 `delete_job`
+#### 3.2.2 `delete_job`
 
-### Description
+##### Description
 
 - `POST` : Send a request to remove a working file.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/jobs/delete_job
 ```
 
-### request-body
+##### request-body
 
 ```json
 {
@@ -1121,7 +1259,7 @@ POST /project/jobs/delete_job
 }
 ```
 
-### Example
+##### Example
 
 ```json
 request url:
@@ -1155,6 +1293,7 @@ print(f"response: {post_delete_job('0002.job')}")
 $python test.py
 response: 200 
 ```
+
 [__SOURCE](4-control/README.md)
 # 4. control
 
@@ -1168,19 +1307,19 @@ response: 200
 - Send a GET request for controller setting information and input/output values.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
 [__SOURCE](4-control/1-get/1-op_cnd.md)
-## 4.1.1 `op_cnd`
+#### 4.1.1 `op_cnd`
 
-### Description
+##### Description
 
 - `GET` : Obtain the operation condition setting values.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/control/op_cnd
 ```
 
-### response-body
+##### response-body
 
 - [Condition Setting parameter](../../99-schema/op_cnd.md)
 
@@ -1223,21 +1362,22 @@ print(get_operation_condition())
 $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
 ```
-[__SOURCE](4-control/1-get/4-ucss-ucs_nos.md)
-## 4.1.4 `ucss/ucs_nos`
 
-### Description
+[__SOURCE](4-control/1-get/2-ucss-ucs_nos.md)
+#### 4.1.2 `ucss/ucs_nos`
+
+##### Description
 
 - `GET` : Obtains a list of user coordinate systems currently in use.
 - Prints a list of user coordinate systems registered through `system > 2: Control parameter > 6: Coordinate registration`.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/control/ucss/ucs_nos
 ```
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -1270,6 +1410,7 @@ print(f"{get_ucs_nos()}")
 $python test.py
 [1, 2, 3]
 ```
+
 [__SOURCE](4-control/2-post/README.md)
 ## 4.2 control/post
 
@@ -1281,26 +1422,26 @@ $python test.py
 - Sends a PUT request for the controller's setting information and input/output values.
 - You must write the correct request-body for each API.
 [__SOURCE](4-control/3-put/1-op_cnd.md)
-## 4.3.1 `op_cnd`
+#### 4.3.1 `op_cnd`
 
-### Description
+##### Description
 
 - `PUT` : Change the robot's condition setting values.
 - If you open the `condition setting window(cond.set)` in TP and request the corresponding method,  
 you must close and reopen the window for the value to be reflected.
 
-### path-parameter
+##### path-parameter
 
 ```python
 PUT /project/control/op_cnd
 ```
 
-### request-body
+##### request-body
 
 - [Condition Setting parameter](../../99-schema/op_cnd.md)
 
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -1339,6 +1480,7 @@ print(f"response: {put_op_cnd()}")
 $python test.py
 response: 200 
 ```
+
 [__SOURCE](5-robot/README.md)
 # 5. robot
 
@@ -1350,29 +1492,30 @@ response: 200
 
 - Send GET requests for robot and tool data.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
-[__SOURCE](5-robot/1-get/1-motor_on_state.md)
-## 5.1.1 `motor_on_state`
 
-### Description
+[__SOURCE](5-robot/1-get/1-motor_on_state.md)
+#### 5.1.1 `motor_on_state`
+
+##### Description
 
 `motor_on_state`
 
 - `GET` : Obtain the motor on status.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/motor_on_state
 ```
 
-### response-body
+##### response-body
 
 - val :
   - `0` : on
   - `1` : off
   - `2` : busy (Transitioning state)
 
-### Example
+##### Example
 ```python
 request url:
 GET /project/robot/motor_on_state
@@ -1404,20 +1547,21 @@ print(f"Motor On status: {get_motor_on_state()['val']}")
 $python test.py
 Motor On status: 1
 ```
-[__SOURCE](5-robot/1-get/2-po_cur.md)
-## 5.1.2 `po_cur`
 
-### Description
+[__SOURCE](5-robot/1-get/2-po_cur.md)
+#### 5.1.2 `po_cur`
+
+##### Description
 
 - `GET` : Get the pose the robot is currently taking.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/po_cur
 ```
 
-### query-parameter
+##### query-parameter
 
 - `task_no` : task number (0~7).
   - unspecified : Applied as task 0.
@@ -1429,12 +1573,12 @@ GET /project/robot/po_cur
 - `ucrd_no` : User coordinate system number (Specified only when crd is user.)
 - `mechinfo` : [Mechanism information](../../99-schema/mechinfo.md)
 
-### response-body
+##### response-body
 
 - [Pose information](../../99-schema/pose.md)
 
 
-### Example
+##### Example
 
 Example of a system with 6 robot axes (j1~j6) + 1 driving axis (j7) + 2 positioner axes (j8, j9).
 
@@ -1531,24 +1675,25 @@ print(get_base_coordinate())
 $python test.py
 {'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
 ```
-[__SOURCE](5-robot/1-get/3-cur_tool_data.md)
-## 5.1.3 `cur_tool_data`
 
-### Description
+[__SOURCE](5-robot/1-get/3-cur_tool_data.md)
+#### 5.1.3 `cur_tool_data`
+
+##### Description
 
 - `GET` : Obtaining the robot's current tool data.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/cur_tool_data
 ```
 
-### response-body
+##### response-body
 
 - val : [Tool Data](../../99-schema/tool_data.md)
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -1594,20 +1739,21 @@ print(get_cur_tool_data())
 $python test.py
 {'_type': 'Tool', 'x': 0.0, 'rx': 0.0, 'y': 0.0, 'ry': 0.0, 'z': 0.0, 'rz': 0.0, 'cy': 0.0, 'mass': 20.0, 'cx': 100.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'bias_2': 0.0, 'mass_esti': 20.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```
-[__SOURCE](5-robot/1-get/4-tools.md)
-## 5.1.4 `tools`
 
-### Description
+[__SOURCE](5-robot/1-get/4-tools.md)
+#### 5.1.4 `tools`
+
+##### Description
 
 - `GET` : Get all tool information for the robot. Only tools that exist among tools from T0 to T31 are obtained.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/tools
 ```
 
-### response-body
+##### response-body
 
 - t_0 : [Tool data](../../99-schema/tool_data.md)
 - t_1 : Tool data
@@ -1615,7 +1761,7 @@ GET /project/robot/tools
 ...
 - t_31 : Tool data
 
-### Example
+##### Example
 
 An example of a system in which only tool 0 and tool 31 exist.
 
@@ -1652,24 +1798,25 @@ print(get_tools_data())
 $python test.py
 {'_type': 'Tools', 't_31': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_0': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0, 'load_rate': {'_type': 'JObject', 'high_load_mode': -11, 'moment_rate': 0, 'inertia_rate': 0, 'mass_rate': 0}}, 't_1': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_15': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}}
 ```
-[__SOURCE](5-robot/1-get/5-tools_t.md)
-## 5.1.5 `tools/t_{number}`
 
-### Description
+[__SOURCE](5-robot/1-get/5-tools_t.md)
+#### 5.1.5 `tools/t_{number}`
+
+##### Description
 
 - `GET` : This is a function that receives information on the settings of a specific tool.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/tools/t_{number}
 ```
 
-### response-body
+##### response-body
 
 - [Tool data](../../99-schema/tool_data.md)
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -1708,26 +1855,27 @@ print(get_tool1_data())
 $python test.py
 {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```
-[__SOURCE](5-robot/1-get/6-emergency_stop.md)
-## 5.1.6 `emergency_stop`
 
-### Description
+[__SOURCE](5-robot/1-get/6-emergency_stop.md)
+#### 5.1.6 `emergency_stop`
+
+##### Description
 
 - `GET` : Retrieves information about the state of the emergency stop button being pressed.  
 -  When an emergency stop is requested via the API, the controller returns a value of 1 at the moment it receives the API request.   
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/emergency_stop
 ```
 
-### response-body
+##### response-body
 
 - 0: emergency button released
 - 1: emergency button pressed 
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -1763,15 +1911,16 @@ print(f"{get_emergency_stop()}")
 $python test.py
 {'_type': 'JObject', 'val': 0}
 ```
-[__SOURCE](5-robot/1-get/7-joint_traject_buf_avail.md)
-## 5.1.7 `joint_traject_buf_avail`
 
-### Description
-- Supported Version : `61.00-00` &uparrow;
+[__SOURCE](5-robot/1-get/7-joint_traject_buf_avail.md)
+#### 5.1.7 `joint_traject_buf_avail`
+
+##### Description
+- Supported Version : `60.32-00` &uparrow;
 - `GET` : Returns the available size of the trajectory buffer.
 - When requesting trajectories consecutively, you must use this function to ensure that the size of each trajectory request does not exceed the available buffer space.
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -1779,16 +1928,16 @@ $python test.py
 GET /project/robot/trajectory/joint_traject_buf_avail
 ```
 
-### response-body
+##### response-body
 
 - val: Number of available buffer slots (maximum: 2048)
 
-### status code
+##### status code
   - 200 : Request succeeded
   - 403 : Request failed
     - Returned when calling an unsupported API
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -1833,32 +1982,152 @@ $python test.py
 {'val': 2048}
 ```
 </div>
+
+[__SOURCE](5-robot/1-get/8-joint_states.md)
+#### 5.1.8 `joint_states`
+
+##### Description
+- Supported version: `60.34-00` ↑
+- `GET`: Retrieves the robot's current joint states.
+- Returns **joint angle (position, °), velocity, and torque (effort)** information for each joint.  
+  You can query all axes or selectively query a specified range of axes.
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```python
+GET /project/robot/joint_states
+````
+
+</div>
+
+##### query-parameter
+
+* * If no parameters are specified, all joints are queried.
+* jno_start (optional)
+
+  * Joint index to start querying from (1-based)
+* jno_n (optional)
+
+  * Number of joints to query
+
+##### response
+
+1. status code
+
+   * 200 : OK
+   * 400 : Bad Request
+
+     * Query parameter validation failed
+   * 403 : Forbidden
+   * 404 : Not Found
+
+2. response-body
+
+   * position : Joint angle array (deg)
+   * velocity : Joint velocity array
+   * effort : Joint torque array (Nm)
+
+        <div style="width: fit-content;">
+
+     ```json
+     {
+     	"position": [0.0, 10.5, -20.3, 45.0, 0.0, 30.0],
+     	"velocity": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+     	"effort": [1.2, 1.0, 0.8, 0.5, 0.3, 0.2]
+     }
+     ```
+
+        </div>
+
+##### Usage Example
+
+<div style="max-width: 60vw;">
+
+```python
+request url:
+GET /project/robot/joint_states?jno_start=1&jno_n=6
+
+response-body:
+{
+    "position": [0.0, 10.5, -20.3, 45.0, 0.0, 30.0],
+    "velocity": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+    "effort": [1.2, 1.0, 0.8, 0.5, 0.3, 0.2]
+}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+def get_joint_states() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path = "/project/robot/joints/joint_states"
+    query = {"jno_start": 1, "jno_n": 6}
+
+    res = requests.get(url=base_url + path, params=query)
+
+    print(res.json())
+
+    return res
+
+
+get_joint_states()
+
+
+```
+
+```sh
+$python test.py
+{'_type': 'JObject', 'position': [0.949533, 90.949655, 0.949155, 0.948415, -89.050195, 0.948001], 'effort': [0.0, 93.988759, 93.925036, 0.179785, -5.312434, 0.102171], 'velocity': [-0.0, -0.0
+, 0.0, 0.0, -0.0, 0.0]}
+```
+
+</div>
+
 [__SOURCE](5-robot/2-post/README.md)
 ## 5.2 robot/post
 
 - Send POST requests for robot and tool data.
 - You must write the correct request-body for each API.
-[__SOURCE](5-robot/2-post/1-motor-on.md)
-## 5.2.1 `motor_on`
 
-### Description
+[__SOURCE](5-robot/2-post/1-motor-on.md)
+#### 5.2.1 `motor_on`
+
+##### Description
 
 - `POST` : Performs motor ON.
-- The `motor off API` has been deprecated as of [v60.30-00](../../1-release-note/60-30.md).
+- The `motor_off` API has been deprecated and is no longer supported starting from [v60.30-00](../../1-release-note/60-30.md).
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/robot/motor_on
 ```
 
-### request-body
+##### request-body
 
 ```json
 {}
 ```
 
-### response-body
+##### response
+
+1. status code
+
+- 200 : OK
+- 400 : Bad Request
+  - The request body failed validation
+- 403 : Forbidden
+  - An API request was attempted while not in Remote Mode (effective from v60.30-09).
+- 404 : Not Found
+
+
+2. response-body
 
 ```json
 {
@@ -1866,7 +2135,11 @@ POST /project/robot/motor_on
 }
 ```
 
-### Example
+3. error code
+
+- -38500 : API request rejected because the system is not in Remote Mode
+
+##### Example
 
 ```python
 POST /project/robot/motor_on
@@ -1895,40 +2168,55 @@ print(f"Motor-ON  response: {post_motor_on()}")
 $python test.py
 Motor-ON  response: 200
 ```
-[__SOURCE](5-robot/2-post/2-start-stop.md)
-## 5.2.2 `start / stop`
 
-### Description
+[__SOURCE](5-robot/2-post/2-start-stop.md)
+#### 5.2.2 `start / stop`
+
+##### Description
 
 - `POST` : Performs robot start and robot stop.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/robot/start
 POST /project/robot/stop
 ```
 
-### request-body
+##### request-body
 
 ```json
 {}
 ```
 
-### response-body
+##### response-body
+
+1. status code
+
+- 200 : OK
+- 400 : Bad Request
+   - The request body failed validation.
+- 403 : Forbidden
+    - A `start` request was attempted while not in Remote Mode (effective from v60.30-07).
+- 404 : Not Found
+
+2. response-body
 
 ```json
 {
     "_type": "JObject"
 }
 ```
+3. error code
 
-### Example
+- -38500: API request rejected because the controller is not in Remote Mode
+
+##### Example
 
 ```python
 POST /project/robot/start or /project/robot/stop
 
-request-body: 
+request-body:
 {}
 ```
 
@@ -1964,26 +2252,27 @@ $python test.py
 Start response: 200
 Stop  response: 200
 ```
-[__SOURCE](5-robot/2-post/3-tool_no.md)
-## 5.2.3 `tool_no`
 
-### Description
+[__SOURCE](5-robot/2-post/3-tool_no.md)
+#### 5.2.3 `tool_no`
+
+##### Description
 
 - `POST` : Set the current tool number.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/robot/tool_no
 ```
 
-### request-body
+##### request-body
 
 - `val` : Tool number
   - `robot tools` : `0` ~ `31`
   - `stationary tool` : `0` ~ `3`
 
-### response-body
+##### response-body
 
 ```json
 {
@@ -1991,7 +2280,7 @@ POST /project/robot/tool_no
 }
 ```
 
-### Example
+##### Example
 
 ```json
 POST /project/robot/tool_no
@@ -2022,24 +2311,25 @@ print(f"response: {post_tool_no(1)}")
 $python test.py
 response: 200
 ```
-[__SOURCE](5-robot/2-post/4-crd_sys.md)
-## 5.2.4 `crd_sys`
 
-### Description
+[__SOURCE](5-robot/2-post/4-crd_sys.md)
+#### 5.2.4 `crd_sys`
+
+##### Description
 
 - `POST` : Set the current jog coordinate system.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/robot/crd_sys
 ```
 
-### request-body
+##### request-body
 
 - [Coordinate system](../../99-schema/crdsys.md)
 
-### response-body
+##### response-body
 
 ```json
 {
@@ -2050,7 +2340,7 @@ POST /project/robot/crd_sys
 ```
 
 
-### Example
+##### Example
 
 ```json
 POST /project/robot/crd_sys
@@ -2081,12 +2371,13 @@ print(f"response: {post_crd_sys(1)}")
 $python test.py
 response: 200
 ```
+
 [__SOURCE](5-robot/2-post/5-emergency_stop.md)
-## 5.2.5 `emergency_stop`
+#### 5.2.5 `emergency_stop`
 
 - <b style="color:orange"> For versions prior to ***<u>60.30-00</u>***, refer to ***<u>[emergency_stop_test](./6-emergency_stop_test.md)</u>*** instead of emergency_stop. </b>  
 
-### Description
+##### Description
 
 - Supported Version : `60.30-00` &uparrow;
 - `POST` : Executes an emergency stop.  
@@ -2094,23 +2385,23 @@ response: 200
 - Due to network latency or request processing time, the API may respond slower than a physical button.  
 
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/robot/emergency_stop
 ```
 
-### request-body
+##### request-body
 ```python 
 {}
 ```
 
-### status code
+##### status code
 
 - 200 : Request successful  
 - 400 : Request failed (Emergency stop sequence execution failed)    
 
-### Example
+##### Example
 
 ```emergency_stop
 POST /project/robot/emergency_stop
@@ -2142,17 +2433,18 @@ print(f"response: {post_emergency_stop()}")
 $python test.py
 response: 200
 ```
+
 [__SOURCE](5-robot/2-post/6-emergency_stop_test.md)
-## 5.2.6 `emergency_stop_test`
+#### 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
 
-### Description
+##### Description
 
 - Supported version : `60.30-00` &uparrow;
 - `POST` : Executes an emergency stop.  
 
-### path-parameter
+##### path-parameter
 
 
 <div style="max-width:fit-content">
@@ -2164,7 +2456,7 @@ POST /project/robot/emergency_stop_test
 
 </div>
 
-### request-body
+##### request-body
 
   <div style="max-width:fit-content">
 
@@ -2184,7 +2476,7 @@ POST /project/robot/emergency_stop_test
 
 </div>
 
-### status code
+##### status code
 
 - 200 : Request successful    
 - 400 : Request failed     
@@ -2193,7 +2485,7 @@ POST /project/robot/emergency_stop_test
 	- Requested an API that is not serviced  
 
 
-### Usage Example  
+##### Usage Example  
 
 <div style="max-width:fit-content">
 
@@ -2239,12 +2531,13 @@ response: 200
 ```
 
 </div>
+
 [__SOURCE](5-robot/2-post/7-joint_traject_init.md)
-## 5.2.7 `joint_traject_init`
+#### 5.2.7 `joint_traject_init`
 
-### Description
+##### Description
 
-- Supported version : `61.00-00` &uparrow;
+- Supported version : `60.32-00` &uparrow;
 - `POST` : Initializes the trajectory buffer.
 - Before requesting a new trajectory while the robot is stopped, the previously stored trajectory must be cleared by the user.
 - ex)
@@ -2254,7 +2547,7 @@ response: 200
   - Removing previously stored trajectory points from the buffer may cause the robot to stop and trigger an error. Use with caution.
 
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -2263,7 +2556,7 @@ POST /project/robot/trajectory/joint_traject_init
 ```
 </div>
 
-### request-body
+##### request-body
 
 <div style="width: fit-content;">
 
@@ -2272,14 +2565,14 @@ POST /project/robot/trajectory/joint_traject_init
 </div>
 
 
-### status code
+##### status code
 
 - 200 : Request succeeded
 - 403 : Request failed
   - Returned when calling an unsupported API
   - `err_code` (<0): Initialization failed
 
-### Example
+##### Example
 
 <div style="width: fit-content;">
 
@@ -2328,18 +2621,19 @@ $python test.py
 [INFO] Initialization successful: status=200
 ```
 </div>
+
 [__SOURCE](5-robot/2-post/8-joint_traject_insert_points.md)
-## 5.2.8 `joint_traject_insert_points`
+#### 5.2.8 `joint_traject_insert_points`
 
-### Description
+##### Description
 
-- Supported version : `61.00-00` &uparrow;
+- Supported version : `60.32-00` &uparrow;
 - `POST` : Sends a trajectory composed of multiple points to the robot controller.
   - Multiple joint trajectory points are stored in the controller's internal buffer and reflected in the robot's motion.
 
 ---
 
-### Caution
+##### Caution
 
 1. This API is functional only while the program is in a <u>running state</u>.
    - ex) The API only works when the program is being played back in automatic mode.
@@ -2360,7 +2654,7 @@ $python test.py
 
 ---
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -2369,7 +2663,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 ```
 </div>
 
-### request-body
+##### request-body
 
 <div style="width: fit-content;">
 
@@ -2400,13 +2694,13 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
   ```
 
-### status code
+##### status code
 
 - 200 : Request succeeded
 - 403 : Request failed
   - Returned when calling an unsupported API
 
-### error code (response 403)
+##### error code (response 403)
 
 <div style="width: fit-content;">
 
@@ -2427,7 +2721,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 </div>
 
-### Example
+##### Example
 
 **Ex1. Requesting a trajectory while the robot is at rest**
 
@@ -2469,7 +2763,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 <br>
 
-#### Python Script Example
+##### Python Script Example
 
 - Move the robot to its default pose (based on a 6-axis configuration, [0, 90, 0, 0, 0, 0])
 - Create and `play` the following 0001.job in `automatic mode` to enter the program play state.
@@ -2672,6 +2966,194 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 
 
+[__SOURCE](5-robot/2-post/9-joint_traject_insert_point.md)
+#### 5.1.9 `joint_traject_insert_point`
+
+##### Description
+- Supported version: `60.34-00` ↑
+- `POST`: **Sequentially appends the next joint target point** for joint trajectory execution.
+- By repeatedly calling this API, a continuous joint trajectory can be constructed.
+
+---
+
+##### Notes
+
+* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
+
+  * Do not exceed the **maximum allowable speed and torque** of the robot and auxiliary axes.
+  * If commands requiring excessive torque are issued, the following **errors or warnings may occur**.
+  * Reducer over-torque
+    * [E249](https://hr-alarms.web.app/#/hi6/ko/E249), [E6402](https://hr-alarms.web.app/#/hi6/ko/E6402), [E6403](https://hr-alarms.web.app/#/hi6/ko/E6403)
+  * Reducer over-current
+    * [W153](https://hr-alarms.web.app/#/hi6/ko/W153), [W181](https://hr-alarms.web.app/#/hi6/ko/W181), [W182](https://hr-alarms.web.app/#/hi6/ko/W153)
+  * Position deviation error
+    * [E2630](https://hr-alarms.web.app/#/hi6/ko/E2630), [E2636](https://hr-alarms.web.app/#/hi6/ko/E2636), [E2638](https://hr-alarms.web.app/#/hi6/ko/E2638)
+* Actual errors or warnings may vary depending on the **axis configuration, payload conditions, and operating state**.
+
+---
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```python
+POST /project/robot/trajectory/joint_traject_insert_point
+````
+
+</div>
+
+---
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```json
+{
+	"interval": 0.01,
+	"time_from_start": 0.0,
+	"look_ahead_time": 0.5,
+	"point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+}
+```
+
+</div>
+
+* interval
+
+  * Time interval used when adding points incrementally
+* time_from_start
+
+  * Cumulative time from the start of the trajectory
+* look_ahead_time
+
+  * Look-ahead time for trajectory execution
+* point
+
+  * Array of target joint angles (deg)
+
+---
+
+##### response
+
+1. status code
+
+   * 200 : OK
+   * 400 : Bad Request
+
+     * Request body validation failed
+   * 403 : Forbidden
+   * 404 : Not Found
+
+---
+
+##### Usage Example
+
+```python
+request url:
+POST /project/robot/trajectory/joint_traject_insert_point
+
+request-body:
+{
+    "interval": 0.01,
+    "time_from_start": 0.0,
+    "look_ahead_time": 0.5,
+    "point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+}
+```
+
+</div>
+
+---
+
+##### Python Script Example
+
+###### Prerequisites
+
+1. Move the robot to the reference pose.
+   (Example - for a 6-axis robot: `[0, 90, 0, 0, -90, 0]`)
+2. Insert the statement `wait di1` in the job.
+3. Switch to auto mode and start program playback.
+4. Run the test code below in that state.
+
+<div style="width: fit-content;">
+
+```python
+import time
+import requests
+
+BASE_URL = "http://192.168.1.150:8888"
+# BASE_URL = "http://127.0.0.1:8888"  # hrspace
+
+
+def get_joint_positions(session):
+    path = "/project/robot/joints/joint_states"
+    params = {"jno_start": 1, "jno_n": 6}
+    return session.get(BASE_URL + path, params=params).json()["position"]
+
+
+def insert_point(session, point, interval, look_ahead_time, time_from_start):
+    path = "/project/robot/trajectory/joint_traject_insert_point"
+    body = {
+        "interval": interval,
+        "look_ahead_time": look_ahead_time,
+        "time_from_start": time_from_start,
+        "point": point,
+    }
+    session.post(BASE_URL + path, json=body)
+
+
+def fmt6(arr):
+    return [f"{v:.6f}" for v in arr]
+
+
+def main():
+    interval = 0.002
+    look_ahead_time = 0.010
+
+    points = [
+        [0.02,  89.98, 0.0, 0.0, -90.0, 0.0],
+        [0.04,  89.96, 0.0, 0.0, -90.0, 0.0],
+        [0.06,  89.94, 0.0, 0.0, -90.0, 0.0],
+        [0.08,  89.92, 0.0, 0.0, -90.0, 0.0],
+        [0.10,  89.90, 0.0, 0.0, -90.0, 0.0],
+    ]
+
+    with requests.Session() as s:
+        before = get_joint_positions(s)
+        print("BEFORE: ", fmt6(before), end="\n\n")
+
+        t = 0.0
+        for i, p in enumerate(points, 1):
+            t += interval
+            insert_point(s, p, interval, look_ahead_time, t)
+            print(f"[INSERT {i}] OK  t={t:.6f}s")
+            time.sleep(0.001)
+
+        time.sleep(0.05)
+
+        after = get_joint_positions(s)
+        print("\nAFTER:", fmt6(after))
+
+if __name__ == "__main__":
+    main()
+```
+
+```sh
+$python test.py
+BEFORE:  ['0.000000', '90.000000', '0.000000', '0.000000', '-90.000000', '0.000000']
+
+[INSERT 1] OK  t=0.002000s
+[INSERT 2] OK  t=0.004000s
+[INSERT 3] OK  t=0.006000s
+[INSERT 4] OK  t=0.008000s
+[INSERT 5] OK  t=0.010000s
+
+AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.001393']
+```
+
+</div>
+
 [__SOURCE](6-io_plc/README.md)
 # 6. I/O PLC
 
@@ -2682,19 +3164,19 @@ POST /project/robot/trajectory/joint_traject_insert_points
 - Sends a GET request for input/output values of a built-in PLC.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
 [__SOURCE](6-io_plc/1-get/1-relay-value.md)
-## 6.1.1 `get relay values`
+#### 6.1.1 `get relay values`
 
-### Description
+##### Description
 
 - `GET` :Obtain the relay value for the entire object type.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 ```
 
-### path-variable
+##### path-variable
 
 [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
 
@@ -2710,13 +3192,13 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 	
 
-### query-parameter
+##### query-parameter
 
 - `st` : start byte index (default: 0)
 - `len` : number of words (default: 8)
 
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -2769,27 +3251,28 @@ print(f"{get_relay_value()}")
 $python test.py
 [0, 0, 0, 0]
 ```
-[__SOURCE](6-io_plc/1-get/2-ios-dio.md)
-## 6.1.2 `ios/dio/{dio_val}`
 
-### Description
+[__SOURCE](6-io_plc/1-get/2-ios-dio.md)
+#### 6.1.2 `ios/dio/{dio_val}`
+
+##### Description
 
 - `GET` : Obtain user IO values.
 - Please refer to the [sio api](./3-ios-sio.md) for system input/output values.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/control/ios/dio/{dio_val}
 ```
 
-### path-variable
+##### path-variable
 
 - `dio_val` :
   - `di_val` : Get the input(di) value.
   - `do_val` : Get the output(do) value.
 
-### query-parameter
+##### query-parameter
 
 - `type` : Type of io value
   - di or do : bit
@@ -2800,7 +3283,7 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : block number (0~9)
 - `sig_no` : signal index (0~)
 
-### Example
+##### Example
 
 - Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
 
@@ -2821,41 +3304,73 @@ Python Script Example
 # test.py
 import requests
 
-def get_dio_val() -> dict:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/control/ios/dio/do_val'
-    query_parameter = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
-    
-    response = requests.get(url=base_url + path_parameter, params=query_parameter).json()
+BASE_URL = "http://127.0.0.1:8888"
 
-    return response
 
-print(get_dio_val())
+def get_do_val(sig_no: int = 0) -> requests.Response:
+    path = "/project/control/ios/dio/do_val"
+    params = {"type": "dob", "blk_no": 0, "sig_no": sig_no}
+    return requests.get(BASE_URL + path, params=params)
+
+
+def get_di_val(sig_no: int = 0) -> requests.Response:
+    path = "/project/control/ios/dio/di_val"
+    params = {"type": "dib", "blk_no": 0, "sig_no": sig_no}
+    return requests.get(BASE_URL + path, params=params)
+
+
+def extract_u8(res: requests.Response) -> int:
+    assert res is not None, "response is necessary."
+
+    res.raise_for_status()
+
+    payload = res.json()
+    if "val" not in payload:
+        raise KeyError(f"no 'val' in response: {payload}")
+
+    # MSB (Most Significant Bit) -> LSB (Least Significant Bit)
+    return int(payload["val"]) & 0xFF
+
+
+def lsb_first(u8: int) -> str:
+    # LSB -> MSB
+    return format(u8, "08b")[::-1]
+
+
+do_u8 = extract_u8(get_do_val(2))
+di_u8 = extract_u8(get_di_val(1))
+
+print("do value:", lsb_first(do_u8))
+print("di value:", lsb_first(di_u8))
+
 ```
 ```sh
+# (when fb0.do18 = 1, fb0.do20 = 1 / fb0.di14 = 1)
 $python test.py
-{'_type': 'JObject', 'val': -56}
+do value: 00101000
+di value: 00000010
 ```
-[__SOURCE](6-io_plc/1-get/3-ios-sio.md)
-## 6.1.3 `ios/sio/{sio_val}` 
 
-### Description
+[__SOURCE](6-io_plc/1-get/3-ios-sio.md)
+#### 6.1.3 `ios/sio/{sio_val}` 
+
+##### Description
 
 - `GET` : Get system IO values.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/control/ios/sio/{sio_val}
 ```
 
-### path-variable
+##### path-variable
 
 - `sio_val` :
   - `si_val` : Get the input(si) value.
   - `so_val` : Get the output(so) value.
 
-### query-parameter
+##### query-parameter
 
 - `type` : Type of io value
   - si or so : bit
@@ -2866,7 +3381,7 @@ GET /project/control/ios/sio/{sio_val}
 - `sig_no` : signal index (0~)
 
 
-### Example
+##### Example
 
 - Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
 
@@ -2902,25 +3417,26 @@ print(get_sio_val())
 $python test.py
 {'_type': 'JObject', 'val': 0}
 ```
+
 [__SOURCE](6-io_plc/2-post/README.md)
 ## 6.2 io_plc/post
 
 - Sends a POST request for input/output values from a built-in PLC.
 - You must write the correct request-body for each API.
 [__SOURCE](6-io_plc/2-post/1-set_relay_value.md)
-## 6.2.1 `set relay values`
+#### 6.2.1 `set relay values`
 
-### Description
+##### Description
 
 - `POST` : Set the relay value.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/plc/set_relay_value
 ```
 
-### request-parameter
+##### request-parameter
 
 - `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
 - `value` : Please pay attention to 'data-type' in the notation above and enter the value you want to set.
@@ -2931,7 +3447,7 @@ POST /project/plc/set_relay_value
 }
 ```
 
-### Example
+##### Example
 
 ```json
 request url:
@@ -2978,20 +3494,21 @@ $python test.py
 response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
 ```
-[__SOURCE](6-io_plc/2-post/2-ios-dio.md)
-## 6.2.2 `ios/dio/{do_val}`
 
-### Description
+[__SOURCE](6-io_plc/2-post/2-ios-dio.md)
+#### 6.2.2 `ios/dio/{do_val}`
+
+##### Description
 
 - `POST` : Change digital output.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/control/ios/dio/do_val
 ```
 
-### request-body
+##### request-body
 
 ```json
 {
@@ -3003,20 +3520,20 @@ POST /project/control/ios/dio/do_val
 ```
 
 
-### query-parameter
+##### query-parameter
 
 - `type` : Type of io value
-  - di or do : bit
-  - dib or dob : signed-byte
-  - diw or dow : signed-word (2byte)
-  - dil or dol : signed-dword (4yte)
-  - dif or dof : float
+  - do : bit
+  - dob : signed-byte
+  - dow : signed-word (2byte)
+  - dol : signed-dword (4yte)
+  - dof : float
 - `blk_no` : block number (0~9)
 - `sig_no` : signal index (0~)
 - `val` : Setting value you want to change
 
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -3036,7 +3553,7 @@ Python Script Example
 - Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
 ```python
 # test.py
-import requests 
+import requests
 
 def post_do_val() -> int:
     base_url       = 'http://192.168.1.150:8888'
@@ -3051,8 +3568,9 @@ print(f"response: {post_do_val()}")
 ```
 ```sh
 $python test.py
-response: 200 
+response: 200
 ```
+
 [__SOURCE](7-log_manager/README.md)
 # 7.1 event-log
 
@@ -3063,19 +3581,19 @@ response: 200
 - Send a GET request for errors, warnings, and execution history recorded in the controller.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
 [__SOURCE](7-log_manager/1-get/1-search.md)
-## 7.1.1 search
+#### 7.1.1 search
 
-### Description
+##### Description
 
 - `GET` : View the event log using the specified filter conditions.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /logManager/search
 ```
 
-### query-parameter
+##### query-parameter
 
 - `n_item` : Number of requested events (default=100)
 - `cat_p` : Request category filter (category positive). Specify the letters representing each type by combining them with a comma (,). (cat_p=E,W,N)
@@ -3101,7 +3619,7 @@ GET /logManager/search
 - `ts_max` : max timestamp filter. (optional)
   - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
 
-### response-body
+##### response-body
 
 - `id` : event ID
 - `ts` : timestamp
@@ -3119,7 +3637,7 @@ GET /logManager/search
 { "id" : 18266, "ts" : "2023/11/20 15:00:33.789", "cat" : "H", "code" : "hist", "aux" : "( 738785)S3  .move P,spd=500mm/sec,accu=4,tool=0 " }
 ```
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -3170,6 +3688,7 @@ $python test.py
 { "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 { "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 ```
+
 [__SOURCE](8-file_manager/README.md)
 # 8. file_manager
 
@@ -3180,20 +3699,21 @@ $python test.py
 
 - Send a GET request for file information from the controller.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
-[__SOURCE](8-file_manager/1-get/1-files.md)
-## 8.1.1 `files`
 
-### Description
+[__SOURCE](8-file_manager/1-get/1-files.md)
+#### 8.1.1 `files`
+
+##### Description
 
 - `GET` : The file contents are responded to from the controller.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /file_manager/files
 ```
 
-### query-parameter
+##### query-parameter
 
 query-parameter must be entered.  
 
@@ -3203,14 +3723,14 @@ query-parameter must be entered.
 
 - `pathname` : File name to get
 
-### status code
+##### status code
 
 - 200 : Request succeeded
   - Return file contents
 - 403 : Request failed
   - Return error status code when file does not exist
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -3271,20 +3791,21 @@ S3   move P,tg=po1,spd=100%,accu=0,tool=1
 S4   move P,tg=po1,spd=100%,accu=0,tool=1
      end
 ```
-[__SOURCE](8-file_manager/1-get/2-file_info.md)
-## 8.1.2 `file_info`
 
-### Description
+[__SOURCE](8-file_manager/1-get/2-file_info.md)
+#### 8.1.2 `file_info`
+
+##### Description
 
 - `GET` : Obtain information about that file based on the file path.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /file_manager/file_info
 ```
 
-### query-parameter
+##### query-parameter
 
 query-parameter must be entered.  
 
@@ -3294,12 +3815,12 @@ query-parameter must be entered.
 
 - `pathname` : target file path
 
-### response-body
+##### response-body
 
 - [file information](../../99-schema/file_info)
 - If the file does not exist, `404 Not Found`
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -3358,20 +3879,21 @@ print(get_file_info())
 $python test.py
 {'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
 ```
-[__SOURCE](8-file_manager/1-get/3-file_list.md)
-## 8.1.3 `file_list`
 
-### Description
+[__SOURCE](8-file_manager/1-get/3-file_list.md)
+#### 8.1.3 `file_list`
+
+##### Description
 
 - `GET` : Obtain a list of files and directories.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /file_manager/file_list
 ```
 
-### query-parameter
+##### query-parameter
 
 query-parameter must be entered.  
 
@@ -3386,7 +3908,7 @@ query-parameter must be entered.
 |`incl_dir`|Whether to include directories when outputting the list|
 
 
-### status code
+##### status code
 
 - 200 : Request succeeded
   - return [file information](../../99-schema/file_info) `list`
@@ -3394,7 +3916,7 @@ query-parameter must be entered.
   - no file exists
 
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -3468,20 +3990,21 @@ $python final_test.py
 {'mday': 1, 'sec': 50, 'fname': 'vars', 'wday': 3, 'size': 8192, 'year': 2023, 'hour': 12, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 29}
 {'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
 ```
-[__SOURCE](8-file_manager/1-get/4-file_exist.md)
-## 8.1.4 `file_exist`
 
-### Description
+[__SOURCE](8-file_manager/1-get/4-file_exist.md)
+#### 8.1.4 `file_exist`
+
+##### Description
 
 - `GET` : Obtain the existence of the target file.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /file_manager/file_exist
 ```
 
-### query-parameter
+##### query-parameter
 
 query-parameter must be entered.  
 
@@ -3491,12 +4014,12 @@ query-parameter must be entered.
 
 - `pathname` : target file path
 
-### response-body
+##### response-body
 
 - `true` (file exists)
 - `false` (no file exist)
 
-### status code
+##### status code
 
 - 200 : Request succeeded
   - return [file information](../../99-schema/file_info) `list`
@@ -3504,7 +4027,7 @@ query-parameter must be entered.
   - not allowed path-parameter
 
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -3546,25 +4069,26 @@ print(is_file_exist())
 $python test.py
 true
 ```
+
 [__SOURCE](8-file_manager/2-post/README.md)
 ## 8.2 file_manager/post
 
 - Sends a POST request for file information from the controller.
 - You must write the correct request-body for each API.
 [__SOURCE](8-file_manager/2-post/1-rename_file.md)
-# 8.2.1 `rename_file`
+#### 8.2.1 `rename_file`
 
-## Description
+##### Description
 
 - `POST` : Change the file name of the target file.
 
-## path-parameter
+##### path-parameter
 
 ```python
 POST /file_manager/rename_file
 ```
 
-## request-body
+##### request-body
 
 ```json
 {
@@ -3575,7 +4099,7 @@ POST /file_manager/rename_file
 - `pathname_from` : File path before change
 - `pathname_to` : File path after change
 
-## status code
+##### status code
 
 - 200 : Request succeeded
   - Works fine
@@ -3583,7 +4107,7 @@ POST /file_manager/rename_file
   - No file exists to rename
 
 
-## Example
+##### Example
 
 <blockquote>
 
@@ -3629,37 +4153,38 @@ print(f"response: {rename_file()}")
 $python test.py
 response: 200
 ```
-[__SOURCE](8-file_manager/2-post/2-mkdir.md)
-# 8.2.2 `mkdir`
 
-## Description
+[__SOURCE](8-file_manager/2-post/2-mkdir.md)
+#### 8.2.2 `mkdir`
+
+##### Description
 
 - `POST` : Create a directory in the target path.
 
-## path-parameter
+##### path-parameter
 
 ```python
 GET /file_manager/mkdir
 ```
 
-## request-body
+##### request-body
 
 |key|value|description|
 |:---|:---|:---|
 |`path`|`str`|Where to create the directory|
 
-## response-body
+##### response-body
 
 - { `path`: ${target path} }
 
-## status code
+##### status code
 
 - 200 : Request succeeded
   - Directory creation completed in target location
 - 400 : Request failed
   - When directory names are duplicated in the target location
 
-## Example
+##### Example
 
 <blockquote>
 
@@ -3706,33 +4231,34 @@ print(f"response: {post_mkdir()}")
 $python test.py
 response: 200
 ```
-[__SOURCE](8-file_manager/2-post/3-files.md)
-# 8.2.3 `files`
 
-## Description
+[__SOURCE](8-file_manager/2-post/3-files.md)
+#### 8.2.3 `files`
+
+##### Description
 
 - `POST` : Transfer the file to the target path.
 
-## path-parameter
+##### path-parameter
 
 ```python
 POST /file_manager/files/{target_filepath}
 ```
 
-## path-variable
+##### path-variable
 
 - `target_filepath` : Target file path including extension.
 
-## request-body
+##### request-body
 
 - `Content-Type` must be `application/octet-stream`.
 
-## status code
+##### status code
 
 - 200 : Request succeeded
   - Transfer completed
 
-## Example
+##### Example
 
 <blockquote>
 
@@ -3760,10 +4286,10 @@ import requests
 def post_file_transfer() -> int:
     base_url        = 'http://192.168.1.150:8888'
     path_parameter  = '/file_manager/files'
-    path_value      = '/project/jobs/test.job' # target
+    path_value      = '/project/jobs/test.job' #### target
 
     target_file     = base_url + path_parameter + path_value
-    source_file     = 'D:\\temp\\test.job' # source (path for WindowOS)
+    source_file     = 'D:\\temp\\test.job' #### source (path for WindowOS)
 
     with open(source_file, 'rb') as file:
         response = requests.post(url=target_file, 
@@ -3778,29 +4304,30 @@ print(f"response: {post_file_transfer()}")
 $python test.py
 response: 200
 ```
+
 [__SOURCE](8-file_manager/3-delete/README.md)
 ## 8.3 file_manager/delete
 
 - Send a DELETE request for file information from the controller.
 [__SOURCE](8-file_manager/3-delete/1-files.md)
-## 8.3.1 `files`
+#### 8.3.1 `files`
 
-### Description
+##### Description
 
 - `DELETE` : Deletes the target file or directory.
 
-### path-parameter
+##### path-parameter
 
 ```python
 DELETE /file_manager/files/{target-filepath}
 ```
 
-### status code
+##### status code
 
 - 200 : Request succeeded
   - Target deletion completed
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -3838,6 +4365,7 @@ print(f"response: {delete_file()}")
 $python test.py
 response: 200
 ```
+
 [__SOURCE](9-task/README.md)
 # 9.task
 
@@ -3856,27 +4384,27 @@ response: 200
 - Sends a POST request for information related to the task.
 - You must write the correct request-body for each API.
 [__SOURCE](9-task/2-post/1-cur_prog_cnt.md)
-## 9.2.1 `task/cur_prog_cnt`
+#### 9.2.1 `task/cur_prog_cnt`
 
-### Description
+##### Description
 
 - `POST` : Sets the current program counter for the task.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/cur_prog_cnt
 ```
 
-### request-body
+##### request-body
 
 - [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md)
 
-### response-body
+##### response-body
 
 - [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md)
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -3912,29 +4440,30 @@ print(post_cur_prog_cnt())
 $python python test.py
 {'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
 ```
-[__SOURCE](9-task/2-post/2-reset.md)
-## 9.2.2 `task/reset`
 
-### Description
+[__SOURCE](9-task/2-post/2-reset.md)
+#### 9.2.2 `task/reset`
+
+##### Description
 
 - `POST` : Perform a reset on the task.  
 - It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}). 
   - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> Any other code is not intended for operation </span>
 
-### path-parameter
+##### path-parameter
 
 ```python
 # reset all the tasks
 POST /project/service/r_code/execute
 ```
 
-### request-body
+##### request-body
 
 ```json
 {"code": 0}
 ```
 
-### Example
+##### Example
 
 ```python
 request url:
@@ -3968,20 +4497,21 @@ print(f"response: {post_rcode_0()}")
 $python test.py
 response: 200
 ```
-[__SOURCE](9-task/2-post/3-assign_var_expr.md)
-## 9.2.3 `assign_var_expr`
 
-### Description
+[__SOURCE](9-task/2-post/3-assign_var_expr.md)
+#### 9.2.3 `assign_var_expr`
+
+##### Description
 
 - `POST` : Reassigns a variable in the current task statement.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/assign_var_expr
 ```
 
-### request-body
+##### request-body
 
 - `name` : variable name
 - `expr` : expression to substitute into variable
@@ -4001,7 +4531,7 @@ POST /project/context/tasks[0]/assign_var_expr
 }
 ```
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -4064,20 +4594,21 @@ before: 1234
 response: 200
 after: 777   
 ```
-[__SOURCE](9-task/2-post/4-assign_var_json.md)
-## 9.2.4 `assign_var_json`
 
-### Description
+[__SOURCE](9-task/2-post/4-assign_var_json.md)
+#### 9.2.4 `assign_var_json`
+
+##### Description
 
 - `POST` : Reassigns a variable in the current task statement.  
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/assign_var_json
 ```
 
-### request-body
+##### request-body
 
 - `name` : variable name
 - `json` : A json format `string` to be substituted into a variable.
@@ -4097,7 +4628,7 @@ POST /project/context/tasks[0]/assign_var_json
 }
 ```
 
-### Example
+##### example
 
 <blockquote>
 
@@ -4165,36 +4696,37 @@ before: 1234
 response: 200
 after: {'_type': 'JObject', 'test': 10}
 ```
-[__SOURCE](9-task/2-post/5-release_wait.md)
-## 9.2.5 `release_wait`
 
-### Description
+[__SOURCE](9-task/2-post/5-release_wait.md)
+#### 9.2.5 `release_wait`
+
+##### Description
 
 - `POST` : release syntax
 - Requirements: TP > system > 1: User environment > `wait(di/wi) release` > `Enable` click
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/release_wait
 ```
 
-### request-body
+##### request-body
 
 ```json
 {}
 ```
 
-### status code
+##### status code
 
 - 200 : Request succeeded
 - 403 : Request failed
   -  Failure to meet the above requirements
 
-### error code
+##### error code
 - -1442069 : User environment configuration error. Please ensure that all prerequisite requirements are satisfied
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -4229,27 +4761,28 @@ print(f"response: {post_release_wait()}")
 $python test.py
 response: 200
 ```
-[__SOURCE](9-task/2-post/6-set_cur_pc_idx.md)
-## 9.2.6 `set_cur_pc_idx`
 
-### Description
+[__SOURCE](9-task/2-post/6-set_cur_pc_idx.md)
+#### 9.2.6 `set_cur_pc_idx`
+
+##### Description
 
 - `POST` : Function that positions the current cursor at the index line
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/set_cur_pc_idx
 ```
 
-### request-body
+##### request-body
 ```json
 {
     "idx": 1
 }
 ```
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -4287,20 +4820,21 @@ print(f"response: {set_cur_pc_idx()}")
 $python test.py 
 response 200 # Cursor position on TP changed
 ```
-[__SOURCE](9-task/2-post/7-solve_expr.md)
-## 9.2.7 `solve_expr`
 
-### Description
+[__SOURCE](9-task/2-post/7-solve_expr.md)
+#### 9.2.7 `solve_expr`
+
+##### Description
 
 - `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/solve_expr
 ```
 
-### request-body
+##### request-body
 - `expr` : Enter the expression you want to solve
 - `scope` : Sets the scope for `expr`.
 
@@ -4315,13 +4849,13 @@ POST /project/context/tasks[0]/solve_expr
 }
 ```
 
-### response-body
+##### response-body
 
 ```json
 13 // Reads the expr value within the currently specified scope.
 ```
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -4406,22 +4940,29 @@ $python test.py
 10
 1000
 ```
-[__SOURCE](9-task/2-post/8-execute_move.md)
-## 9.2.8 `execute_move`
 
-### Description
+[__SOURCE](9-task/2-post/8-execute_move.md)
+#### 9.2.8 `execute_move`
+
+##### Description
 
 - Supported version : `60.28-00` &uparrow;
-- `POST` : Moves to the specified pose.  
+- `POST` : Moves to the specified pose.
 
-### path-parameter
+{% hint style="warning" %}
+HRSpace users only<br>
+execute_move may fail due to a Remote Mode validation error on VRC_Hi6 v60.30-10 to v60.32-06<br>
+→ Use v60.30-09 or earlier, or v60.32-07 or later (Physical Hi6 controllers are not affected)
+{% endhint %}
+
+##### path-parameter
 
 ```python
 POST /project/context/tasks[{task index}]/execute_move
 ```
 
-### request-body
-- `stmt` : Key value in the request body, referring to the statement.  
+##### request-body
+- `stmt` : Key value in the request body, referring to the statement.
 - For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/en/5-moving-robot/4-move?cont_model=${cont_model}).
 
 ```json
@@ -4430,56 +4971,74 @@ POST /project/context/tasks[{task index}]/execute_move
 }
 ```
 
-### status code
+##### response
 
-- 200 : Request successful   
-- 400 : Request failed    
-	- Request body failed validation    
-- 403 : Request failed    
-	- Requested an API that is not serviced  
+1. status code
+- 200 : OK
+- 400 : Bad Request
+    - The request body failed validation.
+- 403 : Forbidden
+    - An API request was attempted while not in Remote Mode (effective from v60.30-07).
+- 404 : Not Found
 
-Python Script Example  
-- Input pose command when the motor is on and matches the current robot axes.  
+2. response-body
+
+- Normal response for v60.30 or earlier
+
+```json
+{ "err_code" : 0 }
+```
+
+- Normal response for v60.32 or later
+
+```json
+{ "_type" : "JObject" }
+```
+
+3. error code
+
+- -38500 : API request attempted while not in Remote Mode
+- -1442071 : API request attempted while the motor is OFF
+- -1442080 : API request attempted during automatic program execution
+- -1376272 : Robot language syntax error occurred while processing the API request
+
+Python Script Example
+- Input pose command when the motor is on and matches the current robot axes.
 
 ```python
 # test.py
 import requests
 import time
 
-def post_execute_move(in_pose: str) -> int:
-    # base_url = "http://192.168.1.150:8888" # for ${cont_model}COM 
-    base_url = "http://127.0.0.1:8888" # for HRSpace - virtual robot controller
+
+def post_execute_move(in_pose: str) -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/project/context/tasks[0]/execute_move"
     head = {"Content-Type": "application/json; charset=utf-8"}
     body = {"stmt": f"move SP,spd=1sec,accu=0,tool=1  {str(in_pose)}"}
 
     response = requests.post(url=base_url + path_parameter, headers=head, json=body)
 
-    return response.status_code
+    return response
 
-poses = [
-    "[-10, 90, -10, 0, 0, 0]",
-    "[-5, 90, 5, 0, 0, 0]",
-    "[0, 90, 0, 0, 0, 0]"
-]
+
+poses = ["[-10, 90, -10, 0, 0, 0]", "[-5, 90, 5, 0, 0, 0]", "[0, 90, 0, 0, 0, 0]"]
 
 for idx, pose in enumerate(poses):
-    print(f"Request {idx + 1}: Sending pose {pose}")
-    status_code = post_execute_move(pose)
-    print(f"Status code: {status_code}")
-    if idx < len(poses) - 1:  
-        time.sleep(1.5)
+    res = post_execute_move(pose)
+    print((res.status_code, res.json()))
 
+    if idx < len(poses) - 1:
+        time.sleep(1.5)
 ```
 ```sh
-$python test.py 
-Request 1: Sending pose [-10, 90, -10, 0, 0, 0]
-Status code: 200
-Request 2: Sending pose [-5, 90, 5, 0, 0, 0]
-Status code: 200
-Request 3: Sending pose [0, 90, 0, 0, 0, 0]
-Status code: 200
+$python test.py
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
+(200, {'_type': 'JObject'})
 ```
+
 [__SOURCE](10-console/README.md)
 # 10. console
 
@@ -4496,22 +5055,22 @@ Status code: 200
 - Sends a POST request for information related to executing robot commands.  
 - The exact request-body must be written for each API.  
 [__SOURCE](10-console/2-post/1-execute_cmd.md)
-## 10.2.1 `execute_cmd`
+#### 10.2.1 `execute_cmd`
 
 
-### Description
+##### Description
 
 - Supported version : `60.28-00` &uparrow;
 - `POST` : Executes console commands for the ${cont_model} controller.  
 - You can perform [CLI robot language commands](../.././99-schema/robotlang.md).  
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /console/execute_cmd
 ```
 
-### request-body
+##### request-body
 
 ```json
 {
@@ -4519,7 +5078,7 @@ POST /console/execute_cmd
 }
 ```
 
-### status code
+##### status code
 
 - 200: Request successful  
 	- Needs to apply [CLI robot language commands](../.././99-schema/robotlang.md) rules  
@@ -4535,7 +5094,7 @@ POST /console/execute_cmd
 - 403/4: Request failed
 	- Requested an API that is not serviced
 
-### Example
+##### Example
 
 </blockquote>
 
@@ -4599,31 +5158,34 @@ response: <Response [200]>
 response: <Response [200]>
 response: 200
 ```
+
 [__SOURCE](11-etc/README.md)
 # 11. etc
 
 - It covers system version, event log, clock, etc.
+
 [__SOURCE](11-etc/1-clock/README.md)
 # 11.1 clock
 
 - You can read and set the controller's system time.
 [__SOURCE](11-etc/1-clock/1-get/README.md)
-## 11.1.1 clock/get
+#### 11.1.1 clock/get
 
 - Send a GET request for the controller system time.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
-[__SOURCE](11-etc/1-clock/1-get/1-date_time.md)
-## 11.1.1.1 `date_time`
 
-### Description
+[__SOURCE](11-etc/1-clock/1-get/1-date_time.md)
+#### 11.1.1.1 `date_time`
+
+##### Description
 
 - `GET` : Obtain the set system time.
 
-### response-body
+##### response-body
 
 - [date time](../../../99-schema/date_time.md)
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -4666,23 +5228,25 @@ print(get_system_time())
 $python test.py
 [11/20] 19:55
 ```
+
 [__SOURCE](11-etc/1-clock/2-put/README.md)
-## 11.1.2 clock/put
+#### 11.1.2 clock/put
 
 - Sends a PUT request to the controller system time.
 - You must write the correct request-body for each API.
-[__SOURCE](11-etc/1-clock/2-put/1-date_time.md)
-## 11.1.2.1 `date_time`
 
-### Description
+[__SOURCE](11-etc/1-clock/2-put/1-date_time.md)
+#### 11.1.2.1 `date_time`
+
+##### Description
 
 - `PUT` : Change the system time.
 
-### request-body
+##### request-body
 
 - [date time](../../../99-schema/date_time.md)
 
-### Example
+##### Example
 
 <blockquote>
 
@@ -4724,16 +5288,17 @@ print(f"response: {put_system_time()}")
 $python test.py
 response: 200
 ```
+
 [__SOURCE](99-schema/README.md)
-# Schema
+# 12. Schema
 
 This chapter contains references to various enumerations and structures used in Open API.
 
 
 [__SOURCE](99-schema/crdsys.md)
-## crdsys
+### crdsys
 
-### Description
+#### Description
 
 This is an enumeration that specifies the coordinate system.
 |value|description|
@@ -4745,12 +5310,12 @@ This is an enumeration that specifies the coordinate system.
 |`3`|`tool` coordinate system|
 
 [__SOURCE](99-schema/cur_prog_cnt.md)
-## cur_prog_cnt
+### cur_prog_cnt
 
-### Description
+#### Description
 Sets the current program counter for the task.
 
-### request body
+#### request body
 |key|type|description|
 |:---|:---|:---|
 |`pno`|int|Program number (if -1, keep current number)|
@@ -4758,16 +5323,17 @@ Sets the current program counter for the task.
 |`fno`|int|Function number (if -1, keep current number)|
 |`ext_sel`|int|`0` : Internal selection (prohibited in remote mode) <br> `1` : External selection (only allowed in remote mode)|
 
-### response body
+#### response body
 |key|type|description|
 |:---|:---|:---|
 |`sno_new`|int|Newly moved step number|
 |`fno_new`|int|Newly moved function number|
 |`ln_new`|int|Newly moved line number (program header is 0, first statement is 1)|
-[__SOURCE](99-schema/date_time.md)
-## date_time
 
-### Description
+[__SOURCE](99-schema/date_time.md)
+### date_time
+
+#### Description
 
 Indicates system time-related information.
 |value|type|description|
@@ -4780,9 +5346,9 @@ Indicates system time-related information.
 |"sec"|`int`|Second of current system|
 
 [__SOURCE](99-schema/file_info.md)
-## file_info
+### file_info
 
-### Description
+#### Description
 
 This parameter is returned when requesting file information.
 
@@ -4801,9 +5367,9 @@ This parameter is returned when requesting file information.
 |readonly|`bool`| Check if the file is read-only |
 
 [__SOURCE](99-schema/jobs_info.md)
-## jobs_info
+### jobs_info
 
-### Description
+#### Description
 
 This is a job file information parameter.
 
@@ -4816,9 +5382,9 @@ This is a job file information parameter.
 |n_aux_ax|`int`|Number of additional axes|
 
 [__SOURCE](99-schema/mechinfo.md)
-## mechinfo
+### mechinfo
 
-### Description
+#### Description
 
 Mechanism info
 Celebrate with a bit-field which activities are used.
@@ -4832,7 +5398,7 @@ Celebrate with a bit-field which activities are used.
 - bit 6 : M6
 - bit 7 : M7
 
-### Example
+#### Example
 
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0
@@ -4840,9 +5406,9 @@ Celebrate with a bit-field which activities are used.
 ```
 
 [__SOURCE](99-schema/op_cnd.md)
-## op_cnd
+### op_cnd
 
-### Description
+#### Description
 op_cnd (operation condition) : value of `Condition setting`  
 You can check the values when you press the `Condition setting` button in TP.  
 
@@ -4863,7 +5429,7 @@ You can check the values when you press the `Condition setting` button in TP.
 
 <br>
 
-### Example
+#### Example
 
 ```python
 {
@@ -4882,9 +5448,9 @@ You can check the values when you press the `Condition setting` button in TP.
 ```
 
 [__SOURCE](99-schema/pose.md)
-## Pose
+### Pose
 
-### Description
+#### Description
 
 Pose Data.
 
@@ -4901,10 +5467,11 @@ Pose Data.
 |mechinfo|[Mechanism information](./mechinfo.md)|
 |nsync|Number of sensor synchronization values (0~2)|
 |sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|
-[__SOURCE](99-schema/tool_data.md)
-## tool_data
 
-### Description
+[__SOURCE](99-schema/tool_data.md)
+### tool_data
+
+#### Description
 
 Robot's tool data.
 
@@ -4927,9 +5494,9 @@ Robot's tool data.
 
 
 [__SOURCE](99-schema/robotlang.md)
-## CLI Robot Language Commands
+### CLI Robot Language Commands
 
-### Description
+#### Description
 
 This is a list of robot language commands that can be executed from the ${cont_model} controller console.  
 

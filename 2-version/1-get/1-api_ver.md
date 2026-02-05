@@ -1,6 +1,6 @@
-﻿## 2.1.1 api_ver
+﻿#### 2.1.1 api_ver
 
-### Description
+##### Description
 
 In rare cases, the schema version of your API may change the way it communicates with the controller or its data structures.  
 This may cause problems with the client program, so confirmation through the corresponding function is required.  
@@ -8,18 +8,18 @@ If there is a change in the schema version for each API function, it will be not
 
 - `GET` : Optain the Open API version number
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /api_ver
 ```
 
-### response-body
+##### response-body
 
 - Open API version number
 - The initial ${cont_model} Open API is a document written based on `version 5`.
 
-### Example
+##### Example
 
 ```python
 request url:

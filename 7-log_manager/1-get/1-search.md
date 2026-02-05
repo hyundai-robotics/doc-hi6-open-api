@@ -1,16 +1,16 @@
-﻿## 7.1.1 search
+﻿#### 7.1.1 search
 
-### Description
+##### Description
 
 - `GET` : View the event log using the specified filter conditions.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /logManager/search
 ```
 
-### query-parameter
+##### query-parameter
 
 - `n_item` : Number of requested events (default=100)
 - `cat_p` : Request category filter (category positive). Specify the letters representing each type by combining them with a comma (,). (cat_p=E,W,N)
@@ -36,7 +36,7 @@ GET /logManager/search
 - `ts_max` : max timestamp filter. (optional)
   - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
 
-### response-body
+##### response-body
 
 - `id` : event ID
 - `ts` : timestamp
@@ -54,7 +54,7 @@ GET /logManager/search
 { "id" : 18266, "ts" : "2023/11/20 15:00:33.789", "cat" : "H", "code" : "hist", "aux" : "( 738785)S3  .move P,spd=500mm/sec,accu=4,tool=0 " }
 ```
 
-### Example
+##### Example
 
 <blockquote>
 

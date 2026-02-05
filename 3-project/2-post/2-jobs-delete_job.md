@@ -1,16 +1,16 @@
-﻿## 3.2.2 `delete_job`
+﻿#### 3.2.2 `delete_job`
 
-### Description
+##### Description
 
 - `POST` : Send a request to remove a working file.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/jobs/delete_job
 ```
 
-### request-body
+##### request-body
 
 ```json
 {
@@ -18,7 +18,7 @@ POST /project/jobs/delete_job
 }
 ```
 
-### Example
+##### Example
 
 ```json
 request url:

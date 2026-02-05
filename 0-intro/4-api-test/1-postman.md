@@ -1,11 +1,11 @@
-﻿## 1.4.1 Requesting POST in Postman
+﻿#### 0.4.1 Requesting POST in Postman
 
 On this page, use `postman` to call the `POST` request of the REST API and check the result.  
 Additionally, simple UI configuration helps you understand how to use it.
 
 <br>
 
-### a. Main UI composition
+##### a. Main UI composition
 
 You can check the main UI composition through the picture below.
 
@@ -22,7 +22,7 @@ You can check the main UI composition through the picture below.
 
 <br>
 
-### b. Testing POST Requests
+##### b. Testing POST Requests
 
 1. `Request Header`  
 	- Enter the `Key`, `Value` below in the Headers tab.

@@ -1,17 +1,17 @@
-﻿## 4.1.4 `ucss/ucs_nos`
+﻿#### 4.1.2 `ucss/ucs_nos`
 
-### Description
+##### Description
 
 - `GET` : Obtains a list of user coordinate systems currently in use.
 - Prints a list of user coordinate systems registered through `system > 2: Control parameter > 6: Coordinate registration`.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/control/ucss/ucs_nos
 ```
 
-### Example
+##### Example
 
 ```python
 request url:

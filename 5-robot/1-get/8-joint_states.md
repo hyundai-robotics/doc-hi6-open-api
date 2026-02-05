@@ -1,12 +1,12 @@
-﻿## 5.1.8 `joint_states`
+﻿#### 5.1.8 `joint_states`
 
-### Description
+##### Description
 - Supported version: `60.34-00` ↑
-- `GET`: Retrieves the robot’s current joint states.
+- `GET`: Retrieves the robot's current joint states.
 - Returns **joint angle (position, °), velocity, and torque (effort)** information for each joint.  
   You can query all axes or selectively query a specified range of axes.
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -16,9 +16,9 @@ GET /project/robot/joint_states
 
 </div>
 
-### query-parameter
+##### query-parameter
 
-* ※ If no parameters are specified, all joints are queried.
+* * If no parameters are specified, all joints are queried.
 * jno_start (optional)
 
   * Joint index to start querying from (1-based)
@@ -26,7 +26,7 @@ GET /project/robot/joint_states
 
   * Number of joints to query
 
-### response
+##### response
 
 1. status code
 
@@ -55,7 +55,7 @@ GET /project/robot/joint_states
 
         </div>
 
-### Usage Example
+##### Usage Example
 
 <div style="max-width: 60vw;">
 

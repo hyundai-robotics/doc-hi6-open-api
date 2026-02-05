@@ -1,33 +1,33 @@
-﻿# 8.2.2 `mkdir`
+﻿#### 8.2.2 `mkdir`
 
-## Description
+##### Description
 
 - `POST` : Create a directory in the target path.
 
-## path-parameter
+##### path-parameter
 
 ```python
 GET /file_manager/mkdir
 ```
 
-## request-body
+##### request-body
 
 |key|value|description|
 |:---|:---|:---|
 |`path`|`str`|Where to create the directory|
 
-## response-body
+##### response-body
 
 - { `path`: ${target path} }
 
-## status code
+##### status code
 
 - 200 : Request succeeded
   - Directory creation completed in target location
 - 400 : Request failed
   - When directory names are duplicated in the target location
 
-## Example
+##### Example
 
 <blockquote>
 

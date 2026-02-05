@@ -1,13 +1,13 @@
-﻿## 5.1.9 `joint_traject_insert_point`
+﻿#### 5.1.9 `joint_traject_insert_point`
 
-### Description
+##### Description
 - Supported version: `60.34-00` ↑
 - `POST`: **Sequentially appends the next joint target point** for joint trajectory execution.
 - By repeatedly calling this API, a continuous joint trajectory can be constructed.
 
 ---
 
-### Notes
+##### Notes
 
 * [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
 
@@ -23,7 +23,7 @@
 
 ---
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -35,7 +35,7 @@ POST /project/robot/trajectory/joint_traject_insert_point
 
 ---
 
-### request-body
+##### request-body
 
 <div style="width: fit-content;">
 
@@ -65,7 +65,7 @@ POST /project/robot/trajectory/joint_traject_insert_point
 
 ---
 
-### response
+##### response
 
 1. status code
 
@@ -78,7 +78,7 @@ POST /project/robot/trajectory/joint_traject_insert_point
 
 ---
 
-### Usage Example
+##### Usage Example
 
 ```python
 request url:
@@ -97,12 +97,12 @@ request-body:
 
 ---
 
-### Python Script Example
+##### Python Script Example
 
-#### Prerequisites
+###### Prerequisites
 
 1. Move the robot to the reference pose.
-   (Example – for a 6-axis robot: `[0, 90, 0, 0, -90, 0]`)
+   (Example - for a 6-axis robot: `[0, 90, 0, 0, -90, 0]`)
 2. Insert the statement `wait di1` in the job.
 3. Switch to auto mode and start program playback.
 4. Run the test code below in that state.

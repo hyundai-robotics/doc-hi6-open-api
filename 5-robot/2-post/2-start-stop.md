@@ -1,23 +1,23 @@
-﻿## 5.2.2 `start / stop`
+﻿#### 5.2.2 `start / stop`
 
-### Description
+##### Description
 
 - `POST` : Performs robot start and robot stop.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/robot/start
 POST /project/robot/stop
 ```
 
-### request-body
+##### request-body
 
 ```json
 {}
 ```
 
-### response-body
+##### response-body
 
 1. status code
 
@@ -39,7 +39,7 @@ POST /project/robot/stop
 
 - -38500: API request rejected because the controller is not in Remote Mode
 
-### Example
+##### Example
 
 ```python
 POST /project/robot/start or /project/robot/stop

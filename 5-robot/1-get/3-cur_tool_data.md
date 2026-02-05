@@ -1,20 +1,20 @@
-﻿## 5.1.3 `cur_tool_data`
+﻿#### 5.1.3 `cur_tool_data`
 
-### Description
+##### Description
 
 - `GET` : Obtaining the robot's current tool data.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/cur_tool_data
 ```
 
-### response-body
+##### response-body
 
 - val : [Tool Data](../../99-schema/tool_data.md)
 
-### Example
+##### Example
 
 ```python
 request url:

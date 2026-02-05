@@ -1,13 +1,13 @@
-﻿## 5.2.6 `emergency_stop_test`
+﻿#### 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
 
-### Description
+##### Description
 
 - Supported version : `60.30-00` &uparrow;
 - `POST` : Executes an emergency stop.  
 
-### path-parameter
+##### path-parameter
 
 
 <div style="max-width:fit-content">
@@ -19,7 +19,7 @@ POST /project/robot/emergency_stop_test
 
 </div>
 
-### request-body
+##### request-body
 
   <div style="max-width:fit-content">
 
@@ -39,7 +39,7 @@ POST /project/robot/emergency_stop_test
 
 </div>
 
-### status code
+##### status code
 
 - 200 : Request successful    
 - 400 : Request failed     
@@ -48,7 +48,7 @@ POST /project/robot/emergency_stop_test
 	- Requested an API that is not serviced  
 
 
-### Usage Example  
+##### Usage Example  
 
 <div style="max-width:fit-content">
 

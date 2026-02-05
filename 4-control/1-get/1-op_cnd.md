@@ -1,16 +1,16 @@
-﻿## 4.1.1 `op_cnd`
+﻿#### 4.1.1 `op_cnd`
 
-### Description
+##### Description
 
 - `GET` : Obtain the operation condition setting values.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/control/op_cnd
 ```
 
-### response-body
+##### response-body
 
 - [Condition Setting parameter](../../99-schema/op_cnd.md)
 

@@ -1,16 +1,16 @@
-﻿## 5.1.4 `tools`
+﻿#### 5.1.4 `tools`
 
-### Description
+##### Description
 
 - `GET` : Get all tool information for the robot. Only tools that exist among tools from T0 to T31 are obtained.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/tools
 ```
 
-### response-body
+##### response-body
 
 - t_0 : [Tool data](../../99-schema/tool_data.md)
 - t_1 : Tool data
@@ -18,7 +18,7 @@ GET /project/robot/tools
 ...
 - t_31 : Tool data
 
-### Example
+##### Example
 
 An example of a system in which only tool 0 and tool 31 exist.
 

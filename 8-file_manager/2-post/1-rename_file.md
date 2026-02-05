@@ -1,16 +1,16 @@
-﻿# 8.2.1 `rename_file`
+﻿#### 8.2.1 `rename_file`
 
-## Description
+##### Description
 
 - `POST` : Change the file name of the target file.
 
-## path-parameter
+##### path-parameter
 
 ```python
 POST /file_manager/rename_file
 ```
 
-## request-body
+##### request-body
 
 ```json
 {
@@ -21,7 +21,7 @@ POST /file_manager/rename_file
 - `pathname_from` : File path before change
 - `pathname_to` : File path after change
 
-## status code
+##### status code
 
 - 200 : Request succeeded
   - Works fine
@@ -29,7 +29,7 @@ POST /file_manager/rename_file
   - No file exists to rename
 
 
-## Example
+##### Example
 
 <blockquote>
 

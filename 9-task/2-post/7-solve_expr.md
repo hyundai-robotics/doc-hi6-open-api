@@ -1,16 +1,16 @@
-﻿## 9.2.7 `solve_expr`
+﻿#### 9.2.7 `solve_expr`
 
-### Description
+##### Description
 
 - `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/solve_expr
 ```
 
-### request-body
+##### request-body
 - `expr` : Enter the expression you want to solve
 - `scope` : Sets the scope for `expr`.
 
@@ -25,13 +25,13 @@ POST /project/context/tasks[0]/solve_expr
 }
 ```
 
-### response-body
+##### response-body
 
 ```json
 13 // Reads the expr value within the currently specified scope.
 ```
 
-### Example
+##### Example
 
 <blockquote>
 

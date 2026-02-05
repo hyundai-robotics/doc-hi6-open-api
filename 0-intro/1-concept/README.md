@@ -1,4 +1,4 @@
-﻿## 1.1 About ${cont_model} Open API
+﻿## 0.1 About ${cont_model} Open API
 
 In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as ${cont_model}).<br>
 This enables developers to read and write ${cont_model} data without requiring a thorough comprehension of the source code used in ${cont_model} development.<br>
@@ -19,7 +19,7 @@ In this way, developers can use the Open API in the document to remotely control
 <br><br>
 
 
-### Be sure to check before you start!
+#### Be sure to check before you start!
 
 * The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
 

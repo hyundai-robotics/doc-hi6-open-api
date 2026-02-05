@@ -1,16 +1,16 @@
-﻿## 5.1.2 `po_cur`
+﻿#### 5.1.2 `po_cur`
 
-### Description
+##### Description
 
 - `GET` : Get the pose the robot is currently taking.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/robot/po_cur
 ```
 
-### query-parameter
+##### query-parameter
 
 - `task_no` : task number (0~7).
   - unspecified : Applied as task 0.
@@ -22,12 +22,12 @@ GET /project/robot/po_cur
 - `ucrd_no` : User coordinate system number (Specified only when crd is user.)
 - `mechinfo` : [Mechanism information](../../99-schema/mechinfo.md)
 
-### response-body
+##### response-body
 
 - [Pose information](../../99-schema/pose.md)
 
 
-### Example
+##### Example
 
 Example of a system with 6 robot axes (j1~j6) + 1 driving axis (j7) + 2 positioner axes (j8, j9).
 

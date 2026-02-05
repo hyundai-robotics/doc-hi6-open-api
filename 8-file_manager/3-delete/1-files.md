@@ -1,21 +1,21 @@
-﻿## 8.3.1 `files`
+﻿#### 8.3.1 `files`
 
-### Description
+##### Description
 
 - `DELETE` : Deletes the target file or directory.
 
-### path-parameter
+##### path-parameter
 
 ```python
 DELETE /file_manager/files/{target-filepath}
 ```
 
-### status code
+##### status code
 
 - 200 : Request succeeded
   - Target deletion completed
 
-### Example
+##### Example
 
 <blockquote>
 

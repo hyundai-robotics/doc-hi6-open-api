@@ -1,23 +1,23 @@
-﻿## 9.2.6 `set_cur_pc_idx`
+﻿#### 9.2.6 `set_cur_pc_idx`
 
-### Description
+##### Description
 
 - `POST` : Function that positions the current cursor at the index line
 
-### path-parameter
+##### path-parameter
 
 ```python
 POST /project/context/tasks[0]/set_cur_pc_idx
 ```
 
-### request-body
+##### request-body
 ```json
 {
     "idx": 1
 }
 ```
 
-### Example
+##### Example
 
 <blockquote>
 

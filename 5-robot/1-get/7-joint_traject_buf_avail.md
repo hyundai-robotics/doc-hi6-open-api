@@ -1,11 +1,11 @@
-﻿## 5.1.7 `joint_traject_buf_avail`
+﻿#### 5.1.7 `joint_traject_buf_avail`
 
-### Description
+##### Description
 - Supported Version : `60.32-00` &uparrow;
 - `GET` : Returns the available size of the trajectory buffer.
 - When requesting trajectories consecutively, you must use this function to ensure that the size of each trajectory request does not exceed the available buffer space.
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -13,16 +13,16 @@
 GET /project/robot/trajectory/joint_traject_buf_avail
 ```
 
-### response-body
+##### response-body
 
 - val: Number of available buffer slots (maximum: 2048)
 
-### status code
+##### status code
   - 200 : Request succeeded
   - 403 : Request failed
     - Returned when calling an unsupported API
 
-### Example
+##### Example
 
 ```python
 request url:

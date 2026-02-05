@@ -1,6 +1,6 @@
-﻿## 5.2.7 `joint_traject_init`
+﻿#### 5.2.7 `joint_traject_init`
 
-### Description
+##### Description
 
 - Supported version : `60.32-00` &uparrow;
 - `POST` : Initializes the trajectory buffer.
@@ -12,7 +12,7 @@
   - Removing previously stored trajectory points from the buffer may cause the robot to stop and trigger an error. Use with caution.
 
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -21,7 +21,7 @@ POST /project/robot/trajectory/joint_traject_init
 ```
 </div>
 
-### request-body
+##### request-body
 
 <div style="width: fit-content;">
 
@@ -30,14 +30,14 @@ POST /project/robot/trajectory/joint_traject_init
 </div>
 
 
-### status code
+##### status code
 
 - 200 : Request succeeded
 - 403 : Request failed
   - Returned when calling an unsupported API
   - `err_code` (<0): Initialization failed
 
-### Example
+##### Example
 
 <div style="width: fit-content;">
 

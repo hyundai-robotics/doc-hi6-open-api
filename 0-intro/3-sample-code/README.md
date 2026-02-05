@@ -1,4 +1,4 @@
-﻿## 1.3 Sample code
+﻿## 0.3 Sample code
 
 Various development languages provide libraries for calling REST APIs.  
 To learn how to use it, you can easily search and refer to the technical documentation for each development language.

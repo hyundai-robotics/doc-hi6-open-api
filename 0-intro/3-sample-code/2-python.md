@@ -1,4 +1,4 @@
-﻿### 1.3.2 Sample code - python
+﻿#### 0.3.2 Sample code - python
 
 The example code mainly describes `a. synchronous request`.
 
@@ -19,7 +19,7 @@ Therefore, when developing actual applications, please write your code in an asy
 
 <br>
 
-### a. Synchronous request
+##### a. Synchronous request
 Synchronous is a request method in a blocking state in which other tasks cannot be executed until one request is completed and a response is received.  
 A widely used library for `synchronous` HTTP requests in Python is `requests`.
 If you do not have the `requests` library, you can install it through the Python package manager.  
