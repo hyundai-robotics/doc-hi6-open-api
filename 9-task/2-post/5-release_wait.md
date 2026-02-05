@@ -1,25 +1,25 @@
-﻿## 9.2.5 `release_wait`
+﻿### 9.2.5 `release_wait`
 
 <div style="width: fit-content;">
 
-### 설명
+#### 설명
 
 - `POST` : WAIT 을 실행중인 태스크에 대해서 wait 상태를 강제로 해제합니다.
 - **<u>필요 조건</u>** : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
 
-### path-parameter
+#### path-parameter
 
 ```python
 POST /project/context/tasks[{task index}]/release_wait
 ```
 
-### request-body
+#### request-body
 
 ```json
 {}
 ```
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -40,7 +40,7 @@ POST /project/context/tasks[{task index}]/release_wait
    - -1442069 : 사용자 환경 설정 오류. 상기 필요 조건을 확인하십시오.
 
 
-### 사용 예
+#### 사용 예
 
 ```json
 request url:

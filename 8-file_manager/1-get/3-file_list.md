@@ -1,10 +1,10 @@
-﻿## 8.1.3 `file_list`
+﻿### 8.1.3 `file_list`
 
-### 설명
+#### 설명
 
 - `GET` : 파일 및 디렉토리 리스트를 반환합니다.
 
-### path-parameter
+#### path-parameter
 
 
 <div style="width: fit-content;">
@@ -13,7 +13,7 @@
 GET /file_manager/file_list
 ```
 
-### query-parameter
+#### query-parameter
 
 query-parameter 를 반드시 입력해야합니다.  
 
@@ -33,7 +33,7 @@ query-parameter 를 반드시 입력해야합니다.
 
 </div>
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -52,7 +52,7 @@ query-parameter 를 반드시 입력해야합니다.
    - 파일이 없을 시 `404 Not Found`
 
 
-### 사용 예
+#### 사용 예
 
 <div style="width: fit-content;">
 

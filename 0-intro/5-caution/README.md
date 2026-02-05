@@ -6,6 +6,5 @@
 
 {% endhint %}
 
-#### 목차
 
-1. [Keep-Alive vs Close connection](./1-http-connection.md)
+0.5.1. [Keep-Alive vs Close connection](./1-http-connection.md)

@@ -1,10 +1,10 @@
-﻿## 2.1.2 sysver
+﻿#### 2.1.2 sysver
 
-### 설명
+##### 설명
 
 - `GET` : 로봇제어기 시스템의 소프트웨어 버전을 얻습니다.
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -13,7 +13,7 @@ GET /versions/sysver
 ```
 </div>
 
-### response
+##### response
 
 1) status code
    - 200 : OK
@@ -29,7 +29,7 @@ GET /versions/sysver
       - `build-time` : 빌드 시간
       - `commit-id` : 소스코드의 커밋 ID
 
-### 사용 예
+##### 사용 예
 
 <div style="width: fit-content;">
 

@@ -1,10 +1,10 @@
-﻿## 3.1.1 `rgen`
+﻿### 3.1.1 `rgen`
 
-### 설명
+#### 설명
 
 - `GET` : 제어기에 설정된 일반적인 정보들을 읽습니다.
 
-### path-parameter
+#### path-parameter
 
 
 <div style="width: fit-content;">
@@ -14,7 +14,7 @@ GET /project/rgen
 ```
 </div>
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -91,7 +91,7 @@ GET /project/rgen
 
 <br>
 
-### 사용 예
+#### 사용 예
 Python Script 예시
 
 <div style="width: fit-content;">

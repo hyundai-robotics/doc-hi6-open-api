@@ -1,18 +1,18 @@
-﻿## 8.2.1 `rename_file`
+﻿### 8.2.1 `rename_file`
 
 <div style="width: fit-content;">
 
-### 설명
+#### 설명
 
 - `POST` : 타겟 파일의 파일 이름을 변경합니다.
 
-### path-parameter
+#### path-parameter
 
 ```python
 POST /file_manager/rename_file
 ```
 
-### request-body
+#### request-body
 
 ```json
 {
@@ -25,7 +25,7 @@ POST /file_manager/rename_file
 - `pathname_from` : 변경 전 파일 경로
 - `pathname_to` : 변경 후 파일 경로
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -44,7 +44,7 @@ POST /file_manager/rename_file
 	</div>
 
 
-### 사용 예
+#### 사용 예
 
 <div style="width: fit-content;">
 

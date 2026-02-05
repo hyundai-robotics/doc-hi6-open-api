@@ -1,13 +1,13 @@
-﻿## 5.2.8 `joint_traject_insert_points`
+﻿### 5.2.8 `joint_traject_insert_points`
 
-### 설명
+#### 설명
 
 - 지원 버전 : `60.32-00` &uparrow;
 - `POST` : 복수 개의 joint trajectory 포인트를 제어기 내부 버퍼에 저장하여 모션에 반영합니다.
 
 ---
 
-### 주의 사항
+#### 주의 사항
 
 1. **프로그램이 <u>실행 중인</u> 상태**에서만 본 API가 동작합니다.
    - ex) job 프로그램에 "wait di1" 와 같은 구문을 자동모드에서 실행한 상태로 api 요청
@@ -26,7 +26,7 @@
 6. 부가축 사용 시, 축 좌표 값의 단위에 유의하시기 바랍니다.
 ---
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -35,7 +35,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 ```
 </div>
 
-### request-body
+#### request-body
 
 <div style="width: fit-content;">
 
@@ -65,7 +65,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
   ```
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -85,7 +85,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 	```
 	</div>
 
-### error code (response 403)
+#### error code (response 403)
 
 <div style="width: fit-content;">
 
@@ -106,7 +106,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 </div>
 
-### 사용 예
+#### 사용 예
 
 **예시1. 정지 상태에서 궤적 요청하기**
 

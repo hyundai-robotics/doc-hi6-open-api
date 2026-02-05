@@ -1,11 +1,11 @@
-﻿## 5.1.8 `joint_states`
+﻿### 5.1.8 `joint_states`
 
-### 설명
+#### 설명
 - 지원 버전 : `60.34-00` ↑
 - `GET` : 로봇의 현재 조인트 상태를 조회합니다.
 - 각 조인트의 **각도(position, °), 속도(velocity), 토크(effort)** 정보를 반환하며, 전체 축 또는 지정한 축 구간만 선택적으로 조회할 수 있습니다.
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -15,16 +15,16 @@ GET /project/robot/joint_states
 
 </div>
 
-### query-parameter
+#### query-parameter
 
-* ※ 파라미터를 지정하지 않으면 전체 조인트를 조회합니다.
+* * 파라미터를 지정하지 않으면 전체 조인트를 조회합니다.
 * jno_start (optional)
   * 조회를 시작할 조인트 번호 (1-base)
 * jno_n (optional)
   * 조회할 조인트 개수
 
 
-### response
+#### response
 
 1. status code
 
@@ -52,7 +52,7 @@ GET /project/robot/joint_states
 
         </div>
 
-### 사용 예
+#### 사용 예
 
 <div style="max-width: 60vw;">
 

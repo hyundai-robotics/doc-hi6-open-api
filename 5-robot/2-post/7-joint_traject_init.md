@@ -1,6 +1,6 @@
-﻿## 5.2.7 `joint_traject_init`
+﻿### 5.2.7 `joint_traject_init`
 
-### 설명
+#### 설명
 
 - 지원 버전 : `60.32-00` &uparrow;
 - `POST` : 버퍼를 초기화를 진행합니다.
@@ -12,7 +12,7 @@
   - 기존 버퍼에 저장된 궤적 포인트들이 사라지면 로봇이 정지되면서 에러가 발생할 수 있으므로 사용에 주의 하시기 바랍니다.
 
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -21,7 +21,7 @@ POST /project/robot/trajectory/joint_traject_init
 ```
 </div>
 
-### request-body
+#### request-body
 
 <div style="width: fit-content;">
 
@@ -31,7 +31,7 @@ POST /project/robot/trajectory/joint_traject_init
 
 
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -50,7 +50,7 @@ POST /project/robot/trajectory/joint_traject_init
 	```
 	</div>
 
-### 사용 예
+#### 사용 예
 
 <div style="width: fit-content;">
 

@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="../../_assets/style.css">
 
-## 9.2.2 `task/reset`
+### 9.2.2 `task/reset`
 
 <div style="width: fit-content;">
 
@@ -13,7 +13,7 @@ R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동�
 
 {% endhint %}
 
-### 설명
+#### 설명
 
 - `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
 - [R코드 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model})를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
@@ -22,20 +22,20 @@ R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동�
 - R코드 1을 진행한 이후에 프로그램 카운터 조작이 필요한 경우는 명시적으로 [cur_prog_cnt](./1-cur_prog_cnt.md), [set_cur_pc_idx](./6-set_cur_pc_idx.md) api 를 활용하십시오.
 
 
-### path-parameter
+#### path-parameter
 
 ```python
 # reset all the tasks
 POST /project/service/r_code/execute
 ```
 
-### request-body
+#### request-body
 
 ```json
 {"code": 1}
 ```
 
-### response
+#### response
 
 1) status code
 	- 200 : OK
@@ -55,7 +55,7 @@ POST /project/service/r_code/execute
 		```
 		</div>
 
-### 사용 예
+#### 사용 예
 
 ```python
 request url:

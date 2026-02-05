@@ -1,6 +1,6 @@
-﻿## 5.2.5 `emergency_stop`
+﻿### 5.2.5 `emergency_stop`
 
-### 설명
+#### 설명
 
 - 지원 버전 : `60.30-00` &uparrow;
 - `POST` : 비상 정지를 실행합니다.  
@@ -8,7 +8,7 @@
 - API 호출 시, 네트워크 지연(Latency) 또는 요청 처리 시간 때문에 물리적 버튼보다 늦게 반응할 가능성이 있습니다.
 
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -16,12 +16,12 @@
 POST /project/robot/emergency_stop
 ```
 
-### request-body
+#### request-body
 ```python 
 {}
 ```
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -45,7 +45,7 @@ POST /project/robot/emergency_stop
 		```
 		</div>
 
-### 사용 예
+#### 사용 예
 
 ```emergency_stop
 POST /project/robot/emergency_stop

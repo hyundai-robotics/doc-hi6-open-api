@@ -1,10 +1,10 @@
-﻿## 4.1.1 `op_cnd`
+﻿### 4.1.1 `op_cnd`
 
-### 설명
+#### 설명
 
 - `GET` : 조건설정 값을 얻습니다.
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -12,7 +12,7 @@
 GET /project/control/op_cnd
 ```
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request

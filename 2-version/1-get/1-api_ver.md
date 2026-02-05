@@ -1,6 +1,6 @@
-﻿## 2.1.1 api_ver 
+﻿#### 2.1.1 api_ver 
 
-### 설명
+##### 설명
 
 불가피하게 API 의 스키마 버전에 따라 제어기와 통신하는 방법이나 데이터 구조가 변경될 수 있습니다.  
 이는 클라이언트 프로그램에 문제를 야기할 수 있으므로 해당 함수를 통해 확인하는 과정이 필요합니다.  
@@ -9,14 +9,14 @@
 
 - `GET` : Open API 스키마 버전을 얻습니다.
 
-### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
 ```python
 GET /api_ver
 ```
-### response
+##### response
 
 1) status code
    - 200 : OK
@@ -28,7 +28,7 @@ GET /api_ver
    - Open API 스키마 버전
 
 
-### 사용 예
+##### 사용 예
 
 ```python
 request url:

@@ -1,11 +1,11 @@
-﻿## 4.3.1 `op_cnd`
+﻿### 4.3.1 `op_cnd`
 
-### 설명
+#### 설명
 
 - `PUT` : 로봇의 `조건설정값`을 변경합니다.
 - TP 에서 조건 설정 창을 열고 해당 메서드를 요청한 경우, 창을 닫았다 다시 열어야 값이 반영됩니다.
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -13,11 +13,11 @@
 PUT /project/control/op_cnd
 ```
 
-### request-body
+#### request-body
 
 - [조건설정 파라미터](../../99-schema/op_cnd.md)
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -28,7 +28,7 @@ PUT /project/control/op_cnd
 2) response-body
    - {'_text': ''}
 
-### 사용 예
+#### 사용 예
 
 ```python
 request url:

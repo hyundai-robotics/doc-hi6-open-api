@@ -1,10 +1,10 @@
-﻿## 5.1.1 `motor_on_state`
+﻿### 5.1.1 `motor_on_state`
 
-### 설명
+#### 설명
 
 - `GET` : 모터 온 상태를 얻습니다.
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -12,7 +12,7 @@
 GET /project/robot/motor_on_state
 ```
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -26,7 +26,7 @@ GET /project/robot/motor_on_state
      - `1` : off
      - `2` : busy (상태 전환 중)
 
-### 사용 예
+#### 사용 예
 ```python
 request url:
 GET /project/robot/motor_on_state

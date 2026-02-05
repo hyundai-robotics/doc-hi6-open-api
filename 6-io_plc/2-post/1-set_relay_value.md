@@ -1,10 +1,10 @@
-﻿## 6.2.1 `set relay values`
+﻿### 6.2.1 `set relay values`
 
-### 설명
+#### 설명
 
 - `POST` : relay 값 설정합니다.
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -12,7 +12,7 @@
 POST /project/plc/set_relay_value
 ```
 
-### request-parameter
+#### request-parameter
 
 - `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model})에 맞춰 입력합니다.
 - `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
@@ -23,7 +23,7 @@ POST /project/plc/set_relay_value
 }
 ```
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -39,7 +39,7 @@ POST /project/plc/set_relay_value
 	</div>
 </div>
 
-### 사용 예
+#### 사용 예
 
 <div style="width: fit-content;">
 

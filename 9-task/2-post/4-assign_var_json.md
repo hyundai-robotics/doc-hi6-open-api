@@ -1,18 +1,18 @@
-﻿## 9.2.4 `assign_var_json`
+﻿### 9.2.4 `assign_var_json`
 
 <div style="width: fit-content;">
 
-### 설명
+#### 설명
 
 - `POST` : 태스크 구문의 변수를 재지정합니다.
 
-### path-parameter
+#### path-parameter
 
 ```python
 POST /project/context/tasks[{task index}]/assign_var_json
 ```
 
-### request-body
+#### request-body
 
 - `name` : 변수명
 - `json` : 변수에 대입할 json 형태의 문자열
@@ -32,7 +32,7 @@ POST /project/context/tasks[{task index}]/assign_var_json
 	}
 	```
 
-### response
+#### response
 
 1) status code
 	- 200 : OK
@@ -57,7 +57,7 @@ POST /project/context/tasks[{task index}]/assign_var_json
 	</div>
 
 
-### 사용 예
+#### 사용 예
 
 
 현재 태스크에 지역 변수 a 가 선언된 상태일 경우

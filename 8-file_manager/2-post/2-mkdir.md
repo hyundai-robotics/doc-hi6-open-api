@@ -1,12 +1,12 @@
-﻿## 8.2.2 `mkdir`
+﻿### 8.2.2 `mkdir`
 
 
 
-### 설명
+#### 설명
 
 - `POST` : 타겟 경로에 디렉토리를 생성합니다.  
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -15,7 +15,7 @@ GET /file_manager/mkdir
 ```
 
 
-### request-body
+#### request-body
 
 <div style="width: fit-content;">
 
@@ -26,7 +26,7 @@ GET /file_manager/mkdir
 
 </div>
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -45,7 +45,7 @@ GET /file_manager/mkdir
 		```
 		</div>
 
-### 사용 예
+#### 사용 예
 <div style="width: fit-content;">
 
 ```python

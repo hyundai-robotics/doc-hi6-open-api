@@ -1,10 +1,10 @@
-﻿## 8.1.4 `file_exist`
+﻿### 8.1.4 `file_exist`
 
-### 설명
+#### 설명
 
 - `GET` : 타겟 파일의 존재 여부를 반환합니다.
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -12,7 +12,7 @@
 GET /file_manager/file_exist
 ```
 
-### query-parameter
+#### query-parameter
 
 query-parameter 를 반드시 입력해야합니다.  
 
@@ -23,7 +23,7 @@ query-parameter 를 반드시 입력해야합니다.
 
 </div>
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -34,7 +34,7 @@ query-parameter 를 반드시 입력해야합니다.
 2) response-body
    - 파일 존재 여부에 대한 bool 값 (True/False) 반환
 
-### 사용 예
+#### 사용 예
 
 <div style="width: fit-content;">
 

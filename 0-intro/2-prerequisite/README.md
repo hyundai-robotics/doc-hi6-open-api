@@ -30,7 +30,7 @@ Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
 
 ---- 
 
-### 0.2.1 API 란?
+#### 0.2.1 API 란?
 
 `API`(Application Programming Interface)란 어플리케이션 소프트웨어를 빌드하고 통합하기 위한 `정의 및 프로토콜 세트`입니다 ([참조](https://www.redhat.com/ko/topics/api/what-are-application-programming-interfaces)).  
 사용자가 `특정한 방식으로 구성된 요청`을 보내면 제공자의 소프트웨어가 이에 `응답하는 방식`입니다.  
@@ -39,7 +39,7 @@ Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
 <br>
 
 
-### 0.2.2 REST API 란?
+#### 0.2.2 REST API 란?
 
 `REST`(Representational State Transfer)는 API 작동 방식에 대한 조건을 부과하는 `소프트웨어 아키텍처`입니다.<br>
 `REST API`는 REST 아키텍처 스타일을 따르는 API 를 뜻합니다. RESTful API 라고도 합니다 ([참조](https://aws.amazon.com/ko/what-is/restful-api/)).<br>

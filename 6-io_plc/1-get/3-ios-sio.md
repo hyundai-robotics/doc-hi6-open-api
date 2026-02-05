@@ -1,10 +1,10 @@
-﻿## 6.1.3 `ios/sio/{sio_val}`
+﻿### 6.1.3 `ios/sio/{sio_val}`
 
-### 설명
+#### 설명
 
 - `GET` : 시스템 IO 값을 얻습니다.
 
-### path-parameter
+#### path-parameter
 
 
 <div style="width: fit-content;">
@@ -13,13 +13,13 @@
 GET /project/control/ios/sio/{sio_val}
 ```
 
-### path-variable
+#### path-variable
 
 - `sio_val` :
   - `si_val` : 입력(si) 값을 얻습니다.
   - `so_val` : 출력(so) 값을 얻습니다.
 
-### query-parameter
+#### query-parameter
 
 - `type` : io 값의 타입
   - si or so : bit
@@ -29,7 +29,7 @@ GET /project/control/ios/sio/{sio_val}
   - sif or sof : float
 - `sig_no` : 신호 인덱스 (0~)
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -46,7 +46,7 @@ GET /project/control/ios/sio/{sio_val}
 		</div>
 		이를 binary 로 표현하면 0b0110 으로, 시스템 출력의 둘째,셋째 칸에 녹색 불이 들어오게 됨
 
-### 사용 예
+#### 사용 예
 
 - sob2 값 얻기. (결과값 : 6 = 0x06 = 0b0110)
 

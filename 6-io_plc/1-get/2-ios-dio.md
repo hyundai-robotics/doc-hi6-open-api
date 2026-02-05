@@ -1,11 +1,11 @@
-﻿## 6.1.2 `ios/dio/{dio_val}`
+﻿### 6.1.2 `ios/dio/{dio_val}`
 
-### 설명
+#### 설명
 
 - `GET` : 사용자 IO 값을 얻습니다.
 - 시스템 입출력에 대한 값은 [sio api](./3-ios-sio.md)를 참조하십시오.
 
-### path-parameter
+#### path-parameter
 
 
 <div style="width: fit-content;">
@@ -15,13 +15,13 @@ GET /project/control/ios/dio/{dio_val}
 ```
 </div>
 
-### path-variable
+#### path-variable
 
 - `dio_val` :
   - `di_val` : 입력(di) 값을 얻습니다.
   - `do_val` : 출력(do) 값을 얻습니다.
 
-### query-parameter
+#### query-parameter
 
 - `type` : io 값의 타입
   - di or do : bit
@@ -32,7 +32,7 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : 블럭 번호 (0~9)
 - `sig_no` : 신호 인덱스 (0~)
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -51,7 +51,7 @@ GET /project/control/ios/dio/{dio_val}
     	- TP 창조정 > 범용 출력 화면에서는 1은 녹색 신호, 0은 신호 없음을 뜻합니다.
 
 
-### 사용 예
+#### 사용 예
 
 - fb2.dob3 값 얻기. (결과값 : 0b11001000 = 0xc8 = -56)
 

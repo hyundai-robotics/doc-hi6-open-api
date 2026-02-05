@@ -1,17 +1,17 @@
-﻿## 11.1.2.1 `date_time`
+﻿### 11.1.2.1 `date_time`
 
 <div style = "width: max-content">  
 
-### 설명
+#### 설명
 
 - `PUT` : 시스템 시간을 변경합니다.
 - 요청 후 TP > 서비스 > 9: TP 응용 프로그램 종료를 통해 TP 를 재부팅하면 ui에 적용됩니다.
 
-### request-body
+#### request-body
 
 - [시스템 시간 정보](../../../99-schema/date_time.md)
 
-### response
+#### response
 
 1) status code
    - 200 : OK
@@ -27,7 +27,7 @@
 	```
 	</div>
 
-### 사용 예
+#### 사용 예
 
 ```python
 request url:

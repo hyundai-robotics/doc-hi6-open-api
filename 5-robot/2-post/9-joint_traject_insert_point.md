@@ -1,12 +1,12 @@
-﻿## 5.1.9 `joint_traject_insert_point`
+﻿### 5.1.9 `joint_traject_insert_point`
 
-### 설명
+#### 설명
 - 지원 버전 : `60.34-00` ↑
 - `POST` : 조인트 궤적 실행을 위해 **다음 조인트 목표 포인트를 순차적으로 추가**합니다.
 - 해당 API를 반복 호출하여 연속적인 조인트 궤적을 구성할 수 있습니다.
 
 
-### 주의 사항
+#### 주의 사항
 
 * [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
 
@@ -20,7 +20,7 @@
     * [E2630](https://hr-alarms.web.app/#/hi6/ko/E2630), [E2636](https://hr-alarms.web.app/#/hi6/ko/E2636), [E2638](https://hr-alarms.web.app/#/hi6/ko/E2638)
 * 실제 발생하는 에러 또는 경고는 **축 구성, 하중 조건, 동작 상황**에 따라 달라질 수 있습니다.
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -30,7 +30,7 @@ POST /project/robot/trajectory/joint_traject_insert_point
 
 </div>
 
-### request-body
+#### request-body
 
 <div style="width: fit-content;">
 
@@ -59,7 +59,7 @@ POST /project/robot/trajectory/joint_traject_insert_point
   * 각 조인트의 목표 각도 배열 (deg)
 
 
-### response
+#### response
 
 1. status code
    * 200 : OK
@@ -69,7 +69,7 @@ POST /project/robot/trajectory/joint_traject_insert_point
    * 404 : Not Found
 
 
-### 사용 예
+#### 사용 예
 
 ```python
 request url:

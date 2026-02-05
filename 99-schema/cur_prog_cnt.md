@@ -1,11 +1,11 @@
-﻿## cur_prog_cnt
+﻿### cur_prog_cnt
 
-### 설명
+#### 설명
 태스크의 현재 프로그램 카운터를 설정합니다.
 
 <div style="width: fit-content;">  
 
-### request body
+#### request body
 |key|type|description|
 |:---|:---|:---|
 |`pno`|int|프로그램 번호 (-1이면 현재 번호 유지)|
@@ -17,7 +17,7 @@
 
 <div style="width: fit-content;">  
 
-### response body
+#### response body
 |key|type|description|
 |:---|:---|:---|
 |`sno_new`|int|새로 이동한 스텝 번호|

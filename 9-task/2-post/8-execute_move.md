@@ -1,8 +1,8 @@
-﻿## 9.2.8 `execute_move`
+﻿### 9.2.8 `execute_move`
 
 <div style="width: fit-content;">
 
-### 설명
+#### 설명
 
 - 지원 버전 : `60.28-00` &uparrow;
 - `POST` : 지정한 포즈로 이동합니다.
@@ -13,13 +13,13 @@ VRC_Hi6 버전 v60.30-10 ~ v60.32-06에서 execute_move 원격 제한 오류 발
 → v60.30-09 이하 또는 v60.32-07 이상 사용 권장 (실제 Hi6 제어기 영향 없음)
 {% endhint %}
 
-### path-parameter
+#### path-parameter
 
 ```python
 POST /project/context/tasks[{task index}]/execute_move
 ```
 
-### request-body
+#### request-body
 - `stmt` : 요청 바디의 키 값으로, 구문(statment)을 뜻합니다.
 - move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/ko/5-moving-robot/4-move?cont_model=${cont_model})을 참조 바랍니다.
 	<div style="width: fit-content;">

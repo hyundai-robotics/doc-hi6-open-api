@@ -1,10 +1,10 @@
-﻿## 6.2.2 `ios/dio/{do_val}`
+﻿### 6.2.2 `ios/dio/{do_val}`
 
-### 설명
+#### 설명
 
 - `POST` : 디지털 출력을 변경합니다.
 
-### path-parameter
+#### path-parameter
 
 
 <div style="width: fit-content;">
@@ -14,7 +14,7 @@ POST /project/control/ios/dio/do_val
 ```
 </div>
 
-### request-body
+#### request-body
 
 
 <div style="width: fit-content;">
@@ -29,7 +29,7 @@ POST /project/control/ios/dio/do_val
 ```
 </div>
 
-### query-parameter
+#### query-parameter
 
 - `type` : io 값의 타입
   - do : bit
@@ -42,7 +42,7 @@ POST /project/control/ios/dio/do_val
 - `val` : 변경하고자 하는 설정값
 
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -58,7 +58,7 @@ POST /project/control/ios/dio/do_val
 	</div>
 
 
-### 사용 예
+#### 사용 예
 
 <div style="width: fit-content;">
 

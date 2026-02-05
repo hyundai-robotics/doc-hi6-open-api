@@ -1,26 +1,26 @@
-﻿## 5.2.1 `motor_on`
+﻿### 5.2.1 `motor_on`
 
 - <b style="color:orange"> `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.</b>
 
 <div style="width: fit-content;">
-### 설명
+#### 설명
 
 - `POST` : 모터 ON을 수행합니다.
 
-### path-parameter
+#### path-parameter
 
 
 ```python
 POST /project/robot/motor_on
 ```
 
-### request-body
+#### request-body
 
 ```json
 {}
 ```
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -37,7 +37,7 @@ POST /project/robot/motor_on
 3) error code
    - -38500: 원격 모드가 아닌 상태로 해당 api 요청
 
-### 사용 예
+#### 사용 예
 
 ```python
 POST /project/robot/motor_on

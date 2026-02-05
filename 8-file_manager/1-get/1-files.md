@@ -1,10 +1,10 @@
-﻿## 8.1.1 `files`
+﻿### 8.1.1 `files`
 
-### 설명
+#### 설명
 
 - `GET` : 제어기로부터 파일 내용을 응답 받습니다.
 
-### path-parameter
+#### path-parameter
 
 <div style="width: fit-content;">
 
@@ -12,7 +12,7 @@
 GET /file_manager/files
 ```
 
-### query-parameter
+#### query-parameter
 
 query-parameter 를 반드시 입력해야합니다.
 
@@ -22,7 +22,7 @@ query-parameter 를 반드시 입력해야합니다.
 
 - `pathname` : 가져올 파일 이름
 
-### response
+#### response
 1) status code
    - 200 : OK
    - 400 : Bad Request
@@ -40,7 +40,7 @@ query-parameter 를 반드시 입력해야합니다.
 		</div>
 </div>
 
-### 사용 예
+#### 사용 예
 
 <div style="width: fit-content;">
 
