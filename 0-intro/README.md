@@ -1,4 +1,4 @@
-﻿## 0. Intro
+﻿# 0. Intro
 
 You can check the basic information related to ${cont_model} Open API below.
 
