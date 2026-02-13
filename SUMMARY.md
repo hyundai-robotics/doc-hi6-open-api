@@ -1,6 +1,7 @@
 ﻿# Table of contents
 
 * [${cont_model} Controller Function Manual - Open API](README.md)
+* [Precautions](0-about-this-manual/precautions.md)
 * [0. Intro](0-intro/README.md)
   * [0.1 About ${cont_model} Open API](0-intro/1-concept/README.md)
   * [0.2 Required prior knowledge](0-intro/2-prerequisite/README.md)
