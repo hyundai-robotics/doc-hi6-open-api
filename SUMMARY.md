@@ -1,6 +1,7 @@
 ﻿# Table of contents
 
 * [${cont_model} 제어기 기능설명서 - Open API](README.md)
+* [사전 주의사항](0-about-this-manual/precautions.md)
 * [0. 개요](0-intro/README.md)
   * [0.1 ${cont_model} Open API 에 대하여](0-intro/1-concept/README.md)
   * [0.2 필요한 사전 지식](0-intro/2-prerequisite/README.md)
