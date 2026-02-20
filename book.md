@@ -474,6 +474,8 @@ References
 	</div>
 
 [__SOURCE](1-release-note/60-34.md)
+# V60.34-00
+
 <link rel="stylesheet" href="../_assets/style.css">
 
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
@@ -575,6 +577,8 @@ References
 - ✨ [<b style="color: #FF9800">post</b>] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
 
 [__SOURCE](1-release-note/60-32.md)
+# V60.32-00
+
 <link rel="stylesheet" href="../_assets/style.css">
 
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
@@ -712,6 +716,8 @@ Release Notes - v60.32-00
 - 🔧 [<b style="color: #FF9800">post</b>] [reset](../9-task/2-post/2-reset.md)
 
 [__SOURCE](1-release-note/60-30.md)
+# V60.30-00
+
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.30-00 
 </h4>
@@ -807,6 +813,8 @@ Release Notes - v60.32-00
 - ❌ ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
 
 [__SOURCE](1-release-note/60-28.md)
+# V60.28-00
+
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
   📝 Release Notes - v60.28-00 
 </h4>
@@ -889,17 +897,17 @@ Release Notes - v60.32-00
 - ✨ \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
 
 [__SOURCE](2-version/README.md)
-# 2. version
+# 2. `version`
 
 - Check the current API version or robot controller system version.
 
 [__SOURCE](2-version/1-get/README.md)
-## 2.1 version/get
+## 2.1 `version/get`
 
 - Send a GET request for information about the current API version or robot controller system version.  
 - Receive a response by setting the correct path-parameter and query-parameter for each API.  
 [__SOURCE](2-version/1-get/1-api_ver.md)
-#### 2.1.1 api_ver
+#### 2.1.1 `api_ver`
 
 ##### Description
 
@@ -950,7 +958,7 @@ $python test.py
 ```
 
 [__SOURCE](2-version/1-get/2-sysver.md)
-#### 2.1.2 sysver
+#### 2.1.2 `sysver`
 
 ##### Description
 
@@ -1015,12 +1023,12 @@ $python test.py
 ```
 
 [__SOURCE](3-project/README.md)
-# 3. project
+# 3. `project`
 
 - Reads condition settings, project information, and job file information.
 - You can reload updated job files or delete specific job files.
 [__SOURCE](3-project/1-get/README.md)
-## 3.1 project/get
+## 3.1 `project/get`
 
 - Send a GET request for condition settings, project information, and job file information.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
@@ -1186,7 +1194,7 @@ $python test.py
 ```
 
 [__SOURCE](3-project/2-post/README.md)
-## 3.1 project/post
+## 3.1 `project/post`
 
 - Send a POST request for condition settings, project information, and job file information.
 - You must write the correct request-body for each API.
@@ -1300,14 +1308,14 @@ response: 200
 ```
 
 [__SOURCE](4-control/README.md)
-# 4. control
+# 4. `control`
 
 - Apply settings of the controller and process input/output values.
 - It covers information on system input/output, digital input/output, condition settings, and user coordinate system.
 
 <br>
 [__SOURCE](4-control/1-get/README.md)
-## 4.1 control/get
+## 4.1 `control/get`
 
 - Send a GET request for controller setting information and input/output values.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
@@ -1417,12 +1425,12 @@ $python test.py
 ```
 
 [__SOURCE](4-control/2-post/README.md)
-## 4.2 control/post
+## 4.2 `control/post`
 
 - Sends a POST request for the controller's setting information and input/output values.
 - You must write the correct request-body for each API.
 [__SOURCE](4-control/3-put/README.md)
-## 4.3 control/put
+## 4.3 `control/put`
 
 - Sends a PUT request for the controller's setting information and input/output values.
 - You must write the correct request-body for each API.
@@ -1487,13 +1495,13 @@ response: 200
 ```
 
 [__SOURCE](5-robot/README.md)
-# 5. robot
+# 5. `robot`
 
 - You can check remote control and monitoring of robot and tool data.
 - It covers motor on/off, robot posture, tools, jog coordinate system, etc.
 
 [__SOURCE](5-robot/1-get/README.md)
-## 5.1 robot/get
+## 5.1 `robot/get`
 
 - Send GET requests for robot and tool data.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
@@ -2095,7 +2103,7 @@ $python test.py
 </div>
 
 [__SOURCE](5-robot/2-post/README.md)
-## 5.2 robot/post
+## 5.2 `robot/post`
 
 - Send POST requests for robot and tool data.
 - You must write the correct request-body for each API.
@@ -3164,7 +3172,7 @@ AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.0013
 
 - Reads or sets the input/output values of the built-in PLC.
 [__SOURCE](6-io_plc/1-get/README.md)
-## 6.1 io_plc/get
+## 6.1 `io_plc/get`
 
 - Sends a GET request for input/output values of a built-in PLC.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
@@ -3424,7 +3432,7 @@ $python test.py
 ```
 
 [__SOURCE](6-io_plc/2-post/README.md)
-## 6.2 io_plc/post
+## 6.2 `io_plc/post`
 
 - Sends a POST request for input/output values from a built-in PLC.
 - You must write the correct request-body for each API.
@@ -3581,12 +3589,12 @@ response: 200
 
 - Outputs errors, warnings, execution history, etc. recorded in the controller.
 [__SOURCE](7-log_manager/1-get/README.md)
-## 7.1 log_manager/get
+## 7.1 `log_manager/get`
 
 - Send a GET request for errors, warnings, and execution history recorded in the controller.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
 [__SOURCE](7-log_manager/1-get/1-search.md)
-#### 7.1.1 search
+#### 7.1.1 `search`
 
 ##### Description
 
@@ -3695,12 +3703,12 @@ $python test.py
 ```
 
 [__SOURCE](8-file_manager/README.md)
-# 8. file_manager
+# 8. `file_manager`
 
 - This covers functions such as reading file information from the controller, changing file names, and transferring files.
 - Functions for checking the existence of a directory or creating and deleting it are also covered.
 [__SOURCE](8-file_manager/1-get/README.md)
-## 8.1 file_manager/get
+## 8.1 `file_manager/get`
 
 - Send a GET request for file information from the controller.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
@@ -4076,7 +4084,7 @@ true
 ```
 
 [__SOURCE](8-file_manager/2-post/README.md)
-## 8.2 file_manager/post
+## 8.2 `file_manager/post`
 
 - Sends a POST request for file information from the controller.
 - You must write the correct request-body for each API.
@@ -4311,7 +4319,7 @@ response: 200
 ```
 
 [__SOURCE](8-file_manager/3-delete/README.md)
-## 8.3 file_manager/delete
+## 8.3 `file_manager/delete`
 
 - Send a DELETE request for file information from the controller.
 [__SOURCE](8-file_manager/3-delete/1-files.md)
@@ -4372,19 +4380,19 @@ response: 200
 ```
 
 [__SOURCE](9-task/README.md)
-# 9.task
+# 9. `task`
 
 - It covers content related to the task.
 - You can reset a specific task or all tasks.
 - You can read values from local or global variables of the current task or declare new variables.
 - During task execution, specific actions (e.g. release) can be taken for a specific work flow (e.g. wait).
 [__SOURCE](9-task/1-get/README.md)
-## 9.1 task/get
+## 9.1 `task/get`
 
 - Send a GET request for information related to the task.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
 [__SOURCE](9-task/2-post/README.md)
-## 9.2 task/post
+## 9.2 `task/post`
 
 - Sends a POST request for information related to the task.
 - You must write the correct request-body for each API.
@@ -5045,17 +5053,17 @@ $python test.py
 ```
 
 [__SOURCE](10-console/README.md)
-# 10. console
+# 10. `console`
 
 - You can use CLI commands of the ${cont_model} controller software.  
 - Various actions can be performed using robot language.  
 [__SOURCE](10-console/1-get/README.md)
-## 10.1 console/get
+## 10.1 `console/get`
 
 - Sends a GET request for information related to executing robot commands.  
 - The exact path-parameter and query-parameter must be set for each API to receive a response.  
 [__SOURCE](10-console/2-post/README.md)
-## 10.2 console/post
+## 10.2 `console/post`
 
 - Sends a POST request for information related to executing robot commands.  
 - The exact request-body must be written for each API.  
@@ -5165,16 +5173,16 @@ response: 200
 ```
 
 [__SOURCE](11-etc/README.md)
-# 11. etc
+# 11. `etc`
 
 - It covers system version, event log, clock, etc.
 
 [__SOURCE](11-etc/1-clock/README.md)
-# 11.1 clock
+# 11.1 `clock`
 
 - You can read and set the controller's system time.
 [__SOURCE](11-etc/1-clock/1-get/README.md)
-#### 11.1.1 clock/get
+#### 11.1.1 `clock/get`
 
 - Send a GET request for the controller system time.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
@@ -5235,7 +5243,7 @@ $python test.py
 ```
 
 [__SOURCE](11-etc/1-clock/2-put/README.md)
-#### 11.1.2 clock/put
+#### 11.1.2 `clock/put`
 
 - Sends a PUT request to the controller system time.
 - You must write the correct request-body for each API.
@@ -5301,7 +5309,7 @@ This chapter contains references to various enumerations and structures used in 
 
 
 [__SOURCE](99-schema/crdsys.md)
-### crdsys
+### `crdsys`
 
 #### Description
 
@@ -5315,7 +5323,7 @@ This is an enumeration that specifies the coordinate system.
 |`3`|`tool` coordinate system|
 
 [__SOURCE](99-schema/cur_prog_cnt.md)
-### cur_prog_cnt
+### `cur_prog_cnt`
 
 #### Description
 Sets the current program counter for the task.
@@ -5336,7 +5344,7 @@ Sets the current program counter for the task.
 |`ln_new`|int|Newly moved line number (program header is 0, first statement is 1)|
 
 [__SOURCE](99-schema/date_time.md)
-### date_time
+### `date_time`
 
 #### Description
 
@@ -5351,7 +5359,7 @@ Indicates system time-related information.
 |"sec"|`int`|Second of current system|
 
 [__SOURCE](99-schema/file_info.md)
-### file_info
+### `file_info`
 
 #### Description
 
@@ -5372,7 +5380,7 @@ This parameter is returned when requesting file information.
 |readonly|`bool`| Check if the file is read-only |
 
 [__SOURCE](99-schema/jobs_info.md)
-### jobs_info
+### `jobs_info`
 
 #### Description
 
@@ -5387,7 +5395,7 @@ This is a job file information parameter.
 |n_aux_ax|`int`|Number of additional axes|
 
 [__SOURCE](99-schema/mechinfo.md)
-### mechinfo
+### `mechinfo`
 
 #### Description
 
@@ -5411,7 +5419,7 @@ Celebrate with a bit-field which activities are used.
 ```
 
 [__SOURCE](99-schema/op_cnd.md)
-### op_cnd
+### `op_cnd`
 
 #### Description
 op_cnd (operation condition) : value of `Condition setting`  
@@ -5453,7 +5461,7 @@ You can check the values when you press the `Condition setting` button in TP.
 ```
 
 [__SOURCE](99-schema/pose.md)
-### Pose
+### `Pose`
 
 #### Description
 
@@ -5474,7 +5482,7 @@ Pose Data.
 |sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|
 
 [__SOURCE](99-schema/tool_data.md)
-### tool_data
+### `tool_data`
 
 #### Description
 

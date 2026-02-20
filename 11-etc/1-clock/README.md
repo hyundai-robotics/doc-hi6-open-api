@@ -1,3 +1,3 @@
-﻿# 11.1 clock
+﻿# 11.1 `clock`
 
 - You can read and set the controller's system time.

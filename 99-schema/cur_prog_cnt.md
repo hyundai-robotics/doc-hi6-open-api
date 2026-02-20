@@ -1,4 +1,4 @@
-﻿### cur_prog_cnt
+﻿### `cur_prog_cnt`
 
 #### Description
 Sets the current program counter for the task.
