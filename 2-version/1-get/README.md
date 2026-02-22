@@ -1,4 +1,4 @@
-﻿## 2.1 `version/get`
+## 2.1 `version/get`
 
-- Send a GET request for information about the current API version or robot controller system version.  
-- Receive a response by setting the correct path-parameter and query-parameter for each API.  
+- 发送GET请求以获取当前API版本或机器人控制器系统版本的信息。
+- 通过为每个API设置正确的路径参数和查询参数来接收响应。

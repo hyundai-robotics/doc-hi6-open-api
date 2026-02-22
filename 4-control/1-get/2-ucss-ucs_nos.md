@@ -1,30 +1,30 @@
-﻿#### 4.1.2 `ucss/ucs_nos`
+#### 4.1.2 `ucss/ucs_nos`
 
-##### Description
+##### 描述
 
-- `GET` : Obtains a list of user coordinate systems currently in use.
-- Prints a list of user coordinate systems registered through `system > 2: Control parameter > 6: Coordinate registration`.
+- `GET` : 获取当前使用的用户坐标系统列表。
+- 打印通过 `system > 2: Control parameter > 6: Coordinate registration` 注册的用户坐标系统列表。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /project/control/ucss/ucs_nos
 ```
 
-##### Example
+##### 示例
 
 ```python
-request url:
+请求 URL:
 GET /project/control/ucss/ucs_nos
 
-response-body:
+响应主体:
 {
     "_type" : "JObject",
     "val" : [1],
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

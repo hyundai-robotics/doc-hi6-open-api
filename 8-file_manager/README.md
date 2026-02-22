@@ -1,4 +1,4 @@
-﻿# 8. `file_manager`
+# 8. `file_manager`
 
-- This covers functions such as reading file information from the controller, changing file names, and transferring files.
-- Functions for checking the existence of a directory or creating and deleting it are also covered.
+- 这涵盖了从控制器读取文件信息、更改文件名和传输文件等功能。
+- 还涵盖了检查目录是否存在或创建和删除目录的功能。

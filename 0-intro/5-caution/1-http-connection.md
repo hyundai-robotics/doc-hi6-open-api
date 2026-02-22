@@ -1,42 +1,42 @@
-﻿#### 0.5.1. Keep-Alive vs Close connection
+#### 0.5.1. 保持连接 vs 关闭连接
 
 {% hint style="caution" %}
 
-For robot controllers, repeated API requests using the `close` connection type may lead to high CPU load, potentially causing the robot to halt unexpectedly.
+对于机器人控制器，使用 `关闭 (close)` 连接类型的重复API请求可能会导致高CPU负载，可能会导致机器人意外停止。
 
-If your application involves frequent API calls, please follow the instructions below and implement them using the **Keep-Alive** connection method.
+如果您的应用涉及频繁的API调用，请遵循以下说明，并使用 **保持连接** 方法实施它们。
 
 {% endhint %}
 
 <br>
 
-###### 1-1. Comparing Two HTTP Connection Methods
+###### 1-1. 比较两种HTTP连接方法
 
 <div style="max-width: fit-content">
 
-| | Close | Keep-Alive |
+| | 关闭 | 保持连接 |
 |--| ----- | ----- |
-|Recommended HTTP Version| HTTP/1.0 | HTTP/1.1 |
-|Characteristics| Multiple Connections | Persistent Connection |
+|推荐的HTTP版本| HTTP/1.0 | HTTP/1.1 |
+|特征| 多个连接 | 持久连接 |
 
 <img src="../../_assets/07_http_connection.png" style="max-height: 37vh;">
 
 </div>
 
-- The `close` connection type establishes and terminates a connection for every single request and response.<br>
-  This process results in increased latency and resource usage, placing a heavy burden on both the server and the client.
+- `关闭 (close)` 连接类型为每个请求和响应建立并终止一个连接。<br>
+  这个过程会导致延迟和资源使用增加，给服务器和客户端带来很大的负担。
 
-- ${cont_model} uses HTTP/1.1, which defaults to Keep-Alive connections unless explicitly overridden.
+- ${cont_model} 使用HTTP/1.1，默认使用保持连接，除非明确覆盖。
 
-- Please refer to the sample code below and make sure that frequently called APIs are implemented using Keep-Alive, not the close method.
+- 请参考下面的示例代码，确保频繁调用的API使用保持连接实现，而不是关闭方法。
 
 <br>
 
-###### 1-2. Example Code
+###### 1-2. 示例代码
 
-- Switching between `close` and `keep-alive` connections is simple and can be done by modifying the request headers.
+- 在 `关闭 (close)` 和 `keep-alive` 连接之间切换很简单，可以通过修改请求头来完成。
 
-- Close connection
+- 关闭连接
   <div style="max-width:fit-content">
 
 	```python
@@ -50,8 +50,8 @@ If your application involves frequent API calls, please follow the instructions 
 
 	response = requests.get(URL, headers=headers)
 	```
-	</div>
-- Keep-Alive
+</div>
+- 保持连接
   <div style="max-width:fit-content">
 
 	```python
@@ -62,15 +62,15 @@ If your application involves frequent API calls, please follow the instructions 
 	URI = "/project/robot/po_cur"
 	URL = BASE_URL + URI
 
-	# default connection is Keep-alive
+	# 默认连接是保持连接
 	response = requests.get(URL)
 	```
 	</div>
-- Packet Capture Comparison - Connection Header info <br>
+- 数据包捕获比较 - 连接头信息 <br>
 	<img src="../../_assets/08_packet_compare.png" style="max-width: 80vw;"><br>
-	Left) Keep-Alive, Right) Close
+	左) 保持连接，右) 关闭
 
 <br><br>
 
-References
-  1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
+参考文献
+  1) [HTTP/1.1 持久连接](https://datatracker.ietf.org/doc/html/rfc2616#section-8)

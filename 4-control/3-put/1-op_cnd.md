@@ -1,29 +1,29 @@
-﻿#### 4.3.1 `op_cnd`
+#### 4.3.1 `op_cnd`
 
-##### Description
+##### 描述
 
-- `PUT` : Change the robot's condition setting values.
-- If you open the `condition setting window(cond.set)` in TP and request the corresponding method,  
-you must close and reopen the window for the value to be reflected.
+- `PUT` : 更改机器人的状态设置值。
+- 如果您在 TP 中打开 `条件设置窗口(cond.set)` 并请求相应的方法，  
+则必须关闭并重新打开窗口以使值生效。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 PUT /project/control/op_cnd
 ```
 
-##### request-body
+##### 请求体
 
-- [Condition Setting parameter](../../99-schema/op_cnd.md)
+- [条件设置参数](../../99-schema/op_cnd.md)
 
 
-##### Example
+##### 示例
 
 ```python
-request url:
+请求网址:
 PUT /project/control/op_cnd
 
-request-body:
+请求体:
 {
     "playback_mode": 1,
     "step_goback_max_spd": 130,
@@ -31,7 +31,7 @@ request-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -52,7 +52,7 @@ def put_op_cnd() -> int:
 
 print(f"response: {put_op_cnd()}")
 ```
-```sh
+```
 $python test.py
-response: 200 
+响应：200 
 ```

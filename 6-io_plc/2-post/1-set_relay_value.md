@@ -1,19 +1,19 @@
-﻿#### 6.2.1 `set relay values`
+#### 6.2.1 `设置继电器值`
 
-##### Description
+##### 描述
 
-- `POST` : Set the relay value.
+- `POST` : 设置继电器值。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/plc/set_relay_value
 ```
 
-##### request-parameter
+##### 请求参数
 
-- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
-- `value` : Please pay attention to 'data-type' in the notation above and enter the value you want to set.
+- `名称 (name)` : 根据 [继电器表达式](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model}) 输入您想要设置的继电器名称。
+- `值 (value)` : 请注意上面的标记中的 'data-type'，并输入您想要设置的值。
 ```json
 {
     "name": "fb3.dof14",
@@ -21,20 +21,20 @@ POST /project/plc/set_relay_value
 }
 ```
 
-##### Example
+##### 示例
 
 ```json
-request url:
+请求 URL:
 POST /project/plc/set_relay_value
 
-request-body:
+请求体:
 {
     "name": "fb1.do0",
     "value": "1"
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -65,6 +65,6 @@ print(f"{get_relay_value()}")
 ```sh
 $python test.py
 [0, 0, 0, 0, 0, 0, 0, 0]
-response: 200
+响应: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
 ```

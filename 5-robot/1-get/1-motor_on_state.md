@@ -1,37 +1,37 @@
-﻿#### 5.1.1 `motor_on_state`
+#### 5.1.1 `motor_on_state`
 
-##### Description
+##### 描述
 
 `motor_on_state`
 
-- `GET` : Obtain the motor on status.
+- `GET` : 获取电机开启状态。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /project/robot/motor_on_state
 ```
 
-##### response-body
+##### 响应体
 
 - val :
-  - `0` : on
-  - `1` : off
-  - `2` : busy (Transitioning state)
+  - `0` : 开
+  - `翻译 (1)` : 关
+  - `翻译 (2)` : 忙 (过渡状态)
 
-##### Example
+##### 示例
 ```python
-request url:
+请求 URL:
 GET /project/robot/motor_on_state
 
-response-body:
+响应体:
 {
     "_type" : "JObject",
     "val" : 1
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -45,9 +45,9 @@ def get_motor_on_state() -> dict:
 
     return response
 
-print(f"Motor On status: {get_motor_on_state()['val']}")
+print(f"电机开启状态: {get_motor_on_state()['val']}")
 ```
 ```sh
 $python test.py
-Motor On status: 1
+电机开启状态: 1
 ```

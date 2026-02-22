@@ -1,22 +1,22 @@
-﻿### `mechinfo`
+### `mechinfo`
 
-#### Description
+#### 描述
 
-Mechanism info
-Celebrate with a bit-field which activities are used.
+机制信息  
+通过位域庆祝使用的活动。
 
-- bit 0 : M0
-- bit 1 : M1
-- bit 2 : M2
-- bit 3 : M3
-- bit 4 : M4
-- bit 5 : M5
-- bit 6 : M6
-- bit 7 : M7
+- 位 0 : M0
+- 位 1 : M1
+- 位 2 : M2
+- 位 3 : M3
+- 位 4 : M4
+- 位 5 : M5
+- 位 6 : M6
+- 位 7 : M7
 
-#### Example
+#### 示例
 
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0
-# Specify mechanisms M0, M1, and M4.
+# 指定机制 M0、M1 和 M4。
 ```

@@ -1,35 +1,104 @@
-﻿#### 5.1.9 `joint_traject_insert_point`
+#### 5.1.9 `joint_traject_insert_point`
 
-##### Description
-- Supported version: `60.34-00` ↑
-- `POST`: **Sequentially appends the next joint target point** for joint trajectory execution.
-- By repeatedly calling this API, a continuous joint trajectory can be constructed.
+##### 描述
+- 支持的版本: `60.34-00` ↑
+- `POST`: **顺序附加下一个关节目标点**以执行关节轨迹。
+- 通过重复调用此 API，可以构建连续的关节轨迹。
 
 ---
 
-##### Notes
+##### 注意事项
 
-* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
+* [轴速度限制超出 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
 
-  * Do not exceed the **maximum allowable speed and torque** of the robot and auxiliary axes.
-  * If commands requiring excessive torque are issued, the following **errors or warnings may occur**.
-  * Reducer over-torque
+  * 不要超过机器人的**最大允许速度和扭矩**以及辅助轴的限制。
+  * 如果发出需要过大扭矩的命令，可能会发生以下**错误或警告**。
+  * 减速机过扭矩
     * [E249](https://hr-alarms.web.app/#/hi6/ko/E249), [E6402](https://hr-alarms.web.app/#/hi6/ko/E6402), [E6403](https://hr-alarms.web.app/#/hi6/ko/E6403)
-  * Reducer over-current
+  * 减速机过电流
     * [W153](https://hr-alarms.web.app/#/hi6/ko/W153), [W181](https://hr-alarms.web.app/#/hi6/ko/W181), [W182](https://hr-alarms.web.app/#/hi6/ko/W153)
-  * Position deviation error
+  * 位置偏差错误
     * [E2630](https://hr-alarms.web.app/#/hi6/ko/E2630), [E2636](https://hr-alarms.web.app/#/hi6/ko/E2636), [E2638](https://hr-alarms.web.app/#/hi6/ko/E2638)
-* Actual errors or warnings may vary depending on the **axis configuration, payload conditions, and operating state**.
+* 实际的错误或警告可能会根据**轴配置、负载条件和操作状态**而有所不同。
 
 ---
 
-##### path-parameter
+##### 路径参数
 
 <div style="width: fit-content;">
 
 ```python
 POST /project/robot/trajectory/joint_traject_insert_point
-````
+````</div>
+
+---
+
+##### 请求体
+
+<div style="width: fit-content;">
+
+```json
+{
+	"interval": 0.01,
+	"time_from_start": 0.0,
+	"look_ahead_time": 0.5,
+	"point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+}
+```
+
+</div>
+* 间隔
+
+  * 增量添加点时使用的时间间隔
+* 从开始时间
+
+  * 从轨迹开始的累积时间
+* 前瞻时间
+
+  * 轨迹执行的前瞻时间
+* 点
+
+  * 目标关节角度数组（度）
+
+---
+
+##### 响应
+
+1. 状态码
+
+   * 200 : 成功
+   * 400 : 错误请求
+
+     * 请求体验证失败
+   * 403 : 禁止
+   * 404 : 未找到
+
+---
+
+##### 使用示例
+
+```python
+request url:
+POST /project/robot/trajectory/joint_traject_insert_point
+
+request-body:
+{
+    "interval": 0.01,
+    "time_from_start": 0.0,
+    "look_ahead_time": 0.5,
+    "point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+}
+```
+
+</div>
+
+---
+
+##### Python 脚本示例
+
+###### 先决条件
+1. 将机器人移动到参考位置。
+   (示例 - 对于6轴机器人：( 
 
 </div>
 
@@ -52,33 +121,32 @@ POST /project/robot/trajectory/joint_traject_insert_point
 
 * interval
 
-  * Time interval used when adding points incrementally
+  * 在逐步添加点时使用的时间间隔
 * time_from_start
 
-  * Cumulative time from the start of the trajectory
+  * 从轨迹开始的累计时间
 * look_ahead_time
 
-  * Look-ahead time for trajectory execution
+  * 轨迹执行的前瞻时间
 * point
 
-  * Array of target joint angles (deg)
+  * 目标关节角度数组（度）
 
 ---
 
 ##### response
 
-1. status code
+1. 状态代码
 
-   * 200 : OK
-   * 400 : Bad Request
+   * 200 : 成功
+   * 400 : 错误请求
 
-     * Request body validation failed
-   * 403 : Forbidden
-   * 404 : Not Found
+     * 请求体验证失败
+   * 403 : 被禁止
+   * 404 : 未找到
 
 ---
-
-##### Usage Example
+##### 使用示例
 
 ```python
 request url:
@@ -97,15 +165,16 @@ request-body:
 
 ---
 
-##### Python Script Example
+##### Python 脚本示例
 
-###### Prerequisites
+###### 先决条件
 
-1. Move the robot to the reference pose.
-   (Example - for a 6-axis robot: `[0, 90, 0, 0, -90, 0]`)
-2. Insert the statement `wait di1` in the job.
-3. Switch to auto mode and start program playback.
-4. Run the test code below in that state.
+1. 将机器人移动到参考姿态。
+   (示例 - 对于一个 6 轴机器人: )`[0, 90, 0, 0, -90, 0]`)
+2. 插入语句 ()
+2. 在作业中插入语句 )`wait di1`。
+3. 切换到自动模式并开始程序播放。
+4. 在该状态下运行以下测试代码。
 
 <div style="width: fit-content;">
 
@@ -169,18 +238,15 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
 ```sh
 $python test.py
-BEFORE:  ['0.000000', '90.000000', '0.000000', '0.000000', '-90.000000', '0.000000']
+之前:  ['0.000000', '90.000000', '0.000000', '0.000000', '-90.000000', '0.000000']
 
-[INSERT 1] OK  t=0.002000s
-[INSERT 2] OK  t=0.004000s
-[INSERT 3] OK  t=0.006000s
-[INSERT 4] OK  t=0.008000s
-[INSERT 5] OK  t=0.010000s
+[插入 1] 已确认  t=0.002000s
+[插入 2] 已确认  t=0.004000s
+[插入 3] 已确认  t=0.006000s
+[插入 4] 已确认  t=0.008000s
+[插入 5] 已确认  t=0.010000s
 
-AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.001393']
+之后: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.001393']
 ```
-
-</div>

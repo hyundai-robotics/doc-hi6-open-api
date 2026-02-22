@@ -1,30 +1,30 @@
-﻿#### 2.1.2 `sysver`
+#### 2.1.2 `sysver`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the software version of the robot controller system.
+- `GET` : 获取机器人控制器系统的软件版本。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /versions/sysver
 ```
 
-##### response-body
+##### 响应体
 
-modules : Array of module version information
-  - module version information :
-    - `name` : module name
-		|module name|description|
+modules : 模块版本信息数组
+  - 模块版本信息 :
+    - `名称 (name)` : 模块名称
+		|模块名称|描述|
 		|---:|:---|
-		|com|robot controller|
-		|tp|teaching pendant|
-    - `ver` : version number
-    - `build-date` : build date
-    - `build-time` : build time
-    - `commit-id` : Commit ID of source code
+		|com|机器人控制器|
+		|tp|教学挂件|
+    - `ver` : 版本号
+    - `build-date` : 构建日期
+    - `build-time` : 构建时间
+    - `commit-id` : 源代码的提交 ID
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -43,7 +43,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -57,7 +57,5 @@ def get_sysver() -> dict:
 
 print(get_sysver())
 ```
-```sh
-$python test.py
-{'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
-```
+$python test.py  
+{'modules': [{'build-date': '2000年01月00日', 'build-time': '00:00:00' ...

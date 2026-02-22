@@ -1,8 +1,8 @@
-﻿#### 8.1.3 `file_list`
+#### 8.1.3 `file_list`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain a list of files and directories.
+- `GET` : 获取文件和目录的列表。
 
 ##### path-parameter
 
@@ -12,28 +12,28 @@ GET /file_manager/file_list
 
 ##### query-parameter
 
-query-parameter must be entered.  
+必须输入 query-parameter。  
 
 ```text
 ?path=project/jobs&incl_file=true&incl_dir=false
 ```
 
-|key|description|
+|key|描述|
 |:---|:---|
-|`path`|Target path you want to check|
-|`incl_file`|Whether to include files when outputting the list|
-|`incl_dir`|Whether to include directories when outputting the list|
+|`路径 (path)`|您想检查的目标路径|
+|`incl_file`|在输出列表时是否包括文件|
+|`incl_dir`|在输出列表时是否包括目录|
 
 
-##### status code
+##### 状态码
 
-- 200 : Request succeeded
-  - return [file information](../../99-schema/file_info) `list`
-- 403 : Request failed
-  - no file exists
+- 200 : 请求成功
+  - 返回 [文件信息](../../99-schema/file_info) `list`
+- 403 : 请求失败
+  - 没有文件存在
 
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -46,10 +46,10 @@ ${cont_model}
 ```
 
 ```python
-request url:
+请求 URL:
 GET /file_manager/file_list?path=project&incl_file=true&incl_dir=true
 
-response-body:
+响应主体:
 [
     {
         "mday": 20,
@@ -80,10 +80,9 @@ response-body:
            ...
 ]
 ```
-
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

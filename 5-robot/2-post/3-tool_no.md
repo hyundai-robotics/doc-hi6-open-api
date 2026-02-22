@@ -1,8 +1,8 @@
-﻿#### 5.2.3 `tool_no`
+#### 5.2.3 `tool_no`
 
-##### Description
+##### 描述
 
-- `POST` : Set the current tool number.
+- `POST` : 设置当前工具编号。
 
 ##### path-parameter
 
@@ -12,9 +12,9 @@ POST /project/robot/tool_no
 
 ##### request-body
 
-- `val` : Tool number
+- `val` : 工具编号
   - `robot tools` : `0` ~ `31`
-  - `stationary tool` : `0` ~ `3`
+  - `stationary tool` : `0` ~ `翻译 (3)`
 
 ##### response-body
 
@@ -24,7 +24,7 @@ POST /project/robot/tool_no
 }
 ```
 
-##### Example
+##### 示例
 
 ```json
 POST /project/robot/tool_no
@@ -35,7 +35,7 @@ request-body
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests

@@ -1,38 +1,35 @@
-﻿#### 6.1.1 `get relay values`
+#### 6.1.1 `get relay values`
 
-##### Description
+##### 描述
 
-- `GET` :Obtain the relay value for the entire object type.
+- `GET` : 获取整个对象类型的继电器值。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 ```
 
-##### path-variable
+##### 路径变量
 
-[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
+[继电器表达式](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model})（小写字母）
 
-* (`{obj_type}{obj_idx}_` must be specified for `di`, `do`, `x`, and `y`. The remaining `relay_type` is not specified.)
+* (`{obj_type}{obj_idx}_` 必须为 `di`、`do`、`x` 和 `y` 指定。剩余的 `relay_type` 不做规定。)
 
-- `obj_type` : object type
+- `obj_type` : 对象类型
   - `fb`
   - `fn`
 
-- `obj_idx` : object index (fb: 0~9, fn: 0~63)
+- `obj_idx` : 对象索引（fb: 0~9, fn: 0~63）
 
-- `relay_type` : `di`, `do`, `x`, `y`, `m`, `s`, `r`, `k`
+- `relay_type` : `di`、`do`、`x`、`y`、`m`、`字母s (s)`、`r`、`k`
 
-	
+##### 查询参数
 
-##### query-parameter
+- `st` : 起始字节索引（默认: 0）
+- `len` : 字数（默认: 8）
 
-- `st` : start byte index (default: 0)
-- `len` : number of words (default: 8)
-
-
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -50,12 +47,11 @@ response-body:
     28
 ]
 ```
-
 ```python
-request url:
+请求 URL:
 GET /project/plc/m/val_s32?st=32&len=4
 
-response-body:
+响应主体:
 [
     0,
     -2139095040,
@@ -64,7 +60,7 @@ response-body:
 ]
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

@@ -1,70 +1,68 @@
-﻿#### 7.1.1 `search`
+#### 7.1.1 `搜索 (search)`
 
-##### Description
+##### 描述
 
-- `GET` : View the event log using the specified filter conditions.
+- `GET` : 使用指定的过滤条件查看事件日志。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /logManager/search
 ```
 
-##### query-parameter
+##### 查询参数
 
-- `n_item` : Number of requested events (default=100)
-- `cat_p` : Request category filter (category positive). Specify the letters representing each type by combining them with a comma (,). (cat_p=E,W,N)
-  - `E` : Error
-  - `W` : Warning
-  - `N` : Notice
-  - `S` : Start/Stop
-  - `O` : user's Operation
-  - `I` : I/O, relay value
-  - `P` : Periodic state
-  - `H` : History
-  - `C` : Console out
-  - `M` : Miscellany
-- `id_min` : min id filter. (optional)
-  - Every event has a unique event ID (eid). (0~)  
-    If you request a history by adding 1 to the maximum ID of the previously received events and specifying it in `id_min`, you can obtain only the newly occurring history, excluding the events already received.
-  - However, when the event ID in the controller reaches the maximum value (0xffffffffffffffff), it is generated again starting from 0.  
-    Filtering is applied appropriately by taking these situations into consideration.  
-    For example, if id_min is 0xfffffffffffffffa, events with ids such as 0, 1, and 2 are not filtered out but are included in the response.
-- `id_max` : max id filter. (optional)
-- `ts_min` : min timestamp filter. (optional)
-  - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
-- `ts_max` : max timestamp filter. (optional)
-  - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
+- `n_item` : 请求的事件数量 (默认=100)
+- `cat_p` : 请求类别过滤 (类别正). 通过用逗号 (,) 连接代表每种类型的字母来指定它们。 (cat_p=E,W,N)
+  - `E` : 错误
+  - `W` : 警告
+  - `N` : 通知
+  - `S` : 启动/停止
+  - `O` : 用户操作
+  - `I` : I/O, 继电器值
+  - `P` : 定期状态
+  - `H` : 历史
+  - `C` : 控制台输出
+  - `M` : 杂项
+- `id_min` : 最小 ID 过滤。 (可选)
+  - 每个事件都有一个唯一的事件 ID (eid)。 (0~)  
+    如果您通过将以前接收到的事件的最大 ID 加 1 并在 `id_min` 中指定它来请求历史记录，您可以仅获取新发生的历史记录，排除已接收的事件。
+  - 但是，当控制器中的事件 ID 达到最大值 (0xffffffffffffffff) 时，它将从 0 开始重新生成。  
+    过滤将适当地考虑这些情况。  
+    例如，如果 id_min 是 0xfffffffffffffffa，ID 为 0、1 和 2 的事件不会被过滤掉，而是包含在响应中。
+- `id_max` : 最大 ID 过滤。 (可选)
+- `ts_min` : 最小时间戳过滤。 (可选)
+  - 年/月/日 时:分:秒.毫秒格式。例如：2023/11/20 18:50:30.955
+- `ts_max` : 最大时间戳过滤。 (可选)
+  - 年/月/日 时:分:秒.毫秒格式。例如：2023/11/20 18:50:30.955
 
-##### response-body
+##### 响应体
 
-- `id` : event ID
-- `ts` : timestamp
-- `cat` : event category
-- `code` : event code number
-- `aux` : event auxiliary info. Up to 280 characters.
-  - In case of errors, warnings, and start/stop, snapshot information is included.
+- `标识符 (id)` : 事件 ID
+- `ts` : 时间戳
+- `cat` : 事件类别
+- `代码 (code)` : 事件代码号码
+- `aux` : 事件辅助信息。最多 280 个字符。
+  - 在错误、警告和启动/停止的情况下，会包含快照信息。
 
 ```json
 { "id" : 19964, "ts" : "2023/11/20 15:53:11.275", "cat" : "E", "code" : "11,0,0", "aux" : "{ 'pc' : '20/3/1', 'j1' : 18.525, 'j2' : 105.000, 'j3' : -2.577, 'j4' : -14.432, 'j5' : -0.776, 'j6' : 0.314, 'sin' : '00 01 00 00 00 00 00 00', 'sout' : '05 08 06 00 00 00 00 01', 'din' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0', 'dout' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0' }" }
-{ "id" : 18314, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(    976)Power saving = on " }
-{ "id" : 18313, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(=Stamp=)[2023/11/20 15:05:33](+299996445us) " }
+{ "id" : 18314, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(    976)省电模式 = 打开 " }
+{ "id" : 18313, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(=时间戳=)[2023/11/20 15:05:33](+299996445微秒) " }
 { "id" : 18312, "ts" : "2023/11/20 15:05:33.787", "cat" : "N", "code" : "5", "aux" : "{ 'pc' : '20/3/1' }" }
-{ "id" : 18267, "ts" : "2023/11/20 15:00:33.791", "cat" : "H", "code" : "hist", "aux" : "(   2001)    .end ;(P20/S3/F1) " }
-{ "id" : 18266, "ts" : "2023/11/20 15:00:33.789", "cat" : "H", "code" : "hist", "aux" : "( 738785)S3  .move P,spd=500mm/sec,accu=4,tool=0 " }
-```
-
-##### Example
+{ "id" : 18267, "ts" : "2023/11/20 15:00:33.791", "cat" : "H", "code" : "hist", "aux" : "(   2001)    .结束 ;(P20/S3/F1) " }
+{ "id" : 18266, "ts" : "2023/11/20 15:00:33.789", "cat" : "H", "code" : "hist", "aux" : "( 738785)S3  .移动 P,速度=500mm/秒,加速度=4,工具=0 " }
+##### 示例
 
 <blockquote>
 
 ```python
-request url:
+请求 URL:
 GET /logManager/search?cat_p=O&id_max=24258&id_min=24253
 
-response-body:
+响应主体:
 {
-    { "id" : 24258, "ts" : "2023/11/28 16:53:31.239", "cat" : "O", "code" : "K.Click", "aux" : "Right" }
+    { "id" : 24258, "ts" : "2023/11/28 16:53:31.239", "cat" : "O", "code" : "K.Click", "aux" : "右" }
     { "id" : 24257, "ts" : "2023/11/28 16:53:30.462", "cat" : "O", "code" : "K.Down", "aux" : "SHIFT" }
     { "id" : 24256, "ts" : "2023/11/28 16:53:23.450", "cat" : "O", "code" : "K.Up", "aux" : "CTRL" }
     { "id" : 24255, "ts" : "2023/11/28 16:53:23.045", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
@@ -73,9 +71,7 @@ response-body:
 }
 ```
 
-</blockquote>
-
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

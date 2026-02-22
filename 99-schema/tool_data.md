@@ -1,23 +1,22 @@
-﻿### `tool_data`
+### `tool_data`
 
-#### Description
+#### 描述
 
-Robot's tool data.
+机器人的工具数据。
 
-|key|description|
+|关键|描述|
 |:---:|:---|
-|`x`|X position (mm)|
-|`y`|Y position (mm)|
-|`z`|Z position (mm)|
-|`rx`|RX Angle (deg.)|
-|`ry`|RY Angle (deg.)|
-|`rz`|RZ Angle (deg.)|
-|`mass`|weight (kg.)|
-|`cx`|Center of gravity at X position (mm)|
-|`cy`|Center of gravity at Y position (mm)|
-|`cz`|Center of gravity at Z position (mm)|
-|`ixx`| inertial X (kgm2)|
-|`iyy`| inertial Y (kgm2)|
-|`izz`| inertial Z (kgm2)|
-|`mass_esti`|Load estimate weight (kg.)|
-
+|`x`|X 位置 (mm)|
+|`y`|Y 位置 (mm)|
+|`z`|Z 位置 (mm)|
+|`rx`|RX 角度 (度)|
+|`ry`|RY 角度 (度)|
+|`rz`|RZ 角度 (度)|
+|`mass`|重量 (kg)|
+|`cx`|X 位置的重心 (mm)|
+|`cy`|Y 位置的重心 (mm)|
+|`cz`|Z 位置的重心 (mm)|
+|`ixx`|惯性 X (kgm²)|
+|`iyy`|惯性 Y (kgm²)|
+|`izz`|惯性 Z (kgm²)|
+|`mass_esti`|负载估计重量 (kg)|

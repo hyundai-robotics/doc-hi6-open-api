@@ -1,22 +1,22 @@
-﻿#### 11.1.1.1 `date_time`
+#### 11.1.1.1 `date_time`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the set system time.
+- `GET` : 获取系统设置时间。
 
-##### response-body
+##### 响应主体
 
 - [date time](../../../99-schema/date_time.md)
 
-##### Example
+##### 示例
 
 <blockquote>
 
 ```python
-request url:
+请求 URL:
 GET /clock/date_time
 
-response-body:
+响应主体:
 {
     "_type": "JObject",
     "year": 2023,
@@ -29,7 +29,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

@@ -1,4 +1,3 @@
-﻿# 12. Schema
+﻿# 12. 结构
 
-This chapter contains references to various enumerations and structures used in Open API.
-
+本章包含对在 Open API 中使用的各种枚举和结构的引用。

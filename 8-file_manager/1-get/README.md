@@ -1,4 +1,4 @@
-﻿## 8.1 `file_manager/get`
+## 8.1 `file_manager/get`
 
-- Send a GET request for file information from the controller.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送 GET 请求以从控制器获取文件信息。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。

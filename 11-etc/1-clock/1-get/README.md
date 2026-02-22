@@ -1,4 +1,4 @@
-﻿#### 11.1.1 `clock/get`
+#### 11.1.1 `clock/get`
 
-- Send a GET request for the controller system time.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送GET请求以获取控制器系统时间。
+- 通过为每个API设置正确的路径参数和查询参数来接收响应。

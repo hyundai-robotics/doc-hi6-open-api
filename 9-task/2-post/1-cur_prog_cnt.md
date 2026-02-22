@@ -1,30 +1,30 @@
-﻿#### 9.2.1 `task/cur_prog_cnt`
+#### 9.2.1 `task/cur_prog_cnt`
 
-##### Description
+##### 描述
 
-- `POST` : Sets the current program counter for the task.
+- `POST` : 设置任务的当前程序计数器。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/context/tasks[0]/cur_prog_cnt
 ```
 
-##### request-body
+##### 请求体
 
-- [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md)
+- [cur_prog_cnt 请求参数](../../99-schema/cur_prog_cnt.md)
 
-##### response-body
+##### 响应体
 
-- [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md)
+- [cur_prog_cnt 响应参数](../../99-schema/cur_prog_cnt.md)
 
-##### Example
+##### 示例
 
 ```python
-request url:
+请求 URL:
 POST /project/context/tasks[0]/cur_prog_cnt
 
-request-body:
+请求体:
 {
     "pno":-1,
     "sno":-1,
@@ -33,7 +33,7 @@ request-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests

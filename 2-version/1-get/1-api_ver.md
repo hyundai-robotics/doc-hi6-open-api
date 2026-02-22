@@ -1,12 +1,12 @@
-﻿#### 2.1.1 `api_ver`
+#### 2.1.1 `api_ver`
 
-##### Description
+##### 描述
 
-In rare cases, the schema version of your API may change the way it communicates with the controller or its data structures.  
-This may cause problems with the client program, so confirmation through the corresponding function is required.  
-If there is a change in the schema version for each API function, it will be notified through a separate notation on the description page.  
+在少数情况下，您的 API 的架构版本可能会更改与控制器的通信方式或其数据结构。  
+这可能导致客户端程序出现问题，因此需要通过相应的功能进行确认。  
+如果每个 API 函数的架构版本发生更改，将通过描述页面上的单独标注进行通知。  
 
-- `GET` : Optain the Open API version number
+- `GET` : 获取 Open API 版本号
 
 ##### path-parameter
 
@@ -16,10 +16,10 @@ GET /api_ver
 
 ##### response-body
 
-- Open API version number
-- The initial ${cont_model} Open API is a document written based on `version 5`.
+- Open API 版本号
+- 初始 ${cont_model} Open API 是基于 `version 5` 编写的文档。
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -29,7 +29,7 @@ response-body:
 5
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests

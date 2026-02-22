@@ -1,22 +1,22 @@
-﻿#### 5.1.6 `emergency_stop`
+#### 5.1.6 `emergency_stop`
 
-##### Description
+##### 描述
 
-- `GET` : Retrieves information about the state of the emergency stop button being pressed.  
--  When an emergency stop is requested via the API, the controller returns a value of 1 at the moment it receives the API request.   
+- `GET` : 检索关于紧急停止按钮被按下状态的信息。  
+- 当通过 API 请求紧急停止时，控制器在接收到 API 请求的那一刻返回值 1。  
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /project/robot/emergency_stop
 ```
 
-##### response-body
+##### 响应主体
 
-- 0: emergency button released
-- 1: emergency button pressed 
+- 0: 紧急按钮已释放
+- 1: 紧急按钮已按下 
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -28,7 +28,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

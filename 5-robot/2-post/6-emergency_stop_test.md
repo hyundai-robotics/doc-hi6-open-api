@@ -1,13 +1,13 @@
-﻿#### 5.2.6 `emergency_stop_test`
+#### 5.2.6 `emergency_stop_test`
 
-- <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
+- <b style="color:orange"> 此 API 在版本 60.28-00 之前用作 `emergency_stop` API。 </b>  
 
-##### Description
+##### 描述
 
-- Supported version : `60.30-00` &uparrow;
-- `POST` : Executes an emergency stop.  
+- 支持版本 : `60.30-00` &uparrow;
+- `POST` : 执行紧急停止。  
 
-##### path-parameter
+##### 路径参数
 
 
 <div style="max-width:fit-content">
@@ -19,36 +19,34 @@ POST /project/robot/emergency_stop_test
 
 </div>
 
-##### request-body
+##### 请求体
 
   <div style="max-width:fit-content">
 
 -  |key|type|contents|validation|
 	|---|---|---|---|
-	|`step_no`| int | Target step number for emergency stop, within the total step number of the current job | 1 ~ 999 |
-	|`stop_at`| double | Set the percentage of the specified position to stop at | 1 ~ 100 |
-	|`stop_at_corner`| int | 0: Normal stop, 1: Corner stop | 0 or 1 |
-	|`category`| int | 0: Immediate stop, 1: Deceleration stop, 2: Pause | 0 or 1 or 2 |
+	|`step_no`| int | 紧急停止的目标步骤编号，当前作业的总步骤编号内 | 1 ~ 999 |
+	|`stop_at`| double | 设置指定位置的停止百分比 | 1 ~ 100 |
+	|`stop_at_corner`| int | 0: 正常停止, 1: 角落停止 | 0 或 1 |
+	|`category`| int | 0: 立即停止, 1: 减速停止, 2: 暂停 | 0 或 1 或 2 |
 
-- `0: Immediate stop`  
-  &rightarrow; Same as when the controller turns off during robot playback. The motor turns off after stopping.  
-- `1: Deceleration stop`  
-	&rightarrow;  Acts as if the emergency stop button is pressed. The motor turns off after stopping.   
-- `2: Pause`  
-	&rightarrow;  Temporarily stops the robot motion. The motor does not turn off after stopping.  
+- `0: 立即停止`  
+  &rightarrow; 与控制器在机器人播放期间关闭时相同。电机在停止后关闭。  
+- `1: 减速停止`  
+	&rightarrow; 表现得仿佛按下了紧急停止按钮。电机在停止后关闭。   
+- `2: 暂停`  
+	&rightarrow; 暂时停止机器人运动。电机在停止后不关闭。  
 
 </div>
 
-##### status code
+##### 状态码
 
-- 200 : Request successful    
-- 400 : Request failed     
-	- Request body failed validation    
-- 403 : Request failed    
-	- Requested an API that is not serviced  
-
-
-##### Usage Example  
+- 200 : 请求成功    
+- 400 : 请求失败     
+	- 请求体未通过验证    
+- 403 : 请求失败    
+	- 请求了未提供服务的 API  
+##### 使用示例  
 
 <div style="max-width:fit-content">
 
@@ -64,7 +62,7 @@ request-body
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests

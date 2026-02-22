@@ -1,18 +1,18 @@
-﻿#### 4.1.1 `op_cnd`
+#### 4.1.1 `op_cnd`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the operation condition setting values.
+- `GET` : 获取操作条件设置值。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /project/control/op_cnd
 ```
 
-##### response-body
+##### 响应体
 
-- [Condition Setting parameter](../../99-schema/op_cnd.md)
+- [条件设置参数](../../99-schema/op_cnd.md)
 
 <blockquote>
 
@@ -33,7 +33,7 @@ GET /project/control/op_cnd
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

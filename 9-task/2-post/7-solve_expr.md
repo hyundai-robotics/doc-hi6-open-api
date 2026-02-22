@@ -1,22 +1,22 @@
-﻿#### 9.2.7 `solve_expr`
+#### 9.2.7 `solve_expr`
 
-##### Description
+##### 描述
 
-- `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
+- `POST` : 求解表达式并将结果值设置为任务的本地或全局变量。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/context/tasks[0]/solve_expr
 ```
 
-##### request-body
-- `expr` : Enter the expression you want to solve
-- `scope` : Sets the scope for `expr`.
+##### 请求体
+- `expr` : 输入您想要求解的表达式
+- `scope` : 设置 `expr` 的作用域。
 
 	|`local`|`global`|`not set`|
 	|:---|:---|:---|
-	|local variable|global variable|Full scope (local and global are set automatically)|
+	|本地变量|全局变量|完整作用域（本地和全局自动设置）|
 
 ```json
 {
@@ -25,47 +25,46 @@ POST /project/context/tasks[0]/solve_expr
 }
 ```
 
-##### response-body
+##### 响应体
 
 ```json
-13 // Reads the expr value within the currently specified scope.
+13 // 读取当前指定作用域内的 expr 值。
 ```
 
-##### Example
+##### 示例
 
 <blockquote>
 
 ```python
-# 1. Read the value of "local" variable a declared in the current Task
-request url:
+# 1. 读取当前任务中声明的 "local" 变量 a 的值
+请求 URL:
 GET /project/context/tasks[0]/solve_expr
 
-request-body:
+请求体:
 {
     "expr"  : "a",
     "scope" : "local"
 }
 
-response-body:
+响应体:
 13
 ```
-
 </blockquote>
 
 <blockquote>
 
 ```python
-# 2. Read the value of "global" variable a declared in the current Task
-request url:
+# 2. 读取在当前任务中声明的 "global" 变量 a 的值
+请求 URL:
 GET /project/context/tasks[0]/solve_expr
 
-request-body:
+请求体:
 {
     "expr"  : "a",
     "scope" : "global"
 }
 
-response-body:
+响应体:
 10
 ```
 
@@ -74,23 +73,23 @@ response-body:
 <blockquote>
 
 ```python
-# 3. Add -234 to the value of local variable a
-request url:
+# 3. 将 -234 加到局部变量 a 的值上
+请求 URL:
 GET /project/context/tasks[0]/solve_expr
 
-request-body:
+请求体:
 {
     "expr": "a + (-234)"
 }
 
-response-body:
+响应体:
 1000
 ```
 
 </blockquote>
 
-Python Script Example
-- Execute the following code with the local and global variable a values set in the task area of the robot controller.
+Python 脚本示例
+- 在机器人控制器的任务区域中设置局部和全局变量 a 的值，执行以下代码。
 
 ```python
 # test.py

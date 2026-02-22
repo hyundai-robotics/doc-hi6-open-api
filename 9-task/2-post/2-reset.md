@@ -1,37 +1,37 @@
-﻿#### 9.2.2 `task/reset`
+#### 9.2.2 `task/reset`
 
-##### Description
+##### 描述
 
-- `POST` : Perform a reset on the task.  
-- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}). 
-  - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> Any other code is not intended for operation </span>
+- `POST` : 对任务执行重置。  
+- 它的操作方式与使用 [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 相同。
+  - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> 任何其他代码都不适用于操作 </span>
 
-##### path-parameter
+##### 路径参数
 
 ```python
-# reset all the tasks
+# 重置所有任务
 POST /project/service/r_code/execute
 ```
 
-##### request-body
+##### 请求体
 
 ```json
 {"code": 0}
 ```
 
-##### Example
+##### 示例
 
 ```python
-request url:
+请求 URL:
 POST /project/service/r_code/execute
 
-request-body:
+请求体:
 {
     "code":0
 }
 ```
 
-Python Script
+Python 脚本
 
 ```python
 import requests

@@ -1,7 +1,7 @@
-﻿# ${cont_model} Controller Function Manual - Open API
+﻿# ${cont_model} 控制器功能手册 - 开放 API
 
 {% hint style="warning" %}
 
-We are not responsible for any damage or problems that arise from using an API that is not officially mentioned in the ${cont_model} Open API manual.
+我们对因使用未在 ${cont_model} 开放 API 手册中正式提及的 API 而导致的任何损坏或问题不承担责任。
 
 {% endhint %}

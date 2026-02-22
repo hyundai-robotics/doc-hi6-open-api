@@ -1,3 +1,3 @@
 ﻿# 11. `etc`
 
-- It covers system version, event log, clock, etc.
+- 它包含系统版本、事件日志、时钟等。

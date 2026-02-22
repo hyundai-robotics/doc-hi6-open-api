@@ -1,3 +1,3 @@
-﻿# 7.1 event-log
+﻿# 7.1 事件日志
 
-- Outputs errors, warnings, execution history, etc. recorded in the controller.
+- 输出记录在控制器中的错误、警告、执行历史等。

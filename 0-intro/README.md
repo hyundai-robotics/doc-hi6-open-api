@@ -1,9 +1,9 @@
-﻿# 0. Intro
+﻿# 0. 介绍
 
-You can check the basic information related to ${cont_model} Open API below.
+您可以在下面查看与 ${cont_model} Open API 相关的基本信息。
 
-[0.1 About ${cont_model} Open API](./1-concept/README.md) <br>
-[0.2 Required prior knowledge](./2-prerequisite/README.md) <br>
-[0.3 Sample code](./3-sample-code/README.md) <br>
-[0.4 Simple API call without coding](./4-api-test/README.md)
-[0.5 Precautions Before Starting](./4-api-test/README.md)
+[0.1 关于 ${cont_model} Open API](./1-concept/README.md) <br>
+[0.2 所需的先验知识](./2-prerequisite/README.md) <br>
+[0.3 示例代码](./3-sample-code/README.md) <br>
+[0.4 无需编码的简单 API 调用](./4-api-test/README.md)
+[0.5 启动前的注意事项](./4-api-test/README.md)

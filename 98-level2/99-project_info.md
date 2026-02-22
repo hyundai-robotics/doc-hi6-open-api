@@ -1,8 +1,8 @@
-﻿## 3.1.2 `project_info`
+## 3.1.2 `project_info`
 
-### 설명
+### 说明
 
-- `GET` : 프로젝트 관련 정보를 받는 함수입니다.
+- `GET` : 接收项目相关信息的函数。
 
 ### path-parameter
 
@@ -12,8 +12,8 @@ GET /project/project_info
 
 ### response-body
 
-- [프로젝트 관련 정보](../../99-schema/project_info.md)
-### 사용 예
+- [项目相关信息](../../99-schema/project_info.md)
+### 使用示例
 
 <blockquote>
 
@@ -32,7 +32,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script 예시
+Python 脚本示例
 
 ```python
 # test.py

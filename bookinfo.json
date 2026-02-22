@@ -1,12 +1,14 @@
 ﻿{
-    "langCode": "en",
-    "series": "${cont_model} Controller",
-    "title": "Function Manual - Open API (based on version 5)",
+    "langCode": "zh",
+    "series": "${cont_model} 控制器",
+    "title": "功能手册 - 开放 API（基于版本 5）",
     "publisher": "HD Hyundai Robotics",
-    "tocTitle": "Contents",
+    "tocTitle": "内容",
     "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
-    "docId": "${cont_model:upper}OPENAPI_EN_001",
+    "docId": "${cont_model:upper}OPENAPI_ZH_001",
     "references": [
-        { "rpath" : "doc-hi6-operation/en-tp630" }
+        {
+            "rpath": "doc-hi6-operation/zh-tp630"
+        }
     ]
 }

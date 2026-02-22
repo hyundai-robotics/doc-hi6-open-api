@@ -1,4 +1,4 @@
-﻿## 10.2 `console/post`
+## 10.2 `console/post`
 
-- Sends a POST request for information related to executing robot commands.  
-- The exact request-body must be written for each API.  
+- 发送关于执行机器人命令的信息的POST请求。  
+- 每个API的确切请求体必须单独编写。  

@@ -1,4 +1,4 @@
-﻿## 3.1 `project/post`
+## 3.1 `project/post`
 
-- Send a POST request for condition settings, project information, and job file information.
-- You must write the correct request-body for each API.
+- 发送一个POST请求以进行条件设置、项目信息和作业文件信息。
+- 您必须为每个API编写正确的请求体。

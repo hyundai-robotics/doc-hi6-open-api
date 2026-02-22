@@ -1,4 +1,4 @@
-﻿## 3.1 `project/get`
+## 3.1 `project/get`
 
-- Send a GET request for condition settings, project information, and job file information.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送 GET 请求以获取条件设置、项目信息和作业文件信息。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。

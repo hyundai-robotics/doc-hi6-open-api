@@ -1,16 +1,16 @@
-﻿# 1. release note 
+﻿# 1. 发布说明
 
-- API changes have been documented based on the COM version.  
-- If you wish to use an API that operates on a higher controller version than your current one, a version upgrade is required.  
-- Release Information
+- 基于 COM 版本文档记录了 API 更改。  
+- 如果您希望使用在当前控制器版本之上的更高版本操作的 API，则需要进行版本升级。  
+- 发布信息
 
 	<div style="max-width:31vw;">
 
-	|COM Version|Release Schedule|Link|
+	|COM 版本|发布安排|链接|
 	|:--:|:--:|:--:|
-	|v60-34.00| Scheduled March 2026 _(TBD)_|[🔗](60-34.md)|
+	|v60-34.00| 定于 2026 年 3 月 _(待定)_|[🔗](60-34.md)|
 	|v60-32.00| 2025.11 |[🔗](60-32.md)|
-	|v60-30.00|March, 2025|[🔗](60-30.md)|
-	|v60-28.00|August, 2024|[🔗](60-28.md)|
+	|v60-30.00|2025 年 3 月|[🔗](60-30.md)|
+	|v60-28.00|2024 年 8 月|[🔗](60-28.md)|
 
 	</div>

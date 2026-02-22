@@ -1,19 +1,18 @@
-﻿#### 10.2.1 `execute_cmd`
+#### 10.2.1 `execute_cmd`
 
+##### 描述
 
-##### Description
+- 支持的版本 : `60.28-00` &uparrow;
+- `POST` : 为 ${cont_model} 控制器执行控制台命令。  
+- 您可以执行 [CLI 机器人语言命令](../.././99-schema/robotlang.md)。  
 
-- Supported version : `60.28-00` &uparrow;
-- `POST` : Executes console commands for the ${cont_model} controller.  
-- You can perform [CLI robot language commands](../.././99-schema/robotlang.md).  
-
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /console/execute_cmd
 ```
 
-##### request-body
+##### 请求主体
 
 ```json
 {
@@ -21,29 +20,29 @@ POST /console/execute_cmd
 }
 ```
 
-##### status code
+##### 状态代码
 
-- 200: Request successful  
-	- Needs to apply [CLI robot language commands](../.././99-schema/robotlang.md) rules  
-	- If a command violates the robot language rules, ecode 1 will be returned as shown below.
+- 200: 请求成功  
+	- 需要应用 [CLI 机器人语言命令](../.././99-schema/robotlang.md) 规则  
+	- 如果命令违反机器人语言规则，将返回 ecode 1，如下所示。
 		<div style = "width: fit-content;">  
 		
 		```python
 		{'_type': 'JObject', 'ecode': 1}
 		```
 		</div>
-- 400: Request failed
-	- Request body failed validation
-- 403/4: Request failed
-	- Requested an API that is not serviced
+- 400: 请求失败
+	- 请求主体验证失败
+- 403/4: 请求失败
+	- 请求了未提供服务的 API
 
-##### Example
+##### 示例
 
 </blockquote>
 
-Python Script Example
-- Commands can be executed in the `motor on` and `remote mode` state.  
-- It can be executed when the move command matches the current robot axes.  
+Python 脚本示例
+- 命令可以在 `电机 开 (motor on)` 和 `远程模式` 状态下执行。  
+- 当移动命令与当前机器人轴匹配时，可以执行。  
 
 ```python
 # test.py
@@ -54,8 +53,8 @@ import requests
 class ExecuteCmds:
     request_to = {
         "com": [
-            "rl.stop",  # External stop
-            "rl.reinit",  # Restart
+            "rl.stop",  # 外部停止
+            "rl.reinit",  # 重启
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
@@ -63,7 +62,7 @@ class ExecuteCmds:
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
             "rl.i end",
-            "rl.start",  # Play
+            "rl.start",  # 播放
         ],
     }
 
@@ -89,15 +88,15 @@ print(f"response: {post_execute_cmd()}")
 ```
 ```sh
 $python test.py 
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: <Response [200]>
-response: 200
+响应: <Response [200]>
+响应: <Response [200]>
+响应: <Response [200]>
+响应: <Response [200]>
+响应: <Response [200]>
+响应: <Response [200]>
+响应: <Response [200]>
+响应: <Response [200]>
+响应: <Response [200]>
+响应: <Response [200]>
+响应: 200
 ```

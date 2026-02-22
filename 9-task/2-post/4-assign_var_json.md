@@ -1,24 +1,24 @@
-﻿#### 9.2.4 `assign_var_json`
+#### 9.2.4 `assign_var_json`
 
-##### Description
+##### 描述
 
-- `POST` : Reassigns a variable in the current task statement.  
+- `POST` : 在当前任务语句中重新分配变量。  
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/context/tasks[0]/assign_var_json
 ```
 
-##### request-body
+##### 请求体
 
-- `name` : variable name
-- `json` : A json format `string` to be substituted into a variable.
-- `save` : Save contents (true/false). That is until you save that data to your activity file.
-- `scope` : Setting the effective scope of the variable
-	|`local`|`global`|`Not set`|
+- `名称 (name)` : 变量名称
+- `json` : 要替换为变量的 json 格式 `string`。
+- `保存 (save)` : 保存内容 (true/false)。即在您将该数据保存到活动文件之前。
+- `范围 (scope)` : 设置变量的有效作用域
+	|`local`|`global`|`未设置`|
 	|:---|:---|:---|
-	|local variable|global variable|Full scope (local and global are set automatically)|
+	|局部变量|全局变量|完整作用域（局部和全局会自动设置）|
 
 
 ```json
@@ -30,7 +30,7 @@ POST /project/context/tasks[0]/assign_var_json
 }
 ```
 
-##### example
+##### 示例
 
 <blockquote>
 
@@ -40,7 +40,7 @@ Hyundai Robot Job File;
     end
 ```
 
-When the above job file is executed and a local variable `a` is declared in the task
+当上述作业文件被执行并在任务中声明了一个局部变量 `字母a (a)`
 
 ```python
 request url:
@@ -54,10 +54,9 @@ request-body
     "save" : "true"
 }
 ```
-
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -88,13 +87,13 @@ def assign_var_json(var_name: str, scope = None, var_json: str = '') -> int:
 
     return response.status_code
 
-print(f"before: {post_read_var('a', 'local')}")
-print(f"""response: {assign_var_json('a', 'local', '{"test": 10}')}""")
-print(f"after: {post_read_var('a', 'local')}")
+print(f"之前: {post_read_var('a', 'local')}")
+print(f"""响应: {assign_var_json('a', 'local', '{"test": 10}')}""")
+print(f"之后: {post_read_var('a', 'local')}")
 ```
 ```sh
 $python test.py 
-before: 1234
-response: 200
-after: {'_type': 'JObject', 'test': 10}
+之前: 1234
+响应: 200
+之后: {'_type': 'JObject', 'test': 10}
 ```

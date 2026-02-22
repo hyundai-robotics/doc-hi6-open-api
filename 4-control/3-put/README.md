@@ -1,4 +1,4 @@
-﻿## 4.3 `control/put`
+## 4.3 `control/put`
 
-- Sends a PUT request for the controller's setting information and input/output values.
-- You must write the correct request-body for each API.
+- 发送针对控制器设置信息和输入/输出值的 PUT 请求。
+- 您必须为每个 API 编写正确的请求主体。

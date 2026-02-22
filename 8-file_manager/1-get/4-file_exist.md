@@ -1,47 +1,47 @@
-﻿#### 8.1.4 `file_exist`
+#### 8.1.4 `file_exist`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the existence of the target file.
+- `GET` : 获取目标文件的存在性。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /file_manager/file_exist
 ```
 
-##### query-parameter
+##### 查询参数
 
-query-parameter must be entered.  
+必须输入查询参数。  
 
 ```text
 ?pathname=project/jobs/0001.job
 ```
 
-- `pathname` : target file path
+- `pathname` : 目标文件路径
 
-##### response-body
+##### 响应主体
 
-- `true` (file exists)
-- `false` (no file exist)
+- `true` （文件存在）
+- `false` （文件不存在）
 
-##### status code
+##### 状态码
 
-- 200 : Request succeeded
-  - return [file information](../../99-schema/file_info) `list`
-- 404 : Request failed
-  - not allowed path-parameter
+- 200 : 请求成功
+  - 返回 [文件信息](../../99-schema/file_info) `list`
+- 404 : 请求失败
+  - 不允许的路径参数
 
 
-##### Example
+##### 示例
 
 <blockquote>
 
 ```python
-request url:
+请求网址：
 GET /file_manager/file_exist?pathname=project/jobs/1234.job
 
-response-body: 
+响应主体: 
 false
 ```
 ```
@@ -51,10 +51,9 @@ ${cont_model}
     |   `-- 0001.job
     `-- hi6_proj.json
 ```
-
 </blockquote>
 
-Python Script Example
+Python脚本示例
 
 ```python
 # test.py

@@ -1,4 +1,4 @@
-﻿## 6.1 `io_plc/get`
+## 6.1 `io_plc/get`
 
-- Sends a GET request for input/output values of a built-in PLC.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送对内置PLC的输入/输出值的GET请求。
+- 通过为每个API设置正确的路径参数和查询参数来接收响应。

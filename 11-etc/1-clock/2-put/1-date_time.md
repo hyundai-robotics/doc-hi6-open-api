@@ -1,22 +1,22 @@
-﻿#### 11.1.2.1 `date_time`
+#### 11.1.2.1 `date_time`
 
-##### Description
+##### 描述
 
-- `PUT` : Change the system time.
+- `PUT` : 更改系统时间。
 
 ##### request-body
 
-- [date time](../../../99-schema/date_time.md)
+- [日期时间](../../../99-schema/date_time.md)
 
-##### Example
+##### 示例
 
 <blockquote>
 
 ```python
-request url:
+请求 URL:
 PUT /clock/date_time
 
-request-body:
+请求体:
 {
     "year": 2023,
     "mon": 10,
@@ -28,7 +28,7 @@ request-body:
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -44,9 +44,9 @@ def put_system_time() -> int:
 
     return response.status_code
 
-print(f"response: {put_system_time()}")
+print(f"响应: {put_system_time()}")
 ```
 ```sh
 $python test.py
-response: 200
+响应: 200
 ```

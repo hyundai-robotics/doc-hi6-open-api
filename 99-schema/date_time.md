@@ -1,13 +1,13 @@
-﻿### `date_time`
+### `date_time`
 
-#### Description
+#### 描述
 
-Indicates system time-related information.
-|value|type|description|
+指示系统时间相关信息。
+|值|类型|描述|
 |:---:|:---|:---|
-|"year"|`int`|Year of current system|
-|"mon"|`int`|Month of current system|
-|"day"|`int`|Day of current system|
-|"hour"|`int`|Hour of current system|
-|"min"|`int`|Minute of current system|
-|"sec"|`int`|Second of current system|
+|"year"|`int`|当前系统年份|
+|"mon"|`int`|当前系统月份|
+|"day"|`int`|当前系统天数|
+|"hour"|`int`|当前系统小时|
+|"min"|`int`|当前系统分钟|
+|"sec"|`int`|当前系统秒数|

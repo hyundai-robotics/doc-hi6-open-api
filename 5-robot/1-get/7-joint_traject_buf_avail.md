@@ -1,11 +1,11 @@
-﻿#### 5.1.7 `joint_traject_buf_avail`
+#### 5.1.7 `joint_traject_buf_avail`
 
-##### Description
-- Supported Version : `60.32-00` &uparrow;
-- `GET` : Returns the available size of the trajectory buffer.
-- When requesting trajectories consecutively, you must use this function to ensure that the size of each trajectory request does not exceed the available buffer space.
+##### 描述
+- 支持版本 : `60.32-00` &uparrow;
+- `GET` : 返回轨迹缓冲区的可用大小。
+- 在连续请求轨迹时，必须使用此函数以确保每个轨迹请求的大小不超过可用缓冲区空间。
 
-##### path-parameter
+##### 路径参数
 
 <div style="width: fit-content;">
 
@@ -13,16 +13,16 @@
 GET /project/robot/trajectory/joint_traject_buf_avail
 ```
 
-##### response-body
+##### 响应体
 
-- val: Number of available buffer slots (maximum: 2048)
+- val: 可用缓冲槽的数量（最大：2048）
 
-##### status code
-  - 200 : Request succeeded
-  - 403 : Request failed
-    - Returned when calling an unsupported API
+##### 状态代码
+  - 200 : 请求成功
+  - 403 : 请求失败
+    - 当调用不支持的 API 时返回
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -35,7 +35,7 @@ response-body:
 ```
 </div>
 
-Python Script Example
+Python 脚本示例
 
 <div style="width: fit-content;">
 

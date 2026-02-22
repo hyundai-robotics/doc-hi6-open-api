@@ -1,8 +1,8 @@
-﻿#### 9.2.3 `assign_var_expr`
+#### 9.2.3 `assign_var_expr`
 
-##### Description
+##### 描述
 
-- `POST` : Reassigns a variable in the current task statement.
+- `POST` : 在当前任务语句中重新分配一个变量。
 
 ##### path-parameter
 
@@ -12,13 +12,13 @@ POST /project/context/tasks[0]/assign_var_expr
 
 ##### request-body
 
-- `name` : variable name
-- `expr` : expression to substitute into variable
-- `save` : Whether to save (true/false). This is to save the data in the variable file.
-- `scope` : Setting the effective scope of the variable
+- `名称 (name)` : 变量名称
+- `expr` : 代入变量的表达式
+- `保存 (save)` : 是否保存（true/false）。这是为了将数据保存在变量文件中。
+- `scope` : 设置变量的有效范围
 	|`local`|`global`|`Not set`|
 	|:---|:---|:---|
-	|local variable|global variable|Full scope (local and global are set automatically)|
+	|局部变量|全局变量|完整范围（局部和全局自动设置）|
 
 
 ```json
@@ -30,7 +30,7 @@ POST /project/context/tasks[0]/assign_var_expr
 }
 ```
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -40,7 +40,7 @@ Hyundai Robot Job File;
     end
 ```
 
-When the above job file is executed and a local variable `a` is declared in the task
+当上述作业文件被执行并在任务中声明一个局部变量 `字母a (a)`
 
 ```python
 request url:
@@ -54,10 +54,9 @@ request-body
     "save" : "true"
 }
 ```
-
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -83,13 +82,13 @@ def assign_var_expr(var_name: str, scope = None, expression: str = '') -> int:
 
     return response.status_code
 
-print(f"before: {post_read_var('a', 'local')}")
-print(f"response: {assign_var_expr('a', 'local', '465 + 312')}")
-print(f"after: {post_read_var('a', 'local')}")
+print(f"之前: {post_read_var('a', 'local')}")
+print(f"响应: {assign_var_expr('a', 'local', '465 + 312')}")
+print(f"之后: {post_read_var('a', 'local')}")
 ```
 ```sh
 $python test.py 
-before: 1234
-response: 200
-after: 777   
+之前: 1234
+响应: 200
+之后: 777   
 ```

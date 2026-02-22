@@ -1,26 +1,26 @@
-﻿#### 5.1.5 `tools/t_{number}`
+#### 5.1.5 `tools/t_{number}`
 
-##### Description
+##### 描述
 
-- `GET` : This is a function that receives information on the settings of a specific tool.
+- `GET` : 这是一个接收特定工具设置信息的功能。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /project/robot/tools/t_{number}
 ```
 
-##### response-body
+##### 响应主体
 
-- [Tool data](../../99-schema/tool_data.md)
+- [工具数据](../../99-schema/tool_data.md)
 
-##### Example
+##### 示例
 
 ```python
-request url:
+请求网址:
 GET /project/robot/tools/t_1
 
-response-body:
+响应主体:
 {
   "_type" : "Tool",
 	"x" : 0.0,
@@ -33,7 +33,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -51,5 +51,5 @@ print(get_tool1_data())
 ```
 ```sh
 $python test.py
-{'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
+{'_type': '工具', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```

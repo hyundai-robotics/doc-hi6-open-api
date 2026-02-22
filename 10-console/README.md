@@ -1,4 +1,4 @@
 ﻿# 10. `console`
 
-- You can use CLI commands of the ${cont_model} controller software.  
-- Various actions can be performed using robot language.  
+- 您可以使用 ${cont_model} 控制器软件的 CLI 命令。  
+- 可以使用机器人语言执行各种操作。

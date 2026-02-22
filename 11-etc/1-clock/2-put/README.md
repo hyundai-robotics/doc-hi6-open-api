@@ -1,4 +1,4 @@
-﻿#### 11.1.2 `clock/put`
+#### 11.1.2 `clock/put`
 
-- Sends a PUT request to the controller system time.
-- You must write the correct request-body for each API.
+- 发送一个 PUT 请求到控制器系统时间。
+- 您必须为每个 API 编写正确的请求体。

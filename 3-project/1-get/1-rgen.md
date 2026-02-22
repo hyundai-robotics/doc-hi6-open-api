@@ -1,63 +1,63 @@
-﻿#### 3.1.1 `rgen`
+#### 3.1.1 `rgen`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain remote general information in the controller.
+- `GET`: 在控制器中获取远程一般信息。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /project/rgen
 ```
 
-##### response-body
+##### 响应体
 
-###### 1) Mode
+###### 1) 模式
 |key|value|type|description|
 |:---|:---|:---|:---|
-|`cur_mode`| `0` : manual <br> `1` : manual, system settings <br>`3` : auto, 1-cycle <br> `4` : auto, continue (cycle)|`int`|manual/auto mode|
-|`enable_state`|`0` Byte(`LSB`) : Motor ON (0: On / 1: Off / 2: Busy) <br> `1` Byte : TP Enable (deadman) Switch (0: OFF / 1: ON)<br>`2` Byte : Machine Lock (0: OFF / 1: ON)<br>`3` Byte : gun Lock (0: OFF / 1: ON)<br>`4` Byte : gun (0: OFF / 1: ON)|`int`||
-|`is_playback`|`0` : Pause <br>`1` : play|`int`||
-|`is_remote_mode`|`0`: False <br> `1`: True|`int`|Remote mode or not|
-|`is_ext_start`|`0`: False <br> `1`: True|`int`|External start-up or not|
-|`is_ext_prog_sel`|`0`: False <br> `1`: True|`int`|Whether to select an external program|
+|`cur_mode`| `0`: 手动 <br> `翻译 (1)`: 手动, 系统设置 <br>`翻译 (3)`: 自动, 1循环 <br> ` (4)`: 自动, 持续 (循环)|`int`|手动/自动模式|
+|`enable_state`|`0` 字节(`LSB`): 电机开启 (0: 开 / 1: 关 / 2: 繁忙) <br> `翻译 (1)`: TP 启用 (死 man's) 开关 (0: 关闭 / 1: 开)<br>`翻译 (2)`: 机器锁 (0: 关闭 / 1: 开)<br>`翻译 (3)`: 枪锁 (0: 关闭 / 1: 开)<br>` (4)`: 枪 (0: 关闭 / 1: 开)|`int`||
+|`is_playback`|`0`: 暂停 <br>`翻译 (1)`: 播放|`int`||
+|`is_remote_mode`|`0`: 假 <br> `翻译 (1)`: 真|`int`|是否为远程模式|
+|`is_ext_start`|`0`: 假 <br> `翻译 (1)`: 真|`int`|是否为外部启动|
+|`is_ext_prog_sel`|`0`: 假 <br> `翻译 (1)`: 真|`int`|是否选择外部程序|
 
 <br>
 
-###### 2) current program counter
-This is the point where the bar cursor on the teach pendant JOB panel is located in manual mode or automatic mode. This is the currently executing statement or the target location for editing.
+###### 2) 当前程序计数器
+这是教导挂件 JOB 面板上条形光标在手动模式或自动模式中的位置。这是当前执行的语句或编辑的目标位置。
 |key|type|description|
 |:---|:---|:---|
-|`cur_prog_no`|`int`|current program number|
-|`cur_step_no`|`int`|current step number|
-|`cur_func_no`|`int`|current function number|
+|`cur_prog_no`|`int`|当前程序编号|
+|`cur_step_no`|`int`|当前步骤编号|
+|`cur_func_no`|`int`|当前功能编号|
 
 <br>
 
-###### 3) moving program counter
-This is the target step the robot is moving during playback.
+###### 3) 移动程序计数器
+这是机器人在播放过程中移动的目标步骤。
 |key|type|description|
 |:---|:---|:---|
-|`mov_prog_no`|`int`|moving program number|
-|`mov_step_no`|`int`|moving step number|
-|`mov_func_no`|`int`|moving function number|
+|`mov_prog_no`|`int`|移动程序编号|
+|`mov_step_no`|`int`|移动步骤编号|
+|`mov_func_no`|`int`|移动功能编号|
 
 <br>
 
-###### 4) Speed
+###### 4) 速度
 |key|type|description|
 |:---|:---|:---|
-|`spd_lev`|`int`|Manual mode jog speed level (1~8)|
-|`manual_spd_max`|`int`|Manual mode maximum speed (mm/sec)|
-|`auto_spd`|`int`|Auto mode playback speed (%)|
-|`jog_inch_status`|`int`|jog inching state (0:OFF/ 1:ON)|
-|`step_execute_unit_status`|`int`|StepFWD execution unit (run to)<br>0: Cmd <br>1: Step<br>2: End |
-|`cont_path`|`int`|continuous motion mode (0~2)|
+|`spd_lev`|`int`|手动模式的 Jog 速度等级 (1~8)|
+|`manual_spd_max`|`int`|手动模式下的最大速度 (mm/sec)|
+|`auto_spd`|`int`|自动模式播放速度 (%)|
+|`jog_inch_status`|`int`|jog 微调状态 (0:关闭/ 1:开启)|
+|`step_execute_unit_status`|`int`|StepFWD 执行单元 (运行到)<br>0: Cmd <br>1: Step<br>2: 结束 |
+|`cont_path`|`int`|连续运动模式 (0~2)|
 
 <br>
 
-##### Example
-Python Script Example
+##### 示例
+Python 脚本示例
 
 ```python
 import requests

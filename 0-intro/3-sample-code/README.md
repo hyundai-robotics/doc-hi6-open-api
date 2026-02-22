@@ -1,8 +1,8 @@
-﻿## 0.3 Sample code
+## 0.3 示例代码
 
-Various development languages provide libraries for calling REST APIs.  
-To learn how to use it, you can easily search and refer to the technical documentation for each development language.
+各种开发语言都提供用于调用 REST APIs 的库。  
+要了解如何使用它，您可以轻松搜索并参考每种开发语言的技术文档。
 
-- In this document, we will only explain the calls to the GET and POST methods using C# and python.
+- 在本文档中，我们将仅使用 C# 和 Python 解释对 GET 和 POST 方法的调用。
 
-- Let's assume you are making a request to a ${cont_model} controller with IP address 192.168.1.150.
+- 假设您向 IP 地址为 192.168.1.150 的 ${cont_model} 控制器发出请求。

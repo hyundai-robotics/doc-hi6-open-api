@@ -1,19 +1,19 @@
-﻿### `Pose`
+### `姿势 (Pose)`
 
-#### Description
+#### 描述
 
-Pose Data.
+姿势数据。
 
-|key|description|
+|键|描述|
 |:---|:---|
-|x|X position (mm)|
-|y|Y position (mm)|
-|z|Z position (mm)|
-|rx|RX Angle (deg.)|
-|ry|RY Angle (deg.)|
-|rz|RZ Angle (deg.)|
-|j1~j16|1~16 axis values(mm or deg.)|
-|crd|[Coordinate system](./crdsys.md)|
-|mechinfo|[Mechanism information](./mechinfo.md)|
-|nsync|Number of sensor synchronization values (0~2)|
-|sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|
+|x|X 位置 (毫米)|
+|y|Y 位置 (毫米)|
+|z|Z 位置 (毫米)|
+|rx|RX 角度 (度)|
+|ry|RY 角度 (度)|
+|rz|RZ 角度 (度)|
+|j1~j16|1~16 轴值 (毫米或度)|
+|crd|[坐标系统](./crdsys.md)|
+|mechinfo|[机制信息](./mechinfo.md)|
+|nsync|传感器同步值的数量 (0~2)|
+|sync|传感器同步值 (字符串)。例如 `"sync(220.5,195.3)"`|

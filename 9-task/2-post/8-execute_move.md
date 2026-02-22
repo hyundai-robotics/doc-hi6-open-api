@@ -1,25 +1,25 @@
-﻿#### 9.2.8 `execute_move`
+#### 9.2.8 `execute_move`
 
-##### Description
+##### 描述
 
-- Supported version : `60.28-00` &uparrow;
-- `POST` : Moves to the specified pose.
+- 支持的版本 : `60.28-00` &uparrow;
+- `POST` : 移动到指定的姿态。
 
 {% hint style="warning" %}
-HRSpace users only<br>
-execute_move may fail due to a Remote Mode validation error on VRC_Hi6 v60.30-10 to v60.32-06<br>
-→ Use v60.30-09 or earlier, or v60.32-07 or later (Physical Hi6 controllers are not affected)
+仅限HRSpace用户<br>
+由于VRC_Hi6 v60.30-10到v60.32-06上的远程模式验证错误，execute_move可能会失败<br>
+→ 使用v60.30-09或更早版本，或v60.32-07或更高版本（物理Hi6控制器不受影响）
 {% endhint %}
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/context/tasks[{task index}]/execute_move
 ```
 
-##### request-body
-- `stmt` : Key value in the request body, referring to the statement.
-- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/en/5-moving-robot/4-move?cont_model=${cont_model}).
+##### 请求体
+- `stmt` : 请求体中的键值，指向该语句。
+- 有关如何编写移动语句的详细信息，请参阅 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/zh/5-moving-robot/4-move?cont_model=${cont_model})。
 
 ```json
 {
@@ -27,39 +27,38 @@ POST /project/context/tasks[{task index}]/execute_move
 }
 ```
 
-##### response
+##### 响应
 
-1. status code
+1. 状态码
 - 200 : OK
 - 400 : Bad Request
-    - The request body failed validation.
+    - 请求体未通过验证。
 - 403 : Forbidden
-    - An API request was attempted while not in Remote Mode (effective from v60.30-07).
+    - 尝试在非远程模式下进行API请求（自v60.30-07起生效）。
 - 404 : Not Found
 
-2. response-body
+2. 响应体
 
-- Normal response for v60.30 or earlier
+- v60.30或更早版本的正常响应
 
 ```json
 { "err_code" : 0 }
 ```
 
-- Normal response for v60.32 or later
+- v60.32或更高版本的正常响应
 
 ```json
 { "_type" : "JObject" }
 ```
+3. 错误代码
 
-3. error code
+- -38500 : 尝试在非远程模式下发出API请求
+- -1442071 : 尝试在电机关闭时发出API请求
+- -1442080 : 尝试在自动程序执行期间发出API请求
+- -1376272 : 处理API请求时发生机器人语言语法错误
 
-- -38500 : API request attempted while not in Remote Mode
-- -1442071 : API request attempted while the motor is OFF
-- -1442080 : API request attempted during automatic program execution
-- -1376272 : Robot language syntax error occurred while processing the API request
-
-Python Script Example
-- Input pose command when the motor is on and matches the current robot axes.
+Python脚本示例
+- 在电机开启并符合当前机器人轴时输入位姿命令。
 
 ```python
 # test.py

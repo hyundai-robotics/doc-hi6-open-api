@@ -1,16 +1,16 @@
-﻿#### 3.2.2 `delete_job`
+#### 3.2.2 `delete_job`
 
-##### Description
+##### 描述
 
-- `POST` : Send a request to remove a working file.
+- `POST` : 发送请求以删除工作文件。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/jobs/delete_job
 ```
 
-##### request-body
+##### 请求体
 
 ```json
 {
@@ -18,19 +18,19 @@ POST /project/jobs/delete_job
 }
 ```
 
-##### Example
+##### 示例
 
 ```json
-request url:
+请求 URL:
 POST /project/jobs/delete_job
 
-request-body: 
+请求体: 
 {
     "fname": "0001.job"
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -50,5 +50,5 @@ print(f"response: {post_delete_job('0002.job')}")
 ```
 ```sh
 $python test.py
-response: 200 
+响应：200 
 ```
