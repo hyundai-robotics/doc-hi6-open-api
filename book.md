@@ -5370,7 +5370,7 @@ This parameter is returned when requesting file information.
 |fname|`str`|file name|
 |size|`int`|file size(B, Byte)|
 |year|`int`| `year` the file was modified |
-|month|`int`| `month` the file was modified` |
+|month|`int`| `month` the file was modified |
 |mday|`int`| `day` the file was modified |
 |wday|`int`| `Day of the week` on which the file was modified (0: Sun, 1: Mon, 2: Tue, ...) |
 |hour|`int`| `hour` the file was modified |
