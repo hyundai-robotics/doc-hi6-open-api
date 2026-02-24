@@ -8,6 +8,11 @@
 
 ##### 주의 사항
 
+
+* **프로그램이 <u>실행 중인</u> 상태**에서만 본 API가 동작합니다.
+   - ex) job 프로그램에 "wait di1" 와 같은 구문을 자동모드에서 실행한 상태로 api 요청
+   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/hi6/ko/E01554) 에러가 발생합니다.
+
 * [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
 
   * 로봇 및 부가축 시스템이 허용하는 **최대 속도 및 토크를 초과해서는 안됩니다**.
@@ -97,17 +102,24 @@ Python Script 예시
 <div style="width: fit-content;">
 
 ```python
+# test.py
 import time
+
 import requests
 
 BASE_URL = "http://192.168.1.150:8888"
-# BASE_URL = "http://127.0.0.1:8888"  # hrspace
+# BASE_URL = "http://127.0.0.1:8888" # hrspace
 
 
 def get_joint_positions(session):
     path = "/project/robot/joints/joint_states"
     params = {"jno_start": 1, "jno_n": 6}
-    return session.get(BASE_URL + path, params=params).json()["position"]
+
+    try:
+        r = session.get(BASE_URL + path, params=params)
+        return r.json().get("position")
+    except Exception:
+        return None
 
 
 def insert_point(session, point, interval, look_ahead_time, time_from_start):
@@ -118,10 +130,16 @@ def insert_point(session, point, interval, look_ahead_time, time_from_start):
         "time_from_start": time_from_start,
         "point": point,
     }
-    session.post(BASE_URL + path, json=body)
+
+    try:
+        session.post(BASE_URL + path, json=body)
+    except Exception as e:
+        print(f"[ERROR] {e}")
 
 
 def fmt6(arr):
+    if arr is None:
+        return None
     return [f"{v:.6f}" for v in arr]
 
 
@@ -130,11 +148,11 @@ def main():
     look_ahead_time = 0.010
 
     points = [
-        [0.02,  89.98, 0.0, 0.0, -90.0, 0.0],
-        [0.04,  89.96, 0.0, 0.0, -90.0, 0.0],
-        [0.06,  89.94, 0.0, 0.0, -90.0, 0.0],
-        [0.08,  89.92, 0.0, 0.0, -90.0, 0.0],
-        [0.10,  89.90, 0.0, 0.0, -90.0, 0.0],
+        [0.02, 89.98, 0.0, 0.0, -90.0, 0.0],
+        [0.04, 89.96, 0.0, 0.0, -90.0, 0.0],
+        [0.06, 89.94, 0.0, 0.0, -90.0, 0.0],
+        [0.08, 89.92, 0.0, 0.0, -90.0, 0.0],
+        [0.10, 89.90, 0.0, 0.0, -90.0, 0.0],
     ]
 
     with requests.Session() as s:
@@ -152,6 +170,7 @@ def main():
 
         after = get_joint_positions(s)
         print("\nAFTER:", fmt6(after))
+
 
 if __name__ == "__main__":
     main()
