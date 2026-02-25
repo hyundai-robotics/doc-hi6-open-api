@@ -4,7 +4,7 @@
 
 - `GET` : job 프로그램 관련 정보들을 받는 함수입니다.
 
-$#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 

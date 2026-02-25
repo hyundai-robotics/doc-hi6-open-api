@@ -485,18 +485,18 @@ total request time : 0.2869541645050049 seconds
 
 	|COM 버전|배포 일정|링크|
 	|:--:|:--:|:--:|
-	|v60-34.00|2026.03|[🔗](60-34.md)|
+	|v70-00.00|2026.03|[🔗](70-00.md)|
 	|v60-32.00|2025.11|[🔗](60-32.md)|
 	|v60-30.00|2025.03|[🔗](60-30.md)|
 	|v60-28.00|2024.08|[🔗](60-28.md)|
 
 	</div>
 
-[__SOURCE](1-release-note/60-34.md)
+[__SOURCE](1-release-note/70-00.md)
 <link rel="stylesheet" href="../_assets/style.css">
 
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.34-00
+  Release Notes - v70.00-00
   <span style="
     background: #F44336; 
     color: #FFFFFF; 
@@ -1189,7 +1189,7 @@ ate': -1, 'n_prompt': 0, 'svgun_state': 0, 'mov_step_no': 1, 'step_goback_resume
 
 - `GET` : job 프로그램 관련 정보들을 받는 함수입니다.
 
-$#### path-parameter
+##### path-parameter
 
 <div style="width: fit-content;">
 
@@ -2315,7 +2315,7 @@ $python test.py
 #### 5.1.8 `joint_states`
 
 ##### 설명
-- 지원 버전 : `60.34-00` ↑
+- 지원 버전 : `70.00-00` ↑
 - `GET` : 로봇의 현재 조인트 상태를 조회합니다.
 - 각 조인트의 **각도(position, °), 속도(velocity), 토크(effort)** 정보를 반환하며, 전체 축 또는 지정한 축 구간만 선택적으로 조회할 수 있습니다.
 
@@ -2425,6 +2425,7 @@ $python test.py
 - <b style="color:orange"> `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.</b>
 
 <div style="width: fit-content;">
+
 ##### 설명
 
 - `POST` : 모터 ON을 수행합니다.
@@ -3433,12 +3434,17 @@ POST /project/robot/trajectory/joint_traject_insert_points
 #### 5.1.9 `joint_traject_insert_point`
 
 ##### 설명
-- 지원 버전 : `60.34-00` ↑
+- 지원 버전 : `70.00-00` ↑
 - `POST` : 조인트 궤적 실행을 위해 **다음 조인트 목표 포인트를 순차적으로 추가**합니다.
 - 해당 API를 반복 호출하여 연속적인 조인트 궤적을 구성할 수 있습니다.
 
 
 ##### 주의 사항
+
+
+* **프로그램이 <u>실행 중인</u> 상태**에서만 본 API가 동작합니다.
+   - ex) job 프로그램에 "wait di1" 와 같은 구문을 자동모드에서 실행한 상태로 api 요청
+   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/hi6/ko/E01554) 에러가 발생합니다.
 
 * [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
 
@@ -3529,17 +3535,24 @@ Python Script 예시
 <div style="width: fit-content;">
 
 ```python
+# test.py
 import time
+
 import requests
 
 BASE_URL = "http://192.168.1.150:8888"
-# BASE_URL = "http://127.0.0.1:8888"  # hrspace
+# BASE_URL = "http://127.0.0.1:8888" # hrspace
 
 
 def get_joint_positions(session):
     path = "/project/robot/joints/joint_states"
     params = {"jno_start": 1, "jno_n": 6}
-    return session.get(BASE_URL + path, params=params).json()["position"]
+
+    try:
+        r = session.get(BASE_URL + path, params=params)
+        return r.json().get("position")
+    except Exception:
+        return None
 
 
 def insert_point(session, point, interval, look_ahead_time, time_from_start):
@@ -3550,10 +3563,16 @@ def insert_point(session, point, interval, look_ahead_time, time_from_start):
         "time_from_start": time_from_start,
         "point": point,
     }
-    session.post(BASE_URL + path, json=body)
+
+    try:
+        session.post(BASE_URL + path, json=body)
+    except Exception as e:
+        print(f"[ERROR] {e}")
 
 
 def fmt6(arr):
+    if arr is None:
+        return None
     return [f"{v:.6f}" for v in arr]
 
 
@@ -3562,11 +3581,11 @@ def main():
     look_ahead_time = 0.010
 
     points = [
-        [0.02,  89.98, 0.0, 0.0, -90.0, 0.0],
-        [0.04,  89.96, 0.0, 0.0, -90.0, 0.0],
-        [0.06,  89.94, 0.0, 0.0, -90.0, 0.0],
-        [0.08,  89.92, 0.0, 0.0, -90.0, 0.0],
-        [0.10,  89.90, 0.0, 0.0, -90.0, 0.0],
+        [0.02, 89.98, 0.0, 0.0, -90.0, 0.0],
+        [0.04, 89.96, 0.0, 0.0, -90.0, 0.0],
+        [0.06, 89.94, 0.0, 0.0, -90.0, 0.0],
+        [0.08, 89.92, 0.0, 0.0, -90.0, 0.0],
+        [0.10, 89.90, 0.0, 0.0, -90.0, 0.0],
     ]
 
     with requests.Session() as s:
@@ -3584,6 +3603,7 @@ def main():
 
         after = get_joint_positions(s)
         print("\nAFTER:", fmt6(after))
+
 
 if __name__ == "__main__":
     main()
@@ -5589,7 +5609,7 @@ after: {'_type': 'JObject', 'test': 10}
 ##### 설명
 
 - `POST` : WAIT 을 실행중인 태스크에 대해서 wait 상태를 강제로 해제합니다.
-- **<u>필요 조건</u>** : TP > 시스템 > 1: 사용자 환경 > `wait(di/wi) 강제 해제` > `유효` 선택
+- **<u>필요 조건</u>** : `[F2: 시스템] - 1: 사용자 환경` 진입 후 `wait(di/wi) 강제 해제` 항목 `[유효]` 선택
 
 ##### path-parameter
 
@@ -6222,7 +6242,7 @@ $python test.py
 ##### 설명
 
 - `PUT` : 시스템 시간을 변경합니다.
-- 요청 후 TP > 서비스 > 9: TP 응용 프로그램 종료를 통해 TP 를 재부팅하면 ui에 적용됩니다.
+- 요청 후 `[F1: 서비스] - 9: TP 응용 프로그램 종료`를 통해 TP 를 재부팅하면 ui에 적용됩니다.
 
 ##### request-body
 
