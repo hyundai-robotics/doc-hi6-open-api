@@ -3,7 +3,7 @@
 ##### Description
 
 - `POST` : release syntax
-- Requirements: TP > system > 1: User environment > `wait(di/wi) release` > `Enable` click
+- Requirements: After entering `[2: system] - 1: User environment`, click `[Enable]` for `wait(di/wi) release`
 
 ##### path-parameter
 

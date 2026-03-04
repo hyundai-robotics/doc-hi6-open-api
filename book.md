@@ -466,20 +466,20 @@ References
 
 	|COM Version|Release Schedule|Link|
 	|:--:|:--:|:--:|
-	|v60-34.00| Scheduled March 2026 _(TBD)_|[🔗](60-34.md)|
+	|v70-00.00| Scheduled March 2026 _(TBD)_|[🔗](70-00.md)|
 	|v60-32.00| 2025.11 |[🔗](60-32.md)|
 	|v60-30.00|March, 2025|[🔗](60-30.md)|
 	|v60-28.00|August, 2024|[🔗](60-28.md)|
 
 	</div>
 
-[__SOURCE](1-release-note/60-34.md)
-# V60.34-00
+[__SOURCE](1-release-note/70-00.md)
+# V70.00-00
 
 <link rel="stylesheet" href="../_assets/style.css">
 
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.34-00
+  Release Notes - v70.00-00
   <span style="
     background: #F44336; 
     color: #FFFFFF; 
@@ -1382,7 +1382,7 @@ $python test.py
 ##### Description
 
 - `GET` : Obtains a list of user coordinate systems currently in use.
-- Prints a list of user coordinate systems registered through `system > 2: Control parameter > 6: Coordinate registration`.
+- Prints a list of user coordinate systems registered through `[F2: system] - 2: Control parameter - 6: Coordinate registration`.
 
 ##### path-parameter
 
@@ -2000,7 +2000,7 @@ $python test.py
 #### 5.1.8 `joint_states`
 
 ##### Description
-- Supported version: `60.34-00` ↑
+- Supported version: `70.00-00` ↑
 - `GET`: Retrieves the robot's current joint states.
 - Returns **joint angle (position, °), velocity, and torque (effort)** information for each joint.  
   You can query all axes or selectively query a specified range of axes.
@@ -2980,10 +2980,10 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 
 [__SOURCE](5-robot/2-post/9-joint_traject_insert_point.md)
-#### 5.1.9 `joint_traject_insert_point`
+#### 5.2.9 `joint_traject_insert_point`
 
 ##### Description
-- Supported version: `60.34-00` ↑
+- Supported version: `70.00-00` ↑
 - `POST`: **Sequentially appends the next joint target point** for joint trajectory execution.
 - By repeatedly calling this API, a continuous joint trajectory can be constructed.
 
@@ -2991,16 +2991,21 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ##### Notes
 
-* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
+* This API is functional only while the program is in a <u>running state</u>.
+   - ex) The API only works when the program is being played back in automatic mode.
+   - If the request is made without satisfying this condition, the system will return the error.  
+	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/hi6/en/E01554)"
+
+* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/hi6/en/E159)
 
   * Do not exceed the **maximum allowable speed and torque** of the robot and auxiliary axes.
   * If commands requiring excessive torque are issued, the following **errors or warnings may occur**.
   * Reducer over-torque
-    * [E249](https://hr-alarms.web.app/#/hi6/ko/E249), [E6402](https://hr-alarms.web.app/#/hi6/ko/E6402), [E6403](https://hr-alarms.web.app/#/hi6/ko/E6403)
+    * [E249](https://hr-alarms.web.app/#/hi6/en/E249), [E6402](https://hr-alarms.web.app/#/hi6/en/E6402), [E6403](https://hr-alarms.web.app/#/hi6/en/E6403)
   * Reducer over-current
-    * [W153](https://hr-alarms.web.app/#/hi6/ko/W153), [W181](https://hr-alarms.web.app/#/hi6/ko/W181), [W182](https://hr-alarms.web.app/#/hi6/ko/W153)
+    * [W153](https://hr-alarms.web.app/#/hi6/en/W153), [W181](https://hr-alarms.web.app/#/hi6/en/W181), [W182](https://hr-alarms.web.app/#/hi6/en/W153)
   * Position deviation error
-    * [E2630](https://hr-alarms.web.app/#/hi6/ko/E2630), [E2636](https://hr-alarms.web.app/#/hi6/ko/E2636), [E2638](https://hr-alarms.web.app/#/hi6/ko/E2638)
+    * [E2630](https://hr-alarms.web.app/#/hi6/en/E2630), [E2636](https://hr-alarms.web.app/#/hi6/en/E2636), [E2638](https://hr-alarms.web.app/#/hi6/en/E2638)
 * Actual errors or warnings may vary depending on the **axis configuration, payload conditions, and operating state**.
 
 ---
@@ -3092,17 +3097,24 @@ request-body:
 <div style="width: fit-content;">
 
 ```python
+# test.py
 import time
+
 import requests
 
 BASE_URL = "http://192.168.1.150:8888"
-# BASE_URL = "http://127.0.0.1:8888"  # hrspace
+# BASE_URL = "http://127.0.0.1:8888" # hrspace
 
 
 def get_joint_positions(session):
     path = "/project/robot/joints/joint_states"
     params = {"jno_start": 1, "jno_n": 6}
-    return session.get(BASE_URL + path, params=params).json()["position"]
+
+    try:
+        r = session.get(BASE_URL + path, params=params)
+        return r.json().get("position")
+    except Exception:
+        return None
 
 
 def insert_point(session, point, interval, look_ahead_time, time_from_start):
@@ -3113,10 +3125,16 @@ def insert_point(session, point, interval, look_ahead_time, time_from_start):
         "time_from_start": time_from_start,
         "point": point,
     }
-    session.post(BASE_URL + path, json=body)
+
+    try:
+        session.post(BASE_URL + path, json=body)
+    except Exception as e:
+        print(f"[ERROR] {e}")
 
 
 def fmt6(arr):
+    if arr is None:
+        return None
     return [f"{v:.6f}" for v in arr]
 
 
@@ -3125,11 +3143,11 @@ def main():
     look_ahead_time = 0.010
 
     points = [
-        [0.02,  89.98, 0.0, 0.0, -90.0, 0.0],
-        [0.04,  89.96, 0.0, 0.0, -90.0, 0.0],
-        [0.06,  89.94, 0.0, 0.0, -90.0, 0.0],
-        [0.08,  89.92, 0.0, 0.0, -90.0, 0.0],
-        [0.10,  89.90, 0.0, 0.0, -90.0, 0.0],
+        [0.02, 89.98, 0.0, 0.0, -90.0, 0.0],
+        [0.04, 89.96, 0.0, 0.0, -90.0, 0.0],
+        [0.06, 89.94, 0.0, 0.0, -90.0, 0.0],
+        [0.08, 89.92, 0.0, 0.0, -90.0, 0.0],
+        [0.10, 89.90, 0.0, 0.0, -90.0, 0.0],
     ]
 
     with requests.Session() as s:
@@ -3147,6 +3165,7 @@ def main():
 
         after = get_joint_positions(s)
         print("\nAFTER:", fmt6(after))
+
 
 if __name__ == "__main__":
     main()
@@ -4716,7 +4735,7 @@ after: {'_type': 'JObject', 'test': 10}
 ##### Description
 
 - `POST` : release syntax
-- Requirements: TP > system > 1: User environment > `wait(di/wi) release` > `Enable` click
+- Requirements: After entering `[2: system] - 1: User environment`, click `[Enable]` for `wait(di/wi) release`
 
 ##### path-parameter
 

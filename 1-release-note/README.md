@@ -8,7 +8,7 @@
 
 	|COM Version|Release Schedule|Link|
 	|:--:|:--:|:--:|
-	|v60-34.00| Scheduled March 2026 _(TBD)_|[🔗](60-34.md)|
+	|v70-00.00| Scheduled March 2026 _(TBD)_|[🔗](70-00.md)|
 	|v60-32.00| 2025.11 |[🔗](60-32.md)|
 	|v60-30.00|March, 2025|[🔗](60-30.md)|
 	|v60-28.00|August, 2024|[🔗](60-28.md)|

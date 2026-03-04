@@ -1,7 +1,7 @@
-﻿#### 5.1.9 `joint_traject_insert_point`
+﻿#### 5.2.9 `joint_traject_insert_point`
 
 ##### Description
-- Supported version: `60.34-00` ↑
+- Supported version: `70.00-00` ↑
 - `POST`: **Sequentially appends the next joint target point** for joint trajectory execution.
 - By repeatedly calling this API, a continuous joint trajectory can be constructed.
 

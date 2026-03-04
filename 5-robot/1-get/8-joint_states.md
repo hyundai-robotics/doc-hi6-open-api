@@ -1,7 +1,7 @@
 ﻿#### 5.1.8 `joint_states`
 
 ##### Description
-- Supported version: `60.34-00` ↑
+- Supported version: `70.00-00` ↑
 - `GET`: Retrieves the robot's current joint states.
 - Returns **joint angle (position, °), velocity, and torque (effort)** information for each joint.  
   You can query all axes or selectively query a specified range of axes.

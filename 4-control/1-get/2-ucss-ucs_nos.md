@@ -3,7 +3,7 @@
 ##### Description
 
 - `GET` : Obtains a list of user coordinate systems currently in use.
-- Prints a list of user coordinate systems registered through `system > 2: Control parameter > 6: Coordinate registration`.
+- Prints a list of user coordinate systems registered through `[F2: system] - 2: Control parameter - 6: Coordinate registration`.
 
 ##### path-parameter
 
