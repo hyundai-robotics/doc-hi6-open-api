@@ -2482,6 +2482,15 @@ POST /project/robot/emergency_stop_test
 
 - `0: Immediate stop`  
   &rightarrow; Same as when the controller turns off during robot playback. The motor turns off after stopping.  
+
+    {% hint style="warning" %}
+    Specification Change
+
+    - V60.29-08 ~ V60.30-10: The immediate stop API can be called only at the target step.
+    - V60.32-00 and later: The immediate stop API can be called at any step.
+
+    {% endhint %}
+
 - `1: Deceleration stop`  
 	&rightarrow;  Acts as if the emergency stop button is pressed. The motor turns off after stopping.   
 - `2: Pause`  
