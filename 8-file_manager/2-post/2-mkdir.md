@@ -46,7 +46,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target
-    `-- ${cont_model}_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 

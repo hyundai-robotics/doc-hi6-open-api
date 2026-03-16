@@ -32,7 +32,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
-    `-- ${cont_model}_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python

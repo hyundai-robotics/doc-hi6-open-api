@@ -10,7 +10,7 @@ We are not responsible for any damage or problems that arise from using an API t
 [__SOURCE](0-about-this-manual/precautions.md)
 # Precautions
 
-{% include url="https://hrcontentsrelay-bmgae5hdbzapc4bc.koreacentral-01.azurewebsites.net/api/proxy?path=doc-common-pages/en/precautions.md" %}
+{% include file="en/precautions.md" %}
 
 [__SOURCE](0-intro/README.md)
 # 0. Intro
@@ -66,7 +66,7 @@ Please note that URLs and properties not specified in this document may change w
 In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
 Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
 
-- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/README?cont_model=${cont_model})
+- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/README?cont_model=${cont_model})
 - [HD Hyundai Robotics Joint training center](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>
@@ -511,7 +511,7 @@ References
   font-weight: bold; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ✨ New Feature
+  New Feature
 </h4>
 
 - joint_states<br>
@@ -534,7 +534,7 @@ References
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  🔧 Improvement & Change
+  Improvement & Change
 </div>
 
 - none
@@ -552,7 +552,7 @@ References
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ❌ Deprecated
+  Deprecated
 </div>
 
 - none
@@ -570,11 +570,11 @@ References
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 Updated API List
+  Updated API List
 </div>
 
-- ✨ [<b style="color: #4CAF50">get</b>] [joint_states](../5-robot/1-get/8-joint_states.md)
-- ✨ [<b style="color: #FF9800">post</b>] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
+- [<b style="color: #4CAF50">get</b>] [joint_states](../5-robot/1-get/8-joint_states.md)
+- [<b style="color: #FF9800">post</b>] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
 
 [__SOURCE](1-release-note/60-32.md)
 # V60.32-00
@@ -614,7 +614,7 @@ Release Notes - v60.32-00
   font-weight: bold; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ✨ New Feature
+  New Feature
 </h4>
 
 - joint_traject_init<br>
@@ -640,7 +640,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  🔧 Improvement & Change
+  Improvement & Change
 </div>
 
 - set_cur_pc_idx<br>
@@ -683,7 +683,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ❌ Deprecated
+  Deprecated
 </div>
 
 - none
@@ -701,25 +701,25 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 Updated API List
+  Updated API List
 </div>
 
-- ✨ [<b style="color: #4CAF50">get</b>] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)
-- ✨ [<b style="color: #FF9800">post</b>] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)
-- ✨ [<b style="color: #FF9800">post</b>] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
-- 🔧 [<b style="color: #FF9800">post</b>] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
-- 🔧 [<b style="color: #FF9800">post</b>] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- 🔧 [<b style="color: #FF9800">post</b>] [execute_move](../9-task/2-post/8-execute_move.md)
-- 🔧 [<b style="color: #FF9800">post</b>] [motor_on](../5-robot/2-post/1-motor-on.md)
-- 🔧 [<b style="color: #FF9800">post</b>] [start](../5-robot/2-post/2-start-stop.md)
-- 🔧 [<b style="color: #FF9800">post</b>] [stop](../5-robot/2-post/2-start-stop.md)
-- 🔧 [<b style="color: #FF9800">post</b>] [reset](../9-task/2-post/2-reset.md)
+- [<b style="color: #4CAF50">get</b>] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)
+- [<b style="color: #FF9800">post</b>] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)
+- [<b style="color: #FF9800">post</b>] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
+- [<b style="color: #FF9800">post</b>] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
+- [<b style="color: #FF9800">post</b>] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- [<b style="color: #FF9800">post</b>] [execute_move](../9-task/2-post/8-execute_move.md)
+- [<b style="color: #FF9800">post</b>] [motor_on](../5-robot/2-post/1-motor-on.md)
+- [<b style="color: #FF9800">post</b>] [start](../5-robot/2-post/2-start-stop.md)
+- [<b style="color: #FF9800">post</b>] [stop](../5-robot/2-post/2-start-stop.md)
+- [<b style="color: #FF9800">post</b>] [reset](../9-task/2-post/2-reset.md)
 
 [__SOURCE](1-release-note/60-30.md)
 # V60.30-00
 
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  📝 Release Notes - v60.30-00 
+  Release Notes - v60.30-00 
 </h4>
 
 
@@ -736,7 +736,7 @@ Release Notes - v60.32-00
   font-weight: bold; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ✨ New Feature
+  New Feature
 </h4>
 
 
@@ -758,7 +758,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  🔧 Improvement & Change
+  Improvement & Change
 </div>
 
 - emergency_stop_test 
@@ -779,7 +779,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ❌ Deprecated
+  Deprecated
 </div>
 
 - <font style="color: #E82E8C">motor off</font> 
@@ -803,20 +803,20 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 API List
+  API List
 </div>  
 
-- ✨ \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
-- ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [task_reset](../9-task/2-post/2-reset.md)
-- ❌ ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
+- \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
+- \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
+- \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- \[<b style="color: #FF9800">post</b>\] [task_reset](../9-task/2-post/2-reset.md)
+- ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
 
 [__SOURCE](1-release-note/60-28.md)
 # V60.28-00
 
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  📝 Release Notes - v60.28-00 
+  Release Notes - v60.28-00 
 </h4>
 
 <br>
@@ -832,7 +832,7 @@ Release Notes - v60.32-00
   font-weight: bold; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ✨ New Feature
+  New Feature
 </h4>
 
 - emergency_stop - Added emergency stop API. Supports execution of an emergency stop for a specific category at a designated moment by inputting values such as step_no and stop_at.
@@ -853,7 +853,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  🔧 Improvement & Change
+  Improvement & Change
 </div>
 
 - none
@@ -871,7 +871,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ❌ Deprecated
+  Deprecated
 </div>
 
 - none
@@ -889,12 +889,12 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 API List
+  API List
 </div>
 
-- ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
-- ✨ \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
-- ✨ \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
+- \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
+- \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
+- \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
 
 [__SOURCE](2-version/README.md)
 # 2. `version`
@@ -2651,7 +2651,7 @@ $python test.py
 1. This API is functional only while the program is in a <u>running state</u>.
    - ex) The API only works when the program is being played back in automatic mode.
    - If the request is made without satisfying this condition, the system will return the error.  
-	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/hi6/en/E01554)"
+	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/${cont_model}/en/E01554)"
 
 2. The maximum number of trajectory points that can be POSTed at once is **<u>2048</u>**.
    - The buffer for storing trajectory points has a maximum size of **<u>2048</u>**.
@@ -2659,7 +2659,7 @@ $python test.py
 3. The requested trajectory points are not discarded until they are reflected in the motion, and the robot continues to move until it reaches the corresponding positions.
    - The trajectory in the buffer remains intact until motion execution, unless it is explicitly cleared by the [joint_traject_init](./7-joint_traject_init.md) api.
 
-4. Depending on the trajectory, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/hi6/en/E159)" error may occur. If this error occurs, the robot will stop.
+4. Depending on the trajectory, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/${cont_model}/en/E159)" error may occur. If this error occurs, the robot will stop.
 
 5. This API handles trajectories that consist of **<u>two or more points</u>**.
 
@@ -2770,7 +2770,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
    - Pn of traj1 and P1 of traj2 must be configured so that the robot can move between them smoothly and continuously.
      - The time_from_start of P1 in traj2 must be a cumulative value that is Δ (> 0) greater than the time_from_start of the last point Pn in traj1.
      - The position of P1 in traj2 must be reachable from Pn of traj1 within the time interval Δ.
-   - If trajectories that cannot be followed continuously are requested in succession, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/hi6/en/E159)" error may occur.
+   - If trajectories that cannot be followed continuously are requested in succession, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/${cont_model}/en/E159)" error may occur.
 
 <div style="width: fit-content;">
 
@@ -2994,18 +2994,18 @@ POST /project/robot/trajectory/joint_traject_insert_points
 * This API is functional only while the program is in a <u>running state</u>.
    - ex) The API only works when the program is being played back in automatic mode.
    - If the request is made without satisfying this condition, the system will return the error.  
-	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/hi6/en/E01554)"
+	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/${cont_model}/en/E01554)"
 
-* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/hi6/en/E159)
+* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/${cont_model}/en/E159)
 
   * Do not exceed the **maximum allowable speed and torque** of the robot and auxiliary axes.
   * If commands requiring excessive torque are issued, the following **errors or warnings may occur**.
   * Reducer over-torque
-    * [E249](https://hr-alarms.web.app/#/hi6/en/E249), [E6402](https://hr-alarms.web.app/#/hi6/en/E6402), [E6403](https://hr-alarms.web.app/#/hi6/en/E6403)
+    * [E249](https://hr-alarms.web.app/#/${cont_model}/en/E249), [E6402](https://hr-alarms.web.app/#/${cont_model}/en/E6402), [E6403](https://hr-alarms.web.app/#/${cont_model}/en/E6403)
   * Reducer over-current
-    * [W153](https://hr-alarms.web.app/#/hi6/en/W153), [W181](https://hr-alarms.web.app/#/hi6/en/W181), [W182](https://hr-alarms.web.app/#/hi6/en/W153)
+    * [W153](https://hr-alarms.web.app/#/${cont_model}/en/W153), [W181](https://hr-alarms.web.app/#/${cont_model}/en/W181), [W182](https://hr-alarms.web.app/#/${cont_model}/en/W153)
   * Position deviation error
-    * [E2630](https://hr-alarms.web.app/#/hi6/en/E2630), [E2636](https://hr-alarms.web.app/#/hi6/en/E2636), [E2638](https://hr-alarms.web.app/#/hi6/en/E2638)
+    * [E2630](https://hr-alarms.web.app/#/${cont_model}/en/E2630), [E2636](https://hr-alarms.web.app/#/${cont_model}/en/E2636), [E2638](https://hr-alarms.web.app/#/${cont_model}/en/E2638)
 * Actual errors or warnings may vary depending on the **axis configuration, payload conditions, and operating state**.
 
 ---
@@ -3210,7 +3210,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### path-variable
 
-[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
+[relay expression](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
 
 * (`{obj_type}{obj_idx}_` must be specified for `di`, `do`, `x`, and `y`. The remaining `relay_type` is not specified.)
 
@@ -3470,7 +3470,7 @@ POST /project/plc/set_relay_value
 
 ##### request-parameter
 
-- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
+- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
 - `value` : Please pay attention to 'data-type' in the notation above and enter the value you want to set.
 ```json
 {
@@ -3775,7 +3775,7 @@ ${cont_model}
     |-- log
     |-- vars   
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -3865,7 +3865,7 @@ ${cont_model}
     |-- log
     |-- vars
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -3899,7 +3899,7 @@ import requests
 def get_file_info() -> dict:
     base_url         = "http://192.168.1.150:8888"
     path_parameter   = "/file_manager/file_info"
-    query_parameter  = {"pathname": "project/hi6_proj.json"}
+    query_parameter  = {"pathname": "project/${cont_model:lower}_proj.json"}
 
     response = requests.get(url = base_url + path_parameter, params = query_parameter)
 
@@ -3909,7 +3909,7 @@ print(get_file_info())
 ```
 ```sh
 $python test.py
-{'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
+{'mday': 31, 'sec': 40, 'fname': '${cont_model:lower}_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
 ```
 
 [__SOURCE](8-file_manager/1-get/3-file_list.md)
@@ -3957,7 +3957,7 @@ ${cont_model}
 `-- project     <- target
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -3982,7 +3982,7 @@ response-body:
     {
         "mday": 31,
         "sec": 40,
-        "fname": "hi6_proj.json",
+        "fname": "${cont_model:lower}_proj.json",
         "wday": 2,
         "size": 130551,
         "year": 2023,
@@ -4075,7 +4075,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 </blockquote>
@@ -4235,7 +4235,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 
@@ -4299,7 +4299,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -4479,7 +4479,7 @@ $python python test.py
 ##### Description
 
 - `POST` : Perform a reset on the task.  
-- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}). 
+- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}). 
   - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> Any other code is not intended for operation </span>
 
 ##### path-parameter
@@ -4983,8 +4983,8 @@ $python test.py
 
 {% hint style="warning" %}
 HRSpace users only<br>
-execute_move may fail due to a Remote Mode validation error on VRC_Hi6 v60.30-10 to v60.32-06<br>
-→ Use v60.30-09 or earlier, or v60.32-07 or later (Physical Hi6 controllers are not affected)
+execute_move may fail due to a Remote Mode validation error on VRC_${cont_model} v60.30-10 to v60.32-06<br>
+→ Use v60.30-09 or earlier, or v60.32-07 or later (Physical ${cont_model:upper} controllers are not affected)
 {% endhint %}
 
 ##### path-parameter
