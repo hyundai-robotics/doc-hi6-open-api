@@ -46,7 +46,7 @@ query-parameter 를 반드시 입력해야합니다.
 		<div style="width: fit-content;">
 
 		```json
-		{"mday": 11, "fname": "hi6_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
+		{"mday": 11, "fname": "${cont_model:lower}_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
 		```
 		</div>
    - 파일이 없을 시 `404 Not Found`
@@ -61,7 +61,7 @@ ${cont_model}
 `-- project     <- target
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -86,7 +86,7 @@ response-body:
     {
         "mday": 31,
         "sec": 40,
-        "fname": "hi6_proj.json",
+        "fname": "${cont_model:lower}_proj.json",
         "wday": 2,
         "size": 130551,
         "year": 2023,

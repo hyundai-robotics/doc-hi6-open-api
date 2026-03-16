@@ -53,7 +53,7 @@ ${cont_model}
     |-- log
     |-- vars   
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python

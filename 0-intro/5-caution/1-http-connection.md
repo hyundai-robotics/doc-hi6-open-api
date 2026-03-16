@@ -1,8 +1,8 @@
 ﻿#### 0.5.1. Keep-Alive vs Close connection
-{% hint style="caution" %}
+
+{% hint style="warning" %}
 
 로봇 제어기의 경우, close 연결 방식으로 API 요청이 반복적으로 이뤄지면 cpu 부하가 발생하여 로봇이 정지되는 에러가 발생할 수 있습니다.
-
 지속적으로 API 를 여러번 호출하는 경우, 하기 메뉴얼에 따라 **Keep-Alive 방식**으로 기능 구현을 해주십시오.
 
 {% endhint %}

@@ -63,7 +63,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 </div>
 

@@ -10,18 +10,19 @@ ${cont_model} Open API 설명서에 공식적으로 언급되지 않은 API 를 
 [__SOURCE](0-about-this-manual/precautions.md)
 # 사전 주의사항
 
-{% include url="https://hrcontentsrelay-bmgae5hdbzapc4bc.koreacentral-01.azurewebsites.net/api/proxy?path=doc-common-pages/ko/precautions.md" %}
+{% include file="ko/precautions.md" %}
 
 [__SOURCE](0-intro/README.md)
 # 0. 개요
 
 ${cont_model} Open API 와 관련된 아래의 기본적인 내용들을 확인하실 수 있습니다.
 
-[0.1 ${cont_model} Open API 개요](./1-concept/README.md) <br>
-[0.2 필요한 사전 지식](./2-prerequisite/README.md) <br>
-[0.3 ${cont_model} Open API 예제 코드](./3-sample-code/README.md) <br>
-[0.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)
-[0.5 시작 전 주의사항](./4-api-test/README.md)
+- [0.1 ${cont_model} Open API 개요](./1-concept/README.md)  
+- [0.2 필요한 사전 지식](./2-prerequisite/README.md)  
+- [0.3 ${cont_model} Open API 예제 코드](./3-sample-code/README.md)  
+- [0.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)  
+- [0.5 시작 전 주의사항](./4-api-test/README.md)  
+
 
 [__SOURCE](0-intro/1-concept/README.md)
 ## 0.1 ${cont_model} Open API 에 대하여
@@ -31,7 +32,7 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 아래 그림을 통해서 Open API 역할을 보다 쉽게 이해할 수 있습니다.
 
 
-<img src="../../_assets/05_open_api_flow.png" style="max-height: 22vh;">
+<img src="../../_assets/05_open_api_flow.png" style="max-height: 24vh;">
 
 
 위 그림에서 주황색으로 표시된 부분들은 Open API 의 역할을 보여주고 있습니다.  
@@ -72,8 +73,8 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 Open API를 활용하기 위해서는 ${cont_model} 제어기의 기본적인 사용법을 습득해야 합니다.<br>
 아래 설명서를 참고하시거나 HD현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
 
-- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/README?cont_model=${cont_model})
-- [HD현대로보틱스 공동훈련센터](https://www.hyundai-robotics.com/customer/customer5intro.html)
+- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/ko-tp630/README?cont_model=${cont_model})
+- [HD현대로보틱스 공동훈련센터](https://hd-hyundairobotics.com/community/robot-edu-info)
 
 <br>
 
@@ -275,7 +276,7 @@ total request time : 0.2869541645050049 seconds
 
 `postman` 은 세계적으로 많이 사용되는 API 테스팅 플랫폼 입니다.  
 `workspace` 기능을 통해 프로젝트 단위의 API 테스트와 history 추적이 가능하고 언어별 Code snippet, 직관적 ui 를 갖추고 있습니다.  
-[1.4.1 Postman 에서 POST 요청하기](./1-postman.md)에서 간단한 사용법을 확인할 수 있습니다.
+[0.4.1 Postman 에서 POST 요청하기](./1-postman.md)에서 간단한 사용법을 확인할 수 있습니다.
 
 
 <br>
@@ -285,7 +286,7 @@ total request time : 0.2869541645050049 seconds
 
 간단한 `get` 요청은 웹 브라우저를 통해 간편하고 신속하게 확인할 수 있습니다.  
 추가로 웹 브라우저의 확장 프로그램을 활용하여 `get` 요청과 다른 API 요청들을 직접 호출하고 결과를 볼 수 있습니다.  
-[1.4.2 웹 브라우저에서 API 호출하기](./2-web-browser.md)에서 간단한 사용법을 확인할 수 있습니다.
+[0.4.2 웹 브라우저에서 API 호출하기](./2-web-browser.md)에서 간단한 사용법을 확인할 수 있습니다.
 
 [__SOURCE](0-intro/4-api-test/1-postman.md)
 #### 0.4.1 `Postman` 에서 `POST` 요청하기
@@ -349,7 +350,7 @@ total request time : 0.2869541645050049 seconds
 `get` 요청은 웹 브라우저를 통해 보다 간편하고 신속하게 확인할 수 있습니다. 순서는 다음과 같습니다.
 1. 웹 브라우저 엽니다.
 2. 주소 창에 `get` 요청의 서버 측 url 을 입력합니다.
-	- 서버 측 url 은 `http://<${cont_model} 제어기의 ip 주소>:<http 통신 포트>`로 시작되며 추출하려는 정보에 맞는 경로와 쿼리를 이어 적습니다.
+	- 서버 측 url 은 `http://<${cont_model:lower} 제어기의 ip 주소>:<http 통신 포트>`로 시작되며 추출하려는 정보에 맞는 경로와 쿼리를 이어 적습니다.
 	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
 3. 해당 url 의 페이지가 열리고 아래와 같이 응답이 출력됩니다.
 
@@ -388,23 +389,20 @@ total request time : 0.2869541645050049 seconds
 [__SOURCE](0-intro/5-caution/README.md)
 ## 0.5 주의 사항
 
-{% hint style="caution" %}
+{% hint style="warning" %}
 
 로봇 제어기에 심각한 에러를 유발할 수 있는 주의 사항과 관련된 내용들을 정리합니다.
-
 해당 내용들을 인지하여 API 를 사용하여 주십시오.
 
 {% endhint %}
 
 
-0.5.1. [Keep-Alive vs Close connection](./1-http-connection.md)
-
 [__SOURCE](0-intro/5-caution/1-http-connection.md)
 #### 0.5.1. Keep-Alive vs Close connection
-{% hint style="caution" %}
+
+{% hint style="warning" %}
 
 로봇 제어기의 경우, close 연결 방식으로 API 요청이 반복적으로 이뤄지면 cpu 부하가 발생하여 로봇이 정지되는 에러가 발생할 수 있습니다.
-
 지속적으로 API 를 여러번 호출하는 경우, 하기 메뉴얼에 따라 **Keep-Alive 방식**으로 기능 구현을 해주십시오.
 
 {% endhint %}
@@ -528,7 +526,7 @@ total request time : 0.2869541645050049 seconds
   font-weight: bold; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ✨ New Feature
+  New Feature
 </h4>
 
 - joint_states<br>
@@ -550,7 +548,7 @@ total request time : 0.2869541645050049 seconds
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  🔧 Improvement & Change
+  Improvement & Change
 </div>
 
 - none
@@ -568,7 +566,7 @@ total request time : 0.2869541645050049 seconds
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ❌ Deprecated
+  Deprecated
 </div>
 
 - none
@@ -586,12 +584,12 @@ total request time : 0.2869541645050049 seconds
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 Updated API List
+  Updated API List
 </div>
 
 
-- ✨ \[<b style="color: #4CAF50">get</b>\] [joint_states](../5-robot/1-get/8-joint_states.md)
-- ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
+- \[<b style="color: #4CAF50">get</b>\] [joint_states](../5-robot/1-get/8-joint_states.md)
+- \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
 
 [__SOURCE](1-release-note/60-32.md)
 <link rel="stylesheet" href="../_assets/style.css">
@@ -629,7 +627,7 @@ Release Notes - v60.32-00
   font-weight: bold; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ✨ New Feature
+  New Feature
 </h4>
 
 - joint_traject_init<br>
@@ -652,7 +650,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  🔧 Improvement & Change
+  Improvement & Change
 </div>
 
 - set_cur_pc_idx<br>
@@ -693,7 +691,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ❌ Deprecated
+  Deprecated
 </div>
 
 
@@ -712,20 +710,20 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 Updated API List
+  Updated API List
 </div>
 
 
-- ✨ \[<b style="color: #4CAF50">get</b>\] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)
-- ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)
-- ✨ \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [motor_on](../5-robot/2-post/1-motor-on.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [start](../5-robot/2-post/2-start-stop.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [stop](../5-robot/2-post/2-start-stop.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [reset](../9-task/2-post/2-reset.md)
+- [<b style="color: #4CAF50">get</b>\] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)
+- \[<b style="color: #FF9800">post</b>\] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)
+- \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
+- \[<b style="color: #FF9800">post</b>\] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
+- \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
+- \[<b style="color: #FF9800">post</b>\] [motor_on](../5-robot/2-post/1-motor-on.md)
+- \[<b style="color: #FF9800">post</b>\] [start](../5-robot/2-post/2-start-stop.md)
+- \[<b style="color: #FF9800">post</b>\] [stop](../5-robot/2-post/2-start-stop.md)
+- \[<b style="color: #FF9800">post</b>\] [reset](../9-task/2-post/2-reset.md)
 
 [__SOURCE](1-release-note/60-30.md)
 <link rel="stylesheet" href="../_assets/style.css">
@@ -747,7 +745,7 @@ Release Notes - v60.32-00
   font-weight: bold; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ✨ New Feature
+  New Feature
 </h4>
 
 
@@ -767,7 +765,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  🔧 Improvement & Change
+  Improvement & Change
 </div>
 
 
@@ -787,7 +785,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ❌ Deprecated
+  Deprecated
 </div>
 
 
@@ -807,15 +805,15 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 Updated API List
+  Updated API List
 </div>
 
 
-- ✨ \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
-- ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-- 🔧 \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- 🔧 \[<b style="color: #FF9800">post</b>\] [task reset](../9-task/2-post/2-reset.md)
-- ❌ ~~\[<b style="color: #FF9800">post</b>\] [motor_off](../5-robot/2-post/1-motor-on.md)~~  
+- \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
+- \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
+- \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
+- \[<b style="color: #FF9800">post</b>\] [task reset](../9-task/2-post/2-reset.md)
+- ~~\[<b style="color: #FF9800">post</b>\] [motor_off](../5-robot/2-post/1-motor-on.md)~~  
 
 [__SOURCE](1-release-note/60-28.md)
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
@@ -836,13 +834,13 @@ Release Notes - v60.32-00
   font-weight: bold; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ✨ New Feature
+  New Feature
 </h4>
 
 
 - emergency_stop - 비상정지 API 추가. step_no, stop_at 등의 값을 입력하여 특정 시점에 원하는 카테고리의 비상정지를 수행할 수 있도록 지원
 - execute_move - 지정된 포즈로 이동하는 API가 추가
-- execute_cmd - ${cont_model} COM의 콘솔 명령어를 실행하는 API 추가  
+- execute_cmd - ${cont_model:upper} COM의 콘솔 명령어를 실행하는 API 추가  
 
 
 <div style="
@@ -856,7 +854,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  🔧 Improvement & Change
+  Improvement & Change
 </div>
 
 - none
@@ -873,7 +871,7 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  ❌ Deprecated
+  Deprecated
 </div>
 
 
@@ -891,12 +889,12 @@ Release Notes - v60.32-00
   margin: 8px 0; 
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 ">
-  📌 Updated API List
+  Updated API List
 </div>
 
-- ✨ \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
-- ✨ \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
-- ✨ \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
+- \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
+- \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
+- \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
 
 [__SOURCE](2-version/README.md)
 # 2. version
@@ -2877,6 +2875,15 @@ POST /project/robot/emergency_stop_test
 
 - `0: 즉시정지`  
   &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
+
+    {% hint style="warning" %}
+    사양변경
+
+    - V60.29-08 ~ V60.30-10: 타겟 스텝에서만 즉시 정지 API 호출 가능
+    - V60.32-00 이상: 해당 사양 삭제
+
+    {% endhint %}
+
 - `1: 감속정지`  
 	&rightarrow;  비상정지 버튼을 눌렀을 동작하는 경우. 정지 후 모터 오프가 됨  
 - `2: 일시정지`  
@@ -3099,7 +3106,7 @@ $python test.py
 
 1. **프로그램이 <u>실행 중인</u> 상태**에서만 본 API가 동작합니다.
    - ex) job 프로그램에 "wait di1" 와 같은 구문을 자동모드에서 실행한 상태로 api 요청
-   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/hi6/ko/E01554) 에러가 발생합니다.
+   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) 에러가 발생합니다.
 
 2. 한 번에 POST 가능한 궤적의 최대 포인트 수는 <u>**2048개**</u>입니다.
    - 궤적의 포인트를 저장하는 <u>**버퍼의 최대 크기가 2048**</u>입니다.
@@ -3107,7 +3114,7 @@ $python test.py
 3. 요청된 궤적의 포인트들은 모션에 반영되기 전까지 사라지지 않으며 해당 위치로 도달할 때까지 로봇이 움직입니다.
    - [joint_traject_init](./7-joint_traject_init.md) api 로 버퍼를 강제로 초기화하지 않는 이상 모션 수행 전까지 버퍼의 궤적은 유지됩니다.
 
-4. 궤적에 따라 [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159) 에러가 발생할 수 있으며, 해당 에러가 발생하면 로봇은 정지합니다.
+4. 궤적에 따라 [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/${cont_model}/ko/E159) 에러가 발생할 수 있으며, 해당 에러가 발생하면 로봇은 정지합니다.
 
 5. 해당 API 는 <u>**2개 이상**</u>의 포인트들로 구성된 궤적에 대해서 처리합니다.
 
@@ -3230,7 +3237,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
    - traj1 의 Pn 과 traj2 의 P1 은 로봇이 자연스럽게 연속해서 이동가능하도록 설정해야합니다.
      - traj2 의 P1 의 time_from_start 는 traj1 의 마지막 포인트 Pn 의 Δ(>0) 만큼 누적 증가된 값이어야 합니다.
      - traj2 의 P1 의 position 는 traj1 의 Pn 에서 Δ 동안 이동 가능한 위치여야 합니다.
-   - 자연스럽게 이어지지 않는 궤적을 연속해서 요청하는 경우, [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159) 에러가 발생할 수 있습니다.
+   - 자연스럽게 이어지지 않는 궤적을 연속해서 요청하는 경우, [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/${cont_model}/ko/E159) 에러가 발생할 수 있습니다.
 
 <div style="width: fit-content;">
 
@@ -3444,18 +3451,18 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 * **프로그램이 <u>실행 중인</u> 상태**에서만 본 API가 동작합니다.
    - ex) job 프로그램에 "wait di1" 와 같은 구문을 자동모드에서 실행한 상태로 api 요청
-   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/hi6/ko/E01554) 에러가 발생합니다.
+   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) 에러가 발생합니다.
 
-* [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
+* [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/${cont_model}/ko/E159)
 
   * 로봇 및 부가축 시스템이 허용하는 **최대 속도 및 토크를 초과해서는 안됩니다**.
   * 과도한 토크를 요구하는 지령이 전달되는 경우, 다음과 같은 **에러 또는 경고가 발생할 수 있습니다.**
   * 감속기 과토크
-    * [E249](https://hr-alarms.web.app/#/hi6/ko/E249), [E6402](https://hr-alarms.web.app/#/hi6/ko/E6402), [E6403](https://hr-alarms.web.app/#/hi6/ko/E6403)
+    * [E249](https://hr-alarms.web.app/#/${cont_model}/ko/E249), [E6402](https://hr-alarms.web.app/#/${cont_model}/ko/E6402), [E6403](https://hr-alarms.web.app/#/${cont_model}/ko/E6403)
   * 감속기 과전류
-    * [W153](https://hr-alarms.web.app/#/hi6/ko/W153), [W181](https://hr-alarms.web.app/#/hi6/ko/W181), [W182](https://hr-alarms.web.app/#/hi6/ko/W153)
+    * [W153](https://hr-alarms.web.app/#/${cont_model}/ko/W153), [W181](https://hr-alarms.web.app/#/${cont_model}/ko/W181), [W182](https://hr-alarms.web.app/#/${cont_model}/ko/W153)
   * 위치 편차 에러
-    * [E2630](https://hr-alarms.web.app/#/hi6/ko/E2630), [E2636](https://hr-alarms.web.app/#/hi6/ko/E2636), [E2638](https://hr-alarms.web.app/#/hi6/ko/E2638)
+    * [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630), [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636), [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
 * 실제 발생하는 에러 또는 경고는 **축 구성, 하중 조건, 동작 상황**에 따라 달라질 수 있습니다.
 
 ##### path-parameter
@@ -3650,7 +3657,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### path-variable
 
-[릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model}) (소문자 표기)
+[릴레이명](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model:lower}) (소문자 표기)
 
 * `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.  
   나머지 `relay_type`에는 지정하지 않습니다.
@@ -3983,7 +3990,7 @@ POST /project/plc/set_relay_value
 
 ##### request-parameter
 
-- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model})에 맞춰 입력합니다.
+- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model})에 맞춰 입력합니다.
 - `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
 ```json
 {
@@ -4378,7 +4385,7 @@ ${cont_model}
     |-- log
     |-- vars   
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -4463,7 +4470,7 @@ query-parameter 를 반드시 입력해야합니다.
 		<div style="width: fit-content;">
 
 		```json
-		{"mday": 11, "fname": "hi6_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
+		{"mday": 11, "fname": "${cont_model:lower}_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
 		```
 		</div>
    - 파일이 없을 시 `404 Not Found`
@@ -4481,7 +4488,7 @@ ${cont_model}
     |-- log
     |-- vars
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -4519,7 +4526,7 @@ def get_file_info() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
     # base_url = "http://127.0.0.1:8888"  # hrspace
     path_parameter = "/file_manager/file_info"
-    query_parameter = {"pathname": "project/hi6_proj.json"}
+    query_parameter = {"pathname": "project/${cont_model:lower}_proj.json"}
 
     response = requests.get(url=base_url + path_parameter, params=query_parameter)
 
@@ -4530,7 +4537,7 @@ print(get_file_info())
 ```
 ```sh
 $python test.py
-(200, {'mday': 11, 'fname': 'hi6_proj.json', 'month': 8, 'is_dir': False, 'min': 51, 'size': 144513, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 38, 'nfolders': 0, 'hour': 14, 'wday': 1})
+(200, {'mday': 11, 'fname': '${cont_model:lower}_proj.json', 'month': 8, 'is_dir': False, 'min': 51, 'size': 144513, 'nfiles': 0, 'year': 2025, 'readonly': False, 'sec': 38, 'nfolders': 0, 'hour': 14, 'wday': 1})
 ```
 
 </div>
@@ -4584,7 +4591,7 @@ query-parameter 를 반드시 입력해야합니다.
 		<div style="width: fit-content;">
 
 		```json
-		{"mday": 11, "fname": "hi6_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
+		{"mday": 11, "fname": "${cont_model:lower}_proj.json", "month": 8, "is_dir": False, "min": 51, "size": 144513, "nfiles": 0, "year": 2025, "readonly": False, "sec": 38, "nfolders": 0, "hour": 14, "wday": 1}
 		```
 		</div>
    - 파일이 없을 시 `404 Not Found`
@@ -4599,7 +4606,7 @@ ${cont_model}
 `-- project     <- target
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -4624,7 +4631,7 @@ response-body:
     {
         "mday": 31,
         "sec": 40,
-        "fname": "hi6_proj.json",
+        "fname": "${cont_model:lower}_proj.json",
         "wday": 2,
         "size": 130551,
         "year": 2023,
@@ -4724,7 +4731,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 </div>
@@ -4933,7 +4940,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 </div>
 
@@ -5019,7 +5026,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -5272,7 +5279,7 @@ R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동�
 ##### 설명
 
 - `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
-- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model})를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model:lower}) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model:lower})를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
     R코드 1, 0 이외의 코드는 예정된 동작이 아닙니다.
 </span>
 - R코드 1을 진행한 이후에 프로그램 카운터 조작이 필요한 경우는 명시적으로 [cur_prog_cnt](./1-cur_prog_cnt.md), [set_cur_pc_idx](./6-set_cur_pc_idx.md) api 를 활용하십시오.
@@ -5929,7 +5936,7 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ##### request-body
 - `stmt` : 요청 바디의 키 값으로, 구문(statment)을 뜻합니다.
-- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/ko/5-moving-robot/4-move?cont_model=${cont_model})을 참조 바랍니다.
+- move 문 작성법과 관련된 내용은 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/ko/5-moving-robot/4-move?cont_model=${cont_model:lower})을 참조 바랍니다.
 	<div style="width: fit-content;">
 
 	```json

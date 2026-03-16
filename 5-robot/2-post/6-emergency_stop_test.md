@@ -31,6 +31,15 @@ POST /project/robot/emergency_stop_test
 
 - `0: 즉시정지`  
   &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
+
+    {% hint style="warning" %}
+    사양변경
+
+    - V60.29-08 ~ V60.30-10: 타겟 스텝에서만 즉시 정지 API 호출 가능
+    - V60.32-00 이상: 해당 사양 삭제
+
+    {% endhint %}
+
 - `1: 감속정지`  
 	&rightarrow;  비상정지 버튼을 눌렀을 동작하는 경우. 정지 후 모터 오프가 됨  
 - `2: 일시정지`  

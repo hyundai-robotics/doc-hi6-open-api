@@ -11,7 +11,7 @@
 
 1. **프로그램이 <u>실행 중인</u> 상태**에서만 본 API가 동작합니다.
    - ex) job 프로그램에 "wait di1" 와 같은 구문을 자동모드에서 실행한 상태로 api 요청
-   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/hi6/ko/E01554) 에러가 발생합니다.
+   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) 에러가 발생합니다.
 
 2. 한 번에 POST 가능한 궤적의 최대 포인트 수는 <u>**2048개**</u>입니다.
    - 궤적의 포인트를 저장하는 <u>**버퍼의 최대 크기가 2048**</u>입니다.
@@ -19,7 +19,7 @@
 3. 요청된 궤적의 포인트들은 모션에 반영되기 전까지 사라지지 않으며 해당 위치로 도달할 때까지 로봇이 움직입니다.
    - [joint_traject_init](./7-joint_traject_init.md) api 로 버퍼를 강제로 초기화하지 않는 이상 모션 수행 전까지 버퍼의 궤적은 유지됩니다.
 
-4. 궤적에 따라 [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159) 에러가 발생할 수 있으며, 해당 에러가 발생하면 로봇은 정지합니다.
+4. 궤적에 따라 [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/${cont_model}/ko/E159) 에러가 발생할 수 있으며, 해당 에러가 발생하면 로봇은 정지합니다.
 
 5. 해당 API 는 <u>**2개 이상**</u>의 포인트들로 구성된 궤적에 대해서 처리합니다.
 
@@ -142,7 +142,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
    - traj1 의 Pn 과 traj2 의 P1 은 로봇이 자연스럽게 연속해서 이동가능하도록 설정해야합니다.
      - traj2 의 P1 의 time_from_start 는 traj1 의 마지막 포인트 Pn 의 Δ(>0) 만큼 누적 증가된 값이어야 합니다.
      - traj2 의 P1 의 position 는 traj1 의 Pn 에서 Δ 동안 이동 가능한 위치여야 합니다.
-   - 자연스럽게 이어지지 않는 궤적을 연속해서 요청하는 경우, [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159) 에러가 발생할 수 있습니다.
+   - 자연스럽게 이어지지 않는 궤적을 연속해서 요청하는 경우, [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/${cont_model}/ko/E159) 에러가 발생할 수 있습니다.
 
 <div style="width: fit-content;">
 
