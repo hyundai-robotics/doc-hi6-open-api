@@ -49,7 +49,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model}_proj.json
 ```
 
 </blockquote>

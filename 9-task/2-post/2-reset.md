@@ -3,7 +3,7 @@
 ##### Description
 
 - `POST` : Perform a reset on the task.  
-- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}). 
+- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}). 
   - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> Any other code is not intended for operation </span>
 
 ##### path-parameter

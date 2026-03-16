@@ -13,7 +13,7 @@
 1. This API is functional only while the program is in a <u>running state</u>.
    - ex) The API only works when the program is being played back in automatic mode.
    - If the request is made without satisfying this condition, the system will return the error.  
-	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/hi6/en/E01554)"
+	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/${cont_model}/en/E01554)"
 
 2. The maximum number of trajectory points that can be POSTed at once is **<u>2048</u>**.
    - The buffer for storing trajectory points has a maximum size of **<u>2048</u>**.
@@ -21,7 +21,7 @@
 3. The requested trajectory points are not discarded until they are reflected in the motion, and the robot continues to move until it reaches the corresponding positions.
    - The trajectory in the buffer remains intact until motion execution, unless it is explicitly cleared by the [joint_traject_init](./7-joint_traject_init.md) api.
 
-4. Depending on the trajectory, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/hi6/en/E159)" error may occur. If this error occurs, the robot will stop.
+4. Depending on the trajectory, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/${cont_model}/en/E159)" error may occur. If this error occurs, the robot will stop.
 
 5. This API handles trajectories that consist of **<u>two or more points</u>**.
 
@@ -132,7 +132,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
    - Pn of traj1 and P1 of traj2 must be configured so that the robot can move between them smoothly and continuously.
      - The time_from_start of P1 in traj2 must be a cumulative value that is Δ (> 0) greater than the time_from_start of the last point Pn in traj1.
      - The position of P1 in traj2 must be reachable from Pn of traj1 within the time interval Δ.
-   - If trajectories that cannot be followed continuously are requested in succession, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/hi6/en/E159)" error may occur.
+   - If trajectories that cannot be followed continuously are requested in succession, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/${cont_model}/en/E159)" error may occur.
 
 <div style="width: fit-content;">
 

@@ -3,7 +3,7 @@
 In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
 Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
 
-- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/README?cont_model=${cont_model})
+- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/README?cont_model=${cont_model})
 - [HD Hyundai Robotics Joint training center](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>

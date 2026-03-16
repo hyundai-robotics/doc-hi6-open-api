@@ -42,7 +42,7 @@ ${cont_model}
 `-- project     <- target
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model}_proj.json
 ```
 
 ```python
@@ -67,7 +67,7 @@ response-body:
     {
         "mday": 31,
         "sec": 40,
-        "fname": "hi6_proj.json",
+        "fname": "${cont_model}_proj.json",
         "wday": 2,
         "size": 130551,
         "year": 2023,

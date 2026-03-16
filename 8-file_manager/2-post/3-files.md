@@ -32,7 +32,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model}_proj.json
 ```
 
 ```python

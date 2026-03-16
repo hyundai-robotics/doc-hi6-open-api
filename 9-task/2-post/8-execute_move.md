@@ -7,8 +7,8 @@
 
 {% hint style="warning" %}
 HRSpace users only<br>
-execute_move may fail due to a Remote Mode validation error on VRC_Hi6 v60.30-10 to v60.32-06<br>
-→ Use v60.30-09 or earlier, or v60.32-07 or later (Physical Hi6 controllers are not affected)
+execute_move may fail due to a Remote Mode validation error on VRC_${cont_model} v60.30-10 to v60.32-06<br>
+→ Use v60.30-09 or earlier, or v60.32-07 or later (Physical ${cont_model:upper} controllers are not affected)
 {% endhint %}
 
 ##### path-parameter

@@ -12,18 +12,18 @@
 * This API is functional only while the program is in a <u>running state</u>.
    - ex) The API only works when the program is being played back in automatic mode.
    - If the request is made without satisfying this condition, the system will return the error.  
-	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/hi6/en/E01554)"
+	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/${cont_model}/en/E01554)"
 
-* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/hi6/en/E159)
+* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/${cont_model}/en/E159)
 
   * Do not exceed the **maximum allowable speed and torque** of the robot and auxiliary axes.
   * If commands requiring excessive torque are issued, the following **errors or warnings may occur**.
   * Reducer over-torque
-    * [E249](https://hr-alarms.web.app/#/hi6/en/E249), [E6402](https://hr-alarms.web.app/#/hi6/en/E6402), [E6403](https://hr-alarms.web.app/#/hi6/en/E6403)
+    * [E249](https://hr-alarms.web.app/#/${cont_model}/en/E249), [E6402](https://hr-alarms.web.app/#/${cont_model}/en/E6402), [E6403](https://hr-alarms.web.app/#/${cont_model}/en/E6403)
   * Reducer over-current
-    * [W153](https://hr-alarms.web.app/#/hi6/en/W153), [W181](https://hr-alarms.web.app/#/hi6/en/W181), [W182](https://hr-alarms.web.app/#/hi6/en/W153)
+    * [W153](https://hr-alarms.web.app/#/${cont_model}/en/W153), [W181](https://hr-alarms.web.app/#/${cont_model}/en/W181), [W182](https://hr-alarms.web.app/#/${cont_model}/en/W153)
   * Position deviation error
-    * [E2630](https://hr-alarms.web.app/#/hi6/en/E2630), [E2636](https://hr-alarms.web.app/#/hi6/en/E2636), [E2638](https://hr-alarms.web.app/#/hi6/en/E2638)
+    * [E2630](https://hr-alarms.web.app/#/${cont_model}/en/E2630), [E2636](https://hr-alarms.web.app/#/${cont_model}/en/E2636), [E2638](https://hr-alarms.web.app/#/${cont_model}/en/E2638)
 * Actual errors or warnings may vary depending on the **axis configuration, payload conditions, and operating state**.
 
 ---
