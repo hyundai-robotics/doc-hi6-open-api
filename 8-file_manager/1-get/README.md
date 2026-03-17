@@ -1,4 +1,4 @@
-## 8.1 `file_manager/get`
+﻿## 8.1 `file_manager/get`
 
 - 发送 GET 请求以从控制器获取文件信息。
 - 通过为每个 API 设置正确的路径参数和查询参数来接收响应。

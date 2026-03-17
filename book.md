@@ -10,7 +10,7 @@
 [__SOURCE](0-about-this-manual/precautions.md)
 # 注意事项
 
-{% include url="https://hrcontentsrelay-bmgae5hdbzapc4bc.koreacentral-01.azurewebsites.net/api/proxy?path=doc-common-pages/zh/precautions.md" %}
+{% include file="zh/precautions.md" %}
 [__SOURCE](0-intro/README.md)
 # 0. 介绍
 
@@ -60,8 +60,7 @@
 为了使用 Open API，您必须首先了解如何使用 ${cont_model} 控制器。  
 请参考以下手册或在 HD 现代机器人联合培训中心接受培训。
 
-- [${cont_model} 机器人控制器操作手册](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/README?cont_model=${cont_model})
-- [HD 现代机器人联合培训中心](https://www.hyundai-robotics.com/customer/customer5intro.html)
+- [${cont_model} 机器人控制器操作手册](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/zh-tp630/README?cont_model=${cont_model})
 
 <br>
 
@@ -107,6 +106,7 @@ Open API 是一种基于 HTTP 的 REST API。各种开发语言提供用于调�
 - `POST` : 客户端使用 POST 来向服务器发送数据。它们包括请求中的数据表示。多次发送相同的 POST 请求会导致创建相同资源的副作用。
 - `PUT` : 客户端使用 PUT 来更新服务器上的现有资源。与 POST 不同，在 RESTful Web 服务中多次发送相同的 PUT 请求会得到相同的结果。
 - `DELETE` : 客户端使用 DELETE 请求来删除资源。DELETE 请求可以更改服务器状态。但是，如果用户没有适当的身份验证，请求将失败。
+
 [__SOURCE](0-intro/3-sample-code/README.md)
 ## 0.3 示例代码
 
@@ -2410,10 +2410,21 @@ POST /project/robot/emergency_stop_test
 
 - `0: 立即停止`  
   &rightarrow; 与控制器在机器人播放期间关闭时相同。电机在停止后关闭。  
+
+    {% hint style="warning" %}
+
+    规格变更
+
+    * V60.29-08 ~ V60.30-10：立即停止 API 只能在目标步骤调用。  
+    * V60.32-00 及以后版本：立即停止 API 可以在任意步骤调用。
+
+    {% endhint %}
+
 - `1: 减速停止`  
 	&rightarrow; 表现得仿佛按下了紧急停止按钮。电机在停止后关闭。   
 - `2: 暂停`  
 	&rightarrow; 暂时停止机器人运动。电机在停止后不关闭。  
+
 
 </div>
 
@@ -2470,6 +2481,7 @@ response: 200
 ```
 
 </div>
+
 [__SOURCE](5-robot/2-post/7-joint_traject_init.md)
 #### 5.2.7 `joint_traject_init`
 
@@ -2574,7 +2586,7 @@ $python test.py
 1. 该 API 仅在程序处于 <u>运行状态</u> 时有效。
    - 例如) 只有在程序以自动模式播放时，API 才能工作。
    - 如果在未满足此条件的情况下发出请求，系统将返回错误。  
-	 "[\[E01554\] 外部命令移动不在可执行状态](https://hr-alarms.web.app/#/hi6/zh/E01554)"
+	 "[\[E01554\] 外部命令移动不在可执行状态](https://hr-alarms.web.app/#/${cont_model:lower}/zh/E01554)"
 
 2. 一次可以 POST 的最大轨迹点数为 **<u>2048</u>**。
    - 存储轨迹点的缓冲区的最大大小为 **<u>2048</u>**。
@@ -2582,7 +2594,7 @@ $python test.py
 3. 请求的轨迹点在反映到运动之前不会被丢弃，机器人将继续移动，直到到达相应的位置。
    - 缓冲区中的轨迹在运动执行之前保持不变，除非通过 [joint_traject_init](./7-joint_traject_init.md) API 明确清除。
 
-4. 根据轨迹，可能会出现 “[\[E159\] 轴速限制值超出](https://hr-alarms.web.app/#/hi6/zh/E159)” 错误。如果发生此错误，机器人将停止。
+4. 根据轨迹，可能会出现 "[\[E159\] 轴速限制值超出](https://hr-alarms.web.app/#/${cont_model:lower}/zh/E159)" 错误。如果发生此错误，机器人将停止。
 
 5. 该 API 处理由 **<u>两个或更多点</u>** 组成的轨迹。
 
@@ -2641,7 +2653,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 - 	| 错误代码     | 错误常量名称     | 描述                                           |
 	| ---------- | --------------------------- | ----------------------------------------------------- |
 	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | 如果 joint_names 字段缺失 |
-	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | 如果 joint_name 格式无效（例如，“x1”），请求的关节数量与机器人当前的关节数量不匹配，或关节名称顺序错误。<br>（例如，["j1", "j3", "j2", ..., "j6"]） |
+	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | 如果 joint_name 格式无效（例如，"x1"），请求的关节数量与机器人当前的关节数量不匹配，或关节名称顺序错误。<br>（例如，["j1", "j3", "j2", ..., "j6"]） |
 	| `-4`       | `ERR_MISSING_POINTS`        | 如果 points 字段缺失 |
 	| `-5`       | `ERR_INVALID_POINTS`        | 如果 points 的值不是一个对象（即，不是一个 Python 字典），如整数或字符串 |
 	| `-6`       | `ERR_TOO_FEW_POINTS`        | 如果轨迹点数量少于 2 |
@@ -2690,7 +2702,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
    - traj1 的 Pn 和 traj2 的 P1 必须配置为使机器人能够在它们之间平滑连续移动。
      - traj2 中 P1 的 `time_from_start` 必须是一个累积值，Δ (> 0) 大于 traj1 中最后一点 Pn 的 `time_from_start`。
      - traj2 中 P1 的位置必须在时间间隔 Δ 内可以从 traj1 的 Pn 到达。
-   - 如果连续请求无法连续跟随的轨迹，可能会发生 “[\[E159\] 轴速度限制值超出](https://hr-alarms.web.app/#/hi6/zh/E159)” 错误。
+   - 如果连续请求无法连续跟随的轨迹，可能会发生 "[\[E159\] 轴速度限制值超出](https://hr-alarms.web.app/#/${cont_model:lower}/zh/E159)" 错误。
 
 <div style="width: fit-content;">
 
@@ -2895,11 +2907,12 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 
 </div>
+
 [__SOURCE](5-robot/2-post/9-joint_traject_insert_point.md)
 #### 5.1.9 `joint_traject_insert_point`
 
 ##### 描述
-- 支持的版本: `60.34-00` ↑
+- 支持的版本: `70.00-00` ↑
 - `POST`: **顺序附加下一个关节目标点**以执行关节轨迹。
 - 通过重复调用此 API，可以构建连续的关节轨迹。
 
@@ -2907,16 +2920,16 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ##### 注意事项
 
-* [轴速度限制超出 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
+* [轴速度限制超出 (E159)](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E159)
 
   * 不要超过机器人的**最大允许速度和扭矩**以及辅助轴的限制。
   * 如果发出需要过大扭矩的命令，可能会发生以下**错误或警告**。
   * 减速机过扭矩
-    * [E249](https://hr-alarms.web.app/#/hi6/ko/E249), [E6402](https://hr-alarms.web.app/#/hi6/ko/E6402), [E6403](https://hr-alarms.web.app/#/hi6/ko/E6403)
+    * [E249](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E249), [E6402](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E6402), [E6403](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E6403)
   * 减速机过电流
-    * [W153](https://hr-alarms.web.app/#/hi6/ko/W153), [W181](https://hr-alarms.web.app/#/hi6/ko/W181), [W182](https://hr-alarms.web.app/#/hi6/ko/W153)
+    * [W153](https://hr-alarms.web.app/#/${cont_model:lower}/ko/W153), [W181](https://hr-alarms.web.app/#/${cont_model:lower}/ko/W181), [W182](https://hr-alarms.web.app/#/${cont_model:lower}/ko/W153)
   * 位置偏差错误
-    * [E2630](https://hr-alarms.web.app/#/hi6/ko/E2630), [E2636](https://hr-alarms.web.app/#/hi6/ko/E2636), [E2638](https://hr-alarms.web.app/#/hi6/ko/E2638)
+    * [E2630](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E2630), [E2636](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E2636), [E2638](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E2638)
 * 实际的错误或警告可能会根据**轴配置、负载条件和操作状态**而有所不同。
 
 ---
@@ -3148,6 +3161,7 @@ $python test.py
 
 之后: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.001393']
 ```
+
 [__SOURCE](6-io_plc/README.md)
 # 6. I/O PLC
 
@@ -3172,7 +3186,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### 路径变量
 
-[继电器表达式](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model})（小写字母）
+[继电器表达式](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model})（小写字母）
 
 * (`{obj_type}{obj_idx}_` 必须为 `di`、`do`、`x` 和 `y` 指定。剩余的 `relay_type` 不做规定。)
 
@@ -3241,6 +3255,7 @@ print(f"{get_relay_value()}")
 $python test.py
 [0, 0, 0, 0]
 ```
+
 [__SOURCE](6-io_plc/1-get/2-ios-dio.md)
 #### 6.1.2 `ios/dio/{dio_val}`
 
@@ -3422,7 +3437,7 @@ POST /project/plc/set_relay_value
 
 ##### 请求参数
 
-- `名称 (name)` : 根据 [继电器表达式](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model}) 输入您想要设置的继电器名称。
+- `名称 (name)` : 根据 [继电器表达式](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model}) 输入您想要设置的继电器名称。
 - `值 (value)` : 请注意上面的标记中的 'data-type'，并输入您想要设置的值。
 ```json
 {
@@ -3478,6 +3493,7 @@ $python test.py
 响应: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
 ```
+
 [__SOURCE](6-io_plc/2-post/2-ios-dio.md)
 #### 6.2.2 `ios/dio/{do_val}`
 
@@ -3719,7 +3735,7 @@ ${cont_model}
     |-- log
     |-- vars   
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -3766,6 +3782,7 @@ S3   move P,tg=po1,spd=100%,accu=0,tool=1
 S4   move P,tg=po1,spd=100%,accu=0,tool=1
      end
 ```
+
 [__SOURCE](8-file_manager/1-get/2-file_info.md)
 #### 8.1.2 `file_info`
 
@@ -3807,7 +3824,7 @@ ${cont_model}
     |-- log
     |-- vars
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -3840,7 +3857,7 @@ import requests
 def get_file_info() -> dict:
     base_url         = "http://192.168.1.150:8888"
     path_parameter   = "/file_manager/file_info"
-    query_parameter  = {"pathname": "project/hi6_proj.json"}
+    query_parameter  = {"pathname": "project/${cont_model:lower}_proj.json"}
 
     response = requests.get(url = base_url + path_parameter, params = query_parameter)
 
@@ -3850,8 +3867,9 @@ print(get_file_info())
 ```
 ```sh
 $python test.py
-{'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
+{'mday': 31, 'sec': 40, 'fname': '${cont_model:lower}_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
 ```
+
 [__SOURCE](8-file_manager/1-get/3-file_list.md)
 #### 8.1.3 `file_list`
 
@@ -3897,7 +3915,7 @@ ${cont_model}
 `-- project     <- target
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -3922,7 +3940,7 @@ GET /file_manager/file_list?path=project&incl_file=true&incl_dir=true
     {
         "mday": 31,
         "sec": 40,
-        "fname": "hi6_proj.json",
+        "fname": "${cont_model:lower}_proj.json",
         "wday": 2,
         "size": 130551,
         "year": 2023,
@@ -3961,6 +3979,7 @@ $python final_test.py
 {'mday': 1, 'sec': 50, 'fname': 'vars', 'wday': 3, 'size': 8192, 'year': 2023, 'hour': 12, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 29}
 {'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
 ```
+
 [__SOURCE](8-file_manager/1-get/4-file_exist.md)
 #### 8.1.4 `file_exist`
 
@@ -4013,7 +4032,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 </blockquote>
 
@@ -4038,6 +4057,7 @@ print(is_file_exist())
 $python test.py
 true
 ```
+
 [__SOURCE](8-file_manager/2-post/README.md)
 ## 8.2 `file_manager/post`
 
@@ -4168,7 +4188,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 </blockquote>
 
@@ -4194,6 +4214,7 @@ print(f"response: {post_mkdir()}")
 $python test.py
 response: 200
 ```
+
 [__SOURCE](8-file_manager/2-post/3-files.md)
 #### 8.2.3 `文件 (files)`
 
@@ -4229,7 +4250,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -4266,6 +4287,7 @@ print(f"response: {post_file_transfer()}")
 $python test.py
 response: 200
 ```
+
 [__SOURCE](8-file_manager/3-delete/README.md)
 ## 8.3 `file_manager/delete`
 
@@ -4406,7 +4428,7 @@ $python python test.py
 ##### 描述
 
 - `POST` : 对任务执行重置。  
-- 它的操作方式与使用 [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 相同。
+- 它的操作方式与使用 [RCode 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 相同。
   - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> 任何其他代码都不适用于操作 </span>
 
 ##### 路径参数
@@ -4456,6 +4478,7 @@ print(f"response: {post_rcode_0()}")
 $python test.py
 response: 200
 ```
+
 [__SOURCE](9-task/2-post/3-assign_var_expr.md)
 #### 9.2.3 `assign_var_expr`
 

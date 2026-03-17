@@ -1,9 +1,9 @@
-#### 9.2.2 `task/reset`
+﻿#### 9.2.2 `task/reset`
 
 ##### 描述
 
 - `POST` : 对任务执行重置。  
-- 它的操作方式与使用 [RCode 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 相同。
+- 它的操作方式与使用 [RCode 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 相同。
   - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> 任何其他代码都不适用于操作 </span>
 
 ##### 路径参数

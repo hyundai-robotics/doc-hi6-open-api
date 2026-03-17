@@ -1,4 +1,4 @@
-#### 8.2.2 `mkdir`
+﻿#### 8.2.2 `mkdir`
 
 ##### 描述
 
@@ -46,7 +46,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- special    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 </blockquote>
 

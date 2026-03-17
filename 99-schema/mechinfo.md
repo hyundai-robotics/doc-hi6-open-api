@@ -1,4 +1,4 @@
-### `mechinfo`
+﻿### `mechinfo`
 
 #### 描述
 

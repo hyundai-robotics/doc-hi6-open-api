@@ -1,4 +1,4 @@
-#### 6.2.1 `设置继电器值`
+﻿#### 6.2.1 `设置继电器值`
 
 ##### 描述
 
@@ -12,7 +12,7 @@ POST /project/plc/set_relay_value
 
 ##### 请求参数
 
-- `名称 (name)` : 根据 [继电器表达式](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model}) 输入您想要设置的继电器名称。
+- `名称 (name)` : 根据 [继电器表达式](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model}) 输入您想要设置的继电器名称。
 - `值 (value)` : 请注意上面的标记中的 'data-type'，并输入您想要设置的值。
 ```json
 {

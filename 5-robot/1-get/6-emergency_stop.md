@@ -1,4 +1,4 @@
-#### 5.1.6 `emergency_stop`
+﻿#### 5.1.6 `emergency_stop`
 
 ##### 描述
 

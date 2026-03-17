@@ -1,4 +1,4 @@
-#### 8.1.4 `file_exist`
+﻿#### 8.1.4 `file_exist`
 
 ##### 描述
 
@@ -49,7 +49,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 </blockquote>
 

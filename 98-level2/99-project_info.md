@@ -1,4 +1,4 @@
-## 3.1.2 `project_info`
+﻿## 3.1.2 `project_info`
 
 ### 说明
 

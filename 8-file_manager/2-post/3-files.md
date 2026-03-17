@@ -1,4 +1,4 @@
-#### 8.2.3 `文件 (files)`
+﻿#### 8.2.3 `文件 (files)`
 
 ##### 描述
 
@@ -32,7 +32,7 @@ ${cont_model}
 `-- project
     |-- jobs
     |   `-- test.job    <- target
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python

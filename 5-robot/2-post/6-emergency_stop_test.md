@@ -1,4 +1,4 @@
-#### 5.2.6 `emergency_stop_test`
+﻿#### 5.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> 此 API 在版本 60.28-00 之前用作 `emergency_stop` API。 </b>  
 
@@ -32,10 +32,21 @@ POST /project/robot/emergency_stop_test
 
 - `0: 立即停止`  
   &rightarrow; 与控制器在机器人播放期间关闭时相同。电机在停止后关闭。  
+
+    {% hint style="warning" %}
+
+    规格变更
+
+    * V60.29-08 ~ V60.30-10：立即停止 API 只能在目标步骤调用。  
+    * V60.32-00 及以后版本：立即停止 API 可以在任意步骤调用。
+
+    {% endhint %}
+
 - `1: 减速停止`  
 	&rightarrow; 表现得仿佛按下了紧急停止按钮。电机在停止后关闭。   
 - `2: 暂停`  
 	&rightarrow; 暂时停止机器人运动。电机在停止后不关闭。  
+
 
 </div>
 

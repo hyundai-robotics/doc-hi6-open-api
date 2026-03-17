@@ -1,4 +1,4 @@
-#### 6.1.1 `get relay values`
+﻿#### 6.1.1 `get relay values`
 
 ##### 描述
 
@@ -12,7 +12,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### 路径变量
 
-[继电器表达式](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model})（小写字母）
+[继电器表达式](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model})（小写字母）
 
 * (`{obj_type}{obj_idx}_` 必须为 `di`、`do`、`x` 和 `y` 指定。剩余的 `relay_type` 不做规定。)
 

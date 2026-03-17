@@ -1,4 +1,4 @@
-### `op_cnd`
+﻿### `op_cnd`
 
 #### 描述
 op_cnd (操作条件) : `条件设置 (Condition setting)` 的值  

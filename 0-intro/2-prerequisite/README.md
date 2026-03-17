@@ -1,10 +1,9 @@
-## 0.2 所需的先前知识
+﻿## 0.2 所需的先前知识
 
 为了使用 Open API，您必须首先了解如何使用 ${cont_model} 控制器。  
 请参考以下手册或在 HD 现代机器人联合培训中心接受培训。
 
-- [${cont_model} 机器人控制器操作手册](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/README?cont_model=${cont_model})
-- [HD 现代机器人联合培训中心](https://www.hyundai-robotics.com/customer/customer5intro.html)
+- [${cont_model} 机器人控制器操作手册](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/zh-tp630/README?cont_model=${cont_model})
 
 <br>
 

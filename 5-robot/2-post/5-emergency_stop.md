@@ -1,4 +1,4 @@
-#### 5.2.5 `emergency_stop`
+﻿#### 5.2.5 `emergency_stop`
 
 - <b style="color:orange"> 对于版本低于 ***<u>60.30-00</u>*** 的，请参考 ***<u>[emergency_stop_test](./6-emergency_stop_test.md)</u>*** 而不是 emergency_stop。 </b>  
 

@@ -1,4 +1,4 @@
-#### 8.1.3 `file_list`
+﻿#### 8.1.3 `file_list`
 
 ##### 描述
 
@@ -42,7 +42,7 @@ ${cont_model}
 `-- project     <- target
     |-- jobs
     |   `-- 0001.job
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -67,7 +67,7 @@ GET /file_manager/file_list?path=project&incl_file=true&incl_dir=true
     {
         "mday": 31,
         "sec": 40,
-        "fname": "hi6_proj.json",
+        "fname": "${cont_model:lower}_proj.json",
         "wday": 2,
         "size": 130551,
         "year": 2023,

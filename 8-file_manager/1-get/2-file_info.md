@@ -1,4 +1,4 @@
-#### 8.1.2 `file_info`
+﻿#### 8.1.2 `file_info`
 
 ##### 描述
 
@@ -38,7 +38,7 @@ ${cont_model}
     |-- log
     |-- vars
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python
@@ -71,7 +71,7 @@ import requests
 def get_file_info() -> dict:
     base_url         = "http://192.168.1.150:8888"
     path_parameter   = "/file_manager/file_info"
-    query_parameter  = {"pathname": "project/hi6_proj.json"}
+    query_parameter  = {"pathname": "project/${cont_model:lower}_proj.json"}
 
     response = requests.get(url = base_url + path_parameter, params = query_parameter)
 
@@ -81,5 +81,5 @@ print(get_file_info())
 ```
 ```sh
 $python test.py
-{'mday': 31, 'sec': 40, 'fname': 'hi6_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
+{'mday': 31, 'sec': 40, 'fname': '${cont_model:lower}_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
 ```

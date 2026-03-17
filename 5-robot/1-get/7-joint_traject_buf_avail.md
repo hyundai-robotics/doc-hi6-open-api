@@ -1,4 +1,4 @@
-#### 5.1.7 `joint_traject_buf_avail`
+﻿#### 5.1.7 `joint_traject_buf_avail`
 
 ##### 描述
 - 支持版本 : `60.32-00` &uparrow;

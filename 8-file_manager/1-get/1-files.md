@@ -1,4 +1,4 @@
-#### 8.1.1 `文件 (files)`
+﻿#### 8.1.1 `文件 (files)`
 
 ##### 描述
 
@@ -40,7 +40,7 @@ ${cont_model}
     |-- log
     |-- vars   
     |-- ...
-    `-- hi6_proj.json
+    `-- ${cont_model:lower}_proj.json
 ```
 
 ```python

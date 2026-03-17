@@ -1,7 +1,7 @@
-#### 5.1.9 `joint_traject_insert_point`
+﻿#### 5.1.9 `joint_traject_insert_point`
 
 ##### 描述
-- 支持的版本: `60.34-00` ↑
+- 支持的版本: `70.00-00` ↑
 - `POST`: **顺序附加下一个关节目标点**以执行关节轨迹。
 - 通过重复调用此 API，可以构建连续的关节轨迹。
 
@@ -9,16 +9,16 @@
 
 ##### 注意事项
 
-* [轴速度限制超出 (E159)](https://hr-alarms.web.app/#/hi6/ko/E159)
+* [轴速度限制超出 (E159)](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E159)
 
   * 不要超过机器人的**最大允许速度和扭矩**以及辅助轴的限制。
   * 如果发出需要过大扭矩的命令，可能会发生以下**错误或警告**。
   * 减速机过扭矩
-    * [E249](https://hr-alarms.web.app/#/hi6/ko/E249), [E6402](https://hr-alarms.web.app/#/hi6/ko/E6402), [E6403](https://hr-alarms.web.app/#/hi6/ko/E6403)
+    * [E249](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E249), [E6402](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E6402), [E6403](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E6403)
   * 减速机过电流
-    * [W153](https://hr-alarms.web.app/#/hi6/ko/W153), [W181](https://hr-alarms.web.app/#/hi6/ko/W181), [W182](https://hr-alarms.web.app/#/hi6/ko/W153)
+    * [W153](https://hr-alarms.web.app/#/${cont_model:lower}/ko/W153), [W181](https://hr-alarms.web.app/#/${cont_model:lower}/ko/W181), [W182](https://hr-alarms.web.app/#/${cont_model:lower}/ko/W153)
   * 位置偏差错误
-    * [E2630](https://hr-alarms.web.app/#/hi6/ko/E2630), [E2636](https://hr-alarms.web.app/#/hi6/ko/E2636), [E2638](https://hr-alarms.web.app/#/hi6/ko/E2638)
+    * [E2630](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E2630), [E2636](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E2636), [E2638](https://hr-alarms.web.app/#/${cont_model:lower}/ko/E2638)
 * 实际的错误或警告可能会根据**轴配置、负载条件和操作状态**而有所不同。
 
 ---

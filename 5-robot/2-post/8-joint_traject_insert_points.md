@@ -1,4 +1,4 @@
-#### 5.2.8 `joint_traject_insert_points`
+﻿#### 5.2.8 `joint_traject_insert_points`
 
 ##### 描述
 
@@ -13,7 +13,7 @@
 1. 该 API 仅在程序处于 <u>运行状态</u> 时有效。
    - 例如) 只有在程序以自动模式播放时，API 才能工作。
    - 如果在未满足此条件的情况下发出请求，系统将返回错误。  
-	 "[\[E01554\] 外部命令移动不在可执行状态](https://hr-alarms.web.app/#/hi6/zh/E01554)"
+	 "[\[E01554\] 外部命令移动不在可执行状态](https://hr-alarms.web.app/#/${cont_model:lower}/zh/E01554)"
 
 2. 一次可以 POST 的最大轨迹点数为 **<u>2048</u>**。
    - 存储轨迹点的缓冲区的最大大小为 **<u>2048</u>**。
@@ -21,7 +21,7 @@
 3. 请求的轨迹点在反映到运动之前不会被丢弃，机器人将继续移动，直到到达相应的位置。
    - 缓冲区中的轨迹在运动执行之前保持不变，除非通过 [joint_traject_init](./7-joint_traject_init.md) API 明确清除。
 
-4. 根据轨迹，可能会出现 “[\[E159\] 轴速限制值超出](https://hr-alarms.web.app/#/hi6/zh/E159)” 错误。如果发生此错误，机器人将停止。
+4. 根据轨迹，可能会出现 "[\[E159\] 轴速限制值超出](https://hr-alarms.web.app/#/${cont_model:lower}/zh/E159)" 错误。如果发生此错误，机器人将停止。
 
 5. 该 API 处理由 **<u>两个或更多点</u>** 组成的轨迹。
 
@@ -80,7 +80,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 - 	| 错误代码     | 错误常量名称     | 描述                                           |
 	| ---------- | --------------------------- | ----------------------------------------------------- |
 	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | 如果 joint_names 字段缺失 |
-	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | 如果 joint_name 格式无效（例如，“x1”），请求的关节数量与机器人当前的关节数量不匹配，或关节名称顺序错误。<br>（例如，["j1", "j3", "j2", ..., "j6"]） |
+	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | 如果 joint_name 格式无效（例如，"x1"），请求的关节数量与机器人当前的关节数量不匹配，或关节名称顺序错误。<br>（例如，["j1", "j3", "j2", ..., "j6"]） |
 	| `-4`       | `ERR_MISSING_POINTS`        | 如果 points 字段缺失 |
 	| `-5`       | `ERR_INVALID_POINTS`        | 如果 points 的值不是一个对象（即，不是一个 Python 字典），如整数或字符串 |
 	| `-6`       | `ERR_TOO_FEW_POINTS`        | 如果轨迹点数量少于 2 |
@@ -129,7 +129,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
    - traj1 的 Pn 和 traj2 的 P1 必须配置为使机器人能够在它们之间平滑连续移动。
      - traj2 中 P1 的 `time_from_start` 必须是一个累积值，Δ (> 0) 大于 traj1 中最后一点 Pn 的 `time_from_start`。
      - traj2 中 P1 的位置必须在时间间隔 Δ 内可以从 traj1 的 Pn 到达。
-   - 如果连续请求无法连续跟随的轨迹，可能会发生 “[\[E159\] 轴速度限制值超出](https://hr-alarms.web.app/#/hi6/zh/E159)” 错误。
+   - 如果连续请求无法连续跟随的轨迹，可能会发生 "[\[E159\] 轴速度限制值超出](https://hr-alarms.web.app/#/${cont_model:lower}/zh/E159)" 错误。
 
 <div style="width: fit-content;">
 

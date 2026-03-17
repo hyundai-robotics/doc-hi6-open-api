@@ -1,4 +1,4 @@
-## 0.1 关于 ${cont_model} 开放 API
+﻿## 0.1 关于 ${cont_model} 开放 API
 
 在此文档中，HD 现代机器人发布了一种 API，供应用程序开发者轻松监控和远程控制机器人控制器（以下称为 ${cont_model}）。<br>
 这使开发者能够读写 ${cont_model} 数据，而无需深入理解 ${cont_model} 开发中使用的源代码。<br>
