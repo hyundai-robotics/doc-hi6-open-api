@@ -3472,11 +3472,7 @@ POST /project/robot/trajectory/joint_traject_insert_points
 POST /project/robot/trajectory/joint_traject_insert_point
 ```
 
-</div>
-
 ##### request-body
-
-<div style="width: fit-content;">
 
 ```json
 {
