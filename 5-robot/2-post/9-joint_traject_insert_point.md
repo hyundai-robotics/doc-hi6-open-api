@@ -9,22 +9,21 @@
 
 ##### Notes
 
-* This API is functional only while the program is in a <u>running state</u>.
-   - ex) The API only works when the program is being played back in automatic mode.
-   - If the request is made without satisfying this condition, the system will return the error.  
-	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/${cont_model}/en/E01554)"
+Operating Condition: Program Must Be Running
+* The API must only be called while the controller program is running.
+* Normal example: Executing a `wait di1` statement in Auto Mode
+* Resulting error: [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) (External Command Operation Ready State Error)
 
-* [Axis Velocity Limit Exceeded (E159)](https://hr-alarms.web.app/#/${cont_model}/en/E159)
+Physical Condition: Comply with Speed and Torque Limits
+* Commands exceeding the maximum speed and torque allowed by the system will cause an error.
+* Basic error: [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159) (Axis Speed Limit Exceeded Error)
 
-  * Do not exceed the **maximum allowable speed and torque** of the robot and auxiliary axes.
-  * If commands requiring excessive torque are issued, the following **errors or warnings may occur**.
-  * Reducer over-torque
-    * [E249](https://hr-alarms.web.app/#/${cont_model}/en/E249), [E6402](https://hr-alarms.web.app/#/${cont_model}/en/E6402), [E6403](https://hr-alarms.web.app/#/${cont_model}/en/E6403)
-  * Reducer over-current
-    * [W153](https://hr-alarms.web.app/#/${cont_model}/en/W153), [W181](https://hr-alarms.web.app/#/${cont_model}/en/W181), [W182](https://hr-alarms.web.app/#/${cont_model}/en/W153)
-  * Position deviation error
-    * [E2630](https://hr-alarms.web.app/#/${cont_model}/en/E2630), [E2636](https://hr-alarms.web.app/#/${cont_model}/en/E2636), [E2638](https://hr-alarms.web.app/#/${cont_model}/en/E2638)
-* Actual errors or warnings may vary depending on the **axis configuration, payload conditions, and operating state**.
+Cascading Alarms Triggered by Over-Torque Commands
+* Reducer Over-Torque: [E249](https://hr-alarms.web.app/#/${cont_model}/ko/E249) · [E6402](https://hr-alarms.web.app/#/${cont_model}/ko/E6402) · [E6403](https://hr-alarms.web.app/#/${cont_model}/ko/E6403)
+* Reducer Over-Current: [W153](https://hr-alarms.web.app/#/${cont_model}/ko/W153) · [W181](https://hr-alarms.web.app/#/${cont_model}/ko/W181) · [W182](https://hr-alarms.web.app/#/${cont_model}/ko/W153)
+* Position Deviation Exceeded: [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630) · [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636) · [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
+
+Note: The actual alarms displayed may vary depending on the axis configuration, payload, and operating conditions.
 
 ---
 
