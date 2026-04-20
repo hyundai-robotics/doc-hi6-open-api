@@ -3448,22 +3448,21 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ##### 주의 사항
 
+동작 조건: 프로그램 실행 상태 유지
+* API는 반드시 제어기 프로그램이 실행 중일 때만 호출해야 합니다.
+* 정상 예시: 자동 모드에서 `wait di1` 구문 실행 상태
+* 발생 에러: [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) (외부지령 동작 가능 상태 에러)
 
-* **프로그램이 <u>실행 중인</u> 상태**에서만 본 API가 동작합니다.
-   - ex) job 프로그램에 "wait di1" 와 같은 구문을 자동모드에서 실행한 상태로 api 요청
-   - 해당 조건을 만족하지 않고 요청하는 경우, [외부지령 동작 불능상태 (E01554)](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) 에러가 발생합니다.
+물리 조건: 제한 속도 및 토크 준수
+* 시스템이 허용하는 최대 속도 및 토크를 초과하는 지령은 에러가 발생합니다.
+* 기본 에러: [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159) (축속도 제한값 초과 에러)
 
-* [축속도 제한값 초과 (E159)](https://hr-alarms.web.app/#/${cont_model}/ko/E159)
+과토크 지령 시 발생하는 연쇄 알람
+* 감속기 과토크: [E249](https://hr-alarms.web.app/#/${cont_model}/ko/E249) · [E6402](https://hr-alarms.web.app/#/${cont_model}/ko/E6402) · [E6403](https://hr-alarms.web.app/#/${cont_model}/ko/E6403)
+* 감속기 과전류: [W153](https://hr-alarms.web.app/#/${cont_model}/ko/W153) · [W181](https://hr-alarms.web.app/#/${cont_model}/ko/W181) · [W182](https://hr-alarms.web.app/#/${cont_model}/ko/W153)
+* 위치편차 초과: [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630) · [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636) · [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
 
-  * 로봇 및 부가축 시스템이 허용하는 **최대 속도 및 토크를 초과해서는 안됩니다**.
-  * 과도한 토크를 요구하는 지령이 전달되는 경우, 다음과 같은 **에러 또는 경고가 발생할 수 있습니다.**
-  * 감속기 과토크
-    * [E249](https://hr-alarms.web.app/#/${cont_model}/ko/E249), [E6402](https://hr-alarms.web.app/#/${cont_model}/ko/E6402), [E6403](https://hr-alarms.web.app/#/${cont_model}/ko/E6403)
-  * 감속기 과전류
-    * [W153](https://hr-alarms.web.app/#/${cont_model}/ko/W153), [W181](https://hr-alarms.web.app/#/${cont_model}/ko/W181), [W182](https://hr-alarms.web.app/#/${cont_model}/ko/W153)
-  * 위치 편차 에러
-    * [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630), [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636), [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
-* 실제 발생하는 에러 또는 경고는 **축 구성, 하중 조건, 동작 상황**에 따라 달라질 수 있습니다.
+참고: 실제 표출되는 알람은 축 구성, 하중(Payload), 동작 상황에 따라 다를 수 있습니다.
 
 ##### path-parameter
 
@@ -6334,10 +6333,11 @@ $python test.py
 |value|description|
 |:---:|:---|
 |`-1`|`다음` 좌표계|
-|`0`|`축` 좌표계|
-|`1`|`직교` 좌표계(=`로봇` 좌표계)|
-|`2`|`사용자` 좌표계|
-|`3`|`툴` 좌표계|
+|`0`|`베이스` 좌표계|
+|`1`|`로봇` 좌표계|
+|`2`|`축` 좌표계|
+|`3`|`엔코더` 좌표계|
+|`4`|`사용자` 좌표계|
 
 </div>
 

@@ -1,4 +1,4 @@
-{
+﻿{
     "langCode": "ko",
     "series": "${cont_model:upper} 제어기",
     "title": "기능 설명서 - Open API(based on version 5)",
