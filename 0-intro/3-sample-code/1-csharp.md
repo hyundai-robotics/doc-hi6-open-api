@@ -3,7 +3,7 @@
 This document uses `Newtonsoft.Json`, a library for JSON parsing.  
 If it is not installed in your Visual Studio project, please install it using NuGet Package Manager.
 
-* [Newtonsoft.Json License info](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
+* [Newtonsoft.Json License info](https://github.com/JamesNK/Newtonsoft.Json/blob/master)
 
 1) Open `project` properties
 2) `Manage NuGet Packages...`
