@@ -29,7 +29,7 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 * 현재 문서는 ${cont_model} Open API 스키마 버전 `5`를 기준으로 작성되었습니다. [API](../../2-version/1-get/1-api_ver.md) 를 통해 확인 가능합니다.
 
-* HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`1.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`1.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
+* HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`0.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`0.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
 
 
 {% hint style="warning" %}

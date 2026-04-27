@@ -21,7 +21,7 @@ ${cont_model} Open API 와 관련된 아래의 기본적인 내용들을 확인�
 - [0.2 필요한 사전 지식](./2-prerequisite/README.md)  
 - [0.3 ${cont_model} Open API 예제 코드](./3-sample-code/README.md)  
 - [0.4 코딩하지 않고 쉽게 API 호출 해보기](./4-api-test/README.md)  
-- [0.5 시작 전 주의사항](./4-api-test/README.md)  
+- [0.5 시작 전 주의사항](./5-caution/README.md)  
 
 
 [__SOURCE](0-intro/1-concept/README.md)
@@ -56,7 +56,7 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 * 현재 문서는 ${cont_model} Open API 스키마 버전 `5`를 기준으로 작성되었습니다. [API](../../2-version/1-get/1-api_ver.md) 를 통해 확인 가능합니다.
 
-* HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`1.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`1.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
+* HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`0.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`0.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
 
 
 {% hint style="warning" %}
@@ -73,14 +73,14 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 Open API를 활용하기 위해서는 ${cont_model} 제어기의 기본적인 사용법을 습득해야 합니다.<br>
 아래 설명서를 참고하시거나 HD현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
 
-- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/ko-tp630/README?cont_model=${cont_model})
+- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/ko-tp630/README?cont_model=${cont_model})
 - [HD현대로보틱스 공동훈련센터](https://hd-hyundairobotics.com/community/robot-edu-info)
 
 <br>
 
 Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
 다양한 개발 언어들에서 REST API (일명 RESTful API) 호출을 위한 라이브러리를 제공하고 있으며 많은 개발자들이 이를 이용해 프로그램을 개발하고 있습니다.<br>
-이러한 숙련된 개발자가 아니라면, [1.1 ${cont_model} Open API 에 대하여](.././1-concept/README.md)에서 언급한 웹 기반의 서비스 호출과 응답이 어떻게 이뤄지는지에 대한 기본적인 개념에는 익숙한 상태여야만 합니다.<br>
+이러한 숙련된 개발자가 아니라면, [0.1 ${cont_model} Open API 에 대하여](.././1-concept/README.md)에서 언급한 웹 기반의 서비스 호출과 응답이 어떻게 이뤄지는지에 대한 기본적인 개념에는 익숙한 상태여야만 합니다.<br>
 
 이와 관련하여 아래 사항들을 참고하시기 바랍니다.
 
@@ -137,7 +137,7 @@ HTTP 요청을 통해 통신함으로써 리소스 내에서 레코드의 작성
 JSON parsing을 위한 라이브러리인 `Newtonsoft.Json`를 사용했습니다.
 VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manager로 설치하시기 바랍니다.
 
-* [Newtonsoft.Json 라이선스 정보](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
+* [Newtonsoft.Json 라이선스 정보](https://github.com/JamesNK/Newtonsoft.Json/blob/master)
 
 1) project 속성 열기
 2) `Manage NuGet Packages...`
@@ -1284,10 +1284,11 @@ $python test.py
 </div>
 
 [__SOURCE](3-project/2-post/README.md)
-## 3.1 project/post
+## 3.2 project/post
 
 - 조건설정, 프로젝트 정보, job 파일 정보에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
+
 [__SOURCE](3-project/2-post/1-reload_updated_jobs.md)
 #### 3.2.1 `reload_updated_jobs`
 
@@ -3652,7 +3653,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### path-variable
 
-[릴레이명](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model:lower}) (소문자 표기)
+[릴레이명](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model}) (소문자 표기)
 
 * `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.  
   나머지 `relay_type`에는 지정하지 않습니다.
@@ -3985,7 +3986,7 @@ POST /project/plc/set_relay_value
 
 ##### request-parameter
 
-- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model})에 맞춰 입력합니다.
+- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model})에 맞춰 입력합니다.
 - `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
 ```json
 {
@@ -5274,7 +5275,7 @@ R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동�
 ##### 설명
 
 - `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
-- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model:lower}) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model:lower})를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model})를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
     R코드 1, 0 이외의 코드는 예정된 동작이 아닙니다.
 </span>
 - R코드 1을 진행한 이후에 프로그램 카운터 조작이 필요한 경우는 명시적으로 [cur_prog_cnt](./1-cur_prog_cnt.md), [set_cur_pc_idx](./6-set_cur_pc_idx.md) api 를 활용하십시오.

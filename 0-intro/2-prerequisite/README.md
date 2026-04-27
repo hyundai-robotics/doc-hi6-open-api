@@ -3,14 +3,14 @@
 Open API를 활용하기 위해서는 ${cont_model} 제어기의 기본적인 사용법을 습득해야 합니다.<br>
 아래 설명서를 참고하시거나 HD현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
 
-- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-${cont_model:lower}-operation/ko-tp630/README?cont_model=${cont_model})
+- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/ko-tp630/README?cont_model=${cont_model})
 - [HD현대로보틱스 공동훈련센터](https://hd-hyundairobotics.com/community/robot-edu-info)
 
 <br>
 
 Open API는 HTTP 프로토콜 기반의 REST API입니다.<br>
 다양한 개발 언어들에서 REST API (일명 RESTful API) 호출을 위한 라이브러리를 제공하고 있으며 많은 개발자들이 이를 이용해 프로그램을 개발하고 있습니다.<br>
-이러한 숙련된 개발자가 아니라면, [1.1 ${cont_model} Open API 에 대하여](.././1-concept/README.md)에서 언급한 웹 기반의 서비스 호출과 응답이 어떻게 이뤄지는지에 대한 기본적인 개념에는 익숙한 상태여야만 합니다.<br>
+이러한 숙련된 개발자가 아니라면, [0.1 ${cont_model} Open API 에 대하여](.././1-concept/README.md)에서 언급한 웹 기반의 서비스 호출과 응답이 어떻게 이뤄지는지에 대한 기본적인 개념에는 익숙한 상태여야만 합니다.<br>
 
 이와 관련하여 아래 사항들을 참고하시기 바랍니다.
 

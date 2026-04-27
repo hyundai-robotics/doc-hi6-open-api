@@ -3,7 +3,7 @@
 JSON parsing을 위한 라이브러리인 `Newtonsoft.Json`를 사용했습니다.
 VisualStudio 프로젝트에 설치되어 있지 않다면, NuGet Package Manager로 설치하시기 바랍니다.
 
-* [Newtonsoft.Json 라이선스 정보](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
+* [Newtonsoft.Json 라이선스 정보](https://github.com/JamesNK/Newtonsoft.Json/blob/master)
 
 1) project 속성 열기
 2) `Manage NuGet Packages...`
