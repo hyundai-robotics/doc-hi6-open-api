@@ -14,7 +14,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### path-variable
 
-[릴레이명](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model}) (소문자 표기)
+[릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model}) (소문자 표기)
 
 * `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.  
   나머지 `relay_type`에는 지정하지 않습니다.
