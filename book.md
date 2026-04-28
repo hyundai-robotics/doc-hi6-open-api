@@ -3653,7 +3653,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### path-variable
 
-[릴레이명](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model}) (소문자 표기)
+[릴레이명](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model}) (소문자 표기)
 
 * `di`, `do`, `x`, `y`에는 `{obj_type}{obj_idx}_`를 지정해야 합니다.  
   나머지 `relay_type`에는 지정하지 않습니다.
@@ -3986,7 +3986,7 @@ POST /project/plc/set_relay_value
 
 ##### request-parameter
 
-- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model})에 맞춰 입력합니다.
+- `name` : 설정하려는 릴레이명을 [표기법](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/ko/3-relay/2-relay-expression?cont_model=${cont_model})에 맞춰 입력합니다.
 - `value` : 상기 표기법의 `data-type` 에 유의하여 설정하려는 값을 입력합니다.
 ```json
 {
@@ -5275,7 +5275,7 @@ R코드 0 호출 시 프로그램 카운터가 초기화되어 로봇 오작동�
 ##### 설명
 
 - `POST`: 스텝 카운터를 초기화하여 STEP0으로 이동합니다.
-- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model})를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+- [R코드 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 또는 [R코드 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/8-r-code/1-use-r-code?cont_model=${cont_model})를 활용합니다.  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
     R코드 1, 0 이외의 코드는 예정된 동작이 아닙니다.
 </span>
 - R코드 1을 진행한 이후에 프로그램 카운터 조작이 필요한 경우는 명시적으로 [cur_prog_cnt](./1-cur_prog_cnt.md), [set_cur_pc_idx](./6-set_cur_pc_idx.md) api 를 활용하십시오.
