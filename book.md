@@ -21,7 +21,7 @@ You can check the basic information related to ${cont_model} Open API below.
 [0.2 Required prior knowledge](./2-prerequisite/README.md) <br>
 [0.3 Sample code](./3-sample-code/README.md) <br>
 [0.4 Simple API call without coding](./4-api-test/README.md)
-[0.5 Precautions Before Starting](./4-api-test/README.md)
+[0.5 Precautions Before Starting](./5-caution/README.md)
 
 [__SOURCE](0-intro/1-concept/README.md)
 ## 0.1 About ${cont_model} Open API
@@ -49,7 +49,7 @@ In this way, developers can use the Open API in the document to remotely control
 
 * The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
 
-* For developers who are familiar with developing HTTP REST API client functions, you can skip from [1.2 Required prior knowledge](../2-prerequisite/README.md) to [1.4 Simple API call without coding](../4-api-test/README.md).
+* For developers who are familiar with developing HTTP REST API client functions, you can skip from [0.2 Required prior knowledge](../2-prerequisite/README.md) to [0.4 Simple API call without coding](../4-api-test/README.md).
 
 
 {% hint style="warning" %}
@@ -67,13 +67,12 @@ In order to utilize Open API,you must first understand how to use the ${cont_mod
 Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
 
 - [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/README?cont_model=${cont_model})
-- [HD Hyundai Robotics Joint training center](https://www.hyundai-robotics.com/customer/customer5intro.html)
 
 <br>
 
 Open API is an HTTP-based REST API.Various development languages provide libraries for calling REST API (aka RESTful API),  
 and many developers use them to develop programs. Unless you are an experienced developer,  
-you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [1.1 About ${cont_model} Open API](../1-concept/README.md).
+you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [0.1 About ${cont_model} Open API](../1-concept/README.md).
 
 In this regard, please refer to the points below.
 
@@ -132,7 +131,7 @@ To learn how to use it, you can easily search and refer to the technical documen
 This document uses `Newtonsoft.Json`, a library for JSON parsing.  
 If it is not installed in your Visual Studio project, please install it using NuGet Package Manager.
 
-* [Newtonsoft.Json License info](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)
+* [Newtonsoft.Json License info](https://github.com/JamesNK/Newtonsoft.Json/blob/master)
 
 1) Open `project` properties
 2) `Manage NuGet Packages...`
@@ -1194,10 +1193,11 @@ $python test.py
 ```
 
 [__SOURCE](3-project/2-post/README.md)
-## 3.1 `project/post`
+## 3.2 `project/post`
 
 - Send a POST request for condition settings, project information, and job file information.
 - You must write the correct request-body for each API.
+
 [__SOURCE](3-project/2-post/1-reload_updated_jobs.md)
 #### 3.2.1 `reload_updated_jobs`
 
@@ -4486,9 +4486,23 @@ $python python test.py
 
 ##### Description
 
-- `POST` : Perform a reset on the task.  
-- It operates the same as using [RCode 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}). 
-  - <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;"> Any other code is not intended for operation </span>
+<div style="width: fit-content;">
+
+{% hint style="warning" %}
+
+Calling R-code 0 initializes the program counter, which may cause robot malfunctions.<br>
+Please use R-code 1 for error reset purposes.<br>
+We are not responsible for any issues caused by the indiscriminate calling of R-code 0, ignoring this warning.
+
+{% endhint %}
+
+##### Description
+
+- `POST`: Initializes the step counter and moves to STEP0.
+- Utilizes [R-code 1](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) or [R-code 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+    Codes other than R-code 1 and 0 are not intended operations.
+</span>
+- If program counter manipulation is required after executing R-code 1, explicitly use the [cur_prog_cnt](./1-cur_prog_cnt.md) and [set_cur_pc_idx](./6-set_cur_pc_idx.md) APIs.
 
 ##### path-parameter
 
@@ -4502,6 +4516,28 @@ POST /project/service/r_code/execute
 ```json
 {"code": 0}
 ```
+
+##### response
+
+1) status code
+	- 200 : OK
+	- 400 : Bad Request
+		- When the request body fails validation
+	- 403 : Forbidden
+        - When an unauthorized request is made
+        - Returns `err_code` (<0). Refer to the error codes below
+	- 404 : Not Found
+
+2) response-body
+   - code: The requested rcode number is returned
+        <div style="width: fit-content;">
+
+		```json
+		{"code": 1, ... })
+		```
+
+		</div>
+
 
 ##### Example
 
