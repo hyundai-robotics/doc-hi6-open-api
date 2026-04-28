@@ -3,7 +3,7 @@
 Open API를 활용하기 위해서는 ${cont_model} 제어기의 기본적인 사용법을 습득해야 합니다.<br>
 아래 설명서를 참고하시거나 HD현대로보틱스 공동훈련센터의 교육을 수강하시기 바랍니다.
 
-- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/ko-tp630/README?cont_model=${cont_model})
+- [${cont_model} 로봇제어기 조작설명서](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/ko-tp630/README?cont_model=${cont_model})
 - [HD현대로보틱스 공동훈련센터](https://hd-hyundairobotics.com/community/robot-edu-info)
 
 <br>
