@@ -15,7 +15,7 @@ We are not responsible for any issues caused by the indiscriminate calling of R-
 ##### Description
 
 - `POST`: Initializes the step counter and moves to STEP0.
-- Utilizes [R-code 1](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) or [R-code 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+- Utilizes [R-code 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) or [R-code 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
     Codes other than R-code 1 and 0 are not intended operations.
 </span>
 - If program counter manipulation is required after executing R-code 1, explicitly use the [cur_prog_cnt](./1-cur_prog_cnt.md) and [set_cur_pc_idx](./6-set_cur_pc_idx.md) APIs.

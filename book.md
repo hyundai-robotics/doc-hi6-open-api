@@ -66,7 +66,7 @@ Please note that URLs and properties not specified in this document may change w
 In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
 Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
 
-- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/README?cont_model=${cont_model})
+- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/README?cont_model=${cont_model})
 
 <br>
 
@@ -3218,7 +3218,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### path-variable
 
-[relay expression](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
+[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
 
 * (`{obj_type}{obj_idx}_` must be specified for `di`, `do`, `x`, and `y`. The remaining `relay_type` is not specified.)
 
@@ -3478,7 +3478,7 @@ POST /project/plc/set_relay_value
 
 ##### request-parameter
 
-- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
+- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
 - `value` : Please pay attention to 'data-type' in the notation above and enter the value you want to set.
 ```json
 {
@@ -4499,7 +4499,7 @@ We are not responsible for any issues caused by the indiscriminate calling of R-
 ##### Description
 
 - `POST`: Initializes the step counter and moves to STEP0.
-- Utilizes [R-code 1](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) or [R-code 0](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+- Utilizes [R-code 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) or [R-code 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
     Codes other than R-code 1 and 0 are not intended operations.
 </span>
 - If program counter manipulation is required after executing R-code 1, explicitly use the [cur_prog_cnt](./1-cur_prog_cnt.md) and [set_cur_pc_idx](./6-set_cur_pc_idx.md) APIs.

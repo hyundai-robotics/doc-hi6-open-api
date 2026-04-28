@@ -12,7 +12,7 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### path-variable
 
-[relay expression](https://hrbook-hrc.web.app/#/view/doc-${cont_model}-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
+[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
 
 * (`{obj_type}{obj_idx}_` must be specified for `di`, `do`, `x`, and `y`. The remaining `relay_type` is not specified.)
 
