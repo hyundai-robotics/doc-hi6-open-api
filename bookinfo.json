@@ -4,6 +4,12 @@
     "title": "기능 설명서 - Open API(based on version 5)",
     "publisher": "HD현대로보틱스",
     "tocTitle": "목차",
-    "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
-    "docId": "${cont_model:upper}OPENAPI_KO_001"
+    "tocTitleElements": "[ \"h1\", \"h2\" ]",
+    "docId": "${cont_model:upper}OPENAPI_KO_001",
+    "references": [
+        {
+            "title": "${cont_model} 제어기 조작 설명서 - TP630",
+            "id": "${cont_model:upper}OPTP630_KO"
+        }
+    ]
 }
