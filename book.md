@@ -473,7 +473,7 @@ References
 	</div>
 
 [__SOURCE](1-release-note/70-00.md)
-# V70.00-00
+#### V70.00-00
 
 <link rel="stylesheet" href="../_assets/style.css">
 
@@ -576,7 +576,7 @@ References
 - [<b style="color: #FF9800">post</b>] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
 
 [__SOURCE](1-release-note/60-32.md)
-# V60.32-00
+#### V60.32-00
 
 <link rel="stylesheet" href="../_assets/style.css">
 
@@ -715,7 +715,7 @@ Release Notes - v60.32-00
 - [<b style="color: #FF9800">post</b>] [reset](../9-task/2-post/2-reset.md)
 
 [__SOURCE](1-release-note/60-30.md)
-# V60.30-00
+#### V60.30-00
 
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
   Release Notes - v60.30-00 
@@ -812,7 +812,7 @@ Release Notes - v60.32-00
 - ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
 
 [__SOURCE](1-release-note/60-28.md)
-# V60.28-00
+#### V60.28-00
 
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
   Release Notes - v60.28-00 
@@ -3612,9 +3612,10 @@ response: 200
 ```
 
 [__SOURCE](7-log_manager/README.md)
-# 7.1 event-log
+# 7. event-log
 
 - Outputs errors, warnings, execution history, etc. recorded in the controller.
+
 [__SOURCE](7-log_manager/1-get/README.md)
 ## 7.1 `log_manager/get`
 

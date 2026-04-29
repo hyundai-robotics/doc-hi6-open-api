@@ -5,11 +5,5 @@
     "publisher": "HD Hyundai Robotics",
     "tocTitle": "Contents",
     "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
-    "docId": "${cont_model:upper}OPENAPI_EN_001",
-    "references": [
-        {
-            "title": "${cont_model} Controller Operation Manual - TP630",
-            "id": "${cont_model:upper}OPTP630_EN"
-        }
-    ]
+    "docId": "${cont_model:upper}OPENAPI_EN_001"
 }
