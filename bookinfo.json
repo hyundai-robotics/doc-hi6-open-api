@@ -3,7 +3,13 @@
     "series": "${cont_model} Controller",
     "title": "Function Manual - Open API (based on version 5)",
     "publisher": "HD Hyundai Robotics",
-    "tocTitle": "Contents",
-    "tocTitleElements": "[ \"h1\", \"h2\", \"h3\" ]",
-    "docId": "${cont_model:upper}OPENAPI_EN_001"
+    "tocTitle": "Table of Contents",
+    "tocTitleElements": "[ \"h1\", \"h2\"]",
+    "docId": "${cont_model:upper}OPENAPI_EN_001",
+    "references": [
+        {
+            "title": "${cont_model} Controller Operation Manual - TP630",
+            "id": "${cont_model:upper}OPTP630_EN"
+        }
+    ]
 }
