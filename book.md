@@ -4190,9 +4190,10 @@ $python test.py
 </div>
 
 [__SOURCE](7-log_manager/README.md)
-# 7.1 event-log
+# 7. event-log
 
 - 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.
+
 [__SOURCE](7-log_manager/1-get/README.md)
 ## 7.1 log_manager/get
 
