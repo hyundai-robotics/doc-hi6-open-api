@@ -1,6 +1,6 @@
 ﻿#### 0.5.1. Keep-Alive vs Close connection
 
-{% hint style="caution" %}
+{% hint style="warning" %}
 
 For robot controllers, repeated API requests using the `close` connection type may lead to high CPU load, potentially causing the robot to halt unexpectedly.
 
