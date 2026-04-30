@@ -365,7 +365,7 @@ Through this program, you can easily call various APIs like `postman`.
 [__SOURCE](0-intro/5-caution/README.md)
 ## 0.5 Caution
 
-{% hint style="caution" %}
+{% hint style="warning" %}
 
 This section outlines critical precautions that may cause serious errors in the robot controller.
 
@@ -379,7 +379,7 @@ Please ensure you fully understand these items before using the API.
 [__SOURCE](0-intro/5-caution/1-http-connection.md)
 #### 0.5.1. Keep-Alive vs Close connection
 
-{% hint style="caution" %}
+{% hint style="warning" %}
 
 For robot controllers, repeated API requests using the `close` connection type may lead to high CPU load, potentially causing the robot to halt unexpectedly.
 
