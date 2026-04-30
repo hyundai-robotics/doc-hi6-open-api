@@ -1,6 +1,6 @@
 ﻿## 0.5 Caution
 
-{% hint style="caution" %}
+{% hint style="warning" %}
 
 This section outlines critical precautions that may cause serious errors in the robot controller.
 
