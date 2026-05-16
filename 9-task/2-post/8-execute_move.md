@@ -1,4 +1,10 @@
-﻿#### 9.2.8 `execute_move`
+﻿<script id="page-config" type="application/json">
+{
+	'permittedStr': ['Hi6']
+}
+</script>
+
+#### 9.2.8 `execute_move`
 
 <div style="width: fit-content;">
 

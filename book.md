@@ -5910,6 +5910,12 @@ $python test.py
 </div>
 
 [__SOURCE](9-task/2-post/8-execute_move.md)
+<script id="page-config" type="application/json">
+{
+	'permittedStr': ['Hi6']
+}
+</script>
+
 #### 9.2.8 `execute_move`
 
 <div style="width: fit-content;">
