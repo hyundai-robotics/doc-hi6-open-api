@@ -1,6 +1,6 @@
 ﻿<script id="page-config" type="application/json">
 {
-	'permittedStr': ['Hi6']
+	"permittedStr": ["Hi6"]
 }
 </script>
 
