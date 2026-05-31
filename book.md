@@ -3792,8 +3792,6 @@ GET /project/control/ios/dio/{dio_val}
 		{"_type" : "JObject", "val" : -99}
 		```
 		</div>
-	- 값은 내부적으로 2의 보수로 처리되며, TP 화면에는 해당 값의 하위 8비트로 표시됩니다.
-    	- TP 창조정 > 범용 출력 화면에서는 1은 녹색 신호, 0은 신호 없음을 뜻합니다.
 
 
 ##### 사용 예
@@ -5912,7 +5910,7 @@ $python test.py
 [__SOURCE](9-task/2-post/8-execute_move.md)
 <script id="page-config" type="application/json">
 {
-	'permittedStr': ['Hi6']
+	"permittedStrs": ["Hi6"]
 }
 </script>
 
