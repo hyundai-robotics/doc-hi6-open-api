@@ -3302,9 +3302,13 @@ $python test.py
 
 ##### path-parameter
 
+<div style="max-width: fit-content;">
+
 ```python
 GET /project/control/ios/dio/{dio_val}
 ```
+
+</div>
 
 ##### path-variable
 
@@ -3323,7 +3327,28 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : block number (0~9)
 - `sig_no` : signal index (0~)
 
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+	- Returns a signed decimal value upon successful response
+		<div style="width: fit-content;">
+
+		```json
+		{"_type" : "JObject", "val" : -99}
+		```
+
+		</div>
+
+
 ##### Example
+
+<div style="max-width: fit-content;">
 
 - Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
 
@@ -3390,6 +3415,8 @@ $python test.py
 do value: 00101000
 di value: 00000010
 ```
+
+</div>
 
 [__SOURCE](6-io_plc/1-get/3-ios-sio.md)
 #### 6.1.3 `ios/sio/{sio_val}` 
