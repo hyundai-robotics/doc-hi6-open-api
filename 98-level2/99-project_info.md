@@ -1,30 +1,32 @@
-﻿## 3.1.2 `project_info`
+﻿#### 3.1.2 `project_info`
 
-### Description
+##### Description
 
-- `GET`: Retrieves information regarding the project.
+- `GET` : Retrieves information regarding the project.
 
-### path-parameter
+##### path-parameter
 
 ```python
 GET /project/project_info
-
 ```
 
-### response-body
+##### request-body
 
-* [Project Information Schema](../99-schema/project_info.md)
+```json
+{}
+```
 
+##### response
 
-### Example
+1. status code
 
-<blockquote>
+* 200 : OK
+* 400 : Bad Request
+* 404 : Not Found
 
-```python
-Request URL:
-GET /project/project_info
+2. response-body
 
-Response Body:
+```json
 {
   "_type": "JObject",
   "project_file_exist": true,
@@ -34,28 +36,37 @@ Response Body:
 }
 ```
 
-</blockquote>
+3. error code
+
+* None
+
+##### Example
+
+```python
+GET /project/project_info
+
+request-body:
+{}
+```
 
 Python Script Example
 
 ```python
-# test.py
 import requests
 
 def get_project_info() -> dict:
-    base_url       = "http://192.168.1.150:8888"
-    path_parameter = "/project/project_info"
+    base_url       = 'http://192.168.1.150:8888'
+    path_parameter = '/project/project_info'
+    head           = {'Content-Type': 'application/json; charset=utf-8'}
+    body           = {}
 
-    response = requests.get(url=base_url + path_parameter).json()
-
+    response = requests.get(url = base_url + path_parameter, headers = head, json = body).json()
     return response
 
 print(get_project_info())
-
 ```
 
 ```sh
-$ python test.py
+$python test.py
 {'_type': 'JObject', 'project_file_exist': True, 'n_files_in_jobs': 9, 'n_files_in_vars': 2, 'n_files_in_lads': 0}
-
 ```
