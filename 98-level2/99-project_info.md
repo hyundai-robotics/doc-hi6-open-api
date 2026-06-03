@@ -1,27 +1,29 @@
 ﻿## 3.1.2 `project_info`
 
-### 설명
+### Description
 
-- `GET` : 프로젝트 관련 정보를 받는 함수입니다.
+- `GET`: Retrieves information regarding the project.
 
 ### path-parameter
 
 ```python
 GET /project/project_info
+
 ```
 
 ### response-body
 
-- [프로젝트 관련 정보](../../99-schema/project_info.md)
-### 사용 예
+* [Project Information Schema](../99-schema/project_info.md)
+
+### Example
 
 <blockquote>
 
 ```python
-request url:
+Request URL:
 GET /project/project_info
 
-response-body:
+Response Body:
 {
   "_type": "JObject",
   "project_file_exist": true,
@@ -30,9 +32,11 @@ response-body:
   "n_files_in_lads": 0
 }
 ```
+
 </blockquote>
 
-Python Script 예시
+
+Python Script Example
 
 ```python
 # test.py
@@ -47,8 +51,11 @@ def get_project_info() -> dict:
     return response
 
 print(get_project_info())
+
 ```
+
 ```sh
-$python test.py
+$ python test.py
 {'_type': 'JObject', 'project_file_exist': True, 'n_files_in_jobs': 9, 'n_files_in_vars': 2, 'n_files_in_lads': 0}
+
 ```
