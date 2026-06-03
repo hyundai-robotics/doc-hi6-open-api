@@ -15,6 +15,7 @@ GET /project/project_info
 
 * [Project Information Schema](../99-schema/project_info.md)
 
+
 ### Example
 
 <blockquote>
@@ -34,7 +35,6 @@ Response Body:
 ```
 
 </blockquote>
-
 
 Python Script Example
 
