@@ -7,10 +7,18 @@
 We are not responsible for any damage or problems that arise from using an API that is not officially mentioned in the ${cont_model} Open API manual.
 
 {% endhint %}
+[__SOURCE](0-about-this-manual/README.md)
+# About the Manual
+
 [__SOURCE](0-about-this-manual/precautions.md)
 # Precautions
 
 {% include file="en/precautions.md" %}
+
+[__SOURCE](0-about-this-manual/safety-notice.md)
+# Safety Cautions
+
+{% include file="en/safety-notice.md" %}
 
 [__SOURCE](0-intro/README.md)
 # 0. Intro

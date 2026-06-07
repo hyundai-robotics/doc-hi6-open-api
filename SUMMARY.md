@@ -2,7 +2,9 @@
 
 * [${cont_model} Controller Function Manual - Open API](README.md)
 
-* [Precautions](0-about-this-manual/precautions.md)
+* [About the Manual](0-about-this-manual/README.md)
+  * [Precautions](0-about-this-manual/precautions.md)
+  * [Safety Cautions](0-about-this-manual/safety-notice.md)
 
 * [0. Intro](0-intro/README.md)
   * [0.1 About ${cont_model} Open API](0-intro/1-concept/README.md)
