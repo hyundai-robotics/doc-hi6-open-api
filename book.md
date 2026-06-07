@@ -22,11 +22,19 @@ ${cont_model} Open API 설명서에 공식적으로 언급되지 않은 API 를 
 
 </div>
 
+[__SOURCE](0-about-this-manual/README.md)
+# 이 설명서에 대하여
+
+
 [__SOURCE](0-about-this-manual/precautions.md)
 # 사전 주의사항
 
-
 {% include file="ko/precautions.md" %}
+
+[__SOURCE](0-about-this-manual/safety-notice.md)
+# 안전 주의 사항
+
+{% include file="ko/safety-notice.md" %}
 
 [__SOURCE](0-intro/README.md)
 # 0. 개요
