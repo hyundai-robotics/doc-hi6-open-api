@@ -7,10 +7,18 @@
 我们对因使用未在 ${cont_model} 开放 API 手册中正式提及的 API 而导致的任何损坏或问题不承担责任。
 
 {% endhint %}
+[__SOURCE](0-about-this-manual/README.md)
+# 关于手册
+
 [__SOURCE](0-about-this-manual/precautions.md)
 # 注意事项
 
 {% include file="zh/precautions.md" %}
+[__SOURCE](0-about-this-manual/safety-notice.md)
+# 安全注意事项
+
+{% include file="zh/safety-notice.md" %}
+
 [__SOURCE](0-intro/README.md)
 # 0. 介绍
 
@@ -3266,9 +3274,13 @@ $python test.py
 
 ##### 路径参数
 
+<div style="width: fit-content;">
+
 ```python
 GET /project/control/ios/dio/{dio_val}
 ```
+
+</div>
 
 ##### 路径变量
 
@@ -3287,9 +3299,30 @@ GET /project/control/ios/dio/{dio_val}
 - `blk_no` : 块号 (0~9)
 - `sig_no` : 信号索引 (0~)
 
+##### 响应
+
+1) 状态码
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) 响应体
+	- 正常响应时返回有符号十进制值
+		<div style="width: fit-content;">
+
+		```json
+		{"_type" : "JObject", "val" : -99}
+		
+        ```
+
+		</div>
+
 ##### 示例
 
 - 获取 fb2.dob3 值。 (结果 : 0b11001000 = 0xc8 = -56)
+
+<div style="max-width:fit-content;">
 
 ```python
 request url:
@@ -3348,10 +3381,17 @@ print("do 值:", lsb_first(do_u8))
 print("di 值:", lsb_first(di_u8))
 
 ```
+
+```python
 # (当 fb0.do18 = 1, fb0.do20 = 1 / fb0.di14 = 1)
 $python test.py
 do 值: 00101000
 di 值: 00000010
+```
+
+</div>
+
+
 [__SOURCE](6-io_plc/1-get/3-ios-sio.md)
 #### 6.1.3 `ios/sio/{sio_val}` 
 

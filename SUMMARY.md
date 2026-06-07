@@ -1,7 +1,9 @@
 ﻿# Table of contents
 
 * [${cont_model} 控制器功能手册 - 开放 API](README.md)
-* [注意事项](0-about-this-manual/precautions.md)
+* [关于手册](0-about-this-manual/README.md)
+  * [注意事项](0-about-this-manual/precautions.md)
+  * [安全注意事项](0-about-this-manual/safety-notice.md)
 * [0. 介绍](0-intro/README.md)
   * [0.1 关于 ${cont_model} 开放 API](0-intro/1-concept/README.md)
   * [0.2 所需的先前知识](0-intro/2-prerequisite/README.md)
