@@ -1,15 +1,49 @@
-﻿# 1. release note 
+﻿<link rel="stylesheet" href="../_assets/style.css">
 
-- COM 버전을 기준으로 API 변경사항에 대해서 정리를 해두었습니다.
-- 본인이 사용 중인 제어기 버전보다 더 높은 버전에서 동작하는 API 를 사용하려면 버전업을 진행해야 합니다.
-- 
-	<div style="width: fit-content;">
+# 1. release note 
 
-	|COM 버전|배포 일정|링크|
-	|:--:|:--:|:--:|
-	|v70-00.00|2026.03|[🔗](70-00.md)|
-	|v60-32.00|2025.11|[🔗](60-32.md)|
-	|v60-30.00|2025.03|[🔗](60-30.md)|
-	|v60-28.00|2024.08|[🔗](60-28.md)|
+제어기 COM 버전을 기준으로 API 신규 추가, 변경 및 수정 사항을 정리한 문서입니다.
 
-	</div>
+{% hint style="warning" %}
+**업데이트 및 사용 유의 사항**
+* 각 릴리즈 문서에는 해당 버전에서 변경된 내용만 기술됩니다.
+* 상위 버전의 API를 사용하려면 반드시 제어기 버전을 업그레이드해야 합니다.
+* 버전 업데이트 전, 기존 시스템에 미칠 영향을 릴리즈 노트에서 미리 확인하십시오.
+{% endhint %}
+ 
+<div style="width: fit-content;">
+
+|COM 버전|배포 일정|링크|
+|:--:|:--:|:--:|
+|v70-00.00|2026.03|[🔗](70-00.md)|
+|v60-32.00|2025.11|[🔗](60-32.md)|
+|v60-30.00|2025.03|[🔗](60-30.md)|
+|v60-28.00|2024.08|[🔗](60-28.md)|
+
+</div>
+
+<div style="max-width:fit-content;">
+
+<h4 style="font-size:15px; font-weight:bold;">릴리즈 노트 분류 기준</h4>
+
+
+|구분|설명|
+|:--|:--|
+|<span class="rn-title-added">Added</span>|신규 API, 필드 또는 옵션이 추가된 경우|
+|<span class="rn-title-changed">Changed</span>|기존 API 동작 방식, 사양, 기본값이 변경된 경우|
+|<span class="rn-title-fixed">Fixed</span>|API 관련 오류 수정, 비정상 동작 보완|
+|<span class="rn-title-deprecated">Deprecated</span>|향후 제거 예정이거나 사용이 권장되지 않는 API|
+| <span class="rn-title-caution">Caution</span> | 해당 버전 API 사용 시 반드시 인지해야 할 주의 사항 |
+
+
+<h4 style="font-size:15px; font-weight:bold;">API Method 분류</h4>
+
+
+| Method | 설명 |
+| :--- | :--- |
+| <span class="api-badge get">GET</span> | 데이터 및 제어기 상태 조회 API (안전함, 데이터 변경 없음) |
+| <span class="api-badge post">POST</span> | 로봇 제어 명령 실행, 새로운 리소스 생성 및 작업 요청 API |
+| <span class="api-badge put">PUT</span> | 기존 설정이나 데이터의 전체 교체 및 일괄 업데이트 API |
+| <span class="api-badge delete">DELETE</span> | 생성된 작업, 태스크, 리소스 또는 데이터를 영구 삭제하는 API |
+
+</div>

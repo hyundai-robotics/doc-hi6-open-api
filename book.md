@@ -498,21 +498,55 @@ total request time : 0.2869541645050049 seconds
   1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
 
 [__SOURCE](1-release-note/README.md)
+<link rel="stylesheet" href="../_assets/style.css">
+
 # 1. release note 
 
-- COM 버전을 기준으로 API 변경사항에 대해서 정리를 해두었습니다.
-- 본인이 사용 중인 제어기 버전보다 더 높은 버전에서 동작하는 API 를 사용하려면 버전업을 진행해야 합니다.
-- 
-	<div style="width: fit-content;">
+제어기 COM 버전을 기준으로 API 신규 추가, 변경 및 수정 사항을 정리한 문서입니다.
 
-	|COM 버전|배포 일정|링크|
-	|:--:|:--:|:--:|
-	|v70-00.00|2026.03|[🔗](70-00.md)|
-	|v60-32.00|2025.11|[🔗](60-32.md)|
-	|v60-30.00|2025.03|[🔗](60-30.md)|
-	|v60-28.00|2024.08|[🔗](60-28.md)|
+{% hint style="warning" %}
+**업데이트 및 사용 유의 사항**
+* 각 릴리즈 문서에는 해당 버전에서 변경된 내용만 기술됩니다.
+* 상위 버전의 API를 사용하려면 반드시 제어기 버전을 업그레이드해야 합니다.
+* 버전 업데이트 전, 기존 시스템에 미칠 영향을 릴리즈 노트에서 미리 확인하십시오.
+{% endhint %}
+ 
+<div style="width: fit-content;">
 
-	</div>
+|COM 버전|배포 일정|링크|
+|:--:|:--:|:--:|
+|v70-00.00|2026.03|[🔗](70-00.md)|
+|v60-32.00|2025.11|[🔗](60-32.md)|
+|v60-30.00|2025.03|[🔗](60-30.md)|
+|v60-28.00|2024.08|[🔗](60-28.md)|
+
+</div>
+
+<div style="max-width:fit-content;">
+
+<h4 style="font-size:15px; font-weight:bold;">릴리즈 노트 분류 기준</h4>
+
+
+|구분|설명|
+|:--|:--|
+|<span class="rn-title-added">Added</span>|신규 API, 필드 또는 옵션이 추가된 경우|
+|<span class="rn-title-changed">Changed</span>|기존 API 동작 방식, 사양, 기본값이 변경된 경우|
+|<span class="rn-title-fixed">Fixed</span>|API 관련 오류 수정, 비정상 동작 보완|
+|<span class="rn-title-deprecated">Deprecated</span>|향후 제거 예정이거나 사용이 권장되지 않는 API|
+| <span class="rn-title-caution">Caution</span> | 해당 버전 API 사용 시 반드시 인지해야 할 주의 사항 |
+
+
+<h4 style="font-size:15px; font-weight:bold;">API Method 분류</h4>
+
+
+| Method | 설명 |
+| :--- | :--- |
+| <span class="api-badge get">GET</span> | 데이터 및 제어기 상태 조회 API (안전함, 데이터 변경 없음) |
+| <span class="api-badge post">POST</span> | 로봇 제어 명령 실행, 새로운 리소스 생성 및 작업 요청 API |
+| <span class="api-badge put">PUT</span> | 기존 설정이나 데이터의 전체 교체 및 일괄 업데이트 API |
+| <span class="api-badge delete">DELETE</span> | 생성된 작업, 태스크, 리소스 또는 데이터를 영구 삭제하는 API |
+
+</div>
 
 [__SOURCE](1-release-note/70-00.md)
 <link rel="stylesheet" href="../_assets/style.css">
@@ -539,81 +573,31 @@ total request time : 0.2869541645050049 seconds
 
 <br>
 
-<h4 style="
-  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  margin: 0; 
-  font-size: 14px; 
-  font-weight: bold; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  New Feature
-</h4>
+<h4 class="rn-title-added">Added</h4>
 
-- joint_states<br>
-  - 로봇의 현재 조인트 각도(°), 속도, 토크를 조회하는 API로, 전체 축 또는 지정한 축 구간만 선택적으로 조회할 수 있습니다.
-- joint_traject_insert_point<br>
-  - 실행 중인 조인트 궤적에 다음 목표 조인트 포인트를 순차적으로 추가하여, 로봇의 연속적인 조인트 이동을 구성할 수 있는 API입니다.
+- <span class="api-badge get">GET</span> [joint_states](../5-robot/1-get/8-joint_states.md) <br>
+  로봇의 현재 조인트 각도(°), 속도, 토크를 조회하는 API로, 전체 축 또는 지정한 축 구간만 선택적으로 조회할 수 있습니다.
+
+- <span class="api-badge post">POST</span> [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md) <br>
+  실행 중인 조인트 궤적에 다음 목표 조인트 포인트를 순차적으로 추가하여, 로봇의 연속적인 조인트 이동을 구성할 수 있는 API입니다.
 
 
 
-
-<div style="
-  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Improvement & Change
-</div>
+<h4 class="rn-title-changed">Changed</h4>
 
 - none
 
 
 
-<div style="
-  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Deprecated
-</div>
+<h4 class="rn-title-fixed">Fixed</h4>
 
 - none
 
 
 
-<div style="
-  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Updated API List
-</div>
+<h4 class="rn-title-deprecated">Deprecated</h4>
 
-
-- \[<b style="color: #4CAF50">get</b>\] [joint_states](../5-robot/1-get/8-joint_states.md)
-- \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
+- none
 
 [__SOURCE](1-release-note/60-32.md)
 <link rel="stylesheet" href="../_assets/style.css">
@@ -624,114 +608,72 @@ Release Notes - v60.32-00
 
 <br>
 
-<h4 style="
-  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  margin: 0; 
-  font-size: 14px; 
-  font-weight: bold; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  New Feature
-</h4>
 
-- joint_traject_init<br>
-  - 로봇 정지 상태에서 새로운 스텝에 대한 궤적을 요청할 때 **<u>필수적으로</u>** 진행해야하는 버퍼 인덱스 초기화 API 추가
-- joint_traject_insert_points<br>
-  - 외부로부터 복수의 궤적 포인트들을 수신하여 로봇의 모션에 반영하는 API 추가
-- joint_traject_buf_avail<br>
-  - 외부에서 궤적을 요청할 때, 현재 요청 가능한 상태의 버퍼 개수 조회 기능 API 추가
+<h4 class="rn-title-added">Added</h4>
+
+- <span class="api-badge post">POST</span> [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)<br>
+  로봇 정지 상태에서 새로운 스텝에 대한 궤적을 요청할 때 **<u>필수적으로</u>** 진행해야하는 버퍼 인덱스 초기화 API 추가
+
+- <span class="api-badge post">POST</span> [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)<br>
+  외부로부터 복수의 궤적 포인트들을 수신하여 로봇의 모션에 반영하는 API 추가
+
+- <span class="api-badge get">GET</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)<br>
+  외부에서 궤적을 요청할 때, 현재 요청 가능한 상태의 버퍼 개수 조회 기능 API 추가
 
 
 
-<div style="
-  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Improvement & Change
-</div>
-
-- set_cur_pc_idx<br>
-  - 프로그램 재생 중 호출을 방지하는 유효성 검사 추가
-- emergency_stop<br>
-  - 호출 시 notice 팝업 출력
-- emergency_stop_test<br>
-  - 즉시정지(category 0) 요청 시 403 BAD Request 응답 버그 수정
-  - 유효성 검사 별 에러코드 세분화
-  - 호출 시 notice 팝업 출력
-- execute_move<br>
-  - 응답 관련 버그 수정 및 에러 코드 세분화
-  - 원격모드에서만 동작하도록 유효성 검사 추가
-- motor_on API<br>
-  - 원격모드에서 프로그램 재생 중 수동 모드 전환 후 motor_on 시도 시 동작 안하는 버그 수정
-  - 원격모드에서만 동작하도록 유효성 검사 추가
-- start<br>
-  - 원격모드에서 호출 안되는 버그 수정
-  - 원격모드에서만 동작하도록 유효성 검사 추가
-- stop<br>
-  - 원격모드에서 호출 안되는 버그 수정
-  - 호출 시 notice 팝업 출력
-- reset<br>
-  - 원격모드에서 정상 동작하지 않는 버그 수정
-- 하기 시퀀스로 API 호출시 프로그램 중복 실행되는 버그 수정<br>
-  - 모터온 -> R0 -> Delete Job -> Upload Job -> Reload Job -> Current PC 설정 -> 로봇 재생
+<h4 class="rn-title-changed">Changed</h4>
 
 
+- <span class="api-badge post">POST</span> [set_cur_pc_idx](../5-robot/2-post/1-set_cur_pc_idx.md)<br>
+  프로그램 재생 중 호출을 방지하는 유효성 검사 추가
 
-<div style="
-  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Deprecated
-</div>
+- <span class="api-badge post">POST</span> [emergency_stop](../5-robot/2-post/2-emergency_stop.md)<br>
+  호출 시 notice 팝업 출력 기능 추가
 
+- <span class="api-badge post">POST</span> [emergency_stop_test](../5-robot/2-post/3-emergency_stop_test.md)<br>
+  유효성 검사별 에러 코드 세분화, 호출 시 notice 팝업 출력 기능 추가
+
+- <span class="api-badge post">POST</span> [execute_move](../5-robot/2-post/4-execute_move.md)<br>
+  원격 모드에서만 동작하도록 유효성 검사 추가, 예외 상황별 에러 코드 세분화
+
+- <span class="api-badge post">POST</span> [motor_on](../5-robot/2-post/5-motor_on.md)<br>
+  원격 모드에서만 동작하도록 유효성 검사 추가
+
+- <span class="api-badge post">POST</span> [start](../5-robot/2-post/6-start.md)<br>
+  원격 모드에서만 동작하도록 유효성 검사 추가
+
+- <span class="api-badge post">POST</span> [stop](../5-robot/2-post/7-stop.md)<br>
+  원격 모드에서만 동작하도록 유효성 검사 추가, 호출 시 notice 팝업 출력 기능 추가
+
+
+<h4 class="rn-title-fixed">Fixed</h4>
+
+- <span class="api-badge post">POST</span> [emergency_stop_test](../5-robot/2-post/3-emergency_stop_test.md)<br>
+  즉시정지(category 0) 요청 시 **403 BAD Request** 응답 버그 수정
+
+- <span class="api-badge post">POST</span> [execute_move](../5-robot/2-post/4-execute_move.md)<br>
+  특정 상황에서의 응답 관련 버그 수정
+
+- <span class="api-badge post">POST</span> [motor_on](../5-robot/2-post/5-motor_on.md)<br>
+  원격 모드에서 프로그램 재생 중 수동 모드 전환 후 `motor_on` 시도 시 동작 안 하는 버그 수정
+
+- <span class="api-badge post">POST</span> [start](../5-robot/2-post/6-start.md)<br>
+  원격 모드에서 호출 안 되는 버그 수정
+
+- <span class="api-badge post">POST</span> [stop](../5-robot/2-post/7-stop.md)<br>
+  원격 모드에서 호출 안 되는 버그 수정
+
+- <span class="api-badge post">POST</span> [reset](../5-robot/2-post/8-reset.md)<br>
+  원격 모드에서 정상 동작하지 않는 버그 수정
+
+- <span class="api-badge post">POST</span> 프로그램 중복 실행 오류<br>
+  특정 시퀀스로 API 호출 시 프로그램이 중복 실행되는 버그 수정, (시퀀스: 모터온 → R0 → Delete Job → Upload Job → Reload Job → Current PC 설정 → 로봇 재생)
+
+
+<h4 class="rn-title-deprecated">Deprecated</h4>
 
 - none
-
-
-
-<div style="
-  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Updated API List
-</div>
-
-
-- [<b style="color: #4CAF50">get</b>\] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)
-- \[<b style="color: #FF9800">post</b>\] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)
-- \[<b style="color: #FF9800">post</b>\] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
-- \[<b style="color: #FF9800">post</b>\] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
-- \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
-- \[<b style="color: #FF9800">post</b>\] [motor_on](../5-robot/2-post/1-motor-on.md)
-- \[<b style="color: #FF9800">post</b>\] [start](../5-robot/2-post/2-start-stop.md)
-- \[<b style="color: #FF9800">post</b>\] [stop](../5-robot/2-post/2-start-stop.md)
-- \[<b style="color: #FF9800">post</b>\] [reset](../9-task/2-post/2-reset.md)
 
 [__SOURCE](1-release-note/60-30.md)
 <link rel="stylesheet" href="../_assets/style.css">

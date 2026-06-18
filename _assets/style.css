@@ -1,165 +1,26 @@
-﻿/* 📌 공통 스타일 */
-div[note], div[tip], div[important], div[warning], div[caution], div[issue]{
-    padding: 10px 14px;
-    margin: 14px 0;
-    font-size: 14px;
-    font-family: "Consolas", "Courier New", monospace;
-    color: #d4d4d4; /* VS Code 기본 글자색 */
-    border-left: 6px solid;  /* 각 타입마다 다른 컬러 적용 */
-    background: transparent; /* 배경색 제거 */
-    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3); /* 그림자를 더 강조 */
+﻿.rn-title-added, .rn-title-changed, .rn-title-fixed, .rn-title-deprecated, .rn-title-caution {
+    padding-left: 6px;
+    display: inline-block;
+    font-weight: 700;
 }
+.rn-title-added      { border-left: 4px solid rgb(255, 140, 0); }
+.rn-title-changed    { border-left: 4px solid #3F51B5; }
+.rn-title-fixed      { border-left: 4px solid #2E7D32; }
+.rn-title-deprecated { border-left: 4px solid #B71C1C; }
+.rn-title-caution    { border-left: 4px solid #9E9E9E; }
 
-/* 🚨 CAUTION */
-div[caution] {
-    border-left-color: #F85149;
+.api-badge {
+    padding: 0px 4px; 
+    border-radius: 4px; 
+    font-size: 12px; 
+    margin-right: 6px; 
+    display: inline-block; 
+    text-align: center; 
+    line-height: 1.5;
+    min-width: 50px;
 }
-div[caution]::before {
-    content: "  CAUTION";
-    font-weight: bold;
-    font-size: 16px;
-    color: #F85149;
-    display: block;
-    margin-bottom: 4px;
-    background-image: url('./octicons/icons/stop-16.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 16px 16px; /* SVG 크기를 폰트 크기와 일치 */
-    padding-left: 23px; /* 아이콘과 텍스트 사이 간격 넓히기 (기존 20px에서 증가) */
-    line-height: 16px; /* 텍스트 라인 높이를 아이콘 높이와 일치 */
-    filter: invert(45%) sepia(85%) saturate(2800%) hue-rotate(335deg) brightness(100%) contrast(97%);
-}
-
-/* ⚠️ ISSUE (Problem) */
-div[issue] {
-    border-left-color: #E86E2C; /* 경고 느낌의 오렌지 */
-}
-div[issue]::before {
-    content: "  ISSUE";
-    font-weight: bold;
-    font-size: 16px;
-    color: #E86E2C;
-    display: block;
-    margin-bottom: 4px;
-    background-image: url('./octicons/icons/issue-opened-16.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 16px 16px; /* SVG 크기를 폰트 크기와 일치 */
-    padding-left: 23px; /* 아이콘과 텍스트 사이 간격 넓히기 (기존 20px에서 증가) */
-    line-height: 16px; /* 텍스트 라인 높이를 아이콘 높이와 일치 */
-    filter: invert(54%) sepia(85%) saturate(1645%) hue-rotate(346deg) brightness(97%) contrast(95%);
-}
-
-/* ⚠️ WARNING */
-div[warning] {
-    border-left-color: #D29922;
-}
-div[warning]::before {
-    content: "WARNING";
-    font-weight: bold;
-    font-size: 16px;
-    color: #D29922;
-    display: block;
-    margin-bottom: 4px;
-    background-image: url('./octicons/icons/alert-16.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 16px 16px; /* SVG 크기를 폰트 크기와 일치 */
-    padding-left: 23px; /* 아이콘과 텍스트 사이 간격 넓히기 (기존 20px에서 증가) */
-    line-height: 16px; /* 텍스트 라인 높이를 아이콘 높이와 일치 */
-    filter: invert(59%) sepia(85%) saturate(750%) hue-rotate(10deg) brightness(95%) contrast(90%);
-}
-
-/* 💡 TIP */
-div[tip] {
-    border-left-color: #3FB950;
-    position: relative;
-}
-
-div[tip]::before {
-    content: "TIP";
-    font-weight: bold;
-    font-size: 16px;
-    color: #3FB950;
-    display: block;
-    margin-bottom: 4px;
-    padding-left: 23px;
-    line-height: 16px;
-}
-
-/* 아이콘을 위한 새로운 가상 요소 */
-div[tip]::after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    width: 16px;
-    height: 16px;
-    background-color: #3FB950;
-    -webkit-mask-image: url('./octicons/icons/light-bulb-16.svg');
-    mask-image: url('./octicons/icons/light-bulb-16.svg');
-    -webkit-mask-size: 16px 16px;   
-    mask-size: 16px 16px;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-}
-
-
-/* 📌 NOTE */
-div[note] {
-    border-left-color: #4493F8;
-}
-div[note]::before {
-    content: "NOTE";
-    font-weight: bold;
-    font-size: 16px;
-    color: #4493F8;
-    display: block;
-    margin-bottom: 4px;
-    background-image: url('./octicons/icons/info-16.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 16px 16px; /* SVG 크기를 폰트 크기와 일치 */
-    padding-left: 23px; /* 아이콘과 텍스트 사이 간격 넓히기 (기존 20px에서 증가) */
-    line-height: 16px; /* 텍스트 라인 높이를 아이콘 높이와 일치 */
-    filter: invert(46%) sepia(99%) saturate(1954%) hue-rotate(197deg) brightness(102%) contrast(91%);
-}
-
-/* ⭐ IMPORTANT */
-div[important] {
-    border-left-color: #AB7DF8;
-}
-div[important]::before {
-    content: "IMPORTANT";
-    font-weight: bold;
-    font-size: 16px;
-    color: #AB7DF8;
-    display: block;
-    margin-bottom: 4px;
-    background-image: url('./octicons/icons/check-circle-16.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 16px 16px; /* SVG 크기를 폰트 크기와 일치 */
-    padding-left: 23px; /* 아이콘과 텍스트 사이 간격 넓히기 (기존 20px에서 증가) */
-    line-height: 16px; /* 텍스트 라인 높이를 아이콘 높이와 일치 */
-    filter: invert(59%) sepia(93%) saturate(1816%) hue-rotate(221deg) brightness(100%) contrast(94%);
-}
-
-
-/* 📌 밑줄을 위한 span */
-span[u] {
-    position: relative; /* 밑줄을 조정하기 위해 position 설정 */
-    white-space: nowrap; /* 줄바꿈 방지 */
-    text-decoration: none; /* 기본 밑줄 제거 */
-}
-
-/* 밑줄을 추가하는 가상 요소 */
-span[u]::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -1px; /* 글자와 겹치지 않도록 조정 */
-    width: 100%;
-    height: 1px; /* 밑줄 두께 */
-    background: #F85149; /* 강조 색상 */
-    border-radius: 2px; /* 양 끝을 둥글게 */
-}
+.api-badge.get    { background: #E1F5FE; color: #0288D1; font-weight: 700; border: 1px solid #B3E5FC; }
+.api-badge.post   { background: #E8F5E9; color: #2E7D32; font-weight: 700; border: 1px solid #C8E6C9; }
+.api-badge.put    { background: #FFF3E0; color: #E65100; font-weight: 700; border: 1px solid #FFE0B2; }
+.api-badge.patch  { background: #EDE7F6; color: #5E35B1; font-weight: 700; border: 1px solid #D1C4E9; }
+.api-badge.delete { background: #FFEBEE; color: #C62828; font-weight: 700; border: 1px solid #FFCDD2; }
