@@ -479,28 +479,55 @@ References
   1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
 
 [__SOURCE](1-release-note/README.md)
-# 1. release note 
-
-- API changes have been documented based on the COM version.  
-- If you wish to use an API that operates on a higher controller version than your current one, a version upgrade is required.  
-- Release Information
-
-	<div style="max-width:31vw;">
-
-	|COM Version|Release Schedule|Link|
-	|:--:|:--:|:--:|
-	|v70-00.00| Scheduled March 2026 _(TBD)_|[🔗](70-00.md)|
-	|v60-32.00| 2025.11 |[🔗](60-32.md)|
-	|v60-30.00|March, 2025|[🔗](60-30.md)|
-	|v60-28.00|August, 2024|[🔗](60-28.md)|
-
-	</div>
-
-[__SOURCE](1-release-note/70-00.md)
-#### V70.00-00
-
 <link rel="stylesheet" href="../_assets/style.css">
 
+# 1. release note 
+
+This document summarizes new API additions, changes, and fixes based on the controller COM version.
+
+{% hint style="warning" %}
+**Update and Usage Guidelines**
+* Each release document only describes changes made in that specific version.
+* To use APIs from a higher version, the controller version must be upgraded.
+* Before upgrading, check the release notes to review the impact on the existing system.
+{% endhint %}
+ 
+<div style="width: fit-content;">
+
+|COM Version|Release Date|Link|
+|:--:|:--:|:--:|
+|v70-00.00|2026.03|[🔗](../1-release-note/70-00.md)|
+|v60-32.00|2025.11|[🔗](../1-release-note/60-32.md)|
+|v60-30.00|2025.03|[🔗](../1-release-note/60-30.md)|
+|v60-28.00|2024.08|[🔗](../1-release-note/60-28.md)|
+
+</div>
+
+<div style="max-width:fit-content;">
+
+<h4 style="font-size:15px; font-weight:bold;">Release Note Classification</h4>
+
+|Classification|Description|
+|:--|:--|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0); white-space: nowrap;">Added</span>|When a new API, field, or option is added.|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5; white-space: nowrap;">Changed</span>|When an existing API behavior, specification, or default value is changed.|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32; white-space: nowrap;">Fixed</span>|When API-related bugs are fixed or abnormal behaviors are resolved.|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C; white-space: nowrap;">Deprecated</span>|When an API is scheduled for future removal or its use is discouraged.|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #9E9E9E; white-space: nowrap;">Caution</span>|Crucial precautions that must be acknowledged when using the API of this version.|
+
+
+<h4 style="font-size:15px; font-weight:bold;">API Method Classification</h4>
+
+| Method | Description |
+| :--- | :--- |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC; white-space: nowrap;">GET</span> | API to retrieve data and controller status (Safe, no data changes). |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; white-space: nowrap;">POST</span> | API to execute robot control commands, create new resources, and request tasks. |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2; white-space: nowrap;">PUT</span> | API to completely replace or batch update existing settings or data. |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; white-space: nowrap;">DELETE</span> | API to permanently delete created tasks, resources, or data. |
+
+</div>
+
+[__SOURCE](1-release-note/70-00.md)
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
   Release Notes - v70.00-00
   <span style="
@@ -510,398 +537,195 @@ References
     padding: 1px 5px; 
     border-radius: 8px; 
     font-weight: bold; 
-    font-size: 14px; /* h2 크기에 맞춤 */
+    font-size: 14px; 
     text-transform: uppercase; 
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     display: inline-flex;
     align-items: center;
-    height: 1.6em; /* h2 높이에 맞게 조정 */
+    height: 1.6em; 
   ">
-   NEW
+   NEW 
   </span>
 </h4>
 
 <br>
 
-<h4 style="
-  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  margin: 0; 
-  font-size: 14px; 
-  font-weight: bold; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  New Feature
-</h4>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
 
-- joint_states<br>
-  - An API for retrieving the robot's current joint angles (°), velocities, and torques.  
-    It supports querying all axes or selectively querying a specified range of axes.
-- joint_traject_insert_point<br>
-  - An API that sequentially appends the next target joint point to an active joint trajectory,  
-    enabling continuous joint motion of the robot.
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_states](../5-robot/1-get/8-joint_states.md)  
+  An API to query the current joint angle (°), velocity, and torque of the robot. It allows selective querying of all axes or specified axis intervals.
 
-<br><br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)  
+  An API to sequentially add the next target joint point to the executing joint trajectory, configuring the continuous joint movement of the robot.
 
-<div style="
-  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Improvement & Change
-</div>
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
 
 - none
 
-<br><br>
+<br>
 
-<div style="
-  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Deprecated
-</div>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
 
 - none
 
-<br><br>
+<br>
 
-<div style="
-  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Updated API List
-</div>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
 
-- [<b style="color: #4CAF50">get</b>] [joint_states](../5-robot/1-get/8-joint_states.md)
-- [<b style="color: #FF9800">post</b>] [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)
+- none
 
 [__SOURCE](1-release-note/60-32.md)
-#### V60.32-00
-
-<link rel="stylesheet" href="../_assets/style.css">
-
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
 Release Notes - v60.32-00
 </h4>
 
 <br>
 
-<h4 style="
-  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  margin: 0; 
-  font-size: 14px; 
-  font-weight: bold; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  New Feature
-</h4>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
 
-- joint_traject_init<br>
-  - Added a buffer index initialization API that must be executed **<u>mandatorily</u>**  
-    when requesting a trajectory for a new step while the robot is in a stopped state
-- joint_traject_insert_points<br>
-  - Added an API that receives multiple trajectory points from an external source  
-    and applies them to the robot motion
-- joint_traject_buf_avail<br>
-  - Added an API to query the number of currently available buffers  
-    when requesting trajectories from an external source
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
+  Added a buffer index initialization API that must **<u>essentially</u>** be executed when requesting a trajectory for a new step while the robot is stopped.
 
-<br><br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
+  Added an API to reflect multiple trajectory points in the robot's motion upon receiving them from an external source.
 
-<div style="
-  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Improvement & Change
-</div>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)  
+  Added an API to query the number of buffers currently available for request when requesting a trajectory externally.
 
-- set_cur_pc_idx<br>
-  - Added validation to prevent invocation while a program is playing
-- emergency_stop<br>
-  - Display a notice popup when invoked
-- emergency_stop_test<br>
-  - Fixed a bug where a request for immediate stop (category 0) returned a 403 BAD Request
-  - Refined error codes by validation case
-  - Display a notice popup when invoked
-- execute_move<br>
-  - Fixed response-related bugs and refined error codes
-  - Added validation to allow operation only in remote mode
-- motor_on API<br>
-  - Fixed a bug where motor_on did not work after switching to manual mode  
-    during program playback in remote mode
-  - Added validation to allow operation only in remote mode
-- start<br>
-  - Fixed a bug where it could not be called in remote mode
-  - Added validation to allow operation only in remote mode
-- stop<br>
-  - Fixed a bug where it could not be called in remote mode
-  - Display a notice popup when invoked
-- reset<br>
-  - Fixed a bug where it did not operate correctly in remote mode
-- Fixed a bug where programs were executed multiple times  
-  when APIs were called in the following sequence<br>
-  - Motor On → R0 → Delete Job → Upload Job → Reload Job → Set Current PC → Start Robot
+<br>
 
-<br><br>
+<h5  style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
 
-<div style="
-  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Deprecated
-</div>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)  
+  Added validation to prevent calls during program playback.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
+  Added a feature to output a notice popup when called.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
+  Subdivided error codes by validation. Added a feature to output a notice popup when called.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
+  Added validation to ensure operation only in remote mode. Subdivided error codes by exceptions.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
+  Added validation to ensure operation only in remote mode.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
+  Added validation to ensure operation only in remote mode.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
+  Added validation to ensure operation only in remote mode. Added a feature to output a notice popup when called.
+
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
+  Fixed a bug where a `403 BAD Request` was responded when requesting an immediate stop (category 0).
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
+  Fixed a bug related to responses under specific conditions.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
+  Fixed a bug where `motor_on` did not operate when attempting it after switching to manual mode during program playback in remote mode.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
+  Fixed a bug where calls were not working in remote mode.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
+  Fixed a bug where calls were not working in remote mode.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [reset](../9-task/2-post/2-reset.md)  
+  Fixed a bug where normal operation did not occur in remote mode.
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> Program Duplicate Execution Error  
+  Fixed a bug where the program was executed redundantly when calling APIs in a specific sequence.  
+  *(Sequence: Motor On → R0 → Delete Job → Upload Job → Reload Job → Set Current PC → Play Robot)*
+
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
 
 - none
-
-<br><br>
-
-<div style="
-  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Updated API List
-</div>
-
-- [<b style="color: #4CAF50">get</b>] [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)
-- [<b style="color: #FF9800">post</b>] [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)
-- [<b style="color: #FF9800">post</b>] [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)
-- [<b style="color: #FF9800">post</b>] [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)
-- [<b style="color: #FF9800">post</b>] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- [<b style="color: #FF9800">post</b>] [execute_move](../9-task/2-post/8-execute_move.md)
-- [<b style="color: #FF9800">post</b>] [motor_on](../5-robot/2-post/1-motor-on.md)
-- [<b style="color: #FF9800">post</b>] [start](../5-robot/2-post/2-start-stop.md)
-- [<b style="color: #FF9800">post</b>] [stop](../5-robot/2-post/2-start-stop.md)
-- [<b style="color: #FF9800">post</b>] [reset](../9-task/2-post/2-reset.md)
 
 [__SOURCE](1-release-note/60-30.md)
-#### V60.30-00
-
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.30-00 
+  Release Notes - v60.30-00
 </h4>
-
 
 <br>
 
-<h4 style="
-  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  margin: 0; 
-  font-size: 14px; 
-  font-weight: bold; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  New Feature
-</h4>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
 
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
+  Added an API to request emergency stop status check.
 
-- emergency_stop 
-  - Added an API for status check requests.
-  - Added an API with the same functionality as the emergency stop button.
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
+  Added an API with the same function as the physical emergency stop button.
 
+<br>
 
-<br><br>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
 
-<div style="
-  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Improvement & Change
-</div>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
+  Specification change (Changed name and specs to be identical to the existing `emergency_stop` API of version v60.28-00).
 
-- emergency_stop_test 
-  - Identical to emergency_stop in v60.28-00.
-- task reset 
-  - Now using R Code 0.
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [task reset](../9-task/2-post/2-reset.md)  
+  Internal logic change (The system operation structure changed to utilize R-code 0).
 
-<br><br>
+<br>
 
-<div style="
-  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Deprecated
-</div>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
 
-- <font style="color: #E82E8C">motor off</font> 
-  - This API was designed with the HRSpace environment in mind. To prevent confusion in real-world environments, it has been deprecated and replaced with the emergency stop API.  
-- <font style="color: #E82E8C">task reset</font> 
-  - The following URIs are no longer supported 
-    - /project/context/tasks/reset
-    - /project/context/tasks[{task index}]/reset path
+- none
 
+<br>
 
-<br><br>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
 
-<div style="
-  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  API List
-</div>  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> ~~[motor_off](../5-robot/2-post/1-motor-on.md)~~  
+  An API considering the HRSpace environment; Deprecated to prevent confusion in real machine environments (Replaced by the emergency stop API).
 
-- \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
-- \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-- \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- \[<b style="color: #FF9800">post</b>\] [task_reset](../9-task/2-post/2-reset.md)
-- ~~\[<b style="color: #FF9800">post</b>\] motor_off~~  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> **task reset (Previous endpoint)** Paths `/project/context/tasks` and `/project/context/tasks[{task index}]/reset` are no longer supported.
 
 [__SOURCE](1-release-note/60-28.md)
-#### V60.28-00
-
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.28-00 
+  Release Notes - v60.28-00
 </h4>
 
 <br>
 
-<h4 style="
-  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  margin: 0; 
-  font-size: 14px; 
-  font-weight: bold; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  New Feature
-</h4>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
 
-- emergency_stop - Added emergency stop API. Supports execution of an emergency stop for a specific category at a designated moment by inputting values such as step_no and stop_at.
-- execute_move - Added an API for moving to a specified pose.  
-- execute_cmd - Added an API for executing console commands in ${cont_model} COM.  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
+  Added an emergency stop API. Supports performing an emergency stop of a desired category at a specific point in time by inputting values such as `step_no` and `stop_at`.
 
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
+  Added an API to move to a designated pose.
 
-<br><br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_cmd](../10-console/2-post/1-execute_cmd.md)  
+  Added an API to execute console commands of the controller COM.
 
-<div style="
-  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Improvement & Change
-</div>
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
 
 - none
 
-<br><br>
+<br>
 
-<div style="
-  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Deprecated
-</div>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
 
 - none
 
-<br><br>
+<br>
 
-<div style="
-  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  API List
-</div>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
 
-- \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
-- \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
-- \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
+- none
 
 [__SOURCE](2-version/README.md)
 # 2. `version`
