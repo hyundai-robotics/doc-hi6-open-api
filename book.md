@@ -526,14 +526,13 @@ total request time : 0.2869541645050049 seconds
 
 <h4 style="font-size:15px; font-weight:bold;">릴리즈 노트 분류 기준</h4>
 
-
 |구분|설명|
 |:--|:--|
-|<span class="rn-title-added">Added</span>|신규 API, 필드 또는 옵션이 추가된 경우|
-|<span class="rn-title-changed">Changed</span>|기존 API 동작 방식, 사양, 기본값이 변경된 경우|
-|<span class="rn-title-fixed">Fixed</span>|API 관련 오류 수정, 비정상 동작 보완|
-|<span class="rn-title-deprecated">Deprecated</span>|향후 제거 예정이거나 사용이 권장되지 않는 API|
-| <span class="rn-title-caution">Caution</span> | 해당 버전 API 사용 시 반드시 인지해야 할 주의 사항 |
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</span>|신규 API, 필드 또는 옵션이 추가된 경우|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</span>|기존 API 동작 방식, 사양, 기본값이 변경된 경우|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</span>|API 관련 오류 수정, 비정상 동작 보완|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</span>|향후 제거 예정이거나 사용이 권장되지 않는 API|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #9E9E9E;">Caution</span>|해당 버전 API 사용 시 반드시 인지해야 할 주의 사항|
 
 
 <h4 style="font-size:15px; font-weight:bold;">API Method 분류</h4>
@@ -541,16 +540,14 @@ total request time : 0.2869541645050049 seconds
 
 | Method | 설명 |
 | :--- | :--- |
-| <span class="api-badge get">GET</span> | 데이터 및 제어기 상태 조회 API (안전함, 데이터 변경 없음) |
-| <span class="api-badge post">POST</span> | 로봇 제어 명령 실행, 새로운 리소스 생성 및 작업 요청 API |
-| <span class="api-badge put">PUT</span> | 기존 설정이나 데이터의 전체 교체 및 일괄 업데이트 API |
-| <span class="api-badge delete">DELETE</span> | 생성된 작업, 태스크, 리소스 또는 데이터를 영구 삭제하는 API |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> | 데이터 및 제어기 상태 조회 API (안전함, 데이터 변경 없음) |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> | 로봇 제어 명령 실행, 새로운 리소스 생성 및 작업 요청 API |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2;">PUT</span> | 기존 설정이나 데이터의 전체 교체 및 일괄 업데이트 API |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2;">DELETE</span> | 생성된 작업, 태스크, 리소스 또는 데이터를 영구 삭제하는 API |
 
 </div>
 
 [__SOURCE](1-release-note/70-00.md)
-<link rel="stylesheet" href="../_assets/style.css">
-
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
   Release Notes - v70.00-00
   <span style="
@@ -560,12 +557,12 @@ total request time : 0.2869541645050049 seconds
     padding: 1px 5px; 
     border-radius: 8px; 
     font-weight: bold; 
-    font-size: 14px; /* h2 크기에 맞춤 */
+    font-size: 14px; 
     text-transform: uppercase; 
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     display: inline-flex;
     align-items: center;
-    height: 1.6em; /* h2 높이에 맞게 조정 */
+    height: 1.6em; 
   ">
    NEW 
   </span>
@@ -573,105 +570,95 @@ total request time : 0.2869541645050049 seconds
 
 <br>
 
-<h4 class="rn-title-added">Added</h4>
+<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h4>
 
-- <span class="api-badge get">GET</span> [joint_states](../5-robot/1-get/8-joint_states.md) <br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_states](../5-robot/1-get/8-joint_states.md)  
   로봇의 현재 조인트 각도(°), 속도, 토크를 조회하는 API로, 전체 축 또는 지정한 축 구간만 선택적으로 조회할 수 있습니다.
 
-- <span class="api-badge post">POST</span> [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md) <br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)  
   실행 중인 조인트 궤적에 다음 목표 조인트 포인트를 순차적으로 추가하여, 로봇의 연속적인 조인트 이동을 구성할 수 있는 API입니다.
 
-
-
-<h4 class="rn-title-changed">Changed</h4>
+<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h4>
 
 - none
 
-
-
-<h4 class="rn-title-fixed">Fixed</h4>
+<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h4>
 
 - none
 
-
-
-<h4 class="rn-title-deprecated">Deprecated</h4>
+<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h4>
 
 - none
 
 [__SOURCE](1-release-note/60-32.md)
-<link rel="stylesheet" href="../_assets/style.css">
-
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
 Release Notes - v60.32-00
 </h4>
 
 <br>
 
+<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h4>
 
-<h4 class="rn-title-added">Added</h4>
-
-- <span class="api-badge post">POST</span> [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
   로봇 정지 상태에서 새로운 스텝에 대한 궤적을 요청할 때 **<u>필수적으로</u>** 진행해야하는 버퍼 인덱스 초기화 API 추가
 
-- <span class="api-badge post">POST</span> [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
   외부로부터 복수의 궤적 포인트들을 수신하여 로봇의 모션에 반영하는 API 추가
 
-- <span class="api-badge get">GET</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)  
   외부에서 궤적을 요청할 때, 현재 요청 가능한 상태의 버퍼 개수 조회 기능 API 추가
 
+<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h4>
 
-
-<h4 class="rn-title-changed">Changed</h4>
-
-
-- <span class="api-badge post">POST</span> [set_cur_pc_idx](../5-robot/2-post/1-set_cur_pc_idx.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [set_cur_pc_idx](../5-robot/2-post/1-set_cur_pc_idx.md)  
   프로그램 재생 중 호출을 방지하는 유효성 검사 추가
 
-- <span class="api-badge post">POST</span> [emergency_stop](../5-robot/2-post/2-emergency_stop.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/2-emergency_stop.md)  
   호출 시 notice 팝업 출력 기능 추가
 
-- <span class="api-badge post">POST</span> [emergency_stop_test](../5-robot/2-post/3-emergency_stop_test.md)<br>
-  유효성 검사별 에러 코드 세분화, 호출 시 notice 팝업 출력 기능 추가
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/3-emergency_stop_test.md)  
+  유효성 검사별 에러 코드 세분화  
+  호출 시 notice 팝업 출력 기능 추가
 
-- <span class="api-badge post">POST</span> [execute_move](../5-robot/2-post/4-execute_move.md)<br>
-  원격 모드에서만 동작하도록 유효성 검사 추가, 예외 상황별 에러 코드 세분화
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../5-robot/2-post/4-execute_move.md)  
+  원격 모드에서만 동작하도록 유효성 검사 추가  
+  예외 상황별 에러 코드 세분화
 
-- <span class="api-badge post">POST</span> [motor_on](../5-robot/2-post/5-motor_on.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/5-motor_on.md)  
   원격 모드에서만 동작하도록 유효성 검사 추가
 
-- <span class="api-badge post">POST</span> [start](../5-robot/2-post/6-start.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/6-start.md)  
   원격 모드에서만 동작하도록 유효성 검사 추가
 
-- <span class="api-badge post">POST</span> [stop](../5-robot/2-post/7-stop.md)<br>
-  원격 모드에서만 동작하도록 유효성 검사 추가, 호출 시 notice 팝업 출력 기능 추가
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/7-stop.md)  
+  원격 모드에서만 동작하도록 유효성 검사 추가  
+  호출 시 notice 팝업 출력 기능 추가
 
+<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h4>
 
-<h4 class="rn-title-fixed">Fixed</h4>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/3-emergency_stop_test.md)  
+  즉시정지(category 0) 요청 시 `403 BAD Request` 응답 버그 수정
 
-- <span class="api-badge post">POST</span> [emergency_stop_test](../5-robot/2-post/3-emergency_stop_test.md)<br>
-  즉시정지(category 0) 요청 시 **403 BAD Request** 응답 버그 수정
-
-- <span class="api-badge post">POST</span> [execute_move](../5-robot/2-post/4-execute_move.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../5-robot/2-post/4-execute_move.md)  
   특정 상황에서의 응답 관련 버그 수정
 
-- <span class="api-badge post">POST</span> [motor_on](../5-robot/2-post/5-motor_on.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/5-motor_on.md)  
   원격 모드에서 프로그램 재생 중 수동 모드 전환 후 `motor_on` 시도 시 동작 안 하는 버그 수정
 
-- <span class="api-badge post">POST</span> [start](../5-robot/2-post/6-start.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/6-start.md)  
   원격 모드에서 호출 안 되는 버그 수정
 
-- <span class="api-badge post">POST</span> [stop](../5-robot/2-post/7-stop.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/7-stop.md)  
   원격 모드에서 호출 안 되는 버그 수정
 
-- <span class="api-badge post">POST</span> [reset](../5-robot/2-post/8-reset.md)<br>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [reset](../5-robot/2-post/8-reset.md)  
   원격 모드에서 정상 동작하지 않는 버그 수정
 
-- <span class="api-badge post">POST</span> 프로그램 중복 실행 오류<br>
-  특정 시퀀스로 API 호출 시 프로그램이 중복 실행되는 버그 수정, (시퀀스: 모터온 → R0 → Delete Job → Upload Job → Reload Job → Current PC 설정 → 로봇 재생)
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> 프로그램 중복 실행 오류  
+  특정 시퀀스로 API 호출 시 프로그램이 중복 실행되는 버그 수정  
+  *(시퀀스: 모터온 → R0 → Delete Job → Upload Job → Reload Job → Current PC 설정 → 로봇 재생)*
 
-
-<h4 class="rn-title-deprecated">Deprecated</h4>
+<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h4>
 
 - none
 

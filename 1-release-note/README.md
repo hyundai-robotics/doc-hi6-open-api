@@ -25,6 +25,7 @@
 <div style="max-width:fit-content;">
 
 <h4 style="font-size:15px; font-weight:bold;">릴리즈 노트 분류 기준</h4>
+
 |구분|설명|
 |:--|:--|
 |<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</span>|신규 API, 필드 또는 옵션이 추가된 경우|
