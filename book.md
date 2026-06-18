@@ -611,7 +611,7 @@ Release Notes - v60.32-00
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
   외부로부터 복수의 궤적 포인트들을 수신하여 로봇의 모션에 반영하는 API 추가
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)  
   외부에서 궤적을 요청할 때, 현재 요청 가능한 상태의 버퍼 개수 조회 기능 API 추가
 
 <br>
