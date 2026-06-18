@@ -515,10 +515,10 @@ total request time : 0.2869541645050049 seconds
 
 |COM 버전|배포 일정|링크|
 |:--:|:--:|:--:|
-|v70-00.00|2026.03|[🔗](70-00.md)|
-|v60-32.00|2025.11|[🔗](60-32.md)|
-|v60-30.00|2025.03|[🔗](60-30.md)|
-|v60-28.00|2024.08|[🔗](60-28.md)|
+|v70-00.00|2026.03|[🔗](../1-release-note/70-00.md)|
+|v60-32.00|2025.11|[🔗](../1-release-note/60-32.md)|
+|v60-30.00|2025.03|[🔗](../1-release-note/60-30.md)|
+|v60-28.00|2024.08|[🔗](../1-release-note/60-28.md)|
 
 </div>
 
@@ -570,7 +570,7 @@ total request time : 0.2869541645050049 seconds
 
 <br>
 
-<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h4>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_states](../5-robot/1-get/8-joint_states.md)  
   로봇의 현재 조인트 각도(°), 속도, 토크를 조회하는 API로, 전체 축 또는 지정한 축 구간만 선택적으로 조회할 수 있습니다.
@@ -578,15 +578,21 @@ total request time : 0.2869541645050049 seconds
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)  
   실행 중인 조인트 궤적에 다음 목표 조인트 포인트를 순차적으로 추가하여, 로봇의 연속적인 조인트 이동을 구성할 수 있는 API입니다.
 
-<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h4>
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
 
 - none
 
-<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h4>
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
 
 - none
 
-<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h4>
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
 
 - none
 
@@ -597,7 +603,7 @@ Release Notes - v60.32-00
 
 <br>
 
-<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h4>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
   로봇 정지 상태에서 새로운 스텝에 대한 궤적을 요청할 때 **<u>필수적으로</u>** 진행해야하는 버퍼 인덱스 초기화 API 추가
@@ -608,230 +614,141 @@ Release Notes - v60.32-00
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)  
   외부에서 궤적을 요청할 때, 현재 요청 가능한 상태의 버퍼 개수 조회 기능 API 추가
 
-<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h4>
+<br>
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [set_cur_pc_idx](../5-robot/2-post/1-set_cur_pc_idx.md)  
+<h5  style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)  
   프로그램 재생 중 호출을 방지하는 유효성 검사 추가
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/2-emergency_stop.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
   호출 시 notice 팝업 출력 기능 추가
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/3-emergency_stop_test.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
   유효성 검사별 에러 코드 세분화  
   호출 시 notice 팝업 출력 기능 추가
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../5-robot/2-post/4-execute_move.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
   원격 모드에서만 동작하도록 유효성 검사 추가  
   예외 상황별 에러 코드 세분화
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/5-motor_on.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
   원격 모드에서만 동작하도록 유효성 검사 추가
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/6-start.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
   원격 모드에서만 동작하도록 유효성 검사 추가
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/7-stop.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
   원격 모드에서만 동작하도록 유효성 검사 추가  
   호출 시 notice 팝업 출력 기능 추가
 
-<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h4>
+<br>
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/3-emergency_stop_test.md)  
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
   즉시정지(category 0) 요청 시 `403 BAD Request` 응답 버그 수정
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../5-robot/2-post/4-execute_move.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
   특정 상황에서의 응답 관련 버그 수정
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/5-motor_on.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
   원격 모드에서 프로그램 재생 중 수동 모드 전환 후 `motor_on` 시도 시 동작 안 하는 버그 수정
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/6-start.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
   원격 모드에서 호출 안 되는 버그 수정
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/7-stop.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
   원격 모드에서 호출 안 되는 버그 수정
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [reset](../5-robot/2-post/8-reset.md)  
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [reset](../9-task/2-post/2-reset.md)  
   원격 모드에서 정상 동작하지 않는 버그 수정
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> 프로그램 중복 실행 오류  
   특정 시퀀스로 API 호출 시 프로그램이 중복 실행되는 버그 수정  
   *(시퀀스: 모터온 → R0 → Delete Job → Upload Job → Reload Job → Current PC 설정 → 로봇 재생)*
 
-<h4 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h4>
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
 
 - none
 
 [__SOURCE](1-release-note/60-30.md)
-<link rel="stylesheet" href="../_assets/style.css">
-
 <h4 style="display: inline-flex; align-items: center; gap: 8px;">
   Release Notes - v60.30-00
 </h4>
 
 <br>
 
-<h4 style="
-  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  margin: 0; 
-  font-size: 14px; 
-  font-weight: bold; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  New Feature
-</h4>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
 
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
+  비상정지 상태 확인 요청 API 추가
 
-- emergency_stop - 상태 확인 요청 API 추가, 비상정지 버튼과 동일한 기능의 API 추가
-
-
-
-
-<div style="
-  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Improvement & Change
-</div>
-
-
-- emergency_stop_test - v60.28-00 의 emergency_stop 과 동일
-- task reset - <span u>R 코드 0</span>를 활용하는 방식으로 변경됨
-
-
-
-<div style="
-  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Deprecated
-</div>
-
-
-- <font style="color: #FE2E64">motor off</font> - HRSpace 환경을 고려한 API로, 실기 환경에서의 혼선을 방지하기 위해 Deprecated 처리. 비상정지 API 로 대체 됨  
-- <font style="color: #FE2E64">task reset</font> - <span u>/project/context/tasks/reset</span>, <span u> /project/context/tasks[{task index}]/reset</span> path 는 더 이상 지원하지 않음.
-
-
-
-<div style="
-  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Updated API List
-</div>
-
-
-- \[<b style="color: #4CAF50">get</b>\] [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
-- \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-- \[<b style="color: #FF9800">post</b>\] [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)
-- \[<b style="color: #FF9800">post</b>\] [task reset](../9-task/2-post/2-reset.md)
-- ~~\[<b style="color: #FF9800">post</b>\] [motor_off](../5-robot/2-post/1-motor-on.md)~~  
-
-[__SOURCE](1-release-note/60-28.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.28-00 
-</h4>  
-
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
+  실물 비상정지 버튼과 동일한 기능의 API 추가
 
 <br>
 
-<h4 style="
-  background: linear-gradient(135deg, rgb(34, 160, 98), rgb(12, 85, 54)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  margin: 0; 
-  font-size: 14px; 
-  font-weight: bold; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  New Feature
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
+  사양 변경 (v60.28-00 버전의 기존 `emergency_stop` API와 동일하도록 명칭 및 스펙 전환)
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [task reset](../9-task/2-post/2-reset.md)  
+  내부 로직 변경 (R 코드 0을 활용하는 방식으로 시스템 동작 구조 변경)
+
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
+
+- none
+
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> ~~[motor_off](../5-robot/2-post/1-motor-on.md)~~  
+  HRSpace 환경을 고려한 API로, 실기 환경에서의 혼선을 방지하기 위해 Deprecated 처리 (비상정지 API로 대체됨)
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> **task reset (이전 엔드포인트)** `/project/context/tasks` 및 `/project/context/tasks[{task index}]/reset` 경로는 더 이상 지원하지 않음
+
+[__SOURCE](1-release-note/60-28.md)
+<h4 style="display: inline-flex; align-items: center; gap: 8px;">
+  Release Notes - v60.28-00
 </h4>
 
+<br>
 
-- emergency_stop - 비상정지 API 추가. step_no, stop_at 등의 값을 입력하여 특정 시점에 원하는 카테고리의 비상정지를 수행할 수 있도록 지원
-- execute_move - 지정된 포즈로 이동하는 API가 추가
-- execute_cmd - ${cont_model:upper} COM의 콘솔 명령어를 실행하는 API 추가  
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
 
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
+  비상정지 API 추가. `step_no`, `stop_at` 등의 값을 입력하여 특정 시점에 원하는 카테고리의 비상정지를 수행할 수 있도록 지원
 
-<div style="
-  background: linear-gradient(135deg, rgb(58, 78, 160), rgb(38, 48, 90)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Improvement & Change
-</div>
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
+  지정된 포즈로 이동하는 API 추가
+
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_cmd](../10-console/2-post/1-execute_cmd.md)  
+  제어기 COM의 콘솔 명령어를 실행하는 API 추가
+
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
 
 - none
 
+<br>
 
-<div style="
-  background: linear-gradient(135deg, rgb(180, 40, 20), rgb(110, 25, 9)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Deprecated
-</div>
-
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
 
 - none
 
+<br>
 
-<div style="
-  background: linear-gradient(135deg, rgb(255, 140, 0), rgb(160, 88, 7)); 
-  border-radius: 5px; 
-  display: inline-block; 
-  color: white; 
-  padding: 2px 8px; 
-  font-size: 14px; 
-  font-weight: bold; 
-  margin: 8px 0; 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-">
-  Updated API List
-</div>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
 
-- \[<b style="color: #FF9800">post</b>\] [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
-- \[<b style="color: #FF9800">post</b>\] [execute_move](../9-task/2-post/8-execute_move.md)
-- \[<b style="color: #FF9800">post</b>\] [execute_cmd](../10-console/2-post/1-execute_cmd.md)
+- none
 
 [__SOURCE](2-version/README.md)
 # 2. version
