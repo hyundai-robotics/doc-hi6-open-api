@@ -1,13 +1,13 @@
-﻿### `jobs_info`
+### `jobs_info`
 
 #### Description
 
-This is a job file information parameter.
+这是一个作业文件信息参数。
 
 |key|type|description|
 |:---:|:---|:---|
-|fname|`str`|name of job file|
-|job_comment|`str`|comment|
-|n_step|`int`|number of steps|
-|n_total_ax|`int`|number of axes|
-|n_aux_ax|`int`|Number of additional axes|
+|fname|`str`|作业文件名|
+|job_comment|`str`|评论|
+|n_step|`int`|步骤数|
+|n_total_ax|`int`|轴的数量|
+|n_aux_ax|`int`|附加轴的数量|

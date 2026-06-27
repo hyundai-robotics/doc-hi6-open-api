@@ -1,3 +1,3 @@
 ﻿# 7. event-log
 
-- Outputs errors, warnings, execution history, etc. recorded in the controller.
+- 输出在控制器中记录的错误、警告、执行历史等。

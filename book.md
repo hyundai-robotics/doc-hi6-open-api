@@ -1,12 +1,12 @@
 ﻿
 [__SOURCE](README.md)
-# ${cont_model} Controller Function Manual - Open API
+# ${cont_model} 控制器功能手册 - 开放 API
 
 <div style="max-width: fit-content;">
 
 {% hint style="warning" %}
 
-We are not responsible for any damage or problems that arise from using an API that is not officially mentioned in the ${cont_model} Open API manual.
+我们对因使用未在 ${cont_model} 开放 API 手册中正式提及的 API 而引起的任何损坏或问题不承担任何责任。
 
 {% endhint %}
 
@@ -16,151 +16,140 @@ We are not responsible for any damage or problems that arise from using an API t
 
 {% hint style="warning" %}
 
-Signals transmitted from external equipment, high-level control systems, or networks do not fall within the direct control of the manufacturer.  
-Consequently, the manufacturer assumes no liability for any operational failures, malfunctions, or accidents caused by these signals, and all associated responsibilities rest solely with the user.
+来自外部设备、高级控制系统或网络传输的信号不在制造商的直接控制范围内。  
+因此，制造商对因这些信号引起的任何操作失败、故障或事故不承担任何责任，所有相关责任仅由用户承担。
 
 {% endhint %}
 
 </div>
-
 [__SOURCE](0-about-this-manual/README.md)
-# About the Manual
-
+# 关于手册
 [__SOURCE](0-about-this-manual/precautions.md)
-# Precautions
+# 注意事项
 
-{% include file="en/precautions.md" %}
-
+{% include file="zh/precautions.md" %}
 [__SOURCE](0-about-this-manual/safety-notice.md)
-# Safety Cautions
+# 安全警告
 
-{% include file="en/safety-notice.md" %}
-
+{% include file="zh/safety-notice.md" %}
 [__SOURCE](0-intro/README.md)
-# 0. Intro
+# 0. 介绍
 
-You can check the basic information related to ${cont_model} Open API below.
+您可以在下面查看与 ${cont_model} Open API 相关的基本信息。
 
-[0.1 About ${cont_model} Open API](./1-concept/README.md) <br>
-[0.2 Required prior knowledge](./2-prerequisite/README.md) <br>
-[0.3 Sample code](./3-sample-code/README.md) <br>
-[0.4 Simple API call without coding](./4-api-test/README.md)<br>
-[0.5 Precautions Before Starting](./5-caution/README.md)
-
+[0.1 关于 ${cont_model} Open API](./1-concept/README.md) <br>
+[0.2 必要的先前知识](./2-prerequisite/README.md) <br>
+[0.3 示例代码](./3-sample-code/README.md) <br>
+[0.4 无需编码的简单 API 调用](./4-api-test/README.md)<br>
+[0.5 开始前的注意事项](./5-caution/README.md)
 [__SOURCE](0-intro/1-concept/README.md)
-## 0.1 About ${cont_model} Open API
+## 0.1 关于 ${cont_model} 开放 API
 
-In this document, HD Hyundai Robotics publishes an API for application developers to easily monitor and remotely control the robot controller (hereafter referred to as ${cont_model}).<br>
-This enables developers to read and write ${cont_model} data without requiring a thorough comprehension of the source code used in ${cont_model} development.<br>
-The image below will help you better grasp the role of Open API.
+在本文件中，HD 现代机器人发布了一个 API，供应用开发人员轻松监控和远程控制机器人控制器（以下简称 ${cont_model}）。<br>
+这使得开发人员能够读取和写入 ${cont_model} 数据，而无需深入理解用于 ${cont_model} 开发的源代码。<br>
+下面的图像将帮助您更好地理解开放 API 的角色。
 
 <img src="../../_assets/05_open_api_flow.png" style="max-height: 22vh;">
 
-The parts marked in orange in the picture above show the role of Open API.
+上图中标记为橙色的部分显示了开放 API 的角色。
 
-|Arrow sign|Description|
+|箭头标志|描述|
 |:---|:---|
-|`Solid line`|This means that the `developer` (`client`) `requests` information to `${cont_model}` (`server`) using one of four methods (GET, POST, PUT, DELETE).|
-|`Dotted line`|This means that the `controller` that `received` the `request` `sends back` the appropriate `response` in json or text format.|
+|`实线`|这意味着 `开发者` (`客户端`) 使用四种方法中的一种（GET、POST、PUT、DELETE）向 `${cont_model}` (`服务器`) `请求` 信息。|
+|`虚线`|这意味着 `接收` `请求` 的 `控制器` `发送回` 适当的 `响应`，格式为 json 或文本。|
 
-In this way, developers can use the Open API in the document to remotely control or monitor their desktops, laptops, tablet PCs, etc. connected via ${cont_model} and Ethernet based on http and REST API.
+通过这种方式，开发人员可以使用文档中的开放 API 远程控制或监控通过 ${cont_model} 和基于 http 和 REST API 的以太网连接的台式机、笔记本电脑、平板电脑等。
 
 
 <br><br>
 
 
-#### Be sure to check before you start!
+#### 在开始之前请务必检查！
 
-* The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
+* 当前文档是基于 ${cont_model} 开放 API 架构版本 `5` 编写的。您可以通过 [API](../../2-version/1-get/1-api_ver.md) 查看。
 
-* For developers who are familiar with developing HTTP REST API client functions, you can skip from [0.2 Required prior knowledge](../2-prerequisite/README.md) to [0.4 Simple API call without coding](../4-api-test/README.md).
+* 对于熟悉开发 HTTP REST API 客户端功能的开发人员，您可以跳过 [0.2 先决知识](../2-prerequisite/README.md) 到 [0.4 无需编码的简单 API 调用](../4-api-test/README.md)。
 
 
 {% hint style="warning" %}
 
-The APIs described in this document are supported starting from `${cont_model} V60.24-00` unless otherwise specified.
+除非另有说明，本文件中描述的 API 从 `${cont_model} V60.24-00` 开始支持。
 
-Please note that URLs and properties not specified in this document may change without notice in the same API version.
+请注意，本文件中未指定的 URL 和属性可能会在相同 API 版本中不经通知而更改。
 
 {% endhint %}
-
 [__SOURCE](0-intro/2-prerequisite/README.md)
-## 0.2 Required prior knowledge
+## 0.2 先决知识
 
-In order to utilize Open API,you must first understand how to use the ${cont_model} controller.  
-Please refer to the manual below or take training at the HD Hyundai Robotics Joint Training Center.
+为了使用 Open API，您必须首先了解如何使用 ${cont_model} 控制器。  
+请参考下面的手册或在 HD 現代机器人联合培训中心接受培训。
 
-- [${cont_model} Robot Controller Operation Manual](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/README?cont_model=${cont_model})
-
-<br>
-
-Open API is an HTTP-based REST API.Various development languages provide libraries for calling REST API (aka RESTful API),  
-and many developers use them to develop programs. Unless you are an experienced developer,  
-you must be familiar with the basic concepts of how web-based service calls and responses are made, as mentioned in [0.1 About ${cont_model} Open API](../1-concept/README.md).
-
-In this regard, please refer to the points below.
-
-* If you are unfamiliar with the simple API-related explanation below or are not an expert with  
-extensive development experience in applying it, please study first and then use the document.
-* If you need to learn, please learn how to code client functions through REST API calls.
+- [${cont_model} 机器人控制器操作手册](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/README?cont_model=${cont_model})
 
 <br>
 
+Open API 是一种基于 HTTP 的 REST API。各种开发语言提供用于调用 REST API（也称为 RESTful API）的库，  
+许多开发者利用它们来开发程序。除非您是一位经验丰富的开发者，否则，  
+您必须熟悉基本概念，即如何进行基于 Web 的服务调用和响应，如 [0.1 关于 ${cont_model} Open API](../1-concept/README.md) 中提到的。
+
+在这方面，请参考以下要点。
+
+* 如果您对下面的简单 API 相关解释不熟悉或在应用方面没有广泛的开发经验，请先学习，然后使用该文档。
+* 如果您需要学习，请学习如何通过 REST API 调用编写客户端功能。
+
+<br>
 
 {% hint style="warning" %}
 
-We do not accept inquiries about how to code conventional REST API clients.
+我们不接受关于如何编写传统 REST API 客户端的咨询。
 
-We are not responsible for any damages or problems arising from the use of APIs not officially mentioned in the ${cont_model} Open API manual.
+我们不对因使用 ${cont_model} Open API 手册中未正式提及的 API 而导致的任何损害或问题承担责任。
 
 {% endhint %}
 
 ---- 
 
-#### 0.2.1 What is an API?
+#### 0.2.1 什么是 API？
 
-`API` (Application Programming Interface) is a `set of definitions and protocols` for building and  integrating application software ([ref](https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces)).  
-This is how the user sends a `request structured in a particular way` and the provider's software `responds` to it.  
-This allows you to communicate with products or services you don't know how to specifically develop, and simplifies application development, saving time and money.
+`API`（应用程序编程接口）是用于构建和集成应用程序软件的 `一组定义和协议` （[ref](https://www.redhat.com/zh/topics/api/what-are-application-programming-interfaces)）。  
+这就是用户以特定方式发送的 `请求`，以及提供者的软件对此做出的 `响应`。  
+这使您能够与您不知道如何具体开发的产品或服务进行通信，并简化应用程序开发，从而节省时间和金钱。
 
 <br>
 
+#### 0.2.2 什么是 REST API？
 
-#### 0.2.2 What is REST API?
+`REST`（表现层状态转移）是一种对 API 行为施加条件的 `软件架构`。  
+`REST API` 指的是遵循 REST 体系结构风格的 API。也称为 RESTful API （[ref](https://aws.amazon.com/what-is/restful-api/)）。  
+通过 HTTP 请求进行通信，它执行标准的数据库功能（CRUD），如在资源内创建、读取、更新和删除记录。
 
-`REST` (Representational State Transfer) is a `software architecture` that imposes conditions on how an API behaves.  
-`REST API` refers to an API that follows the REST architecture style. Also called RESTful API ([ref](https://aws.amazon.com/what-is/restful-api/)).  
-By communicating through HTTP requests, it performs standard database functions (CRUD) such as Create, Read, Update, and Delete records within the resource.  
+开发者通常使用四种常见的超文本传输协议（HTTP）方法实现 RESTful API （[ref](https://aws.amazon.com/what-is/restful-api/#seo-faq-pairs#what-restful-api-client-contain)）。
 
-Developers often implement RESTful APIs using four common Hypertext Transfer Protocol (HTTP) methods ([ref](https://aws.amazon.com/what-is/restful-api/#seo-faq-pairs#what-restful-api-client-contain)).
-
-- `GET` : Clients use GET to access resources that are located at the specified URL on the server. They can cache GET requests and send parameters in the RESTful API request to instruct the server to filter data before sending.
-- `POST` : Clients use POST to send data to the server. They include the data representation with the request. Sending the same POST request multiple times has the side effect of creating the same resource multiple times.
-- `PUT` : Clients use PUT to update existing resources on the server. Unlike POST, sending the same PUT request multiple times in a RESTful web service gives the same result.
-- `DELETE` : Clients use the DELETE request to remove the resource. A DELETE request can change the server state. However, if the user does not have appropriate authentication, the request fails.
-
+- `GET` : 客户端使用 GET 访问位于服务器指定 URL 的资源。它们可以缓存 GET 请求，并在 RESTful API 请求中发送参数，以指示服务器在发送数据之前进行过滤。
+- `POST` : 客户端使用 POST 将数据发送到服务器。它们在请求中包含数据表示。多次发送相同的 POST 请求会导致同一资源被多次创建。
+- `PUT` : 客户端使用 PUT 更新服务器上的现有资源。与 POST 不同，在 RESTful Web 服务中多次发送相同的 PUT 请求会得到相同的结果。
+- `DELETE` : 客户端使用 DELETE 请求删除资源。DELETE 请求可以改变服务器状态。然而，如果用户没有适当的身份验证，请求将失败。
 [__SOURCE](0-intro/3-sample-code/README.md)
-## 0.3 Sample code
+## 0.3 示例代码
 
-Various development languages provide libraries for calling REST APIs.  
-To learn how to use it, you can easily search and refer to the technical documentation for each development language.
+各种开发语言提供用于调用 REST APIs 的库。  
+要了解如何使用它，您可以轻松搜索并参考每种开发语言的技术文档。
 
-- In this document, we will only explain the calls to the GET and POST methods using C# and python.
+- 在本文档中，我们将仅使用 C# 和 python 解释对 GET 和 POST 方法的调用。
 
-- Let's assume you are making a request to a ${cont_model} controller with IP address 192.168.1.150.
-
+- 假设您正在向 IP 地址 192.168.1.150 的 ${cont_model} 控制器发出请求。
 [__SOURCE](0-intro/3-sample-code/1-csharp.md)
-#### 0.3.1 Sample code - C#
+#### 0.3.1 示例代码 - C#
 
-This document uses `Newtonsoft.Json`, a library for JSON parsing.  
-If it is not installed in your Visual Studio project, please install it using NuGet Package Manager.
+此文档使用 `Newtonsoft.Json`，这是一个用于 JSON 解析的库。  
+如果它尚未安装在您的 Visual Studio 项目中，请使用 NuGet 包管理器进行安装。
 
-* [Newtonsoft.Json License info](https://github.com/JamesNK/Newtonsoft.Json/blob/master)
+* [Newtonsoft.Json 授权信息](https://github.com/JamesNK/Newtonsoft.Json/blob/master)
 
-1) Open `project` properties
-2) `Manage NuGet Packages...`
-3) Find `Json.NET (James Newton-King)` in `Online/nuget.org` and install it. 
-   (If you receive a message that installation is not possible because the version of NuGet Package Manager is too low, select `TOOLS/Extensions and Updates...` from the main menu and update NuGet from Updates..)
+1) 打开 `project` 属性
+2) `管理 NuGet 包...`
+3) 在 `Online/nuget.org` 中找到 `Json.NET (James Newton-King)` 并安装它。  
+   （如果您收到该消息，表示由于 NuGet 包管理器的版本过低而无法安装，请从主菜单中选择 `TOOLS/Extensions and Updates...` 并从更新中更新 NuGet。）
 
 ```csharp
 using System;
@@ -177,7 +166,7 @@ var query = "?type=dob&blk_no=2&sig_no=3";
 
 var request = (HttpWebRequest)WebRequest.Create(uri+path+query);
 request.Method = "GET";
-request.Timeout = 5 * 1000; // 5 sec
+request.Timeout = 5 * 1000; // 5 秒
 
 using (var resp = (HttpWebResponse)request.GetResponse())
 {
@@ -193,44 +182,40 @@ var str = "fb2.do3=" + jobj["val"].ToString();
 Console.WriteLine(str);
 ```
 
-You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
-> Link : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)
-
+您可以通过以下 GitHub 链接查看包含上述源代码的可执行 C# WinForms 示例程序。  
+> 链接 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)
 [__SOURCE](0-intro/3-sample-code/2-python.md)
-#### 0.3.2 Sample code - python
+#### 0.3.2 示例代码 - python
 
-The example code mainly describes `a. synchronous request`.
+示例代码主要描述 `a. 同步请求`。
 
-
-||Synchronous|Asynchronous|
+||同步|异步|
 |:---|:---|:---|
-|blocking|`a. Synchronous request`||
-|non-blocking||`b. Asynchronous request`|
+|阻塞|`a. 同步请求`||
+|非阻塞||`b. 异步请求`|
 
-Differences between the two methods can have serious consequences for TPs and controllers, such as:
-1. Due to frequent synchronous function calls in the UI thread, the UI may not run smoothly and may freeze (`Hanging problem`). 
-2. If no response is received due to a problem on the server (controller) side, the application UI may freeze (`Hanging problem`).
+这两种方法之间的差异可能对 TPs 和控制器产生严重后果，如：
+1. 由于 UI 线程中频繁的同步函数调用，UI 可能无法流畅运行并可能冻结（`挂起问题`）。
+2. 如果由于服务器（控制器）端的问题未收到响应，应用程序 UI 可能冻结（`挂起问题`）。
 
-	
-Therefore, when developing actual applications, please write your code in an asynchronous manner.  
-- Please note that the python script example written in the ${cont_model} Open API description is written synchronously for easy understanding.  
-
+因此，在开发实际应用程序时，请以异步方式编写代码。  
+- 请注意，在 ${cont_model} 开放 API 描述中编写的 python 脚本示例是同步编写的，以便于理解。
 
 <br>
 
-##### a. Synchronous request
-Synchronous is a request method in a blocking state in which other tasks cannot be executed until one request is completed and a response is received.  
-A widely used library for `synchronous` HTTP requests in Python is `requests`.
-If you do not have the `requests` library, you can install it through the Python package manager.  
-	
+##### a. 同步请求
+同步是一种阻塞状态的请求方法，在完成一个请求并收到响应之前，无法执行其他任务。  
+在 Python 中用于 `同步` HTTP 请求的广泛使用的库是 `requests`。  
+如果没有 `requests` 库，可以通过 Python 包管理器进行安装。
+
 ```sh
 $pip install requests
 ```
 
-- Please keep in mind that if you do not receive a response when communicating or if it takes a long time to receive a response, the possibility of a hanging problem may be very high.
+- 请记住，如果在通信时未收到响应或者需要很长时间才能收到响应，发生挂起问题的可能性可能非常高。
 
 ```python
-# sync.py - Synchronous, getting and setting user IO output values
+# sync.py - 同步，获取和设置用户 IO 输出值
 import requests
 import time
 
@@ -239,125 +224,120 @@ head = {'Content-Type': 'application/json; charset=utf-8'}
 path = '/project/control/ios/dio/do_val'
 query = {'type': 'dob', 'blk_no': 2, 'sig_no': 3 }
 
-# (POST) set fb2.do3 value
+# (POST) 设置 fb2.do3 值
 val = 0x79
 req_body = { 'type': 'dob', 'blk_no': 2, 'sig_no': 3, 'val' : val }
 start_time = time.time()
 resp = requests.post(url + path, headers=head, json=req_body)
 end_time = time.time()
-print('[post]', hex(val), 'to fb2.do3', f"Time taken: {end_time - start_time} seconds")
+print('[post]', hex(val), '到 fb2.do3', f"耗时: {end_time - start_time} 秒")
 
-# (GET) get fb2.do3 value
+# (GET) 获取 fb2.do3 值
 total_start_time = time.time()
 for _ in range(5):
     start_time = time.time()
     resp = requests.get(url + path, headers=head, params=query)
     end_time = time.time()
     resp_body = resp.json()
-    print('[get]', hex(resp_body['val']), 'from fb2.do3', f"Time taken: {end_time - start_time} seconds")
+    print('[get]', hex(resp_body['val']), '来自 fb2.do3', f"耗时: {end_time - start_time} 秒")
 total_end_time = time.time()
-print(f"total request time : {total_end_time - total_start_time} seconds")
+print(f"总请求时间 : {total_end_time - total_start_time} 秒")
 ```
 ```bash
 $python sync.py
-[post] 0x79 to fb2.do3 Time taken: 0.004312038421630859 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.05764031410217285 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.06277251243591309 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.0634009838104248 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.06106710433959961 seconds
-[get] 0x79 from fb2.do3 Time taken: 0.04711771011352539 seconds
-total request time : 0.292741060256958 seconds
+[post] 0x79 到 fb2.do3 耗时: 0.004312038421630859 秒
+[get] 0x79 来自 fb2.do3 耗时: 0.05764031410217285 秒
+[get] 0x79 来自 fb2.do3 耗时: 0.06277251243591309 秒
+[get] 0x79 来自 fb2.do3 耗时: 0.0634009838104248 秒
+[get] 0x79 来自 fb2.do3 耗时: 0.06106710433959961 秒
+[get] 0x79 来自 fb2.do3 耗时: 0.04711771011352539 秒
+总请求时间 : 0.292741060256958 秒
 ```
-
 [__SOURCE](0-intro/4-api-test/README.md)
-## 0.4 Simple API call without coding
+## 0.4 简单的 API 调用，无需编码
 
-If you use Open API while developing a client application like [previous example code](../3-sample-code/README.md), you can easily call the API without coding.  
-Through this calling process, you can check whether the request worked properly and what data is returned in response.  
-There are several ways to do this. This section covers two representative ones.
-
-<br>
-
-#### 0.4.1 Using `postman`
-
-`postman` is a widely used API testing platform around the world.
-Postman's `workspace` function enables project-level API testing and history tracking, and is equipped with language-specific code snippets and intuitive UI.
-Simple usage instructions can be found in [1.4.1 Requesting POST in Postman](../4-api-test/1-postman.md).
-
+如果您在开发客户端应用程序时使用 Open API，像 [之前的示例代码](../3-sample-code/README.md)，您可以轻松地调用 API 而无需编码。  
+通过此调用过程，您可以检查请求是否正常工作，以及返回了什么数据作为响应。  
+有几种方法可以实现这一点。本节介绍两种代表性的方式。
 
 <br>
 
+#### 0.4.1 使用 `postman`
 
-#### 0.4.2 Using `Web Browser`
+`postman` 是全球广泛使用的 API 测试平台。  
+Postman 的 `workspace` 功能支持项目级的 API 测试和历史跟踪，并配备特定语言的代码片段和直观的用户界面。  
+简单的使用说明可以在 [1.4.1 在 Postman 中请求 POST](../4-api-test/1-postman.md) 中找到。
 
-Simple `get` requests can be made easily and quickly through a web browser.  
-Additionally, you can use your web browser's extension to directly call `get` requests and other API requests and view the results.  
-You can check simple usage instructions in [1.4.2 Calling API from web browser](../4-api-test/2-web-browser.md).
+<br>
 
+#### 0.4.2 使用 `Web Browser`
+
+简单的 `get` 请求可以通过网页浏览器轻松快速地完成。  
+此外，您可以使用网页浏览器的扩展直接调用 `get` 请求和其他 API 请求并查看结果。  
+您可以在 [1.4.2 从网页浏览器调用 API](../4-api-test/2-web-browser.md) 中查看简单的使用说明。
 [__SOURCE](0-intro/4-api-test/1-postman.md)
-#### 0.4.1 Requesting POST in Postman
+#### 0.4.1 在 Postman 中请求 POST
 
-On this page, use `postman` to call the `POST` request of the REST API and check the result.  
-Additionally, simple UI configuration helps you understand how to use it.
+在此页面上，使用 `postman` 调用 REST API 的 `POST` 请求并检查结果。  
+此外，简单的 UI 配置帮助您了解如何使用它。
 
 <br>
 
-##### a. Main UI composition
+##### a. 主要 UI 组成
 
-You can check the main UI composition through the picture below.
+您可以通过下图查看主要 UI 组成。
 
 <img src="../../_assets/01_postman_desc.png" style="max-height: 55vh;">
 
 <blockquote>
 
-(1) You can simply create a request request through the `+` button. </br>
-(2) This is a space to enter information about the `request`. </br>
-(3) This is a space to check information about `response`. </br>
-(4) This is a space to check the `Code snippet` for each language that is automatically generated by applying the `request` url. </br>
+(1) 您可以通过 ` (+)` 按钮简单地创建一个请求。 </br>
+(2) 这是输入 `request` 信息的空间。 </br>
+(3) 这是检查 `response` 信息的空间。 </br>
+(4) 这是一个检查通过应用 `request` URL 自动生成的每种语言的 `Code snippet` 的空间。 </br>
 
 </blockquote>
 
 <br>
 
-##### b. Testing POST Requests
+##### b. 测试 POST 请求
 
 1. `Request Header`  
-	- Enter the `Key`, `Value` below in the Headers tab.
-  	- About `Content-Type` ([ref](https://blog.postman.com/what-are-http-headers/#Content-type))
+	- 在 Headers 标签下输入 `Key` 和 `力控制变量 (Value)`。  
+	- 关于 `Content-Type` ([ref](https://blog.postman.com/what-are-http-headers/#Content-type))
 	<br><img src="../../_assets/02_postman_headers.png" style="max-height: 14vh;">
 
 <br>
 
 2. `Request Body`  
-	- Select API method as `POST` and enter URL.  
-	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
-	- Click `Send`  
+	- 将 API 方法选择为 `POST` 并输入 URL。  
+	- 点击 `Body` 标签并输入您想请求的 `body-parameter`。 ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
+	- 点击 `Send`  
 		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
 <br>
 
-3. `Response` and `Code snippet`
-	- `request` If the request is completed normally, `HTTP Status` responds with `200 OK` as shown below.([HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
-	- You can also check the `Code snippet` for each language to which the URL is applied.  
+3. `Response` 和 `Code snippet`
+	- 如果请求正常完成，`request` 的 `HTTP Status` 将响应 `200 OK`，如下所示。([HTTP Status](https://developer.mozilla.org/zh-US/docs/Web/HTTP/Status))
+	- 您也可以检查应用于 URL 的每种语言的 `Code snippet`。  
 		<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">  
 		<blockquote>
 
-		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
-		`(2) Python Code snippet` : codes for `post` request in python.  
+		`(1) Response body` : `post` 请求的响应 ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
+		`(2) Python Code snippet` : `post` 请求的 Python 代码。  
 
 		</blockquote>
-
 [__SOURCE](0-intro/4-api-test/2-web-browser.md)
-#### 0.4.2 Calling API from web browser  
+#### 0.4.2 从网络浏览器调用 API  
 
-###### a. Make a simple `GET` request
+###### a. 发起简单的 `GET` 请求
 
-`get` requests can be checked more simply and quickly through a web browser. The order is as follows:
-1. Open web browser
-2. Enter the server-side url of the `get` request in the address bar.
-	- The server-side URL begins with `http://<IP address of ${cont_model} controller>:<http communication port>`, followed by the path and query appropriate for the information you want to extract.
-	- ex) ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
-3. The page for that URL opens and a response is output as shown below.
+`get` 请求可以通过网络浏览器更简单、快速地检查。顺序如下：
+1. 打开网络浏览器
+2. 在地址栏中输入 `get` 请求的服务器端 URL。
+	- 服务器端 URL 以 `http://<${cont_model} 控制器的 IP 地址>:<http 通信端口>` 开头，然后是提取所需信息的路径和查询。
+	- 例如） ```http://192.168.1.150:8888/project/control/ios/dio/do_val?type=dob&blk_no=2&sig_no=3```
+3. 打开该 URL 的页面并输出如下响应。
 	```json
 	{
 		"_type" : "JObject",
@@ -367,47 +347,45 @@ You can check the main UI composition through the picture below.
 
 <br>
 
-###### b. Calling API with `extension`
-If you use Chrome or Edge browsers, you can test APIs other than `get` requests through the Chrome extension.  
-The following extension program is an API tester used by many developers around the world.
-- Chrome extension program : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
+###### b. 使用 `extension` 调用 API
+如果您使用 Chrome 或 Edge 浏览器，可以通过 Chrome 扩展测试其他 API，而不仅仅是 `get` 请求。  
+以下扩展程序是全球许多开发者使用的 API 测试工具。
+- Chrome 扩展程序 : [Talend API Tester](https://chromewebstore.google.com/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm)  
 
-Through this program, you can easily call various APIs like `postman`.
+通过此程序，您可以像 `postman` 一样轻松调用各种 API。
 
 <img src="../../_assets/06_Talend_api_tester.png" style="max-height: 80vh;">
 
 <blockquote>
 
-`(1) Requests/Senarios` : You can set whether to test calls to one API or create a scenario with multiple APIs and test them sequentially.<br>
-`(2) Request` : Enter your request.  
-`(3) Response` : You can check the response to your request.  
-`(4) History` : Prints request history.   
-`(5) Side History Tab` : This tab allows you to check a larger amount of history than the request history list in `(4)`, which can be opened and closed.
+`(1) 请求/场景` : 您可以设置是测试对一个 API 的调用，还是创建多个 API 的场景并依次测试。<br>
+`(2) 请求` : 输入您的请求。  
+`(3) 响应` : 您可以检查对您请求的响应。  
+`(4) 历史` : 打印请求历史。   
+`(5) 侧边历史选项卡` : 此选项卡允许您检查比 `(4)` 中的请求历史列表更多的历史，这可以打开和关闭。
 
 </blockquote>
-
 [__SOURCE](0-intro/5-caution/README.md)
-## 0.5 Caution
+## 0.5 注意事项
 
 {% hint style="warning" %}
 
-This section outlines critical precautions that may cause serious errors in the robot controller.
+本节概述了可能导致机器人控制器严重错误的关键预防措施。
 
-Please ensure you fully understand these items before using the API.
+在使用 API 之前，请确保您完全理解这些事项。
 
 {% endhint %}
 
 
-0.5.1. [Keep-Alive vs Close connection](./1-http-connection.md)
-
+0.5.1. [保持活动状态 vs 关闭连接](./1-http-connection.md)
 [__SOURCE](0-intro/5-caution/1-http-connection.md)
 #### 0.5.1. Keep-Alive vs Close connection
 
 {% hint style="warning" %}
 
-For robot controllers, repeated API requests using the `close` connection type may lead to high CPU load, potentially causing the robot to halt unexpectedly.
+对于机器人控制器，使用 `关闭 (close)` 连接类型的重复 API 请求可能导致 CPU 负载过高，从而可能导致机器人意外停止。
 
-If your application involves frequent API calls, please follow the instructions below and implement them using the **Keep-Alive** connection method.
+如果您的应用程序涉及频繁的 API 调用，请遵循以下说明并使用 **Keep-Alive** 连接方法来实现。
 
 {% endhint %}
 
@@ -420,24 +398,24 @@ If your application involves frequent API calls, please follow the instructions 
 | | Close | Keep-Alive |
 |--| ----- | ----- |
 |Recommended HTTP Version| HTTP/1.0 | HTTP/1.1 |
-|Characteristics| Multiple Connections | Persistent Connection |
+|Characteristics| 多个连接 | 持久连接 |
 
 <img src="../../_assets/07_http_connection.png" style="max-height: 37vh;">
 
 </div>
 
-- The `close` connection type establishes and terminates a connection for every single request and response.<br>
-  This process results in increased latency and resource usage, placing a heavy burden on both the server and the client.
+- `关闭 (close)` 连接类型为每个请求和响应建立和终止连接。<br>
+  这个过程导致延迟和资源使用的增加，给服务器和客户端带来了沉重的负担。
 
-- ${cont_model} uses HTTP/1.1, which defaults to Keep-Alive connections unless explicitly overridden.
+- ${cont_model} 使用 HTTP/1.1，默认情况下使用 Keep-Alive 连接，除非明确覆盖。
 
-- Please refer to the sample code below and make sure that frequently called APIs are implemented using Keep-Alive, not the close method.
+- 请参考下面的示例代码，确保频繁调用的 API 使用 Keep-Alive，而不是 close 方法来实现。
 
 <br>
 
 ###### 1-2. Example Code
 
-- Switching between `close` and `keep-alive` connections is simple and can be done by modifying the request headers.
+- 在 `关闭 (close)` 和 `keep-alive` 连接之间切换很简单，只需修改请求头即可。
 
 - Close connection
   <div style="max-width:fit-content">
@@ -465,36 +443,35 @@ If your application involves frequent API calls, please follow the instructions 
 	URI = "/project/robot/po_cur"
 	URL = BASE_URL + URI
 
-	# default connection is Keep-alive
+	# 默认连接是 Keep-alive
 	response = requests.get(URL)
 	```
 	</div>
 - Packet Capture Comparison - Connection Header info <br>
 	<img src="../../_assets/08_packet_compare.png" style="max-width: 80vw;"><br>
-	Left) Keep-Alive, Right) Close
+	左) Keep-Alive, 右) Close
 
 <br><br>
 
 References
   1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
-
 [__SOURCE](1-release-note/README.md)
 <link rel="stylesheet" href="../_assets/style.css">
 
-# 1. release note 
+# 1. 发布说明
 
-This document summarizes new API additions, changes, and fixes based on the controller COM version.
+本文档总结了基于控制器 COM 版本的新 API 添加、变更和修复。
 
 {% hint style="warning" %}
-**Update and Usage Guidelines**
-* Each release document only describes changes made in that specific version.
-* To use APIs from a higher version, the controller version must be upgraded.
-* Before upgrading, check the release notes to review the impact on the existing system.
+**更新和使用指南**
+* 每个发布文档仅描述该特定版本中所做的更改。
+* 要使用较高版本的 API，必须升级控制器版本。
+* 升级前，请检查发布说明以审核对现有系统的影响。
 {% endhint %}
  
 <div style="width: fit-content;">
 
-|COM Version|Release Date|Link|
+|COM 版本|发布日期|链接|
 |:--:|:--:|:--:|
 |v70-00.00|2026.03|[🔗](../1-release-note/70-00.md)|
 |v60-32.00|2025.11|[🔗](../1-release-note/60-32.md)|
@@ -505,248 +482,211 @@ This document summarizes new API additions, changes, and fixes based on the cont
 
 <div style="max-width:fit-content;">
 
-<h4 style="font-size:15px; font-weight:bold;">Release Note Classification</h4>
+<h4 style="font-size:15px; font-weight:bold;">发布说明分类</h4>
 
-|Classification|Description|
+|分类|描述|
 |:--|:--|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0); white-space: nowrap;">Added</span>|When a new API, field, or option is added.|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5; white-space: nowrap;">Changed</span>|When an existing API behavior, specification, or default value is changed.|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32; white-space: nowrap;">Fixed</span>|When API-related bugs are fixed or abnormal behaviors are resolved.|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C; white-space: nowrap;">Deprecated</span>|When an API is scheduled for future removal or its use is discouraged.|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #9E9E9E; white-space: nowrap;">Caution</span>|Crucial precautions that must be acknowledged when using the API of this version.|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0); white-space: nowrap;">新增</span>|当添加新的 API、字段或选项时。|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5; white-space: nowrap;">更改</span>|当现有 API 的行为、规范或默认值更改时。|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32; white-space: nowrap;">修复</span>|当修复与 API 相关的错误或解决异常行为时。|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C; white-space: nowrap;">弃用</span>|当某个 API 计划未来删除或不鼓励使用时。|
+|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #9E9E9E; white-space: nowrap;">注意</span>|使用该版本 API 时必须承认的重要注意事项。|
 
 
-<h4 style="font-size:15px; font-weight:bold;">API Method Classification</h4>
+<h4 style="font-size:15px; font-weight:bold;">API 方法分类</h4>
 
-| Method | Description |
+| 方法 | 描述 |
 | :--- | :--- |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC; white-space: nowrap;">GET</span> | API to retrieve data and controller status (Safe, no data changes). |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; white-space: nowrap;">POST</span> | API to execute robot control commands, create new resources, and request tasks. |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2; white-space: nowrap;">PUT</span> | API to completely replace or batch update existing settings or data. |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; white-space: nowrap;">DELETE</span> | API to permanently delete created tasks, resources, or data. |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC; white-space: nowrap;">GET</span> | 用于检索数据和控制器状态的 API（安全，不更改数据）。 |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; white-space: nowrap;">POST</span> | 用于执行机器人控制命令、创建新资源和请求任务的 API。 |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2; white-space: nowrap;">PUT</span> | 用于完全替换或批量更新现有设置或数据的 API。 |
+| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; white-space: nowrap;">DELETE</span> | 用于永久删除已创建任务、资源或数据的 API。 |
 
 </div>
-
 [__SOURCE](1-release-note/70-00.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v70.00-00
-  <span style="
-    background: #F44336; 
-    color: #FFFFFF; 
-    border: 2px solid #FFD700; 
-    padding: 1px 5px; 
-    border-radius: 8px; 
-    font-weight: bold; 
-    font-size: 14px; 
-    text-transform: uppercase; 
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    display: inline-flex;
-    align-items: center;
-    height: 1.6em; 
-  ">
-   NEW 
-  </span>
-</h4>
+## V70.00-00
 
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">新增</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_states](../5-robot/1-get/8-joint_states.md)  
-  An API to query the current joint angle (°), velocity, and torque of the robot. It allows selective querying of all axes or specified axis intervals.
+  一个用于查询机器人当前关节角度（°）、速度和扭矩的API。它允许选择性查询所有轴或指定轴间隔。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)  
-  An API to sequentially add the next target joint point to the executing joint trajectory, configuring the continuous joint movement of the robot.
+  一个用于顺序添加下一个目标关节点到正在执行的关节轨迹的API，配置机器人的连续关节运动。
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">更改</h5>
 
 - none
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">修复</h5>
 
 - none
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">弃用</h5>
 
 - none
-
 [__SOURCE](1-release-note/60-32.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-Release Notes - v60.32-00
-</h4>
+## V60.32-00
 
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">新增</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
-  Added a buffer index initialization API that must **<u>essentially</u>** be executed when requesting a trajectory for a new step while the robot is stopped.
+  新增了一個緩衝區索引初始化 API，必須在機器人停止時請求新步驟的軌跡時**<u>本質上</u>**執行。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
-  Added an API to reflect multiple trajectory points in the robot's motion upon receiving them from an external source.
+  新增一個 API，用以在接收到來自外部來源的多個軌跡點時反映在機器人的運動中。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)   
-  Added an API to query the number of buffers currently available for request when requesting a trajectory externally.
+  新增一個 API，用以查詢當請求外部的軌跡時目前可用的緩衝區數量。
 
 <br>
 
-<h5  style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
+<h5  style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">變更</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)  
-  Added validation to prevent calls during program playback.
+  新增驗證以防止在程序播放期間進行調用。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-  Added a feature to output a notice popup when called.
+  新增一個功能，在調用時輸出通知彈窗。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  Subdivided error codes by validation. Added a feature to output a notice popup when called.
+  按驗證細分錯誤代碼。當調用時新增一個功能以輸出通知彈窗。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  Added validation to ensure operation only in remote mode. Subdivided error codes by exceptions.
+  新增驗證以確保只在遠端模式下操作。按例外細分錯誤代碼。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
-  Added validation to ensure operation only in remote mode.
+  新增驗證以確保只在遠端模式下操作。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
-  Added validation to ensure operation only in remote mode.
+  新增驗證以確保只在遠端模式下操作。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
-  Added validation to ensure operation only in remote mode. Added a feature to output a notice popup when called.
+  新增驗證以確保只在遠端模式下操作。新增一個功能在調用時輸出通知彈窗。
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">修正</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  Fixed a bug where a `403 BAD Request` was responded when requesting an immediate stop (category 0).
+  修正了一個錯誤，當請求立即停止（類別 0）時回應了 `403 BAD Request`。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  Fixed a bug related to responses under specific conditions.
+  修正了一個與特定條件下的回應相關的錯誤。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
-  Fixed a bug where `motor_on` did not operate when attempting it after switching to manual mode during program playback in remote mode.
+  修正了一個錯誤，在遠端模式下程序播放期間切換至手動模式後嘗試時 `motor_on` 不運作。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
-  Fixed a bug where calls were not working in remote mode.
+  修正了一個錯誤，調用在遠端模式下不工作。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
-  Fixed a bug where calls were not working in remote mode.
+  修正了一個錯誤，調用在遠端模式下不工作。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [reset](../9-task/2-post/2-reset.md)  
-  Fixed a bug where normal operation did not occur in remote mode.
+  修正了一個錯誤，在遠端模式下正常操作未發生。
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> Program Duplicate Execution Error  
-  Fixed a bug where the program was executed redundantly when calling APIs in a specific sequence.  
-  *(Sequence: Motor On → R0 → Delete Job → Upload Job → Reload Job → Set Current PC → Play Robot)*
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> 程序重複執行錯誤  
+  修正了一個錯誤，在特定順序調用 API 時，程序重複執行。  
+  *(順序：Motor On → R0 → 刪除任務 → 上傳任務 → 重新加載任務 → 設置當前 PC → 播放機器人)*
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">已棄用</h5>
 
-- none
-
+- 無
 [__SOURCE](1-release-note/60-30.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.30-00
-</h4>
+## V60.30-00
 
-<br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">新增</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
-  Added an API to request emergency stop status check.
+  添加了一个请求紧急停止状态检查的API。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-  Added an API with the same function as the physical emergency stop button.
+  添加了一个与物理紧急停止按钮功能相同的API。
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">更改</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  Specification change (Changed name and specs to be identical to the existing `emergency_stop` API of version v60.28-00).
+  规格更改（名称和规格更改为与现有的 `emergency_stop` API 版本 v60.28-00 完全相同）。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [task reset](../9-task/2-post/2-reset.md)  
-  Internal logic change (The system operation structure changed to utilize R-code 0).
+  内部逻辑更改（系统操作结构更改为利用 R-code 0）。
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">修复</h5>
 
-- none
+- 无
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">已弃用</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> ~~[motor_off](../5-robot/2-post/1-motor-on.md)~~  
-  An API considering the HRSpace environment; Deprecated to prevent confusion in real machine environments (Replaced by the emergency stop API).
+  一个考虑到 HRSpace 环境的API；已弃用以防止在实际机器环境中混淆（由紧急停止API替换）。
 
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> **task reset (Previous endpoint)** Paths `/project/context/tasks` and `/project/context/tasks[{task index}]/reset` are no longer supported.
-
+- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> **task reset (先前的端点)** 路径 `/project/context/tasks` 和 `/project/context/tasks[{task index}]/reset` 不再受支持。
 [__SOURCE](1-release-note/60-28.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.28-00
-</h4>
+## V60.28-00
 
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">新增</h5>
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
-  Added an emergency stop API. Supports performing an emergency stop of a desired category at a specific point in time by inputting values such as `step_no` and `stop_at`.
+  新增了紧急停止 API。通过输入 `step_no` 和 `stop_at` 等值，支持在特定时间点对所需类别执行紧急停止。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  Added an API to move to a designated pose.
+  新增了移动到指定姿势的 API。
 
 - <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_cmd](../10-console/2-post/1-execute_cmd.md)  
-  Added an API to execute console commands of the controller COM.
+  新增了执行控制器 COM 的控制台命令的 API。
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">变更</h5>
 
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- none
+- 无
 
 <br>
 
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">修复</h5>
 
-- none
+- 无
 
+<br>
+
+<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">已弃用</h5>
+
+- 无
 [__SOURCE](2-version/README.md)
 # 2. `version`
 
-- Check the current API version or robot controller system version.
-
+- 检查当前的 API 版本或机器人控制器系统版本。
 [__SOURCE](2-version/1-get/README.md)
 ## 2.1 `version/get`
 
-- Send a GET request for information about the current API version or robot controller system version.  
-- Receive a response by setting the correct path-parameter and query-parameter for each API.  
+- 发送 GET 请求以获取有关当前 API 版本或机器人控制系统版本的信息。  
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。
 [__SOURCE](2-version/1-get/1-api_ver.md)
 #### 2.1.1 `api_ver`
 
 ##### Description
 
-In rare cases, the schema version of your API may change the way it communicates with the controller or its data structures.  
-This may cause problems with the client program, so confirmation through the corresponding function is required.  
-If there is a change in the schema version for each API function, it will be notified through a separate notation on the description page.  
+在极少数情况下，您的 API 的模式版本可能会更改与控制器或其数据结构的通信方式。  
+这可能会导致客户端程序出现问题，因此需要通过相应的功能进行确认。  
+如果每个 API 功能的模式版本发生变化，将在描述页面上通过单独的标注进行通知。  
 
-- `GET` : Optain the Open API version number
+- `GET` : 获取开放 API 版本号
 
 ##### path-parameter
 
@@ -756,8 +696,8 @@ GET /api_ver
 
 ##### response-body
 
-- Open API version number
-- The initial ${cont_model} Open API is a document written based on `version 5`.
+- 开放 API 版本号
+- 初始 ${cont_model} 开放 API 是基于 `version 5` 编写的文档。
 
 ##### Example
 
@@ -787,35 +727,34 @@ print(get_api_ver())
 $python test.py
 5
 ```
-
 [__SOURCE](2-version/1-get/2-sysver.md)
 #### 2.1.2 `sysver`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the software version of the robot controller system.
+- `GET` : 获取机器人控制器系统的软件版本。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /versions/sysver
 ```
 
-##### response-body
+##### 响应主体
 
-modules : Array of module version information
-  - module version information :
-    - `name` : module name
+modules : 模块版本信息数组
+  - 模块版本信息 :
+    - `名称 (name)` : 模块名称
 		|module name|description|
 		|---:|:---|
-		|com|robot controller|
-		|tp|teaching pendant|
-    - `ver` : version number
-    - `build-date` : build date
-    - `build-time` : build time
-    - `commit-id` : Commit ID of source code
+		|com|机器人控制器|
+		|tp|教学挂件|
+    - `ver` : 版本号
+    - `build-date` : 构建日期
+    - `build-time` : 构建时间
+    - `commit-id` : 源代码的提交 ID
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -834,7 +773,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -852,23 +791,22 @@ print(get_sysver())
 $python test.py
 {'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
 ```
-
 [__SOURCE](3-project/README.md)
 # 3. `project`
 
-- Reads condition settings, project information, and job file information.
-- You can reload updated job files or delete specific job files.
+- 读取条件设置、项目信息和作业文件信息。
+- 您可以重新加载更新的作业文件或删除特定的作业文件。
 [__SOURCE](3-project/1-get/README.md)
 ## 3.1 `project/get`
 
-- Send a GET request for condition settings, project information, and job file information.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送 GET 请求以获取条件设置、项目信息和作业文件信息。
+- 通过为每个 API 设置正确的路径参数和查询参数接收响应。
 [__SOURCE](3-project/1-get/1-rgen.md)
 #### 3.1.1 `rgen`
 
 ##### Description
 
-- `GET` : Obtain remote general information in the controller.
+- `GET` : 在控制器中获取远程一般信息。
 
 ##### path-parameter
 
@@ -881,49 +819,49 @@ GET /project/rgen
 ###### 1) Mode
 |key|value|type|description|
 |:---|:---|:---|:---|
-|`cur_mode`| `0` : manual <br> `1` : manual, system settings <br>`3` : auto, 1-cycle <br> `4` : auto, continue (cycle)|`int`|manual/auto mode|
-|`enable_state`|`0` Byte(`LSB`) : Motor ON (0: On / 1: Off / 2: Busy) <br> `1` Byte : TP Enable (deadman) Switch (0: OFF / 1: ON)<br>`2` Byte : Machine Lock (0: OFF / 1: ON)<br>`3` Byte : gun Lock (0: OFF / 1: ON)<br>`4` Byte : gun (0: OFF / 1: ON)|`int`||
-|`is_playback`|`0` : Pause <br>`1` : play|`int`||
-|`is_remote_mode`|`0`: False <br> `1`: True|`int`|Remote mode or not|
-|`is_ext_start`|`0`: False <br> `1`: True|`int`|External start-up or not|
-|`is_ext_prog_sel`|`0`: False <br> `1`: True|`int`|Whether to select an external program|
+|`cur_mode`| `0` : 手动 <br> `1` : 手动, 系统设置 <br>`3` : 自动, 1周期 <br> `4` : 自动, 继续 (循环)|`int`|手动/自动模式|
+|`enable_state`|`0` Byte(`LSB`) : 电机开启 (0: 开 / 1: 关 / 2: 忙)<br> `1` Byte : TP 启用 (死区) 开关 (0: 关 / 1: 开)<br>`2` Byte : 机器锁 (0: 关 / 1: 开)<br>`3` Byte : 枪锁 (0: 关 / 1: 开)<br>`4` Byte : 枪 (0: 关 / 1: 开)|`int`||
+|`is_playback`|`0` : 暂停 <br>`1` : 播放|`int`||
+|`is_remote_mode`|`0`: 错误 <br> `1`: 正确|`int`|是否为远程模式|
+|`is_ext_start`|`0`: 错误 <br> `1`: 正确|`int`|是否为外部启动|
+|`is_ext_prog_sel`|`0`: 错误 <br> `1`: 正确|`int`|是否选择外部程序|
 
 <br>
 
 ###### 2) current program counter
-This is the point where the bar cursor on the teach pendant JOB panel is located in manual mode or automatic mode. This is the currently executing statement or the target location for editing.
+在手动模式或自动模式下，教导挂件 JOB 面板上的条形光标所在位置。这是当前正在执行的语句或编辑的目标位置。
 |key|type|description|
 |:---|:---|:---|
-|`cur_prog_no`|`int`|current program number|
-|`cur_step_no`|`int`|current step number|
-|`cur_func_no`|`int`|current function number|
+|`cur_prog_no`|`int`|当前程序编号|
+|`cur_step_no`|`int`|当前步骤编号|
+|`cur_func_no`|`int`|当前功能编号|
 
 <br>
 
 ###### 3) moving program counter
-This is the target step the robot is moving during playback.
+这是机器人在回放期间移动的目标步骤。
 |key|type|description|
 |:---|:---|:---|
-|`mov_prog_no`|`int`|moving program number|
-|`mov_step_no`|`int`|moving step number|
-|`mov_func_no`|`int`|moving function number|
+|`mov_prog_no`|`int`|移动程序编号|
+|`mov_step_no`|`int`|移动步骤编号|
+|`mov_func_no`|`int`|移动功能编号|
 
 <br>
 
 ###### 4) Speed
 |key|type|description|
 |:---|:---|:---|
-|`spd_lev`|`int`|Manual mode jog speed level (1~8)|
-|`manual_spd_max`|`int`|Manual mode maximum speed (mm/sec)|
-|`auto_spd`|`int`|Auto mode playback speed (%)|
-|`jog_inch_status`|`int`|jog inching state (0:OFF/ 1:ON)|
-|`step_execute_unit_status`|`int`|StepFWD execution unit (run to)<br>0: Cmd <br>1: Step<br>2: End |
-|`cont_path`|`int`|continuous motion mode (0~2)|
+|`spd_lev`|`int`|手动模式 jog 速度级别 (1~8)|
+|`manual_spd_max`|`int`|手动模式最大速度 (mm/sec)|
+|`auto_spd`|`int`|自动模式回放速度 (%)|
+|`jog_inch_status`|`int`|jog 细微移动状态 (0:关/ 1:开)|
+|`step_execute_unit_status`|`int`|StepFWD 执行单元 (运行到)<br>0: 命令 <br>1: 步骤<br>2: 结束 |
+|`cont_path`|`int`|连续运动模式 (0~2)|
 
 <br>
 
 ##### Example
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -944,13 +882,12 @@ get_is_remote_mode()
 $python test.py
 is remote mode? 0
 ```
-
 [__SOURCE](3-project/1-get/2-jobs_info.md)
 #### 3.1.2 `jobs_info`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain information about job programs.
+- `GET` : 获取有关作业程序的信息。
 
 ##### path-parameter
 
@@ -960,9 +897,9 @@ GET /project/jobs_info
 
 ##### response-body
 
-- [job file information](../../99-schema/jobs_info.md)
+- [作业文件信息](../../99-schema/jobs_info.md)
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -1001,7 +938,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -1023,45 +960,43 @@ $python test.py
 {'_type': 'JObject', 'job_comment': '', 'fname': '0002.job', 'n_step': 9, 'n_aux_ax': -1, 'n_total_ax': -1}, 
 {'_type': 'JObject', 'job_comment': '', 'fname': '0003.job', 'n_step': 0, 'n_aux_ax': -1, 'n_total_ax': -1}]
 ```
-
 [__SOURCE](3-project/2-post/README.md)
 ## 3.2 `project/post`
 
-- Send a POST request for condition settings, project information, and job file information.
-- You must write the correct request-body for each API.
-
+- 发送一个 POST 请求以获取条件设置、项目信息和作业文件信息。
+- 您必须为每个 API 编写正确的请求体。
 [__SOURCE](3-project/2-post/1-reload_updated_jobs.md)
 #### 3.2.1 `reload_updated_jobs`
 
-##### Description
+##### 描述
 
-- `POST` : Send a request to update working files.
-- When transmitting a job file to the controller via FTP, a reload request must be made through the corresponding API for the transmitted job file to be reflected in memory.
+- `POST` : 发送请求以更新工作文件。
+- 在通过 FTP 将作业文件传输到控制器时，必须通过相应的 API 发起重载请求，以使传输的作业文件在内存中反映。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/reload_updated_jobs
 ```
 
-##### request-body
+##### 请求体
 
 ```json
 {}
 ```
 
-##### Description
+##### 描述
 
 ```python
-request url:
+请求 URL:
 POST /project/reload_updated_jobs
 
-request-body: {}
+请求体: {}
 ```
 
-Python Script Example
+Python 脚本示例
 
-- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
+- 请参考 [here](https://developer.mozilla.org/zh-US/docs/Web/HTTP/Status/200) 以获取响应的 HTTP 状态码。
 ```python
 # test.py
 import requests 
@@ -1082,13 +1017,12 @@ print(f"response: {post_reload_updated_jobs()}")
 $python test.py
 response: 200 
 ```
-
 [__SOURCE](3-project/2-post/2-jobs-delete_job.md)
 #### 3.2.2 `delete_job`
 
-##### Description
+##### 描述
 
-- `POST` : Send a request to remove a working file.
+- `POST` : 发送请求以删除工作文件。
 
 ##### path-parameter
 
@@ -1104,7 +1038,7 @@ POST /project/jobs/delete_job
 }
 ```
 
-##### Example
+##### 示例
 
 ```json
 request url:
@@ -1116,7 +1050,7 @@ request-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -1138,35 +1072,32 @@ print(f"response: {post_delete_job('0002.job')}")
 $python test.py
 response: 200 
 ```
-
 [__SOURCE](4-control/README.md)
 # 4. `control`
 
-- Apply settings of the controller and process input/output values.
-- It covers information on system input/output, digital input/output, condition settings, and user coordinate system.
-
-<br>
+- 应用控制器的设置并处理输入/输出值。
+- 它涉及系统输入/输出、数字输入/输出、条件设置和用户坐标系统的信息。
 [__SOURCE](4-control/1-get/README.md)
 ## 4.1 `control/get`
 
-- Send a GET request for controller setting information and input/output values.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送 GET 请求以获取控制器设置信息和输入/输出值。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。
 [__SOURCE](4-control/1-get/1-op_cnd.md)
 #### 4.1.1 `op_cnd`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the operation condition setting values.
+- `GET` : 获取操作条件设置值。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 GET /project/control/op_cnd
 ```
 
-##### response-body
+##### 响应体
 
-- [Condition Setting parameter](../../99-schema/op_cnd.md)
+- [条件设置参数](../../99-schema/op_cnd.md)
 
 <blockquote>
 
@@ -1187,7 +1118,7 @@ GET /project/control/op_cnd
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -1207,14 +1138,13 @@ print(get_operation_condition())
 $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
 ```
-
 [__SOURCE](4-control/1-get/2-ucss-ucs_nos.md)
 #### 4.1.2 `ucss/ucs_nos`
 
 ##### Description
 
-- `GET` : Obtains a list of user coordinate systems currently in use.
-- Prints a list of user coordinate systems registered through `[F2: system] - 2: Control parameter - 6: Coordinate registration`.
+- `GET` : 获取当前使用的用户坐标系列表。
+- 打印通过 `[F2: 系统] - 2: 控制参数 - 6: 坐标系注册 ([F2: system] - 2: Control parameter - 6: Coordinate registration)` 注册的用户坐标系列表。
 
 ##### path-parameter
 
@@ -1255,25 +1185,24 @@ print(f"{get_ucs_nos()}")
 $python test.py
 [1, 2, 3]
 ```
-
 [__SOURCE](4-control/2-post/README.md)
 ## 4.2 `control/post`
 
-- Sends a POST request for the controller's setting information and input/output values.
-- You must write the correct request-body for each API.
+- 发送用于控制器设置信息和输入/输出值的POST请求。
+- 您必须为每个API编写正确的请求体。
 [__SOURCE](4-control/3-put/README.md)
 ## 4.3 `control/put`
 
-- Sends a PUT request for the controller's setting information and input/output values.
-- You must write the correct request-body for each API.
+- 发送用于控制器的设置信息和输入/输出值的 PUT 请求。
+- 您必须为每个 API 编写正确的请求主体。
 [__SOURCE](4-control/3-put/1-op_cnd.md)
 #### 4.3.1 `op_cnd`
 
 ##### Description
 
-- `PUT` : Change the robot's condition setting values.
-- If you open the `condition setting window(cond.set)` in TP and request the corresponding method,  
-you must close and reopen the window for the value to be reflected.
+- `PUT` : 更改机器人的状态设置值。
+- 如果在 TP 中打开 `condition setting window(cond.set)` 并请求相应的方法，  
+您必须关闭并重新打开窗口，以使值反映出来。
 
 ##### path-parameter
 
@@ -1325,19 +1254,16 @@ print(f"response: {put_op_cnd()}")
 $python test.py
 response: 200 
 ```
-
 [__SOURCE](5-robot/README.md)
-# 5. `robot`
+# 5. `机器人 (robot)`
 
-- You can check remote control and monitoring of robot and tool data.
-- It covers motor on/off, robot posture, tools, jog coordinate system, etc.
-
+- 您可以检查机器人和工具数据的远程控制和监控。
+- 它涵盖电机开/关、机器人姿态、工具、Jog 坐标系等。
 [__SOURCE](5-robot/1-get/README.md)
 ## 5.1 `robot/get`
 
-- Send GET requests for robot and tool data.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
-
+- 发送 GET 请求以获取机器人和工具数据。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。
 [__SOURCE](5-robot/1-get/1-motor_on_state.md)
 #### 5.1.1 `motor_on_state`
 
@@ -1345,7 +1271,7 @@ response: 200
 
 `motor_on_state`
 
-- `GET` : Obtain the motor on status.
+- `GET` : 获取电机开启状态。
 
 ##### path-parameter
 
@@ -1356,9 +1282,9 @@ GET /project/robot/motor_on_state
 ##### response-body
 
 - val :
-  - `0` : on
-  - `1` : off
-  - `2` : busy (Transitioning state)
+  - `0` : 开启
+  - `1` : 关闭
+  - `2` : 繁忙（转换状态）
 
 ##### Example
 ```python
@@ -1392,13 +1318,12 @@ print(f"Motor On status: {get_motor_on_state()['val']}")
 $python test.py
 Motor On status: 1
 ```
-
 [__SOURCE](5-robot/1-get/2-po_cur.md)
 #### 5.1.2 `po_cur`
 
 ##### Description
 
-- `GET` : Get the pose the robot is currently taking.
+- `GET` : 获取机器人当前所处的姿态。
 
 ##### path-parameter
 
@@ -1408,26 +1333,26 @@ GET /project/robot/po_cur
 
 ##### query-parameter
 
-- `task_no` : task number (0~7).
-  - unspecified : Applied as task 0.
-  - &gt;=0 : If mechinfo is not specified, the current mechinfo of the task is applied.
+- `task_no` : 任务编号 (0~7)。
+  - unspecified : 应用为任务 0。
+  - &gt;=0 : 如果未指定 mechinfo，则应用任务的当前 mechinfo。
 - `crd` :  
-  - unspecified : Obtain all tcp, axis, and encoder.
-  - <0 : Follows the current recording coordinate system.
-  - &gt;=0 : [coordinate system](../../99-schema/crdsys.md)
-- `ucrd_no` : User coordinate system number (Specified only when crd is user.)
-- `mechinfo` : [Mechanism information](../../99-schema/mechinfo.md)
+  - unspecified : 获取所有 tcp、轴和编码器。
+  - <0 : 遵循当前记录的坐标系统。
+  - &gt;=0 : [坐标系统](../../99-schema/crdsys.md)
+- `ucrd_no` : 用户坐标系统编号 (仅在 crd 为用户时指定)。
+- `mechinfo` : [机制信息](../../99-schema/mechinfo.md)
 
 ##### response-body
 
-- [Pose information](../../99-schema/pose.md)
+- [姿态信息](../../99-schema/pose.md)
 
 
 ##### Example
 
-Example of a system with 6 robot axes (j1~j6) + 1 driving axis (j7) + 2 positioner axes (j8, j9).
+示例系统包含 6 个机器人轴 (j1~j6) + 1 个驱动轴 (j7) + 2 个定位轴 (j8, j9)。
 
-- Obtain only the base coordinates of the robot
+- 仅获取机器人的基坐标
 
 ```python
 request url:
@@ -1448,7 +1373,7 @@ response-body:
 }
 ```
 
-- Obtaining axis coordinates of all axes
+- 获取所有轴的轴坐标
 
 ```python
 request url:
@@ -1472,7 +1397,7 @@ response-body:
 }
 ```
 
-- Obtain the axis coordinates of the positioner 2 axis (i.e. mechanism M2)
+- 获取定位器 2 轴的轴坐标 (即机制 M2)
 
 ```python
 request url:
@@ -1499,7 +1424,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -1520,13 +1445,12 @@ print(get_base_coordinate())
 $python test.py
 {'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
 ```
-
 [__SOURCE](5-robot/1-get/3-cur_tool_data.md)
 #### 5.1.3 `cur_tool_data`
 
-##### Description
+##### 描述
 
-- `GET` : Obtaining the robot's current tool data.
+- `GET` : 获取机器人的当前工具数据。
 
 ##### path-parameter
 
@@ -1536,9 +1460,9 @@ GET /project/robot/cur_tool_data
 
 ##### response-body
 
-- val : [Tool Data](../../99-schema/tool_data.md)
+- val : [工具数据](../../99-schema/tool_data.md)
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -1564,7 +1488,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -1584,13 +1508,12 @@ print(get_cur_tool_data())
 $python test.py
 {'_type': 'Tool', 'x': 0.0, 'rx': 0.0, 'y': 0.0, 'ry': 0.0, 'z': 0.0, 'rz': 0.0, 'cy': 0.0, 'mass': 20.0, 'cx': 100.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'bias_2': 0.0, 'mass_esti': 20.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```
-
 [__SOURCE](5-robot/1-get/4-tools.md)
 #### 5.1.4 `tools`
 
 ##### Description
 
-- `GET` : Get all tool information for the robot. Only tools that exist among tools from T0 to T31 are obtained.
+- `GET` : 获取机器人所有工具信息。仅获取 T0 到 T31 范围内存在的工具。
 
 ##### path-parameter
 
@@ -1600,15 +1523,15 @@ GET /project/robot/tools
 
 ##### response-body
 
-- t_0 : [Tool data](../../99-schema/tool_data.md)
-- t_1 : Tool data
-- t_2 : Tool data  
+- t_0 : [工具数据](../../99-schema/tool_data.md)
+- t_1 : 工具数据
+- t_2 : 工具数据  
 ...
-- t_31 : Tool data
+- t_31 : 工具数据
 
 ##### Example
 
-An example of a system in which only tool 0 and tool 31 exist.
+仅存在工具 0 和工具 31 的系统示例。
 
 ```python
 request url:
@@ -1623,7 +1546,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -1643,13 +1566,12 @@ print(get_tools_data())
 $python test.py
 {'_type': 'Tools', 't_31': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_0': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0, 'load_rate': {'_type': 'JObject', 'high_load_mode': -11, 'moment_rate': 0, 'inertia_rate': 0, 'mass_rate': 0}}, 't_1': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_15': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}}
 ```
-
 [__SOURCE](5-robot/1-get/5-tools_t.md)
 #### 5.1.5 `tools/t_{number}`
 
-##### Description
+##### 描述
 
-- `GET` : This is a function that receives information on the settings of a specific tool.
+- `GET` : 这是一个接收特定工具设置信息的函数。
 
 ##### path-parameter
 
@@ -1659,9 +1581,9 @@ GET /project/robot/tools/t_{number}
 
 ##### response-body
 
-- [Tool data](../../99-schema/tool_data.md)
+- [工具数据](../../99-schema/tool_data.md)
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -1680,7 +1602,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -1700,14 +1622,13 @@ print(get_tool1_data())
 $python test.py
 {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```
-
 [__SOURCE](5-robot/1-get/6-emergency_stop.md)
 #### 5.1.6 `emergency_stop`
 
-##### Description
+##### 描述
 
-- `GET` : Retrieves information about the state of the emergency stop button being pressed.  
--  When an emergency stop is requested via the API, the controller returns a value of 1 at the moment it receives the API request.   
+- `GET` : 获取关于紧急停止按钮被按下的状态的信息。  
+- 当通过 API 请求紧急停止时，控制器在收到 API 请求的瞬间返回值 1。   
 
 ##### path-parameter
 
@@ -1717,10 +1638,10 @@ GET /project/robot/emergency_stop
 
 ##### response-body
 
-- 0: emergency button released
-- 1: emergency button pressed 
+- 0: 紧急按钮释放
+- 1: 紧急按钮被按下 
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -1732,7 +1653,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -1756,14 +1677,13 @@ print(f"{get_emergency_stop()}")
 $python test.py
 {'_type': 'JObject', 'val': 0}
 ```
-
 [__SOURCE](5-robot/1-get/7-joint_traject_buf_avail.md)
 #### 5.1.7 `joint_traject_buf_avail`
 
-##### Description
-- Supported Version : `60.32-00` &uparrow;
-- `GET` : Returns the available size of the trajectory buffer.
-- When requesting trajectories consecutively, you must use this function to ensure that the size of each trajectory request does not exceed the available buffer space.
+##### 描述
+- 支持版本 : `60.32-00` &uparrow;
+- `GET` : 返回轨迹缓冲区的可用大小。
+- 在连续请求轨迹时，您必须使用此函数以确保每个轨迹请求的大小不超过可用缓冲区空间。
 
 ##### path-parameter
 
@@ -1775,14 +1695,14 @@ GET /project/robot/trajectory/joint_traject_buf_avail
 
 ##### response-body
 
-- val: Number of available buffer slots (maximum: 2048)
+- val: 可用缓冲槽的数量（最大：2048）
 
-##### status code
-  - 200 : Request succeeded
-  - 403 : Request failed
-    - Returned when calling an unsupported API
+##### 状态码
+  - 200 : 请求成功
+  - 403 : 请求失败
+    - 调用不支持的 API 时返回
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -1795,7 +1715,7 @@ response-body:
 ```
 </div>
 
-Python Script Example
+Python 脚本示例
 
 <div style="width: fit-content;">
 
@@ -1811,7 +1731,7 @@ def get_jt_buff_avail_num(base_url: str, session: requests.Session):
         ret.raise_for_status()
         return ret.json()
     except Exception as e:
-        print(f"[ERROR] {e}")
+        print(f"[错误] {e}")
         return None
 
 
@@ -1827,15 +1747,14 @@ $python test.py
 {'val': 2048}
 ```
 </div>
-
 [__SOURCE](5-robot/1-get/8-joint_states.md)
 #### 5.1.8 `joint_states`
 
-##### Description
-- Supported version: `70.00-00` ↑
-- `GET`: Retrieves the robot's current joint states.
-- Returns **joint angle (position, °), velocity, and torque (effort)** information for each joint.  
-  You can query all axes or selectively query a specified range of axes.
+##### 描述
+- 支持的版本: `70.00-00` ↑
+- `GET`: 检索机器人的当前关节状态。
+- 返回每个关节的**关节角度（位置, °）、速度和扭矩（努力）**信息。  
+  您可以查询所有轴，或选择性查询指定范围的轴。
 
 ##### path-parameter
 
@@ -1849,30 +1768,30 @@ GET /project/robot/joint_states
 
 ##### query-parameter
 
-* * If no parameters are specified, all joints are queried.
-* jno_start (optional)
+* * 如果未指定参数，则查询所有关节。
+* jno_start (可选)
 
-  * Joint index to start querying from (1-based)
-* jno_n (optional)
+  * 从哪个关节索引开始查询（从1开始计数）
+* jno_n (可选)
 
-  * Number of joints to query
+  * 要查询的关节数量
 
 ##### response
 
-1. status code
+1. 状态代码
 
    * 200 : OK
-   * 400 : Bad Request
+   * 400 : 错误请求
 
-     * Query parameter validation failed
-   * 403 : Forbidden
-   * 404 : Not Found
+     * 查询参数验证失败
+   * 403 : 禁止
+   * 404 : 未找到
 
-2. response-body
+2. 响应体
 
-   * position : Joint angle array (deg)
-   * velocity : Joint velocity array
-   * effort : Joint torque array (Nm)
+   * position : 关节角度数组（度）
+   * velocity : 关节速度数组
+   * effort : 关节扭矩数组（Nm）
 
         <div style="width: fit-content;">
 
@@ -1886,7 +1805,7 @@ GET /project/robot/joint_states
 
         </div>
 
-##### Usage Example
+##### 使用示例
 
 <div style="max-width: 60vw;">
 
@@ -1902,7 +1821,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python脚本示例
 
 ```python
 # test.py
@@ -1933,20 +1852,18 @@ $python test.py
 ```
 
 </div>
-
 [__SOURCE](5-robot/2-post/README.md)
 ## 5.2 `robot/post`
 
-- Send POST requests for robot and tool data.
-- You must write the correct request-body for each API.
-
+- 发送用于机器人和工具数据的POST请求。
+- 您必须为每个API编写正确的请求体。
 [__SOURCE](5-robot/2-post/1-motor-on.md)
 #### 5.2.1 `motor_on`
 
 ##### Description
 
-- `POST` : Performs motor ON.
-- The `motor_off` API has been deprecated and is no longer supported starting from [v60.30-00](../../1-release-note/60-30.md).
+- `POST` : 执行电动机开启。
+- `motor_off` API 已被弃用，从 [v60.30-00](../../1-release-note/60-30.md) 开始不再支持。
 
 ##### path-parameter
 
@@ -1965,11 +1882,11 @@ POST /project/robot/motor_on
 1. status code
 
 - 200 : OK
-- 400 : Bad Request
-  - The request body failed validation
-- 403 : Forbidden
-  - An API request was attempted while not in Remote Mode (effective from v60.30-09).
-- 404 : Not Found
+- 400 : 错误请求
+  - 请求体未通过验证
+- 403 : 禁止
+  - 在非远程模式下尝试了 API 请求（自 v60.30-09 起生效）。
+- 404 : 未找到
 
 
 2. response-body
@@ -1982,7 +1899,7 @@ POST /project/robot/motor_on
 
 3. error code
 
-- -38500 : API request rejected because the system is not in Remote Mode
+- -38500 : 由于系统不在远程模式，API 请求被拒绝
 
 ##### Example
 
@@ -2013,13 +1930,12 @@ print(f"Motor-ON  response: {post_motor_on()}")
 $python test.py
 Motor-ON  response: 200
 ```
-
 [__SOURCE](5-robot/2-post/2-start-stop.md)
 #### 5.2.2 `start / stop`
 
-##### Description
+##### 描述
 
-- `POST` : Performs robot start and robot stop.
+- `POST` : 执行机器人启动和机器人停止。
 
 ##### path-parameter
 
@@ -2036,27 +1952,27 @@ POST /project/robot/stop
 
 ##### response-body
 
-1. status code
+1. 状态码
 
 - 200 : OK
-- 400 : Bad Request
-   - The request body failed validation.
-- 403 : Forbidden
-    - A `start` request was attempted while not in Remote Mode (effective from v60.30-07).
-- 404 : Not Found
+- 400 : 错误请求
+   - 请求体验证失败。
+- 403 : 禁止
+    - 在非远程模式下尝试了 ` (start)` 请求 (自 v60.30-07 起生效)。
+- 404 : 未找到
 
-2. response-body
+2. 响应体
 
 ```json
 {
     "_type": "JObject"
 }
 ```
-3. error code
+3. 错误码
 
-- -38500: API request rejected because the controller is not in Remote Mode
+- -38500: API 请求被拒绝，因为控制器不在远程模式
 
-##### Example
+##### 示例
 
 ```python
 POST /project/robot/start or /project/robot/stop
@@ -2065,7 +1981,7 @@ request-body:
 {}
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -2076,7 +1992,7 @@ def post_start() -> int:
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = {}
 
-    # Requires automatic mode and motor on settings
+    # 需要自动模式和电机开启设置
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
     return response.status_code
 
@@ -2097,13 +2013,12 @@ $python test.py
 Start response: 200
 Stop  response: 200
 ```
-
 [__SOURCE](5-robot/2-post/3-tool_no.md)
 #### 5.2.3 `tool_no`
 
-##### Description
+##### 描述
 
-- `POST` : Set the current tool number.
+- `POST` : 设置当前工具编号。
 
 ##### path-parameter
 
@@ -2113,7 +2028,7 @@ POST /project/robot/tool_no
 
 ##### request-body
 
-- `val` : Tool number
+- `val` : 工具编号
   - `robot tools` : `0` ~ `31`
   - `stationary tool` : `0` ~ `3`
 
@@ -2125,7 +2040,7 @@ POST /project/robot/tool_no
 }
 ```
 
-##### Example
+##### 示例
 
 ```json
 POST /project/robot/tool_no
@@ -2136,7 +2051,7 @@ request-body
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -2156,13 +2071,12 @@ print(f"response: {post_tool_no(1)}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](5-robot/2-post/4-crd_sys.md)
 #### 5.2.4 `crd_sys`
 
-##### Description
+##### 描述
 
-- `POST` : Set the current jog coordinate system.
+- `POST` : 设置当前的关节坐标系统。
 
 ##### path-parameter
 
@@ -2172,7 +2086,7 @@ POST /project/robot/crd_sys
 
 ##### request-body
 
-- [Coordinate system](../../99-schema/crdsys.md)
+- [坐标系统](../../99-schema/crdsys.md)
 
 ##### response-body
 
@@ -2185,7 +2099,7 @@ POST /project/robot/crd_sys
 ```
 
 
-##### Example
+##### 示例
 
 ```json
 POST /project/robot/crd_sys
@@ -2196,7 +2110,7 @@ request-body
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -2216,37 +2130,35 @@ print(f"response: {post_crd_sys(1)}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](5-robot/2-post/5-emergency_stop.md)
 #### 5.2.5 `emergency_stop`
 
-- <b style="color:orange"> For versions prior to ***<u>60.30-00</u>***, refer to ***<u>[emergency_stop_test](./6-emergency_stop_test.md)</u>*** instead of emergency_stop. </b>  
+- <b style="color:orange"> 对于版本在 ***<u>60.30-00</u>*** 之前，请参阅 ***<u>[emergency_stop_test](./6-emergency_stop_test.md)</u>***，而不是 emergency_stop。 </b>  
 
-##### Description
+##### 描述
 
-- Supported Version : `60.30-00` &uparrow;
-- `POST` : Executes an emergency stop.  
-- The same deceleration profile as pressing the emergency stop button is applied.  
-- Due to network latency or request processing time, the API may respond slower than a physical button.  
+- 支持版本 : `60.30-00` &uparrow;
+- `POST` : 执行紧急停止。  
+- 应用与按下紧急停止按钮相同的减速曲线。  
+- 由于网络延迟或请求处理时间，API 可能响应慢于物理按钮。  
 
-
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/robot/emergency_stop
 ```
 
-##### request-body
+##### 请求主体
 ```python 
 {}
 ```
 
-##### status code
+##### 状态码
 
-- 200 : Request successful  
-- 400 : Request failed (Emergency stop sequence execution failed)    
+- 200 : 请求成功  
+- 400 : 请求失败（紧急停止序列执行失败）    
 
-##### Example
+##### 示例
 
 ```emergency_stop
 POST /project/robot/emergency_stop
@@ -2255,7 +2167,7 @@ request-body
 {}
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -2278,16 +2190,15 @@ print(f"response: {post_emergency_stop()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](5-robot/2-post/6-emergency_stop_test.md)
 #### 5.2.6 `emergency_stop_test`
 
-- <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
+- <b style="color:orange"> 此 API 在版本 60.28-00 之前作为 `emergency_stop` API 使用。 </b>  
 
 ##### Description
 
 - Supported version : `60.30-00` &uparrow;
-- `POST` : Executes an emergency stop.  
+- `POST` : 执行紧急停止。  
 
 ##### path-parameter
 
@@ -2307,36 +2218,36 @@ POST /project/robot/emergency_stop_test
 
 -  |key|type|contents|validation|
 	|---|---|---|---|
-	|`step_no`| int | Target step number for emergency stop, within the total step number of the current job | 1 ~ 999 |
-	|`stop_at`| double | Set the percentage of the specified position to stop at | 1 ~ 100 |
-	|`stop_at_corner`| int | 0: Normal stop, 1: Corner stop | 0 or 1 |
-	|`category`| int | 0: Immediate stop, 1: Deceleration stop, 2: Pause | 0 or 1 or 2 |
+	|`step_no`| int | 紧急停止的目标步骤编号，在当前作业的总步骤编号内 | 1 ~ 999 |
+	|`stop_at`| double | 设置停止时的指定位置的百分比 | 1 ~ 100 |
+	|`stop_at_corner`| int | 0: 正常停止, 1: 转角停止 | 0 或 1 |
+	|`category`| int | 0: 立即停止, 1: 减速停止, 2: 暂停 | 0 或 1 或 2 |
 
-- `0: Immediate stop`  
-  &rightarrow; Same as when the controller turns off during robot playback. The motor turns off after stopping.  
+- `0: 立即停止`  
+  &rightarrow; 与机器人回放时控制器关闭时相同。电机在停止后关闭。  
 
     {% hint style="warning" %}
-    Specification Change
+    规格更改
 
-    - V60.29-08 ~ V60.30-10: The immediate stop API can be called only at the target step.
-    - V60.32-00 and later: The immediate stop API can be called at any step.
+    - V60.29-08 ~ V60.30-10: 仅能在目标步骤调用立即停止 API。
+    - V60.32-00 及以后: 可在任何步骤调用立即停止 API。
 
     {% endhint %}
 
-- `1: Deceleration stop`  
-	&rightarrow;  Acts as if the emergency stop button is pressed. The motor turns off after stopping.   
-- `2: Pause`  
-	&rightarrow;  Temporarily stops the robot motion. The motor does not turn off after stopping.  
+- `1: 减速停止`  
+	&rightarrow;  像是按下紧急停止按钮一样。电机在停止后关闭。   
+- `2: 暂停`  
+	&rightarrow;  暂时停止机器人运动。电机在停止后不会关闭。  
 
 </div>
 
 ##### status code
 
-- 200 : Request successful    
-- 400 : Request failed     
-	- Request body failed validation    
-- 403 : Request failed    
-	- Requested an API that is not serviced  
+- 200 : 请求成功    
+- 400 : 请求失败     
+	- 请求体验证失败    
+- 403 : 请求失败    
+	- 请求了未提供服务的 API  
 
 
 ##### Usage Example  
@@ -2385,20 +2296,19 @@ response: 200
 ```
 
 </div>
-
 [__SOURCE](5-robot/2-post/7-joint_traject_init.md)
 #### 5.2.7 `joint_traject_init`
 
 ##### Description
 
 - Supported version : `60.32-00` &uparrow;
-- `POST` : Initializes the trajectory buffer.
-- Before requesting a new trajectory while the robot is stopped, the previously stored trajectory must be cleared by the user.
+- `POST` : 初始化轨迹缓冲区。
+- 在请求新的轨迹之前，用户必须清除之前存储的轨迹，尤其是在机器人停止时。
 - ex)
-  - request traj1 → error occurs during motion → buffer must be cleared using `joint_traject_init` → request traj2 <br>
-  : If the trajectory data from the time of the error remains in the buffer, requesting traj2 without clearing the buffer may result in another error.
-- If this api is called while a trajectory is being executed via the [joint_traject_insert_points](./8-joint_traject_insert_points.md) API, the buffer will be updated immediately.
-  - Removing previously stored trajectory points from the buffer may cause the robot to stop and trigger an error. Use with caution.
+  - request traj1 → 在运动过程中发生错误 → 必须使用 `joint_traject_init` 清除缓冲区 → request traj2 <br>
+  : 如果错误发生时的轨迹数据仍保留在缓冲区中，则在未清除缓冲区的情况下请求 traj2 可能会导致另一个错误。
+- 如果在通过 [joint_traject_insert_points](./8-joint_traject_insert_points.md) API 执行轨迹时调用此 API，缓冲区将立即更新。
+  - 从缓冲区中删除之前存储的轨迹点可能导致机器人停止并触发错误。 请谨慎使用。
 
 
 ##### path-parameter
@@ -2421,10 +2331,10 @@ POST /project/robot/trajectory/joint_traject_init
 
 ##### status code
 
-- 200 : Request succeeded
-- 403 : Request failed
-  - Returned when calling an unsupported API
-  - `err_code` (<0): Initialization failed
+- 200 : 请求成功
+- 403 : 请求失败
+  - 当调用不支持的 API 时返回
+  - `err_code` (<0): 初始化失败
 
 ##### Example
 
@@ -2437,7 +2347,7 @@ request-body
 {}
 ```
 
-Python Script Example
+Python 脚本示例
 ```python
 # test.py
 
@@ -2454,10 +2364,10 @@ base_url: str, session: requests.Session
     try:
         response = session.post(url=uri, headers=headers)
         response.raise_for_status()
-        print(f"[INFO] Initialization successful: status={response.status_code}")
+        print(f"[INFO] 初始化成功: status={response.status_code}")
         return response
     except requests.exceptions.RequestException as e:
-        print(f"[ERROR] Failed to initialize trajectory buffer: {e}")
+        print(f"[ERROR] 初始化轨迹缓冲区失败: {e}")
         return None
 
 
@@ -2472,39 +2382,38 @@ if __name__ == "__main__":
 ```
 ```sh
 $python test.py
-[INFO] Initialization successful: status=200
+[INFO] 初始化成功: status=200
 ```
 </div>
-
 [__SOURCE](5-robot/2-post/8-joint_traject_insert_points.md)
 #### 5.2.8 `joint_traject_insert_points`
 
 ##### Description
 
 - Supported version : `60.32-00` &uparrow;
-- `POST` : Sends a trajectory composed of multiple points to the robot controller.
-  - Multiple joint trajectory points are stored in the controller's internal buffer and reflected in the robot's motion.
+- `POST` : 发送由多个点组成的轨迹到机器人控制器。
+  - 多个关节轨迹点存储在控制器的内部缓冲区，并反映在机器人的运动中。
 
 ---
 
 ##### Caution
 
-1. This API is functional only while the program is in a <u>running state</u>.
-   - ex) The API only works when the program is being played back in automatic mode.
-   - If the request is made without satisfying this condition, the system will return the error.  
-	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/${cont_model}/en/E01554)"
+1. 此 API 仅在程序处于 <u>运行状态</u> 时功能正常。
+   - 例如) 此 API 只有在程序以自动模式播放时才有效。
+   - 如果未满足此条件而提出请求，系统将返回错误。  
+	 "[\[E01554\] Not executable state for external command move](https://hr-alarms.web.app/#/${cont_model}/zh/E01554)"
 
-2. The maximum number of trajectory points that can be POSTed at once is **<u>2048</u>**.
-   - The buffer for storing trajectory points has a maximum size of **<u>2048</u>**.
+2. 可以一次 POST 的最大轨迹点数是 **<u>2048</u>**。
+   - 用于存储轨迹点的缓冲区最大大小为 **<u>2048</u>**。
 
-3. The requested trajectory points are not discarded until they are reflected in the motion, and the robot continues to move until it reaches the corresponding positions.
-   - The trajectory in the buffer remains intact until motion execution, unless it is explicitly cleared by the [joint_traject_init](./7-joint_traject_init.md) api.
+3. 请求的轨迹点在反映在运动之前不会被丢弃，机器人将继续移动，直到到达相应的位置。
+   - 缓冲区中的轨迹在运动执行之前保持不变，除非通过 [joint_traject_init](./7-joint_traject_init.md) api 明确清除。
 
-4. Depending on the trajectory, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/${cont_model}/en/E159)" error may occur. If this error occurs, the robot will stop.
+4. 根据轨迹，可能会发生 "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/${cont_model}/zh/E159)" 错误。如果发生此错误，机器人将停止。
 
-5. This API handles trajectories that consist of **<u>two or more points</u>**.
+5. 此 API 处理由 **<u>两个或更多点</u>** 组成的轨迹。
 
-6. When using additional axes, please pay attention to the **<u>units of the axis coordinate values</u>**.
+6. 使用额外轴时，请注意 **<u>轴坐标值的单位</u>**。
 
 ---
 
@@ -2523,10 +2432,10 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 - 	|               Key |       Type      | Description                          | Remarks                                           |
 	| ----------------: | :-----------: | --------------------------- | -------------------------------------------- |
-	|     `joint_names` | array(string) | List of joint names for the trajectory          | e.g., for a 6-axis robot: "j1" to "j6", **order must be exact** |
-	|          `points` |     object({})    | List of trajectory points to execute      | 	Keys: "point_n", where n starts from 1. **at least 2 points are required**   |
-	|       `positions` | array(double) | Target positions for each joint expressed in radians,<br>for **additional axes, be mindful of the coordinate unit**)| Positions must be specified according to the current number of joints. |
-	| `time_from_start` |     number    | Start time of the point (in seconds) | Must be **<u>0.0</u>** or **<u>greater</u>**, and greater than the previous point. |
+	|     `joint_names` | array(string) | 轨迹的关节名称列表          | 例如，对于一个 6 轴机器人: "j1" 到 "j6"， **顺序必须精确** |
+	|          `points` |     object({})    | 要执行的轨迹点列表      | 	键: "point_n"，n 从 1 开始。 **至少需要 2 个点**   |
+	|       `positions` | array(double) | 每个关节的目标位置，以弧度表示，<br>对于 **额外轴，请注意坐标单位**)| 位置必须根据当前关节数指定。 |
+	| `time_from_start` |     number    | 点的起始时间（单位：秒） | 必须是 **<u>0.0</u>** 或 **<u>更大</u>**，并且大于上一个点。 |
 
 
 </div>
@@ -2550,9 +2459,9 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ##### status code
 
-- 200 : Request succeeded
-- 403 : Request failed
-  - Returned when calling an unsupported API
+- 200 : 请求成功
+- 403 : 请求失败
+  - 当调用不支持的 API 时返回
 
 ##### error code (response 403)
 
@@ -2560,58 +2469,58 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 - 	| error code     | Error constant name     | Description                                           |
 	| ---------- | --------------------------- | ----------------------------------------------------- |
-	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | If the joint_names field is missing |
-	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | If the joint_name format is invalid (e.g., "x1"), the number of requested joints does not match<br>the robot's current number of joints, or the joint names are in the wrong order.<br>(e.g., ["j1", "j3", "j2", ..., "j6"]) |
-	| `-4`       | `ERR_MISSING_POINTS`        | If the points field is missing |
-	| `-5`       | `ERR_INVALID_POINTS`        | If the value of points is not an object (i.e., not a Python dictionary), such as an integer or a string |
-	| `-6`       | `ERR_TOO_FEW_POINTS`        | If the number of trajectory points is less than 2 |
-	| `-7`       | `ERR_TOO_MANY_POINTS`       | If a trajectory is requested with more than the allowed 2048 points |
-	| `-8`       | `ERR_POINTS_EXCEED_BUFFER`  | If a trajectory is requested with more points than the currently available buffer space |
-	| `-9`      | `ERR_INVALID_POINT_OBJECT`  | If the value of point_n is not an object (i.e., not a Python dictionary, e.g., an integer or a string) |
-	| `-10`      | `ERR_MISSING_POSITIONS`     | If the positions field is missing |
-	| `-11`      | `ERR_INVALID_POSITIONS`     | If positions is not an array, contains non-numeric values, or its length does not match the number of joints |
-	| `-12`      | `ERR_MISSING_TIME`          | If time_from_start field is missing        |
-	| `-13`      | `ERR_INVALID_TIME`          | If time_from_start is not a number, is less than 0, or is smaller than the previous value while the robot is in motion |
+	| `-2`       | `ERR_MISSING_JOINT_NAMES`   | 如果缺少 joint_names 字段 |
+	| `-3`       | `ERR_INVALID_JOINT_NAMES`   | 如果 joint_name 格式无效（例如，"x1"），请求的关节数量与<br>机器人的当前关节数量不匹配，或关节名称顺序错误。<br>（例如，["j1", "j3", "j2", ..., "j6"]） |
+	| `-4`       | `ERR_MISSING_POINTS`        | 如果缺少 points 字段 |
+	| `-5`       | `ERR_INVALID_POINTS`        | 如果 points 的值不是一个对象（即不是 Python 字典），例如整数或字符串 |
+	| `-6`       | `ERR_TOO_FEW_POINTS`        | 如果轨迹点数少于 2 |
+	| `-7`       | `ERR_TOO_MANY_POINTS`       | 如果请求的轨迹点数超过允许的 2048 |
+	| `-8`       | `ERR_POINTS_EXCEED_BUFFER`  | 如果请求的轨迹点数超过当前可用缓冲区空间 |
+	| `-9`      | `ERR_INVALID_POINT_OBJECT`  | 如果 point_n 的值不是一个对象（即不是 Python 字典，例如整数或字符串） |
+	| `-10`      | `ERR_MISSING_POSITIONS`     | 如果缺少 positions 字段 |
+	| `-11`      | `ERR_INVALID_POSITIONS`     | 如果 positions 不是数组，包含非数字值，或其长度与关节数量不匹配 |
+	| `-12`      | `ERR_MISSING_TIME`          | 如果缺少 time_from_start 字段        |
+	| `-13`      | `ERR_INVALID_TIME`          | 如果 time_from_start 不是数字，小于 0，或在机器人运动时小于前一个值 |
 
 </div>
 
 ##### Example
 
-**Ex1. Requesting a trajectory while the robot is at rest**
+**Ex1. 当机器人处于静止状态时请求轨迹**
 
 <img src="../../_assets/09_online_trajectory_insert_points_single.png" style="max-height: 280px;">
 
-1) When requesting a trajectory after the robot has stopped, use the [joint_traject_init](./7-joint_traject_init.md) api to clear the buffer that contains the previous trajectory.
-2) Before requesting a trajectory, check whether the program is running and ensure there is available buffer.
-3) Request a trajectory consisting of **at least two points**.
-   - Set the `position of the starting point` (point_1) to the **current position** of the robot.
-   - Set the `time_from_start of the starting point` (point_1) to **0.0**.
-   - Subsequent points should be configured with positions and time_from_start values that are reachable from the previous point before being posted.
-4) If the robot stops due to an error, restart by initializing with joint_traject_init, then proceed with steps 1 to 3.
+1) 当在机器人停止后请求轨迹时，使用 [joint_traject_init](./7-joint_traject_init.md) api 清除包含先前轨迹的缓冲区。
+2) 在请求轨迹之前，检查程序是否在运行，并确保有可用的缓冲区。
+3) 请求由 **至少两个点** 组成的轨迹。
+   - 将 `起始点的位置信息`（point_1）设置为机器人的 **当前位置**。
+   - 将 `起始点的 time_from_start`（point_1）设置为 **0.0**。
+   - 后续点应配置以使 `positions` 和 `time_from_start` 值可从前一个点到达，然后再发布。
+4) 如果由于错误导致机器人停止，请通过 joint_traject_init 初始化后重新启动，然后按步骤 1 到 3 进行操作。
 
 <br>
 
-**Ex2. Requesting a trajectory with discontinuous motion (includes stop time between trajectories)**
+**Ex2. 请求具有不连续运动的轨迹（轨迹之间包含停顿时间）**
 
 <img src="../../_assets/10_online_trajectory_insert_points_two.png" style="max-height: 240px;">
 
-1) You must send traj1 and traj2 according to the conditions specified in Example 1.
-2) Please note the following:
-   - positions of P1 in traj2 must be equal to the positions of Pn in traj1.
-   - time_from_start of P1 in traj2 must be 0.0.
+1) 必须按照示例 1 中规定的条件发送 traj1 和 traj2。
+2) 请注意以下事项：
+   - traj2 中的 P1 的位置必须等于 traj1 中的 Pn 的位置。
+   - traj2 中的 P1 的 time_from_start 必须为 0.0。
 
 <br>
 
-**Ex3. Requesting a trajectory with continuous motion**
+**Ex3. 请求具有连续运动的轨迹**
 
 <img src="../../_assets/11_online_trajectory_insert_points_continuous.png" style="max-height: 350px;">
 
-1) Send traj1 according to the conditions specified in Example 1.
-2) While the robot is moving toward the position of Pn-1, you must send traj2 with attention to the following conditions.
-   - Pn of traj1 and P1 of traj2 must be configured so that the robot can move between them smoothly and continuously.
-     - The time_from_start of P1 in traj2 must be a cumulative value that is Δ (> 0) greater than the time_from_start of the last point Pn in traj1.
-     - The position of P1 in traj2 must be reachable from Pn of traj1 within the time interval Δ.
-   - If trajectories that cannot be followed continuously are requested in succession, an "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/${cont_model}/en/E159)" error may occur.
+1) 根据示例 1 中规定的条件发送 traj1。
+2) 当机器人朝 Pn-1 的位置移动时，必须发送 traj2，并注意以下条件。
+   - traj1 的 Pn 和 traj2 的 P1 必须配置以使机器人能够平滑和连续地在它们之间移动。
+     - traj2 中 P1 的 time_from_start 必须是一个累计值，且 Δ (> 0) 大于 traj1 中最后一个点 Pn 的 time_from_start。
+     - traj2 中 P1 的位置必须在时间间隔 Δ 内可以从 traj1 的 Pn 到达。
+   - 如果连续请求无法平滑跟随的轨迹，则可能会发生 "[\[E159\] axis speed limit value exceeded](https://hr-alarms.web.app/#/${cont_model}/zh/E159)" 错误。
 
 <div style="width: fit-content;">
 
@@ -2619,22 +2528,22 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 ##### Python Script Example
 
-- Move the robot to its default pose (based on a 6-axis configuration, [0, 90, 0, 0, 0, 0])
-- Create and `play` the following 0001.job in `automatic mode` to enter the program play state.
+- 将机器人移动到其默认姿势（基于 6 轴配置，[0, 90, 0, 0, 0, 0]）
+- 创建并 `播放` 下面的 0001.job 以进入程序播放状态。
 - 0001.job
 	```job
 	Hyundai Robot Job File; { version: 1.6, mech_type: "-1()", total_axis: -1, aux_axis: -1 }
 	  > wait di1
 		end
 	```
-- Run the test script (Example 3: Requesting two trajectories in continuous motion)
+- 运行测试脚本（示例 3：请求两个连续运动的轨迹）
 
 	```
-	Condition 1)
-	The `time_from_start` of `point_1` in `traj_2` must be a cumulative value that is Δ (> 0) greater than `point_2` in `traj_1`.
+	条件1)
+	`traj_2` 中 `point_1` 的 `time_from_start` 必须是一个累计值，且 Δ (> 0) 大于 `traj_1` 中 `point_2` 的值。
 
-	Condition 2)
-	The `positions` of `point_1` in `traj_2` must be reachable from `point_2` in `traj_1` within the time interval Δ.
+	条件2)
+	`traj_2` 中 `point_1` 的 `positions` 必须在时间间隔 Δ 内可以从 `traj_1` 中的 `point_2` 到达。
 
 	```
 
@@ -2750,12 +2659,12 @@ POST /project/robot/trajectory/joint_traject_insert_points
 		headers = {"Content-Type": "application/json; charset=utf-8"}
 
 		if is_prog_running(base_url) == False:
-			print("Program is not running!")
+			print("程序未在运行中！")
 			return None
 
 		n_jt_buff_avail = get_jt_buff_avail_num(base_url)
 		if n_jt_buff_avail <= 0:
-			print("Current joint trajectory buffer is full.")
+			print("当前关节轨迹缓冲区已满。")
 			return None
 
 		try:
@@ -2795,10 +2704,10 @@ POST /project/robot/trajectory/joint_traject_insert_points
 		base_url = f"http://192.168.1.150:8888"
 
 		while True:
-			# Initialize the buffer when requesting a trajectory from a stopped state
+			# 在从静止状态请求轨迹时初始化缓冲区
 			post_init_trajectories(base_url)
 
-			# Post trajectories consecutively
+			# 连续发布轨迹
 			ret = post_trajectories(base_url, trajectories_go)
 			time.sleep(1)
 			ret = post_trajectories(base_url, trajectories_back)
@@ -2817,36 +2726,33 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 
 </div>
-
-
-
 [__SOURCE](5-robot/2-post/9-joint_traject_insert_point.md)
 #### 5.2.9 `joint_traject_insert_point`
 
 ##### Description
 - Supported version: `70.00-00` ↑
-- `POST`: **Sequentially appends the next joint target point** for joint trajectory execution.
-- By repeatedly calling this API, a continuous joint trajectory can be constructed.
+- `POST`: **顺序附加下一个关节目标点**以执行关节轨迹。
+- 通过重复调用此 API，可以构建连续的关节轨迹。
 
 ---
 
 ##### Notes
 
-Operating Condition: Program Must Be Running
-* The API must only be called while the controller program is running.
-* Normal example: Executing a `wait di1` statement in Auto Mode
-* Resulting error: [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) (External Command Operation Ready State Error)
+Operating Condition: 程序必须正在运行
+* 只有在控制器程序运行时才能调用 API。
+* 正常示例: 在自动模式下执行 `wait di1` 语句
+* 结果错误: [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) (外部命令操作准备状态错误)
 
-Physical Condition: Comply with Speed and Torque Limits
-* Commands exceeding the maximum speed and torque allowed by the system will cause an error.
-* Basic error: [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159) (Axis Speed Limit Exceeded Error)
+Physical Condition: 遵守速度和扭矩限制
+* 超过系统允许的最大速度和扭矩的命令将导致错误。
+* 基本错误: [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159) (轴速度限制超出错误)
 
-Cascading Alarms Triggered by Over-Torque Commands
-* Reducer Over-Torque: [E249](https://hr-alarms.web.app/#/${cont_model}/ko/E249) · [E6402](https://hr-alarms.web.app/#/${cont_model}/ko/E6402) · [E6403](https://hr-alarms.web.app/#/${cont_model}/ko/E6403)
-* Reducer Over-Current: [W153](https://hr-alarms.web.app/#/${cont_model}/ko/W153) · [W181](https://hr-alarms.web.app/#/${cont_model}/ko/W181) · [W182](https://hr-alarms.web.app/#/${cont_model}/ko/W153)
-* Position Deviation Exceeded: [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630) · [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636) · [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
+由过扭矩命令触发的级联警报
+* 减速器过扭矩: [E249](https://hr-alarms.web.app/#/${cont_model}/ko/E249) · [E6402](https://hr-alarms.web.app/#/${cont_model}/ko/E6402) · [E6403](https://hr-alarms.web.app/#/${cont_model}/ko/E6403)
+* 减速器过电流: [W153](https://hr-alarms.web.app/#/${cont_model}/ko/W153) · [W181](https://hr-alarms.web.app/#/${cont_model}/ko/W181) · [W182](https://hr-alarms.web.app/#/${cont_model}/ko/W153)
+* 位置偏差超出: [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630) · [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636) · [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
 
-Note: The actual alarms displayed may vary depending on the axis configuration, payload, and operating conditions.
+注意: 显示的实际警报可能会因轴配置、有效载荷和操作条件而异。
 
 ---
 
@@ -2856,9 +2762,7 @@ Note: The actual alarms displayed may vary depending on the axis configuration, 
 
 ```python
 POST /project/robot/trajectory/joint_traject_insert_point
-````
-
-</div>
+````</div>
 
 ---
 
@@ -2879,29 +2783,29 @@ POST /project/robot/trajectory/joint_traject_insert_point
 
 * interval
 
-  * Time interval used when adding points incrementally
+  * 添加点时使用的时间间隔
 * time_from_start
 
-  * Cumulative time from the start of the trajectory
+  * 从轨迹开始计算的累计时间
 * look_ahead_time
 
-  * Look-ahead time for trajectory execution
+  * 轨迹执行的提前时间
 * point
 
-  * Array of target joint angles (deg)
+  * 目标关节角度数组（度）
 
 ---
 
 ##### response
 
-1. status code
+1. 状态码
 
    * 200 : OK
-   * 400 : Bad Request
+   * 400 : 错误请求
 
-     * Request body validation failed
-   * 403 : Forbidden
-   * 404 : Not Found
+     * 请求体验证失败
+   * 403 : 禁止
+   * 404 : 未找到
 
 ---
 
@@ -2928,11 +2832,85 @@ request-body:
 
 ###### Prerequisites
 
-1. Move the robot to the reference pose.
-   (Example - for a 6-axis robot: `[0, 90, 0, 0, -90, 0]`)
-2. Insert the statement `wait di1` in the job.
-3. Switch to auto mode and start program playback.
-4. Run the test code below in that state.
+1. 将机器人移动到参考姿态。
+   (示例 - 对于一个六轴机器人: (
+
+</div>
+
+---
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```json
+{
+	"interval": 0.01,
+	"time_from_start": 0.0,
+	"look_ahead_time": 0.5,
+	"point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+}
+```
+
+</div>
+
+* interval
+
+  * 添加点时使用的时间间隔
+* time_from_start
+
+  * 从轨迹开始计算的累计时间
+* look_ahead_time
+
+  * 轨迹执行的提前时间
+* point
+
+  * 目标关节角度数组（度）
+
+---
+
+##### response
+
+1. 状态码
+
+   * 200 : OK
+   * 400 : 错误请求
+
+     * 请求体验证失败
+   * 403 : 禁止
+   * 404 : 未找到
+
+---
+
+##### Usage Example
+
+```python
+request url:
+POST /project/robot/trajectory/joint_traject_insert_point
+
+request-body:
+{
+    "interval": 0.01,
+    "time_from_start": 0.0,
+    "look_ahead_time": 0.5,
+    "point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+}
+```
+
+</div>
+
+---
+
+##### Python Script Example
+
+###### Prerequisites
+
+1. 将机器人移动到参考姿态。
+   (示例 - 对于一个六轴机器人: )`[0, 90, 0, 0, -90, 0]`)
+2. 插入语句 ()
+2. 插入语句 )`wait di1` 到任务中。
+3. 切换到自动模式并开始程序播放。
+4. 在该状态下运行下面的测试代码。
 
 <div style="width: fit-content;">
 
@@ -3025,22 +3003,21 @@ AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.0013
 ```
 
 </div>
-
 [__SOURCE](6-io_plc/README.md)
 # 6. I/O PLC
 
-- Reads or sets the input/output values of the built-in PLC.
+- 读取或设置内置 PLC 的输入/输出值。
 [__SOURCE](6-io_plc/1-get/README.md)
 ## 6.1 `io_plc/get`
 
-- Sends a GET request for input/output values of a built-in PLC.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送一个获取内置 PLC 输入/输出值的 GET 请求。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。
 [__SOURCE](6-io_plc/1-get/1-relay-value.md)
 #### 6.1.1 `get relay values`
 
 ##### Description
 
-- `GET` :Obtain the relay value for the entire object type.
+- `GET` : 获取整个对象类型的继电器值。
 
 ##### path-parameter
 
@@ -3050,25 +3027,22 @@ GET /project/plc/[{obj_type}{obj_idx}_]{relay_type}/val_s32
 
 ##### path-variable
 
-[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}) (lowercase letter)
+[relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model}) (小写字母)
 
-* (`{obj_type}{obj_idx}_` must be specified for `di`, `do`, `x`, and `y`. The remaining `relay_type` is not specified.)
+* (`{obj_type}{obj_idx}_` 必须为 `di`, `do`, ` (x)`, and ` (y)` 指定。剩余的 `relay_type` 不指定。)
 
-- `obj_type` : object type
+- `obj_type` : 对象类型
   - `fb`
   - `fn`
 
-- `obj_idx` : object index (fb: 0~9, fn: 0~63)
+- `obj_idx` : 对象索引 (fb: 0~9, fn: 0~63)
 
-- `relay_type` : `di`, `do`, `x`, `y`, `m`, `s`, `r`, `k`
-
-	
+- `relay_type` : `di`, `do`, ` (x)`, ` (y)`, ` (m)`, ` (s)`, ` (r)`, ` (k)`
 
 ##### query-parameter
 
-- `st` : start byte index (default: 0)
-- `len` : number of words (default: 8)
-
+- `st` : 起始字节索引 (默认: 0)
+- `len` : 字数 (默认: 8)
 
 ##### Example
 
@@ -3123,14 +3097,13 @@ print(f"{get_relay_value()}")
 $python test.py
 [0, 0, 0, 0]
 ```
-
 [__SOURCE](6-io_plc/1-get/2-ios-dio.md)
 #### 6.1.2 `ios/dio/{dio_val}`
 
 ##### Description
 
-- `GET` : Obtain user IO values.
-- Please refer to the [sio api](./3-ios-sio.md) for system input/output values.
+- `GET` : 获取用户 IO 值。
+- 请参阅 [sio api](./3-ios-sio.md) 以获取系统输入/输出值。
 
 ##### path-parameter
 
@@ -3145,19 +3118,19 @@ GET /project/control/ios/dio/{dio_val}
 ##### path-variable
 
 - `dio_val` :
-  - `di_val` : Get the input(di) value.
-  - `do_val` : Get the output(do) value.
+  - `di_val` : 获取输入（di）值。
+  - `do_val` : 获取输出（do）值。
 
 ##### query-parameter
 
-- `type` : Type of io value
-  - di or do : bit
-  - dib or dob : signed-byte
-  - diw or dow : signed-word (2byte)
-  - dil or dol : signed-dword (4yte)
-  - dif or dof : float
-- `blk_no` : block number (0~9)
-- `sig_no` : signal index (0~)
+- `类型 (type)` : IO 值的类型
+  - di 或 do : bit
+  - dib 或 dob : signed-byte
+  - diw 或 dow : signed-word (2byte)
+  - dil 或 dol : signed-dword (4yte)
+  - dif 或 dof : float
+- `blk_no` : 块编号 (0~9)
+- `sig_no` : 信号索引 (0~)
 
 ##### response
 
@@ -3168,7 +3141,7 @@ GET /project/control/ios/dio/{dio_val}
    - 404 : Not Found
 
 2) response-body
-	- Returns a signed decimal value upon successful response
+	- 在成功响应时返回一个有符号的十进制值
 		<div style="width: fit-content;">
 
 		```json
@@ -3182,7 +3155,7 @@ GET /project/control/ios/dio/{dio_val}
 
 <div style="max-width: fit-content;">
 
-- Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
+- 获取 fb2.dob3 值。 (结果 : 0b11001000 = 0xc8 = -56)
 
 ```python
 request url:
@@ -3242,20 +3215,19 @@ print("di value:", lsb_first(di_u8))
 
 ```
 ```sh
-# (when fb0.do18 = 1, fb0.do20 = 1 / fb0.di14 = 1)
+# (当 fb0.do18 = 1, fb0.do20 = 1 / fb0.di14 = 1)
 $python test.py
 do value: 00101000
 di value: 00000010
 ```
 
 </div>
-
 [__SOURCE](6-io_plc/1-get/3-ios-sio.md)
 #### 6.1.3 `ios/sio/{sio_val}` 
 
 ##### Description
 
-- `GET` : Get system IO values.
+- `GET` : 获取系统 IO 值。
 
 ##### path-parameter
 
@@ -3266,23 +3238,23 @@ GET /project/control/ios/sio/{sio_val}
 ##### path-variable
 
 - `sio_val` :
-  - `si_val` : Get the input(si) value.
-  - `so_val` : Get the output(so) value.
+  - `si_val` : 获取输入(si) 值。
+  - `so_val` : 获取输出(so) 值。
 
 ##### query-parameter
 
-- `type` : Type of io value
-  - si or so : bit
-  - sib or sob : signed-byte
-  - siw or sow : signed-word (2byte)
-  - sil or sol : signed-dword (4yte)
-  - sif or sof : float
-- `sig_no` : signal index (0~)
+- `类型 (type)` : IO 值的类型
+  - si 或 so : bit
+  - sib 或 sob : signed-byte
+  - siw 或 sow : signed-word (2byte)
+  - sil 或 sol : signed-dword (4yte)
+  - sif 或 sof : float
+- `sig_no` : 信号索引 (0~)
 
 
 ##### Example
 
-- Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
+- 获取 sib1 值。 (结果 : 0b00000010 = 0x02 = 2)
 
 ```python
 request url:
@@ -3316,18 +3288,17 @@ print(get_sio_val())
 $python test.py
 {'_type': 'JObject', 'val': 0}
 ```
-
 [__SOURCE](6-io_plc/2-post/README.md)
 ## 6.2 `io_plc/post`
 
-- Sends a POST request for input/output values from a built-in PLC.
-- You must write the correct request-body for each API.
+- 发送来自内置 PLC 的输入/输出值的 POST 请求。
+- 您必须为每个 API 编写正确的请求主体。
 [__SOURCE](6-io_plc/2-post/1-set_relay_value.md)
 #### 6.2.1 `set relay values`
 
 ##### Description
 
-- `POST` : Set the relay value.
+- `POST` : 设置继电器值。
 
 ##### path-parameter
 
@@ -3337,8 +3308,8 @@ POST /project/plc/set_relay_value
 
 ##### request-parameter
 
-- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
-- `value` : Please pay attention to 'data-type' in the notation above and enter the value you want to set.
+- `名称 (name)` : 输入您要设置的继电器名称，按照 [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model})。
+- `值 (value)` : 请注意上面的符号中的 'data-type'，并输入您要设置的值。
 ```json
 {
     "name": "fb3.dof14",
@@ -3393,13 +3364,12 @@ $python test.py
 response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
 ```
-
 [__SOURCE](6-io_plc/2-post/2-ios-dio.md)
 #### 6.2.2 `ios/dio/{do_val}`
 
-##### Description
+##### 描述
 
-- `POST` : Change digital output.
+- `POST` : 更改数字输出。
 
 ##### path-parameter
 
@@ -3421,18 +3391,18 @@ POST /project/control/ios/dio/do_val
 
 ##### query-parameter
 
-- `type` : Type of io value
-  - do : bit
-  - dob : signed-byte
-  - dow : signed-word (2byte)
-  - dol : signed-dword (4yte)
-  - dof : float
-- `blk_no` : block number (0~9)
-- `sig_no` : signal index (0~)
-- `val` : Setting value you want to change
+- `类型 (type)` : io值类型
+  - do : 位
+  - dob : 有符号字节
+  - dow : 有符号字 (2byte)
+  - dol : 有符号双字 (4yte)
+  - dof : 浮点数
+- `blk_no` : 块编号 (0~9)
+- `sig_no` : 信号索引 (0~)
+- `val` : 你想要更改的设置值
 
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -3447,9 +3417,9 @@ request-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
-- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
+- 请参阅 [here](https://developer.mozilla.org/zh-US/docs/Web/HTTP/Status/200) 以获取响应 HTTP 状态码。
 ```python
 # test.py
 import requests
@@ -3469,23 +3439,21 @@ print(f"response: {post_do_val()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](7-log_manager/README.md)
 # 7. event-log
 
-- Outputs errors, warnings, execution history, etc. recorded in the controller.
-
+- 输出在控制器中记录的错误、警告、执行历史等。
 [__SOURCE](7-log_manager/1-get/README.md)
 ## 7.1 `log_manager/get`
 
-- Send a GET request for errors, warnings, and execution history recorded in the controller.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送 GET 请求以获取在控制器中记录的错误、警告和执行历史。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。
 [__SOURCE](7-log_manager/1-get/1-search.md)
-#### 7.1.1 `search`
+#### 7.1.1 `搜索 (search)`
 
 ##### Description
 
-- `GET` : View the event log using the specified filter conditions.
+- `GET` : 使用指定的过滤条件查看事件日志。
 
 ##### path-parameter
 
@@ -3495,47 +3463,46 @@ GET /logManager/search
 
 ##### query-parameter
 
-- `n_item` : Number of requested events (default=100)
-- `cat_p` : Request category filter (category positive). Specify the letters representing each type by combining them with a comma (,). (cat_p=E,W,N)
-  - `E` : Error
-  - `W` : Warning
-  - `N` : Notice
-  - `S` : Start/Stop
-  - `O` : user's Operation
-  - `I` : I/O, relay value
-  - `P` : Periodic state
-  - `H` : History
-  - `C` : Console out
-  - `M` : Miscellany
-- `id_min` : min id filter. (optional)
-  - Every event has a unique event ID (eid). (0~)  
-    If you request a history by adding 1 to the maximum ID of the previously received events and specifying it in `id_min`, you can obtain only the newly occurring history, excluding the events already received.
-  - However, when the event ID in the controller reaches the maximum value (0xffffffffffffffff), it is generated again starting from 0.  
-    Filtering is applied appropriately by taking these situations into consideration.  
-    For example, if id_min is 0xfffffffffffffffa, events with ids such as 0, 1, and 2 are not filtered out but are included in the response.
-- `id_max` : max id filter. (optional)
-- `ts_min` : min timestamp filter. (optional)
-  - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
-- `ts_max` : max timestamp filter. (optional)
-  - Year/Month/Date Hour:Minute:Second.Millisecond Format. e.g. 2023/11/20 18:50:30.955
+- `n_item` : 请求的事件数量 (默认=100)
+- `cat_p` : 请求类别过滤 (category positive). 通过用逗号 (,) 组合代表每种类型的字母来指定它们。 (cat_p=E,W,N)
+  - `E` : 错误
+  - `W` : 警告
+  - `N` : 通知
+  - ` (S)` : 启动/停止
+  - `O` : 用户操作
+  - `I` : I/O，继电器值
+  - ` (P)` : 周期状态
+  - ` (H)` : 历史
+  - `C按钮 (C)` : 控制台输出
+  - ` (M)` : 杂项
+- `id_min` : 最小 ID 过滤。 (可选)
+  - 每个事件都有一个唯一的事件 ID (eid)。 (0~)  
+    如果你通过将之前接收到的事件的最大 ID 加 1 并将其指定在 `id_min` 中请求历史记录，你可以仅获取新发生的历史，排除已接收的事件。
+  - 但是，当控制器中的事件 ID 达到最大值 (0xffffffffffffffff) 时，它将从 0 开始重新生成。  
+    过滤会考虑到这些情况正确地应用。  
+    例如，如果 id_min 为 0xfffffffffffffffa，事件 ID 为 0、1 和 2 的事件仍会被包含在响应中。
+- `id_max` : 最大 ID 过滤。 (可选)
+- `ts_min` : 最小时间戳过滤。 (可选)
+  - 年/月/日期 时:分:秒.毫秒格式。 例如 2023/11/20 18:50:30.955
+- `ts_max` : 最大时间戳过滤。 (可选)
+  - 年/月/日期 时:分:秒.毫秒格式。 例如 2023/11/20 18:50:30.955
 
 ##### response-body
 
-- `id` : event ID
-- `ts` : timestamp
-- `cat` : event category
-- `code` : event code number
-- `aux` : event auxiliary info. Up to 280 characters.
-  - In case of errors, warnings, and start/stop, snapshot information is included.
+- ` (id)` : 事件 ID
+- `ts` : 时间戳
+- `cat` : 事件类别
+- `代码 (code)` : 事件代码号码
+- `aux` : 事件辅助信息。最多 280 个字符。
+  - 在发生错误、警告和启动/停止时，会包含快照信息。
 
 ```json
 { "id" : 19964, "ts" : "2023/11/20 15:53:11.275", "cat" : "E", "code" : "11,0,0", "aux" : "{ 'pc' : '20/3/1', 'j1' : 18.525, 'j2' : 105.000, 'j3' : -2.577, 'j4' : -14.432, 'j5' : -0.776, 'j6' : 0.314, 'sin' : '00 01 00 00 00 00 00 00', 'sout' : '05 08 06 00 00 00 00 01', 'din' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0', 'dout' : '00 00 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0' }" }
-{ "id" : 18314, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(    976)Power saving = on " }
-{ "id" : 18313, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(=Stamp=)[2023/11/20 15:05:33](+299996445us) " }
+{ "id" : 18314, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(    976)节能 = 开 " }
+{ "id" : 18313, "ts" : "2023/11/20 15:05:33.788", "cat" : "H", "code" : "hist", "aux" : "(=时间戳=)[2023/11/20 15:05:33](+299996445微秒) " }
 { "id" : 18312, "ts" : "2023/11/20 15:05:33.787", "cat" : "N", "code" : "5", "aux" : "{ 'pc' : '20/3/1' }" }
 { "id" : 18267, "ts" : "2023/11/20 15:00:33.791", "cat" : "H", "code" : "hist", "aux" : "(   2001)    .end ;(P20/S3/F1) " }
 { "id" : 18266, "ts" : "2023/11/20 15:00:33.789", "cat" : "H", "code" : "hist", "aux" : "( 738785)S3  .move P,spd=500mm/sec,accu=4,tool=0 " }
-```
 
 ##### Example
 
@@ -3547,7 +3514,7 @@ GET /logManager/search?cat_p=O&id_max=24258&id_min=24253
 
 response-body:
 {
-    { "id" : 24258, "ts" : "2023/11/28 16:53:31.239", "cat" : "O", "code" : "K.Click", "aux" : "Right" }
+    { "id" : 24258, "ts" : "2023/11/28 16:53:31.239", "cat" : "O", "code" : "K.Click", "aux" : "右" }
     { "id" : 24257, "ts" : "2023/11/28 16:53:30.462", "cat" : "O", "code" : "K.Down", "aux" : "SHIFT" }
     { "id" : 24256, "ts" : "2023/11/28 16:53:23.450", "cat" : "O", "code" : "K.Up", "aux" : "CTRL" }
     { "id" : 24255, "ts" : "2023/11/28 16:53:23.045", "cat" : "O", "code" : "K.Down", "aux" : "CTRL" }
@@ -3588,24 +3555,22 @@ $python test.py
 { "id" : 24252, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dil", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 { "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 ```
-
 [__SOURCE](8-file_manager/README.md)
 # 8. `file_manager`
 
-- This covers functions such as reading file information from the controller, changing file names, and transferring files.
-- Functions for checking the existence of a directory or creating and deleting it are also covered.
+- 这涵盖了从控制器读取文件信息、修改文件名和传输文件等功能。
+- 还包括检查目录是否存在以及创建和删除目录的功能。
 [__SOURCE](8-file_manager/1-get/README.md)
 ## 8.1 `file_manager/get`
 
-- Send a GET request for file information from the controller.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
-
+- 发送一个 GET 请求以获取控制器的文件信息。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。
 [__SOURCE](8-file_manager/1-get/1-files.md)
-#### 8.1.1 `files`
+#### 8.1.1 `文件 (files)`
 
 ##### Description
 
-- `GET` : The file contents are responded to from the controller.
+- `GET` : 从控制器返回文件内容。
 
 ##### path-parameter
 
@@ -3615,20 +3580,20 @@ GET /file_manager/files
 
 ##### query-parameter
 
-query-parameter must be entered.  
+query-parameter 必须输入。  
 
 ```text
 ?pathname=project/jobs/0001.job
 ```
 
-- `pathname` : File name to get
+- `pathname` : 要获取的文件名
 
 ##### status code
 
-- 200 : Request succeeded
-  - Return file contents
-- 403 : Request failed
-  - Return error status code when file does not exist
+- 200 : 请求成功
+  - 返回文件内容
+- 403 : 请求失败
+  - 当文件不存在时返回错误状态码
 
 ##### Example
 
@@ -3638,7 +3603,7 @@ query-parameter must be entered.
 ${cont_model}
 `-- project
     |-- jobs
-    |   `-- 0001.job   <- target
+    |   `-- 0001.job   <- 目标
     |-- lads
     |-- log
     |-- vars   
@@ -3691,13 +3656,12 @@ S3   move P,tg=po1,spd=100%,accu=0,tool=1
 S4   move P,tg=po1,spd=100%,accu=0,tool=1
      end
 ```
-
 [__SOURCE](8-file_manager/1-get/2-file_info.md)
 #### 8.1.2 `file_info`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain information about that file based on the file path.
+- `GET` : 根据文件路径获取该文件的信息。
 
 ##### path-parameter
 
@@ -3707,20 +3671,20 @@ GET /file_manager/file_info
 
 ##### query-parameter
 
-query-parameter must be entered.  
+query-parameter 必须填写。  
 
 ```text
 ?pathname=project/jobs/0001.job
 ```
 
-- `pathname` : target file path
+- `pathname` : 目标文件路径
 
 ##### response-body
 
-- [file information](../../99-schema/file_info)
-- If the file does not exist, `404 Not Found`
+- [文件信息](../../99-schema/file_info)
+- 如果文件不存在，`404 Not Found`
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -3728,7 +3692,7 @@ query-parameter must be entered.
 ${cont_model}
 `-- project
     |-- jobs
-    |   `-- 0001.job <- target 
+    |   `-- 0001.job <- 目标 
     |-- lads
     |-- log
     |-- vars
@@ -3758,7 +3722,7 @@ response-body:
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -3779,13 +3743,12 @@ print(get_file_info())
 $python test.py
 {'mday': 31, 'sec': 40, 'fname': '${cont_model:lower}_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
 ```
-
 [__SOURCE](8-file_manager/1-get/3-file_list.md)
 #### 8.1.3 `file_list`
 
 ##### Description
 
-- `GET` : Obtain a list of files and directories.
+- `GET` : 获取文件和目录的列表。
 
 ##### path-parameter
 
@@ -3795,7 +3758,7 @@ GET /file_manager/file_list
 
 ##### query-parameter
 
-query-parameter must be entered.  
+query-parameter 必须输入。  
 
 ```text
 ?path=project/jobs&incl_file=true&incl_dir=false
@@ -3803,17 +3766,17 @@ query-parameter must be entered.
 
 |key|description|
 |:---|:---|
-|`path`|Target path you want to check|
-|`incl_file`|Whether to include files when outputting the list|
-|`incl_dir`|Whether to include directories when outputting the list|
+|`路径 (path)`|您想要检查的目标路径|
+|`incl_file`|输出列表时是否包含文件|
+|`incl_dir`|输出列表时是否包含目录|
 
 
 ##### status code
 
-- 200 : Request succeeded
-  - return [file information](../../99-schema/file_info) `list`
-- 403 : Request failed
-  - no file exists
+- 200 : 请求成功
+  - 返回 [file information](../../99-schema/file_info) `list`
+- 403 : 请求失败
+  - 没有文件存在
 
 
 ##### Example
@@ -3890,13 +3853,12 @@ $python final_test.py
 {'mday': 1, 'sec': 50, 'fname': 'vars', 'wday': 3, 'size': 8192, 'year': 2023, 'hour': 12, 'readonly': False, 'month': 11, 'is_dir': True, 'min': 29}
 {'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
 ```
-
 [__SOURCE](8-file_manager/1-get/4-file_exist.md)
 #### 8.1.4 `file_exist`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the existence of the target file.
+- `GET` : 获取目标文件的存在性。
 
 ##### path-parameter
 
@@ -3906,28 +3868,28 @@ GET /file_manager/file_exist
 
 ##### query-parameter
 
-query-parameter must be entered.  
+query-parameter 必须输入。
 
 ```text
 ?pathname=project/jobs/0001.job
 ```
 
-- `pathname` : target file path
+- `pathname` : 目标文件路径
 
 ##### response-body
 
-- `true` (file exists)
-- `false` (no file exist)
+- `true` (文件存在)
+- `false` (没有文件存在)
 
-##### status code
+##### 状态码
 
-- 200 : Request succeeded
-  - return [file information](../../99-schema/file_info) `list`
-- 404 : Request failed
-  - not allowed path-parameter
+- 200 : 请求成功
+  - 返回 [file information](../../99-schema/file_info) `list`
+- 404 : 请求失败
+  - 不允许的 path-parameter
 
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -3948,7 +3910,7 @@ ${cont_model}
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -3969,18 +3931,17 @@ print(is_file_exist())
 $python test.py
 true
 ```
-
 [__SOURCE](8-file_manager/2-post/README.md)
 ## 8.2 `file_manager/post`
 
-- Sends a POST request for file information from the controller.
-- You must write the correct request-body for each API.
+- 发送控制器的文件信息的 POST 请求。
+- 您必须为每个 API 编写正确的请求主体。
 [__SOURCE](8-file_manager/2-post/1-rename_file.md)
 #### 8.2.1 `rename_file`
 
 ##### Description
 
-- `POST` : Change the file name of the target file.
+- `POST` : 更改目标文件的文件名。
 
 ##### path-parameter
 
@@ -3996,15 +3957,15 @@ POST /file_manager/rename_file
 	"pathname_to"   : "project/jobs/4321.job"
 }
 ```
-- `pathname_from` : File path before change
-- `pathname_to` : File path after change
+- `pathname_from` : 更改前的文件路径
+- `pathname_to` : 更改后的文件路径
 
 ##### status code
 
-- 200 : Request succeeded
-  - Works fine
-- 400 : Request failed
-  - No file exists to rename
+- 200 : 请求成功
+  - 工作正常
+- 400 : 请求失败
+  - 找不到要重命名的文件
 
 
 ##### Example
@@ -4053,13 +4014,12 @@ print(f"response: {rename_file()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](8-file_manager/2-post/2-mkdir.md)
 #### 8.2.2 `mkdir`
 
 ##### Description
 
-- `POST` : Create a directory in the target path.
+- `POST` : 在目标路径中创建目录。
 
 ##### path-parameter
 
@@ -4071,18 +4031,18 @@ GET /file_manager/mkdir
 
 |key|value|description|
 |:---|:---|:---|
-|`path`|`str`|Where to create the directory|
+|`路径 (path)`|`str`|创建目录的位置|
 
 ##### response-body
 
-- { `path`: ${target path} }
+- { `路径 (path)`: ${target path} }
 
 ##### status code
 
-- 200 : Request succeeded
-  - Directory creation completed in target location
-- 400 : Request failed
-  - When directory names are duplicated in the target location
+- 200 : 请求成功
+  - 在目标位置完成目录创建
+- 400 : 请求失败
+  - 当目标位置的目录名称重复时
 
 ##### Example
 
@@ -4131,13 +4091,12 @@ print(f"response: {post_mkdir()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](8-file_manager/2-post/3-files.md)
-#### 8.2.3 `files`
+#### 8.2.3 `文件 (files)`
 
 ##### Description
 
-- `POST` : Transfer the file to the target path.
+- `POST` : 将文件传输到目标路径。
 
 ##### path-parameter
 
@@ -4147,16 +4106,16 @@ POST /file_manager/files/{target_filepath}
 
 ##### path-variable
 
-- `target_filepath` : Target file path including extension.
+- `target_filepath` : 包含扩展名的目标文件路径。
 
 ##### request-body
 
-- `Content-Type` must be `application/octet-stream`.
+- `Content-Type` 必须为 `application/octet-stream`。
 
 ##### status code
 
-- 200 : Request succeeded
-  - Transfer completed
+- 200 : 请求成功
+  - 传输完成
 
 ##### Example
 
@@ -4204,17 +4163,16 @@ print(f"response: {post_file_transfer()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](8-file_manager/3-delete/README.md)
 ## 8.3 `file_manager/delete`
 
-- Send a DELETE request for file information from the controller.
+- 从控制器发送删除文件信息的请求。
 [__SOURCE](8-file_manager/3-delete/1-files.md)
-#### 8.3.1 `files`
+#### 8.3.1 `文件 (files)`
 
-##### Description
+##### 描述
 
-- `DELETE` : Deletes the target file or directory.
+- `DELETE` : 删除目标文件或目录。
 
 ##### path-parameter
 
@@ -4222,12 +4180,12 @@ response: 200
 DELETE /file_manager/files/{target-filepath}
 ```
 
-##### status code
+##### 状态码
 
-- 200 : Request succeeded
-  - Target deletion completed
+- 200 : 请求成功
+  - 目标删除完成
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -4244,7 +4202,7 @@ ${cont_model}
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -4265,30 +4223,29 @@ print(f"response: {delete_file()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](9-task/README.md)
-# 9. `task`
+# 9. `任务 (task)`
 
-- It covers content related to the task.
-- You can reset a specific task or all tasks.
-- You can read values from local or global variables of the current task or declare new variables.
-- During task execution, specific actions (e.g. release) can be taken for a specific work flow (e.g. wait).
+- 它涵盖与任务相关的内容。
+- 您可以重置特定任务或所有任务。
+- 您可以从当前任务的本地或全局变量读取值或声明新变量。
+- 在任务执行期间，可以针对特定工作流程（例如，等待）采取特定行动（例如，释放）。
 [__SOURCE](9-task/1-get/README.md)
 ## 9.1 `task/get`
 
-- Send a GET request for information related to the task.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送与任务相关的信息的 GET 请求。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。
 [__SOURCE](9-task/2-post/README.md)
 ## 9.2 `task/post`
 
-- Sends a POST request for information related to the task.
-- You must write the correct request-body for each API.
+- 发送与任务相关的信息的 POST 请求。
+- 您必须为每个 API 编写正确的请求体。
 [__SOURCE](9-task/2-post/1-cur_prog_cnt.md)
 #### 9.2.1 `task/cur_prog_cnt`
 
 ##### Description
 
-- `POST` : Sets the current program counter for the task.
+- `POST` : 设置任务的当前程序计数器。
 
 ##### path-parameter
 
@@ -4340,7 +4297,6 @@ print(post_cur_prog_cnt())
 $python python test.py
 {'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
 ```
-
 [__SOURCE](9-task/2-post/2-reset.md)
 #### 9.2.2 `task/reset`
 
@@ -4350,19 +4306,19 @@ $python python test.py
 
 {% hint style="warning" %}
 
-Calling R-code 0 initializes the program counter, which may cause robot malfunctions.<br>
-Please use R-code 1 for error reset purposes.<br>
-We are not responsible for any issues caused by the indiscriminate calling of R-code 0, ignoring this warning.
+调用 R-code 0 会初始化程序计数器，这可能导致机器人故障。<br>
+请使用 R-code 1 进行错误重置。<br>
+我们对因不加选择地调用 R-code 0 而导致的任何问题不承担责任，忽视此警告。
 
 {% endhint %}
 
 ##### Description
 
-- `POST`: Initializes the step counter and moves to STEP0.
-- Utilizes [R-code 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) or [R-code 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
-    Codes other than R-code 1 and 0 are not intended operations.
+- `POST`: 初始化步进计数器并移动到 STEP0。
+- 利用 [R-code 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 或 [R-code 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+    R-code 1 和 0 以外的代码不是预期的操作。
 </span>
-- If program counter manipulation is required after executing R-code 1, explicitly use the [cur_prog_cnt](./1-cur_prog_cnt.md) and [set_cur_pc_idx](./6-set_cur_pc_idx.md) APIs.
+- 如果在执行 R-code 1 后需要操作程序计数器，请明确使用 [cur_prog_cnt](./1-cur_prog_cnt.md) 和 [set_cur_pc_idx](./6-set_cur_pc_idx.md) APIs。
 
 ##### path-parameter
 
@@ -4382,14 +4338,14 @@ POST /project/service/r_code/execute
 1) status code
 	- 200 : OK
 	- 400 : Bad Request
-		- When the request body fails validation
+		- 当请求体验证失败时
 	- 403 : Forbidden
-        - When an unauthorized request is made
-        - Returns `err_code` (<0). Refer to the error codes below
+        - 当进行未经授权的请求时
+        - 返回 `err_code` (<0)。请参阅下面的错误代码
 	- 404 : Not Found
 
 2) response-body
-   - code: The requested rcode number is returned
+   - code: 返回请求的 rcode 编号
         <div style="width: fit-content;">
 
 		```json
@@ -4433,13 +4389,12 @@ print(f"response: {post_rcode_0()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](9-task/2-post/3-assign_var_expr.md)
 #### 9.2.3 `assign_var_expr`
 
 ##### Description
 
-- `POST` : Reassigns a variable in the current task statement.
+- `POST` : 在当前任务语句中重新分配变量。
 
 ##### path-parameter
 
@@ -4449,13 +4404,13 @@ POST /project/context/tasks[0]/assign_var_expr
 
 ##### request-body
 
-- `name` : variable name
-- `expr` : expression to substitute into variable
-- `save` : Whether to save (true/false). This is to save the data in the variable file.
-- `scope` : Setting the effective scope of the variable
+- `名称 (name)` : 变量名
+- `expr` : 要替代到变量中的表达式
+- `保存 (save)` : 是否保存（true/false）。这是为了保存变量文件中的数据。
+- `scope` : 设置变量的有效作用域
 	|`local`|`global`|`Not set`|
 	|:---|:---|:---|
-	|local variable|global variable|Full scope (local and global are set automatically)|
+	|局部变量|全局变量|完整作用域（局部和全局自动设置）|
 
 
 ```json
@@ -4477,7 +4432,7 @@ Hyundai Robot Job File;
     end
 ```
 
-When the above job file is executed and a local variable `a` is declared in the task
+当上述作业文件被执行，并在任务中声明了一个局部变量 ` (a)`
 
 ```python
 request url:
@@ -4494,7 +4449,7 @@ request-body
 
 </blockquote>
 
-Python Script Example
+Python脚本示例
 
 ```python
 # test.py
@@ -4530,13 +4485,12 @@ before: 1234
 response: 200
 after: 777   
 ```
-
 [__SOURCE](9-task/2-post/4-assign_var_json.md)
 #### 9.2.4 `assign_var_json`
 
-##### Description
+##### 描述
 
-- `POST` : Reassigns a variable in the current task statement.  
+- `POST` : 重新分配当前任务语句中的变量。  
 
 ##### path-parameter
 
@@ -4546,13 +4500,13 @@ POST /project/context/tasks[0]/assign_var_json
 
 ##### request-body
 
-- `name` : variable name
-- `json` : A json format `string` to be substituted into a variable.
-- `save` : Save contents (true/false). That is until you save that data to your activity file.
-- `scope` : Setting the effective scope of the variable
+- `名称 (name)` : 变量名称
+- `json` : 要替换为变量的 json 格式 `string`。
+- `保存 (save)` : 保存内容 (true/false)。也就是直到你将该数据保存到你的活动文件中。
+- `scope` : 设置变量的有效范围
 	|`local`|`global`|`Not set`|
 	|:---|:---|:---|
-	|local variable|global variable|Full scope (local and global are set automatically)|
+	|局部变量|全局变量|完整范围 (局部和全局会自动设置)|
 
 
 ```json
@@ -4564,7 +4518,7 @@ POST /project/context/tasks[0]/assign_var_json
 }
 ```
 
-##### example
+##### 示例
 
 <blockquote>
 
@@ -4574,7 +4528,7 @@ Hyundai Robot Job File;
     end
 ```
 
-When the above job file is executed and a local variable `a` is declared in the task
+当上述作业文件被执行并且在任务中声明一个局部变量 ` (a)`
 
 ```python
 request url:
@@ -4591,7 +4545,7 @@ request-body
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -4632,37 +4586,36 @@ before: 1234
 response: 200
 after: {'_type': 'JObject', 'test': 10}
 ```
-
 [__SOURCE](9-task/2-post/5-release_wait.md)
 #### 9.2.5 `release_wait`
 
-##### Description
+##### 描述
 
-- `POST` : release syntax
-- Requirements: After entering `[2: system] - 1: User environment`, click `[Enable]` for `wait(di/wi) release`
+- `POST` : release 语法
+- 要求：在输入 `[2: system] - 1: 用户环境 ([2: system] - 1: User environment)` 后，点击 `[Enable]` 以进行 `wait(di/wi) release`
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/context/tasks[0]/release_wait
 ```
 
-##### request-body
+##### 请求体
 
 ```json
 {}
 ```
 
-##### status code
+##### 状态码
 
-- 200 : Request succeeded
-- 403 : Request failed
-  -  Failure to meet the above requirements
+- 200 : 请求成功
+- 403 : 请求失败
+  - 未满足上述要求
 
-##### error code
-- -1442069 : User environment configuration error. Please ensure that all prerequisite requirements are satisfied
+##### 错误代码
+- -1442069 : 用户环境配置错误。请确保满足所有前提要求
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -4676,7 +4629,7 @@ request-body
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -4697,13 +4650,12 @@ print(f"response: {post_release_wait()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](9-task/2-post/6-set_cur_pc_idx.md)
 #### 9.2.6 `set_cur_pc_idx`
 
-##### Description
+##### 说明
 
-- `POST` : Function that positions the current cursor at the index line
+- `POST` : 将当前光标定位在索引行的功能
 
 ##### path-parameter
 
@@ -4718,7 +4670,7 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 }
 ```
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -4734,7 +4686,7 @@ request-body
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -4754,15 +4706,14 @@ print(f"response: {set_cur_pc_idx()}")
 ```
 ```sh
 $python test.py 
-response 200 # Cursor position on TP changed
+response 200 # 光标位置已在 TP 上更改
 ```
-
 [__SOURCE](9-task/2-post/7-solve_expr.md)
 #### 9.2.7 `solve_expr`
 
 ##### Description
 
-- `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
+- `POST` : 解决表达式并将结果值设置为任务的本地或全局变量。
 
 ##### path-parameter
 
@@ -4771,12 +4722,12 @@ POST /project/context/tasks[0]/solve_expr
 ```
 
 ##### request-body
-- `expr` : Enter the expression you want to solve
-- `scope` : Sets the scope for `expr`.
+- `expr` : 输入您想要求解的表达式
+- `scope` : 设置 `expr` 的作用域。
 
 	|`local`|`global`|`not set`|
 	|:---|:---|:---|
-	|local variable|global variable|Full scope (local and global are set automatically)|
+	|本地变量|全局变量|完整作用域（本地和全局自动设置）|
 
 ```json
 {
@@ -4788,7 +4739,7 @@ POST /project/context/tasks[0]/solve_expr
 ##### response-body
 
 ```json
-13 // Reads the expr value within the currently specified scope.
+13 // 在当前指定作用域内读取 expr 值。
 ```
 
 ##### Example
@@ -4796,7 +4747,7 @@ POST /project/context/tasks[0]/solve_expr
 <blockquote>
 
 ```python
-# 1. Read the value of "local" variable a declared in the current Task
+# 1. 读取当前任务中声明的“local”变量 a 的值
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -4815,7 +4766,7 @@ response-body:
 <blockquote>
 
 ```python
-# 2. Read the value of "global" variable a declared in the current Task
+# 2. 读取当前任务中声明的“global”变量 a 的值
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -4834,7 +4785,7 @@ response-body:
 <blockquote>
 
 ```python
-# 3. Add -234 to the value of local variable a
+# 3. 将 -234 加到本地变量 a 的值
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -4850,7 +4801,7 @@ response-body:
 </blockquote>
 
 Python Script Example
-- Execute the following code with the local and global variable a values set in the task area of the robot controller.
+- 执行以下代码时，任务区域的本地和全局变量 a 值已设置在机器人控制器中。
 
 ```python
 # test.py
@@ -4876,19 +4827,18 @@ $python test.py
 10
 1000
 ```
-
 [__SOURCE](9-task/2-post/8-execute_move.md)
 #### 9.2.8 `execute_move`
 
 ##### Description
 
 - Supported version : `60.28-00` &uparrow;
-- `POST` : Moves to the specified pose.
+- `POST` : 移动到指定姿态。
 
 {% hint style="warning" %}
-HRSpace users only<br>
-execute_move may fail due to a Remote Mode validation error on VRC_${cont_model} v60.30-10 to v60.32-06<br>
-→ Use v60.30-09 or earlier, or v60.32-07 or later (Physical ${cont_model:upper} controllers are not affected)
+HRSpace 用户专用<br>
+execute_move 可能因 VRC_${cont_model} v60.30-10 到 v60.32-06 的远程模式验证错误而失败<br>
+→ 使用 v60.30-09 或更早版本，或 v60.32-07 或更高版本（物理 ${cont_model:upper} 控制器不受影响）
 {% endhint %}
 
 ##### path-parameter
@@ -4898,8 +4848,8 @@ POST /project/context/tasks[{task index}]/execute_move
 ```
 
 ##### request-body
-- `stmt` : Key value in the request body, referring to the statement.
-- For details on how to write move statements, please refer to [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/en/5-moving-robot/4-move?cont_model=${cont_model}).
+- `stmt` : 请求体中的关键值，指代语句。
+- 有关如何编写移动语句的详细信息，请参见 [HRBook](https://hrbook-hrc.web.app/#/view/doc-hrscript/zh/5-moving-robot/4-move?cont_model=${cont_model})。
 
 ```json
 {
@@ -4909,37 +4859,37 @@ POST /project/context/tasks[{task index}]/execute_move
 
 ##### response
 
-1. status code
+1. 状态代码
 - 200 : OK
-- 400 : Bad Request
-    - The request body failed validation.
-- 403 : Forbidden
-    - An API request was attempted while not in Remote Mode (effective from v60.30-07).
-- 404 : Not Found
+- 400 : 错误请求
+    - 请求体未通过验证。
+- 403 : 禁止
+    - 在未处于远程模式下尝试 API 请求（自 v60.30-07 起生效）。
+- 404 : 未找到
 
-2. response-body
+2. 响应体
 
-- Normal response for v60.30 or earlier
+- v60.30 或更早版本的正常响应
 
 ```json
 { "err_code" : 0 }
 ```
 
-- Normal response for v60.32 or later
+- v60.32 或更高版本的正常响应
 
 ```json
 { "_type" : "JObject" }
 ```
 
-3. error code
+3. 错误代码
 
-- -38500 : API request attempted while not in Remote Mode
-- -1442071 : API request attempted while the motor is OFF
-- -1442080 : API request attempted during automatic program execution
-- -1376272 : Robot language syntax error occurred while processing the API request
+- -38500 : 在未处于远程模式下尝试 API 请求
+- -1442071 : 在电机关闭时尝试 API 请求
+- -1442080 : 在自动程序执行期间尝试 API 请求
+- -1376272 : 处理 API 请求时出现机器人语言语法错误
 
-Python Script Example
-- Input pose command when the motor is on and matches the current robot axes.
+Python 脚本示例
+- 当电机开启并与当前机器人轴匹配时输入姿态命令。
 
 ```python
 # test.py
@@ -4974,22 +4924,21 @@ $python test.py
 (200, {'_type': 'JObject'})
 (200, {'_type': 'JObject'})
 ```
-
 [__SOURCE](10-console/README.md)
 # 10. `console`
 
-- You can use CLI commands of the ${cont_model} controller software.  
-- Various actions can be performed using robot language.  
+- 您可以使用 ${cont_model} 控制器软件的 CLI 命令。  
+- 可以使用机器人语言执行各种操作。
 [__SOURCE](10-console/1-get/README.md)
 ## 10.1 `console/get`
 
-- Sends a GET request for information related to executing robot commands.  
-- The exact path-parameter and query-parameter must be set for each API to receive a response.  
+- 发送与执行机器人命令相关的信息的GET请求。  
+- 每个API的确切路径参数和查询参数必须设置，以接收响应。  
 [__SOURCE](10-console/2-post/README.md)
 ## 10.2 `console/post`
 
-- Sends a POST request for information related to executing robot commands.  
-- The exact request-body must be written for each API.  
+- 发送与执行机器人命令相关的信息的POST请求。  
+- 每个API的确切请求体必须写明。
 [__SOURCE](10-console/2-post/1-execute_cmd.md)
 #### 10.2.1 `execute_cmd`
 
@@ -4997,8 +4946,8 @@ $python test.py
 ##### Description
 
 - Supported version : `60.28-00` &uparrow;
-- `POST` : Executes console commands for the ${cont_model} controller.  
-- You can perform [CLI robot language commands](../.././99-schema/robotlang.md).  
+- `POST` : 执行 ${cont_model} 控制器的控制台命令。  
+- 您可以执行 [CLI 机器人语言命令](../.././99-schema/robotlang.md)。  
 
 ##### path-parameter
 
@@ -5016,27 +4965,27 @@ POST /console/execute_cmd
 
 ##### status code
 
-- 200: Request successful  
-	- Needs to apply [CLI robot language commands](../.././99-schema/robotlang.md) rules  
-	- If a command violates the robot language rules, ecode 1 will be returned as shown below.
+- 200: 请求成功  
+	- 需要应用 [CLI 机器人语言命令](../.././99-schema/robotlang.md) 规则  
+	- 如果命令违反机器人语言规则，则会返回 ecode 1，如下所示。
 		<div style = "width: fit-content;">  
 		
 		```python
 		{'_type': 'JObject', 'ecode': 1}
 		```
 		</div>
-- 400: Request failed
-	- Request body failed validation
-- 403/4: Request failed
-	- Requested an API that is not serviced
+- 400: 请求失败
+	- 请求体验证失败
+- 403/4: 请求失败
+	- 请求的 API 未提供服务
 
 ##### Example
 
 </blockquote>
 
-Python Script Example
-- Commands can be executed in the `motor on` and `remote mode` state.  
-- It can be executed when the move command matches the current robot axes.  
+Python 脚本示例
+- 命令可以在 ` (motor on)` 和 `remote mode` 状态下执行。  
+- 当移动命令与当前机器人轴匹配时，可以执行。  
 
 ```python
 # test.py
@@ -5047,8 +4996,8 @@ import requests
 class ExecuteCmds:
     request_to = {
         "com": [
-            "rl.stop",  # External stop
-            "rl.reinit",  # Restart
+            "rl.stop",  # 外部停止
+            "rl.reinit",  # 重启
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [-10, 90, 0, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, -10, 0, 0, 0]",
@@ -5056,7 +5005,7 @@ class ExecuteCmds:
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 10, 0, 0, 0]",
             "rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0]",
             "rl.i end",
-            "rl.start",  # Play
+            "rl.start",  # 播放
         ],
     }
 
@@ -5094,34 +5043,31 @@ response: <Response [200]>
 response: <Response [200]>
 response: 200
 ```
-
 [__SOURCE](11-etc/README.md)
 # 11. `etc`
 
-- It covers system version, event log, clock, etc.
-
+- 它涵盖系统版本、事件日志、时钟等。
 [__SOURCE](11-etc/1-clock/README.md)
 # 11.1 `clock`
 
-- You can read and set the controller's system time.
+- 您可以读取和设置控制器的系统时间。
 [__SOURCE](11-etc/1-clock/1-get/README.md)
 #### 11.1.1 `clock/get`
 
-- Send a GET request for the controller system time.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
-
+- 发送获取控制器系统时间的 GET 请求。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。
 [__SOURCE](11-etc/1-clock/1-get/1-date_time.md)
 #### 11.1.1.1 `date_time`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the set system time.
+- `GET` : 获取设置的系统时间。
 
 ##### response-body
 
 - [date time](../../../99-schema/date_time.md)
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -5142,7 +5088,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -5164,25 +5110,23 @@ print(get_system_time())
 $python test.py
 [11/20] 19:55
 ```
-
 [__SOURCE](11-etc/1-clock/2-put/README.md)
 #### 11.1.2 `clock/put`
 
-- Sends a PUT request to the controller system time.
-- You must write the correct request-body for each API.
-
+- 发送PUT请求到控制器系统时间。
+- 你必须为每个API写正确的请求体。
 [__SOURCE](11-etc/1-clock/2-put/1-date_time.md)
 #### 11.1.2.1 `date_time`
 
-##### Description
+##### 描述
 
-- `PUT` : Change the system time.
+- `PUT` : 更改系统时间。
 
 ##### request-body
 
 - [date time](../../../99-schema/date_time.md)
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -5202,7 +5146,7 @@ request-body:
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -5224,107 +5168,99 @@ print(f"response: {put_system_time()}")
 $python test.py
 response: 200
 ```
-
 [__SOURCE](99-schema/README.md)
-# 12. Schema
+# 12. 架构
 
-This chapter contains references to various enumerations and structures used in Open API.
-
-
+本章包含对 Open API 中使用的各种枚举和结构的引用。
 [__SOURCE](99-schema/crdsys.md)
 ### `crdsys`
 
-#### Description
+#### 描述
 
-This is an enumeration that specifies the coordinate system.
+这是一个枚举，用于指定坐标系统。
 |value|description|
 |:---:|:---|
-|`-1`|`next` coordinate system|
-|`0`|`base` coordinate system|
-|`1`|`robot` coordinate system|
-|`2`|`axis` coordinate system|
-|`3`|`encoder` coordinate system|
-|`4`|`user` coordinate system|
-
+|`-1`|`下一个 (next)` 坐标系统|
+|`0`|`基座 (base)` 坐标系统|
+|`1`|`机器人 (robot)` 坐标系统|
+|`2`|`轴 (axis)` 坐标系统|
+|`3`|`编码器 (encoder)` 坐标系统|
+|`4`|`用户 (user)` 坐标系统|
 [__SOURCE](99-schema/cur_prog_cnt.md)
 ### `cur_prog_cnt`
 
 #### Description
-Sets the current program counter for the task.
+设置任务的当前程序计数器。
 
 #### request body
 |key|type|description|
 |:---|:---|:---|
-|`pno`|int|Program number (if -1, keep current number)|
-|`sno`|int|Step number (if -1, keep current number)|
-|`fno`|int|Function number (if -1, keep current number)|
-|`ext_sel`|int|`0` : Internal selection (prohibited in remote mode) <br> `1` : External selection (only allowed in remote mode)|
+|`pno`|int|程序编号（如果是-1，则保持当前编号）|
+|`sno`|int|步骤编号（如果是-1，则保持当前编号）|
+|`fno`|int|功能编号（如果是-1，则保持当前编号）|
+|`ext_sel`|int|`0` : 内部选择（在远程模式下禁止） <br> `1` : 外部选择（仅在远程模式下允许）|
 
 #### response body
 |key|type|description|
 |:---|:---|:---|
-|`sno_new`|int|Newly moved step number|
-|`fno_new`|int|Newly moved function number|
-|`ln_new`|int|Newly moved line number (program header is 0, first statement is 1)|
-
+|`sno_new`|int|新移动的步骤编号|
+|`fno_new`|int|新移动的功能编号|
+|`ln_new`|int|新移动的行编号（程序头为0，第一条语句为1）|
 [__SOURCE](99-schema/date_time.md)
 ### `date_time`
 
-#### Description
+#### 描述
 
-Indicates system time-related information.
+指示系统时间相关的信息。
 |value|type|description|
 |:---:|:---|:---|
-|"year"|`int`|Year of current system|
-|"mon"|`int`|Month of current system|
-|"day"|`int`|Day of current system|
-|"hour"|`int`|Hour of current system|
-|"min"|`int`|Minute of current system|
-|"sec"|`int`|Second of current system|
-
+|"year"|`int`|当前系统的年份|
+|"mon"|`int`|当前系统的月份|
+|"day"|`int`|当前系统的日期|
+|"hour"|`int`|当前系统的小时|
+|"min"|`int`|当前系统的分钟|
+|"sec"|`int`|当前系统的秒数|
 [__SOURCE](99-schema/file_info.md)
 ### `file_info`
 
-#### Description
+#### 描述
 
-This parameter is returned when requesting file information.
+此参数在请求文件信息时返回。
 
 |key|type|description|
 |:---:|:---|:---|
-|fname|`str`|file name|
-|size|`int`|file size(B, Byte)|
-|year|`int`| `year` the file was modified |
-|month|`int`| `month` the file was modified |
-|mday|`int`| `day` the file was modified |
-|wday|`int`| `Day of the week` on which the file was modified (0: Sun, 1: Mon, 2: Tue, ...) |
-|hour|`int`| `hour` the file was modified |
-|min|`int`| `minute` the file was modified |
-|sec|`int`| `second` the file was modified |
-|is_dir|`bool`| Check if current file is a directory |
-|readonly|`bool`| Check if the file is read-only |
-
+|fname|`str`|文件名|
+|size|`int`|文件大小(B, Byte)|
+|year|`int`|文件修改的 `年份` |
+|month|`int`|文件修改的 `月份` |
+|mday|`int`|文件修改的 `日期` |
+|wday|`int`|文件修改的 `星期几` (0: 周日, 1: 周一, 2: 周二, ...) |
+|hour|`int`|文件修改的 `小时 (hour)` |
+|min|`int`|文件修改的 `分钟` |
+|sec|`int`|文件修改的 `秒` |
+|is_dir|`bool`|检查当前文件是否为目录 |
+|readonly|`bool`|检查文件是否为只读 |
 [__SOURCE](99-schema/jobs_info.md)
 ### `jobs_info`
 
 #### Description
 
-This is a job file information parameter.
+这是一个作业文件信息参数。
 
 |key|type|description|
 |:---:|:---|:---|
-|fname|`str`|name of job file|
-|job_comment|`str`|comment|
-|n_step|`int`|number of steps|
-|n_total_ax|`int`|number of axes|
-|n_aux_ax|`int`|Number of additional axes|
-
+|fname|`str`|作业文件名|
+|job_comment|`str`|评论|
+|n_step|`int`|步骤数|
+|n_total_ax|`int`|轴的数量|
+|n_aux_ax|`int`|附加轴的数量|
 [__SOURCE](99-schema/mechinfo.md)
 ### `mechinfo`
 
 #### Description
 
-Mechanism info
-Celebrate with a bit-field which activities are used.
+机制信息  
+使用位字段庆祝使用哪些活动。
 
 - bit 0 : M0
 - bit 1 : M1
@@ -5339,30 +5275,29 @@ Celebrate with a bit-field which activities are used.
 
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0
-# Specify mechanisms M0, M1, and M4.
+# 指定机制 M0, M1 和 M4。
 ```
-
 [__SOURCE](99-schema/op_cnd.md)
 ### `op_cnd`
 
 #### Description
-op_cnd (operation condition) : value of `Condition setting`  
-You can check the values when you press the `Condition setting` button in TP.  
+op_cnd (操作条件) : value of `条件设置 (Condition setting)`  
+You can check the values when you press the `条件设置 (Condition setting)` button in TP.  
 
 <br>
 
 |key|value|description|
 |:---|:---|:---|
-|playback_mode| `1` : 1 cycle <br> `2` : repeat|Automatic operation cycle mode|
-|step_goback_max_spd|`10` ~ `250` (mm/sec)|Maximum speed when stepping forward/reverse|
-|step_go_func_ex|`0` : invalid <br> `1` : valid <br> `2` : I ON (=DI signal)|Function execution when advancing step|
-|func_reexe_on_trace| `0` : invalid <br> `1` : valid |After stepping backwards, re-execute the function when moving forward|
-|path_recov_confirm|`0` : invalid <br> `1` : valid|Path recovery when stepping forward/backward|
-|playback_spd_rate|`1` ~ `100` (%)|Automatic operation speed ratio|
-|robot_lock|`0` : invalid <br> `1` : valid |Robot Lock|
-|intp_base|`0` : robot tool <br> `1` : stationary tool|Interpolation criteria|
-|ucrd_num|`0` ~ `20`|Specify user coordinate system|
-|plc_mode|`0` : Off -> Stop <br> `1` : Stop -> Remote Stop <br> `2` : Remote Stop -> Remote Stop <br> `3` : Remote Run -> Remote Stop <br> `4` : Run -> Off|PLC operation mode|
+|playback_mode| `1` : 1周期 <br> `2` : 重复|自动操作周期模式|
+|step_goback_max_spd|` (10)` ~ `250` (mm/sec)|前进/后退时的最大速度|
+|step_go_func_ex|`0` : 无效 <br> `1` : 有效 <br> `2` : I ON (=DI信号)|前进步骤时的功能执行|
+|func_reexe_on_trace| `0` : 无效 <br> `1` : 有效 |后退后，再次执行向前移动时的功能|
+|path_recov_confirm|`0` : 无效 <br> `1` : 有效|前进/后退时的路径恢复|
+|playback_spd_rate|`1` ~ `100` (%)|自动操作速度比率|
+|robot_lock|`0` : 无效 <br> `1` : 有效 |机器人锁定|
+|intp_base|`0` : 机器人工具 <br> `1` : 定位工具|插补标准|
+|ucrd_num|`0` ~ ` (20)`|指定用户坐标系|
+|plc_mode|`0` : 关 -> 停止 <br> `1` : 停止 -> 远程停止 <br> `2` : 远程停止 -> 远程停止 <br> `3` : 远程运行 -> 远程停止 <br> `4` : 运行 -> 关|PLC操作模式|
 
 <br>
 
@@ -5383,64 +5318,60 @@ You can check the values when you press the `Condition setting` button in TP.
     "plc_mode": 4
 }
 ```
-
 [__SOURCE](99-schema/pose.md)
-### `Pose`
+### `姿势 (Pose)`
 
 #### Description
 
-Pose Data.
+姿势数据。
 
 |key|description|
 |:---|:---|
-|x|X position (mm)|
-|y|Y position (mm)|
-|z|Z position (mm)|
-|rx|RX Angle (deg.)|
-|ry|RY Angle (deg.)|
-|rz|RZ Angle (deg.)|
-|j1~j16|1~16 axis values(mm or deg.)|
-|crd|[Coordinate system](./crdsys.md)|
-|mechinfo|[Mechanism information](./mechinfo.md)|
-|nsync|Number of sensor synchronization values (0~2)|
-|sync|Sensor synchronization value (string). e.g. `"sync(220.5,195.3)"`|
-
+|x|X 位置 (mm)|
+|y|Y 位置 (mm)|
+|z|Z 位置 (mm)|
+|rx|RX 角度 (deg.)|
+|ry|RY 角度 (deg.)|
+|rz|RZ 角度 (deg.)|
+|j1~j16|1~16 轴值(mm 或 deg.)|
+|crd|[坐标系统](./crdsys.md)|
+|mechinfo|[机制信息](./mechinfo.md)|
+|nsync|传感器同步值数量 (0~2)|
+|sync|传感器同步值 (字符串). 例如 `"sync(220.5,195.3)"`|
 [__SOURCE](99-schema/tool_data.md)
 ### `tool_data`
 
-#### Description
+#### 描述
 
-Robot's tool data.
+机器人的工具数据。
 
 |key|description|
 |:---:|:---|
-|`x`|X position (mm)|
-|`y`|Y position (mm)|
-|`z`|Z position (mm)|
-|`rx`|RX Angle (deg.)|
-|`ry`|RY Angle (deg.)|
-|`rz`|RZ Angle (deg.)|
-|`mass`|weight (kg.)|
-|`cx`|Center of gravity at X position (mm)|
-|`cy`|Center of gravity at Y position (mm)|
-|`cz`|Center of gravity at Z position (mm)|
-|`ixx`| inertial X (kgm2)|
-|`iyy`| inertial Y (kgm2)|
-|`izz`| inertial Z (kgm2)|
-|`mass_esti`|Load estimate weight (kg.)|
-
-
+|` (x)`|X 位置 (mm)|
+|` (y)`|Y 位置 (mm)|
+|` (z)`|Z 位置 (mm)|
+|`rx`|RX 角度 (度)|
+|`ry`|RY 角度 (度)|
+|`rz`|RZ 角度 (度)|
+|`mass`|重量 (kg)|
+|`cx`|X 位置的重心 (mm)|
+|`cy`|Y 位置的重心 (mm)|
+|`cz`|Z 位置的重心 (mm)|
+|`ixx`|惯性 X (kgm²)|
+|`iyy`|惯性 Y (kgm²)|
+|`izz`|惯性 Z (kgm²)|
+|`mass_esti`|载荷估算重量 (kg)|
 [__SOURCE](99-schema/robotlang.md)
 ### CLI Robot Language Commands
 
 #### Description
 
-This is a list of robot language commands that can be executed from the ${cont_model} controller console.  
+这是可以从 ${cont_model} 控制器控制台执行的机器人语言命令列表。  
 
 |option|description|example|
 |:---|:---|:---|
-|`reinit`| Executes the robot language restart command. |rl.reinit|
-|`i`| Inserts robot language commands into the job file. |rl.i \<cmdline><br>rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0,0,0]<br>rl.i end|
-|`start`|Executes the robot language when the `motor is on` and in `remote mode`.|rl.start|
-|`stop`|Performs `external stop` when the robot language is currently running.|rl.stop|
-|`exit`|Terminates the currently running robot language.|rl.exit|
+|`reinit`| 执行机器人语言重启命令。 |rl.reinit|
+|` (i)`| 将机器人语言命令插入到作业文件中。 |rl.i \<cmdline><br>rl.i move P,spd=500mm/sec,accu=4,tool=0  [10, 90, 0, 0, 0, 0,0,0]<br>rl.i end|
+|` (start)`| 当`电机开启`且处于`远程模式`时执行机器人语言。|rl.start|
+|` (stop)`| 当机器人语言正在运行时执行`外部停止`。|rl.stop|
+|`exit`| 终止当前正在运行的机器人语言。|rl.exit|

@@ -1,8 +1,8 @@
-﻿#### 8.1.2 `file_info`
+#### 8.1.2 `file_info`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain information about that file based on the file path.
+- `GET` : 根据文件路径获取该文件的信息。
 
 ##### path-parameter
 
@@ -12,20 +12,20 @@ GET /file_manager/file_info
 
 ##### query-parameter
 
-query-parameter must be entered.  
+query-parameter 必须填写。  
 
 ```text
 ?pathname=project/jobs/0001.job
 ```
 
-- `pathname` : target file path
+- `pathname` : 目标文件路径
 
 ##### response-body
 
-- [file information](../../99-schema/file_info)
-- If the file does not exist, `404 Not Found`
+- [文件信息](../../99-schema/file_info)
+- 如果文件不存在，`404 Not Found`
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -33,7 +33,7 @@ query-parameter must be entered.
 ${cont_model}
 `-- project
     |-- jobs
-    |   `-- 0001.job <- target 
+    |   `-- 0001.job <- 目标 
     |-- lads
     |-- log
     |-- vars
@@ -63,7 +63,7 @@ response-body:
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

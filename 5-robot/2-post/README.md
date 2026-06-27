@@ -1,4 +1,4 @@
-﻿## 5.2 `robot/post`
+## 5.2 `robot/post`
 
-- Send POST requests for robot and tool data.
-- You must write the correct request-body for each API.
+- 发送用于机器人和工具数据的POST请求。
+- 您必须为每个API编写正确的请求体。

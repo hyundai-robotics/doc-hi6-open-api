@@ -1,3 +1,3 @@
-﻿# 6. I/O PLC
+# 6. I/O PLC
 
-- Reads or sets the input/output values of the built-in PLC.
+- 读取或设置内置 PLC 的输入/输出值。

@@ -1,3 +1,3 @@
-﻿## 8.3 `file_manager/delete`
+## 8.3 `file_manager/delete`
 
-- Send a DELETE request for file information from the controller.
+- 从控制器发送删除文件信息的请求。

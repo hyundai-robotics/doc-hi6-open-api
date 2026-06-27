@@ -1,8 +1,8 @@
-﻿#### 5.1.2 `po_cur`
+#### 5.1.2 `po_cur`
 
 ##### Description
 
-- `GET` : Get the pose the robot is currently taking.
+- `GET` : 获取机器人当前所处的姿态。
 
 ##### path-parameter
 
@@ -12,26 +12,26 @@ GET /project/robot/po_cur
 
 ##### query-parameter
 
-- `task_no` : task number (0~7).
-  - unspecified : Applied as task 0.
-  - &gt;=0 : If mechinfo is not specified, the current mechinfo of the task is applied.
+- `task_no` : 任务编号 (0~7)。
+  - unspecified : 应用为任务 0。
+  - &gt;=0 : 如果未指定 mechinfo，则应用任务的当前 mechinfo。
 - `crd` :  
-  - unspecified : Obtain all tcp, axis, and encoder.
-  - <0 : Follows the current recording coordinate system.
-  - &gt;=0 : [coordinate system](../../99-schema/crdsys.md)
-- `ucrd_no` : User coordinate system number (Specified only when crd is user.)
-- `mechinfo` : [Mechanism information](../../99-schema/mechinfo.md)
+  - unspecified : 获取所有 tcp、轴和编码器。
+  - <0 : 遵循当前记录的坐标系统。
+  - &gt;=0 : [坐标系统](../../99-schema/crdsys.md)
+- `ucrd_no` : 用户坐标系统编号 (仅在 crd 为用户时指定)。
+- `mechinfo` : [机制信息](../../99-schema/mechinfo.md)
 
 ##### response-body
 
-- [Pose information](../../99-schema/pose.md)
+- [姿态信息](../../99-schema/pose.md)
 
 
 ##### Example
 
-Example of a system with 6 robot axes (j1~j6) + 1 driving axis (j7) + 2 positioner axes (j8, j9).
+示例系统包含 6 个机器人轴 (j1~j6) + 1 个驱动轴 (j7) + 2 个定位轴 (j8, j9)。
 
-- Obtain only the base coordinates of the robot
+- 仅获取机器人的基坐标
 
 ```python
 request url:
@@ -52,7 +52,7 @@ response-body:
 }
 ```
 
-- Obtaining axis coordinates of all axes
+- 获取所有轴的轴坐标
 
 ```python
 request url:
@@ -76,7 +76,7 @@ response-body:
 }
 ```
 
-- Obtain the axis coordinates of the positioner 2 axis (i.e. mechanism M2)
+- 获取定位器 2 轴的轴坐标 (即机制 M2)
 
 ```python
 request url:
@@ -103,7 +103,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

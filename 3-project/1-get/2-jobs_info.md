@@ -1,8 +1,8 @@
-﻿#### 3.1.2 `jobs_info`
+#### 3.1.2 `jobs_info`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain information about job programs.
+- `GET` : 获取有关作业程序的信息。
 
 ##### path-parameter
 
@@ -12,9 +12,9 @@ GET /project/jobs_info
 
 ##### response-body
 
-- [job file information](../../99-schema/jobs_info.md)
+- [作业文件信息](../../99-schema/jobs_info.md)
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -53,7 +53,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

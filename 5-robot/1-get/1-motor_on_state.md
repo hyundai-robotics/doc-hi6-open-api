@@ -1,10 +1,10 @@
-﻿#### 5.1.1 `motor_on_state`
+#### 5.1.1 `motor_on_state`
 
 ##### Description
 
 `motor_on_state`
 
-- `GET` : Obtain the motor on status.
+- `GET` : 获取电机开启状态。
 
 ##### path-parameter
 
@@ -15,9 +15,9 @@ GET /project/robot/motor_on_state
 ##### response-body
 
 - val :
-  - `0` : on
-  - `1` : off
-  - `2` : busy (Transitioning state)
+  - `0` : 开启
+  - `1` : 关闭
+  - `2` : 繁忙（转换状态）
 
 ##### Example
 ```python

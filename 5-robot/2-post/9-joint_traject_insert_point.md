@@ -1,29 +1,29 @@
-﻿#### 5.2.9 `joint_traject_insert_point`
+#### 5.2.9 `joint_traject_insert_point`
 
 ##### Description
 - Supported version: `70.00-00` ↑
-- `POST`: **Sequentially appends the next joint target point** for joint trajectory execution.
-- By repeatedly calling this API, a continuous joint trajectory can be constructed.
+- `POST`: **顺序附加下一个关节目标点**以执行关节轨迹。
+- 通过重复调用此 API，可以构建连续的关节轨迹。
 
 ---
 
 ##### Notes
 
-Operating Condition: Program Must Be Running
-* The API must only be called while the controller program is running.
-* Normal example: Executing a `wait di1` statement in Auto Mode
-* Resulting error: [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) (External Command Operation Ready State Error)
+Operating Condition: 程序必须正在运行
+* 只有在控制器程序运行时才能调用 API。
+* 正常示例: 在自动模式下执行 `wait di1` 语句
+* 结果错误: [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) (外部命令操作准备状态错误)
 
-Physical Condition: Comply with Speed and Torque Limits
-* Commands exceeding the maximum speed and torque allowed by the system will cause an error.
-* Basic error: [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159) (Axis Speed Limit Exceeded Error)
+Physical Condition: 遵守速度和扭矩限制
+* 超过系统允许的最大速度和扭矩的命令将导致错误。
+* 基本错误: [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159) (轴速度限制超出错误)
 
-Cascading Alarms Triggered by Over-Torque Commands
-* Reducer Over-Torque: [E249](https://hr-alarms.web.app/#/${cont_model}/ko/E249) · [E6402](https://hr-alarms.web.app/#/${cont_model}/ko/E6402) · [E6403](https://hr-alarms.web.app/#/${cont_model}/ko/E6403)
-* Reducer Over-Current: [W153](https://hr-alarms.web.app/#/${cont_model}/ko/W153) · [W181](https://hr-alarms.web.app/#/${cont_model}/ko/W181) · [W182](https://hr-alarms.web.app/#/${cont_model}/ko/W153)
-* Position Deviation Exceeded: [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630) · [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636) · [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
+由过扭矩命令触发的级联警报
+* 减速器过扭矩: [E249](https://hr-alarms.web.app/#/${cont_model}/ko/E249) · [E6402](https://hr-alarms.web.app/#/${cont_model}/ko/E6402) · [E6403](https://hr-alarms.web.app/#/${cont_model}/ko/E6403)
+* 减速器过电流: [W153](https://hr-alarms.web.app/#/${cont_model}/ko/W153) · [W181](https://hr-alarms.web.app/#/${cont_model}/ko/W181) · [W182](https://hr-alarms.web.app/#/${cont_model}/ko/W153)
+* 位置偏差超出: [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630) · [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636) · [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
 
-Note: The actual alarms displayed may vary depending on the axis configuration, payload, and operating conditions.
+注意: 显示的实际警报可能会因轴配置、有效载荷和操作条件而异。
 
 ---
 
@@ -33,9 +33,7 @@ Note: The actual alarms displayed may vary depending on the axis configuration, 
 
 ```python
 POST /project/robot/trajectory/joint_traject_insert_point
-````
-
-</div>
+````</div>
 
 ---
 
@@ -56,29 +54,29 @@ POST /project/robot/trajectory/joint_traject_insert_point
 
 * interval
 
-  * Time interval used when adding points incrementally
+  * 添加点时使用的时间间隔
 * time_from_start
 
-  * Cumulative time from the start of the trajectory
+  * 从轨迹开始计算的累计时间
 * look_ahead_time
 
-  * Look-ahead time for trajectory execution
+  * 轨迹执行的提前时间
 * point
 
-  * Array of target joint angles (deg)
+  * 目标关节角度数组（度）
 
 ---
 
 ##### response
 
-1. status code
+1. 状态码
 
    * 200 : OK
-   * 400 : Bad Request
+   * 400 : 错误请求
 
-     * Request body validation failed
-   * 403 : Forbidden
-   * 404 : Not Found
+     * 请求体验证失败
+   * 403 : 禁止
+   * 404 : 未找到
 
 ---
 
@@ -105,11 +103,85 @@ request-body:
 
 ###### Prerequisites
 
-1. Move the robot to the reference pose.
-   (Example - for a 6-axis robot: `[0, 90, 0, 0, -90, 0]`)
-2. Insert the statement `wait di1` in the job.
-3. Switch to auto mode and start program playback.
-4. Run the test code below in that state.
+1. 将机器人移动到参考姿态。
+   (示例 - 对于一个六轴机器人: (
+
+</div>
+
+---
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```json
+{
+	"interval": 0.01,
+	"time_from_start": 0.0,
+	"look_ahead_time": 0.5,
+	"point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+}
+```
+
+</div>
+
+* interval
+
+  * 添加点时使用的时间间隔
+* time_from_start
+
+  * 从轨迹开始计算的累计时间
+* look_ahead_time
+
+  * 轨迹执行的提前时间
+* point
+
+  * 目标关节角度数组（度）
+
+---
+
+##### response
+
+1. 状态码
+
+   * 200 : OK
+   * 400 : 错误请求
+
+     * 请求体验证失败
+   * 403 : 禁止
+   * 404 : 未找到
+
+---
+
+##### Usage Example
+
+```python
+request url:
+POST /project/robot/trajectory/joint_traject_insert_point
+
+request-body:
+{
+    "interval": 0.01,
+    "time_from_start": 0.0,
+    "look_ahead_time": 0.5,
+    "point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
+}
+```
+
+</div>
+
+---
+
+##### Python Script Example
+
+###### Prerequisites
+
+1. 将机器人移动到参考姿态。
+   (示例 - 对于一个六轴机器人: )`[0, 90, 0, 0, -90, 0]`)
+2. 插入语句 ()
+2. 插入语句 )`wait di1` 到任务中。
+3. 切换到自动模式并开始程序播放。
+4. 在该状态下运行下面的测试代码。
 
 <div style="width: fit-content;">
 

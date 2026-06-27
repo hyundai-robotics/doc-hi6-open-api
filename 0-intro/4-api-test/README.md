@@ -1,23 +1,21 @@
-﻿## 0.4 Simple API call without coding
+## 0.4 简单的 API 调用，无需编码
 
-If you use Open API while developing a client application like [previous example code](../3-sample-code/README.md), you can easily call the API without coding.  
-Through this calling process, you can check whether the request worked properly and what data is returned in response.  
-There are several ways to do this. This section covers two representative ones.
-
-<br>
-
-#### 0.4.1 Using `postman`
-
-`postman` is a widely used API testing platform around the world.
-Postman's `workspace` function enables project-level API testing and history tracking, and is equipped with language-specific code snippets and intuitive UI.
-Simple usage instructions can be found in [1.4.1 Requesting POST in Postman](../4-api-test/1-postman.md).
-
+如果您在开发客户端应用程序时使用 Open API，像 [之前的示例代码](../3-sample-code/README.md)，您可以轻松地调用 API 而无需编码。  
+通过此调用过程，您可以检查请求是否正常工作，以及返回了什么数据作为响应。  
+有几种方法可以实现这一点。本节介绍两种代表性的方式。
 
 <br>
 
+#### 0.4.1 使用 `postman`
 
-#### 0.4.2 Using `Web Browser`
+`postman` 是全球广泛使用的 API 测试平台。  
+Postman 的 `workspace` 功能支持项目级的 API 测试和历史跟踪，并配备特定语言的代码片段和直观的用户界面。  
+简单的使用说明可以在 [1.4.1 在 Postman 中请求 POST](../4-api-test/1-postman.md) 中找到。
 
-Simple `get` requests can be made easily and quickly through a web browser.  
-Additionally, you can use your web browser's extension to directly call `get` requests and other API requests and view the results.  
-You can check simple usage instructions in [1.4.2 Calling API from web browser](../4-api-test/2-web-browser.md).
+<br>
+
+#### 0.4.2 使用 `Web Browser`
+
+简单的 `get` 请求可以通过网页浏览器轻松快速地完成。  
+此外，您可以使用网页浏览器的扩展直接调用 `get` 请求和其他 API 请求并查看结果。  
+您可以在 [1.4.2 从网页浏览器调用 API](../4-api-test/2-web-browser.md) 中查看简单的使用说明。

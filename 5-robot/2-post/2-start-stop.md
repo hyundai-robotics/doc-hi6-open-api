@@ -1,8 +1,8 @@
-﻿#### 5.2.2 `start / stop`
+#### 5.2.2 `start / stop`
 
-##### Description
+##### 描述
 
-- `POST` : Performs robot start and robot stop.
+- `POST` : 执行机器人启动和机器人停止。
 
 ##### path-parameter
 
@@ -19,27 +19,27 @@ POST /project/robot/stop
 
 ##### response-body
 
-1. status code
+1. 状态码
 
 - 200 : OK
-- 400 : Bad Request
-   - The request body failed validation.
-- 403 : Forbidden
-    - A `start` request was attempted while not in Remote Mode (effective from v60.30-07).
-- 404 : Not Found
+- 400 : 错误请求
+   - 请求体验证失败。
+- 403 : 禁止
+    - 在非远程模式下尝试了 ` (start)` 请求 (自 v60.30-07 起生效)。
+- 404 : 未找到
 
-2. response-body
+2. 响应体
 
 ```json
 {
     "_type": "JObject"
 }
 ```
-3. error code
+3. 错误码
 
-- -38500: API request rejected because the controller is not in Remote Mode
+- -38500: API 请求被拒绝，因为控制器不在远程模式
 
-##### Example
+##### 示例
 
 ```python
 POST /project/robot/start or /project/robot/stop
@@ -48,7 +48,7 @@ request-body:
 {}
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests
@@ -59,7 +59,7 @@ def post_start() -> int:
     head           = {'Content-Type': 'application/json; charset=utf-8'}
     body           = {}
 
-    # Requires automatic mode and motor on settings
+    # 需要自动模式和电机开启设置
     response = requests.post(url = base_url + path_parameter, headers = head, json = body)
     return response.status_code
 

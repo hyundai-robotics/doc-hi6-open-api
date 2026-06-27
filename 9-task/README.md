@@ -1,6 +1,6 @@
-﻿# 9. `task`
+# 9. `任务 (task)`
 
-- It covers content related to the task.
-- You can reset a specific task or all tasks.
-- You can read values from local or global variables of the current task or declare new variables.
-- During task execution, specific actions (e.g. release) can be taken for a specific work flow (e.g. wait).
+- 它涵盖与任务相关的内容。
+- 您可以重置特定任务或所有任务。
+- 您可以从当前任务的本地或全局变量读取值或声明新变量。
+- 在任务执行期间，可以针对特定工作流程（例如，等待）采取特定行动（例如，释放）。

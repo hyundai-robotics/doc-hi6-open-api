@@ -1,3 +1,3 @@
 ﻿# 2. `version`
 
-- Check the current API version or robot controller system version.
+- 检查当前的 API 版本或机器人控制器系统版本。

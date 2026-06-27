@@ -1,8 +1,8 @@
-﻿#### 6.1.3 `ios/sio/{sio_val}` 
+#### 6.1.3 `ios/sio/{sio_val}` 
 
 ##### Description
 
-- `GET` : Get system IO values.
+- `GET` : 获取系统 IO 值。
 
 ##### path-parameter
 
@@ -13,23 +13,23 @@ GET /project/control/ios/sio/{sio_val}
 ##### path-variable
 
 - `sio_val` :
-  - `si_val` : Get the input(si) value.
-  - `so_val` : Get the output(so) value.
+  - `si_val` : 获取输入(si) 值。
+  - `so_val` : 获取输出(so) 值。
 
 ##### query-parameter
 
-- `type` : Type of io value
-  - si or so : bit
-  - sib or sob : signed-byte
-  - siw or sow : signed-word (2byte)
-  - sil or sol : signed-dword (4yte)
-  - sif or sof : float
-- `sig_no` : signal index (0~)
+- `类型 (type)` : IO 值的类型
+  - si 或 so : bit
+  - sib 或 sob : signed-byte
+  - siw 或 sow : signed-word (2byte)
+  - sil 或 sol : signed-dword (4yte)
+  - sif 或 sof : float
+- `sig_no` : 信号索引 (0~)
 
 
 ##### Example
 
-- Get sib1 value. (Result : 0b00000010 = 0x02 = 2)
+- 获取 sib1 值。 (结果 : 0b00000010 = 0x02 = 2)
 
 ```python
 request url:

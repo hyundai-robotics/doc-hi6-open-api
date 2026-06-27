@@ -1,8 +1,8 @@
-﻿#### 8.2.1 `rename_file`
+#### 8.2.1 `rename_file`
 
 ##### Description
 
-- `POST` : Change the file name of the target file.
+- `POST` : 更改目标文件的文件名。
 
 ##### path-parameter
 
@@ -18,15 +18,15 @@ POST /file_manager/rename_file
 	"pathname_to"   : "project/jobs/4321.job"
 }
 ```
-- `pathname_from` : File path before change
-- `pathname_to` : File path after change
+- `pathname_from` : 更改前的文件路径
+- `pathname_to` : 更改后的文件路径
 
 ##### status code
 
-- 200 : Request succeeded
-  - Works fine
-- 400 : Request failed
-  - No file exists to rename
+- 200 : 请求成功
+  - 工作正常
+- 400 : 请求失败
+  - 找不到要重命名的文件
 
 
 ##### Example

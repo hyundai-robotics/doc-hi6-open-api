@@ -1,10 +1,10 @@
-﻿#### 4.3.1 `op_cnd`
+#### 4.3.1 `op_cnd`
 
 ##### Description
 
-- `PUT` : Change the robot's condition setting values.
-- If you open the `condition setting window(cond.set)` in TP and request the corresponding method,  
-you must close and reopen the window for the value to be reflected.
+- `PUT` : 更改机器人的状态设置值。
+- 如果在 TP 中打开 `condition setting window(cond.set)` 并请求相应的方法，  
+您必须关闭并重新打开窗口，以使值反映出来。
 
 ##### path-parameter
 

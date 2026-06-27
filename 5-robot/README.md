@@ -1,4 +1,4 @@
-﻿# 5. `robot`
+﻿# 5. `机器人 (robot)`
 
-- You can check remote control and monitoring of robot and tool data.
-- It covers motor on/off, robot posture, tools, jog coordinate system, etc.
+- 您可以检查机器人和工具数据的远程控制和监控。
+- 它涵盖电机开/关、机器人姿态、工具、Jog 坐标系等。

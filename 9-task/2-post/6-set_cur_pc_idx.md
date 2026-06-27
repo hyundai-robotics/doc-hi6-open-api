@@ -1,8 +1,8 @@
-﻿#### 9.2.6 `set_cur_pc_idx`
+#### 9.2.6 `set_cur_pc_idx`
 
-##### Description
+##### 说明
 
-- `POST` : Function that positions the current cursor at the index line
+- `POST` : 将当前光标定位在索引行的功能
 
 ##### path-parameter
 
@@ -17,7 +17,7 @@ POST /project/context/tasks[0]/set_cur_pc_idx
 }
 ```
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -33,7 +33,7 @@ request-body
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py
@@ -53,5 +53,5 @@ print(f"response: {set_cur_pc_idx()}")
 ```
 ```sh
 $python test.py 
-response 200 # Cursor position on TP changed
+response 200 # 光标位置已在 TP 上更改
 ```

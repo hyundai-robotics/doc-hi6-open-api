@@ -1,8 +1,8 @@
-﻿#### 5.1.5 `tools/t_{number}`
+#### 5.1.5 `tools/t_{number}`
 
-##### Description
+##### 描述
 
-- `GET` : This is a function that receives information on the settings of a specific tool.
+- `GET` : 这是一个接收特定工具设置信息的函数。
 
 ##### path-parameter
 
@@ -12,9 +12,9 @@ GET /project/robot/tools/t_{number}
 
 ##### response-body
 
-- [Tool data](../../99-schema/tool_data.md)
+- [工具数据](../../99-schema/tool_data.md)
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -33,7 +33,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

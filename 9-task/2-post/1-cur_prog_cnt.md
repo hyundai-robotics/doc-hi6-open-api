@@ -1,8 +1,8 @@
-﻿#### 9.2.1 `task/cur_prog_cnt`
+#### 9.2.1 `task/cur_prog_cnt`
 
 ##### Description
 
-- `POST` : Sets the current program counter for the task.
+- `POST` : 设置任务的当前程序计数器。
 
 ##### path-parameter
 

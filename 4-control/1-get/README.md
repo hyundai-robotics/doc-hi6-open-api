@@ -1,4 +1,4 @@
-﻿## 4.1 `control/get`
+## 4.1 `control/get`
 
-- Send a GET request for controller setting information and input/output values.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送 GET 请求以获取控制器设置信息和输入/输出值。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。

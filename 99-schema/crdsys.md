@@ -1,13 +1,13 @@
-﻿### `crdsys`
+### `crdsys`
 
-#### Description
+#### 描述
 
-This is an enumeration that specifies the coordinate system.
+这是一个枚举，用于指定坐标系统。
 |value|description|
 |:---:|:---|
-|`-1`|`next` coordinate system|
-|`0`|`base` coordinate system|
-|`1`|`robot` coordinate system|
-|`2`|`axis` coordinate system|
-|`3`|`encoder` coordinate system|
-|`4`|`user` coordinate system|
+|`-1`|`下一个 (next)` 坐标系统|
+|`0`|`基座 (base)` 坐标系统|
+|`1`|`机器人 (robot)` 坐标系统|
+|`2`|`轴 (axis)` 坐标系统|
+|`3`|`编码器 (encoder)` 坐标系统|
+|`4`|`用户 (user)` 坐标系统|

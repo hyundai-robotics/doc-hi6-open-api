@@ -1,4 +1,4 @@
-﻿## 4.2 `control/post`
+## 4.2 `control/post`
 
-- Sends a POST request for the controller's setting information and input/output values.
-- You must write the correct request-body for each API.
+- 发送用于控制器设置信息和输入/输出值的POST请求。
+- 您必须为每个API编写正确的请求体。

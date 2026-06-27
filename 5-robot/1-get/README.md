@@ -1,4 +1,4 @@
-﻿## 5.1 `robot/get`
+## 5.1 `robot/get`
 
-- Send GET requests for robot and tool data.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送 GET 请求以获取机器人和工具数据。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。

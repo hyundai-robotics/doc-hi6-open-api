@@ -1,15 +1,15 @@
-﻿#### 5.2.7 `joint_traject_init`
+#### 5.2.7 `joint_traject_init`
 
 ##### Description
 
 - Supported version : `60.32-00` &uparrow;
-- `POST` : Initializes the trajectory buffer.
-- Before requesting a new trajectory while the robot is stopped, the previously stored trajectory must be cleared by the user.
+- `POST` : 初始化轨迹缓冲区。
+- 在请求新的轨迹之前，用户必须清除之前存储的轨迹，尤其是在机器人停止时。
 - ex)
-  - request traj1 → error occurs during motion → buffer must be cleared using `joint_traject_init` → request traj2 <br>
-  : If the trajectory data from the time of the error remains in the buffer, requesting traj2 without clearing the buffer may result in another error.
-- If this api is called while a trajectory is being executed via the [joint_traject_insert_points](./8-joint_traject_insert_points.md) API, the buffer will be updated immediately.
-  - Removing previously stored trajectory points from the buffer may cause the robot to stop and trigger an error. Use with caution.
+  - request traj1 → 在运动过程中发生错误 → 必须使用 `joint_traject_init` 清除缓冲区 → request traj2 <br>
+  : 如果错误发生时的轨迹数据仍保留在缓冲区中，则在未清除缓冲区的情况下请求 traj2 可能会导致另一个错误。
+- 如果在通过 [joint_traject_insert_points](./8-joint_traject_insert_points.md) API 执行轨迹时调用此 API，缓冲区将立即更新。
+  - 从缓冲区中删除之前存储的轨迹点可能导致机器人停止并触发错误。 请谨慎使用。
 
 
 ##### path-parameter
@@ -32,10 +32,10 @@ POST /project/robot/trajectory/joint_traject_init
 
 ##### status code
 
-- 200 : Request succeeded
-- 403 : Request failed
-  - Returned when calling an unsupported API
-  - `err_code` (<0): Initialization failed
+- 200 : 请求成功
+- 403 : 请求失败
+  - 当调用不支持的 API 时返回
+  - `err_code` (<0): 初始化失败
 
 ##### Example
 
@@ -48,7 +48,7 @@ request-body
 {}
 ```
 
-Python Script Example
+Python 脚本示例
 ```python
 # test.py
 
@@ -65,10 +65,10 @@ base_url: str, session: requests.Session
     try:
         response = session.post(url=uri, headers=headers)
         response.raise_for_status()
-        print(f"[INFO] Initialization successful: status={response.status_code}")
+        print(f"[INFO] 初始化成功: status={response.status_code}")
         return response
     except requests.exceptions.RequestException as e:
-        print(f"[ERROR] Failed to initialize trajectory buffer: {e}")
+        print(f"[ERROR] 初始化轨迹缓冲区失败: {e}")
         return None
 
 
@@ -83,6 +83,6 @@ if __name__ == "__main__":
 ```
 ```sh
 $python test.py
-[INFO] Initialization successful: status=200
+[INFO] 初始化成功: status=200
 ```
 </div>

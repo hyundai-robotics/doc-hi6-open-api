@@ -1,4 +1,4 @@
-﻿## 6.2 `io_plc/post`
+## 6.2 `io_plc/post`
 
-- Sends a POST request for input/output values from a built-in PLC.
-- You must write the correct request-body for each API.
+- 发送来自内置 PLC 的输入/输出值的 POST 请求。
+- 您必须为每个 API 编写正确的请求主体。

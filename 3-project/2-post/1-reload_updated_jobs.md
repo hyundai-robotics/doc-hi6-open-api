@@ -1,34 +1,34 @@
-﻿#### 3.2.1 `reload_updated_jobs`
+#### 3.2.1 `reload_updated_jobs`
 
-##### Description
+##### 描述
 
-- `POST` : Send a request to update working files.
-- When transmitting a job file to the controller via FTP, a reload request must be made through the corresponding API for the transmitted job file to be reflected in memory.
+- `POST` : 发送请求以更新工作文件。
+- 在通过 FTP 将作业文件传输到控制器时，必须通过相应的 API 发起重载请求，以使传输的作业文件在内存中反映。
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/reload_updated_jobs
 ```
 
-##### request-body
+##### 请求体
 
 ```json
 {}
 ```
 
-##### Description
+##### 描述
 
 ```python
-request url:
+请求 URL:
 POST /project/reload_updated_jobs
 
-request-body: {}
+请求体: {}
 ```
 
-Python Script Example
+Python 脚本示例
 
-- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
+- 请参考 [here](https://developer.mozilla.org/zh-US/docs/Web/HTTP/Status/200) 以获取响应的 HTTP 状态码。
 ```python
 # test.py
 import requests 

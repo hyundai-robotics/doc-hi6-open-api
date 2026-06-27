@@ -1,8 +1,8 @@
-﻿#### 9.2.3 `assign_var_expr`
+#### 9.2.3 `assign_var_expr`
 
 ##### Description
 
-- `POST` : Reassigns a variable in the current task statement.
+- `POST` : 在当前任务语句中重新分配变量。
 
 ##### path-parameter
 
@@ -12,13 +12,13 @@ POST /project/context/tasks[0]/assign_var_expr
 
 ##### request-body
 
-- `name` : variable name
-- `expr` : expression to substitute into variable
-- `save` : Whether to save (true/false). This is to save the data in the variable file.
-- `scope` : Setting the effective scope of the variable
+- `名称 (name)` : 变量名
+- `expr` : 要替代到变量中的表达式
+- `保存 (save)` : 是否保存（true/false）。这是为了保存变量文件中的数据。
+- `scope` : 设置变量的有效作用域
 	|`local`|`global`|`Not set`|
 	|:---|:---|:---|
-	|local variable|global variable|Full scope (local and global are set automatically)|
+	|局部变量|全局变量|完整作用域（局部和全局自动设置）|
 
 
 ```json
@@ -40,7 +40,7 @@ Hyundai Robot Job File;
     end
 ```
 
-When the above job file is executed and a local variable `a` is declared in the task
+当上述作业文件被执行，并在任务中声明了一个局部变量 ` (a)`
 
 ```python
 request url:
@@ -57,7 +57,7 @@ request-body
 
 </blockquote>
 
-Python Script Example
+Python脚本示例
 
 ```python
 # test.py

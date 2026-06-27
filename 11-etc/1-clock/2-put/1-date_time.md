@@ -1,14 +1,14 @@
-﻿#### 11.1.2.1 `date_time`
+#### 11.1.2.1 `date_time`
 
-##### Description
+##### 描述
 
-- `PUT` : Change the system time.
+- `PUT` : 更改系统时间。
 
 ##### request-body
 
 - [date time](../../../99-schema/date_time.md)
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -28,7 +28,7 @@ request-body:
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

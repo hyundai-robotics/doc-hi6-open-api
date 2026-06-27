@@ -1,4 +1,4 @@
-﻿#### 9.2.2 `task/reset`
+#### 9.2.2 `task/reset`
 
 ##### Description
 
@@ -6,19 +6,19 @@
 
 {% hint style="warning" %}
 
-Calling R-code 0 initializes the program counter, which may cause robot malfunctions.<br>
-Please use R-code 1 for error reset purposes.<br>
-We are not responsible for any issues caused by the indiscriminate calling of R-code 0, ignoring this warning.
+调用 R-code 0 会初始化程序计数器，这可能导致机器人故障。<br>
+请使用 R-code 1 进行错误重置。<br>
+我们对因不加选择地调用 R-code 0 而导致的任何问题不承担责任，忽视此警告。
 
 {% endhint %}
 
 ##### Description
 
-- `POST`: Initializes the step counter and moves to STEP0.
-- Utilizes [R-code 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) or [R-code 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/en-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
-    Codes other than R-code 1 and 0 are not intended operations.
+- `POST`: 初始化步进计数器并移动到 STEP0。
+- 利用 [R-code 1](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}) 或 [R-code 0](https://hrbook-hrc.web.app/#/view/doc-hi6-operation/zh-tp630/8-r-code/1-use-r-code?cont_model=${cont_model}).  <span style="text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #E82E8C;">
+    R-code 1 和 0 以外的代码不是预期的操作。
 </span>
-- If program counter manipulation is required after executing R-code 1, explicitly use the [cur_prog_cnt](./1-cur_prog_cnt.md) and [set_cur_pc_idx](./6-set_cur_pc_idx.md) APIs.
+- 如果在执行 R-code 1 后需要操作程序计数器，请明确使用 [cur_prog_cnt](./1-cur_prog_cnt.md) 和 [set_cur_pc_idx](./6-set_cur_pc_idx.md) APIs。
 
 ##### path-parameter
 
@@ -38,14 +38,14 @@ POST /project/service/r_code/execute
 1) status code
 	- 200 : OK
 	- 400 : Bad Request
-		- When the request body fails validation
+		- 当请求体验证失败时
 	- 403 : Forbidden
-        - When an unauthorized request is made
-        - Returns `err_code` (<0). Refer to the error codes below
+        - 当进行未经授权的请求时
+        - 返回 `err_code` (<0)。请参阅下面的错误代码
 	- 404 : Not Found
 
 2) response-body
-   - code: The requested rcode number is returned
+   - code: 返回请求的 rcode 编号
         <div style="width: fit-content;">
 
 		```json

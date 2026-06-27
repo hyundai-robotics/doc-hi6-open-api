@@ -1,12 +1,12 @@
-﻿## 0.5 Caution
+## 0.5 注意事项
 
 {% hint style="warning" %}
 
-This section outlines critical precautions that may cause serious errors in the robot controller.
+本节概述了可能导致机器人控制器严重错误的关键预防措施。
 
-Please ensure you fully understand these items before using the API.
+在使用 API 之前，请确保您完全理解这些事项。
 
 {% endhint %}
 
 
-0.5.1. [Keep-Alive vs Close connection](./1-http-connection.md)
+0.5.1. [保持活动状态 vs 关闭连接](./1-http-connection.md)

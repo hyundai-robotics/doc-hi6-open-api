@@ -1,9 +1,9 @@
-﻿#### 4.1.2 `ucss/ucs_nos`
+#### 4.1.2 `ucss/ucs_nos`
 
 ##### Description
 
-- `GET` : Obtains a list of user coordinate systems currently in use.
-- Prints a list of user coordinate systems registered through `[F2: system] - 2: Control parameter - 6: Coordinate registration`.
+- `GET` : 获取当前使用的用户坐标系列表。
+- 打印通过 `[F2: 系统] - 2: 控制参数 - 6: 坐标系注册 ([F2: system] - 2: Control parameter - 6: Coordinate registration)` 注册的用户坐标系列表。
 
 ##### path-parameter
 

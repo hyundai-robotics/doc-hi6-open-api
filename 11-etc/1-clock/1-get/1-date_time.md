@@ -1,14 +1,14 @@
-﻿#### 11.1.1.1 `date_time`
+#### 11.1.1.1 `date_time`
 
-##### Description
+##### 描述
 
-- `GET` : Obtain the set system time.
+- `GET` : 获取设置的系统时间。
 
 ##### response-body
 
 - [date time](../../../99-schema/date_time.md)
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -29,7 +29,7 @@ response-body:
 ```
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

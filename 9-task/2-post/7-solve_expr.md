@@ -1,8 +1,8 @@
-﻿#### 9.2.7 `solve_expr`
+#### 9.2.7 `solve_expr`
 
 ##### Description
 
-- `POST` : Solve the expression and set the resulting value to a local or global variable of the task.
+- `POST` : 解决表达式并将结果值设置为任务的本地或全局变量。
 
 ##### path-parameter
 
@@ -11,12 +11,12 @@ POST /project/context/tasks[0]/solve_expr
 ```
 
 ##### request-body
-- `expr` : Enter the expression you want to solve
-- `scope` : Sets the scope for `expr`.
+- `expr` : 输入您想要求解的表达式
+- `scope` : 设置 `expr` 的作用域。
 
 	|`local`|`global`|`not set`|
 	|:---|:---|:---|
-	|local variable|global variable|Full scope (local and global are set automatically)|
+	|本地变量|全局变量|完整作用域（本地和全局自动设置）|
 
 ```json
 {
@@ -28,7 +28,7 @@ POST /project/context/tasks[0]/solve_expr
 ##### response-body
 
 ```json
-13 // Reads the expr value within the currently specified scope.
+13 // 在当前指定作用域内读取 expr 值。
 ```
 
 ##### Example
@@ -36,7 +36,7 @@ POST /project/context/tasks[0]/solve_expr
 <blockquote>
 
 ```python
-# 1. Read the value of "local" variable a declared in the current Task
+# 1. 读取当前任务中声明的“local”变量 a 的值
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -55,7 +55,7 @@ response-body:
 <blockquote>
 
 ```python
-# 2. Read the value of "global" variable a declared in the current Task
+# 2. 读取当前任务中声明的“global”变量 a 的值
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -74,7 +74,7 @@ response-body:
 <blockquote>
 
 ```python
-# 3. Add -234 to the value of local variable a
+# 3. 将 -234 加到本地变量 a 的值
 request url:
 GET /project/context/tasks[0]/solve_expr
 
@@ -90,7 +90,7 @@ response-body:
 </blockquote>
 
 Python Script Example
-- Execute the following code with the local and global variable a values set in the task area of the robot controller.
+- 执行以下代码时，任务区域的本地和全局变量 a 值已设置在机器人控制器中。
 
 ```python
 # test.py

@@ -1,19 +1,19 @@
-﻿### `cur_prog_cnt`
+### `cur_prog_cnt`
 
 #### Description
-Sets the current program counter for the task.
+设置任务的当前程序计数器。
 
 #### request body
 |key|type|description|
 |:---|:---|:---|
-|`pno`|int|Program number (if -1, keep current number)|
-|`sno`|int|Step number (if -1, keep current number)|
-|`fno`|int|Function number (if -1, keep current number)|
-|`ext_sel`|int|`0` : Internal selection (prohibited in remote mode) <br> `1` : External selection (only allowed in remote mode)|
+|`pno`|int|程序编号（如果是-1，则保持当前编号）|
+|`sno`|int|步骤编号（如果是-1，则保持当前编号）|
+|`fno`|int|功能编号（如果是-1，则保持当前编号）|
+|`ext_sel`|int|`0` : 内部选择（在远程模式下禁止） <br> `1` : 外部选择（仅在远程模式下允许）|
 
 #### response body
 |key|type|description|
 |:---|:---|:---|
-|`sno_new`|int|Newly moved step number|
-|`fno_new`|int|Newly moved function number|
-|`ln_new`|int|Newly moved line number (program header is 0, first statement is 1)|
+|`sno_new`|int|新移动的步骤编号|
+|`fno_new`|int|新移动的功能编号|
+|`ln_new`|int|新移动的行编号（程序头为0，第一条语句为1）|

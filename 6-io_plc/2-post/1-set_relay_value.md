@@ -1,8 +1,8 @@
-﻿#### 6.2.1 `set relay values`
+#### 6.2.1 `set relay values`
 
 ##### Description
 
-- `POST` : Set the relay value.
+- `POST` : 设置继电器值。
 
 ##### path-parameter
 
@@ -12,8 +12,8 @@ POST /project/plc/set_relay_value
 
 ##### request-parameter
 
-- `name` : Enter the relay name you want to set according to [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/en/3-relay/2-relay-expression?cont_model=${cont_model}).
-- `value` : Please pay attention to 'data-type' in the notation above and enter the value you want to set.
+- `名称 (name)` : 输入您要设置的继电器名称，按照 [relay expression](https://hrbook-hrc.web.app/#/view/doc-hi6-embedded-plc/zh/3-relay/2-relay-expression?cont_model=${cont_model})。
+- `值 (value)` : 请注意上面的符号中的 'data-type'，并输入您要设置的值。
 ```json
 {
     "name": "fb3.dof14",

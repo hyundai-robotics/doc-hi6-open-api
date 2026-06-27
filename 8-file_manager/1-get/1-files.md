@@ -1,8 +1,8 @@
-﻿#### 8.1.1 `files`
+#### 8.1.1 `文件 (files)`
 
 ##### Description
 
-- `GET` : The file contents are responded to from the controller.
+- `GET` : 从控制器返回文件内容。
 
 ##### path-parameter
 
@@ -12,20 +12,20 @@ GET /file_manager/files
 
 ##### query-parameter
 
-query-parameter must be entered.  
+query-parameter 必须输入。  
 
 ```text
 ?pathname=project/jobs/0001.job
 ```
 
-- `pathname` : File name to get
+- `pathname` : 要获取的文件名
 
 ##### status code
 
-- 200 : Request succeeded
-  - Return file contents
-- 403 : Request failed
-  - Return error status code when file does not exist
+- 200 : 请求成功
+  - 返回文件内容
+- 403 : 请求失败
+  - 当文件不存在时返回错误状态码
 
 ##### Example
 
@@ -35,7 +35,7 @@ query-parameter must be entered.
 ${cont_model}
 `-- project
     |-- jobs
-    |   `-- 0001.job   <- target
+    |   `-- 0001.job   <- 目标
     |-- lads
     |-- log
     |-- vars   

@@ -1,4 +1,4 @@
-﻿## 9.2 `task/post`
+## 9.2 `task/post`
 
-- Sends a POST request for information related to the task.
-- You must write the correct request-body for each API.
+- 发送与任务相关的信息的 POST 请求。
+- 您必须为每个 API 编写正确的请求体。

@@ -1,8 +1,8 @@
-﻿#### 6.2.2 `ios/dio/{do_val}`
+#### 6.2.2 `ios/dio/{do_val}`
 
-##### Description
+##### 描述
 
-- `POST` : Change digital output.
+- `POST` : 更改数字输出。
 
 ##### path-parameter
 
@@ -24,18 +24,18 @@ POST /project/control/ios/dio/do_val
 
 ##### query-parameter
 
-- `type` : Type of io value
-  - do : bit
-  - dob : signed-byte
-  - dow : signed-word (2byte)
-  - dol : signed-dword (4yte)
-  - dof : float
-- `blk_no` : block number (0~9)
-- `sig_no` : signal index (0~)
-- `val` : Setting value you want to change
+- `类型 (type)` : io值类型
+  - do : 位
+  - dob : 有符号字节
+  - dow : 有符号字 (2byte)
+  - dol : 有符号双字 (4yte)
+  - dof : 浮点数
+- `blk_no` : 块编号 (0~9)
+- `sig_no` : 信号索引 (0~)
+- `val` : 你想要更改的设置值
 
 
-##### Example
+##### 示例
 
 ```python
 request url:
@@ -50,9 +50,9 @@ request-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
-- Please refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) for the response HTTP status code.
+- 请参阅 [here](https://developer.mozilla.org/zh-US/docs/Web/HTTP/Status/200) 以获取响应 HTTP 状态码。
 ```python
 # test.py
 import requests

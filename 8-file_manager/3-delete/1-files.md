@@ -1,8 +1,8 @@
-﻿#### 8.3.1 `files`
+#### 8.3.1 `文件 (files)`
 
-##### Description
+##### 描述
 
-- `DELETE` : Deletes the target file or directory.
+- `DELETE` : 删除目标文件或目录。
 
 ##### path-parameter
 
@@ -10,12 +10,12 @@
 DELETE /file_manager/files/{target-filepath}
 ```
 
-##### status code
+##### 状态码
 
-- 200 : Request succeeded
-  - Target deletion completed
+- 200 : 请求成功
+  - 目标删除完成
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -32,7 +32,7 @@ ${cont_model}
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

@@ -1,8 +1,8 @@
-﻿#### 5.2.4 `crd_sys`
+#### 5.2.4 `crd_sys`
 
-##### Description
+##### 描述
 
-- `POST` : Set the current jog coordinate system.
+- `POST` : 设置当前的关节坐标系统。
 
 ##### path-parameter
 
@@ -12,7 +12,7 @@ POST /project/robot/crd_sys
 
 ##### request-body
 
-- [Coordinate system](../../99-schema/crdsys.md)
+- [坐标系统](../../99-schema/crdsys.md)
 
 ##### response-body
 
@@ -25,7 +25,7 @@ POST /project/robot/crd_sys
 ```
 
 
-##### Example
+##### 示例
 
 ```json
 POST /project/robot/crd_sys
@@ -36,7 +36,7 @@ request-body
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests

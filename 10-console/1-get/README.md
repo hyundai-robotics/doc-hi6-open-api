@@ -1,4 +1,4 @@
-﻿## 10.1 `console/get`
+## 10.1 `console/get`
 
-- Sends a GET request for information related to executing robot commands.  
-- The exact path-parameter and query-parameter must be set for each API to receive a response.  
+- 发送与执行机器人命令相关的信息的GET请求。  
+- 每个API的确切路径参数和查询参数必须设置，以接收响应。  

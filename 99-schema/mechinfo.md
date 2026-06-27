@@ -1,9 +1,9 @@
-﻿### `mechinfo`
+### `mechinfo`
 
 #### Description
 
-Mechanism info
-Celebrate with a bit-field which activities are used.
+机制信息  
+使用位字段庆祝使用哪些活动。
 
 - bit 0 : M0
 - bit 1 : M1
@@ -18,5 +18,5 @@ Celebrate with a bit-field which activities are used.
 
 ```python
 0x13 = 0b00010011 = M4 | M1 | M0
-# Specify mechanisms M0, M1, and M4.
+# 指定机制 M0, M1 和 M4。
 ```

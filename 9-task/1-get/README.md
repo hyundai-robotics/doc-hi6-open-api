@@ -1,4 +1,4 @@
-﻿## 9.1 `task/get`
+## 9.1 `task/get`
 
-- Send a GET request for information related to the task.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
+- 发送与任务相关的信息的 GET 请求。
+- 通过为每个 API 设置正确的路径参数和查询参数来接收响应。

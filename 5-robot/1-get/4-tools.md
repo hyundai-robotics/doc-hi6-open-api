@@ -1,8 +1,8 @@
-﻿#### 5.1.4 `tools`
+#### 5.1.4 `tools`
 
 ##### Description
 
-- `GET` : Get all tool information for the robot. Only tools that exist among tools from T0 to T31 are obtained.
+- `GET` : 获取机器人所有工具信息。仅获取 T0 到 T31 范围内存在的工具。
 
 ##### path-parameter
 
@@ -12,15 +12,15 @@ GET /project/robot/tools
 
 ##### response-body
 
-- t_0 : [Tool data](../../99-schema/tool_data.md)
-- t_1 : Tool data
-- t_2 : Tool data  
+- t_0 : [工具数据](../../99-schema/tool_data.md)
+- t_1 : 工具数据
+- t_2 : 工具数据  
 ...
-- t_31 : Tool data
+- t_31 : 工具数据
 
 ##### Example
 
-An example of a system in which only tool 0 and tool 31 exist.
+仅存在工具 0 和工具 31 的系统示例。
 
 ```python
 request url:
@@ -35,7 +35,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 # test.py

@@ -1,8 +1,8 @@
-﻿#### 8.1.3 `file_list`
+#### 8.1.3 `file_list`
 
 ##### Description
 
-- `GET` : Obtain a list of files and directories.
+- `GET` : 获取文件和目录的列表。
 
 ##### path-parameter
 
@@ -12,7 +12,7 @@ GET /file_manager/file_list
 
 ##### query-parameter
 
-query-parameter must be entered.  
+query-parameter 必须输入。  
 
 ```text
 ?path=project/jobs&incl_file=true&incl_dir=false
@@ -20,17 +20,17 @@ query-parameter must be entered.
 
 |key|description|
 |:---|:---|
-|`path`|Target path you want to check|
-|`incl_file`|Whether to include files when outputting the list|
-|`incl_dir`|Whether to include directories when outputting the list|
+|`路径 (path)`|您想要检查的目标路径|
+|`incl_file`|输出列表时是否包含文件|
+|`incl_dir`|输出列表时是否包含目录|
 
 
 ##### status code
 
-- 200 : Request succeeded
-  - return [file information](../../99-schema/file_info) `list`
-- 403 : Request failed
-  - no file exists
+- 200 : 请求成功
+  - 返回 [file information](../../99-schema/file_info) `list`
+- 403 : 请求失败
+  - 没有文件存在
 
 
 ##### Example

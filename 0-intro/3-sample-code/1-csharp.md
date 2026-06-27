@@ -1,14 +1,14 @@
-﻿#### 0.3.1 Sample code - C#
+#### 0.3.1 示例代码 - C#
 
-This document uses `Newtonsoft.Json`, a library for JSON parsing.  
-If it is not installed in your Visual Studio project, please install it using NuGet Package Manager.
+此文档使用 `Newtonsoft.Json`，这是一个用于 JSON 解析的库。  
+如果它尚未安装在您的 Visual Studio 项目中，请使用 NuGet 包管理器进行安装。
 
-* [Newtonsoft.Json License info](https://github.com/JamesNK/Newtonsoft.Json/blob/master)
+* [Newtonsoft.Json 授权信息](https://github.com/JamesNK/Newtonsoft.Json/blob/master)
 
-1) Open `project` properties
-2) `Manage NuGet Packages...`
-3) Find `Json.NET (James Newton-King)` in `Online/nuget.org` and install it. 
-   (If you receive a message that installation is not possible because the version of NuGet Package Manager is too low, select `TOOLS/Extensions and Updates...` from the main menu and update NuGet from Updates..)
+1) 打开 `project` 属性
+2) `管理 NuGet 包...`
+3) 在 `Online/nuget.org` 中找到 `Json.NET (James Newton-King)` 并安装它。  
+   （如果您收到该消息，表示由于 NuGet 包管理器的版本过低而无法安装，请从主菜单中选择 `TOOLS/Extensions and Updates...` 并从更新中更新 NuGet。）
 
 ```csharp
 using System;
@@ -25,7 +25,7 @@ var query = "?type=dob&blk_no=2&sig_no=3";
 
 var request = (HttpWebRequest)WebRequest.Create(uri+path+query);
 request.Method = "GET";
-request.Timeout = 5 * 1000; // 5 sec
+request.Timeout = 5 * 1000; // 5 秒
 
 using (var resp = (HttpWebResponse)request.GetResponse())
 {
@@ -41,5 +41,5 @@ var str = "fb2.do3=" + jobj["val"].ToString();
 Console.WriteLine(str);
 ```
 
-You can check out the executable C# WinForms sample program containing the above source code through the Github link below.
-> Link : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)
+您可以通过以下 GitHub 链接查看包含上述源代码的可执行 C# WinForms 示例程序。  
+> 链接 : [https://github.com/hyundai-robotics/OpenAPI](https://github.com/hyundai-robotics/OpenAPI)

@@ -1,8 +1,8 @@
-﻿#### 8.2.3 `files`
+#### 8.2.3 `文件 (files)`
 
 ##### Description
 
-- `POST` : Transfer the file to the target path.
+- `POST` : 将文件传输到目标路径。
 
 ##### path-parameter
 
@@ -12,16 +12,16 @@ POST /file_manager/files/{target_filepath}
 
 ##### path-variable
 
-- `target_filepath` : Target file path including extension.
+- `target_filepath` : 包含扩展名的目标文件路径。
 
 ##### request-body
 
-- `Content-Type` must be `application/octet-stream`.
+- `Content-Type` 必须为 `application/octet-stream`。
 
 ##### status code
 
-- 200 : Request succeeded
-  - Transfer completed
+- 200 : 请求成功
+  - 传输完成
 
 ##### Example
 

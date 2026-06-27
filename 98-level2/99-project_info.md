@@ -1,8 +1,8 @@
-﻿#### 3.1.2 `project_info`
+#### 3.1.2 `project_info`
 
-##### Description
+##### 描述
 
-- `GET` : Retrieves information regarding the project.
+- `GET` : 检索关于项目的信息。
 
 ##### path-parameter
 
@@ -18,11 +18,11 @@ GET /project/project_info
 
 ##### response
 
-1. status code
+1. 状态码
 
 * 200 : OK
-* 400 : Bad Request
-* 404 : Not Found
+* 400 : 错误请求
+* 404 : 未找到
 
 2. response-body
 
@@ -36,11 +36,11 @@ GET /project/project_info
 }
 ```
 
-3. error code
+3. 错误代码
 
-* None
+* 无
 
-##### Example
+##### 示例
 
 ```python
 GET /project/project_info
@@ -49,7 +49,7 @@ request-body:
 {}
 ```
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests

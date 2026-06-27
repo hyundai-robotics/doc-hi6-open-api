@@ -1,8 +1,8 @@
-﻿#### 8.2.2 `mkdir`
+#### 8.2.2 `mkdir`
 
 ##### Description
 
-- `POST` : Create a directory in the target path.
+- `POST` : 在目标路径中创建目录。
 
 ##### path-parameter
 
@@ -14,18 +14,18 @@ GET /file_manager/mkdir
 
 |key|value|description|
 |:---|:---|:---|
-|`path`|`str`|Where to create the directory|
+|`路径 (path)`|`str`|创建目录的位置|
 
 ##### response-body
 
-- { `path`: ${target path} }
+- { `路径 (path)`: ${target path} }
 
 ##### status code
 
-- 200 : Request succeeded
-  - Directory creation completed in target location
-- 400 : Request failed
-  - When directory names are duplicated in the target location
+- 200 : 请求成功
+  - 在目标位置完成目录创建
+- 400 : 请求失败
+  - 当目标位置的目录名称重复时
 
 ##### Example
 

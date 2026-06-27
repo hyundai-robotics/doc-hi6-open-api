@@ -1,10 +1,10 @@
-﻿#### 5.1.8 `joint_states`
+#### 5.1.8 `joint_states`
 
-##### Description
-- Supported version: `70.00-00` ↑
-- `GET`: Retrieves the robot's current joint states.
-- Returns **joint angle (position, °), velocity, and torque (effort)** information for each joint.  
-  You can query all axes or selectively query a specified range of axes.
+##### 描述
+- 支持的版本: `70.00-00` ↑
+- `GET`: 检索机器人的当前关节状态。
+- 返回每个关节的**关节角度（位置, °）、速度和扭矩（努力）**信息。  
+  您可以查询所有轴，或选择性查询指定范围的轴。
 
 ##### path-parameter
 
@@ -18,30 +18,30 @@ GET /project/robot/joint_states
 
 ##### query-parameter
 
-* * If no parameters are specified, all joints are queried.
-* jno_start (optional)
+* * 如果未指定参数，则查询所有关节。
+* jno_start (可选)
 
-  * Joint index to start querying from (1-based)
-* jno_n (optional)
+  * 从哪个关节索引开始查询（从1开始计数）
+* jno_n (可选)
 
-  * Number of joints to query
+  * 要查询的关节数量
 
 ##### response
 
-1. status code
+1. 状态代码
 
    * 200 : OK
-   * 400 : Bad Request
+   * 400 : 错误请求
 
-     * Query parameter validation failed
-   * 403 : Forbidden
-   * 404 : Not Found
+     * 查询参数验证失败
+   * 403 : 禁止
+   * 404 : 未找到
 
-2. response-body
+2. 响应体
 
-   * position : Joint angle array (deg)
-   * velocity : Joint velocity array
-   * effort : Joint torque array (Nm)
+   * position : 关节角度数组（度）
+   * velocity : 关节速度数组
+   * effort : 关节扭矩数组（Nm）
 
         <div style="width: fit-content;">
 
@@ -55,7 +55,7 @@ GET /project/robot/joint_states
 
         </div>
 
-##### Usage Example
+##### 使用示例
 
 <div style="max-width: 60vw;">
 
@@ -71,7 +71,7 @@ response-body:
 }
 ```
 
-Python Script Example
+Python脚本示例
 
 ```python
 # test.py

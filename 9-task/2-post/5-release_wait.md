@@ -1,32 +1,32 @@
-﻿#### 9.2.5 `release_wait`
+#### 9.2.5 `release_wait`
 
-##### Description
+##### 描述
 
-- `POST` : release syntax
-- Requirements: After entering `[2: system] - 1: User environment`, click `[Enable]` for `wait(di/wi) release`
+- `POST` : release 语法
+- 要求：在输入 `[2: system] - 1: 用户环境 ([2: system] - 1: User environment)` 后，点击 `[Enable]` 以进行 `wait(di/wi) release`
 
-##### path-parameter
+##### 路径参数
 
 ```python
 POST /project/context/tasks[0]/release_wait
 ```
 
-##### request-body
+##### 请求体
 
 ```json
 {}
 ```
 
-##### status code
+##### 状态码
 
-- 200 : Request succeeded
-- 403 : Request failed
-  -  Failure to meet the above requirements
+- 200 : 请求成功
+- 403 : 请求失败
+  - 未满足上述要求
 
-##### error code
-- -1442069 : User environment configuration error. Please ensure that all prerequisite requirements are satisfied
+##### 错误代码
+- -1442069 : 用户环境配置错误。请确保满足所有前提要求
 
-##### Example
+##### 示例
 
 <blockquote>
 
@@ -40,7 +40,7 @@ request-body
 
 </blockquote>
 
-Python Script Example
+Python 脚本示例
 
 ```python
 import requests

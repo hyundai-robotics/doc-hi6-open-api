@@ -1,4 +1,4 @@
 ﻿# 3. `project`
 
-- Reads condition settings, project information, and job file information.
-- You can reload updated job files or delete specific job files.
+- 读取条件设置、项目信息和作业文件信息。
+- 您可以重新加载更新的作业文件或删除特定的作业文件。

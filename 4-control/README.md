@@ -1,6 +1,4 @@
 ﻿# 4. `control`
 
-- Apply settings of the controller and process input/output values.
-- It covers information on system input/output, digital input/output, condition settings, and user coordinate system.
-
-<br>
+- 应用控制器的设置并处理输入/输出值。
+- 它涉及系统输入/输出、数字输入/输出、条件设置和用户坐标系统的信息。

@@ -1,19 +1,19 @@
-﻿### `file_info`
+### `file_info`
 
-#### Description
+#### 描述
 
-This parameter is returned when requesting file information.
+此参数在请求文件信息时返回。
 
 |key|type|description|
 |:---:|:---|:---|
-|fname|`str`|file name|
-|size|`int`|file size(B, Byte)|
-|year|`int`| `year` the file was modified |
-|month|`int`| `month` the file was modified |
-|mday|`int`| `day` the file was modified |
-|wday|`int`| `Day of the week` on which the file was modified (0: Sun, 1: Mon, 2: Tue, ...) |
-|hour|`int`| `hour` the file was modified |
-|min|`int`| `minute` the file was modified |
-|sec|`int`| `second` the file was modified |
-|is_dir|`bool`| Check if current file is a directory |
-|readonly|`bool`| Check if the file is read-only |
+|fname|`str`|文件名|
+|size|`int`|文件大小(B, Byte)|
+|year|`int`|文件修改的 `年份` |
+|month|`int`|文件修改的 `月份` |
+|mday|`int`|文件修改的 `日期` |
+|wday|`int`|文件修改的 `星期几` (0: 周日, 1: 周一, 2: 周二, ...) |
+|hour|`int`|文件修改的 `小时 (hour)` |
+|min|`int`|文件修改的 `分钟` |
+|sec|`int`|文件修改的 `秒` |
+|is_dir|`bool`|检查当前文件是否为目录 |
+|readonly|`bool`|检查文件是否为只读 |

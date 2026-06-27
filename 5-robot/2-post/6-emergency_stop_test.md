@@ -1,11 +1,11 @@
-﻿#### 5.2.6 `emergency_stop_test`
+#### 5.2.6 `emergency_stop_test`
 
-- <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
+- <b style="color:orange"> 此 API 在版本 60.28-00 之前作为 `emergency_stop` API 使用。 </b>  
 
 ##### Description
 
 - Supported version : `60.30-00` &uparrow;
-- `POST` : Executes an emergency stop.  
+- `POST` : 执行紧急停止。  
 
 ##### path-parameter
 
@@ -25,36 +25,36 @@ POST /project/robot/emergency_stop_test
 
 -  |key|type|contents|validation|
 	|---|---|---|---|
-	|`step_no`| int | Target step number for emergency stop, within the total step number of the current job | 1 ~ 999 |
-	|`stop_at`| double | Set the percentage of the specified position to stop at | 1 ~ 100 |
-	|`stop_at_corner`| int | 0: Normal stop, 1: Corner stop | 0 or 1 |
-	|`category`| int | 0: Immediate stop, 1: Deceleration stop, 2: Pause | 0 or 1 or 2 |
+	|`step_no`| int | 紧急停止的目标步骤编号，在当前作业的总步骤编号内 | 1 ~ 999 |
+	|`stop_at`| double | 设置停止时的指定位置的百分比 | 1 ~ 100 |
+	|`stop_at_corner`| int | 0: 正常停止, 1: 转角停止 | 0 或 1 |
+	|`category`| int | 0: 立即停止, 1: 减速停止, 2: 暂停 | 0 或 1 或 2 |
 
-- `0: Immediate stop`  
-  &rightarrow; Same as when the controller turns off during robot playback. The motor turns off after stopping.  
+- `0: 立即停止`  
+  &rightarrow; 与机器人回放时控制器关闭时相同。电机在停止后关闭。  
 
     {% hint style="warning" %}
-    Specification Change
+    规格更改
 
-    - V60.29-08 ~ V60.30-10: The immediate stop API can be called only at the target step.
-    - V60.32-00 and later: The immediate stop API can be called at any step.
+    - V60.29-08 ~ V60.30-10: 仅能在目标步骤调用立即停止 API。
+    - V60.32-00 及以后: 可在任何步骤调用立即停止 API。
 
     {% endhint %}
 
-- `1: Deceleration stop`  
-	&rightarrow;  Acts as if the emergency stop button is pressed. The motor turns off after stopping.   
-- `2: Pause`  
-	&rightarrow;  Temporarily stops the robot motion. The motor does not turn off after stopping.  
+- `1: 减速停止`  
+	&rightarrow;  像是按下紧急停止按钮一样。电机在停止后关闭。   
+- `2: 暂停`  
+	&rightarrow;  暂时停止机器人运动。电机在停止后不会关闭。  
 
 </div>
 
 ##### status code
 
-- 200 : Request successful    
-- 400 : Request failed     
-	- Request body failed validation    
-- 403 : Request failed    
-	- Requested an API that is not serviced  
+- 200 : 请求成功    
+- 400 : 请求失败     
+	- 请求体验证失败    
+- 403 : 请求失败    
+	- 请求了未提供服务的 API  
 
 
 ##### Usage Example  

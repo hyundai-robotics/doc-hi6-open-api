@@ -1,9 +1,9 @@
-﻿#### 6.1.2 `ios/dio/{dio_val}`
+#### 6.1.2 `ios/dio/{dio_val}`
 
 ##### Description
 
-- `GET` : Obtain user IO values.
-- Please refer to the [sio api](./3-ios-sio.md) for system input/output values.
+- `GET` : 获取用户 IO 值。
+- 请参阅 [sio api](./3-ios-sio.md) 以获取系统输入/输出值。
 
 ##### path-parameter
 
@@ -18,19 +18,19 @@ GET /project/control/ios/dio/{dio_val}
 ##### path-variable
 
 - `dio_val` :
-  - `di_val` : Get the input(di) value.
-  - `do_val` : Get the output(do) value.
+  - `di_val` : 获取输入（di）值。
+  - `do_val` : 获取输出（do）值。
 
 ##### query-parameter
 
-- `type` : Type of io value
-  - di or do : bit
-  - dib or dob : signed-byte
-  - diw or dow : signed-word (2byte)
-  - dil or dol : signed-dword (4yte)
-  - dif or dof : float
-- `blk_no` : block number (0~9)
-- `sig_no` : signal index (0~)
+- `类型 (type)` : IO 值的类型
+  - di 或 do : bit
+  - dib 或 dob : signed-byte
+  - diw 或 dow : signed-word (2byte)
+  - dil 或 dol : signed-dword (4yte)
+  - dif 或 dof : float
+- `blk_no` : 块编号 (0~9)
+- `sig_no` : 信号索引 (0~)
 
 ##### response
 
@@ -41,7 +41,7 @@ GET /project/control/ios/dio/{dio_val}
    - 404 : Not Found
 
 2) response-body
-	- Returns a signed decimal value upon successful response
+	- 在成功响应时返回一个有符号的十进制值
 		<div style="width: fit-content;">
 
 		```json
@@ -55,7 +55,7 @@ GET /project/control/ios/dio/{dio_val}
 
 <div style="max-width: fit-content;">
 
-- Get the fb2.dob3 value. (Result : 0b11001000 = 0xc8 = -56)
+- 获取 fb2.dob3 值。 (结果 : 0b11001000 = 0xc8 = -56)
 
 ```python
 request url:
@@ -115,7 +115,7 @@ print("di value:", lsb_first(di_u8))
 
 ```
 ```sh
-# (when fb0.do18 = 1, fb0.do20 = 1 / fb0.di14 = 1)
+# (当 fb0.do18 = 1, fb0.do20 = 1 / fb0.di14 = 1)
 $python test.py
 do value: 00101000
 di value: 00000010
