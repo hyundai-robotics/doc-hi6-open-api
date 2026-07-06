@@ -21,7 +21,7 @@ In this way, developers can use the Open API in the document to remotely control
 
 #### Be sure to check before you start!
 
-* The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
+* The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../1-version/1-get/1-api_ver.md).
 
 * For developers who are familiar with developing HTTP REST API client functions, you can skip from [0.2 Required prior knowledge](../2-prerequisite/README.md) to [0.4 Simple API call without coding](../4-api-test/README.md).
 

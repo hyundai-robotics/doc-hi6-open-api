@@ -71,7 +71,7 @@ In this way, developers can use the Open API in the document to remotely control
 
 #### Be sure to check before you start!
 
-* The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../2-version/1-get/1-api_ver.md).
+* The current document is written based on ${cont_model} Open API schema version `5`. You can check it through [API](../../1-version/1-get/1-api_ver.md).
 
 * For developers who are familiar with developing HTTP REST API client functions, you can skip from [0.2 Required prior knowledge](../2-prerequisite/README.md) to [0.4 Simple API call without coding](../4-api-test/README.md).
 
@@ -330,7 +330,7 @@ You can check the main UI composition through the picture below.
 
 2. `Request Body`  
 	- Select API method as `POST` and enter URL.  
-	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
+	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../8-task/2-post/1-cur_prog_cnt.md))
 	- Click `Send`  
 		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
@@ -342,7 +342,7 @@ You can check the main UI composition through the picture below.
 		<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">  
 		<blockquote>
 
-		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
+		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../8-task/2-post/1-cur_prog_cnt.md))</br>
 		`(2) Python Code snippet` : codes for `post` request in python.  
 
 		</blockquote>
@@ -478,267 +478,18 @@ If your application involves frequent API calls, please follow the instructions 
 References
   1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
 
-[__SOURCE](1-release-note/README.md)
-<link rel="stylesheet" href="../_assets/style.css">
-
-# 1. release note 
-
-This document summarizes new API additions, changes, and fixes based on the controller COM version.
-
-{% hint style="warning" %}
-**Update and Usage Guidelines**
-* Each release document only describes changes made in that specific version.
-* To use APIs from a higher version, the controller version must be upgraded.
-* Before upgrading, check the release notes to review the impact on the existing system.
-{% endhint %}
- 
-<div style="width: fit-content;">
-
-|COM Version|Release Date|Link|
-|:--:|:--:|:--:|
-|v70-00.00|2026.03|[🔗](../1-release-note/70-00.md)|
-|v60-32.00|2025.11|[🔗](../1-release-note/60-32.md)|
-|v60-30.00|2025.03|[🔗](../1-release-note/60-30.md)|
-|v60-28.00|2024.08|[🔗](../1-release-note/60-28.md)|
-
-</div>
-
-<div style="max-width:fit-content;">
-
-<h4 style="font-size:15px; font-weight:bold;">Release Note Classification</h4>
-
-|Classification|Description|
-|:--|:--|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0); white-space: nowrap;">Added</span>|When a new API, field, or option is added.|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5; white-space: nowrap;">Changed</span>|When an existing API behavior, specification, or default value is changed.|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32; white-space: nowrap;">Fixed</span>|When API-related bugs are fixed or abnormal behaviors are resolved.|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C; white-space: nowrap;">Deprecated</span>|When an API is scheduled for future removal or its use is discouraged.|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #9E9E9E; white-space: nowrap;">Caution</span>|Crucial precautions that must be acknowledged when using the API of this version.|
-
-
-<h4 style="font-size:15px; font-weight:bold;">API Method Classification</h4>
-
-| Method | Description |
-| :--- | :--- |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC; white-space: nowrap;">GET</span> | API to retrieve data and controller status (Safe, no data changes). |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; white-space: nowrap;">POST</span> | API to execute robot control commands, create new resources, and request tasks. |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2; white-space: nowrap;">PUT</span> | API to completely replace or batch update existing settings or data. |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2; white-space: nowrap;">DELETE</span> | API to permanently delete created tasks, resources, or data. |
-
-</div>
-
-[__SOURCE](1-release-note/70-00.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v70.00-00
-  <span style="
-    background: #F44336; 
-    color: #FFFFFF; 
-    border: 2px solid #FFD700; 
-    padding: 1px 5px; 
-    border-radius: 8px; 
-    font-weight: bold; 
-    font-size: 14px; 
-    text-transform: uppercase; 
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    display: inline-flex;
-    align-items: center;
-    height: 1.6em; 
-  ">
-   NEW 
-  </span>
-</h4>
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_states](../5-robot/1-get/8-joint_states.md)  
-  An API to query the current joint angle (°), velocity, and torque of the robot. It allows selective querying of all axes or specified axis intervals.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)  
-  An API to sequentially add the next target joint point to the executing joint trajectory, configuring the continuous joint movement of the robot.
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
-
-- none
-
-[__SOURCE](1-release-note/60-32.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-Release Notes - v60.32-00
-</h4>
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
-  Added a buffer index initialization API that must **<u>essentially</u>** be executed when requesting a trajectory for a new step while the robot is stopped.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
-  Added an API to reflect multiple trajectory points in the robot's motion upon receiving them from an external source.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)   
-  Added an API to query the number of buffers currently available for request when requesting a trajectory externally.
-
-<br>
-
-<h5  style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)  
-  Added validation to prevent calls during program playback.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-  Added a feature to output a notice popup when called.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  Subdivided error codes by validation. Added a feature to output a notice popup when called.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  Added validation to ensure operation only in remote mode. Subdivided error codes by exceptions.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
-  Added validation to ensure operation only in remote mode.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
-  Added validation to ensure operation only in remote mode.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
-  Added validation to ensure operation only in remote mode. Added a feature to output a notice popup when called.
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  Fixed a bug where a `403 BAD Request` was responded when requesting an immediate stop (category 0).
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  Fixed a bug related to responses under specific conditions.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
-  Fixed a bug where `motor_on` did not operate when attempting it after switching to manual mode during program playback in remote mode.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
-  Fixed a bug where calls were not working in remote mode.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
-  Fixed a bug where calls were not working in remote mode.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [reset](../9-task/2-post/2-reset.md)  
-  Fixed a bug where normal operation did not occur in remote mode.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> Program Duplicate Execution Error  
-  Fixed a bug where the program was executed redundantly when calling APIs in a specific sequence.  
-  *(Sequence: Motor On → R0 → Delete Job → Upload Job → Reload Job → Set Current PC → Play Robot)*
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
-
-- none
-
-[__SOURCE](1-release-note/60-30.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.30-00
-</h4>
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
-  Added an API to request emergency stop status check.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-  Added an API with the same function as the physical emergency stop button.
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  Specification change (Changed name and specs to be identical to the existing `emergency_stop` API of version v60.28-00).
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [task reset](../9-task/2-post/2-reset.md)  
-  Internal logic change (The system operation structure changed to utilize R-code 0).
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> ~~[motor_off](../5-robot/2-post/1-motor-on.md)~~  
-  An API considering the HRSpace environment; Deprecated to prevent confusion in real machine environments (Replaced by the emergency stop API).
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> **task reset (Previous endpoint)** Paths `/project/context/tasks` and `/project/context/tasks[{task index}]/reset` are no longer supported.
-
-[__SOURCE](1-release-note/60-28.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.28-00
-</h4>
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
-  Added an emergency stop API. Supports performing an emergency stop of a desired category at a specific point in time by inputting values such as `step_no` and `stop_at`.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  Added an API to move to a designated pose.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_cmd](../10-console/2-post/1-execute_cmd.md)  
-  Added an API to execute console commands of the controller COM.
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
-
-- none
-
-[__SOURCE](2-version/README.md)
-# 2. `version`
+[__SOURCE](1-version/README.md)
+# 1. version
 
 - Check the current API version or robot controller system version.
 
-[__SOURCE](2-version/1-get/README.md)
-## 2.1 `version/get`
+[__SOURCE](1-version/1-get/README.md)
+## 1.1 version/get
 
 - Send a GET request for information about the current API version or robot controller system version.  
 - Receive a response by setting the correct path-parameter and query-parameter for each API.  
-[__SOURCE](2-version/1-get/1-api_ver.md)
-#### 2.1.1 `api_ver`
+[__SOURCE](1-version/1-get/1-api_ver.md)
+#### 1.1.1 `api_ver`
 
 ##### Description
 
@@ -788,8 +539,8 @@ $python test.py
 5
 ```
 
-[__SOURCE](2-version/1-get/2-sysver.md)
-#### 2.1.2 `sysver`
+[__SOURCE](1-version/1-get/2-sysver.md)
+#### 1.1.2 sysver
 
 ##### Description
 
@@ -853,18 +604,18 @@ $python test.py
 {'modules': [{'build-date': 'Jan 00 2000', 'build-time': '00:00:00' ...
 ```
 
-[__SOURCE](3-project/README.md)
-# 3. `project`
+[__SOURCE](2-project/README.md)
+# 2. project
 
 - Reads condition settings, project information, and job file information.
 - You can reload updated job files or delete specific job files.
-[__SOURCE](3-project/1-get/README.md)
-## 3.1 `project/get`
+[__SOURCE](2-project/1-get/README.md)
+## 2.1 project/get
 
 - Send a GET request for condition settings, project information, and job file information.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
-[__SOURCE](3-project/1-get/1-rgen.md)
-#### 3.1.1 `rgen`
+[__SOURCE](2-project/1-get/1-rgen.md)
+#### 2.1.1 `rgen`
 
 ##### Description
 
@@ -928,25 +679,26 @@ Python Script Example
 ```python
 import requests
 
-def get_is_remote_mode() -> bool:
-    base_url        = 'http://192.168.1.150:8888'
-    path_parameter  = '/project/rgen'    
-    
-    response = requests.get(url = base_url + path_parameter).json()    
+def get_rgen() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+	 # base_url = "http://127.0.0.1:8888" # hrspace
+    path_parameter = "/project/rgen"
 
-    print(f"is remote mode? {response['is_remote_mode']}")    
-    
-    return response['is_remote_mode']
+    response = requests.get(url=base_url + path_parameter)
 
-get_is_remote_mode()
+    return response
+
+
+print(get_rgen())
 ```
 ```sh
 $python test.py
-is remote mode? 0
+(200, {'_type': 'JObject', 'plc_mode': 4, 'safety_recovery_mode': 0, 'arcon_welder_0': 0, 'job_sub_state': 0, 'arcon_welder_1': -1, 'maintenance_status': 0, 'cur_mode': 0, 'cur_crd': 0, 'eid_last_err': 50033, 'eid_last_con_out': -1, 'is_manual_full_spd': 0, 'axis_ctrl': [1, 1, 
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ....
 ```
 
-[__SOURCE](3-project/1-get/2-jobs_info.md)
-#### 3.1.2 `jobs_info`
+[__SOURCE](2-project/1-get/2-jobs_info.md)
+#### 2.1.2 `jobs_info`
 
 ##### Description
 
@@ -1019,19 +771,22 @@ print(get_jobs_info())
 ```
 ```sh
 $python test.py
-[{'_type': 'JObject', 'job_comment': '', 'fname': '0001.job', 'n_step': 0, 'n_aux_ax': 0, 'n_total_ax': 6}, 
-{'_type': 'JObject', 'job_comment': '', 'fname': '0002.job', 'n_step': 9, 'n_aux_ax': -1, 'n_total_ax': -1}, 
-{'_type': 'JObject', 'job_comment': '', 'fname': '0003.job', 'n_step': 0, 'n_aux_ax': -1, 'n_total_ax': -1}]
+(200, [
+	{'_type': 'JObject', 'fname': '0055.job', 'n_step': 1, 'n_total_ax': 6, 'job_comment': '', 'n_aux_ax': 0},  
+	{'_type': 'JObject', 'fname': '0001.job', 'n_step': 2, 'n_total_ax': -1, 'job_comment': '', 'n_aux_ax': -1}, 
+	{'_type': 'JObject', 'fname': '9999.job', 'n_step': 1, 'n_total_ax': 12, 'job_comment': '', 'n_aux_ax': 6},
+	...
+])
 ```
 
-[__SOURCE](3-project/2-post/README.md)
-## 3.2 `project/post`
+[__SOURCE](2-project/2-post/README.md)
+## 2.2 project/post
 
 - Send a POST request for condition settings, project information, and job file information.
 - You must write the correct request-body for each API.
 
-[__SOURCE](3-project/2-post/1-reload_updated_jobs.md)
-#### 3.2.1 `reload_updated_jobs`
+[__SOURCE](2-project/2-post/1-reload_updated_jobs.md)
+#### 2.2.1 `reload_updated_jobs`
 
 ##### Description
 
@@ -1083,8 +838,8 @@ $python test.py
 response: 200 
 ```
 
-[__SOURCE](3-project/2-post/2-jobs-delete_job.md)
-#### 3.2.2 `delete_job`
+[__SOURCE](2-project/2-post/2-jobs-delete_job.md)
+#### 2.2.2 `delete_job`
 
 ##### Description
 
@@ -1139,20 +894,20 @@ $python test.py
 response: 200 
 ```
 
-[__SOURCE](4-control/README.md)
-# 4. `control`
+[__SOURCE](3-control/README.md)
+# 3. control
 
 - Apply settings of the controller and process input/output values.
 - It covers information on system input/output, digital input/output, condition settings, and user coordinate system.
 
 <br>
-[__SOURCE](4-control/1-get/README.md)
-## 4.1 `control/get`
+[__SOURCE](3-control/1-get/README.md)
+## 3.1 control/get
 
 - Send a GET request for controller setting information and input/output values.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
-[__SOURCE](4-control/1-get/1-op_cnd.md)
-#### 4.1.1 `op_cnd`
+[__SOURCE](3-control/1-get/1-op_cnd.md)
+#### 3.1.1 `op_cnd`
 
 ##### Description
 
@@ -1208,8 +963,8 @@ $python test.py
 {'step_goback_max_spd': 130, 'playback_mode': 2, '_type': 'CondGrp', 'step_go_func_ex': 0, 'robot_lock': 1, 'playback_spd_rate': 80, 'intp_base': 1, 'ucrd_num': 19, 'path_recov_confirm': 0, 'func_reexe_on_trace': 2, 'plc_mode': 0}
 ```
 
-[__SOURCE](4-control/1-get/2-ucss-ucs_nos.md)
-#### 4.1.2 `ucss/ucs_nos`
+[__SOURCE](3-control/1-get/2-ucss-ucs_nos.md)
+#### 3.1.2 `ucss/ucs_nos`
 
 ##### Description
 
@@ -1256,18 +1011,18 @@ $python test.py
 [1, 2, 3]
 ```
 
-[__SOURCE](4-control/2-post/README.md)
-## 4.2 `control/post`
+[__SOURCE](3-control/2-post/README.md)
+## 3.2 control/post
 
 - Sends a POST request for the controller's setting information and input/output values.
 - You must write the correct request-body for each API.
-[__SOURCE](4-control/3-put/README.md)
-## 4.3 `control/put`
+[__SOURCE](3-control/3-put/README.md)
+## 3.3 control/put
 
 - Sends a PUT request for the controller's setting information and input/output values.
 - You must write the correct request-body for each API.
-[__SOURCE](4-control/3-put/1-op_cnd.md)
-#### 4.3.1 `op_cnd`
+[__SOURCE](3-control/3-put/1-op_cnd.md)
+#### 3.3.1 `op_cnd`
 
 ##### Description
 
@@ -1326,20 +1081,17 @@ $python test.py
 response: 200 
 ```
 
-[__SOURCE](5-robot/README.md)
-# 5. `robot`
+[__SOURCE](4-robot/README.md)
+# 4. robot
 
 - You can check remote control and monitoring of robot and tool data.
 - It covers motor on/off, robot posture, tools, jog coordinate system, etc.
 
-[__SOURCE](5-robot/1-get/README.md)
-## 5.1 `robot/get`
+[__SOURCE](4-robot/1-get/README.md)
+## 4.1 robot/get
 
-- Send GET requests for robot and tool data.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
-
-[__SOURCE](5-robot/1-get/1-motor_on_state.md)
-#### 5.1.1 `motor_on_state`
+[__SOURCE](4-robot/1-get/1-motor_on_state.md)
+#### 4.1.1 `motor_on_state`
 
 ##### Description
 
@@ -1393,8 +1145,8 @@ $python test.py
 Motor On status: 1
 ```
 
-[__SOURCE](5-robot/1-get/2-po_cur.md)
-#### 5.1.2 `po_cur`
+[__SOURCE](4-robot/1-get/2-po_cur.md)
+#### 4.1.2 `po_cur`
 
 ##### Description
 
@@ -1521,8 +1273,8 @@ $python test.py
 {'nsync': 0, '_type': 'Pose', 'rx': 0.0, 'x': 1067.366, 'ry': 73.248, 'y': -12.859, 'rz': -0.69, 'z': 1609.909, 'mechinfo': 1, 'crd': 'base', 'j1': 0.0, 'j2': 0.0, 'j3': 0.0, 'j4': 0.0, 'j5': 0.0, 'j6': 0.0}
 ```
 
-[__SOURCE](5-robot/1-get/3-cur_tool_data.md)
-#### 5.1.3 `cur_tool_data`
+[__SOURCE](4-robot/1-get/3-cur_tool_data.md)
+#### 4.1.3 `cur_tool_data`
 
 ##### Description
 
@@ -1585,8 +1337,8 @@ $python test.py
 {'_type': 'Tool', 'x': 0.0, 'rx': 0.0, 'y': 0.0, 'ry': 0.0, 'z': 0.0, 'rz': 0.0, 'cy': 0.0, 'mass': 20.0, 'cx': 100.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'bias_2': 0.0, 'mass_esti': 20.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```
 
-[__SOURCE](5-robot/1-get/4-tools.md)
-#### 5.1.4 `tools`
+[__SOURCE](4-robot/1-get/4-tools.md)
+#### 4.1.4 `tools`
 
 ##### Description
 
@@ -1644,8 +1396,8 @@ $python test.py
 {'_type': 'Tools', 't_31': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_0': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0, 'load_rate': {'_type': 'JObject', 'high_load_mode': -11, 'moment_rate': 0, 'inertia_rate': 0, 'mass_rate': 0}}, 't_1': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}, 't_15': {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}}
 ```
 
-[__SOURCE](5-robot/1-get/5-tools_t.md)
-#### 5.1.5 `tools/t_{number}`
+[__SOURCE](4-robot/1-get/5-tools_t.md)
+#### 4.1.5 `tools/t_{number}`
 
 ##### Description
 
@@ -1701,8 +1453,8 @@ $python test.py
 {'_type': 'Tool', 'rx': 0.0, 'x': 0.0, 'ry': 0.0, 'y': 0.0, 'rz': 0.0, 'z': 0.0, 'mass': 20.0, 'cx': 100.0, 'cy': 0.0, 'cz': 65.0, 'ixx': 0.059, 'iyy': 0.061, 'izz': 0.075, 'bias_0': 0.0, 'bias_1': 0.0, 'mass_esti': 20.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_4': 0.0, 'bias_5': 0.0}
 ```
 
-[__SOURCE](5-robot/1-get/6-emergency_stop.md)
-#### 5.1.6 `emergency_stop`
+[__SOURCE](4-robot/1-get/6-emergency_stop.md)
+#### 4.1.6 `emergency_stop`
 
 ##### Description
 
@@ -1757,8 +1509,8 @@ $python test.py
 {'_type': 'JObject', 'val': 0}
 ```
 
-[__SOURCE](5-robot/1-get/7-joint_traject_buf_avail.md)
-#### 5.1.7 `joint_traject_buf_avail`
+[__SOURCE](4-robot/1-get/7-joint_traject_buf_avail.md)
+#### 4.1.7 `joint_traject_buf_avail`
 
 ##### Description
 - Supported Version : `60.32-00` &uparrow;
@@ -1828,8 +1580,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/1-get/8-joint_states.md)
-#### 5.1.8 `joint_states`
+[__SOURCE](4-robot/1-get/8-joint_states.md)
+#### 4.1.8 `joint_states`
 
 ##### Description
 - Supported version: `70.00-00` ↑
@@ -1934,14 +1686,11 @@ $python test.py
 
 </div>
 
-[__SOURCE](5-robot/2-post/README.md)
-## 5.2 `robot/post`
+[__SOURCE](4-robot/2-post/README.md)
+## 4.2 robot/post
 
-- Send POST requests for robot and tool data.
-- You must write the correct request-body for each API.
-
-[__SOURCE](5-robot/2-post/1-motor-on.md)
-#### 5.2.1 `motor_on`
+[__SOURCE](4-robot/2-post/1-motor-on.md)
+#### 4.2.1 `motor_on`
 
 ##### Description
 
@@ -2014,8 +1763,8 @@ $python test.py
 Motor-ON  response: 200
 ```
 
-[__SOURCE](5-robot/2-post/2-start-stop.md)
-#### 5.2.2 `start / stop`
+[__SOURCE](4-robot/2-post/2-start-stop.md)
+#### 4.2.2 `start / stop`
 
 ##### Description
 
@@ -2098,8 +1847,8 @@ Start response: 200
 Stop  response: 200
 ```
 
-[__SOURCE](5-robot/2-post/3-tool_no.md)
-#### 5.2.3 `tool_no`
+[__SOURCE](4-robot/2-post/3-tool_no.md)
+#### 4.2.3 `tool_no`
 
 ##### Description
 
@@ -2157,8 +1906,8 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](5-robot/2-post/4-crd_sys.md)
-#### 5.2.4 `crd_sys`
+[__SOURCE](4-robot/2-post/4-crd_sys.md)
+#### 4.2.4 `crd_sys`
 
 ##### Description
 
@@ -2217,8 +1966,8 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](5-robot/2-post/5-emergency_stop.md)
-#### 5.2.5 `emergency_stop`
+[__SOURCE](4-robot/2-post/5-emergency_stop.md)
+#### 4.2.5 `emergency_stop`
 
 - <b style="color:orange"> For versions prior to ***<u>60.30-00</u>***, refer to ***<u>[emergency_stop_test](./6-emergency_stop_test.md)</u>*** instead of emergency_stop. </b>  
 
@@ -2279,8 +2028,8 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](5-robot/2-post/6-emergency_stop_test.md)
-#### 5.2.6 `emergency_stop_test`
+[__SOURCE](4-robot/2-post/6-emergency_stop_test.md)
+#### 4.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> This API was used as the `emergency_stop` API up until version 60.28-00. </b>  
 
@@ -2386,8 +2135,8 @@ response: 200
 
 </div>
 
-[__SOURCE](5-robot/2-post/7-joint_traject_init.md)
-#### 5.2.7 `joint_traject_init`
+[__SOURCE](4-robot/2-post/7-joint_traject_init.md)
+#### 4.2.7 `joint_traject_init`
 
 ##### Description
 
@@ -2476,8 +2225,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/2-post/8-joint_traject_insert_points.md)
-#### 5.2.8 `joint_traject_insert_points`
+[__SOURCE](4-robot/2-post/8-joint_traject_insert_points.md)
+#### 4.2.8 `joint_traject_insert_points`
 
 ##### Description
 
@@ -2820,8 +2569,8 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 
 
-[__SOURCE](5-robot/2-post/9-joint_traject_insert_point.md)
-#### 5.2.9 `joint_traject_insert_point`
+[__SOURCE](4-robot/2-post/9-joint_traject_insert_point.md)
+#### 4.2.9 `joint_traject_insert_point`
 
 ##### Description
 - Supported version: `70.00-00` ↑
@@ -3026,17 +2775,17 @@ AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.0013
 
 </div>
 
-[__SOURCE](6-io_plc/README.md)
-# 6. I/O PLC
+[__SOURCE](5-io_plc/README.md)
+# 5. I/O PLC
 
 - Reads or sets the input/output values of the built-in PLC.
-[__SOURCE](6-io_plc/1-get/README.md)
-## 6.1 `io_plc/get`
+[__SOURCE](5-io_plc/1-get/README.md)
+## 5.1 io_plc/get
 
 - Sends a GET request for input/output values of a built-in PLC.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
-[__SOURCE](6-io_plc/1-get/1-relay-value.md)
-#### 6.1.1 `get relay values`
+[__SOURCE](5-io_plc/1-get/1-relay-value.md)
+#### 5.1.1 `get relay values`
 
 ##### Description
 
@@ -3124,8 +2873,8 @@ $python test.py
 [0, 0, 0, 0]
 ```
 
-[__SOURCE](6-io_plc/1-get/2-ios-dio.md)
-#### 6.1.2 `ios/dio/{dio_val}`
+[__SOURCE](5-io_plc/1-get/2-ios-dio.md)
+#### 5.1.2 `ios/dio/{dio_val}`
 
 ##### Description
 
@@ -3250,8 +2999,8 @@ di value: 00000010
 
 </div>
 
-[__SOURCE](6-io_plc/1-get/3-ios-sio.md)
-#### 6.1.3 `ios/sio/{sio_val}` 
+[__SOURCE](5-io_plc/1-get/3-ios-sio.md)
+#### 5.1.3 `ios/sio/{sio_val}`
 
 ##### Description
 
@@ -3317,13 +3066,13 @@ $python test.py
 {'_type': 'JObject', 'val': 0}
 ```
 
-[__SOURCE](6-io_plc/2-post/README.md)
-## 6.2 `io_plc/post`
+[__SOURCE](5-io_plc/2-post/README.md)
+## 5.2 io_plc/post
 
 - Sends a POST request for input/output values from a built-in PLC.
 - You must write the correct request-body for each API.
-[__SOURCE](6-io_plc/2-post/1-set_relay_value.md)
-#### 6.2.1 `set relay values`
+[__SOURCE](5-io_plc/2-post/1-set_relay_value.md)
+#### 5.2.1 `set relay values`
 
 ##### Description
 
@@ -3394,8 +3143,8 @@ response: 200
 [1, 0, 0, 0, 0, 0, 0, 0]
 ```
 
-[__SOURCE](6-io_plc/2-post/2-ios-dio.md)
-#### 6.2.2 `ios/dio/{do_val}`
+[__SOURCE](5-io_plc/2-post/2-ios-dio.md)
+#### 5.2.2 `ios/dio/{do_val}`
 
 ##### Description
 
@@ -3470,18 +3219,18 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](7-log_manager/README.md)
-# 7. event-log
+[__SOURCE](6-log_manager/README.md)
+# 6. event-log
 
 - Outputs errors, warnings, execution history, etc. recorded in the controller.
 
-[__SOURCE](7-log_manager/1-get/README.md)
-## 7.1 `log_manager/get`
+[__SOURCE](6-log_manager/1-get/README.md)
+## 6.1 log_manager/get
 
 - Send a GET request for errors, warnings, and execution history recorded in the controller.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
-[__SOURCE](7-log_manager/1-get/1-search.md)
-#### 7.1.1 `search`
+[__SOURCE](6-log_manager/1-get/1-search.md)
+#### 6.1.1 search
 
 ##### Description
 
@@ -3589,19 +3338,16 @@ $python test.py
 { "id" : 24251, "ts" : "2023/11/28 16:53:13.036", "cat" : "P", "code" : "fb7.dol", "aux" : "00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000" }
 ```
 
-[__SOURCE](8-file_manager/README.md)
-# 8. `file_manager`
+[__SOURCE](7-file_manager/README.md)
+# 7. file_manager
 
 - This covers functions such as reading file information from the controller, changing file names, and transferring files.
 - Functions for checking the existence of a directory or creating and deleting it are also covered.
-[__SOURCE](8-file_manager/1-get/README.md)
-## 8.1 `file_manager/get`
+[__SOURCE](7-file_manager/1-get/README.md)
+## 7.1 file_manager/get
 
-- Send a GET request for file information from the controller.
-- Receive a response by setting the correct path-parameter and query-parameter for each API.
-
-[__SOURCE](8-file_manager/1-get/1-files.md)
-#### 8.1.1 `files`
+[__SOURCE](7-file_manager/1-get/1-files.md)
+#### 7.1.1 `files`
 
 ##### Description
 
@@ -3692,8 +3438,8 @@ S4   move P,tg=po1,spd=100%,accu=0,tool=1
      end
 ```
 
-[__SOURCE](8-file_manager/1-get/2-file_info.md)
-#### 8.1.2 `file_info`
+[__SOURCE](7-file_manager/1-get/2-file_info.md)
+#### 7.1.2 `file_info`
 
 ##### Description
 
@@ -3780,8 +3526,8 @@ $python test.py
 {'mday': 31, 'sec': 40, 'fname': '${cont_model:lower}_proj.json', 'wday': 2, 'size': 130551, 'year': 2023, 'hour': 7, 'readonly': False, 'month': 10, 'is_dir': False, 'min': 57}
 ```
 
-[__SOURCE](8-file_manager/1-get/3-file_list.md)
-#### 8.1.3 `file_list`
+[__SOURCE](7-file_manager/1-get/3-file_list.md)
+#### 7.1.3 `file_list`
 
 ##### Description
 
@@ -3891,8 +3637,8 @@ $python final_test.py
 {'mday': 17, 'sec': 10, 'fname': 'lads', 'wday': 4, 'size': 8192, 'year': 2023, 'hour': 13, 'readonly': False, 'month': 8, 'is_dir': True, 'min': 47}
 ```
 
-[__SOURCE](8-file_manager/1-get/4-file_exist.md)
-#### 8.1.4 `file_exist`
+[__SOURCE](7-file_manager/1-get/4-file_exist.md)
+#### 7.1.4 `file_exist`
 
 ##### Description
 
@@ -3970,13 +3716,13 @@ $python test.py
 true
 ```
 
-[__SOURCE](8-file_manager/2-post/README.md)
-## 8.2 `file_manager/post`
+[__SOURCE](7-file_manager/2-post/README.md)
+## 7.2 file_manager/post
 
 - Sends a POST request for file information from the controller.
 - You must write the correct request-body for each API.
-[__SOURCE](8-file_manager/2-post/1-rename_file.md)
-#### 8.2.1 `rename_file`
+[__SOURCE](7-file_manager/2-post/1-rename_file.md)
+#### 7.2.1 `rename_file`
 
 ##### Description
 
@@ -4054,8 +3800,8 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](8-file_manager/2-post/2-mkdir.md)
-#### 8.2.2 `mkdir`
+[__SOURCE](7-file_manager/2-post/2-mkdir.md)
+#### 7.2.2 `mkdir`
 
 ##### Description
 
@@ -4132,8 +3878,8 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](8-file_manager/2-post/3-files.md)
-#### 8.2.3 `files`
+[__SOURCE](7-file_manager/2-post/3-files.md)
+#### 7.2.3 `files`
 
 ##### Description
 
@@ -4205,12 +3951,12 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](8-file_manager/3-delete/README.md)
-## 8.3 `file_manager/delete`
+[__SOURCE](7-file_manager/3-delete/README.md)
+## 7.3 file_manager/delete
 
 - Send a DELETE request for file information from the controller.
-[__SOURCE](8-file_manager/3-delete/1-files.md)
-#### 8.3.1 `files`
+[__SOURCE](7-file_manager/3-delete/1-files.md)
+#### 7.3.1 `files`
 
 ##### Description
 
@@ -4266,25 +4012,25 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](9-task/README.md)
-# 9. `task`
+[__SOURCE](8-task/README.md)
+# 8.task
 
 - It covers content related to the task.
 - You can reset a specific task or all tasks.
 - You can read values from local or global variables of the current task or declare new variables.
 - During task execution, specific actions (e.g. release) can be taken for a specific work flow (e.g. wait).
-[__SOURCE](9-task/1-get/README.md)
-## 9.1 `task/get`
+[__SOURCE](8-task/1-get/README.md)
+## 8.1 task/get
 
 - Send a GET request for information related to the task.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
-[__SOURCE](9-task/2-post/README.md)
-## 9.2 `task/post`
+[__SOURCE](8-task/2-post/README.md)
+## 8.2 task/post
 
 - Sends a POST request for information related to the task.
 - You must write the correct request-body for each API.
-[__SOURCE](9-task/2-post/1-cur_prog_cnt.md)
-#### 9.2.1 `task/cur_prog_cnt`
+[__SOURCE](8-task/2-post/1-cur_prog_cnt.md)
+#### 8.2.1 `task/cur_prog_cnt`
 
 ##### Description
 
@@ -4341,8 +4087,8 @@ $python python test.py
 {'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
 ```
 
-[__SOURCE](9-task/2-post/2-reset.md)
-#### 9.2.2 `task/reset`
+[__SOURCE](8-task/2-post/2-reset.md)
+#### 8.2.2 `task/reset`
 
 ##### Description
 
@@ -4434,8 +4180,8 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](9-task/2-post/3-assign_var_expr.md)
-#### 9.2.3 `assign_var_expr`
+[__SOURCE](8-task/2-post/3-assign_var_expr.md)
+#### 8.2.3 `assign_var_expr`
 
 ##### Description
 
@@ -4531,8 +4277,8 @@ response: 200
 after: 777   
 ```
 
-[__SOURCE](9-task/2-post/4-assign_var_json.md)
-#### 9.2.4 `assign_var_json`
+[__SOURCE](8-task/2-post/4-assign_var_json.md)
+#### 8.2.4 `assign_var_json`
 
 ##### Description
 
@@ -4633,8 +4379,8 @@ response: 200
 after: {'_type': 'JObject', 'test': 10}
 ```
 
-[__SOURCE](9-task/2-post/5-release_wait.md)
-#### 9.2.5 `release_wait`
+[__SOURCE](8-task/2-post/5-release_wait.md)
+#### 8.2.5 `release_wait`
 
 ##### Description
 
@@ -4698,8 +4444,8 @@ $python test.py
 response: 200
 ```
 
-[__SOURCE](9-task/2-post/6-set_cur_pc_idx.md)
-#### 9.2.6 `set_cur_pc_idx`
+[__SOURCE](8-task/2-post/6-set_cur_pc_idx.md)
+#### 8.2.6 `set_cur_pc_idx`
 
 ##### Description
 
@@ -4757,8 +4503,8 @@ $python test.py
 response 200 # Cursor position on TP changed
 ```
 
-[__SOURCE](9-task/2-post/7-solve_expr.md)
-#### 9.2.7 `solve_expr`
+[__SOURCE](8-task/2-post/7-solve_expr.md)
+#### 8.2.7 `solve_expr`
 
 ##### Description
 
@@ -4877,8 +4623,8 @@ $python test.py
 1000
 ```
 
-[__SOURCE](9-task/2-post/8-execute_move.md)
-#### 9.2.8 `execute_move`
+[__SOURCE](8-task/2-post/8-execute_move.md)
+#### 8.2.8 `execute_move`
 
 ##### Description
 
@@ -4975,23 +4721,25 @@ $python test.py
 (200, {'_type': 'JObject'})
 ```
 
-[__SOURCE](10-console/README.md)
-# 10. `console`
+[__SOURCE](9-console/README.md)
+# 9. console
 
 - You can use CLI commands of the ${cont_model} controller software.  
 - Various actions can be performed using robot language.  
-[__SOURCE](10-console/1-get/README.md)
-## 10.1 `console/get`
+[__SOURCE](9-console/1-get/README.md)
+## 9.1 console/get
 
 - Sends a GET request for information related to executing robot commands.  
 - The exact path-parameter and query-parameter must be set for each API to receive a response.  
-[__SOURCE](10-console/2-post/README.md)
-## 10.2 `console/post`
+[__SOURCE](9-console/2-post/README.md)
+## 9.2 console/post
 
 - Sends a POST request for information related to executing robot commands.  
 - The exact request-body must be written for each API.  
-[__SOURCE](10-console/2-post/1-execute_cmd.md)
-#### 10.2.1 `execute_cmd`
+[__SOURCE](9-console/2-post/1-execute_cmd.md)
+<div style="width: fit-content;">
+
+#### 9.2.1 `execute_cmd`
 
 
 ##### Description
@@ -5094,24 +4842,22 @@ response: <Response [200]>
 response: <Response [200]>
 response: 200
 ```
+</div>
+[__SOURCE](10-etc/README.md)
+# 10. etc
 
-[__SOURCE](11-etc/README.md)
-# 11. `etc`
-
-- It covers system version, event log, clock, etc.
-
-[__SOURCE](11-etc/1-clock/README.md)
-# 11.1 `clock`
+[__SOURCE](10-etc/1-clock/README.md)
+## 10.1 clock
 
 - You can read and set the controller's system time.
-[__SOURCE](11-etc/1-clock/1-get/README.md)
-#### 11.1.1 `clock/get`
+[__SOURCE](10-etc/1-clock/1-get/README.md)
+#### 10.1.1 clock/get
 
 - Send a GET request for the controller system time.
 - Receive a response by setting the correct path-parameter and query-parameter for each API.
 
-[__SOURCE](11-etc/1-clock/1-get/1-date_time.md)
-#### 11.1.1.1 `date_time`
+[__SOURCE](10-etc/1-clock/1-get/1-date_time.md)
+#### 10.1.1.1 `date_time`
 
 ##### Description
 
@@ -5165,14 +4911,14 @@ $python test.py
 [11/20] 19:55
 ```
 
-[__SOURCE](11-etc/1-clock/2-put/README.md)
-#### 11.1.2 `clock/put`
+[__SOURCE](10-etc/1-clock/2-put/README.md)
+#### 10.1.2 clock/put
 
 - Sends a PUT request to the controller system time.
 - You must write the correct request-body for each API.
 
-[__SOURCE](11-etc/1-clock/2-put/1-date_time.md)
-#### 11.1.2.1 `date_time`
+[__SOURCE](10-etc/1-clock/2-put/1-date_time.md)
+#### 10.1.2.1 `date_time`
 
 ##### Description
 
@@ -5226,7 +4972,7 @@ response: 200
 ```
 
 [__SOURCE](99-schema/README.md)
-# 12. Schema
+# 11. Schema
 
 This chapter contains references to various enumerations and structures used in Open API.
 

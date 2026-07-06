@@ -33,7 +33,7 @@ You can check the main UI composition through the picture below.
 
 2. `Request Body`  
 	- Select API method as `POST` and enter URL.  
-	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../9-task/2-post/1-cur_prog_cnt.md))
+	- Click the `Body` tab and enter the `body-parameter` you want to request. ([9.2.1 `task/cur_prog_cnt` - request body](../../8-task/2-post/1-cur_prog_cnt.md))
 	- Click `Send`  
 		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
@@ -45,7 +45,7 @@ You can check the main UI composition through the picture below.
 		<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">  
 		<blockquote>
 
-		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../9-task/2-post/1-cur_prog_cnt.md))</br>
+		`(1) Response body` : response from the `post` request ([9.2.1 `task/cur_prog_cnt` - response body](../../8-task/2-post/1-cur_prog_cnt.md))</br>
 		`(2) Python Code snippet` : codes for `post` request in python.  
 
 		</blockquote>
