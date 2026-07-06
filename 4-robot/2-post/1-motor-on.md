@@ -1,6 +1,6 @@
 ﻿#### 4.2.1 `motor_on`
 
-- <b style="color:orange"> `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.</b>
+- <b style="color:orange"> `motor_off` API 는 `v60.30-00`부터 지원되지 않습니다.</b>
 
 <div style="width: fit-content;">
 
