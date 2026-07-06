@@ -1,4 +1,4 @@
-## 0.1 关于 ${cont_model} 开放 API
+﻿## 0.1 关于 ${cont_model} 开放 API
 
 在本文件中，HD 现代机器人发布了一个 API，供应用开发人员轻松监控和远程控制机器人控制器（以下简称 ${cont_model}）。<br>
 这使得开发人员能够读取和写入 ${cont_model} 数据，而无需深入理解用于 ${cont_model} 开发的源代码。<br>
@@ -23,7 +23,7 @@
 
 * 当前文档是基于 ${cont_model} 开放 API 架构版本 `5` 编写的。您可以通过 [API](../../2-version/1-get/1-api_ver.md) 查看。
 
-* 对于熟悉开发 HTTP REST API 客户端功能的开发人员，您可以跳过 [0.2 先决知识](../2-prerequisite/README.md) 到 [0.4 无需编码的简单 API 调用](../4-api-test/README.md)。
+* 当前文档是基于 ${cont_model} 开放 API 架构版本 ` (5)` 编写的。您可以通过 [API](../../1-version/1-get/1-api_ver.md) 查看它。
 
 
 {% hint style="warning" %}

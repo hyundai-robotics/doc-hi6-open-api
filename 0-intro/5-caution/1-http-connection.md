@@ -1,4 +1,4 @@
-#### 0.5.1. Keep-Alive vs Close connection
+﻿#### 0.5.1. Keep-Alive vs Close connection
 
 {% hint style="warning" %}
 

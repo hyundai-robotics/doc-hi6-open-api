@@ -1,4 +1,4 @@
-### `file_info`
+﻿### `file_info`
 
 #### 描述
 
