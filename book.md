@@ -78,7 +78,7 @@ HD현대로보틱스는 어플리케이션 개발자들이 편리하게 로봇 �
 
 #### 시작하기 전에 꼭 확인하세요!
 
-* 현재 문서는 ${cont_model} Open API 스키마 버전 `5`를 기준으로 작성되었습니다. [API](../../2-version/1-get/1-api_ver.md) 를 통해 확인 가능합니다.
+* 현재 문서는 ${cont_model} Open API 스키마 버전 `5`를 기준으로 작성되었습니다. [API](../../1-version/1-get/1-api_ver.md) 를 통해 확인 가능합니다.
 
 * HTTP REST API 클라이언트 기능 개발에 익숙한 개발자의 경우, [`0.2 필요한 사전 지식`](../2-prerequisite/README.md)부터 [`0.4 코딩하지 않고 쉽게 API 호출 해보기`](../4-api-test/README.md) 까지 건너뛰어도 좋습니다.
 
@@ -348,7 +348,7 @@ total request time : 0.2869541645050049 seconds
 
 2. `Request Body` 작성 
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
-	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)
+	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)
 	- Send를 클릭합니다.  
 		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
@@ -361,7 +361,7 @@ total request time : 0.2869541645050049 seconds
 
 		<blockquote style="width: fit-content;">
 
-		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././9-task/2-post/1-cur_prog_cnt.md) 참조)</br>
+		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`
 
 		</blockquote>
@@ -497,272 +497,19 @@ total request time : 0.2869541645050049 seconds
 참고 문서
   1) [HTTP/1.1 persistent connection](https://datatracker.ietf.org/doc/html/rfc2616#section-8)
 
-[__SOURCE](1-release-note/README.md)
-<link rel="stylesheet" href="../_assets/style.css">
-
-# 1. release note 
-
-제어기 COM 버전을 기준으로 API 신규 추가, 변경 및 수정 사항을 정리한 문서입니다.
-
-{% hint style="warning" %}
-**업데이트 및 사용 유의 사항**
-* 각 릴리즈 문서에는 해당 버전에서 변경된 내용만 기술됩니다.
-* 상위 버전의 API를 사용하려면 반드시 제어기 버전을 업그레이드해야 합니다.
-* 버전 업데이트 전, 기존 시스템에 미칠 영향을 릴리즈 노트에서 미리 확인하십시오.
-{% endhint %}
- 
-<div style="width: fit-content;">
-
-|COM 버전|배포 일정|링크|
-|:--:|:--:|:--:|
-|v70-00.00|2026.03|[🔗](../1-release-note/70-00.md)|
-|v60-32.00|2025.11|[🔗](../1-release-note/60-32.md)|
-|v60-30.00|2025.03|[🔗](../1-release-note/60-30.md)|
-|v60-28.00|2024.08|[🔗](../1-release-note/60-28.md)|
-
-</div>
-
-<div style="max-width:fit-content;">
-
-<h4 style="font-size:15px; font-weight:bold;">릴리즈 노트 분류 기준</h4>
-
-|구분|설명|
-|:--|:--|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</span>|신규 API, 필드 또는 옵션이 추가된 경우|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</span>|기존 API 동작 방식, 사양, 기본값이 변경된 경우|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</span>|API 관련 오류 수정, 비정상 동작 보완|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</span>|향후 제거 예정이거나 사용이 권장되지 않는 API|
-|<span style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #9E9E9E;">Caution</span>|해당 버전 API 사용 시 반드시 인지해야 할 주의 사항|
-
-
-<h4 style="font-size:15px; font-weight:bold;">API Method 분류</h4>
-
-
-| Method | 설명 |
-| :--- | :--- |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> | 데이터 및 제어기 상태 조회 API (안전함, 데이터 변경 없음) |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> | 로봇 제어 명령 실행, 새로운 리소스 생성 및 작업 요청 API |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2;">PUT</span> | 기존 설정이나 데이터의 전체 교체 및 일괄 업데이트 API |
-| <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #FFEBEE; color: #C62828; border: 1px solid #FFCDD2;">DELETE</span> | 생성된 작업, 태스크, 리소스 또는 데이터를 영구 삭제하는 API |
-
-</div>
-
-[__SOURCE](1-release-note/70-00.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v70.00-00
-  <span style="
-    background: #F44336; 
-    color: #FFFFFF; 
-    border: 2px solid #FFD700; 
-    padding: 1px 5px; 
-    border-radius: 8px; 
-    font-weight: bold; 
-    font-size: 14px; 
-    text-transform: uppercase; 
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    display: inline-flex;
-    align-items: center;
-    height: 1.6em; 
-  ">
-   NEW 
-  </span>
-</h4>
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_states](../5-robot/1-get/8-joint_states.md)  
-  로봇의 현재 조인트 각도(°), 속도, 토크를 조회하는 API로, 전체 축 또는 지정한 축 구간만 선택적으로 조회할 수 있습니다.
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_point](../5-robot/2-post/9-joint_traject_insert_point.md)  
-  실행 중인 조인트 궤적에 다음 목표 조인트 포인트를 순차적으로 추가하여, 로봇의 연속적인 조인트 이동을 구성할 수 있는 API입니다.
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
-
-- none
-
-[__SOURCE](1-release-note/60-32.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-Release Notes - v60.32-00
-</h4>
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_init](../5-robot/2-post/7-joint_traject_init.md)  
-  로봇 정지 상태에서 새로운 스텝에 대한 궤적을 요청할 때 **<u>필수적으로</u>** 진행해야하는 버퍼 인덱스 초기화 API 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [joint_traject_insert_points](../5-robot/2-post/8-joint_traject_insert_points.md)  
-  외부로부터 복수의 궤적 포인트들을 수신하여 로봇의 모션에 반영하는 API 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [joint_traject_buf_avail](../5-robot/1-get/7-joint_traject_buf_avail.md)  
-  외부에서 궤적을 요청할 때, 현재 요청 가능한 상태의 버퍼 개수 조회 기능 API 추가
-
-<br>
-
-<h5  style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [set_cur_pc_idx](../9-task/2-post/6-set_cur_pc_idx.md)  
-  프로그램 재생 중 호출을 방지하는 유효성 검사 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-  호출 시 notice 팝업 출력 기능 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  유효성 검사별 에러 코드 세분화  
-  호출 시 notice 팝업 출력 기능 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  원격 모드에서만 동작하도록 유효성 검사 추가  
-  예외 상황별 에러 코드 세분화
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
-  원격 모드에서만 동작하도록 유효성 검사 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
-  원격 모드에서만 동작하도록 유효성 검사 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
-  원격 모드에서만 동작하도록 유효성 검사 추가  
-  호출 시 notice 팝업 출력 기능 추가
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  즉시정지(category 0) 요청 시 `403 BAD Request` 응답 버그 수정
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  특정 상황에서의 응답 관련 버그 수정
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [motor_on](../5-robot/2-post/1-motor-on.md)  
-  원격 모드에서 프로그램 재생 중 수동 모드 전환 후 `motor_on` 시도 시 동작 안 하는 버그 수정
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [start](../5-robot/2-post/2-start-stop.md)  
-  원격 모드에서 호출 안 되는 버그 수정
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [stop](../5-robot/2-post/2-start-stop.md)  
-  원격 모드에서 호출 안 되는 버그 수정
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [reset](../9-task/2-post/2-reset.md)  
-  원격 모드에서 정상 동작하지 않는 버그 수정
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> 프로그램 중복 실행 오류  
-  특정 시퀀스로 API 호출 시 프로그램이 중복 실행되는 버그 수정  
-  *(시퀀스: 모터온 → R0 → Delete Job → Upload Job → Reload Job → Current PC 설정 → 로봇 재생)*
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
-
-- none
-
-[__SOURCE](1-release-note/60-30.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.30-00
-</h4>
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E1F5FE; color: #0288D1; border: 1px solid #B3E5FC;">GET</span> [emergency_stop](../5-robot/1-get/6-emergency_stop.md)  
-  비상정지 상태 확인 요청 API 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/5-emergency_stop.md)  
-  실물 비상정지 버튼과 동일한 기능의 API 추가
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop_test](../5-robot/2-post/6-emergency_stop_test.md)  
-  사양 변경 (v60.28-00 버전의 기존 `emergency_stop` API와 동일하도록 명칭 및 스펙 전환)
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [task reset](../9-task/2-post/2-reset.md)  
-  내부 로직 변경 (R 코드 0을 활용하는 방식으로 시스템 동작 구조 변경)
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> ~~[motor_off](../5-robot/2-post/1-motor-on.md)~~  
-  HRSpace 환경을 고려한 API로, 실기 환경에서의 혼선을 방지하기 위해 Deprecated 처리 (비상정지 API로 대체됨)
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> **task reset (이전 엔드포인트)** `/project/context/tasks` 및 `/project/context/tasks[{task index}]/reset` 경로는 더 이상 지원하지 않음
-
-[__SOURCE](1-release-note/60-28.md)
-<h4 style="display: inline-flex; align-items: center; gap: 8px;">
-  Release Notes - v60.28-00
-</h4>
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid rgb(255, 140, 0);">Added</h5>
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [emergency_stop](../5-robot/2-post/6-emergency_stop_test.md)  
-  비상정지 API 추가. `step_no`, `stop_at` 등의 값을 입력하여 특정 시점에 원하는 카테고리의 비상정지를 수행할 수 있도록 지원
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_move](../9-task/2-post/8-execute_move.md)  
-  지정된 포즈로 이동하는 API 추가
-
-- <span style="padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 12px; margin-right: 6px; display: inline-block; text-align: center; line-height: 1.5; min-width: 50px; background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;">POST</span> [execute_cmd](../10-console/2-post/1-execute_cmd.md)  
-  제어기 COM의 콘솔 명령어를 실행하는 API 추가
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #3F51B5;">Changed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #2E7D32;">Fixed</h5>
-
-- none
-
-<br>
-
-<h5 style="padding-left: 6px; font-weight: bold; display: inline-block; border-left: 4px solid #B71C1C;">Deprecated</h5>
-
-- none
-
-[__SOURCE](2-version/README.md)
-# 2. version
+[__SOURCE](1-version/README.md)
+# 1. version
 
 - 현재 api 의 버전 또는 로봇제어기의 시스템 버전을 확인합니다.
 
-[__SOURCE](2-version/1-get/README.md)
-## 2.1 version/get
+[__SOURCE](1-version/1-get/README.md)
+## 1.1 version/get
 
 - 현재 api 의 버전 또는 로봇제어기의 시스템 버전 관련 정보에 대하여 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
 
-[__SOURCE](2-version/1-get/1-api_ver.md)
-#### 2.1.1 api_ver 
+[__SOURCE](1-version/1-get/1-api_ver.md)
+#### 1.1.1 api_ver 
 
 ##### 설명
 
@@ -825,8 +572,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](2-version/1-get/2-sysver.md)
-#### 2.1.2 sysver
+[__SOURCE](1-version/1-get/2-sysver.md)
+#### 1.1.2 sysver
 
 ##### 설명
 
@@ -897,18 +644,18 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](3-project/README.md)
-# 3. project
+[__SOURCE](2-project/README.md)
+# 2. project
 
 - 조건설정, 프로젝트 정보, job 파일 정보들을 읽습니다.
 - 업데이트된 job 파일들을 새로이 로드하거나 특정 job 파일들을 삭제할 수 있습니다.
-[__SOURCE](3-project/1-get/README.md)
-## 3.1 project/get
+[__SOURCE](2-project/1-get/README.md)
+## 2.1 project/get
 
 - 조건설정, 프로젝트 정보, job 파일 정보에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
-[__SOURCE](3-project/1-get/1-rgen.md)
-#### 3.1.1 `rgen`
+[__SOURCE](2-project/1-get/1-rgen.md)
+#### 2.1.1 `rgen`
 
 ##### 설명
 
@@ -1025,17 +772,12 @@ print(get_rgen())
 ```sh
 $python test.py
 (200, {'_type': 'JObject', 'plc_mode': 4, 'safety_recovery_mode': 0, 'arcon_welder_0': 0, 'job_sub_state': 0, 'arcon_welder_1': -1, 'maintenance_status': 0, 'cur_mode': 0, 'cur_crd': 0, 'eid_last_err': 50033, 'eid_last_con_out': -1, 'is_manual_full_spd': 0, 'axis_ctrl': [1, 1, 
-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'reducer_status': 0, 'cur_mech_no': 0, 'in_position': [1, 0, 0, 0, 0, 0, 0, 0], 'posi_sync': 0, 'job_state': 0, 'shift_state': 0, 'enable_state': 256, 'apps_sync_seq': 0, 'task_no': 0, 'a
-uto_spd': 100, 'battery_status': 0, 'cooper_ctrl': 16128, 'cur_scm_status': 0, 'base_intp': 0, 'eid_last_start_stop': -1, 'is_ext_prog_sel': 0, 'arc_welder_no': 0, 'is_remote_mode': 0, 'is_playback': 0, 'axis_lock': 0, 'mov_prog_no': 3344, 'call_pno': -1, 'spot_seq_no': [0, 0, 
-0, 0], 'eid_last_history': 50761, 'arcon_cnd_no_-1': 1, 'task_enable': [1, 0, 0, 0, 0, 0, 0, 0], 'ucrd_no': 0, 'high_load': 0, 'cur_prog_no': 3344, 'arc_weld_appl': 1, 'rec_step_ex_sw': 0, 'job_state_msg': '', 'spot_gun_no': [0, 0, 0, 0], 'step_execute_unit_status': 0, 'direct_
-teaching': 0, 'jog_inch_status': 0, 'gun_search_status': 0, 'eid_last_noti': 36154, 'tool_no': 0, 'next_exe_pno': -1, 'paint_gun_no': 0, 'n_forced_io': 0, 'load_esti': 1, 'chk_brake_release': [1, 1, 1, 1, 1, 1], 'eng_code': 0, 'spd_lev': 1, 'spot_cnd_no': [0, 0, 0, 0], 'mov_fun
-c_no': 0, 'confirm_command_delete': 1, 'paint_block_state': 0, 'cont_path': 1, 'cur_mech_axis_info': 63, 'arcon_cnd_no_0': 1, 'spot_panel_thickness': 0.0, 'robot_model': 'HA006B-01', 'manual_spd_max': 250, 'cur_step_no': 1, 'cur_func_no': 0, 'is_ext_start': 0, 'opc_ua_server_st
-ate': -1, 'n_prompt': 0, 'svgun_state': 0, 'mov_step_no': 1, 'step_goback_resume': 0, 'call_depth': 0, 'eid_last_warn': -1})
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ....
 ```
 </div>
 
-[__SOURCE](3-project/1-get/2-jobs_info.md)
-#### 3.1.2 `jobs_info`
+[__SOURCE](2-project/1-get/2-jobs_info.md)
+#### 2.1.2 `jobs_info`
 
 ##### 설명
 
@@ -1128,23 +870,20 @@ $python test.py
 (200, [
 	{'_type': 'JObject', 'fname': '0055.job', 'n_step': 1, 'n_total_ax': 6, 'job_comment': '', 'n_aux_ax': 0},  
 	{'_type': 'JObject', 'fname': '0001.job', 'n_step': 2, 'n_total_ax': -1, 'job_comment': '', 'n_aux_ax': -1}, 
-	{'_type': 'JObject', 'fname': '9999.job', 'n_step': 1, 'n_total_ax': 12, 'job_comment': '', 'n_aux_ax': 6}, 
-	{'_type': 'JObject', 'fname': '1111.job', 'n_step': 13, 'n_total_ax': -1, 'job_comment': '', 'n_aux_ax': -1}, 
-	{'_type': 'JObject', 'fname': '0005.job', 'n_step': 0, 'n_total_ax': 12, 'job_comment': '', 'n_aux_ax': 6}, 
-	{'_type': 'JObject', 'fname': '0021.job', 'n_step': 3, 'n_total_ax': 12, 'job_comment': '', 'n_aux_ax': 6}, 
+	{'_type': 'JObject', 'fname': '9999.job', 'n_step': 1, 'n_total_ax': 12, 'job_comment': '', 'n_aux_ax': 6},
 	...
 ])
 ```
 </div>
 
-[__SOURCE](3-project/2-post/README.md)
-## 3.2 project/post
+[__SOURCE](2-project/2-post/README.md)
+## 2.2 project/post
 
 - 조건설정, 프로젝트 정보, job 파일 정보에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
 
-[__SOURCE](3-project/2-post/1-reload_updated_jobs.md)
-#### 3.2.1 `reload_updated_jobs`
+[__SOURCE](2-project/2-post/1-reload_updated_jobs.md)
+#### 2.2.1 `reload_updated_jobs`
 
 ##### 설명
 
@@ -1218,8 +957,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](3-project/2-post/2-jobs-delete_job.md)
-#### 3.2.2 `delete_job`
+[__SOURCE](2-project/2-post/2-jobs-delete_job.md)
+#### 2.2.2 `delete_job`
 
 ##### 설명
 
@@ -1297,20 +1036,20 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](4-control/README.md)
-# 4. control
+[__SOURCE](3-control/README.md)
+# 3. control
 
 - 제어기(controller)의 설정값 적용 및 입출력 값을 처리합니다.
 - 시스템 입출력, 디지털 입출력, 조건설정, 사용자 좌표계 관련 정보를 다룹니다.
 
 <br>
-[__SOURCE](4-control/1-get/README.md)
-## 4.1 control/get
+[__SOURCE](3-control/1-get/README.md)
+## 3.1 control/get
 
 - 제어기의 설정 정보, 입출력 값에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
-[__SOURCE](4-control/1-get/1-op_cnd.md)
-#### 4.1.1 `op_cnd`
+[__SOURCE](3-control/1-get/1-op_cnd.md)
+#### 3.1.1 `op_cnd`
 
 ##### 설명
 
@@ -1379,8 +1118,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](4-control/1-get/2-ucss-ucs_nos.md)
-#### 4.1.2 `ucss/ucs_nos`
+[__SOURCE](3-control/1-get/2-ucss-ucs_nos.md)
+#### 3.1.2 `ucss/ucs_nos`
 
 ##### 설명
 
@@ -1446,18 +1185,18 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](4-control/2-post/README.md)
-## 4.2 control/post
+[__SOURCE](3-control/2-post/README.md)
+## 3.2 control/post
 
 - 제어기의 설정 정보, 입출력 값에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
-[__SOURCE](4-control/3-put/README.md)
-## 4.3 control/put
+[__SOURCE](3-control/3-put/README.md)
+## 3.3 control/put
 
 - 제어기의 설정 정보, 입출력 값에 대한 PUT 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
-[__SOURCE](4-control/3-put/1-op_cnd.md)
-#### 4.3.1 `op_cnd`
+[__SOURCE](3-control/3-put/1-op_cnd.md)
+#### 3.3.1 `op_cnd`
 
 ##### 설명
 
@@ -1545,19 +1284,19 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/README.md)
-# 5. robot
+[__SOURCE](4-robot/README.md)
+# 4. robot
 
 - 로봇과 툴 데이터에 대한 원격 제어와 모니터링을 확인할 수 있습니다.
 - 모터 on/off, 로봇 자세, 툴, 조그 좌표계 등을 다루고 있습니다.
 
-[__SOURCE](5-robot/1-get/README.md)
-## 5.1 robot/get
+[__SOURCE](4-robot/1-get/README.md)
+## 4.1 robot/get
 
 - 로봇과 툴 데이터에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
-[__SOURCE](5-robot/1-get/1-motor_on_state.md)
-#### 5.1.1 `motor_on_state`
+[__SOURCE](4-robot/1-get/1-motor_on_state.md)
+#### 4.1.1 `motor_on_state`
 
 ##### 설명
 
@@ -1627,8 +1366,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](5-robot/1-get/2-po_cur.md)
-#### 5.1.2 `po_cur`
+[__SOURCE](4-robot/1-get/2-po_cur.md)
+#### 4.1.2 `po_cur`
 
 ##### 설명
 
@@ -1773,8 +1512,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](5-robot/1-get/3-cur_tool_data.md)
-#### 5.1.3 `cur_tool_data`
+[__SOURCE](4-robot/1-get/3-cur_tool_data.md)
+#### 4.1.3 `cur_tool_data`
 
 ##### 설명
 
@@ -1855,8 +1594,8 @@ ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0})
 
 </div>
 
-[__SOURCE](5-robot/1-get/4-tools.md)
-#### 5.1.4 `tools`
+[__SOURCE](4-robot/1-get/4-tools.md)
+#### 4.1.4 `tools`
 
 ##### 설명
 
@@ -1933,8 +1672,8 @@ _5': 0.0, 'bias_2': 0.0, 'bias_3': 0.0, 'bias_0': 0.0, 'bias_1': 0.0, 'x': 0.0, 
 
 </div>
 
-[__SOURCE](5-robot/1-get/5-tools_t.md)
-#### 5.1.5 `tools/t_{number}`
+[__SOURCE](4-robot/1-get/5-tools_t.md)
+#### 4.1.5 `tools/t_{number}`
 
 ##### 설명
 
@@ -2009,8 +1748,8 @@ ixx': 0.016, 'cz': 70.0, 'cy': 0.0, 'cx': 100.0})
 
 </div>
 
-[__SOURCE](5-robot/1-get/6-emergency_stop.md)
-#### 5.1.6 `emergency_stop`
+[__SOURCE](4-robot/1-get/6-emergency_stop.md)
+#### 4.1.6 `emergency_stop`
 
 ##### 설명
 
@@ -2083,8 +1822,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/1-get/7-joint_traject_buf_avail.md)
-#### 5.1.7 `joint_traject_buf_avail`
+[__SOURCE](4-robot/1-get/7-joint_traject_buf_avail.md)
+#### 4.1.7 `joint_traject_buf_avail`
 
 ##### 설명
 - 지원 버전 : `60.32-00` &uparrow;
@@ -2164,8 +1903,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/1-get/8-joint_states.md)
-#### 5.1.8 `joint_states`
+[__SOURCE](4-robot/1-get/8-joint_states.md)
+#### 4.1.8 `joint_states`
 
 ##### 설명
 - 지원 버전 : `70.00-00` ↑
@@ -2267,13 +2006,13 @@ $python test.py
 
 </div>
 
-[__SOURCE](5-robot/2-post/README.md)
-## 5.2 robot/post
+[__SOURCE](4-robot/2-post/README.md)
+## 4.2 robot/post
 
 - 로봇과 툴 데이터에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
-[__SOURCE](5-robot/2-post/1-motor-on.md)
-#### 5.2.1 `motor_on`
+[__SOURCE](4-robot/2-post/1-motor-on.md)
+#### 4.2.1 `motor_on`
 
 - <b style="color:orange"> `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.</b>
 
@@ -2353,8 +2092,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](5-robot/2-post/2-start-stop.md)
-#### 5.2.2 `start / stop`
+[__SOURCE](4-robot/2-post/2-start-stop.md)
+#### 4.2.2 `start / stop`
 
 ##### 설명
 
@@ -2449,8 +2188,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/2-post/3-tool_no.md)
-#### 5.2.3 `tool_no`
+[__SOURCE](4-robot/2-post/3-tool_no.md)
+#### 4.2.3 `tool_no`
 
 ##### 설명
 
@@ -2526,8 +2265,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/2-post/4-crd_sys.md)
-#### 5.2.4 `crd_sys`
+[__SOURCE](4-robot/2-post/4-crd_sys.md)
+#### 4.2.4 `crd_sys`
 
 ##### 설명
 
@@ -2607,8 +2346,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](5-robot/2-post/5-emergency_stop.md)
-#### 5.2.5 `emergency_stop`
+[__SOURCE](4-robot/2-post/5-emergency_stop.md)
+#### 4.2.5 `emergency_stop`
 
 ##### 설명
 
@@ -2696,8 +2435,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/2-post/6-emergency_stop_test.md)
-#### 5.2.6 `emergency_stop_test`
+[__SOURCE](4-robot/2-post/6-emergency_stop_test.md)
+#### 4.2.6 `emergency_stop_test`
 
 - <b style="color:orange"> 해당 API 는 `60.28-00` 까지 `emergency_stop` API 로 사용되었습니다. </b>  
 
@@ -2838,8 +2577,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/2-post/7-joint_traject_init.md)
-#### 5.2.7 `joint_traject_init`
+[__SOURCE](4-robot/2-post/7-joint_traject_init.md)
+#### 4.2.7 `joint_traject_init`
 
 ##### 설명
 
@@ -2947,8 +2686,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](5-robot/2-post/8-joint_traject_insert_points.md)
-#### 5.2.8 `joint_traject_insert_points`
+[__SOURCE](4-robot/2-post/8-joint_traject_insert_points.md)
+#### 4.2.8 `joint_traject_insert_points`
 
 ##### 설명
 
@@ -3292,8 +3031,8 @@ POST /project/robot/trajectory/joint_traject_insert_points
 
 </div>
 
-[__SOURCE](5-robot/2-post/9-joint_traject_insert_point.md)
-#### 5.1.9 `joint_traject_insert_point`
+[__SOURCE](4-robot/2-post/9-joint_traject_insert_point.md)
+#### 4.2.9 `joint_traject_insert_point`
 
 ##### 설명
 - 지원 버전 : `70.00-00` ↑
@@ -3481,17 +3220,17 @@ AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.0013
 
 </div>
 
-[__SOURCE](6-io_plc/README.md)
-# 6. I/O PLC
+[__SOURCE](5-io_plc/README.md)
+# 5. I/O PLC
 
 - 내장 PLC(built-in plc)의 입출력 값을 읽어오거나 설정합니다.
-[__SOURCE](6-io_plc/1-get/README.md)
-## 6.1 io_plc/get
+[__SOURCE](5-io_plc/1-get/README.md)
+## 5.1 io_plc/get
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
-[__SOURCE](6-io_plc/1-get/1-relay-value.md)
-#### 6.1.1 `get relay values`
+[__SOURCE](5-io_plc/1-get/1-relay-value.md)
+#### 5.1.1 `get relay values`
 
 ##### 설명
 
@@ -3596,8 +3335,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](6-io_plc/1-get/2-ios-dio.md)
-#### 6.1.2 `ios/dio/{dio_val}`
+[__SOURCE](5-io_plc/1-get/2-ios-dio.md)
+#### 5.1.2 `ios/dio/{dio_val}`
 
 ##### 설명
 
@@ -3722,8 +3461,8 @@ di value: 00000010
 
 </div>
 
-[__SOURCE](6-io_plc/1-get/3-ios-sio.md)
-#### 6.1.3 `ios/sio/{sio_val}`
+[__SOURCE](5-io_plc/1-get/3-ios-sio.md)
+#### 5.1.3 `ios/sio/{sio_val}`
 
 ##### 설명
 
@@ -3816,13 +3555,13 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](6-io_plc/2-post/README.md)
-## 6.2 io_plc/post
+[__SOURCE](5-io_plc/2-post/README.md)
+## 5.2 io_plc/post
 
 - 내장 PLC(built-in plc)의 입출력 값에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
-[__SOURCE](6-io_plc/2-post/1-set_relay_value.md)
-#### 6.2.1 `set relay values`
+[__SOURCE](5-io_plc/2-post/1-set_relay_value.md)
+#### 5.2.1 `set relay values`
 
 ##### 설명
 
@@ -3931,8 +3670,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](6-io_plc/2-post/2-ios-dio.md)
-#### 6.2.2 `ios/dio/{do_val}`
+[__SOURCE](5-io_plc/2-post/2-ios-dio.md)
+#### 5.2.2 `ios/dio/{do_val}`
 
 ##### 설명
 
@@ -4041,18 +3780,18 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](7-log_manager/README.md)
-# 7. event-log
+[__SOURCE](6-log_manager/README.md)
+# 6. event-log
 
 - 제어기에 기록되는 에러, 경고, 실행이력 등을 출력합니다.
 
-[__SOURCE](7-log_manager/1-get/README.md)
-## 7.1 log_manager/get
+[__SOURCE](6-log_manager/1-get/README.md)
+## 6.1 log_manager/get
 
 - 제어기에 기록되는 에러, 경고, 실행이력에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
-[__SOURCE](7-log_manager/1-get/1-search.md)
-#### 7.1.1 search
+[__SOURCE](6-log_manager/1-get/1-search.md)
+#### 6.1.1 search
 
 ##### 설명
 
@@ -4167,19 +3906,19 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](8-file_manager/README.md)
-# 8. file_manager
+[__SOURCE](7-file_manager/README.md)
+# 7. file_manager
 
 - 제어기의 파일 정보를 읽어오거나, 파일 이름 변경, 파일 전송 기능을 다룹니다.
 - 디렉토리 존재여부를 확인하거나, 생성 및 삭제를 하는 기능 또한 다룹니다.
 
-[__SOURCE](8-file_manager/1-get/README.md)
-## 8.1 file_manager/get
+[__SOURCE](7-file_manager/1-get/README.md)
+## 7.1 file_manager/get
 
 - 제어기의 파일 정보에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
-[__SOURCE](8-file_manager/1-get/1-files.md)
-#### 8.1.1 `files`
+[__SOURCE](7-file_manager/1-get/1-files.md)
+#### 7.1.1 `files`
 
 ##### 설명
 
@@ -4280,8 +4019,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](8-file_manager/1-get/2-file_info.md)
-#### 8.1.2 `file_info`
+[__SOURCE](7-file_manager/1-get/2-file_info.md)
+#### 7.1.2 `file_info`
 
 ##### 설명
 
@@ -4391,8 +4130,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](8-file_manager/1-get/3-file_list.md)
-#### 8.1.3 `file_list`
+[__SOURCE](7-file_manager/1-get/3-file_list.md)
+#### 7.1.3 `file_list`
 
 ##### 설명
 
@@ -4526,8 +4265,8 @@ $python final_test.py
 ```
 </div>
 
-[__SOURCE](8-file_manager/1-get/4-file_exist.md)
-#### 8.1.4 `file_exist`
+[__SOURCE](7-file_manager/1-get/4-file_exist.md)
+#### 7.1.4 `file_exist`
 
 ##### 설명
 
@@ -4614,14 +4353,14 @@ True
 
 </div>
 
-[__SOURCE](8-file_manager/2-post/README.md)
-## 8.2 file_manager/post
+[__SOURCE](7-file_manager/2-post/README.md)
+## 7.2 file_manager/post
 
 - 제어기의 파일 정보에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
 
-[__SOURCE](8-file_manager/2-post/1-rename_file.md)
-#### 8.2.1 `rename_file`
+[__SOURCE](7-file_manager/2-post/1-rename_file.md)
+#### 7.2.1 `rename_file`
 
 <div style="width: fit-content;">
 
@@ -4723,8 +4462,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](8-file_manager/2-post/2-mkdir.md)
-#### 8.2.2 `mkdir`
+[__SOURCE](7-file_manager/2-post/2-mkdir.md)
+#### 7.2.2 `mkdir`
 
 
 
@@ -4827,8 +4566,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](8-file_manager/2-post/3-files.md)
-#### 8.2.3 `files`
+[__SOURCE](7-file_manager/2-post/3-files.md)
+#### 7.2.3 `files`
 
 ##### 설명
 
@@ -4918,12 +4657,12 @@ $python test.py
 (200, {'_text': ''})
 ```
 
-[__SOURCE](8-file_manager/3-delete/README.md)
-## 8.3 file_manager/delete
+[__SOURCE](7-file_manager/3-delete/README.md)
+## 7.3 file_manager/delete
 
 - 제어기의 파일 정보에 대한 DELETE 요청을 보냅니다.
-[__SOURCE](8-file_manager/3-delete/1-files.md)
-#### 8.3.1 `files`
+[__SOURCE](7-file_manager/3-delete/1-files.md)
+#### 7.3.1 `files`
 
 <div style="width: fit-content;">
 
@@ -4996,25 +4735,25 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](9-task/README.md)
-# 9.task
+[__SOURCE](8-task/README.md)
+# 8.task
 
 - 태스크와 관련된 내용들을 다룹니다.
 - 특정 태스크나 전체 태스크에 대해서 리셋을 할 수 있습니다.
 - 현재 태스크의 지역 또는 전역 변수에 대해서 값을 읽어오거나 새로운 변수를 선언할 수 있습니다.
 - 태스크 실행 중 특정 작업 흐름(ex. wait)에 대해서 특정 조치(ex. release)를 취할 수 있습니다.
-[__SOURCE](9-task/1-get/README.md)
-## 9.1 task/get
+[__SOURCE](8-task/1-get/README.md)
+## 8.1 task/get
 
 - 태스크와 관련된 정보에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
-[__SOURCE](9-task/2-post/README.md)
-## 9.2 task/post
+[__SOURCE](8-task/2-post/README.md)
+## 8.2 task/post
 
 - 태스크와 관련된 정보에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
-[__SOURCE](9-task/2-post/1-cur_prog_cnt.md)
-#### 9.2.1 `task/cur_prog_cnt`
+[__SOURCE](8-task/2-post/1-cur_prog_cnt.md)
+#### 8.2.1 `task/cur_prog_cnt`
 
 <div style="width: fit-content;">
 
@@ -5109,10 +4848,10 @@ $python python test.py
 ```
 </div>
 
-[__SOURCE](9-task/2-post/2-reset.md)
+[__SOURCE](8-task/2-post/2-reset.md)
 <link rel="stylesheet" href="../../_assets/style.css">
 
-#### 9.2.2 `task/reset`
+#### 8.2.2 `task/reset`
 
 <div style="width: fit-content;">
 
@@ -5206,8 +4945,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](9-task/2-post/3-assign_var_expr.md)
-#### 9.2.3 `assign_var_expr`
+[__SOURCE](8-task/2-post/3-assign_var_expr.md)
+#### 8.2.3 `assign_var_expr`
 
 <div style="width: fit-content;">
 
@@ -5330,8 +5069,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](9-task/2-post/4-assign_var_json.md)
-#### 9.2.4 `assign_var_json`
+[__SOURCE](8-task/2-post/4-assign_var_json.md)
+#### 8.2.4 `assign_var_json`
 
 <div style="width: fit-content;">
 
@@ -5457,8 +5196,8 @@ after: {'_type': 'JObject', 'test': 10}
 
 </div>
 
-[__SOURCE](9-task/2-post/5-release_wait.md)
-#### 9.2.5 `release_wait`
+[__SOURCE](8-task/2-post/5-release_wait.md)
+#### 8.2.5 `release_wait`
 
 <div style="width: fit-content;">
 
@@ -5542,8 +5281,8 @@ $python test.py
 
 </div>
 
-[__SOURCE](9-task/2-post/6-set_cur_pc_idx.md)
-#### 9.2.6 `set_cur_pc_idx`
+[__SOURCE](8-task/2-post/6-set_cur_pc_idx.md)
+#### 8.2.6 `set_cur_pc_idx`
 
 <div style="width: fit-content;">
 
@@ -5628,8 +5367,8 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](9-task/2-post/7-solve_expr.md)
-#### 9.2.7 `solve_expr`
+[__SOURCE](8-task/2-post/7-solve_expr.md)
+#### 8.2.7 `solve_expr`
 
 <div style="width: fit-content;">
 
@@ -5761,14 +5500,14 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](9-task/2-post/8-execute_move.md)
+[__SOURCE](8-task/2-post/8-execute_move.md)
 <script id="page-config" type="application/json">
 {
 	"permittedStrs": ["Hi6"]
 }
 </script>
 
-#### 9.2.8 `execute_move`
+#### 8.2.8 `execute_move`
 
 <div style="width: fit-content;">
 
@@ -5870,26 +5609,26 @@ $python test.py
 
 </div>
 
-[__SOURCE](10-console/README.md)
-# 10. console
+[__SOURCE](9-console/README.md)
+# 9. console
 
 - ${cont_model}s 제어기 S/W 의 CLI 명령어를 사용할 수 있습니다.
 - 로봇언어로 할 수 있는 다양한 동작을 수행할 수 있습니다.
 
-[__SOURCE](10-console/1-get/README.md)
-## 10.1 console/get
+[__SOURCE](9-console/1-get/README.md)
+## 9.1 console/get
 
 - 로봇 명령문 실행과 관련된 정보에 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
-[__SOURCE](10-console/2-post/README.md)
-## 10.2 console/post
+[__SOURCE](9-console/2-post/README.md)
+## 9.2 console/post
 
 - 로봇 명령문 실행과 관련된 정보에 대한 POST 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
-[__SOURCE](10-console/2-post/1-execute_cmd.md)
+[__SOURCE](9-console/2-post/1-execute_cmd.md)
 <div style="width: fit-content;">
 
-#### 10.2.1 `execute_cmd`
+#### 9.2.1 `execute_cmd`
 
 
 ##### 설명
@@ -5995,23 +5734,23 @@ $python test.py
 
 </div>
 
-[__SOURCE](11-etc/README.md)
-# 11. etc
+[__SOURCE](10-etc/README.md)
+# 10. etc
 
 - 시스템 버전, 이벤트 로그, 클럭 등을 다루고 있습니다.
-[__SOURCE](11-etc/1-clock/README.md)
-## 11.1 clock
+[__SOURCE](10-etc/1-clock/README.md)
+## 10.1 clock
 
 - 제어기의 시스템 시간을 읽고 설정할 수 있습니다.
 
-[__SOURCE](11-etc/1-clock/1-get/README.md)
-#### 11.1.1 clock/get
+[__SOURCE](10-etc/1-clock/1-get/README.md)
+#### 10.1.1 clock/get
 
 - 제어기 시스템 시간 대한 GET 요청을 보냅니다.
 - API 별로 정확한 path-parameter, query-parameter 를 설정하여 응답을 받습니다.
 
-[__SOURCE](11-etc/1-clock/1-get/1-date_time.md)
-#### 11.1.1.1 `date_time`
+[__SOURCE](10-etc/1-clock/1-get/1-date_time.md)
+#### 10.1.1.1 `date_time`
 
 <div style="width: fit-content;">
 
@@ -6090,14 +5829,14 @@ $python test.py
 ```
 </div>
 
-[__SOURCE](11-etc/1-clock/2-put/README.md)
-#### 11.1.2 clock/put
+[__SOURCE](10-etc/1-clock/2-put/README.md)
+#### 10.1.2 clock/put
 
 - 제어기 시스템 시간 대한 PUT 요청을 보냅니다.
 - API 별로 정확한 request-body 를 작성해야합니다.
 
-[__SOURCE](11-etc/1-clock/2-put/1-date_time.md)
-#### 11.1.2.1 `date_time`
+[__SOURCE](10-etc/1-clock/2-put/1-date_time.md)
+#### 10.1.2.1 `date_time`
 
 <div style = "width: max-content">  
 
