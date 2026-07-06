@@ -2014,7 +2014,7 @@ $python test.py
 [__SOURCE](4-robot/2-post/1-motor-on.md)
 #### 4.2.1 `motor_on`
 
-- <b style="color:orange"> `motor_off` API 는 [v60.30-00](../../1-release-note/60-30.md)부터 지원되지 않습니다.</b>
+- <b style="color:orange"> `motor_off` API 는 `v60.30-00`부터 지원되지 않습니다.</b>
 
 <div style="width: fit-content;">
 
@@ -5911,7 +5911,7 @@ $python test.py
 </div>
 
 [__SOURCE](99-schema/README.md)
-# 12. 스키마 (schema)
+# 11. 스키마 (schema)
 
 이 챕터는 Open API에서 사용되는 각종 열거자(enumeration)와 구조체(structure)의 참조자료(reference)를 담고 있습니다.
 
