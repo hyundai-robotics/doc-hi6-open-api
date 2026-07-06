@@ -3,7 +3,7 @@
 ##### Description
 
 - `POST` : Performs motor ON.
-- The `motor_off` API has been deprecated and is no longer supported starting from [v60.30-00](../../1-release-note/60-30.md).
+- The `motor_off` API has been deprecated and is no longer supported starting from `v60.30-00`.
 
 ##### path-parameter
 
