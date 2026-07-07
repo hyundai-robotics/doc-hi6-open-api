@@ -1686,6 +1686,93 @@ $python test.py
 
 </div>
 
+[__SOURCE](4-robot/1-get/9-joint_traject_agility_info.md)
+#### 4.1.9 `joint_traject_agility_info`
+
+##### Description
+
+* Supported version : `70.04-00` ↑
+* `GET` : Retrieves the agility mode activation status and the operating frequency currently configured in the controller.
+
+
+##### path-parameter
+
+```python
+GET /project/robot/trajectory/joint_traject_agility_info
+```
+
+##### query-parameter
+
+* None
+
+##### response
+
+1. status code
+* 200 : OK
+* 400 : Bad Request
+* 403 : Forbidden
+* 404 : Not Found
+
+2. response-body
+* `agility_mode` : Agility mode activation status (boolean)
+* `agility_freq` : Agility mode operating frequency (integer, Hz)
+
+    <div style="width: fit-content;">
+
+    ```json
+    {
+        "agility_mode": false,
+        "agility_freq": 30
+    }
+    ```
+    </div>
+
+<div style="width: fit-content;">
+
+##### Example
+
+```python
+request url:
+GET /project/robot/trajectory/joint_traject_agility_info
+
+response-body:
+{
+    "agility_mode": false,
+    "agility_freq": 30
+}
+
+```
+
+Python Script Example
+
+
+```python
+# test.py
+import requests
+
+def get_joint_traject_agility_info() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path = "/project/robot/trajectory/joint_traject_agility_info"
+
+    res = requests.get(url=base_url + path)
+
+    print(res.json())
+
+    return res
+
+
+get_joint_traject_agility_info()
+
+```
+
+```sh
+$ python test.py
+{'agility_mode': False, 'agility_freq': 30}
+```
+
+</div>
+
 [__SOURCE](4-robot/2-post/README.md)
 ## 4.2 robot/post
 
@@ -2149,6 +2236,35 @@ response: 200
 - If this api is called while a trajectory is being executed via the [joint_traject_insert_points](./8-joint_traject_insert_points.md) API, the buffer will be updated immediately.
   - Removing previously stored trajectory points from the buffer may cause the robot to stop and trigger an error. Use with caution.
 
+##### 70.04-00 ↑ Changes
+
+Agility mode for joint_traject_insert_point has been added.
+
+```json
+{ "agility_mode": true, "agility_freq": 30 }
+```
+
+<div style="width: fit-content;">
+
+
+| Parameter | Description |
+| --------- | ----------- |
+| `agility_mode` | A mode that significantly improves the initial control response speed of the robot to reach the target command. |
+| `agility_freq` | Specifies the operating bandwidth frequency of the agility mode. Higher frequency values result in faster robot response and increased agility. |
+
+
+If agility-related parameters are omitted or requested with an empty object ({}), agility mode is automatically deactivated (false).
+
+{% hint style="info" %}
+
+`Note on Vibration and Noise`: Setting a higher frequency value drastically sharpens the control system's responsiveness. However, depending on the robot's mechanical rigidity and environmental conditions, it may induce high-frequency noise or system vibration.
+
+`Safe Operation Tip`: For system stability during initial setup, begin within a lower frequency bandwidth. Monitor the robot's behavior and noise level, then gradually increase the frequency to find the optimal control point.
+
+{% endhint %}
+
+</div>
+
 
 ##### path-parameter
 
@@ -2163,14 +2279,35 @@ POST /project/robot/trajectory/joint_traject_init
 
 <div style="width: fit-content;">
 
-- {}
+Normal Mode
+```json
+{}
+```
+
+Properties added after `70.04-00`
+
+Agility Mode
+```json
+{"agility_mode": true, "agility_freq": 30}
+```
 
 </div>
 
 
+<div style="width: fit-content;">
+
+| Parameter | Attribute | Type | Default | Description & Constraints |
+| --------- |------------ | -------- | -------- | -------- |
+| agility_mode | Optional|boolean|false|Returns a 400 Bad Request error if an invalid type (e.g., string) is assigned.|
+| agility_freq | Optional|integer|20|Automatically applied as the default frequency if omitted. Returns a 400 Bad Request error if it falls outside the controller's physical allowance range (0 ~ 500) or if an invalid type is assigned.|
+
+</div>
+
 ##### status code
 
 - 200 : Request succeeded
+- 400 : Bad Requests
+  -  v70.04-00↑ : `err_msg` - Returns error description details.
 - 403 : Request failed
   - Returned when calling an unsupported API
   - `err_code` (<0): Initialization failed
@@ -2183,7 +2320,14 @@ POST /project/robot/trajectory/joint_traject_init
 POST /project/robot/trajectory/joint_traject_init
 
 request-body
+ex1)
 {}
+
+ex2) V70.04-00 &uparrow;
+{"agility_mode": true, "agility_freq": 30}
+
+response-body
+{'_type': 'JObject'}
 ```
 
 Python Script Example
@@ -2596,6 +2740,18 @@ Cascading Alarms Triggered by Over-Torque Commands
 * Position Deviation Exceeded: [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630) · [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636) · [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
 
 Note: The actual alarms displayed may vary depending on the axis configuration, payload, and operating conditions.
+
+##### `70.04-00` ↑
+
+- `agility mode` has been added to significantly improve the initial control response speed of the robot to reach the target command.
+- For details on how to activate this mode, please refer to the [`joint_traject_init` API](../1-get/9-joint_traject_agility_info.md).
+
+{% hint style="warning" %}
+
+When using agility mode, a `0.5 second` controller internal clean-up process is required `after a motion ends`.  
+Unexpected controller errors may occur if a consecutive trajectory is sent immediately without observing this delay.
+
+{% endhint %}
 
 ---
 

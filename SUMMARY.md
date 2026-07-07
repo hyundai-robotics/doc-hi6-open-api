@@ -49,6 +49,7 @@
     * [4.1.6 emergency_stop](4-robot/1-get/6-emergency_stop.md)
     * [4.1.7 joint_traject_buf_avail](4-robot/1-get/7-joint_traject_buf_avail.md)
     * [4.1.8 joint_states](4-robot/1-get/8-joint_states.md)
+    * [4.1.9 joint_traject_agility_mode](4-robot/1-get/9-joint_traject_agility_info.md)
   * [4.2 post](4-robot/2-post/README.md)
     * [4.2.1 motor-on](4-robot/2-post/1-motor-on.md)
     * [4.2.2 start-stop](4-robot/2-post/2-start-stop.md)

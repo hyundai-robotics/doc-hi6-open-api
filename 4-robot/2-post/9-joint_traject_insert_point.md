@@ -25,6 +25,18 @@ Cascading Alarms Triggered by Over-Torque Commands
 
 Note: The actual alarms displayed may vary depending on the axis configuration, payload, and operating conditions.
 
+##### `70.04-00` ↑
+
+- `agility mode` has been added to significantly improve the initial control response speed of the robot to reach the target command.
+- For details on how to activate this mode, please refer to the [`joint_traject_init` API](../1-get/9-joint_traject_agility_info.md).
+
+{% hint style="warning" %}
+
+When using agility mode, a `0.5 second` controller internal clean-up process is required `after a motion ends`.  
+Unexpected controller errors may occur if a consecutive trajectory is sent immediately without observing this delay.
+
+{% endhint %}
+
 ---
 
 ##### path-parameter
