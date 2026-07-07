@@ -18,28 +18,24 @@ POST /project/robot/emergency_stop_test
 
 ##### request-body
 
+{% hint style="warning" %}
+`V60.29-08` ~ `V60.30-10`: 타겟 스텝에서만 즉시 정지 API 호출 가능  
+`V60.32-00` 이상: 해당 사양 삭제
+{% endhint %}
+
 <div style="width: fit-content;">
 
--  |key|type|contents|validation|
-	|---:|:---:|---|---|
-	|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
-	|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
-	|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
-	|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
+|key|type|contents|validation|
+|---:|:---:|---|---|
+|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
+|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
+|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
+|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
 
 </div>
 
 - `0: 즉시정지`  
   &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
-
-    {% hint style="warning" %}
-    사양변경
-
-    - V60.29-08 ~ V60.30-10: 타겟 스텝에서만 즉시 정지 API 호출 가능
-    - V60.32-00 이상: 해당 사양 삭제
-
-    {% endhint %}
-
 - `1: 감속정지`  
 	&rightarrow;  비상정지 버튼을 눌렀을 동작하는 경우. 정지 후 모터 오프가 됨  
 - `2: 일시정지`  

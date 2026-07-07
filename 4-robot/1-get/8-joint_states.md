@@ -17,7 +17,7 @@ GET /project/robot/joint_states
 
 ##### query-parameter
 
-* * 파라미터를 지정하지 않으면 전체 조인트를 조회합니다.
+* 파라미터를 지정하지 않으면 전체 조인트를 조회합니다.
 * jno_start (optional)
   * 조회를 시작할 조인트 번호 (1-base)
 * jno_n (optional)

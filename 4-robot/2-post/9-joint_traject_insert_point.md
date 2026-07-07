@@ -24,6 +24,20 @@
 
 참고: 실제 표출되는 알람은 축 구성, 하중(Payload), 동작 상황에 따라 다를 수 있습니다.
 
+
+##### `70.04-00` ↑
+
+- 타겟 지령으로 도달하는 로봇의 초기 제어 반응 속도를 비약적으로 향상 시키는 `민첩 모드(agility mode)`가 추가 됐습니다.
+- 모드를 활성화하는 방법은 [`joint_traject_init` API](../1-get/9-joint_traject_agility_info.md) 를 참고하십시오.
+
+{% hint style="warning" %}
+
+민첩 모드 사용 시, 모션 종료 후 `0.5 초`의 제어기 내부 clean-up 과정이 필요합니다.
+이를 어기고 곧바로 궤적을 이어서 보내는 경우, 의도치 않은 에러가 발생할 수 있습니다.
+
+{% endhint %}
+
+
 ##### path-parameter
 
 <div style="width: fit-content;">

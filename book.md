@@ -1923,7 +1923,7 @@ GET /project/robot/joint_states
 
 ##### query-parameter
 
-* * 파라미터를 지정하지 않으면 전체 조인트를 조회합니다.
+* 파라미터를 지정하지 않으면 전체 조인트를 조회합니다.
 * jno_start (optional)
   * 조회를 시작할 조인트 번호 (1-base)
 * jno_n (optional)
@@ -2005,6 +2005,87 @@ $python test.py
 ```
 
 </div>
+
+[__SOURCE](4-robot/1-get/9-joint_traject_agility_info.md)
+
+#### 4.1.9 `joint_traject_agility_info`
+
+##### 설명
+
+* 지원 버전 : `70.04-00` ↑
+* `GET` : 현재 제어기에 설정된 민첩(agility) 모드 활성화 여부 및 구동 주파수 정보를 조회합니다.
+
+
+##### path-parameter
+
+```python
+GET /project/robot/trajectory/joint_traject_agility_info
+
+```
+
+##### query-parameter
+
+* 없음
+
+##### response
+
+1. status code
+    * 200 : OK
+    * 403 : Forbidden
+    * 404 : Not Found
+
+2. response-body
+    * agility_mode : 민첩 모드 활성화 여부 (boolean)
+    * agility_freq : 민첩 모드 동작 주파수 (integer, Hz)
+
+```json
+{
+    "agility_mode": false,
+    "agility_freq": 30
+}
+```
+
+##### 사용 예
+
+```python
+request url:
+GET /project/robot/trajectory/joint_traject_agility_info
+
+response-body:
+{
+    "agility_mode": false,
+    "agility_freq": 30
+}
+
+```
+
+Python Script 예시
+
+```python
+# test.py
+import requests
+
+def get_joint_traject_agility_info() -> requests.Response:
+    base_url = "http://192.168.1.150:8888"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path = "/project/robot/trajectory/joint_traject_agility_info"
+
+    res = requests.get(url=base_url + path)
+
+    print(res.json())
+
+    return res
+
+
+get_joint_traject_agility_info()
+
+```
+
+```sh
+$ python test.py
+{'agility_mode': False, 'agility_freq': 30}
+
+```
 
 [__SOURCE](4-robot/2-post/README.md)
 ## 4.2 robot/post
@@ -2456,28 +2537,24 @@ POST /project/robot/emergency_stop_test
 
 ##### request-body
 
+{% hint style="warning" %}
+`V60.29-08` ~ `V60.30-10`: 타겟 스텝에서만 즉시 정지 API 호출 가능  
+`V60.32-00` 이상: 해당 사양 삭제
+{% endhint %}
+
 <div style="width: fit-content;">
 
--  |key|type|contents|validation|
-	|---:|:---:|---|---|
-	|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
-	|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
-	|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
-	|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
+|key|type|contents|validation|
+|---:|:---:|---|---|
+|`step_no`| int | 비상정지 타겟 스텝 번호, 현재 진행 중인 job 의 총 step 번호 이내| 1 ~ 999 |
+|`stop_at`| double | 지정위치의 몇 % 에서 멈출지 설정| 1 ~ 100 |
+|`stop_at_corner`| int | 0: 일반정지, 1: 코너정지| 0 or 1 |
+|`category`| int | 0: 즉시정지, 1: 감속정지, 2: 일시정지| 0 or 1 or 2 |
 
 </div>
 
 - `0: 즉시정지`  
   &rightarrow; 로봇 재생 중에 제어기가 꺼져버리는 경우와 동일한 경우. 정지 후 모터 오프가 됨  
-
-    {% hint style="warning" %}
-    사양변경
-
-    - V60.29-08 ~ V60.30-10: 타겟 스텝에서만 즉시 정지 API 호출 가능
-    - V60.32-00 이상: 해당 사양 삭제
-
-    {% endhint %}
-
 - `1: 감속정지`  
 	&rightarrow;  비상정지 버튼을 눌렀을 동작하는 경우. 정지 후 모터 오프가 됨  
 - `2: 일시정지`  
@@ -2582,7 +2659,7 @@ $python test.py
 
 ##### 설명
 
-- 지원 버전 : `60.32-00` &uparrow;
+- 지원 버전 : `60.32-00` ↑
 - `POST` : 버퍼를 초기화를 진행합니다.
 - 로봇이 정지 상태에서 궤적을 요청할 때, 직전에 저장된 궤적을 지워줍니다.
 - 다음과 같은 상황에서도 버퍼 초기화를 진행해주어야 합니다.
@@ -2590,6 +2667,37 @@ $python test.py
   - 에러가 발생한 시점의 궤적이 버퍼에 저장되어있어 버퍼 초기화 없이 traj2 요청을 하면 에러가 발생할 수 있습니다.
 - [joint_traject_insert_points](./8-joint_traject_insert_points.md) api 로 궤적을 이동중에 <u>해당 함수를 호출하면 그 즉시 버퍼가 갱신</u>이 됩니다.
   - 기존 버퍼에 저장된 궤적 포인트들이 사라지면 로봇이 정지되면서 에러가 발생할 수 있으므로 사용에 주의 하시기 바랍니다.
+
+##### `70.04-00` ↑ 변경 사항
+
+`joint_traject_insert_point` 의 민첩 모드가 추가 되었습니다.  
+
+<div style="width: fit-content;">
+
+```json
+{ "agility_mode": true, "agility_freq": 30 }
+```
+</div>
+
+<div style="width: fit-content;">
+
+
+|설정 항목|  설명 |
+| ----- |  ------ |
+| `agility_mode` | 타겟 지령으로 도달하는 로봇의 초기 제어 반응 속도를 비약적으로 향상 시키는 모드입니다. |
+| `agility_freq` | 민첩 모드의 대역폭 동작 주파수를 지정합니다. 설정된 주파수 값이 높을수록 로봇의 응답 속도가 빨라지고 민첩성이 증가합니다. |
+
+
+민첩성 관련 파라미터가 포함되지 않거나 빈 중괄호({})로 요청하는 경우, 민첩성 모드는 자동으로 비활성화(false)됩니다
+
+</div>
+
+{% hint style="info" %}
+
+`진동 및 소음 유의`: 주파수 값을 크게 설정할수록 제어계의 응답성이 급격히 정밀해지지만, 로봇의 기계적 강성 및 환경 조건에 따라 고주파 소음이나 시스템 진동을 유발할 수 있습니다.  
+`안전 구동 팁`: 최초 설정 시에는 시스템 안정성을 위해 낮은 주파수 대역에서 시작하여, 로봇의 거동과 소음을 모니터링하면서 점진적으로 주파수를 높여 최적의 제어 포인트를 찾으십시오.
+
+{% endhint %}
 
 
 ##### path-parameter
@@ -2605,7 +2713,22 @@ POST /project/robot/trajectory/joint_traject_init
 
 <div style="width: fit-content;">
 
-- {}
+```
+{} : 일반 모드
+```
+
+`70.04-00` 이후 추가 된 속성
+
+```
+{"agility_mode": True, "agility_freq": 30} : 민첩 모드
+```
+
+
+| 파라미터명| 속성 | 타입 | 기본값 | 설명 및 제약 조건|
+| ----- | ------ | ------ | ------ | ------|
+| `agility_mode` | Optional | boolean |  false | string 등 잘못된 타입 대입 시 400 Bad Request 에러를 반환 |
+| `agility_freq` | Optional | integer | 20 | 생략 시 기본 디폴트 주파수로 자동 적용. 제어기 물리 허용 범위(0 ~ 500)를 벗어나거나 잘못된 타입 대입 시 400 Bad Request 에러를 반환 |
+
 
 </div>
 
@@ -2616,6 +2739,8 @@ POST /project/robot/trajectory/joint_traject_init
 1) status code
    - 200 : OK
    - 400 : Bad Request
+     - V70.04-00 ↑
+        - `err_msg` : 에러 내용 반환
    - 403 : Forbidden
      - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
      - `err_code` (<0) : 초기화 실패
@@ -2623,12 +2748,13 @@ POST /project/robot/trajectory/joint_traject_init
 
 2) response body
 
-	<div style="width: fit-content;">
+<div style="width: fit-content;">
 
-	```json
-	{ "_type": "JObject"}
-	```
-	</div>
+```json
+{ "_type": "JObject"}
+```
+
+</div>
 
 ##### 사용 예
 
@@ -2638,7 +2764,11 @@ POST /project/robot/trajectory/joint_traject_init
 POST /project/robot/trajectory/joint_traject_init
 
 request-body
+ex1)
 {}
+
+ex2) V70.04-00 ↑
+{"agility_mode": true, "agility_freq": 30}
 
 response-body
 {'_type': 'JObject'}
@@ -3057,6 +3187,20 @@ POST /project/robot/trajectory/joint_traject_insert_points
 * 위치편차 초과: [E2630](https://hr-alarms.web.app/#/${cont_model}/ko/E2630) · [E2636](https://hr-alarms.web.app/#/${cont_model}/ko/E2636) · [E2638](https://hr-alarms.web.app/#/${cont_model}/ko/E2638)
 
 참고: 실제 표출되는 알람은 축 구성, 하중(Payload), 동작 상황에 따라 다를 수 있습니다.
+
+
+##### `70.04-00` ↑
+
+- 타겟 지령으로 도달하는 로봇의 초기 제어 반응 속도를 비약적으로 향상 시키는 `민첩 모드(agility mode)`가 추가 됐습니다.
+- 모드를 활성화하는 방법은 [`joint_traject_init` API](../1-get/9-joint_traject_agility_info.md) 를 참고하십시오.
+
+{% hint style="warning" %}
+
+민첩 모드 사용 시, 모션 종료 후 `0.5 초`의 제어기 내부 clean-up 과정이 필요합니다.
+이를 어기고 곧바로 궤적을 이어서 보내는 경우, 의도치 않은 에러가 발생할 수 있습니다.
+
+{% endhint %}
+
 
 ##### path-parameter
 
