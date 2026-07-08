@@ -11,6 +11,35 @@
 - 如果在通过 [joint_traject_insert_points](./8-joint_traject_insert_points.md) API 执行轨迹时调用此 API，缓冲区将立即更新。
   - 从缓冲区中删除之前存储的轨迹点可能导致机器人停止并触发错误。 请谨慎使用。
 
+##### 70.04-00 ↑ Changes
+
+新增了 joint_traject_insert_point 的敏捷模式（agility mode）。
+
+```json
+{ "agility_mode": true, "agility_freq": 30 }
+```
+
+<div style="width: fit-content;">
+
+
+| Parameter | Description |
+| --------- | ----------- |
+| `agility_mode` | 显著提升机器人到达目标指令的初始控制响应速度的模式。 |
+| `agility_freq` | 指定敏捷模式的带宽工作频率。频率值设置得越高，机器人的响应速度越快，敏捷性越高。 |
+
+
+如果未包含敏捷模式相关参数，或以空对象（{}）发送请求，敏捷模式将自动停用（false）。
+
+{% hint style="info" %}
+
+`关于振动与噪音的注意事项`: 频率值设置得越高，控制系统的响应性会急剧提升，但根据机器人的机械刚性及环境条件，可能会引发高频噪音或系统振动。
+
+`安全运行提示`: 首次设置时，为保证系统稳定性，请从较低的频率带宽开始，在监控机器人运行状态和噪音的同时逐步提高频率，以找到最佳控制点。
+
+{% endhint %}
+
+</div>
+
 
 ##### path-parameter
 
@@ -25,14 +54,35 @@ POST /project/robot/trajectory/joint_traject_init
 
 <div style="width: fit-content;">
 
-- {}
+普通模式
+```json
+{}
+```
+
+`70.04-00` 之后新增的属性
+
+敏捷模式
+```json
+{"agility_mode": true, "agility_freq": 30}
+```
 
 </div>
 
 
+<div style="width: fit-content;">
+
+| Parameter | Attribute | Type | Default | Description & Constraints |
+| --------- |------------ | -------- | -------- | -------- |
+| agility_mode | Optional|boolean|false|若赋予 string 等无效类型，将返回 400 Bad Request 错误。|
+| agility_freq | Optional|integer|20|省略时将自动应用默认频率。若超出控制器物理允许范围（0 ~ 500）或赋予无效类型，将返回 400 Bad Request 错误。|
+
+</div>
+
 ##### status code
 
 - 200 : 请求成功
+- 400 : Bad Request
+  -  v70.04-00↑ : `err_msg` - 返回错误详细信息。
 - 403 : 请求失败
   - 当调用不支持的 API 时返回
   - `err_code` (<0): 初始化失败
@@ -45,7 +95,14 @@ POST /project/robot/trajectory/joint_traject_init
 POST /project/robot/trajectory/joint_traject_init
 
 request-body
+ex1)
 {}
+
+ex2) V70.04-00 &uparrow;
+{"agility_mode": true, "agility_freq": 30}
+
+response-body
+{'_type': 'JObject'}
 ```
 
 Python 脚本示例

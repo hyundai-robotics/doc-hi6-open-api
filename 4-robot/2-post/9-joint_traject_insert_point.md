@@ -25,6 +25,18 @@ Physical Condition: 遵守速度和扭矩限制
 
 注意: 显示的实际警报可能会因轴配置、有效载荷和操作条件而异。
 
+##### `70.04-00` ↑
+
+- 新增了`敏捷模式（agility mode）`，可显著提升机器人到达目标指令的初始控制响应速度。
+- 有关如何激活该模式的详细信息，请参阅 [`joint_traject_init` API](../2-post/7-joint_traject_init.md)。
+
+{% hint style="warning" %}
+
+使用敏捷模式时，`运动结束后`需要 `0.5 秒`的控制器内部 clean-up 过程。  
+如果不遵守该延迟而立即连续发送轨迹，可能会导致意外的控制器错误。
+
+{% endhint %}
+
 ---
 
 ##### path-parameter
@@ -33,7 +45,9 @@ Physical Condition: 遵守速度和扭矩限制
 
 ```python
 POST /project/robot/trajectory/joint_traject_insert_point
-````</div>
+````
+
+</div>
 
 ---
 
@@ -54,13 +68,13 @@ POST /project/robot/trajectory/joint_traject_insert_point
 
 * interval
 
-  * 添加点时使用的时间间隔
+  * 以增量方式添加点时使用的时间间隔
 * time_from_start
 
   * 从轨迹开始计算的累计时间
 * look_ahead_time
 
-  * 轨迹执行的提前时间
+  * 轨迹执行的提前（look-ahead）时间
 * point
 
   * 目标关节角度数组（度）
@@ -72,11 +86,11 @@ POST /project/robot/trajectory/joint_traject_insert_point
 1. 状态码
 
    * 200 : OK
-   * 400 : 错误请求
+   * 400 : Bad Request
 
      * 请求体验证失败
-   * 403 : 禁止
-   * 404 : 未找到
+   * 403 : Forbidden
+   * 404 : Not Found
 
 ---
 
@@ -104,82 +118,8 @@ request-body:
 ###### Prerequisites
 
 1. 将机器人移动到参考姿态。
-   (示例 - 对于一个六轴机器人: (
-
-</div>
-
----
-
-##### request-body
-
-<div style="width: fit-content;">
-
-```json
-{
-	"interval": 0.01,
-	"time_from_start": 0.0,
-	"look_ahead_time": 0.5,
-	"point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
-}
-```
-
-</div>
-
-* interval
-
-  * 添加点时使用的时间间隔
-* time_from_start
-
-  * 从轨迹开始计算的累计时间
-* look_ahead_time
-
-  * 轨迹执行的提前时间
-* point
-
-  * 目标关节角度数组（度）
-
----
-
-##### response
-
-1. 状态码
-
-   * 200 : OK
-   * 400 : 错误请求
-
-     * 请求体验证失败
-   * 403 : 禁止
-   * 404 : 未找到
-
----
-
-##### Usage Example
-
-```python
-request url:
-POST /project/robot/trajectory/joint_traject_insert_point
-
-request-body:
-{
-    "interval": 0.01,
-    "time_from_start": 0.0,
-    "look_ahead_time": 0.5,
-    "point": [0.0, 10.0, -20.0, 30.0, 0.0, 15.0]
-}
-```
-
-</div>
-
----
-
-##### Python Script Example
-
-###### Prerequisites
-
-1. 将机器人移动到参考姿态。
-   (示例 - 对于一个六轴机器人: )`[0, 90, 0, 0, -90, 0]`)
-2. 插入语句 ()
-2. 插入语句 )`wait di1` 到任务中。
+   (示例 - 对于六轴机器人: `[0, 90, 0, 0, -90, 0]`)
+2. 在 job 中插入 `wait di1` 语句。
 3. 切换到自动模式并开始程序播放。
 4. 在该状态下运行下面的测试代码。
 
