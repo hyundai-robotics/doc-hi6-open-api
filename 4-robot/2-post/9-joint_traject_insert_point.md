@@ -28,7 +28,7 @@ Note: The actual alarms displayed may vary depending on the axis configuration, 
 ##### `70.04-00` ↑
 
 - `agility mode` has been added to significantly improve the initial control response speed of the robot to reach the target command.
-- For details on how to activate this mode, please refer to the [`joint_traject_init` API](../1-get/9-joint_traject_agility_info.md).
+- For details on how to activate this mode, please refer to the [`joint_traject_init` API](../2-post/7-joint_traject_init.md).
 
 {% hint style="warning" %}
 
