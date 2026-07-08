@@ -28,7 +28,7 @@
 ##### `70.04-00` ↑
 
 - 타겟 지령으로 도달하는 로봇의 초기 제어 반응 속도를 비약적으로 향상 시키는 `민첩 모드(agility mode)`가 추가 됐습니다.
-- 모드를 활성화하는 방법은 [`joint_traject_init` API](../1-get/9-joint_traject_agility_info.md) 를 참고하십시오.
+- 모드를 활성화하는 방법은 [`joint_traject_init` API](../2-post/7-joint_traject_init.md) 를 참고하십시오.
 
 {% hint style="warning" %}
 

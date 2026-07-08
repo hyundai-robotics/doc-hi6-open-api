@@ -22,6 +22,7 @@ GET /project/robot/trajectory/joint_traject_agility_info
 
 1. status code
     * 200 : OK
+    * 400 : Bad Request
     * 403 : Forbidden
     * 404 : Not Found
 
