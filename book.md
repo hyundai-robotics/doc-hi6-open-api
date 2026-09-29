@@ -1643,7 +1643,7 @@ $python test.py
 
 ##### Description
 
-* Supported version : `70.04-00` ↑
+* 支持版本：`70.06-00` ↑（计划支持）
 * `GET` : 查询当前控制器中设置的敏捷（agility）模式激活状态及工作频率信息。
 
 
@@ -1723,6 +1723,226 @@ $ python test.py
 ```
 
 </div>
+
+[__SOURCE](4-robot/1-get/10-joint_traject_mode.md)
+#### 4.1.10 `joint_traject_mode`
+
+##### 说明
+
+- 支持版本：`70.06-00` ↑（计划支持）
+- `GET`：查询外部轨迹（在线跟踪）模式是否正在运行或结束处理过程中。
+- 以下任一条件成立时，`mode` 返回 `true`：
+  - 外部轨迹模式正在运行；
+  - 敏捷模式（agility mode）的 bypass 已开启；
+  - 外部轨迹模式正在进行结束清理（clean-up）。
+- 调用 [joint_traject_off](../2-post/10-joint_traject_off.md) 后，必须等待 `mode` 变为 `false`，再开始下一段轨迹。
+- `mode` 为 `true` 时，[joint_traject_init](../2-post/7-joint_traject_init.md) 不会清空缓冲区；初始化前请先查询此接口。
+
+##### path-parameter
+
+```text
+GET /project/robot/trajectory/joint_traject_mode
+```
+
+##### query-parameter
+
+- 无
+
+##### response
+
+1. 状态码：200 OK、400 Bad Request、403 Forbidden、404 Not Found
+2. 响应体：`mode`（boolean），表示外部轨迹模式正在运行或进行结束处理。
+
+```json
+{"mode": true}
+```
+
+{% hint style="warning" %}
+
+使用敏捷模式时，运动结束后控制器需要 `0.5 秒`进行内部 clean-up。此期间 `mode` 仍为 `true`。未等待 `false` 就发送下一段轨迹可能导致意外错误。
+
+{% endhint %}
+
+##### 示例
+
+```text
+GET /project/robot/trajectory/joint_traject_mode
+
+response-body:
+{"mode": true}
+```
+
+Python 脚本示例
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_mode"
+
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+
+```sh
+$ python test.py
+{'mode': True}
+```
+
+[__SOURCE](4-robot/1-get/11-joint_traject_ready.md)
+#### 4.1.11 `joint_traject_ready`
+
+##### 说明
+
+- 支持版本：`70.06-00` ↑（计划支持）
+- `GET`：查询控制器是否已准备好接收外部轨迹指令。
+- 仅当以下**两个条件同时满足**时，`ready` 才为 `true`：
+  - 基本任务的运动状态处于等待指令输出状态；
+  - 程序播放未停止（自动模式下 Job 正在运行）。
+- 若 `ready` 为 `false` 时发送轨迹指令，控制器会报“外部指令不可执行”错误，并清空内部缓冲区；轨迹日志保存也会自动关闭。
+
+{% hint style="warning" %}
+
+**节能模式下 `ready` 始终为 `false`。** 使用外部轨迹指令前，将 **系统 > 2: 控制参数 > 1: 控制环境设置 > 节能功能**设置为**禁用**。
+
+{% endhint %}
+
+##### path-parameter
+
+```text
+GET /project/robot/trajectory/joint_traject_ready
+```
+
+##### query-parameter
+
+- 无
+
+##### response
+
+1. 状态码：200 OK、400 Bad Request、403 Forbidden、404 Not Found
+2. 响应体：`ready`（boolean），表示是否可以开始发送外部轨迹指令。
+
+```json
+{"ready": true}
+```
+
+##### 使用步骤
+
+1. 将 **系统 > 2: 控制参数 > 1: 控制环境设置 > 节能功能**设为**禁用**。
+2. 将机器人移动到安全的参考姿态。
+3. 在 Job 中设置 `wait di1` 等等待语句，在自动模式下运行程序。
+4. 确认本接口返回 `ready == true`。
+5. 通过 [joint_traject_init](../2-post/7-joint_traject_init.md) 初始化缓冲区，然后发送轨迹点。
+6. 若 `ready == false`，不要发送轨迹点；先检查节能功能设置、程序运行状态和控制器错误。
+
+{% hint style="info" %}
+
+程序未运行时调用轨迹 API 可能触发 [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554)。轨迹超过速度限制可能触发 [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159)，使机器人停止。
+
+{% endhint %}
+
+##### 示例
+
+```text
+GET /project/robot/trajectory/joint_traject_ready
+
+response-body:
+{"ready": true}
+```
+
+Python 脚本示例
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_ready"
+
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+
+```sh
+$ python test.py
+{'ready': True}
+```
+
+[__SOURCE](4-robot/1-get/12-joint_traject_log.md)
+#### 4.1.12 `joint_traject_log`
+
+##### 说明
+
+- 支持版本：`70.04-00` ↑
+- `GET`：查询关节轨迹日志保存功能是否启用。
+- 启用或关闭日志请使用 [POST joint_traject_log](../2-post/11-joint_traject_log.md)。
+- 如果控制器因未处于可执行状态而拒绝外部轨迹指令，日志保存会自动关闭，此接口返回 `0`。
+
+##### path-parameter
+
+```text
+GET /project/robot/trajectory/joint_traject_log
+```
+
+##### query-parameter
+
+- 无
+
+##### response
+
+1. 状态码：200 OK、400 Bad Request、403 Forbidden、404 Not Found
+2. 响应体：`val`（integer），`1` 表示启用，`0` 表示关闭。
+
+```json
+{"val": 1}
+```
+
+##### 示例
+
+```text
+GET /project/robot/trajectory/joint_traject_log
+
+response-body:
+{"val": 1}
+```
+
+Python 脚本示例
+
+```python
+# test.py
+import requests
+
+
+def get_joint_traject_log(base_url: str, session: requests.Session):
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+    try:
+        ret = session.get(url=uri)
+        ret.raise_for_status()
+        return ret.json()
+    except requests.exceptions.RequestException as e:
+        print(f"[ERROR] {e}")
+        return None
+
+
+if __name__ == "__main__":
+    base_url = "http://192.168.1.150:8888"
+    with requests.Session() as session:
+        print(get_joint_traject_log(base_url, session))
+```
+
+```sh
+$ python test.py
+{'val': 1}
+```
 
 [__SOURCE](4-robot/2-post/README.md)
 ## 4.2 `robot/post`
@@ -2182,7 +2402,7 @@ response: 200
 - 如果在通过 [joint_traject_insert_points](./8-joint_traject_insert_points.md) API 执行轨迹时调用此 API，缓冲区将立即更新。
   - 从缓冲区中删除之前存储的轨迹点可能导致机器人停止并触发错误。 请谨慎使用。
 
-##### 70.04-00 ↑ Changes
+##### 70.06-00 ↑ 变更
 
 新增了 joint_traject_insert_point 的敏捷模式（agility mode）。
 
@@ -2211,6 +2431,11 @@ response: 200
 
 </div>
 
+{% hint style="info" %}
+
+从 `70.06-00` 开始，仅在外部轨迹模式未运行时才清空缓冲区。如果 [joint_traject_mode](../1-get/10-joint_traject_mode.md) 为 `true`，调用 `joint_traject_init` 不会清空缓冲区或更改模式设置，但仍返回 200。初始化前请确认 `mode == false`。
+
+{% endhint %}
 
 ##### path-parameter
 
@@ -2230,7 +2455,7 @@ POST /project/robot/trajectory/joint_traject_init
 {}
 ```
 
-`70.04-00` 之后新增的属性
+`70.06-00` 之后新增的属性
 
 敏捷模式
 ```json
@@ -2253,10 +2478,10 @@ POST /project/robot/trajectory/joint_traject_init
 
 - 200 : 请求成功
 - 400 : Bad Request
-  -  v70.04-00↑ : `err_msg` - 返回错误详细信息。
+  - v70.06-00↑ : `err_msg` - 返回错误详细信息。
+  - 初始化过程中出现负数内部错误码时。
 - 403 : 请求失败
   - 当调用不支持的 API 时返回
-  - `err_code` (<0): 初始化失败
 
 ##### Example
 
@@ -2269,7 +2494,7 @@ request-body
 ex1)
 {}
 
-ex2) V70.04-00 &uparrow;
+ex2) V70.06-00 &uparrow;
 {"agility_mode": true, "agility_freq": 30}
 
 response-body
@@ -2291,7 +2516,7 @@ base_url: str, session: requests.Session
     headers = {"Content-Type": "application/json; charset=utf-8"}
 
     try:
-        response = session.post(url=uri, headers=headers)
+        response = session.post(url=uri, headers=headers, json={})
         response.raise_for_status()
         print(f"[INFO] 初始化成功: status={response.status_code}")
         return response
@@ -2684,7 +2909,7 @@ Physical Condition: 遵守速度和扭矩限制
 
 注意: 显示的实际警报可能会因轴配置、有效载荷和操作条件而异。
 
-##### `70.04-00` ↑
+##### `70.06-00` ↑
 
 - 新增了`敏捷模式（agility mode）`，可显著提升机器人到达目标指令的初始控制响应速度。
 - 有关如何激活该模式的详细信息，请参阅 [`joint_traject_init` API](../2-post/7-joint_traject_init.md)。
@@ -2873,6 +3098,188 @@ AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.0013
 ```
 
 </div>
+
+[__SOURCE](4-robot/2-post/10-joint_traject_off.md)
+#### 4.2.10 `joint_traject_off`
+
+##### 说明
+
+- 支持版本：`70.06-00` ↑（计划支持）
+- `POST`：请求结束当前运行的外部轨迹（在线跟踪）模式。
+- 此请求只**发出结束指令**，控制器仍需时间完成内部清理。必须等待 [joint_traject_mode](../1-get/10-joint_traject_mode.md) 返回 `false` 才能确认结束。
+- 在结束完成前发送下一段轨迹可能导致意外错误。
+
+##### path-parameter
+
+```text
+POST /project/robot/trajectory/joint_traject_off
+```
+
+##### request-body
+
+```json
+{}
+```
+
+无需输入参数。
+
+##### response
+
+1. 状态码：200 OK、400 Bad Request、403 Forbidden（不支持的 API）、404 Not Found
+2. 响应体：
+
+```json
+{"_type": "JObject"}
+```
+
+##### 结束与恢复步骤
+
+1. 调用 `joint_traject_off`。
+2. 轮询 [joint_traject_mode](../1-get/10-joint_traject_mode.md)，等待 `mode == false`。
+3. 使用敏捷模式时，运动结束后至少等待 `0.5 秒`，以便控制器完成内部 clean-up。
+4. 若因错误停止，在发送下一段轨迹前，使用 [joint_traject_init](./7-joint_traject_init.md) 清空残留的缓冲区数据。
+5. 再次查询 [joint_traject_ready](../1-get/11-joint_traject_ready.md) 后恢复发送轨迹指令。
+
+{% hint style="warning" %}
+
+使用敏捷模式时，运动结束后控制器需要 `0.5 秒`进行内部 clean-up。立即发送下一段轨迹可能导致意外错误。
+
+{% endhint %}
+
+##### 示例
+
+```text
+POST /project/robot/trajectory/joint_traject_off
+
+request-body:
+{}
+
+response-body:
+{"_type": "JObject"}
+```
+
+Python 脚本示例
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_off"
+
+try:
+    response = requests.post(uri, json={}, timeout=5)
+    response.raise_for_status()
+    print(response.status_code, response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+
+```sh
+$ python test.py
+200 {'_type': 'JObject'}
+```
+
+HTTP 200 仅表示结束请求已被接受。发送下一段轨迹前，必须确认 [joint_traject_mode](../1-get/10-joint_traject_mode.md) 返回 `mode == false`。
+
+[__SOURCE](4-robot/2-post/11-joint_traject_log.md)
+#### 4.2.11 `joint_traject_log`
+
+##### 说明
+
+- 支持版本：`70.04-00` ↑
+- `POST`：启用或关闭关节轨迹日志保存功能。
+- 启用时，控制器会记录轨迹环形缓冲区操作（`RECV`、`WRTE`、`READ`、`INTP`、`SEND`、`EMPTY`）、各时刻的关节位置及缓冲区索引。
+- 通过 [GET joint_traject_log](../1-get/12-joint_traject_log.md) 查询当前状态。
+- 此接口用于轨迹调试，不建议长期启用日志保存。
+
+##### path-parameter
+
+```text
+POST /project/robot/trajectory/joint_traject_log
+```
+
+##### request-body
+
+```json
+{"enable": true}
+```
+
+| 参数 | 属性 | 类型 | 默认值 | 说明及限制 |
+| ---- | ---- | ---- | ------ | ---------- |
+| `enable` | Required | boolean | false | `true` 启用日志，`false` 关闭日志。省略或传入非 boolean 值会导致请求失败。 |
+
+##### response
+
+1. 状态码：200 OK；400 Bad Request（缺少 `enable` 或其类型不是 boolean）；403 Forbidden；404 Not Found
+2. 响应体：
+
+```json
+{"_type": "JObject"}
+```
+
+{% hint style="info" %}
+
+请求失败时也可能返回相同的响应体（`{"_type": "JObject"}`）。请通过 [GET joint_traject_log](../1-get/12-joint_traject_log.md) 的 `val` 确认设置是否生效。
+
+{% endhint %}
+
+{% hint style="warning" %}
+
+如果控制器因未处于可执行状态而拒绝外部轨迹指令，日志保存会自动关闭。若错误后仍需保存日志，重新开始时请再次启用。
+
+{% endhint %}
+
+##### 示例
+
+```text
+POST /project/robot/trajectory/joint_traject_log
+
+request-body:
+{"enable": true}
+
+response-body:
+{"_type": "JObject"}
+```
+
+Python 脚本示例
+
+```python
+# test.py
+import requests
+
+
+def set_joint_traject_log(base_url: str, session: requests.Session, enable: bool):
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+    try:
+        response = session.post(url=uri, json={"enable": enable})
+        response.raise_for_status()
+        return response
+    except requests.exceptions.RequestException as e:
+        print(f"[ERROR] Failed to set trajectory log: {e}")
+        return None
+
+
+def main():
+    base_url = "http://192.168.1.150:8888"
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+    with requests.Session() as session:
+        response = set_joint_traject_log(base_url, session, True)
+        if response is None:
+            return
+        print(response.status_code, response.json())
+        print(session.get(url=uri).json())  # 确认设置是否生效
+
+
+if __name__ == "__main__":
+    main()
+```
+
+```sh
+$ python test.py
+200 {'_type': 'JObject'}
+{'val': 1}
+```
 
 [__SOURCE](5-io_plc/README.md)
 # 5. I/O PLC
