@@ -1,4 +1,4 @@
-#### 4.1.10 `joint_traject_mode`
+﻿#### 4.1.10 `joint_traject_mode`
 
 ##### 설명
 
@@ -67,36 +67,20 @@ Python Script 예시
 
 ```python
 # test.py
-import time
 import requests
 
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_mode"
 
-def wait_traject_mode_off(base_url: str, session: requests.Session, timeout: float = 10.0) -> bool:
-    uri = f"{base_url}/project/robot/trajectory/joint_traject_mode"
-    deadline = time.time() + timeout
-
-    while time.time() < deadline:
-        try:
-            ret = session.get(url=uri)
-            ret.raise_for_status()
-            if ret.json().get("mode") is False:
-                return True
-        except Exception as e:
-            print(f"[ERROR] {e}")
-            return False
-        time.sleep(0.1)
-
-    return False
-
-
-if __name__ == "__main__":
-    base_url = "http://192.168.1.150:8888"
-
-    with requests.Session() as session:
-        print(wait_traject_mode_off(base_url, session))
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
 ```
 ```sh
-$python test.py
-True
+$ python test.py
+{'mode': True}
 ```
 </div>

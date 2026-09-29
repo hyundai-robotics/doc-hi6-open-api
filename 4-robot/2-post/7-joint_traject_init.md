@@ -92,9 +92,9 @@ POST /project/robot/trajectory/joint_traject_init
    - 400 : Bad Request
      - V70.06-00 ↑
         - `err_msg` : 에러 내용 반환
+     - 초기화 처리 중 음수 오류가 발생한 경우
    - 403 : Forbidden
      - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
-     - `err_code` (<0) : 초기화 실패
    - 404 : Not Found
 
 2) response body
@@ -154,7 +154,8 @@ def main():
 
     with requests.Session() as session:
         response = post_init_trajectories(base_url, session)
-        print(response)
+        if response is not None:
+            print(response.status_code, response.json())
 
 
 if __name__ == "__main__":
@@ -162,7 +163,8 @@ if __name__ == "__main__":
 
 ```
 ```sh
-$python test.py
-(200, {'_type': 'JObject'})
+$ python test.py
+[INFO] Initialization successful: status=200
+200 {'_type': 'JObject'}
 ```
 </div>

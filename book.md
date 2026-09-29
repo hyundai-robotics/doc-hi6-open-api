@@ -2012,7 +2012,7 @@ $python test.py
 
 ##### 설명
 
-* 지원 버전 : `70.04-00` ↑
+* 지원 버전 : `70.06-00` ↑ (예정)
 * `GET` : 현재 제어기에 설정된 민첩(agility) 모드 활성화 여부 및 구동 주파수 정보를 조회합니다.
 
 
@@ -2031,6 +2031,7 @@ GET /project/robot/trajectory/joint_traject_agility_info
 
 1. status code
     * 200 : OK
+    * 400 : Bad Request
     * 403 : Forbidden
     * 404 : Not Found
 
@@ -2086,6 +2087,280 @@ $ python test.py
 {'agility_mode': False, 'agility_freq': 30}
 
 ```
+
+[__SOURCE](4-robot/1-get/10-joint_traject_mode.md)
+#### 4.1.10 `joint_traject_mode`
+
+##### 설명
+
+- 지원 버전 : `70.06-00` ↑ (예정)
+- `GET` : 외부 궤적(온라인 트래킹) 모드의 현재 동작 여부를 조회합니다.
+- 다음 중 하나라도 해당되면 `mode` 는 `true` 를 반환합니다.
+  - 외부 궤적 모드가 동작 중인 경우
+  - 민첩(agility) 모드의 bypass 가 켜져 있는 경우
+  - 외부 궤적 모드의 **종료 처리(clean-up)가 진행 중**인 경우
+- [joint_traject_off](../2-post/10-joint_traject_off.md) 요청 후 `mode` 가 `false` 가 된 것을 확인한 뒤 다음 궤적 시퀀스를 시작해야 합니다.
+- [joint_traject_init](../2-post/7-joint_traject_init.md) 은 `mode` 가 `true` 인 동안에는 버퍼 초기화를 수행하지 않고 그대로 반환하므로, 초기화 전에 본 API 로 상태를 확인하시기 바랍니다.
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```text
+GET /project/robot/trajectory/joint_traject_mode
+```
+</div>
+
+##### query-parameter
+
+- 없음
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - mode : 외부 궤적 모드 동작 또는 종료 처리 여부 (boolean)
+
+<div style="width: fit-content;">
+
+```json
+{"mode": true}
+```
+</div>
+
+{% hint style="warning" %}
+
+민첩 모드 사용 시, 모션 종료 후 `0.5 초` 의 제어기 내부 clean-up 과정이 필요합니다.
+이 구간에서도 `mode` 는 `true` 로 유지되며, `false` 를 확인하지 않고 곧바로 궤적을 이어서 보내는 경우 의도치 않은 에러가 발생할 수 있습니다.
+
+{% endhint %}
+
+##### 사용 예
+
+```text
+request url:
+GET /project/robot/trajectory/joint_traject_mode
+
+response-body:
+{
+    "mode": true
+}
+```
+
+Python Script 예시
+
+<div style="width: fit-content;">
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_mode"
+
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+```sh
+$ python test.py
+{'mode': True}
+```
+</div>
+
+[__SOURCE](4-robot/1-get/11-joint_traject_ready.md)
+#### 4.1.11 `joint_traject_ready`
+
+##### 설명
+
+- 지원 버전 : `70.06-00` ↑ (예정)
+- `GET` : 제어기가 외부 궤적 지령을 받을 수 있는 준비 상태인지 조회합니다.
+- 아래 두 조건을 **모두** 만족할 때만 `ready` 가 `true` 입니다.
+  - 기본 태스크의 모션 상태가 지령 출력 대기 상태인 경우
+  - 프로그램 재생이 정지되지 않은 경우 (자동 모드에서 Job 이 실행 중)
+- `ready` 가 `false` 인 상태에서 궤적 지령을 보내면 제어기가 `외부지령 동작 가능상태가 아닙니다` 에러를 발생시키고 내부 버퍼를 클리어합니다. 이때 궤적 로그 저장 기능도 함께 자동 해제됩니다.
+
+{% hint style="warning" %}
+
+**절전모드에서는 `ready` 가 항상 `false` 입니다.** 외부 궤적 지령을 사용하기 전에 제어기의 **시스템 > 2: 제어 파라미터 > 1:제어 환경 설정 > 절전기능**을 **무효**로 설정하십시오.
+
+{% endhint %}
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```text
+GET /project/robot/trajectory/joint_traject_ready
+```
+</div>
+
+##### query-parameter
+
+- 없음
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - ready : 외부 궤적 지령 시작 가능 여부 (boolean)
+
+<div style="width: fit-content;">
+
+```json
+{"ready": true}
+```
+</div>
+
+##### 사용 절차
+
+1. **시스템 > 2: 제어 파라미터 > 1:제어 환경 설정 > 절전기능**을 **무효**로 설정합니다.
+2. 로봇을 안전한 기준 자세로 이동시킵니다.
+3. Job 에 `wait di1` 등의 대기 구문을 두고 자동 모드에서 프로그램을 재생합니다.
+4. 본 API 로 `ready == true` 를 확인합니다.
+5. [joint_traject_init](../2-post/7-joint_traject_init.md) 으로 버퍼를 초기화한 후 궤적 포인트를 송신합니다.
+6. `ready == false` 이면 포인트를 보내지 말고 절전기능 설정, 프로그램 재생 상태 및 제어기 에러 상태를 확인합니다.
+
+{% hint style="info" %}
+
+프로그램이 실행 중이 아닌 상태에서 궤적 API 를 호출하면 [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554) 가 발생할 수 있습니다.
+제한 속도를 초과하는 궤적은 [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159) 를 발생시키며 로봇이 정지할 수 있습니다.
+
+{% endhint %}
+
+##### 사용 예
+
+```text
+request url:
+GET /project/robot/trajectory/joint_traject_ready
+
+response-body:
+{
+    "ready": true
+}
+```
+
+Python Script 예시
+
+<div style="width: fit-content;">
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_ready"
+
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+```sh
+$ python test.py
+{'ready': True}
+```
+</div>
+
+[__SOURCE](4-robot/1-get/12-joint_traject_log.md)
+#### 4.1.12 `joint_traject_log`
+
+##### 설명
+
+- 지원 버전 : `70.04-00` ↑
+- `GET` : 조인트 궤적 로그 저장 기능의 활성화 여부를 조회합니다.
+- 로그 활성화 / 비활성화 설정은 [POST joint_traject_log](../2-post/11-joint_traject_log.md) 를 사용합니다.
+- 외부 궤적 지령이 동작 가능 상태가 아니어서 제어기가 지령을 거부한 경우, 로그 저장은 제어기에 의해 자동으로 비활성화됩니다. 이 경우 본 API 는 `0` 을 반환합니다.
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```text
+GET /project/robot/trajectory/joint_traject_log
+```
+</div>
+
+##### query-parameter
+
+- 없음
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+   - 404 : Not Found
+
+2) response-body
+   - val : 로그 저장 활성화 여부 (integer, `1` : 활성화 / `0` : 비활성화)
+
+<div style="width: fit-content;">
+
+```json
+{"val": 1}
+```
+</div>
+
+##### 사용 예
+
+```text
+request url:
+GET /project/robot/trajectory/joint_traject_log
+
+response-body:
+{
+    "val": 1
+}
+```
+
+Python Script 예시
+
+<div style="width: fit-content;">
+
+```python
+# test.py
+import requests
+
+
+def get_joint_traject_log(base_url: str, session: requests.Session):
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+    try:
+        ret = session.get(url=uri)
+        ret.raise_for_status()
+        return ret.json()
+    except Exception as e:
+        print(f"[ERROR] {e}")
+        return None
+
+
+if __name__ == "__main__":
+    base_url = "http://192.168.1.150:8888"
+
+    with requests.Session() as session:
+        print(get_joint_traject_log(base_url, session))
+```
+```sh
+$python test.py
+{'val': 1}
+```
+</div>
 
 [__SOURCE](4-robot/2-post/README.md)
 ## 4.2 robot/post
@@ -2668,7 +2943,7 @@ $python test.py
 - [joint_traject_insert_points](./8-joint_traject_insert_points.md) api 로 궤적을 이동중에 <u>해당 함수를 호출하면 그 즉시 버퍼가 갱신</u>이 됩니다.
   - 기존 버퍼에 저장된 궤적 포인트들이 사라지면 로봇이 정지되면서 에러가 발생할 수 있으므로 사용에 주의 하시기 바랍니다.
 
-##### `70.04-00` ↑ 변경 사항
+##### `70.06-00` ↑ 변경 사항
 
 `joint_traject_insert_point` 의 민첩 모드가 추가 되었습니다.  
 
@@ -2700,6 +2975,14 @@ $python test.py
 {% endhint %}
 
 
+{% hint style="info" %}
+
+`70.06-00` ↑ 부터 버퍼 초기화는 외부 궤적 모드가 동작 중이 아닐 때에만 수행됩니다.
+[joint_traject_mode](../1-get/10-joint_traject_mode.md) 가 `true` 인 상태에서 요청하면 버퍼 초기화와 모드 설정이 모두 무시되고 정상 응답(200)만 반환되므로, 초기화 전에 `mode == false` 를 확인하시기 바랍니다.
+
+{% endhint %}
+
+
 ##### path-parameter
 
 <div style="width: fit-content;">
@@ -2717,10 +3000,10 @@ POST /project/robot/trajectory/joint_traject_init
 {} : 일반 모드
 ```
 
-`70.04-00` 이후 추가 된 속성
+`70.06-00` 이후 추가 된 속성
 
 ```
-{"agility_mode": True, "agility_freq": 30} : 민첩 모드
+{"agility_mode": true, "agility_freq": 30} : 민첩 모드
 ```
 
 
@@ -2739,11 +3022,11 @@ POST /project/robot/trajectory/joint_traject_init
 1) status code
    - 200 : OK
    - 400 : Bad Request
-     - V70.04-00 ↑
+     - V70.06-00 ↑
         - `err_msg` : 에러 내용 반환
+     - 초기화 처리 중 음수 오류가 발생한 경우
    - 403 : Forbidden
      - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
-     - `err_code` (<0) : 초기화 실패
    - 404 : Not Found
 
 2) response body
@@ -2767,7 +3050,7 @@ request-body
 ex1)
 {}
 
-ex2) V70.04-00 ↑
+ex2) V70.06-00 ↑
 {"agility_mode": true, "agility_freq": 30}
 
 response-body
@@ -2788,7 +3071,7 @@ def post_init_trajectories(
     headers = {"Content-Type": "application/json; charset=utf-8"}
 
     try:
-        response = session.post(url=uri, headers=headers)
+        response = session.post(url=uri, headers=headers, json={})
         response.raise_for_status()
         print(f"[INFO] Initialization successful: status={response.status_code}")
         return response
@@ -2803,7 +3086,8 @@ def main():
 
     with requests.Session() as session:
         response = post_init_trajectories(base_url, session)
-        print(response)
+        if response is not None:
+            print(response.status_code, response.json())
 
 
 if __name__ == "__main__":
@@ -2811,8 +3095,9 @@ if __name__ == "__main__":
 
 ```
 ```sh
-$python test.py
-(200, {'_type': 'JObject'})
+$ python test.py
+[INFO] Initialization successful: status=200
+200 {'_type': 'JObject'}
 ```
 </div>
 
@@ -3189,10 +3474,10 @@ POST /project/robot/trajectory/joint_traject_insert_points
 참고: 실제 표출되는 알람은 축 구성, 하중(Payload), 동작 상황에 따라 다를 수 있습니다.
 
 
-##### `70.04-00` ↑
+##### `70.06-00` ↑
 
 - 타겟 지령으로 도달하는 로봇의 초기 제어 반응 속도를 비약적으로 향상 시키는 `민첩 모드(agility mode)`가 추가 됐습니다.
-- 모드를 활성화하는 방법은 [`joint_traject_init` API](../1-get/9-joint_traject_agility_info.md) 를 참고하십시오.
+- 모드를 활성화하는 방법은 [`joint_traject_init` API](../2-post/7-joint_traject_init.md) 를 참고하십시오.
 
 {% hint style="warning" %}
 
@@ -3362,6 +3647,236 @@ BEFORE:  ['0.000000', '90.000000', '0.000000', '0.000000', '-90.000000', '0.0000
 AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.001393']
 ```
 
+</div>
+
+[__SOURCE](4-robot/2-post/10-joint_traject_off.md)
+#### 4.2.10 `joint_traject_off`
+
+##### 설명
+
+- 지원 버전 : `70.06-00` ↑ (예정)
+- `POST` : 현재 동작 중인 외부 궤적(온라인 트래킹) 모드의 종료를 요청합니다.
+- 요청은 종료를 **지시**할 뿐이며, 제어기 내부 종료 처리가 끝날 때까지 시간이 소요됩니다.
+  - 종료 완료 여부는 반드시 [joint_traject_mode](../1-get/10-joint_traject_mode.md) 가 `false` 가 되는 것으로 확인해야 합니다.
+- 종료가 완료되기 전에 다음 궤적을 송신하면 의도치 않은 에러가 발생할 수 있습니다.
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```python
+POST /project/robot/trajectory/joint_traject_off
+```
+</div>
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```
+{} : 입력 파라미터 없음
+```
+</div>
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+     - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+   - 404 : Not Found
+
+2) response-body
+
+<div style="width: fit-content;">
+
+```json
+{ "_type": "JObject"}
+```
+</div>
+
+##### 종료 및 복구 절차
+
+1. `joint_traject_off` 를 요청합니다.
+2. [joint_traject_mode](../1-get/10-joint_traject_mode.md) 를 폴링하여 `mode == false` 가 될 때까지 대기합니다.
+3. 민첩 모드를 사용했다면 모션 종료 후 최소 `0.5 초` 의 제어기 내부 clean-up 이 완료되기를 기다립니다.
+4. 에러로 정지한 경우, 다음 궤적 송신 전에 [joint_traject_init](./7-joint_traject_init.md) 으로 남아 있는 버퍼를 초기화합니다.
+5. [joint_traject_ready](../1-get/11-joint_traject_ready.md) 로 준비 상태를 다시 확인한 후 궤적 송신을 재개합니다.
+
+{% hint style="warning" %}
+
+민첩 모드 사용 시, 모션 종료 후 `0.5 초` 의 제어기 내부 clean-up 과정이 필요합니다.
+이를 어기고 곧바로 궤적을 이어서 보내는 경우, 의도치 않은 에러가 발생할 수 있습니다.
+
+{% endhint %}
+
+##### 사용 예
+
+<div style="width: fit-content;">
+
+```joint_traject_off
+POST /project/robot/trajectory/joint_traject_off
+
+request-body
+{}
+
+response-body
+{'_type': 'JObject'}
+```
+
+Python Script 예시
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_off"
+
+try:
+    response = requests.post(uri, json={}, timeout=5)
+    response.raise_for_status()
+    print(response.status_code, response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+```sh
+$ python test.py
+200 {'_type': 'JObject'}
+```
+
+200 응답은 종료 요청이 접수되었다는 의미입니다. 다음 궤적을 보내기 전 [joint_traject_mode](../1-get/10-joint_traject_mode.md) 의 `mode == false` 를 확인해야 합니다.
+</div>
+
+[__SOURCE](4-robot/2-post/11-joint_traject_log.md)
+#### 4.2.11 `joint_traject_log`
+
+##### 설명
+
+- 지원 버전 : `70.04-00` ↑
+- `POST` : 조인트 궤적 로그 저장 기능을 활성화하거나 비활성화합니다.
+- 활성화 시 제어기는 궤적 링버퍼의 동작(`RECV`, `WRTE`, `READ`, `INTP`, `SEND`, `EMPTY`)과 각 시점의 조인트 위치, 버퍼 인덱스를 로그로 기록합니다.
+- 현재 활성화 상태는 [GET joint_traject_log](../1-get/12-joint_traject_log.md) 로 확인합니다.
+- 궤적 디버깅 용도의 API 이며, 상시 활성화하는 것은 권장하지 않습니다.
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```python
+POST /project/robot/trajectory/joint_traject_log
+```
+</div>
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```json
+{"enable": true}
+```
+
+| 파라미터명| 속성 | 타입 | 기본값 | 설명 및 제약 조건|
+| ----- | ------ | ------ | ------ | ------|
+| `enable` | Required | boolean | false | `true` : 로그 저장 활성화, `false` : 비활성화. 파라미터를 생략하거나 boolean 이 아닌 타입을 대입하면 요청이 실패합니다. |
+
+</div>
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - `enable` 파라미터가 없는 경우
+     - `enable` 값이 boolean 타입이 아닌 경우
+   - 403 : Forbidden
+     - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
+   - 404 : Not Found
+
+2) response-body
+
+<div style="width: fit-content;">
+
+```json
+{ "_type": "JObject"}
+```
+</div>
+
+{% hint style="info" %}
+
+실패한 경우에도 response-body 는 `{"_type": "JObject"}` 로 동일하게 반환됩니다.
+설정이 실제로 반영되었는지는 [GET joint_traject_log](../1-get/12-joint_traject_log.md) 의 `val` 값으로 확인하시기 바랍니다.
+
+{% endhint %}
+
+{% hint style="warning" %}
+
+외부 궤적 지령이 동작 가능 상태가 아니어서 제어기가 지령을 거부한 경우, 로그 저장은 제어기에 의해 자동으로 비활성화됩니다.
+에러 발생 후 로그를 계속 남기려면 재시작 시 본 API 로 다시 활성화해야 합니다.
+
+{% endhint %}
+
+##### 사용 예
+
+<div style="width: fit-content;">
+
+```joint_traject_log
+POST /project/robot/trajectory/joint_traject_log
+
+request-body
+{"enable": true}
+
+response-body
+{'_type': 'JObject'}
+```
+
+Python Script 예시
+
+```python
+# test.py
+from typing import Union
+
+import requests
+
+
+def set_joint_traject_log(
+    base_url: str, session: requests.Session, enable: bool
+) -> Union[requests.Response, None]:
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+
+    try:
+        response = session.post(url=uri, headers=headers, json={"enable": enable})
+        response.raise_for_status()
+        return response
+    except requests.exceptions.RequestException as e:
+        print(f"[ERROR] Failed to set trajectory log: {e}")
+        return None
+
+
+def main():
+    base_url = "http://192.168.1.150:8888"
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+
+    with requests.Session() as session:
+        response = set_joint_traject_log(base_url, session, True)
+        if response is None:
+            return
+        print(response.status_code, response.json())
+
+        # 반영 여부 확인
+        print(session.get(url=uri).json())
+
+
+if __name__ == "__main__":
+    main()
+```
+```sh
+$python test.py
+200 {'_type': 'JObject'}
+{'val': 1}
+```
 </div>
 
 [__SOURCE](5-io_plc/README.md)
