@@ -43,26 +43,6 @@
 {% endhint %}
 
 
-또한 외부 궤적의 속도 지령 프로파일 생성 모드(`fctrl_mode`)가 추가 되었습니다. (`70.06-00` 반영 예정)
-
-<div style="width: fit-content;">
-
-```json
-{ "fctrl_mode": true }
-```
-</div>
-
-<div style="width: fit-content;">
-
-|설정 항목|  설명 |
-| ----- |  ------ |
-| `fctrl_mode` | 외부 궤적 지령을 서보의 속도 지령 프로파일 생성 방식으로 수행하는 모드입니다. `false` 인 경우 기존 조인트 궤적 방식으로 동작합니다. |
-
-`fctrl_mode` 가 포함되지 않거나 빈 중괄호({})로 요청하는 경우, 해당 모드는 자동으로 비활성화(false)됩니다.
-`agility_mode` 와 함께 지정할 수 있습니다.
-
-</div>
-
 {% hint style="info" %}
 
 `70.06-00` ↑ 부터 버퍼 초기화는 외부 궤적 모드가 동작 중이 아닐 때에만 수행됩니다.
@@ -92,7 +72,6 @@ POST /project/robot/trajectory/joint_traject_init
 
 ```
 {"agility_mode": true, "agility_freq": 30} : 민첩 모드
-{"fctrl_mode": true}                       : 속도 지령 프로파일 모드 (예정)
 ```
 
 
@@ -100,7 +79,6 @@ POST /project/robot/trajectory/joint_traject_init
 | ----- | ------ | ------ | ------ | ------|
 | `agility_mode` | Optional | boolean |  false | string 등 잘못된 타입 대입 시 400 Bad Request 에러를 반환 |
 | `agility_freq` | Optional | integer | 20 | 생략 시 기본 디폴트 주파수로 자동 적용. 제어기 물리 허용 범위(0 ~ 500)를 벗어나거나 잘못된 타입 대입 시 400 Bad Request 에러를 반환 |
-| `fctrl_mode` | Optional | boolean | false | `70.06-00` 반영 예정. string 등 잘못된 타입 대입 시 에러를 반환. 생략 시 비활성화 |
 
 
 </div>
@@ -142,9 +120,6 @@ ex1)
 
 ex2) V70.06-00 ↑
 {"agility_mode": true, "agility_freq": 30}
-
-ex3) V70.06-00 ↑ (fctrl_mode 는 반영 예정)
-{"agility_mode": true, "agility_freq": 30, "fctrl_mode": true}
 
 response-body
 {'_type': 'JObject'}
