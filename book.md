@@ -1691,7 +1691,7 @@ $python test.py
 
 ##### Description
 
-* Supported version : `70.04-00` ↑
+* Supported version : `70.06-00` ↑ (planned)
 * `GET` : Retrieves the agility mode activation status and the operating frequency currently configured in the controller.
 
 
@@ -1772,6 +1772,226 @@ $ python test.py
 ```
 
 </div>
+
+[__SOURCE](4-robot/1-get/10-joint_traject_mode.md)
+#### 4.1.10 `joint_traject_mode`
+
+##### Description
+
+- Supported version: `70.06-00` ↑ (planned)
+- `GET`: Returns whether external trajectory (online tracking) mode is active or being cleaned up.
+- `mode` is `true` if any of the following applies:
+  - External trajectory mode is active.
+  - Agility mode bypass is enabled.
+  - External trajectory mode clean-up is in progress.
+- After [joint_traject_off](../2-post/10-joint_traject_off.md), wait until `mode` becomes `false` before starting the next trajectory sequence.
+- [joint_traject_init](../2-post/7-joint_traject_init.md) does not clear the buffer while `mode` is `true`; check this API before initializing.
+
+##### path-parameter
+
+```text
+GET /project/robot/trajectory/joint_traject_mode
+```
+
+##### query-parameter
+
+- None
+
+##### response
+
+1. Status code: 200 OK, 400 Bad Request, 403 Forbidden, 404 Not Found
+2. Response body: `mode` (boolean) - external trajectory mode is active or clean-up is in progress.
+
+```json
+{"mode": true}
+```
+
+{% hint style="warning" %}
+
+With agility mode, the controller requires `0.5 seconds` of internal clean-up after motion ends. `mode` remains `true` during this period. Sending the next trajectory without waiting for `false` may cause unexpected errors.
+
+{% endhint %}
+
+##### Example
+
+```text
+GET /project/robot/trajectory/joint_traject_mode
+
+response-body:
+{"mode": true}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_mode"
+
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+
+```sh
+$ python test.py
+{'mode': True}
+```
+
+[__SOURCE](4-robot/1-get/11-joint_traject_ready.md)
+#### 4.1.11 `joint_traject_ready`
+
+##### Description
+
+- Supported version: `70.06-00` ↑ (planned)
+- `GET`: Returns whether the controller is ready to accept external trajectory commands.
+- `ready` is `true` only if **both** conditions hold:
+  - The base task motion state is waiting for command output.
+  - Program playback is not stopped (a Job is running in Auto Mode).
+- If a trajectory command is sent while `ready` is `false`, the controller raises an "external command not ready" error and clears the internal buffer. Trajectory logging is also disabled automatically.
+
+{% hint style="warning" %}
+
+**`ready` is always `false` in power-saving mode.** Before using external trajectory commands, set **System > 2: Control Parameter > 1: Control Environment Setting > Power saving function** to **Disable**.
+
+{% endhint %}
+
+##### path-parameter
+
+```text
+GET /project/robot/trajectory/joint_traject_ready
+```
+
+##### query-parameter
+
+- None
+
+##### response
+
+1. Status code: 200 OK, 400 Bad Request, 403 Forbidden, 404 Not Found
+2. Response body: `ready` (boolean) - whether an external trajectory command can be started.
+
+```json
+{"ready": true}
+```
+
+##### Procedure
+
+1. Set **System > 2: Control Parameter > 1: Control Environment Setting > Power saving function** to **Disable**.
+2. Move the robot to a safe reference pose.
+3. Add a waiting statement such as `wait di1` to the Job, then run the program in Auto Mode.
+4. Check that this API returns `ready == true`.
+5. Clear the buffer with [joint_traject_init](../2-post/7-joint_traject_init.md), then send trajectory points.
+6. If `ready == false`, do not send points; check the power-saving setting, program playback and controller errors first.
+
+{% hint style="info" %}
+
+Calling a trajectory API when no program is running may cause [E01554](https://hr-alarms.web.app/#/${cont_model}/ko/E01554). Trajectories exceeding speed limits may cause [E159](https://hr-alarms.web.app/#/${cont_model}/ko/E159) and stop the robot.
+
+{% endhint %}
+
+##### Example
+
+```text
+GET /project/robot/trajectory/joint_traject_ready
+
+response-body:
+{"ready": true}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_ready"
+
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+
+```sh
+$ python test.py
+{'ready': True}
+```
+
+[__SOURCE](4-robot/1-get/12-joint_traject_log.md)
+#### 4.1.12 `joint_traject_log`
+
+##### Description
+
+- Supported version: `70.04-00` ↑
+- `GET`: Returns whether joint trajectory logging is enabled.
+- Use [POST joint_traject_log](../2-post/11-joint_traject_log.md) to enable or disable logging.
+- If the controller rejects an external trajectory command because it is not ready, logging is disabled automatically. This API then returns `0`.
+
+##### path-parameter
+
+```text
+GET /project/robot/trajectory/joint_traject_log
+```
+
+##### query-parameter
+
+- None
+
+##### response
+
+1. Status code: 200 OK, 400 Bad Request, 403 Forbidden, 404 Not Found
+2. Response body: `val` (integer) - `1` enabled, `0` disabled.
+
+```json
+{"val": 1}
+```
+
+##### Example
+
+```text
+GET /project/robot/trajectory/joint_traject_log
+
+response-body:
+{"val": 1}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+
+def get_joint_traject_log(base_url: str, session: requests.Session):
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+    try:
+        ret = session.get(url=uri)
+        ret.raise_for_status()
+        return ret.json()
+    except requests.exceptions.RequestException as e:
+        print(f"[ERROR] {e}")
+        return None
+
+
+if __name__ == "__main__":
+    base_url = "http://192.168.1.150:8888"
+    with requests.Session() as session:
+        print(get_joint_traject_log(base_url, session))
+```
+
+```sh
+$ python test.py
+{'val': 1}
+```
 
 [__SOURCE](4-robot/2-post/README.md)
 ## 4.2 robot/post
@@ -2236,7 +2456,7 @@ response: 200
 - If this api is called while a trajectory is being executed via the [joint_traject_insert_points](./8-joint_traject_insert_points.md) API, the buffer will be updated immediately.
   - Removing previously stored trajectory points from the buffer may cause the robot to stop and trigger an error. Use with caution.
 
-##### 70.04-00 ↑ Changes
+##### 70.06-00 ↑ Changes
 
 Agility mode for joint_traject_insert_point has been added.
 
@@ -2265,6 +2485,11 @@ If agility-related parameters are omitted or requested with an empty object ({})
 
 </div>
 
+{% hint style="info" %}
+
+From `70.06-00` onward, buffer initialization only takes place when external trajectory mode is not active. If [joint_traject_mode](../1-get/10-joint_traject_mode.md) is `true`, `joint_traject_init` returns 200 without clearing the buffer or changing mode settings. Check `mode == false` before initialization.
+
+{% endhint %}
 
 ##### path-parameter
 
@@ -2284,7 +2509,7 @@ Normal Mode
 {}
 ```
 
-Properties added after `70.04-00`
+Properties added after `70.06-00`
 
 Agility Mode
 ```json
@@ -2306,11 +2531,11 @@ Agility Mode
 ##### status code
 
 - 200 : Request succeeded
-- 400 : Bad Requests
-  -  v70.04-00↑ : `err_msg` - Returns error description details.
+- 400 : Bad Request
+  - v70.06-00↑ : `err_msg` - Returns error description details.
+  - Initialization fails with a negative internal error code.
 - 403 : Request failed
   - Returned when calling an unsupported API
-  - `err_code` (<0): Initialization failed
 
 ##### Example
 
@@ -2323,7 +2548,7 @@ request-body
 ex1)
 {}
 
-ex2) V70.04-00 &uparrow;
+ex2) V70.06-00 &uparrow;
 {"agility_mode": true, "agility_freq": 30}
 
 response-body
@@ -2345,7 +2570,7 @@ base_url: str, session: requests.Session
     headers = {"Content-Type": "application/json; charset=utf-8"}
 
     try:
-        response = session.post(url=uri, headers=headers)
+        response = session.post(url=uri, headers=headers, json={})
         response.raise_for_status()
         print(f"[INFO] Initialization successful: status={response.status_code}")
         return response
@@ -2741,10 +2966,10 @@ Cascading Alarms Triggered by Over-Torque Commands
 
 Note: The actual alarms displayed may vary depending on the axis configuration, payload, and operating conditions.
 
-##### `70.04-00` ↑
+##### `70.06-00` ↑
 
 - `agility mode` has been added to significantly improve the initial control response speed of the robot to reach the target command.
-- For details on how to activate this mode, please refer to the [`joint_traject_init` API](../1-get/9-joint_traject_agility_info.md).
+- For details on how to activate this mode, please refer to the [`joint_traject_init` API](../2-post/7-joint_traject_init.md).
 
 {% hint style="warning" %}
 
@@ -2930,6 +3155,188 @@ AFTER: ['0.072196', '89.928004', '0.000000', '-0.000574', '-90.000000', '-0.0013
 ```
 
 </div>
+
+[__SOURCE](4-robot/2-post/10-joint_traject_off.md)
+#### 4.2.10 `joint_traject_off`
+
+##### Description
+
+- Supported version: `70.06-00` ↑ (planned)
+- `POST`: Requests termination of the active external trajectory (online tracking) mode.
+- The request **initiates** termination; controller clean-up takes additional time. Confirm completion only when [joint_traject_mode](../1-get/10-joint_traject_mode.md) returns `false`.
+- Sending another trajectory before termination completes may cause unexpected errors.
+
+##### path-parameter
+
+```text
+POST /project/robot/trajectory/joint_traject_off
+```
+
+##### request-body
+
+```json
+{}
+```
+
+No input parameters.
+
+##### response
+
+1. Status code: 200 OK, 400 Bad Request, 403 Forbidden (unsupported API), 404 Not Found
+2. Response body:
+
+```json
+{"_type": "JObject"}
+```
+
+##### Termination and recovery procedure
+
+1. Request `joint_traject_off`.
+2. Poll [joint_traject_mode](../1-get/10-joint_traject_mode.md) until `mode == false`.
+3. When agility mode was used, allow at least `0.5 seconds` after motion ends for controller clean-up.
+4. After an error stop, clear remaining buffered points with [joint_traject_init](./7-joint_traject_init.md) before sending another trajectory.
+5. Recheck [joint_traject_ready](../1-get/11-joint_traject_ready.md) before resuming trajectory commands.
+
+{% hint style="warning" %}
+
+Agility mode requires `0.5 seconds` of controller clean-up after motion ends. Sending another trajectory immediately may cause unexpected errors.
+
+{% endhint %}
+
+##### Example
+
+```text
+POST /project/robot/trajectory/joint_traject_off
+
+request-body:
+{}
+
+response-body:
+{"_type": "JObject"}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_off"
+
+try:
+    response = requests.post(uri, json={}, timeout=5)
+    response.raise_for_status()
+    print(response.status_code, response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+
+```sh
+$ python test.py
+200 {'_type': 'JObject'}
+```
+
+HTTP 200 only confirms that the termination request was accepted. Before sending another trajectory, check that [joint_traject_mode](../1-get/10-joint_traject_mode.md) reports `mode == false`.
+
+[__SOURCE](4-robot/2-post/11-joint_traject_log.md)
+#### 4.2.11 `joint_traject_log`
+
+##### Description
+
+- Supported version: `70.04-00` ↑
+- `POST`: Enables or disables joint trajectory logging.
+- When enabled, the controller logs trajectory ring-buffer operations (`RECV`, `WRTE`, `READ`, `INTP`, `SEND`, `EMPTY`), joint positions and buffer indices at each step.
+- Check the current setting with [GET joint_traject_log](../1-get/12-joint_traject_log.md).
+- This API is for trajectory debugging; continuous logging is not recommended.
+
+##### path-parameter
+
+```text
+POST /project/robot/trajectory/joint_traject_log
+```
+
+##### request-body
+
+```json
+{"enable": true}
+```
+
+| Parameter | Attribute | Type | Default | Description and constraints |
+| --------- | --------- | ---- | ------- | --------------------------- |
+| `enable` | Required | boolean | false | `true` enables logging; `false` disables it. Missing or non-boolean values cause the request to fail. |
+
+##### response
+
+1. Status code: 200 OK; 400 Bad Request (missing or non-boolean `enable`); 403 Forbidden; 404 Not Found
+2. Response body:
+
+```json
+{"_type": "JObject"}
+```
+
+{% hint style="info" %}
+
+A failed request can return the same response body (`{"_type": "JObject"}`). Confirm the effective setting using `val` from [GET joint_traject_log](../1-get/12-joint_traject_log.md).
+
+{% endhint %}
+
+{% hint style="warning" %}
+
+If the controller rejects an external trajectory command because it is not ready, logging is automatically disabled. Re-enable logging when restarting after an error if you need further logs.
+
+{% endhint %}
+
+##### Example
+
+```text
+POST /project/robot/trajectory/joint_traject_log
+
+request-body:
+{"enable": true}
+
+response-body:
+{"_type": "JObject"}
+```
+
+Python Script Example
+
+```python
+# test.py
+import requests
+
+
+def set_joint_traject_log(base_url: str, session: requests.Session, enable: bool):
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+    try:
+        response = session.post(url=uri, json={"enable": enable})
+        response.raise_for_status()
+        return response
+    except requests.exceptions.RequestException as e:
+        print(f"[ERROR] Failed to set trajectory log: {e}")
+        return None
+
+
+def main():
+    base_url = "http://192.168.1.150:8888"
+    uri = f"{base_url}/project/robot/trajectory/joint_traject_log"
+    with requests.Session() as session:
+        response = set_joint_traject_log(base_url, session, True)
+        if response is None:
+            return
+        print(response.status_code, response.json())
+        print(session.get(url=uri).json())  # Verify the effective setting
+
+
+if __name__ == "__main__":
+    main()
+```
+
+```sh
+$ python test.py
+200 {'_type': 'JObject'}
+{'val': 1}
+```
 
 [__SOURCE](5-io_plc/README.md)
 # 5. I/O PLC

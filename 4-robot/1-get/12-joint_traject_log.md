@@ -1,4 +1,4 @@
-#### 4.1.12 `joint_traject_log`
+﻿#### 4.1.12 `joint_traject_log`
 
 ##### Description
 
@@ -20,7 +20,7 @@ GET /project/robot/trajectory/joint_traject_log
 ##### response
 
 1. Status code: 200 OK, 400 Bad Request, 403 Forbidden, 404 Not Found
-2. Response body: `val` (integer) — `1` enabled, `0` disabled.
+2. Response body: `val` (integer) - `1` enabled, `0` disabled.
 
 ```json
 {"val": 1}

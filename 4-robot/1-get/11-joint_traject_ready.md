@@ -1,4 +1,4 @@
-#### 4.1.11 `joint_traject_ready`
+﻿#### 4.1.11 `joint_traject_ready`
 
 ##### Description
 
@@ -28,7 +28,7 @@ GET /project/robot/trajectory/joint_traject_ready
 ##### response
 
 1. Status code: 200 OK, 400 Bad Request, 403 Forbidden, 404 Not Found
-2. Response body: `ready` (boolean) — whether an external trajectory command can be started.
+2. Response body: `ready` (boolean) - whether an external trajectory command can be started.
 
 ```json
 {"ready": true}

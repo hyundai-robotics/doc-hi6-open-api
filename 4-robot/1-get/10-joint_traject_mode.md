@@ -1,4 +1,4 @@
-#### 4.1.10 `joint_traject_mode`
+﻿#### 4.1.10 `joint_traject_mode`
 
 ##### Description
 
@@ -24,7 +24,7 @@ GET /project/robot/trajectory/joint_traject_mode
 ##### response
 
 1. Status code: 200 OK, 400 Bad Request, 403 Forbidden, 404 Not Found
-2. Response body: `mode` (boolean) — external trajectory mode is active or clean-up is in progress.
+2. Response body: `mode` (boolean) - external trajectory mode is active or clean-up is in progress.
 
 ```json
 {"mode": true}
