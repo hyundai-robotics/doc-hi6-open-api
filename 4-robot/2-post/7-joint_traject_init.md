@@ -11,7 +11,7 @@
 - 如果在通过 [joint_traject_insert_points](./8-joint_traject_insert_points.md) API 执行轨迹时调用此 API，缓冲区将立即更新。
   - 从缓冲区中删除之前存储的轨迹点可能导致机器人停止并触发错误。 请谨慎使用。
 
-##### 70.04-00 ↑ Changes
+##### 70.06-00 ↑ 变更
 
 新增了 joint_traject_insert_point 的敏捷模式（agility mode）。
 
@@ -40,6 +40,23 @@
 
 </div>
 
+另外，计划在 `70.06-00` 中加入外部轨迹速度指令曲线模式（`fctrl_mode`）。
+
+```json
+{"fctrl_mode": true}
+```
+
+| 参数 | 说明 |
+| ---- | ---- |
+| `fctrl_mode` | 通过伺服速度指令曲线生成方式执行外部轨迹指令。为 `false` 时使用原有的关节轨迹模式。 |
+
+省略 `fctrl_mode` 或发送 `{}` 时，此模式自动关闭（`false`）。可与 `agility_mode` 一起指定。
+
+{% hint style="info" %}
+
+从 `70.06-00` 开始，仅在外部轨迹模式未运行时才清空缓冲区。如果 [joint_traject_mode](../1-get/10-joint_traject_mode.md) 为 `true`，调用 `joint_traject_init` 不会清空缓冲区或更改模式设置，但仍返回 200。初始化前请确认 `mode == false`。
+
+{% endhint %}
 
 ##### path-parameter
 
@@ -59,11 +76,16 @@ POST /project/robot/trajectory/joint_traject_init
 {}
 ```
 
-`70.04-00` 之后新增的属性
+`70.06-00` 之后新增的属性
 
 敏捷模式
 ```json
 {"agility_mode": true, "agility_freq": 30}
+```
+
+速度指令曲线模式（计划支持）
+```json
+{"fctrl_mode": true}
 ```
 
 </div>
@@ -75,6 +97,7 @@ POST /project/robot/trajectory/joint_traject_init
 | --------- |------------ | -------- | -------- | -------- |
 | agility_mode | Optional|boolean|false|若赋予 string 等无效类型，将返回 400 Bad Request 错误。|
 | agility_freq | Optional|integer|20|省略时将自动应用默认频率。若超出控制器物理允许范围（0 ~ 500）或赋予无效类型，将返回 400 Bad Request 错误。|
+| fctrl_mode | Optional|boolean|false|计划在 `70.06-00` 支持。传入无效类型会导致错误；省略时关闭此模式。|
 
 </div>
 
@@ -82,7 +105,7 @@ POST /project/robot/trajectory/joint_traject_init
 
 - 200 : 请求成功
 - 400 : Bad Request
-  -  v70.04-00↑ : `err_msg` - 返回错误详细信息。
+  -  v70.06-00↑ : `err_msg` - 返回错误详细信息。
 - 403 : 请求失败
   - 当调用不支持的 API 时返回
   - `err_code` (<0): 初始化失败
@@ -98,8 +121,11 @@ request-body
 ex1)
 {}
 
-ex2) V70.04-00 &uparrow;
+ex2) V70.06-00 &uparrow;
 {"agility_mode": true, "agility_freq": 30}
+
+ex3) V70.06-00 &uparrow;（`fctrl_mode` 计划支持）
+{"agility_mode": true, "agility_freq": 30, "fctrl_mode": true}
 
 response-body
 {'_type': 'JObject'}
@@ -120,7 +146,7 @@ base_url: str, session: requests.Session
     headers = {"Content-Type": "application/json; charset=utf-8"}
 
     try:
-        response = session.post(url=uri, headers=headers)
+        response = session.post(url=uri, headers=headers, json={})
         response.raise_for_status()
         print(f"[INFO] 初始化成功: status={response.status_code}")
         return response
