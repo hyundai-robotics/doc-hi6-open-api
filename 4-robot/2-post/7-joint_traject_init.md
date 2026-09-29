@@ -86,11 +86,11 @@ Agility Mode
 ##### status code
 
 - 200 : Request succeeded
-- 400 : Bad Requests
-  -  v70.06-00↑ : `err_msg` - Returns error description details.
+- 400 : Bad Request
+  - v70.06-00↑ : `err_msg` - Returns error description details.
+  - Initialization fails with a negative internal error code.
 - 403 : Request failed
   - Returned when calling an unsupported API
-  - `err_code` (<0): Initialization failed
 
 ##### Example
 

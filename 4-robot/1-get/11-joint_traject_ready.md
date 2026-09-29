@@ -9,6 +9,12 @@
   - Program playback is not stopped (a Job is running in Auto Mode).
 - If a trajectory command is sent while `ready` is `false`, the controller raises an "external command not ready" error and clears the internal buffer. Trajectory logging is also disabled automatically.
 
+{% hint style="warning" %}
+
+**`ready` is always `false` in power-saving mode.** Before using external trajectory commands, set **System > 2: Control Parameter > 1: Control Environment Setting > Power saving function** to **Disable**.
+
+{% endhint %}
+
 ##### path-parameter
 
 ```text
@@ -30,11 +36,12 @@ GET /project/robot/trajectory/joint_traject_ready
 
 ##### Procedure
 
-1. Move the robot to a safe reference pose.
-2. Add a waiting statement such as `wait di1` to the Job, then run the program in Auto Mode.
-3. Check that this API returns `ready == true`.
-4. Clear the buffer with [joint_traject_init](../2-post/7-joint_traject_init.md), then send trajectory points.
-5. If `ready == false`, do not send points; check program playback and controller errors first.
+1. Set **System > 2: Control Parameter > 1: Control Environment Setting > Power saving function** to **Disable**.
+2. Move the robot to a safe reference pose.
+3. Add a waiting statement such as `wait di1` to the Job, then run the program in Auto Mode.
+4. Check that this API returns `ready == true`.
+5. Clear the buffer with [joint_traject_init](../2-post/7-joint_traject_init.md), then send trajectory points.
+6. If `ready == false`, do not send points; check the power-saving setting, program playback and controller errors first.
 
 {% hint style="info" %}
 
@@ -55,35 +62,20 @@ Python Script Example
 
 ```python
 # test.py
-import time
 import requests
 
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_ready"
 
-def wait_traject_ready(base_url: str, session: requests.Session, timeout: float = 10.0) -> bool:
-    uri = f"{base_url}/project/robot/trajectory/joint_traject_ready"
-    deadline = time.time() + timeout
-
-    while time.time() < deadline:
-        try:
-            ret = session.get(url=uri)
-            ret.raise_for_status()
-            if ret.json().get("ready") is True:
-                return True
-        except requests.exceptions.RequestException as e:
-            print(f"[ERROR] {e}")
-            return False
-        time.sleep(0.1)
-
-    return False
-
-
-if __name__ == "__main__":
-    base_url = "http://192.168.1.150:8888"
-    with requests.Session() as session:
-        print(wait_traject_ready(base_url, session))
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
 ```
 
 ```sh
 $ python test.py
-True
+{'ready': True}
 ```
