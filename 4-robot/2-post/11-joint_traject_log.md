@@ -26,7 +26,7 @@ POST /project/robot/trajectory/joint_traject_log
 
 ##### response
 
-1. 状态码：200 OK、400 Bad Request、403 Forbidden（缺少 `enable` 或其类型不是 boolean）、404 Not Found
+1. 状态码：200 OK；400 Bad Request（缺少 `enable` 或其类型不是 boolean）；403 Forbidden；404 Not Found
 2. 响应体：
 
 ```json
