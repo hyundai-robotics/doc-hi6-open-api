@@ -5,7 +5,7 @@
 - Supported version: `70.06-00` ↑ (planned)
 - `GET`: Returns whether the controller is ready to accept external trajectory commands.
 - `ready` is `true` only if **both** conditions hold:
-  - The base task motion state is waiting for command output (`MotMoveReadyState`).
+  - The base task motion state is waiting for command output.
   - Program playback is not stopped (a Job is running in Auto Mode).
 - If a trajectory command is sent while `ready` is `false`, the controller raises an "external command not ready" error and clears the internal buffer. Trajectory logging is also disabled automatically.
 

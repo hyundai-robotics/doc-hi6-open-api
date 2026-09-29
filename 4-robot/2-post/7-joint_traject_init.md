@@ -40,18 +40,6 @@ If agility-related parameters are omitted or requested with an empty object ({})
 
 </div>
 
-External trajectory velocity-command profile mode (`fctrl_mode`) is also planned for `70.06-00`.
-
-```json
-{"fctrl_mode": true}
-```
-
-| Parameter | Description |
-| --------- | ----------- |
-| `fctrl_mode` | Executes external trajectory commands using a servo velocity-command profile. When `false`, the existing joint trajectory mode is used. |
-
-Omitting `fctrl_mode` or sending `{}` disables it (`false`). It can be specified together with `agility_mode`.
-
 {% hint style="info" %}
 
 From `70.06-00` onward, buffer initialization only takes place when external trajectory mode is not active. If [joint_traject_mode](../1-get/10-joint_traject_mode.md) is `true`, `joint_traject_init` returns 200 without clearing the buffer or changing mode settings. Check `mode == false` before initialization.
@@ -83,11 +71,6 @@ Agility Mode
 {"agility_mode": true, "agility_freq": 30}
 ```
 
-Velocity-command profile mode (planned)
-```json
-{"fctrl_mode": true}
-```
-
 </div>
 
 
@@ -97,7 +80,6 @@ Velocity-command profile mode (planned)
 | --------- |------------ | -------- | -------- | -------- |
 | agility_mode | Optional|boolean|false|Returns a 400 Bad Request error if an invalid type (e.g., string) is assigned.|
 | agility_freq | Optional|integer|20|Automatically applied as the default frequency if omitted. Returns a 400 Bad Request error if it falls outside the controller's physical allowance range (0 ~ 500) or if an invalid type is assigned.|
-| fctrl_mode | Optional|boolean|false|Planned for `70.06-00`. Invalid types cause an error; omitted values disable this mode.|
 
 </div>
 
@@ -123,9 +105,6 @@ ex1)
 
 ex2) V70.06-00 &uparrow;
 {"agility_mode": true, "agility_freq": 30}
-
-ex3) V70.06-00 &uparrow; (`fctrl_mode` planned)
-{"agility_mode": true, "agility_freq": 30, "fctrl_mode": true}
 
 response-body
 {'_type': 'JObject'}
