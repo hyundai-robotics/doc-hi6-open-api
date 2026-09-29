@@ -2,7 +2,7 @@
 
 ##### Description
 
-* Supported version : `70.04-00` ↑
+* Supported version : `70.06-00` ↑ (planned)
 * `GET` : Retrieves the agility mode activation status and the operating frequency currently configured in the controller.
 
 
