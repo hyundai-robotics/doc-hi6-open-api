@@ -48,6 +48,9 @@
     * [4.1.7 joint_traject_buf_avail](4-robot/1-get/7-joint_traject_buf_avail.md)
     * [4.1.8 joint_states](4-robot/1-get/8-joint_states.md)
     * [4.1.9 joint_traject_agility_info](4-robot/1-get/9-joint_traject_agility_info.md)
+    * [4.1.10 joint_traject_mode](4-robot/1-get/10-joint_traject_mode.md)
+    * [4.1.11 joint_traject_ready](4-robot/1-get/11-joint_traject_ready.md)
+    * [4.1.12 joint_traject_log](4-robot/1-get/12-joint_traject_log.md)
   * [4.2 post](4-robot/2-post/README.md)
     * [4.2.1 motor-on](4-robot/2-post/1-motor-on.md)
     * [4.2.2 start-stop](4-robot/2-post/2-start-stop.md)
@@ -58,6 +61,8 @@
     * [4.2.7 joint_traject_init](4-robot/2-post/7-joint_traject_init.md)
     * [4.2.8 joint_traject_insert_points](4-robot/2-post/8-joint_traject_insert_points.md)
     * [4.2.9 joint_traject_insert_point](4-robot/2-post/9-joint_traject_insert_point.md)
+    * [4.2.10 joint_traject_off](4-robot/2-post/10-joint_traject_off.md)
+    * [4.2.11 joint_traject_log](4-robot/2-post/11-joint_traject_log.md)
 
 * [5. I/O plc](5-io_plc/README.md)
   * [5.1 get](5-io_plc/1-get/README.md)

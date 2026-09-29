@@ -11,7 +11,7 @@
 - [joint_traject_insert_points](./8-joint_traject_insert_points.md) api 로 궤적을 이동중에 <u>해당 함수를 호출하면 그 즉시 버퍼가 갱신</u>이 됩니다.
   - 기존 버퍼에 저장된 궤적 포인트들이 사라지면 로봇이 정지되면서 에러가 발생할 수 있으므로 사용에 주의 하시기 바랍니다.
 
-##### `70.04-00` ↑ 변경 사항
+##### `70.06-00` ↑ 변경 사항
 
 `joint_traject_insert_point` 의 민첩 모드가 추가 되었습니다.  
 
@@ -43,6 +43,34 @@
 {% endhint %}
 
 
+또한 외부 궤적의 속도 지령 프로파일 생성 모드(`fctrl_mode`)가 추가 되었습니다. (`70.06-00` 반영 예정)
+
+<div style="width: fit-content;">
+
+```json
+{ "fctrl_mode": true }
+```
+</div>
+
+<div style="width: fit-content;">
+
+|설정 항목|  설명 |
+| ----- |  ------ |
+| `fctrl_mode` | 외부 궤적 지령을 서보의 속도 지령 프로파일 생성 방식으로 수행하는 모드입니다. `false` 인 경우 기존 조인트 궤적 방식으로 동작합니다. |
+
+`fctrl_mode` 가 포함되지 않거나 빈 중괄호({})로 요청하는 경우, 해당 모드는 자동으로 비활성화(false)됩니다.
+`agility_mode` 와 함께 지정할 수 있습니다.
+
+</div>
+
+{% hint style="info" %}
+
+`70.06-00` ↑ 부터 버퍼 초기화는 외부 궤적 모드가 동작 중이 아닐 때에만 수행됩니다.
+[joint_traject_mode](../1-get/10-joint_traject_mode.md) 가 `true` 인 상태에서 요청하면 버퍼 초기화와 모드 설정이 모두 무시되고 정상 응답(200)만 반환되므로, 초기화 전에 `mode == false` 를 확인하시기 바랍니다.
+
+{% endhint %}
+
+
 ##### path-parameter
 
 <div style="width: fit-content;">
@@ -60,10 +88,11 @@ POST /project/robot/trajectory/joint_traject_init
 {} : 일반 모드
 ```
 
-`70.04-00` 이후 추가 된 속성
+`70.06-00` 이후 추가 된 속성
 
 ```
-{"agility_mode": True, "agility_freq": 30} : 민첩 모드
+{"agility_mode": true, "agility_freq": 30} : 민첩 모드
+{"fctrl_mode": true}                       : 속도 지령 프로파일 모드 (예정)
 ```
 
 
@@ -71,6 +100,7 @@ POST /project/robot/trajectory/joint_traject_init
 | ----- | ------ | ------ | ------ | ------|
 | `agility_mode` | Optional | boolean |  false | string 등 잘못된 타입 대입 시 400 Bad Request 에러를 반환 |
 | `agility_freq` | Optional | integer | 20 | 생략 시 기본 디폴트 주파수로 자동 적용. 제어기 물리 허용 범위(0 ~ 500)를 벗어나거나 잘못된 타입 대입 시 400 Bad Request 에러를 반환 |
+| `fctrl_mode` | Optional | boolean | false | `70.06-00` 반영 예정. string 등 잘못된 타입 대입 시 에러를 반환. 생략 시 비활성화 |
 
 
 </div>
@@ -82,7 +112,7 @@ POST /project/robot/trajectory/joint_traject_init
 1) status code
    - 200 : OK
    - 400 : Bad Request
-     - V70.04-00 ↑
+     - V70.06-00 ↑
         - `err_msg` : 에러 내용 반환
    - 403 : Forbidden
      - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
@@ -110,8 +140,11 @@ request-body
 ex1)
 {}
 
-ex2) V70.04-00 ↑
+ex2) V70.06-00 ↑
 {"agility_mode": true, "agility_freq": 30}
+
+ex3) V70.06-00 ↑ (fctrl_mode 는 반영 예정)
+{"agility_mode": true, "agility_freq": 30, "fctrl_mode": true}
 
 response-body
 {'_type': 'JObject'}
@@ -131,7 +164,7 @@ def post_init_trajectories(
     headers = {"Content-Type": "application/json; charset=utf-8"}
 
     try:
-        response = session.post(url=uri, headers=headers)
+        response = session.post(url=uri, headers=headers, json={})
         response.raise_for_status()
         print(f"[INFO] Initialization successful: status={response.status_code}")
         return response
