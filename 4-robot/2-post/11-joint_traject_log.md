@@ -26,7 +26,7 @@ POST /project/robot/trajectory/joint_traject_log
 
 ##### response
 
-1. Status code: 200 OK, 400 Bad Request, 403 Forbidden (missing or non-boolean `enable`), 404 Not Found
+1. Status code: 200 OK; 400 Bad Request (missing or non-boolean `enable`); 403 Forbidden; 404 Not Found
 2. Response body:
 
 ```json
