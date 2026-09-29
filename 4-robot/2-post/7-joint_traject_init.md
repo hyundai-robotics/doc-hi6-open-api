@@ -87,10 +87,10 @@ POST /project/robot/trajectory/joint_traject_init
 
 - 200 : 请求成功
 - 400 : Bad Request
-  -  v70.06-00↑ : `err_msg` - 返回错误详细信息。
+  - v70.06-00↑ : `err_msg` - 返回错误详细信息。
+  - 初始化过程中出现负数内部错误码时。
 - 403 : 请求失败
   - 当调用不支持的 API 时返回
-  - `err_code` (<0): 初始化失败
 
 ##### Example
 

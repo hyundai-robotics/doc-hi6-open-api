@@ -9,6 +9,12 @@
   - 程序播放未停止（自动模式下 Job 正在运行）。
 - 若 `ready` 为 `false` 时发送轨迹指令，控制器会报“外部指令不可执行”错误，并清空内部缓冲区；轨迹日志保存也会自动关闭。
 
+{% hint style="warning" %}
+
+**节能模式下 `ready` 始终为 `false`。** 使用外部轨迹指令前，将 **系统 > 2: 控制参数 > 1: 控制环境设置 > 节能功能**设置为**禁用**。
+
+{% endhint %}
+
 ##### path-parameter
 
 ```text
@@ -30,11 +36,12 @@ GET /project/robot/trajectory/joint_traject_ready
 
 ##### 使用步骤
 
-1. 将机器人移动到安全的参考姿态。
-2. 在 Job 中设置 `wait di1` 等等待语句，在自动模式下运行程序。
-3. 确认本接口返回 `ready == true`。
-4. 通过 [joint_traject_init](../2-post/7-joint_traject_init.md) 初始化缓冲区，然后发送轨迹点。
-5. 若 `ready == false`，不要发送轨迹点；先检查程序运行状态和控制器错误。
+1. 将 **系统 > 2: 控制参数 > 1: 控制环境设置 > 节能功能**设为**禁用**。
+2. 将机器人移动到安全的参考姿态。
+3. 在 Job 中设置 `wait di1` 等等待语句，在自动模式下运行程序。
+4. 确认本接口返回 `ready == true`。
+5. 通过 [joint_traject_init](../2-post/7-joint_traject_init.md) 初始化缓冲区，然后发送轨迹点。
+6. 若 `ready == false`，不要发送轨迹点；先检查节能功能设置、程序运行状态和控制器错误。
 
 {% hint style="info" %}
 
@@ -55,35 +62,20 @@ Python 脚本示例
 
 ```python
 # test.py
-import time
 import requests
 
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_ready"
 
-def wait_traject_ready(base_url: str, session: requests.Session, timeout: float = 10.0) -> bool:
-    uri = f"{base_url}/project/robot/trajectory/joint_traject_ready"
-    deadline = time.time() + timeout
-
-    while time.time() < deadline:
-        try:
-            ret = session.get(url=uri)
-            ret.raise_for_status()
-            if ret.json().get("ready") is True:
-                return True
-        except requests.exceptions.RequestException as e:
-            print(f"[ERROR] {e}")
-            return False
-        time.sleep(0.1)
-
-    return False
-
-
-if __name__ == "__main__":
-    base_url = "http://192.168.1.150:8888"
-    with requests.Session() as session:
-        print(wait_traject_ready(base_url, session))
+try:
+    response = requests.get(uri, timeout=5)
+    response.raise_for_status()
+    print(response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
 ```
 
 ```sh
 $ python test.py
-True
+{'ready': True}
 ```
