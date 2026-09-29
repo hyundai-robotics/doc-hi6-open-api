@@ -36,9 +36,10 @@ POST /project/robot/trajectory/joint_traject_log
 1) status code
    - 200 : OK
    - 400 : Bad Request
-   - 403 : Forbidden
      - `enable` 파라미터가 없는 경우
      - `enable` 값이 boolean 타입이 아닌 경우
+   - 403 : Forbidden
+     - 허용되지 않거나 서비스 되지 않는 API 에 대해서 요청을 한 경우
    - 404 : Not Found
 
 2) response-body
