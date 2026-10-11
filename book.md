@@ -348,7 +348,9 @@ total request time : 0.2869541645050049 seconds
 
 2. `Request Body` 작성 
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
-	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)
+	- `cur_prog_cnt`의 URL은 `http://<제어기 IP>:<HTTP 포트>/project/context/tasks/0/cur_prog_cnt`입니다. 그림의 기존 `tasks[0]` 표기 대신 `tasks/0`을 사용하십시오.
+	- 원격모드에서는 `ext_sel: 1`, 수동모드에서는 `ext_sel: 0`을 사용하고, 프로그램이 정지된 상태에서 시험하십시오.
+	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([8.2.1 `task/cur_prog_cnt` - request body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)
 	- Send를 클릭합니다.  
 		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
@@ -361,7 +363,7 @@ total request time : 0.2869541645050049 seconds
 
 		<blockquote style="width: fit-content;">
 
-		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)</br>
+		`(1) Response body` : `post` 에 대한 응답 결과 ([8.2.1 `task/cur_prog_cnt` - response body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`
 
 		</blockquote>
@@ -5423,13 +5425,17 @@ $python test.py
 ##### path-parameter
 
 ```python
-POST /project/context/tasks[0]/cur_prog_cnt
+POST /project/context/tasks/0/cur_prog_cnt
 ```
+
+- `0`은 태스크 인덱스입니다. 위 경로는 태스크 0의 프로그램 카운터를 설정합니다.
 
 ##### request-body
 
 - [cur_prog_cnt 요청 파라미터](../.././99-schema/cur_prog_cnt.md)
-- 원격모드에서 동작하는 api로, 외부선택 옵션(ext_sel: 1)을 선택해야합니다.
+- 원격모드에서는 외부선택(`ext_sel: 1`)을 사용합니다.
+- 수동모드에서는 내부선택(`ext_sel: 0`)을 사용할 수 있습니다. 원격모드에서는 내부선택이 금지됩니다.
+- 프로그램이 정지된 상태에서 요청하십시오. 이 API는 프로그램 카운터만 설정하며, 프로그램 실행이나 로봇 이동을 시작하지 않습니다.
 
 ##### response
 
@@ -5437,6 +5443,7 @@ POST /project/context/tasks[0]/cur_prog_cnt
    - 200 : OK
    - 400 : Bad Request
     	- request body 가 유효성 검사에서 실패한 경우
+     - 수동모드에서 외부선택(`ext_sel: 1`)을 요청한 경우 (`err_code: -1114208`)도 400 응답이 반환될 수 있습니다.
    - 403 : Forbidden
      - 허용되지 않는 요청을 한 경우
      - `err_code` (<0) 반환. 하기 에러코드 참조
@@ -5449,7 +5456,7 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 	<div style="width: fit-content;">
 
-   	- -1114208 : 원격모드가 아닌 경우
+     - -1114208 : 외부선택(`ext_sel: 1`)을 요청했으나 원격모드가 아닌 경우
    	- -1442080 : 프로그램 재생 중 적용 불가
    	- -1245280 : 유효하지 않은 프로그램 카운터
 
@@ -5461,9 +5468,11 @@ POST /project/context/tasks[0]/cur_prog_cnt
 
 ##### 사용 예
 
+원격모드에서 외부선택으로 프로그램을 선택하는 예입니다.
+
 ```python
 request url:
-POST /project/context/tasks[0]/cur_prog_cnt
+POST /project/context/tasks/0/cur_prog_cnt
 
 request-body:
 {
@@ -5482,8 +5491,8 @@ import requests
 
 def post_cur_prog_cnt() -> requests.Response:
     base_url = "http://192.168.1.150:8888"
-    # base_url = "http://192.168.1.150:8888"  # hrspace
-    path_parameter = "/project/context/tasks[0]/cur_prog_cnt"
+    # base_url = "http://127.0.0.1:8888"  # hrspace
+    path_parameter = "/project/context/tasks/0/cur_prog_cnt"
     headers = {"Content-Type": "application/json; charset=utf-8"}
     body = {"pno": 1, "sno": 0, "fno": 0, "ext_sel": 1}
 
@@ -5502,8 +5511,19 @@ except:
 
 ```
 ```sh
-$python python test.py
+$ python test.py
 (200, {'_type': 'JObject', 'sno_new': 0, 'ofs_moved': 0, 'fno_new': 0, 'ln_new': 0})
+```
+
+수동모드에서 프로그램 5의 스텝 2를 선택하려면 같은 경로에 아래 본문을 전송합니다. `fno: -1`은 현재 펑션 번호를 유지합니다.
+
+```json
+{
+    "pno": 5,
+    "sno": 2,
+    "fno": -1,
+    "ext_sel": 0
+}
 ```
 </div>
 

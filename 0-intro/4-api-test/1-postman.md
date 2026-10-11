@@ -33,7 +33,9 @@
 
 2. `Request Body` 작성 
 	- API method 를 `POST` 로 선택하고 URL을 입력합니다.
-	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([9.2.1 `task/cur_prog_cnt` - request body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)
+	- `cur_prog_cnt`의 URL은 `http://<제어기 IP>:<HTTP 포트>/project/context/tasks/0/cur_prog_cnt`입니다. 그림의 기존 `tasks[0]` 표기 대신 `tasks/0`을 사용하십시오.
+	- 원격모드에서는 `ext_sel: 1`, 수동모드에서는 `ext_sel: 0`을 사용하고, 프로그램이 정지된 상태에서 시험하십시오.
+	- Body 탭 클릭 후 요청하려는 `body-parameter`를 입력합니다. ([8.2.1 `task/cur_prog_cnt` - request body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)
 	- Send를 클릭합니다.  
 		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
@@ -46,7 +48,7 @@
 
 		<blockquote style="width: fit-content;">
 
-		`(1) Response body` : `post` 에 대한 응답 결과 ([9.2.1 `task/cur_prog_cnt` - response body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)</br>
+		`(1) Response body` : `post` 에 대한 응답 결과 ([8.2.1 `task/cur_prog_cnt` - response body](../.././8-task/2-post/1-cur_prog_cnt.md) 참조)</br>
 		`(2) Request` 에 대한 python `Code snippet`
 
 		</blockquote>
