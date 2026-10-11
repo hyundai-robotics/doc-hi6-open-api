@@ -32,8 +32,10 @@
 <br>
 
 2. `Request Body`  
-	- 将 API 方法选择为 `POST` 并输入 URL。  
-	- 点击 `Body` 标签并输入您要请求的 `body-parameter`。 ([9.2.1 `task/cur_prog_cnt` - request body](../../8-task/2-post/1-cur_prog_cnt.md))
+	- 将 API 方法选择为 `POST` 并输入 URL。
+	- `cur_prog_cnt` 的 URL 为 `http://<控制器 IP>:<HTTP 端口>/project/context/tasks/0/cur_prog_cnt`。请使用 `tasks/0`，而不是截图中的旧写法 `tasks[0]`。
+	- 远程模式下使用 `ext_sel: 1`，手动模式下使用 `ext_sel: 0`，并仅在程序停止时进行测试。
+	- 点击 `Body` 标签并输入您要请求的 `body-parameter`。 ([8.2.1 `task/cur_prog_cnt` - request body](../../8-task/2-post/1-cur_prog_cnt.md))
 	- 点击 `发送`  
 		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
@@ -45,6 +47,6 @@
 		<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">  
 		<blockquote>
 
-		`(1) 响应体` : 来自 `post` 请求的响应 ([9.2.1 `task/cur_prog_cnt` - response body](../../8-task/2-post/1-cur_prog_cnt.md))</br>
+		`(1) 响应体` : 来自 `post` 请求的响应 ([8.2.1 `task/cur_prog_cnt` - response body](../../8-task/2-post/1-cur_prog_cnt.md))</br>
 		`(2) Python 代码片段` : python 中 `post` 请求的代码。  
 抱歉，我无法处理这个请求。

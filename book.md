@@ -310,8 +310,10 @@ Postman 的 `workspace` 功能支持项目级的 API 测试和历史跟踪，并
 <br>
 
 2. `Request Body`  
-	- 将 API 方法选择为 `POST` 并输入 URL。  
-	- 点击 `Body` 标签并输入您要请求的 `body-parameter`。 ([9.2.1 `task/cur_prog_cnt` - request body](../../8-task/2-post/1-cur_prog_cnt.md))
+	- 将 API 方法选择为 `POST` 并输入 URL。
+	- `cur_prog_cnt` 的 URL 为 `http://<控制器 IP>:<HTTP 端口>/project/context/tasks/0/cur_prog_cnt`。请使用 `tasks/0`，而不是截图中的旧写法 `tasks[0]`。
+	- 远程模式下使用 `ext_sel: 1`，手动模式下使用 `ext_sel: 0`，并仅在程序停止时进行测试。
+	- 点击 `Body` 标签并输入您要请求的 `body-parameter`。 ([8.2.1 `task/cur_prog_cnt` - request body](../../8-task/2-post/1-cur_prog_cnt.md))
 	- 点击 `发送`  
 		<img src="../../_assets/03_postman_post.png" style="max-height: 30vh;">
 
@@ -323,7 +325,7 @@ Postman 的 `workspace` 功能支持项目级的 API 测试和历史跟踪，并
 		<img src="../../_assets/04_postman_post_result_check.png" style="max-height: 52vh;">  
 		<blockquote>
 
-		`(1) 响应体` : 来自 `post` 请求的响应 ([9.2.1 `task/cur_prog_cnt` - response body](../../8-task/2-post/1-cur_prog_cnt.md))</br>
+		`(1) 响应体` : 来自 `post` 请求的响应 ([8.2.1 `task/cur_prog_cnt` - response body](../../8-task/2-post/1-cur_prog_cnt.md))</br>
 		`(2) Python 代码片段` : python 中 `post` 请求的代码。  
 抱歉，我无法处理这个请求。
 [__SOURCE](0-intro/4-api-test/2-web-browser.md)
@@ -4528,22 +4530,46 @@ response: 200
 ##### path-parameter
 
 ```python
-POST /project/context/tasks[0]/cur_prog_cnt
+POST /project/context/tasks/0/cur_prog_cnt
 ```
+
+- `0` 是任务索引。此路径用于设置任务 0 的程序计数器。
 
 ##### request-body
 
 - [cur_prog_cnt request parameter](../../99-schema/cur_prog_cnt.md)
+- 在远程模式下，请使用外部选择（`ext_sel: 1`）。
+- 在手动模式下，可以使用内部选择（`ext_sel: 0`）。远程模式下禁止使用内部选择。
+- 请在程序停止时发送请求。此 API 仅设置程序计数器，不会启动程序执行或机器人运动。
 
-##### response-body
+##### response
 
-- [cur_prog_cnt response parameter](../../99-schema/cur_prog_cnt.md)
+1) 状态码
+   - 200：OK
+   - 400：Bad Request
+     - 请求体未通过有效性检查。
+     - 在手动模式下请求外部选择（`ext_sel: 1`）时，也可能返回 400，且 `err_code` 为 `-1114208`。
+   - 403：Forbidden
+     - 请求不被允许。返回负值 `err_code`。
+   - 404：Not Found
+
+2) 响应体
+   - [cur_prog_cnt 响应参数](../../99-schema/cur_prog_cnt.md)
+
+3) 错误代码
+   - -1114208：请求了外部选择（`ext_sel: 1`），但控制器不处于远程模式。
+   - -1442080：程序正在运行，无法应用。
+   - -1245280：无效的程序计数器。
+
+   通过 API 启动或停止程序后，可能出现无效程序计数器错误。请先使用 `set_cur_pc_idx` 将光标移至顶部（`idx: 1`），再重试。
 
 ##### Example
 
+此示例在手动模式下使用内部选择。在远程模式下使用外部选择时，请将 `ext_sel` 设置为 `1`。
+
 ```python
 request url:
-POST /project/context/tasks[0]/cur_prog_cnt
+POST /project/context/tasks/0/cur_prog_cnt
 
 request-body:
 {
@@ -4561,7 +4587,7 @@ import requests
 
 def post_cur_prog_cnt() -> dict:
     base_url       = 'http://192.168.1.150:8888'
-    path_parameter = '/project/context/tasks[0]/cur_prog_cnt'
+    path_parameter = '/project/context/tasks/0/cur_prog_cnt'
     headers        = { 'Content-Type': 'application/json; charset=utf-8' }
     body           = {"pno":-1, "sno":-1, "fno":-1, "ext_sel":0 }
 
@@ -4572,8 +4598,19 @@ def post_cur_prog_cnt() -> dict:
 print(post_cur_prog_cnt())
 ```
 ```sh
-$python python test.py
+$ python test.py
 {'_type': 'JObject', 'sno_new': 0, 'fno_new': 2, 'ln_new': 2, 'ofs_moved': 0}
+```
+
+在手动模式下选择程序 5 的步骤 2 时，请向同一路径发送以下请求体。`fno: -1` 表示保持当前功能编号。
+
+```json
+{
+    "pno": 5,
+    "sno": 2,
+    "fno": -1,
+    "ext_sel": 0
+}
 ```
 [__SOURCE](8-task/2-post/2-reset.md)
 #### 8.2.2 `task/reset`
