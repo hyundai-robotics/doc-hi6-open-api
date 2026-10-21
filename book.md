@@ -3340,6 +3340,634 @@ $ python test.py
 {'val': 1}
 ```
 
+[__SOURCE](4-robot/2-post/12-joint_traject_reset_under_fctrl.md)
+#### 4.2.12 `joint_traject_reset_under_fctrl`
+
+##### Description
+
+- Supported version : `70.06-00` ↑ (planned)
+- `POST` : API that **resets the trajectory state required to re-run a trajectory** while in the mode where `fctrl_mode` of [joint_traject_init](./7-joint_traject_init.md) is `true`.
+- The re-run procedure differs depending on the `fctrl_mode` value.
+
+<div style="width: fit-content;">
+
+| `fctrl_mode` | First run | Re-run |
+| ----- | ------ | ------ |
+| `false` | `joint_traject_init` | `joint_traject_init` |
+| `true` | `joint_traject_init` | **`joint_traject_reset_under_fctrl`** |
+
+</div>
+
+- [joint_traject_init](./7-joint_traject_init.md) does not perform initialization while the trajectory mode is running ([joint_traject_mode](../1-get/10-joint_traject_mode.md) is `true`), so in `fctrl_mode : true` mode you must reset with this API.
+
+##### Prerequisites
+
+The force control function **does not operate on its own.** All of the following are required.
+
+1. Controller force control **environment configuration**
+2. Force control **license**
+3. The mode entered by requesting [joint_traject_init](./7-joint_traject_init.md) with `fctrl_mode : true`
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```python
+POST /project/robot/trajectory/joint_traject_reset_under_fctrl
+```
+</div>
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```
+{} : no input parameters
+```
+</div>
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+     - When a request is made for an API that is not permitted or not serviced
+   - 404 : Not Found
+
+2) response-body
+
+<div style="width: fit-content;">
+
+```json
+{ "_type": "JObject"}
+```
+</div>
+
+{% hint style="warning" %}
+
+- If called **while the trajectory is moving**, the trajectory points in the buffer are discarded, which may stop the robot and raise an error. Please call it after the previous trajectory has finished.
+- Do not retry automatically on timeout; confirm whether the request was processed before re-running.
+
+{% endhint %}
+
+##### Usage example
+
+<div style="width: fit-content;">
+
+```joint_traject_reset_under_fctrl
+POST /project/robot/trajectory/joint_traject_reset_under_fctrl
+
+request-body
+{}
+
+response-body
+{'_type': 'JObject'}
+```
+
+Python Script example
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+uri = f"{base_url}/project/robot/trajectory/joint_traject_reset_under_fctrl"
+
+try:
+    response = requests.post(uri, json={}, timeout=5)
+    response.raise_for_status()
+    print(response.status_code, response.json())
+except requests.exceptions.RequestException as e:
+    print(f"[ERROR] {e}")
+```
+```sh
+$ python test.py
+200 {'_type': 'JObject'}
+```
+
+A 200 response means the trajectory state reset is complete and the next trajectory can be transmitted.
+</div>
+
+[__SOURCE](4-robot/2-post/13-fctrl_run.md)
+#### 4.2.13 `fctrl_run`
+
+##### Description
+
+- Supported version : `70.06-00` ↑ (planned)
+- `POST` : **Starts force control based motion** with the specified force control condition (`cnd`).
+- Specify the force control condition number to use via `cnd` in the request body.
+- The request only **instructs** the motion to start; it takes time until the internal processing of the controller is complete.
+- Use [fctrl_stop](./15-fctrl_stop.md) to halt the force control motion, and [fctrl_control](./14-fctrl_control.md) to change only the condition while the motion is running.
+
+##### Prerequisites
+
+The force control function **does not operate on its own.** **All** of the following conditions must be satisfied before using this API.
+
+<div style="width: fit-content;">
+
+| Prerequisite | Details |
+| ----- | ------ |
+| Force control environment configuration | The force control related **environment configuration must be completed** on the controller. |
+| Force control license | The **force control license must be registered** on the controller. |
+| Force control trajectory mode | It must be the mode entered by requesting [joint_traject_init](./7-joint_traject_init.md) with `fctrl_mode : true`. |
+
+</div>
+
+{% hint style="danger" %}
+
+If any one of the above conditions is not satisfied, the force control function will not operate.
+
+- It does not operate **if the controller environment configuration is not done or the force control license is missing**.
+- **This API cannot be used on its own** unless the mode has `fctrl_mode` of [joint_traject_init](./7-joint_traject_init.md) set to `true`.
+
+{% endhint %}
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```python
+POST /project/force_control/ctrl/run
+```
+</div>
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```json
+{ "cnd": 1 }
+```
+
+| Parameter | Attribute | Type | Default | Description and constraints |
+| ----- | ------ | ------ | ------ | ------ |
+| `cnd` | Required | integer | - | Force control condition number to apply. Assigning a wrong type or an unregistered condition number returns 400 Bad Request |
+
+</div>
+
+{% hint style="warning" %}
+
+`cnd` is a number that points to a **force control condition registered in advance** on the controller.
+Specifying an unregistered number may cause unintended motion or errors, so please verify that the condition is registered before use.
+
+{% endhint %}
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - When `cnd` is missing or has a wrong type
+     - When an unregistered force control condition number is specified
+   - 403 : Forbidden
+     - When a request is made for an API that is not permitted or not serviced
+   - 404 : Not Found
+
+2) response-body
+
+<div style="width: fit-content;">
+
+```json
+{ "_type": "JObject"}
+```
+</div>
+
+##### Related APIs
+
+<div style="width: fit-content;">
+
+| API | Purpose |
+| ----- | ------ |
+| `fctrl_run` | **Start** force control motion |
+| [fctrl_control](./14-fctrl_control.md) | **Change** the force control condition (`cnd`) |
+| [fctrl_stop](./15-fctrl_stop.md) | **Halt** force control and motion |
+| [joint_traject_init](./7-joint_traject_init.md) | Enter force control trajectory mode with `fctrl_mode : true` |
+| [joint_traject_reset_under_fctrl](./12-joint_traject_reset_under_fctrl.md) | Reset the state before re-transmitting a trajectory in `fctrl_mode : true` mode |
+
+</div>
+
+{% hint style="warning" %}
+
+- This is a state changing request, so **do not apply automatic retries.** Even if a timeout occurs, the controller may have already executed the command. Check the controller state before deciding whether to re-run.
+- Do not parallelize requests on the client side; reuse a single session to **preserve command order**.
+- Do not treat redirect (3xx) responses as normal responses; handle them as errors.
+
+{% endhint %}
+
+##### Usage example
+
+<div style="width: fit-content;">
+
+```fctrl_run
+POST /project/force_control/ctrl/run
+
+request-body
+{"cnd": 1}
+
+response-body
+{'_type': 'JObject'}
+```
+
+Python Script example
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+# base_url = "http://127.0.0.1:8888"  # hrspace
+
+# Specify connect / read timeouts separately. These are not real-time guaranteed values.
+REQUEST_TIMEOUT = (3.05, 10.0)
+
+
+def post_json(session, path, body):
+    """State changing POST. Propagates failures so that subsequent commands do not continue."""
+    response = session.post(
+        base_url + path,
+        json=body,
+        timeout=REQUEST_TIMEOUT,
+        allow_redirects=False,
+    )
+    response.raise_for_status()
+    if 300 <= response.status_code < 400:
+        raise requests.HTTPError(f"Unexpected redirect: {response.status_code}")
+    print(f"[INFO] {path} OK: status={response.status_code}")
+    response.close()
+
+
+def fctrl_run(session, cnd):
+    """Start force control based motion (Run). Raises on request failure."""
+    post_json(session, "/project/force_control/ctrl/run", {"cnd": cnd})
+
+
+def main():
+    with requests.Session() as session:
+        print("[ACTION] Starting force control (Run)...")
+        fctrl_run(session, 1)
+
+
+if __name__ == "__main__":
+    main()
+```
+```sh
+$ python test.py
+[ACTION] Starting force control (Run)...
+[INFO] /project/force_control/ctrl/run OK: status=200
+```
+
+A 200 response means the request to start force control motion has been accepted.
+</div>
+
+[__SOURCE](4-robot/2-post/14-fctrl_control.md)
+#### 4.2.14 `fctrl_control`
+
+##### Description
+
+- Supported version : `70.06-00` ↑ (planned)
+- `POST` : **Changes the force control condition (`cnd`)** currently being applied.
+- Used to replace only the condition without halting the motion after force control motion has been started with [fctrl_run](./13-fctrl_run.md).
+- The request only **instructs** the condition change; it takes time until the internal processing of the controller is complete.
+
+##### Prerequisites
+
+The force control function **does not operate on its own.** **All** of the following conditions must be satisfied before using this API.
+
+<div style="width: fit-content;">
+
+| Prerequisite | Details |
+| ----- | ------ |
+| Force control environment configuration | The force control related **environment configuration must be completed** on the controller. |
+| Force control license | The **force control license must be registered** on the controller. |
+| Force control trajectory mode | It must be the mode entered by requesting [joint_traject_init](./7-joint_traject_init.md) with `fctrl_mode : true`. |
+
+</div>
+
+{% hint style="danger" %}
+
+If any one of the above conditions is not satisfied, the force control function will not operate.
+
+- It does not operate **if the controller environment configuration is not done or the force control license is missing**.
+- **This API cannot be used on its own** unless the mode has `fctrl_mode` of [joint_traject_init](./7-joint_traject_init.md) set to `true`.
+
+{% endhint %}
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```python
+POST /project/force_control/ctrl/control
+```
+</div>
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```json
+{ "cnd": 2 }
+```
+
+| Parameter | Attribute | Type | Default | Description and constraints |
+| ----- | ------ | ------ | ------ | ------ |
+| `cnd` | Required | integer | - | Force control condition number to change to. Assigning a wrong type or an unregistered condition number returns 400 Bad Request |
+
+</div>
+
+{% hint style="warning" %}
+
+`cnd` is a number that points to a **force control condition registered in advance** on the controller.
+Specifying an unregistered number may cause unintended motion or errors, so please verify that the condition is registered before use.
+
+{% endhint %}
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+     - When `cnd` is missing or has a wrong type
+     - When an unregistered force control condition number is specified
+   - 403 : Forbidden
+     - When a request is made for an API that is not permitted or not serviced
+   - 404 : Not Found
+
+2) response-body
+
+<div style="width: fit-content;">
+
+```json
+{ "_type": "JObject"}
+```
+</div>
+
+##### Difference from `fctrl_run`
+
+<div style="width: fit-content;">
+
+| Category | [fctrl_run](./13-fctrl_run.md) | `fctrl_control` |
+| ----- | ------ | ------ |
+| Role | **Start** force control motion | **Change** the force control condition in effect |
+| When to use | Force control not running | After motion has been started with [fctrl_run](./13-fctrl_run.md) |
+| path | `/project/force_control/ctrl/run` | `/project/force_control/ctrl/control` |
+| request-body | `{"cnd": <condition number>}` | `{"cnd": <condition number>}` |
+
+</div>
+
+{% hint style="warning" %}
+
+- Changing the condition **while force control is running** immediately alters the behavior of the robot. Please verify the force/speed changes caused by the condition change in advance before use.
+- This is a state changing request, so **do not apply automatic retries.** Even if a timeout occurs, the controller may have already executed the command. Check the controller state before deciding whether to re-run.
+- Do not parallelize requests on the client side; reuse a single session to **preserve command order**.
+- Do not treat redirect (3xx) responses as normal responses; handle them as errors.
+
+{% endhint %}
+
+##### Usage example
+
+<div style="width: fit-content;">
+
+```fctrl_control
+POST /project/force_control/ctrl/control
+
+request-body
+{"cnd": 2}
+
+response-body
+{'_type': 'JObject'}
+```
+
+Python Script example
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+# base_url = "http://127.0.0.1:8888"  # hrspace
+
+# Specify connect / read timeouts separately. These are not real-time guaranteed values.
+REQUEST_TIMEOUT = (3.05, 10.0)
+
+
+def post_json(session, path, body):
+    """State changing POST. Propagates failures so that subsequent commands do not continue."""
+    response = session.post(
+        base_url + path,
+        json=body,
+        timeout=REQUEST_TIMEOUT,
+        allow_redirects=False,
+    )
+    response.raise_for_status()
+    if 300 <= response.status_code < 400:
+        raise requests.HTTPError(f"Unexpected redirect: {response.status_code}")
+    print(f"[INFO] {path} OK: status={response.status_code}")
+    response.close()
+
+
+def fctrl_run(session, cnd):
+    """Start force control based motion (Run). Raises on request failure."""
+    post_json(session, "/project/force_control/ctrl/run", {"cnd": cnd})
+
+
+def fctrl_control(session, cnd):
+    """Change the force control condition (Control). Raises on request failure."""
+    post_json(session, "/project/force_control/ctrl/control", {"cnd": cnd})
+
+
+def main():
+    # Reuse the same session to preserve command order.
+    with requests.Session() as session:
+        print("[ACTION] Starting force control (Run)...")
+        fctrl_run(session, 1)
+
+        print("[ACTION] Changing force control cnd...")
+        fctrl_control(session, 2)
+
+
+if __name__ == "__main__":
+    main()
+```
+```sh
+$ python test.py
+[ACTION] Starting force control (Run)...
+[INFO] /project/force_control/ctrl/run OK: status=200
+[ACTION] Changing force control cnd...
+[INFO] /project/force_control/ctrl/control OK: status=200
+```
+
+A 200 response means the request to change the force control condition has been accepted.
+</div>
+
+[__SOURCE](4-robot/2-post/15-fctrl_stop.md)
+#### 4.2.15 `fctrl_stop`
+
+##### Description
+
+- Supported version : `70.06-00` ↑ (planned)
+- `POST` : Requests a **halt of force control and motion (Halt)**.
+- Halts the force control motion started with [fctrl_run](./13-fctrl_run.md).
+- The request only **instructs** the halt; it takes time until the internal termination processing of the controller is complete.
+- There are no input parameters.
+
+{% hint style="danger" %}
+
+This API **does not replace a hardware emergency stop.**
+
+Because it is a software halt request that travels over the network, an immediate stop is not guaranteed when communication is delayed or disconnected.
+For safety related stops, always use a hardware emergency stop device.
+
+{% endhint %}
+
+##### Prerequisites
+
+The force control function **does not operate on its own.** **All** of the following conditions must be satisfied before using this API.
+
+<div style="width: fit-content;">
+
+| Prerequisite | Details |
+| ----- | ------ |
+| Force control environment configuration | The force control related **environment configuration must be completed** on the controller. |
+| Force control license | The **force control license must be registered** on the controller. |
+| Force control trajectory mode | It must be the mode entered by requesting [joint_traject_init](./7-joint_traject_init.md) with `fctrl_mode : true`. |
+
+</div>
+
+{% hint style="danger" %}
+
+If any one of the above conditions is not satisfied, the force control function will not operate.
+
+- It does not operate **if the controller environment configuration is not done or the force control license is missing**.
+- **This API cannot be used on its own** unless the mode has `fctrl_mode` of [joint_traject_init](./7-joint_traject_init.md) set to `true`.
+
+{% endhint %}
+
+##### path-parameter
+
+<div style="width: fit-content;">
+
+```python
+POST /project/force_control/ctrl/stop
+```
+</div>
+
+##### request-body
+
+<div style="width: fit-content;">
+
+```
+{} : no input parameters
+```
+</div>
+
+##### response
+
+1) status code
+   - 200 : OK
+   - 400 : Bad Request
+   - 403 : Forbidden
+     - When a request is made for an API that is not permitted or not serviced
+   - 404 : Not Found
+
+2) response-body
+
+<div style="width: fit-content;">
+
+```json
+{ "_type": "JObject"}
+```
+</div>
+
+##### Related APIs
+
+<div style="width: fit-content;">
+
+| API | Purpose |
+| ----- | ------ |
+| [fctrl_run](./13-fctrl_run.md) | **Start** force control motion |
+| [fctrl_control](./14-fctrl_control.md) | **Change** the force control condition (`cnd`) |
+| `fctrl_stop` | **Halt** force control and motion |
+| [joint_traject_off](./10-joint_traject_off.md) | **Exit** external trajectory mode |
+| [emergency_stop](./5-emergency_stop.md) | Emergency stop |
+
+</div>
+
+{% hint style="warning" %}
+
+- If the force control trajectory mode (`fctrl_mode : true` of [joint_traject_init](./7-joint_traject_init.md)) was used together, exiting the trajectory mode must be performed separately with [joint_traject_off](./10-joint_traject_off.md). Please confirm that the exit is complete by checking that [joint_traject_mode](../1-get/10-joint_traject_mode.md) becomes `false`.
+- This is a state changing request, so **do not apply automatic retries.** Even if a timeout occurs, the controller may have already performed the halt. Check the controller state before deciding whether to re-run.
+- Even if the client program terminates due to an error or `Ctrl+C`, **robot motions already accepted may continue.** Terminating the program does not mean the robot stops.
+- Do not treat redirect (3xx) responses as normal responses; handle them as errors.
+
+{% endhint %}
+
+##### Usage example
+
+<div style="width: fit-content;">
+
+```fctrl_stop
+POST /project/force_control/ctrl/stop
+
+request-body
+{}
+
+response-body
+{'_type': 'JObject'}
+```
+
+Python Script example
+
+```python
+# test.py
+import requests
+
+base_url = "http://192.168.1.150:8888"
+# base_url = "http://127.0.0.1:8888"  # hrspace
+
+# Specify connect / read timeouts separately. These are not real-time guaranteed values.
+REQUEST_TIMEOUT = (3.05, 10.0)
+
+
+def post_json(session, path, body):
+    """State changing POST. Propagates failures so that subsequent commands do not continue."""
+    response = session.post(
+        base_url + path,
+        json=body,
+        timeout=REQUEST_TIMEOUT,
+        allow_redirects=False,
+    )
+    response.raise_for_status()
+    if 300 <= response.status_code < 400:
+        raise requests.HTTPError(f"Unexpected redirect: {response.status_code}")
+    print(f"[INFO] {path} OK: status={response.status_code}")
+    response.close()
+
+
+def fctrl_stop(session):
+    """Request a halt of force control and motion (Halt). Does not replace a hardware emergency stop."""
+    post_json(session, "/project/force_control/ctrl/stop", {})
+
+
+def main():
+    with requests.Session() as session:
+        print("[ACTION] Stopping force control (Halt)...")
+        fctrl_stop(session)
+
+
+if __name__ == "__main__":
+    main()
+```
+```sh
+$ python test.py
+[ACTION] Stopping force control (Halt)...
+[INFO] /project/force_control/ctrl/stop OK: status=200
+```
+
+A 200 response means the halt request has been accepted. Whether the halt is complete must be confirmed from the controller state.
+</div>
+
 [__SOURCE](5-io_plc/README.md)
 # 5. I/O PLC
 

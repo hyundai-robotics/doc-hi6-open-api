@@ -65,6 +65,10 @@
     * [4.2.9 joint_traject_insert_point](4-robot/2-post/9-joint_traject_insert_point.md)
     * [4.2.10 joint_traject_off](4-robot/2-post/10-joint_traject_off.md)
     * [4.2.11 joint_traject_log](4-robot/2-post/11-joint_traject_log.md)
+    * [4.2.12 joint_traject_reset_under_fctrl](4-robot/2-post/12-joint_traject_reset_under_fctrl.md)
+    * [4.2.13 fctrl_run](4-robot/2-post/13-fctrl_run.md)
+    * [4.2.14 fctrl_control](4-robot/2-post/14-fctrl_control.md)
+    * [4.2.15 fctrl_stop](4-robot/2-post/15-fctrl_stop.md)
 
 * [5. I/O plc](5-io_plc/README.md)
   * [5.1 get](5-io_plc/1-get/README.md)
