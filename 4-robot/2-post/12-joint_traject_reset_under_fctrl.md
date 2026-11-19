@@ -1,4 +1,4 @@
-#### 4.2.12 `joint_traject_reset_under_fctrl`
+﻿#### 4.2.12 `joint_traject_reset_under_fctrl`
 
 ##### Description
 
