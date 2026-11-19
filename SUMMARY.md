@@ -67,6 +67,7 @@
     * [4.2.13 fctrl_run](4-robot/2-post/13-fctrl_run.md)
     * [4.2.14 fctrl_control](4-robot/2-post/14-fctrl_control.md)
     * [4.2.15 fctrl_stop](4-robot/2-post/15-fctrl_stop.md)
+    * [4.2.16 joystick/joy](4-robot/2-post/16-joystick_joy.md)
 
 * [5. I/O plc](5-io_plc/README.md)
   * [5.1 get](5-io_plc/1-get/README.md)
